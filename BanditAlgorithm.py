@@ -15,9 +15,9 @@ class BanditAlgorithm:
     return self.arm_history
     
 
+  #decide which arm to pick
   @abc.abstractmethod
   def pickAnArm(self):
-    #decide which arm to pick
     return
   
 
@@ -28,7 +28,8 @@ class BanditAlgorithm:
     #get the realization by calling pullArm(k)
     reward = self.banditProblemInstance.pullArm(arm)
     self.reward_history.append(reward)
-    self.updatePosterior(arm, reward)  
+    self.updatePosterior(arm, reward)
+    return (reward, arm)
   
   # bayesian update your posterior
   def updatePosterior(self, arm, reward):

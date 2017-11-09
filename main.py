@@ -1,16 +1,12 @@
 from StaticGreedy import StaticGreedy
 from BanditProblemInstance import BanditProblemInstance
-
+from HardMax import HardMax
 
 from scipy.stats import bernoulli
 from scipy.stats import uniform
 
 K = 2
 T = 10
-distribution='bernoulli'
-
-
-
 
 
 # true distributions are:
@@ -33,18 +29,13 @@ banditProblemInstance = BanditProblemInstance(K, T, real_distributions)
 principal1 = StaticGreedy(banditProblemInstance, priors)
 principal2 = StaticGreedy(banditProblemInstance, priors)
 
-
+principals = { 'principal1': principal1, 'principal2': principal2 }
+agents = HardMax(principals)
 
 for t in xrange(1,T):
-  principal1.executeStep()
-  #agent = Agent('HardMax', principal1, principal2)
-  #principal = agent.choosePrincipal() #integer, 1 or 2
-  # run agent t's response function to choose which principal
-
-  #if principal == 1:
-  #  principal1.pickAnArm() 
-  #else:
-  #  principal2.pickAnArm()
+  (principalName, principal) = agents.selectPrincipal()
+  (reward, arm) = principal.executeStep()
+  agents.updateInformationSet(reward, principalName)
 
 
 print(principal1.getArmHistory())
