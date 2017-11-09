@@ -1,23 +1,36 @@
-class BanditAlgorithm :
-  #prior is the prior distribution
-  def __init__(self, K, T, distribution='bernoulli', prior, pullArm):
-    self.prior = prior #this is constant
-    self.posterior = prior
+import abc
+
+class BanditAlgorithm:
+  __metaclass__ = abc.ABCMeta
+
+  def __init__(self, banditProblemInstance, priors):
+    self.priors = priors #this is constant
+    self.posteriors = priors
+    self.banditProblemInstance = banditProblemInstance
     self.n = 0 # how many times have i been picked
-    self.history = [] # an array of integers (1..K) of the arms i picked
+    self.arm_history = [] # an array of integers (1..K) of the arms i picked
+    self.reward_history = []
 
-  def getHistory():
-    return self.history
+  def getArmHistory(self):
+    return self.arm_history
+    
 
+  @abc.abstractmethod
+  def pickAnArm(self):
+    #decide which arm to pick
+    return
+  
 
-  #abstract
-  def pickAnArm():
-    #decide which arm to pick, k
-
+  def executeStep(self):
+    arm = self.pickAnArm()
+    self.n += 1
+    self.arm_history.append(arm)
     #get the realization by calling pullArm(k)
-
-    # bayesian update your posterior
-
-    #return an integer k (which arm you pulled) and the realization
-
-  def updatePosterior():
+    reward = self.banditProblemInstance.pullArm(arm)
+    self.reward_history.append(reward)
+    self.updatePosterior(arm, reward)  
+  
+  # bayesian update your posterior
+  def updatePosterior(self, arm, reward):
+    ##**TODO: implement this
+    return

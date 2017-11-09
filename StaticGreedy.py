@@ -1,9 +1,9 @@
-import numpy
-import scipy
+from BanditAlgorithm import BanditAlgorithm
 
-class StaticGreedy < BanditAlgorithm:
-  def pickAnArm():
-    # pick the arm with the highest mean and return it
-    bestArm = 1
-    for k in xrange(1, self.K + 1):
-      # get the mean of 
+import numpy as np
+
+
+class StaticGreedy(BanditAlgorithm):
+  def pickAnArm(self):
+    chosenArm = np.argmax([p.mean() for p in self.priors]) + 1
+    return chosenArm
