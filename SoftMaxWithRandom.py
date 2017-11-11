@@ -7,8 +7,8 @@ class SoftMaxWithRandom(SoftMax):
     super(SoftMaxWithRandom, self).__init__(principals, priors, alpha)
 
   def selectPrincipal(self):
-    if rand.rand() > self.epsilon:
-      return super(HardMaxWithRandom, self).selectPrincipal()
+    if rand.random() > self.epsilon:
+      return super(SoftMaxWithRandom, self).selectPrincipal()
     else:
       principal = self.informationSet.getRandPrincipal()
       return (principal, self.principals[principal])

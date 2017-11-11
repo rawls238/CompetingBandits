@@ -26,7 +26,7 @@ class InformationSet:
     return (maxPrincipals, maxScore)
 
   def getScores(self):
-    return { (k, v.getMeanScore()) for (k, v) in self.infoSet.iteritems() }
+    return dict({ (k, v.getMeanScore()) for (k, v) in self.infoSet.iteritems() })
 
   def getRandPrincipal(self):
     return rand.choice(self.infoSet.keys())
