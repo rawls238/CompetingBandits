@@ -6,10 +6,10 @@ class Agent:
 
   def __init__(self, principals, priors=None):
     self.principals = principals
+    self.priors = priors
 
     # for each principal store the number of times selected and total reward
-    self.informationSet = InformationSet(principals)
-    # TODO incorporate agent priors into the initial information set
+    self.informationSet = InformationSet(principals, priors)
 
   @abc.abstractmethod
   def selectPrincipal(self):

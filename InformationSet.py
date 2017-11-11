@@ -16,8 +16,8 @@ class Info:
     return scores[t]()
 
 class InformationSet:
-  def __init__(self, principals):
-     self.infoSet  = { principal: Info(principal) for (principal, v) in principals.iteritems() }
+  def __init__(self, principals, priors):
+     self.infoSet  = { principal: Info(principal, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
 
   def getMaxPrincipalsAndScores(self, typeOfScore='mean'):
     maxScore = -1

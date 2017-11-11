@@ -1,8 +1,8 @@
 import random as rand
-from SoftMax import SoftMax
+from SoftMax import SoftMax, DEFAULT_ALPHA
 
 class SoftMaxWithRandom(SoftMax):
-  def __init__(self, principals, priors=None, alpha=0.05, epsilon=0.05):
+  def __init__(self, principals, priors=None, alpha=DEFAULT_ALPHA, epsilon=0.05):
     self.epsilon = epsilon
     super(SoftMaxWithRandom, self).__init__(principals, priors, alpha)
 

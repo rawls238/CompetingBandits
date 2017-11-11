@@ -2,8 +2,10 @@ import random as rand
 import numpy as np
 from Agent import Agent
 
+
+DEFAULT_ALPHA = 10
 class SoftMax(Agent):
-  def __init__(self, principals, priors=None, alpha=0.2):
+  def __init__(self, principals, priors=None, alpha=DEFAULT_ALPHA):
     self.alpha = alpha
     super(SoftMax, self).__init__(principals, priors)
 
