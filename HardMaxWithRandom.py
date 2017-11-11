@@ -7,7 +7,7 @@ class HardMaxWithRandom(HardMax):
     super(HardMaxWithRandom, self).__init__(principals, priors)
 
   def selectPrincipal(self):
-    if random.rand() > epsilon:
+    if rand.random() > self.epsilon:
       return super(HardMaxWithRandom, self).selectPrincipal()
     else:
       principal = self.informationSet.getRandPrincipal()

@@ -1,6 +1,7 @@
 from DynamicGreedy import DynamicGreedy
 from BanditProblemInstance import BanditProblemInstance
 from HardMax import HardMax
+from HardMaxWithRandom import HardMaxWithRandom
 
 from scipy.stats import bernoulli
 from scipy.stats import uniform
@@ -29,7 +30,7 @@ principal1 = DynamicGreedy(banditProblemInstance, priors)
 principal2 = DynamicGreedy(banditProblemInstance, priors)
 
 principals = { 'principal1': principal1, 'principal2': principal2 }
-agents = HardMax(principals)
+agents = HardMaxWithRandom(principals)
 
 for t in xrange(1,T):
   (principalName, principal) = agents.selectPrincipal()

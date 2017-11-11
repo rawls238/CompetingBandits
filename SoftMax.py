@@ -14,4 +14,4 @@ class SoftMax(Agent):
         return (principal, self.principals[maxPrincipal])
 
   def tieBreak(self, items):
-    return random.choice(items)
+    return rand.choice(items)
