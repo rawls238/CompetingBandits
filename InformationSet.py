@@ -9,15 +9,21 @@ class Info:
   def getMeanScore(self):
     return self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
 
+  def getScore(self, t):
+    scores = {
+      'mean': self.getMeanScore
+    }
+    return scores[t]()
+
 class InformationSet:
   def __init__(self, principals):
      self.infoSet  = { principal: Info(principal) for (principal, v) in principals.iteritems() }
 
-  def getMaxPrincipalsAndScores(self):
+  def getMaxPrincipalsAndScores(self, typeOfScore='mean'):
     maxScore = -1
     maxPrincipals = []
     for (k, v) in self.infoSet.iteritems():
-      score = v.getMeanScore()
+      score = v.getScore(typeOfScore)
       if score > maxScore:
         maxPrincipals = [k]
         maxScore = score
