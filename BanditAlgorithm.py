@@ -13,14 +13,12 @@ class BanditAlgorithm:
 
   def getArmHistory(self):
     return self.arm_history
-    
 
   #decide which arm to pick
   @abc.abstractmethod
   def pickAnArm(self):
     return
   
-
   def executeStep(self):
     arm = self.pickAnArm()
     self.n += 1
@@ -33,5 +31,4 @@ class BanditAlgorithm:
   
   # bayesian update your posterior
   def updatePosterior(self, arm, reward):
-    ##**TODO: implement this
-    return
+    distr = self.posteriors[arm]

@@ -1,4 +1,4 @@
-from StaticGreedy import StaticGreedy
+from DynamicGreedy import DynamicGreedy
 from BanditProblemInstance import BanditProblemInstance
 from HardMax import HardMax
 
@@ -6,7 +6,7 @@ from scipy.stats import bernoulli
 from scipy.stats import uniform
 
 K = 2
-T = 10
+T = 1000
 
 
 # true distributions are:
@@ -24,10 +24,9 @@ priors = [bernoulli(0.5), bernoulli(0.3)]
 banditProblemInstance = BanditProblemInstance(K, T, real_distributions)
 
 
-
 # instantiate 2 principals (who are of some subclass of BanditAlgorithm)
-principal1 = StaticGreedy(banditProblemInstance, priors)
-principal2 = StaticGreedy(banditProblemInstance, priors)
+principal1 = DynamicGreedy(banditProblemInstance, priors)
+principal2 = DynamicGreedy(banditProblemInstance, priors)
 
 principals = { 'principal1': principal1, 'principal2': principal2 }
 agents = HardMax(principals)
@@ -39,6 +38,7 @@ for t in xrange(1,T):
 
 
 print(principal1.getArmHistory())
+print(principal2.getArmHistory())
 
 
 

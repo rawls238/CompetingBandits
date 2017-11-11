@@ -5,4 +5,4 @@ class BanditProblemInstance:
     self.distributions = distributions
 
   def pullArm(self, a):
-    return self.distributions[a-1].rvs()
+    return self.distributions[a].rvs()
