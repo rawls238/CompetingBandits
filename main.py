@@ -3,6 +3,7 @@
 from StaticGreedy import StaticGreedy
 from DynamicGreedy import DynamicGreedy
 from UCB import UCB
+from ThompsonSampling import ThompsonSampling
 
 ## Import Agent classes
 from HardMax import HardMax
@@ -70,11 +71,9 @@ initialResultDict = {
   'armProbs2': []
 }
 
-#print(simulate(DynamicGreedy, HardMax))
-
-N = 20
+N = 60
 numCores = multiprocessing.cpu_count()
-PRINCIPAL_ALGS = [StaticGreedy, DynamicGreedy, UCB]
+PRINCIPAL_ALGS = [ThompsonSampling, StaticGreedy, DynamicGreedy, UCB]
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax, SoftMaxWithRandom]
 results = {}
 for agentAlg in AGENT_ALGS:
