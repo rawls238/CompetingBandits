@@ -23,7 +23,7 @@ import multiprocessing
 K = 2
 T = 1000.0
 
-def simulate(principalAlg, agentAlg):
+def simulate(principalAlg1, principalAlg2, agentAlg):
   # true distributions are:
   # arm 1 ~ bernoulli(0.6)   mu_1 = 0.6
   # arm 2 ~ bernoulli(0.4)   mu_2 = 0.4
@@ -37,11 +37,11 @@ def simulate(principalAlg, agentAlg):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
 
-  agentPriors = { 'principal1': beta(0.45, 0.55), 'principal2': beta(0.45, 0.55) }
+  agentPriors = { 'principal1': beta(0.85, 0.15), 'principal2': beta(0.75, 0.15) }
 
   # instantiate 2 principals (who are of some subclass of BanditAlgorithm)
-  principal1 = principalAlg(banditProblemInstance, principalPriors)
-  principal2 = principalAlg(banditProblemInstance, principalPriors)
+  principal1 = principalAlg1(banditProblemInstance, principalPriors)
+  principal2 = principalAlg2(banditProblemInstance, principalPriors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
   agents = agentAlg(principals, agentPriors)
@@ -70,7 +70,9 @@ initialResultDict = {
   'armProbs2': []
 }
 
-N = 60
+#print(simulate(DynamicGreedy, HardMax))
+
+N = 20
 numCores = multiprocessing.cpu_count()
 PRINCIPAL_ALGS = [StaticGreedy, DynamicGreedy, UCB]
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax, SoftMaxWithRandom]
@@ -80,13 +82,13 @@ for agentAlg in AGENT_ALGS:
   for principalAlg in PRINCIPAL_ALGS:
     results[agentAlg][principalAlg] = copy(initialResultDict)
     print('Running ' + agentAlg.__name__ + ' with principal playing ' + principalAlg.__name__)
-    simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg, agentAlg) for i in xrange(N))
+    simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg, principalAlg, agentAlg) for i in xrange(N))
     for res in simResults:
       for k, v in res.iteritems():
         results[agentAlg][principalAlg][k].append(v)
+    #print(results)
     print({
       'averageMarketShare1': np.mean(results[agentAlg][principalAlg]['marketShare1']),
       'averageMarketShare2': np.mean(results[agentAlg][principalAlg]['marketShare2'])
     })
-
 

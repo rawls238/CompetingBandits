@@ -3,10 +3,6 @@ import numpy as np
 import math
 
 class UCB(BanditAlgorithm):
-  @staticmethod
-  def name(self):
-    return 'UCB'
-
   def pickAnArm(self):
     numArms = len(self.armCounts)
     for i in range(numArms):
