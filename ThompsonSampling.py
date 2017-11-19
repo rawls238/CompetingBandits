@@ -1,3 +1,4 @@
+import numpy as np
 from BanditAlgorithm import BanditAlgorithm
 
 class ThompsonSampling(BanditAlgorithm):
