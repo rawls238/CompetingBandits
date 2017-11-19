@@ -10,6 +10,7 @@ from HardMax import HardMax
 from HardMaxWithRandom import HardMaxWithRandom
 from SoftMax import SoftMax
 from SoftMaxWithRandom import SoftMaxWithRandom
+from HeterogenousHardMax import HeterogenousHardMax
 
 
 from BanditProblemInstance import BanditProblemInstance
@@ -49,7 +50,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     (principalName, principal) = agents.selectPrincipal()
     principalHistory.append(principalName)
     (reward, arm) = principal.executeStep()
-    agents.updateInformationSet(reward, principalName)
+    agents.updateInformationSet(reward, arm, principalName)
 
   marketShare1 = principal1.n / T
   marketShare2 = principal2.n / T
@@ -88,7 +89,7 @@ def marketShareOverTime(armHistories, T):
 N = 25
 numCores = multiprocessing.cpu_count()
 PRINCIPAL_ALGS = [ThompsonSampling, DynamicGreedy]
-AGENT_ALGS = [HardMax, SoftMax]
+AGENT_ALGS = [HeterogenousHardMax, HardMax, SoftMax]
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
