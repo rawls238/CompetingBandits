@@ -29,11 +29,8 @@ T = 1000.0
 
 def simulate(principalAlg1, principalAlg2, agentAlg, 
   realDistributions=[bernoulli(0.6), bernoulli(0.4)], 
-  principalPriors=[beta(0.1, 0.9), beta(0.9, 0.1)],
-  agentPriors={ 'principal1': beta(0.5, 0.5), 'principal2': beta(0.6, 0.4) }):
-  # true distributions are:
-  # arm 1 ~ bernoulli(0.6)   mu_1 = 0.6
-  # arm 2 ~ bernoulli(0.4)   mu_2 = 0.4
+  principalPriors=[beta(0.5, 0.5), beta(0.3, 0.7)],
+  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.6, 0.4) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
 
