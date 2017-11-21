@@ -71,6 +71,7 @@ class InformationSet:
         maxPrincipals.append(k)
     return (maxPrincipals, maxScore)
 
+  # it looks like this returns a (maxPrincipals, maxScore) tuple, not an arm.
   def getLikelyArm(self, preferredArm):
     preferredPrincipals = {}
     for (principal, info) in self.infoSet.iteritems():
@@ -82,6 +83,7 @@ class InformationSet:
       return self.getMaxPrincipalsAndScores()
 
   # get the set of scores for all principals
+  # return value looks like {'principal1': 0.4, 'principal2': 0.3}
   def getScores(self, typeOfScore='moving_average'):
     return dict({ (k, v.getScore(typeOfScore)) for (k, v) in self.infoSet.iteritems() })
 
