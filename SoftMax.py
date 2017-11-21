@@ -3,7 +3,7 @@ import numpy as np
 from Agent import Agent
 
 
-DEFAULT_ALPHA = 10
+DEFAULT_ALPHA = 5
 class SoftMax(Agent):
   def __init__(self, principals, priors=None, alpha=DEFAULT_ALPHA):
     self.alpha = alpha
