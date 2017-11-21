@@ -6,7 +6,7 @@ import random as rand
 class DynamicEpsilonGreedy(BanditAlgorithm):
   def __init__(self, banditProblemInstance, priors, epsilon=0.05):
     self.epsilon = epsilon
-    super(DynamicGreedy, self).__init__(banditProblemInstance, priors)
+    super(DynamicEpsilonGreedy, self).__init__(banditProblemInstance, priors)
 
   def pickAnArm(self):
     chosenArm = np.argmax([p.mean() for p in self.posteriors])

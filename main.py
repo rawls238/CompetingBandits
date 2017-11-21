@@ -1,5 +1,6 @@
 
 # Import BanditAlgorithm classes
+from StaticGreedy import StaticGreedy
 from DynamicEpsilonGreedy import DynamicEpsilonGreedy
 from DynamicGreedy import DynamicGreedy
 from UCB import UCB
@@ -85,8 +86,8 @@ def marketShareOverTime(armHistories, T):
 
 N = 25
 numCores = multiprocessing.cpu_count()
-PRINCIPAL_ALGS = [ThompsonSampling, DynamicGreedy]
-AGENT_ALGS = [HeterogenousHardMax, HardMax, SoftMax]
+PRINCIPAL_ALGS = [StaticGreedy, DynamicEpsilonGreedy, ThompsonSampling, UCB]
+AGENT_ALGS = [ SoftMax]
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
@@ -108,5 +109,6 @@ for agentAlg in AGENT_ALGS:
   for principalAlg in PRINCIPAL_ALGS:
     for principalAlg2 in PRINCIPAL_ALGS:
       ms = marketShareOverTime(results[agentAlg][principalAlg][principalAlg2]['principalHistory'], T)
+      print('Showing market share for ' + agentAlg.__name__ + ' with principal 1 playing ' + principalAlg.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
       plt.plot(ms)
       plt.show()
