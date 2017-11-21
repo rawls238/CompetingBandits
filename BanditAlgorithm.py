@@ -1,3 +1,8 @@
+'''
+This class contains the principal bandit algorithm that stores the information the principal has about the arms
+as well as decision rules for what arms to pull
+'''
+
 import abc
 from scipy.stats import beta
 

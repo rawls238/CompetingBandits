@@ -1,3 +1,5 @@
+''' Class to hold information regarding the Agents' beliefs and selection algorithms '''
+
 import abc
 from InformationSet import InformationSet
 

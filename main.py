@@ -30,6 +30,10 @@ T = 1000.0
 MISSPECIFIED_PRIOR = [beta(0.45, 0.54), beta(0.5, 0.5)]
 INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45), beta(0.55, 0.45)]
 
+
+# realDistributions - the true distribution of the arms
+# principalPriors - the priors the principals have over the arms
+# agentPriors - the priors the agents have for the distribution of rewards from each principal
 def simulate(principalAlg1, principalAlg2, agentAlg, 
   realDistributions=[bernoulli(0.55), bernoulli(0.45)], 
   principalPriors=MISSPECIFIED_PRIOR,

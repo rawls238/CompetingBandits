@@ -3,6 +3,8 @@ import numpy as np
 
 
 ## TODO: generalize this to K arms
+
+# This contains the set of information for an agent about a particular principal
 class Info:
   def __init__(self, principal, num_picked=0, total_reward=0.0, sliding_window_size=50):
     self.principal = principal
@@ -12,7 +14,7 @@ class Info:
     self.arm_history = []
     self.reward_history = [total_reward]
     self.sliding_window_size = sliding_window_size
-    self.moving_average = 0.0
+    self.moving_average = self.getMeanScore()
 
   def getMovingAverageScore(self):
     return self.moving_average
@@ -22,7 +24,7 @@ class Info:
 
   def updateMovingAverage(self):
     if len(self.reward_history) <= self.sliding_window_size:
-      self.moving_average = self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
+      self.moving_average = self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward
     else:
       remov = (self.reward_history[len(self.reward_history) - self.sliding_window_size - 1]) / float(self.sliding_window_size)
       add = self.reward_history[-1] / float(self.sliding_window_size)
@@ -36,6 +38,7 @@ class Info:
       weightedScores[curArm] += np.exp(-1 * (numRounds - i))
     return max(weightedScores.iterkeys(), key=(lambda key: weightedScores[key]))
 
+  # determine what the "score" of the agent is for this principal
   def getScore(self, t):
     scores = {
       'mean': self.getMeanScore,
@@ -43,10 +46,17 @@ class Info:
     }
     return scores[t]()
 
+
+# This class contains the set of information that the agents have about all the principals
 class InformationSet:
+
+  # We initialize an information class for each principal, initializing each principal as though it has been picked once 
+  # and the mean of its prior distribution is considered to be the only observed reward
   def __init__(self, principals, priors):
      self.infoSet  = { principal: Info(principal, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
 
+
+  # simply gets the principal with the highest expected reward
   def getMaxPrincipalsAndScores(self, typeOfScore='moving_average', infoSet = None):
     if infoSet is None:
       infoSet = self.infoSet
@@ -71,8 +81,9 @@ class InformationSet:
     else:
       return self.getMaxPrincipalsAndScores()
 
-  def getScores(self):
-    return dict({ (k, v.getMeanScore()) for (k, v) in self.infoSet.iteritems() })
+  # get the set of scores for all principals
+  def getScores(self, typeOfScore='moving_average'):
+    return dict({ (k, v.getScore(typeOfScore)) for (k, v) in self.infoSet.iteritems() })
 
   def getRandPrincipal(self):
     return rand.choice(self.infoSet.keys())
