@@ -10,7 +10,7 @@ class Info:
     self.total_reward = total_reward
     self.arm_counts = [0.0, 0.0]
     self.arm_history = []
-    self.reward_history = []
+    self.reward_history = [total_reward]
     self.sliding_window_size = sliding_window_size
     self.moving_average = 0.0
 
@@ -21,11 +21,11 @@ class Info:
     return self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
 
   def updateMovingAverage(self):
-    if len(self.reward_history) < self.sliding_window_size:
+    if len(self.reward_history) <= self.sliding_window_size:
       self.moving_average = self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
     else:
-      remov = (self.reward_history[len(self.reward_history) - self.sliding_window_size]) / self.sliding_window_size
-      add = self.reward_history[-1] / self.sliding_window_size
+      remov = (self.reward_history[len(self.reward_history) - self.sliding_window_size - 1]) / float(self.sliding_window_size)
+      add = self.reward_history[-1] / float(self.sliding_window_size)
       self.moving_average = self.moving_average - remov + add
 
   def getLikelyArm(self):
@@ -81,6 +81,6 @@ class InformationSet:
     self.infoSet[principal].num_picked += 1
     self.infoSet[principal].arm_counts[arm] += 1
     self.infoSet[principal].arm_history.append(arm)
-    self.infoSet[principal].reward_history.append(arm)
+    self.infoSet[principal].reward_history.append(reward)
     self.infoSet[principal].total_reward += reward
     self.infoSet[principal].updateMovingAverage()
