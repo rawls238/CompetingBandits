@@ -8,6 +8,10 @@ class DynamicEpsilonGreedy(BanditAlgorithm):
     self.epsilon = epsilon
     super(DynamicEpsilonGreedy, self).__init__(banditProblemInstance, priors)
 
+  @staticmethod
+  def shorthand():
+    return 'DEG'
+
   def pickAnArm(self):
     chosenArm = np.argmax([p.mean() for p in self.posteriors])
     if rand.random() > self.epsilon:

@@ -19,7 +19,7 @@ from BanditProblemInstance import BanditProblemInstance
 # library imports
 from scipy.stats import bernoulli, beta, uniform
 import numpy as np
-from copy import copy
+from copy import deepcopy
 from joblib import Parallel, delayed
 import multiprocessing
 from collections import Counter
@@ -27,11 +27,13 @@ import matplotlib.pyplot as plt
 
 K = 2
 T = 1000.0
+MISSPECIFIED_PRIOR = [beta(0.45, 0.54), beta(0.5, 0.5)]
+INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45), beta(0.55, 0.45)]
 
 def simulate(principalAlg1, principalAlg2, agentAlg, 
-  realDistributions=[bernoulli(0.6), bernoulli(0.4)], 
-  principalPriors=[beta(0.5, 0.5), beta(0.55, 0.45)],
-  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.6, 0.4) }):
+  realDistributions=[bernoulli(0.55), bernoulli(0.45)], 
+  principalPriors=MISSPECIFIED_PRIOR,
+  agentPriors={ 'principal1': beta(1.0, 0.0), 'principal2': beta(1.0, 0.0) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
 
@@ -75,7 +77,7 @@ initialResultDict = {
 def marketShareOverTime(armHistories, T):
   T = int(T)
   principal1msOverTime = [0.0 for i in xrange(T-1)]
-  numArmHistories = len(armHistories)
+  numArmHistories = float(len(armHistories))
   for i in xrange(1,T):
     for armHistory in armHistories:
       principal1msOverTime[i-1] += Counter(armHistory[:i])['principal1']
@@ -86,29 +88,40 @@ def marketShareOverTime(armHistories, T):
 
 N = 25
 numCores = multiprocessing.cpu_count()
-PRINCIPAL_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy]
-AGENT_ALGS = [HardMax, SoftMax]
+PRINCIPAL_ALGS = [DynamicEpsilonGreedy, UCB, DynamicGreedy]
+AGENT_ALGS = [SoftMax, HardMax]
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
   for principalAlg in PRINCIPAL_ALGS:
     results[agentAlg][principalAlg] = {}
     for principalAlg2 in PRINCIPAL_ALGS:
-      results[agentAlg][principalAlg][principalAlg2] = copy(initialResultDict)
+      results[agentAlg][principalAlg][principalAlg2] = deepcopy(initialResultDict)
       print('Running ' + agentAlg.__name__ + ' with principal 1 playing ' + principalAlg.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
       simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg, principalAlg2, agentAlg) for i in xrange(N))
       for res in simResults:
         for k, v in res.iteritems():
-          results[agentAlg][principalAlg][principalAlg2][k].append(v)
+          results[agentAlg][principalAlg][principalAlg2][k].append(deepcopy(v))
       print({
+        'averageArm0Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
+        'averageArm1Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
+        'averageArm0Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
+        'averageArm1Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
         'averageMarketShare1': np.mean(results[agentAlg][principalAlg][principalAlg2]['marketShare1']),
         'averageMarketShare2': np.mean(results[agentAlg][principalAlg][principalAlg2]['marketShare2'])
       })
 
+i = 0
+rows = len(AGENT_ALGS)
+cols = len(PRINCIPAL_ALGS) * len(PRINCIPAL_ALGS)
+f, axarr = plt.subplots(rows, cols)
 for agentAlg in AGENT_ALGS:
+  j = 0
   for principalAlg in PRINCIPAL_ALGS:
     for principalAlg2 in PRINCIPAL_ALGS:
       ms = marketShareOverTime(results[agentAlg][principalAlg][principalAlg2]['principalHistory'], T)
-      print('Showing market share for ' + agentAlg.__name__ + ' with principal 1 playing ' + principalAlg.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
-      plt.plot(ms)
-      plt.show()
+      axarr[i, j].plot(ms)
+      axarr[i, j].set_title(principalAlg.shorthand() + ' vs ' + principalAlg2.shorthand())
+      j += 1
+  i += 1
+plt.show()

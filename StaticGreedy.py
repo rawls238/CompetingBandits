@@ -2,7 +2,11 @@ from BanditAlgorithm import BanditAlgorithm
 
 import numpy as np
 
-class StaticGreedy(BanditAlgorithm):
+class StaticGreedy(BanditAlgorithm): 
+  @staticmethod
+  def shorthand():
+    return 'SG'
+
   def pickAnArm(self):
     chosenArm = np.argmax([p.mean() for p in self.priors])
     return chosenArm
