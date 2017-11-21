@@ -37,7 +37,7 @@ INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45), beta(0.55, 0.45)]
 def simulate(principalAlg1, principalAlg2, agentAlg, 
   realDistributions=[bernoulli(0.55), bernoulli(0.45)], 
   principalPriors=MISSPECIFIED_PRIOR,
-  agentPriors={ 'principal1': beta(1.0, 0.0), 'principal2': beta(1.0, 0.0) }):
+  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.6, 0.4) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
 
@@ -93,7 +93,7 @@ def marketShareOverTime(armHistories, T):
 N = 25
 numCores = multiprocessing.cpu_count()
 PRINCIPAL_ALGS = [DynamicEpsilonGreedy, UCB, DynamicGreedy]
-AGENT_ALGS = [SoftMax, HardMax]
+AGENT_ALGS = [HardMax, SoftMax]
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
