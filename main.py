@@ -5,6 +5,7 @@ from DynamicEpsilonGreedy import DynamicEpsilonGreedy
 from DynamicGreedy import DynamicGreedy
 from UCB import UCB
 from ThompsonSampling import ThompsonSampling
+from ExploreThenExploit import ExploreThenExploit
 
 ## Import Agent classes
 from HardMax import HardMax
@@ -27,6 +28,7 @@ import matplotlib.pyplot as plt
 
 K = 2
 T = 1000.0
+
 
 def simulate(principalAlg1, principalAlg2, agentAlg, 
   realDistributions=[bernoulli(0.6), bernoulli(0.4)], 
@@ -86,8 +88,10 @@ def marketShareOverTime(armHistories, T):
 
 N = 25
 numCores = multiprocessing.cpu_count()
-PRINCIPAL_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy]
-AGENT_ALGS = [HardMax, SoftMax]
+
+PRINCIPAL_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit]
+AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom, HeterogenousHardMax]
+
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
