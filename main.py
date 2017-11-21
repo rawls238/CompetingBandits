@@ -28,6 +28,8 @@ import matplotlib.pyplot as plt
 
 K = 2
 T = 1000.0
+# misspecified in the sense that the principal's initial belief (priors) is wrong compared to
+# the real distribution: this prior thinks arm 2 is better, but in reality arm 1 is better
 MISSPECIFIED_PRIOR = [beta(0.45, 0.54), beta(0.5, 0.5)]
 INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45), beta(0.55, 0.45)]
 
