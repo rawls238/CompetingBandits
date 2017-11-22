@@ -26,20 +26,23 @@ import multiprocessing
 from collections import Counter
 import matplotlib.pyplot as plt
 
-K = 2
+K = 10
 T = 1000.0
 # misspecified in the sense that the principal's initial belief (priors) is wrong compared to
 # the real distribution: this prior thinks arm 2 is better, but in reality arm 1 is better
-MISSPECIFIED_PRIOR = [beta(0.45, 0.54), beta(0.5, 0.5)]
-INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45), beta(0.55, 0.45)]
 
+## TODO come up with meaningful values for all of these
+MISSPECIFIED_PRIOR = [beta(0.45, 0.55) for k in xrange(K)]
+
+INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45) for k in xrange(K)]
+REAL_DISTRIBUTIONS = [bernoulli(0.55) for k in xrange(K)]
 
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
 # agentPriors - the priors the agents have for the distribution of rewards from each principal
 
 def simulate(principalAlg1, principalAlg2, agentAlg, 
-  realDistributions=[bernoulli(0.55), bernoulli(0.45)], 
+  realDistributions=REAL_DISTRIBUTIONS,
   principalPriors=MISSPECIFIED_PRIOR,
   agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.6, 0.4) }):
 
@@ -51,7 +54,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   principal2 = principalAlg2(banditProblemInstance, principalPriors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, agentPriors)
+  agents = agentAlg(principals, numArms=K, priors=agentPriors)
 
   principalHistory = []
   for t in xrange(int(T)):

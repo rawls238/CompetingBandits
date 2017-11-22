@@ -1,16 +1,14 @@
 import random as rand
 import numpy as np
 
-
-## TODO: generalize this to K arms
-
 # This contains the set of information for an agent about a particular principal
 class Info:
-  def __init__(self, principal, num_picked=0, total_reward=0.0, sliding_window_size=50):
+  def __init__(self, principal, num_arms, num_picked=0, total_reward=0.0, sliding_window_size=50):
     self.principal = principal
     self.num_picked = num_picked
     self.total_reward = total_reward
-    self.arm_counts = [0.0, 0.0]
+    self.num_arms = num_arms
+    self.arm_counts = [0.0 for k in xrange(num_arms)]
     self.arm_history = []
     self.reward_history = [total_reward]
     self.sliding_window_size = sliding_window_size
@@ -32,7 +30,7 @@ class Info:
 
   def getLikelyArm(self):
     numRounds = len(self.arm_history)
-    weightedScores = { 0: 0.0, 1: 0.0 }
+    weightedScores = { i: 0.0 for i in xrange(self.num_arms) }
     for i in range(numRounds):
       curArm = self.arm_history[i]
       weightedScores[curArm] += np.exp(-1 * (numRounds - i))
@@ -52,9 +50,9 @@ class InformationSet:
 
   # We initialize an information class for each principal, initializing each principal as though it has been picked once 
   # and the mean of its prior distribution is considered to be the only observed reward
-  def __init__(self, principals, priors):
-     self.infoSet  = { principal: Info(principal, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
-
+  def __init__(self, principals, numArms, priors):
+     self.infoSet  = { principal: Info(principal, numArms, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
+     self.numArms = numArms
 
   # simply gets the principal with the highest expected reward
   def getMaxPrincipalsAndScores(self, typeOfScore='moving_average', infoSet = None):

@@ -3,11 +3,11 @@ import numpy as np
 from Agent import Agent
 
 
-DEFAULT_ALPHA = 5
+DEFAULT_ALPHA = .2
 class SoftMax(Agent):
-  def __init__(self, principals, priors=None, alpha=DEFAULT_ALPHA):
+  def __init__(self, principals, numArms, priors=None, alpha=DEFAULT_ALPHA):
+    super(SoftMax, self).__init__(principals, numArms, priors)
     self.alpha = alpha
-    super(SoftMax, self).__init__(principals, priors)
 
   def selectPrincipal(self):
     scores = self.informationSet.getScores()
