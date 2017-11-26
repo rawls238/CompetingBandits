@@ -151,8 +151,12 @@ for agentAlg in AGENT_ALGS:
   for principalAlg1 in PRINCIPAL1_ALGS:
     for principalAlg2 in PRINCIPAL2_ALGS:
       ms = marketShareOverTime(results[agentAlg][principalAlg1][principalAlg2]['principalHistory'], T)
-      axarr[i, j].plot(ms)
-      axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand())
+      if cols > 1:
+        axarr[i, j].plot(ms)
+        axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
+      else:
+        axarr[i].plot(ms)
+        axarr[i].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
       j += 1
   i += 1
 plt.show()
