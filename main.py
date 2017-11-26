@@ -101,32 +101,35 @@ def marketShareOverTime(armHistories, T):
 
 N = 25
 numCores = multiprocessing.cpu_count()
-# PRINCIPAL_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL_ALGS = [StaticGreedy, DynamicGreedy]
+
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
 AGENT_ALGS = [HardMax, SoftMax]
+
+# valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
+PRINCIPAL1_ALGS = [StaticGreedy]
+PRINCIPAL2_ALGS = [DynamicGreedy]
 
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
-  for principalAlg in PRINCIPAL_ALGS:
-    results[agentAlg][principalAlg] = {}
-    for principalAlg2 in PRINCIPAL_ALGS:
-      results[agentAlg][principalAlg][principalAlg2] = deepcopy(initialResultDict)
-      print('Running ' + agentAlg.__name__ + ' with principal 1 playing ' + principalAlg.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
-      simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg, principalAlg2, agentAlg) for i in xrange(N))
+  for principalAlg1 in PRINCIPAL1_ALGS:
+    results[agentAlg][principalAlg1] = {}
+    for principalAlg2 in PRINCIPAL2_ALGS:
+      results[agentAlg][principalAlg1][principalAlg2] = deepcopy(initialResultDict)
+      print('Running ' + agentAlg.__name__ + ' with principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
+      simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg) for i in xrange(N))
       for res in simResults:
         for k, v in res.iteritems():
-          results[agentAlg][principalAlg][principalAlg2][k].append(deepcopy(v))
+          results[agentAlg][principalAlg1][principalAlg2][k].append(deepcopy(v))
 
       print({
         # commented this out because now we have K>2 arms
-        # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
-        # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
-        # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
-        # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
-        'averageMarketShare1': np.mean(results[agentAlg][principalAlg][principalAlg2]['marketShare1']),
-        'averageMarketShare2': np.mean(results[agentAlg][principalAlg][principalAlg2]['marketShare2'])
+        # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
+        # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
+        # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
+        # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
+        'averageMarketShare1': np.mean(results[agentAlg][principalAlg1][principalAlg2]['marketShare1']),
+        'averageMarketShare2': np.mean(results[agentAlg][principalAlg1][principalAlg2]['marketShare2'])
       })
 
 # save "results" to disk, just for convenience, so i can look at them later
@@ -135,15 +138,15 @@ pickle.dump(results, open("bandit_simulations.p", "wb" ))
 
 i = 0
 rows = len(AGENT_ALGS)
-cols = len(PRINCIPAL_ALGS) * len(PRINCIPAL_ALGS)
+cols = len(PRINCIPAL1_ALGS) * len(PRINCIPAL2_ALGS)
 f, axarr = plt.subplots(rows, cols)
 for agentAlg in AGENT_ALGS:
   j = 0
-  for principalAlg in PRINCIPAL_ALGS:
-    for principalAlg2 in PRINCIPAL_ALGS:
-      ms = marketShareOverTime(results[agentAlg][principalAlg][principalAlg2]['principalHistory'], T)
+  for principalAlg1 in PRINCIPAL1_ALGS:
+    for principalAlg2 in PRINCIPAL2_ALGS:
+      ms = marketShareOverTime(results[agentAlg][principalAlg1][principalAlg2]['principalHistory'], T)
       axarr[i, j].plot(ms)
-      axarr[i, j].set_title(principalAlg.shorthand() + ' vs ' + principalAlg2.shorthand())
+      axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand())
       j += 1
   i += 1
 plt.show()
