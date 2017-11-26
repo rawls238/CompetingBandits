@@ -2,9 +2,9 @@ import random as rand
 from HardMax import HardMax
 
 class HardMaxWithRandom(HardMax):
-  def __init__(self, principals, numArms, priors=None, epsilon=0.05):
+  def __init__(self, principals, K, priors=None, epsilon=0.05):
+    super(HardMaxWithRandom, self).__init__(principals, K, priors)
     self.epsilon = epsilon
-    super(HardMaxWithRandom, self).__init__(principals, numArms, priors)
 
   def selectPrincipal(self):
     if rand.random() > self.epsilon:

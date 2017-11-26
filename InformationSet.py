@@ -3,12 +3,13 @@ import numpy as np
 
 # This contains the set of information for an agent about a particular principal
 class Info:
-  def __init__(self, principal, num_arms, num_picked=0, total_reward=0.0, sliding_window_size=50):
-    self.principal = principal
+  def __init__(self, principal, K, num_picked=0, total_reward=0.0, sliding_window_size=50):
+    # note, we actually pass a string here. this variable does not point to a variable of class BanditAlgorithm
+    self.principal = principal 
     self.num_picked = num_picked
     self.total_reward = total_reward
-    self.num_arms = num_arms
-    self.arm_counts = [0.0 for k in xrange(num_arms)]
+    self.K = K
+    self.arm_counts = [0.0 for k in xrange(K)]
     self.arm_history = []
     self.reward_history = [total_reward]
     self.sliding_window_size = sliding_window_size
@@ -30,7 +31,7 @@ class Info:
 
   def getLikelyArm(self):
     numRounds = len(self.arm_history)
-    weightedScores = { i: 0.0 for i in xrange(self.num_arms) }
+    weightedScores = { i: 0.0 for i in xrange(self.K) }
     for i in range(numRounds):
       curArm = self.arm_history[i]
       weightedScores[curArm] += np.exp(-1 * (numRounds - i))
@@ -50,9 +51,10 @@ class InformationSet:
 
   # We initialize an information class for each principal, initializing each principal as though it has been picked once 
   # and the mean of its prior distribution is considered to be the only observed reward
-  def __init__(self, principals, numArms, priors):
-     self.infoSet  = { principal: Info(principal, numArms, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
-     self.numArms = numArms
+  def __init__(self, principals, K, priors):
+    # note: here, principal is actually a string variable ("principal1") and v is a variable of class BanditAlgorithm
+    self.infoSet  = { principal: Info(principal, K, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
+    self.K = K
 
   # simply gets the principal with the highest expected reward
   def getMaxPrincipalsAndScores(self, typeOfScore='moving_average', infoSet = None):

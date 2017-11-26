@@ -25,17 +25,21 @@ from joblib import Parallel, delayed
 import multiprocessing
 from collections import Counter
 import matplotlib.pyplot as plt
+import pickle
+
 
 K = 10
-T = 1000.0
-# misspecified in the sense that the principal's initial belief (priors) is wrong compared to
-# the real distribution: this prior thinks arm 2 is better, but in reality arm 1 is better
+T = 2000.0
 
-## TODO come up with meaningful values for all of these
+# misspecified in the sense that the principal's initial belief (priors) is wrong compared to
+# the real distribution
 MISSPECIFIED_PRIOR = [beta(0.45, 0.55) for k in xrange(K)]
 
 INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45) for k in xrange(K)]
+
 REAL_DISTRIBUTIONS = [bernoulli(0.55) for k in xrange(K)]
+# now, overwrite the first distribution so that it's better than all the others
+REAL_DISTRIBUTIONS[0] = bernoulli(0.8)
 
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
@@ -54,7 +58,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   principal2 = principalAlg2(banditProblemInstance, principalPriors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, numArms=K, priors=agentPriors)
+  agents = agentAlg(principals, K, agentPriors)
 
   principalHistory = []
   for t in xrange(int(T)):
@@ -79,8 +83,6 @@ initialResultDict = {
   'marketShare2': [],
   'armCounts1': [],
   'armCounts2': [],
-  'armProbs1': [],
-  'armProbs2': [],
   'principalHistory': []
 }
 
@@ -99,8 +101,11 @@ def marketShareOverTime(armHistories, T):
 
 N = 25
 numCores = multiprocessing.cpu_count()
-PRINCIPAL_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit]
-AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
+# PRINCIPAL_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
+PRINCIPAL_ALGS = [StaticGreedy, DynamicGreedy]
+# AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
+AGENT_ALGS = [HardMax, SoftMax]
+
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
@@ -113,14 +118,20 @@ for agentAlg in AGENT_ALGS:
       for res in simResults:
         for k, v in res.iteritems():
           results[agentAlg][principalAlg][principalAlg2][k].append(deepcopy(v))
+
       print({
-        'averageArm0Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
-        'averageArm1Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
-        'averageArm0Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
-        'averageArm1Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
+        # commented this out because now we have K>2 arms
+        # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
+        # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts1']]),
+        # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
+        # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg][principalAlg2]['armCounts2']]),
         'averageMarketShare1': np.mean(results[agentAlg][principalAlg][principalAlg2]['marketShare1']),
         'averageMarketShare2': np.mean(results[agentAlg][principalAlg][principalAlg2]['marketShare2'])
       })
+
+# save "results" to disk, just for convenience, so i can look at them later
+pickle.dump(results, open("bandit_simulations.p", "wb" ))
+# later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
 
 i = 0
 rows = len(AGENT_ALGS)
@@ -136,3 +147,5 @@ for agentAlg in AGENT_ALGS:
       j += 1
   i += 1
 plt.show()
+
+

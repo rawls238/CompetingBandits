@@ -1,6 +1,7 @@
 import random as rand
 from Agent import Agent
 
+# this hasn't been well fleshed out yet
 class HeterogenousHardMax(Agent):
   def selectPrincipal(self):
     preferredArm = rand.choice([0, 1])

@@ -5,8 +5,8 @@ import random as rand
 
 class DynamicEpsilonGreedy(BanditAlgorithm):
   def __init__(self, banditProblemInstance, priors, epsilon=0.05):
-    self.epsilon = epsilon
     super(DynamicEpsilonGreedy, self).__init__(banditProblemInstance, priors)
+    self.epsilon = epsilon
 
   @staticmethod
   def shorthand():

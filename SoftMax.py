@@ -5,8 +5,8 @@ from Agent import Agent
 
 DEFAULT_ALPHA = .2
 class SoftMax(Agent):
-  def __init__(self, principals, numArms, priors=None, alpha=DEFAULT_ALPHA):
-    super(SoftMax, self).__init__(principals, numArms, priors)
+  def __init__(self, principals, K, priors=None, alpha=DEFAULT_ALPHA):
+    super(SoftMax, self).__init__(principals, K, priors)
     self.alpha = alpha
 
   def selectPrincipal(self):

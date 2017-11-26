@@ -26,7 +26,7 @@ class BanditAlgorithm:
 
   def resetStats(self):
     self.n = 0 # how many times have i been picked
-    self.armHistory = [] # an array of integers (1..K) of the arms i picked
+    self.armHistory = [] # an array of integers (0..K-1) of the arms i picked. arms are 0-indexed
     self.rewardHistory = []
     self.armCounts = [0.0 for i in range(self.banditProblemInstance.K)]
     self.rewardTotal = [0.0 for i in range(self.banditProblemInstance.K)]
