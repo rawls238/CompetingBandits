@@ -8,6 +8,7 @@ from ThompsonSampling import ThompsonSampling
 from ExploreThenExploit import ExploreThenExploit
 
 ## Import Agent classes
+from Uniform import Uniform
 from HardMax import HardMax
 from HardMaxWithRandom import HardMaxWithRandom
 from SoftMax import SoftMax
@@ -109,11 +110,11 @@ N = 25
 numCores = multiprocessing.cpu_count()
 
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
-AGENT_ALGS = [HardMax, SoftMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 PRINCIPAL1_ALGS = [StaticGreedy]
-PRINCIPAL2_ALGS = [DynamicGreedy]
+PRINCIPAL2_ALGS = [ThompsonSampling]
 
 results = {}
 for agentAlg in AGENT_ALGS:
