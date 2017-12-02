@@ -1,0 +1,78 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage[margin=0.5in]{geometry}
+
+\begin{document} 
+
+\title{Competing Bandits}
+\author{Guy Aridor, Kevin Liu}
+\maketitle
+
+\section*{Introduction / Setup}
+
+In this project we mainly look at the following sequence of actions:
+\begin{enumerate}
+\item Two principals compete against each other for agents and each can only get reward if an agent picks them over the other.
+\item At each $t = 1,...,T$, a single agent enters (and lives only for one period) and selects a principal based on some belief they have about the expected payoff from picking each principal.
+\end{enumerate}
+
+This is based off the setup of the model in Mansour, Slivkins, and Wu (2017). We wrote a variety of simulations to look to see if we could reproduce the original results in the paper as well as a few experiments testing certain pertubations of the model.
+
+The first step was to take the model in the paper and make it amenable to simulation as the methodology in the theoretical analysis of the paper made it hard to simulate the beliefs of the agent. To tackle this we assumed that the agent had access to a ``reputation" score that came from a sliding window average of the past $n$ agents that had picked this principal.
+
+Then, we implemented the following four behavioral algorithms that describe the decision rule of the agent given the reputation score:
+\begin{enumerate}
+\item HardMax where the agent chooses the firm with a larger score, breaking ties uniformly
+\item HardMaxRandom: Each agent uses HardMax with probability $1 - \epsilon$ and an action chosen uniformly at random with probability $\epsilon$
+\item SoftMax: Each firm is chosen with probability $e^{\alpha score}$ for some given $\alpha$
+\item SoftMaxRandom: Each agent uses SoftMax with probability $1 - \epsilon$ and an action chosen uniformly at random with probability $\epsilon$
+\end{enumerate}
+
+In the simulations we maintained the assumption in the paper that the principals commit to a learning algorithm in the first period and thus we implemented standard bandit learning algorithms for the principals. In general, we were interested in thinking about the differences that would arise when the principals were running greedy algorithms, non-adaptive exploration algorithms, or adaptive exploration algorithms.
+
+\section*{Experiment 1 - Finite Memory}
+Recall that in our simulations we encoded agents' beliefs about the principals as coming from a sliding window average. One set of simulations that we ran considered the consequences of changing the size of this window. This can be interpreted as agents having finite memory so that ``bad" actions by the principals in the past will stop mattering at some point. Intuitively one would expect this to increase exploration even if we fixed agents as playing $HardMax$ and thus being expected utility maximizers. In the paper the main result around $HardMax$ was that ANY deviation from dynamic greedy would cause a principal to lose all remaining agents. However, if there is finite memory we don't necessarily expect this to be the case.
+
+There are two possible ways to define finite memory and we report results from both. The results we report are both the market share that the principals get as well as the regret that they incur since we want to determine both if there is more exploration and if there are differences in the resulting share of agents they get (i.e. if they can recover from ``bad"' choices).
+
+The two definitions of finite memory we explore are:
+\begin{enumerate}
+\item Agents remember only the last $n$ periods, no matter who was picked. If a principal wasn't picked in the last $n$ periods, then we default back to the original prior.
+\item Agents form their score for a principal based on the last $n$ observations they have from that principal.
+\end{enumerate}
+
+[Insert some plots]
+
+[Insert some analysis]
+
+\section*{Experiment 2 - Which Algorithm Wins?}
+This experiment mainly looked at what happens if we fix the priors of the principals and the agents to be identical at the beginning of the simulation.
+
+We looked at each behavioral assumption and asked, fixing that behavioral assumption, is there any case where playing a better learning algorithm significantly helps the principal get market share?
+
+[insert plots]
+
+\section*{Experiment 3 - Tuning SoftMax}
+This experiment mainly looked at what happens if we do a grid search over alpha parameters in tuning SoftMax. 
+
+[insert plots]
+
+\section*{Experiment 4 - Prior or Algorithm}
+A natural question to ask in this context is whether the correctness of the initial information that the principals have matters more than the learning algorithm they employ. Specifically, we want to test what happens if we fix one principal as having a better prior than the other but that principal plays $StaticGreedy$ and thus only uses their original priors to decide on their actions.   Suppose the other principal has a more ``incorrect" set of initial beliefs but employs a more sophisticated, adaptive exploration algorithm such as Thompson Sampling. Will the principal playing a smarter learning algorithm catch up eventually (for some behavioral assumptions) or is the original prior more important?
+
+\section*{Experiment 5 - Warm Start and HardMax}
+What is the effect of a ``warm start" on the performance of HardMax? Our simulations show that with HardMax the initial rounds matter a lot in a particular simulation and whoever wins in the first few rounds takes the entire market. We explore if having a warm start makes it so that the market is more evenly split.
+
+[results]
+
+\section*{Conclusion}
+conclude
+
+\end{document}
