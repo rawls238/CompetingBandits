@@ -8,3 +8,9 @@ class BanditProblemInstance:
 
   def pullArm(self, a):
     return self.distributions[a].rvs()
+
+  def getMeanOfArm(self, arm):
+    return self.distributions[arm].mean()
+
+  def bestArmMean(self):
+    return max([distr.mean() for distr in self.distributions])

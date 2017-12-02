@@ -30,6 +30,7 @@ class BanditAlgorithm:
     self.rewardHistory = []
     self.armCounts = [0.0 for i in range(self.banditProblemInstance.K)]
     self.rewardTotal = [0.0 for i in range(self.banditProblemInstance.K)]
+    self.regret = 0
   
   def executeStep(self):
     arm = self.pickAnArm()

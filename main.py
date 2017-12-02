@@ -58,7 +58,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.5, 0.5) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
-
+  bestArmMean = banditProblemInstance.bestArmMean()
 
   # instantiate 2 principals (who are of some subclass of BanditAlgorithm)
   principal1 = principalAlg1(banditProblemInstance, principal1Priors)
@@ -72,6 +72,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     (principalName, principal) = agents.selectPrincipal()
     principalHistory.append(principalName)
     (reward, arm) = principal.executeStep()
+    trueMeanOfArm = banditProblemInstance.getMeanOfArm(arm)
+    principal.regret += (bestArmMean - trueMeanOfArm)
     agents.updateInformationSet(reward, arm, principalName)
 
   marketShare1 = principal1.n / T
@@ -81,6 +83,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     'marketShare2' : marketShare2,
     'armCounts1' : principal1.armCounts,
     'armCounts2' : principal2.armCounts,
+    'regret1': principal1.regret,
+    'regret2': principal2.regret,
     'principalHistory': principalHistory,
   }
 
