@@ -55,7 +55,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   realDistributions=REAL_DISTRIBUTIONS,
   principal1Priors=PRINCIPAL1PRIORS,
   principal2Priors=PRINCIPAL2PRIORS,
-  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.5, 0.5) }):
+  agentPriors={ 'principal1': beta(0.5, 0.5), 'principal2': beta(0.5, 0.5) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
   bestArmMean = banditProblemInstance.bestArmMean()
@@ -83,9 +83,9 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     'marketShare2' : marketShare2,
     'armCounts1' : principal1.armCounts,
     'armCounts2' : principal2.armCounts,
-    'regret1': principal1.regret,
-    'regret2': principal2.regret,
-    'principalHistory': principalHistory,
+    'avgRegret1': principal1.regret / T,
+    'avgRegret2': principal2.regret / T,
+    # 'principalHistory': principalHistory,
   }
 
 
@@ -94,7 +94,9 @@ initialResultDict = {
   'marketShare2': [],
   'armCounts1': [],
   'armCounts2': [],
-  'principalHistory': []
+  'principalHistory': [],
+  'avgRegret1': [], # total regret / T, so that we normalize for the number of rounds
+  'avgRegret2': []
 }
 
 
@@ -113,12 +115,12 @@ def marketShareOverTime(armHistories, T):
 N = 25
 numCores = multiprocessing.cpu_count()
 
-# AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+# AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom, Uniform]
+AGENT_ALGS = [SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL1_ALGS = [StaticGreedy]
-PRINCIPAL2_ALGS = [ThompsonSampling]
+PRINCIPAL1_ALGS = [StaticGreedy, DynamicGreedy]
+PRINCIPAL2_ALGS = [ThompsonSampling, UCB]
 
 results = {}
 for agentAlg in AGENT_ALGS:
@@ -147,23 +149,24 @@ for agentAlg in AGENT_ALGS:
 pickle.dump(results, open("bandit_simulations.p", "wb" ))
 # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
 
-i = 0
-rows = len(AGENT_ALGS)
-cols = len(PRINCIPAL1_ALGS) * len(PRINCIPAL2_ALGS)
-f, axarr = plt.subplots(rows, cols)
-for agentAlg in AGENT_ALGS:
-  j = 0
-  for principalAlg1 in PRINCIPAL1_ALGS:
-    for principalAlg2 in PRINCIPAL2_ALGS:
-      ms = marketShareOverTime(results[agentAlg][principalAlg1][principalAlg2]['principalHistory'], T)
-      if cols > 1:
-        axarr[i, j].plot(ms)
-        axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
-      else:
-        axarr[i].plot(ms)
-        axarr[i].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
-      j += 1
-  i += 1
-plt.show()
+# this chunk of code can take a long time to run
+# i = 0
+# rows = len(AGENT_ALGS)
+# cols = len(PRINCIPAL1_ALGS) * len(PRINCIPAL2_ALGS)
+# f, axarr = plt.subplots(rows, cols)
+# for agentAlg in AGENT_ALGS:
+#   j = 0
+#   for principalAlg1 in PRINCIPAL1_ALGS:
+#     for principalAlg2 in PRINCIPAL2_ALGS:
+#       ms = marketShareOverTime(results[agentAlg][principalAlg1][principalAlg2]['principalHistory'], T)
+#       if cols > 1:
+#         axarr[i, j].plot(ms)
+#         axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
+#       else:
+#         axarr[i].plot(ms)
+#         axarr[i].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
+#       j += 1
+#   i += 1
+# plt.show()
 
 
