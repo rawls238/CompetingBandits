@@ -17,5 +17,6 @@ class UCB(BanditAlgorithm):
     totalCounts = sum(self.armCounts)
     for a in range(numArms):
       bonus = math.sqrt((2 * math.log(totalCounts)) / float(self.armCounts[a]))
-      ucbValues[a] = (self.rewardTotal[a] / self.armCounts[a]) + bonus
+      meanReward = self.rewardTotal[a] / float(self.armCounts[a])
+      ucbValues[a] = meanReward + bonus
     return np.argmax(ucbValues)
