@@ -2,8 +2,8 @@ import random as rand
 from SoftMax import SoftMax, DEFAULT_ALPHA
 
 class SoftMaxWithRandom(SoftMax):
-  def __init__(self, principals, K, priors=None, alpha=DEFAULT_ALPHA, epsilon=0.05):
-    super(SoftMaxWithRandom, self).__init__(principals, K, priors, alpha)
+  def __init__(self, principals, K, priors=None, alpha=DEFAULT_ALPHA, epsilon=0.05, memory=50):
+    super(SoftMaxWithRandom, self).__init__(principals, K, priors, alpha, memory=memory)
     self.epsilon = epsilon
 
   def selectPrincipal(self):

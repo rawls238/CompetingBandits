@@ -6,15 +6,16 @@ from InformationSet import InformationSet
 class Agent:
   __metaclass__ = abc.ABCMeta
 
-  def __init__(self, principals, K, priors=None, score='mean'):
+  def __init__(self, principals, K, priors=None, score='mean', memory=50):
     self.principals = principals
     self.priors = priors
     self.score = score
     self.numRounds = 0
     self.K = K
+    self.memory = memory
 
     # for each principal store the number of times selected and total reward
-    self.informationSet = InformationSet(principals, K, priors)
+    self.informationSet = InformationSet(principals, K, priors, memory=memory)
 
   @abc.abstractmethod
   def selectPrincipal(self):

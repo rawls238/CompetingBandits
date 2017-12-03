@@ -3,7 +3,7 @@ import numpy as np
 
 # This contains the set of information for an agent about a particular principal
 class Info:
-  def __init__(self, principal, K, num_picked=0, total_reward=0.0, sliding_window_size=50):
+  def __init__(self, principal, K, num_picked=0, total_reward=0.0, memory=50):
     # note, we actually pass a string here. this variable does not point to a variable of class BanditAlgorithm
     self.principal = principal 
     self.num_picked = num_picked
@@ -12,7 +12,7 @@ class Info:
     self.arm_counts = [0.0 for k in xrange(K)]
     self.arm_history = []
     self.reward_history = [total_reward]
-    self.sliding_window_size = sliding_window_size
+    self.sliding_window_size = memory
     self.moving_average = self.getMeanScore()
 
   def getMovingAverageScore(self):
@@ -51,9 +51,9 @@ class InformationSet:
 
   # We initialize an information class for each principal, initializing each principal as though it has been picked once 
   # and the mean of its prior distribution is considered to be the only observed reward
-  def __init__(self, principals, K, priors):
+  def __init__(self, principals, K, priors, memory):
     # note: here, principal is actually a string variable ("principal1") and v is a variable of class BanditAlgorithm
-    self.infoSet  = { principal: Info(principal, K, 1, priors[principal].mean()) for (principal, v) in principals.iteritems() }
+    self.infoSet  = { principal: Info(principal, K, 1, priors[principal].mean(), memory=memory) for (principal, v) in principals.iteritems() }
     self.K = K
 
   # simply gets the principal with the highest expected reward

@@ -6,8 +6,8 @@ from Agent import Agent
 DEFAULT_ALPHA = 10
 class SoftMax(Agent):
   # epsilon: must be in (0, 0.5). baseline probability that each principal gets picked
-  def __init__(self, principals, K, priors=None, alpha=DEFAULT_ALPHA, epsilon=0.1):
-    super(SoftMax, self).__init__(principals, K, priors)
+  def __init__(self, principals, K, priors=None, alpha=DEFAULT_ALPHA, epsilon=0.1, memory=50):
+    super(SoftMax, self).__init__(principals, K, priors, memory=memory)
     self.alpha = alpha
     self.epsilon = epsilon
 

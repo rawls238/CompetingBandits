@@ -51,11 +51,13 @@ PRINCIPAL2PRIORS = [beta(0.6, 0.4) for k in xrange(K)]
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
 # agentPriors - the priors the agents have for the distribution of rewards from each principal
-def simulate(principalAlg1, principalAlg2, agentAlg, 
+def simulate(principalAlg1, principalAlg2, agentAlg,
+  memory=50,
+  alpha=10,
   realDistributions=REAL_DISTRIBUTIONS,
-  principal1Priors=PRINCIPAL1PRIORS,
+  principal1Priors=PRINCIPAL2PRIORS,
   principal2Priors=PRINCIPAL2PRIORS,
-  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.5, 0.5) }):
+  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.6, 0.4) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
   bestArmMean = banditProblemInstance.bestArmMean()
@@ -65,7 +67,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   principal2 = principalAlg2(banditProblemInstance, principal2Priors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, K, agentPriors)
+  agents = agentAlg(principals, K, agentPriors, memory=memory)
 
   principalHistory = []
   for t in xrange(int(T)):
@@ -94,6 +96,8 @@ initialResultDict = {
   'marketShare2': [],
   'armCounts1': [],
   'armCounts2': [],
+  'regret1': [],
+  'regret2': [],
   'principalHistory': []
 }
 
@@ -114,34 +118,40 @@ N = 25
 numCores = multiprocessing.cpu_count()
 
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL1_ALGS = [StaticGreedy]
-PRINCIPAL2_ALGS = [ThompsonSampling]
+PRINCIPAL1_ALGS = [ThompsonSampling, DynamicEpsilonGreedy]
+PRINCIPAL2_ALGS = PRINCIPAL1_ALGS
+#PRINCIPAL2_ALGS = [ThompsonSampling, DynamicEpsilonGreedy]
 
+MEMORY_SIZES = [1, 5, 10, 25, 50, 100]
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
   for principalAlg1 in PRINCIPAL1_ALGS:
     results[agentAlg][principalAlg1] = {}
     for principalAlg2 in PRINCIPAL2_ALGS:
-      results[agentAlg][principalAlg1][principalAlg2] = deepcopy(initialResultDict)
-      print('Running ' + agentAlg.__name__ + ' with principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
-      simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg) for i in xrange(N))
-      for res in simResults:
-        for k, v in res.iteritems():
-          results[agentAlg][principalAlg1][principalAlg2][k].append(deepcopy(v))
+      results[agentAlg][principalAlg1][principalAlg2] = {}
+      for memory in MEMORY_SIZES:
+        results[agentAlg][principalAlg1][principalAlg2][memory] = deepcopy(initialResultDict)
+        print('Running ' + agentAlg.__name__ + ' with memory ' + str(memory) + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
+        simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory,alpha=10) for i in xrange(N))
+        for res in simResults:
+          for k, v in res.iteritems():
+            results[agentAlg][principalAlg1][principalAlg2][memory][k].append(deepcopy(v))
 
-      print({
-        # commented this out because now we have K>2 arms
-        # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
-        # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
-        # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
-        # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
-        'averageMarketShare1': np.mean(results[agentAlg][principalAlg1][principalAlg2]['marketShare1']),
-        'averageMarketShare2': np.mean(results[agentAlg][principalAlg1][principalAlg2]['marketShare2'])
-      })
+        print({
+          # commented this out because now we have K>2 arms
+          # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
+          # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
+          # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
+          # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
+          'averageRegret1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['regret1']),
+          'averageRegret2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['regret2']),
+          'averageMarketShare1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare1']),
+          'averageMarketShare2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare2'])
+        })
 
 # save "results" to disk, just for convenience, so i can look at them later
 pickle.dump(results, open("bandit_simulations.p", "wb" ))
