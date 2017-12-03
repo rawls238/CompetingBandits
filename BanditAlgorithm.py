@@ -31,7 +31,13 @@ class BanditAlgorithm:
     self.rewardHistory = []
     self.armCounts = [0.0 for i in range(self.banditProblemInstance.K)]
     self.rewardTotal = [0.0 for i in range(self.banditProblemInstance.K)]
-    self.regret = 0
+    self.regret = 0.0
+
+  def getAverageRegret(self):
+    if self.n == 0:
+      print('no luck')
+      return 100
+    return self.regret / float(self.n)
   
   def executeStep(self):
     arm = self.pickAnArm()

@@ -17,4 +17,4 @@ class DynamicEpsilonGreedy(BanditAlgorithm):
     if rand.random() > self.epsilon:
       return chosenArm
     else:
-      return rand.choice(range(0, self.banditProblemInstance.K))
+      return rand.choice(range(self.banditProblemInstance.K))
