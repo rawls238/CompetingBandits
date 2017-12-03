@@ -40,13 +40,13 @@ T = 5000.0
 
 REAL_DISTRIBUTIONS = [bernoulli(0.45) for k in xrange(K)]
 REAL_DISTRIBUTIONS[8] = bernoulli(0.55)
-REAL_DISTRIBUTIONS[5] = bernoulli(0.8)
+REAL_DISTRIBUTIONS[9] = bernoulli(0.8)
 
 
-PRINCIPAL1PRIORS = [beta(0.9, 0.1) for k in xrange(K)]
+PRINCIPAL1PRIORS = [beta(0.5, 0.5) for k in xrange(K)]
 # PRINCIPAL1PRIORS[1] = beta(0.55, 0.45)
 
-PRINCIPAL2PRIORS = [beta(0.9, 0.1) for k in xrange(K)]
+PRINCIPAL2PRIORS = [beta(0.5, 0.5) for k in xrange(K)]
 
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
@@ -83,8 +83,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     'marketShare2' : marketShare2,
     'armCounts1' : principal1.armCounts,
     'armCounts2' : principal2.armCounts,
-    'avgRegret1': principal1.regret / T,
-    'avgRegret2': principal2.regret / T,
+    'avgRegret1': principal1.regret / principal1.n,
+    'avgRegret2': principal2.regret / principal2.n,
     # 'principalHistory': principalHistory,
   }
 
