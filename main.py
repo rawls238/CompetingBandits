@@ -85,8 +85,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     'marketShare2' : marketShare2,
     'armCounts1' : principal1.armCounts,
     'armCounts2' : principal2.armCounts,
-    'regret1': principal1.regret,
-    'regret2': principal2.regret,
+    'avgRegret1': principal1.regret / float(principal1.n),
+    'avgRegret2': principal2.regret / float(principal2.n),
     'principalHistory': principalHistory,
   }
 
@@ -96,8 +96,8 @@ initialResultDict = {
   'marketShare2': [],
   'armCounts1': [],
   'armCounts2': [],
-  'regret1': [],
-  'regret2': [],
+  'avgRegret1': [],
+  'avgRegret2': [],
   'principalHistory': []
 }
 
@@ -114,7 +114,7 @@ def marketShareOverTime(armHistories, T):
     principal1msOverTime[i-1] = (principal1msOverTime[i-1] / numArmHistories) / i
   return principal1msOverTime
 
-N = 25
+N = 50
 numCores = multiprocessing.cpu_count()
 
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
@@ -147,8 +147,8 @@ for agentAlg in AGENT_ALGS:
           # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
           # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
           # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
-          'averageRegret1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['regret1']),
-          'averageRegret2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['regret2']),
+          'averageRegret1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['avgRegret1']),
+          'averageRegret2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['avgRegret2']),
           'averageMarketShare1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare1']),
           'averageMarketShare2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare2'])
         })
