@@ -39,14 +39,14 @@ T = 5000.0
 # INITIAL_PRINCIPAL_PRIORS = [beta(0.55, 0.45) for k in xrange(K)]
 
 REAL_DISTRIBUTIONS = [bernoulli(0.45) for k in xrange(K)]
-# now, overwrite the first distribution so that it's better than all the others
-REAL_DISTRIBUTIONS[0] = bernoulli(0.8)
-REAL_DISTRIBUTIONS[1] = bernoulli(0.55)
+REAL_DISTRIBUTIONS[8] = bernoulli(0.55)
+REAL_DISTRIBUTIONS[5] = bernoulli(0.8)
 
-PRINCIPAL1PRIORS = [beta(0.45, 0.55) for k in xrange(K)]
-PRINCIPAL1PRIORS[1] = beta(0.55, 0.45)
 
-PRINCIPAL2PRIORS = [beta(0.6, 0.4) for k in xrange(K)]
+PRINCIPAL1PRIORS = [beta(0.9, 0.1) for k in xrange(K)]
+# PRINCIPAL1PRIORS[1] = beta(0.55, 0.45)
+
+PRINCIPAL2PRIORS = [beta(0.9, 0.1) for k in xrange(K)]
 
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
@@ -119,8 +119,8 @@ numCores = multiprocessing.cpu_count()
 AGENT_ALGS = [SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL1_ALGS = [StaticGreedy, DynamicGreedy]
-PRINCIPAL2_ALGS = [ThompsonSampling, UCB]
+PRINCIPAL1_ALGS = [StaticGreedy]
+PRINCIPAL2_ALGS = [ThompsonSampling]
 
 results = {}
 for agentAlg in AGENT_ALGS:
