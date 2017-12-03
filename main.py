@@ -40,13 +40,15 @@ T = 5000.0
 
 REAL_DISTRIBUTIONS = [bernoulli(0.45) for k in xrange(K)]
 # now, overwrite the first distribution so that it's better than all the others
-REAL_DISTRIBUTIONS[0] = bernoulli(0.8)
-REAL_DISTRIBUTIONS[1] = bernoulli(0.55)
+REAL_DISTRIBUTIONS[5] = bernoulli(0.55)
+REAL_DISTRIBUTIONS[6] = bernoulli(0.65)
 
-PRINCIPAL1PRIORS = [beta(0.45, 0.55) for k in xrange(K)]
-PRINCIPAL1PRIORS[1] = beta(0.55, 0.45)
 
-PRINCIPAL2PRIORS = [beta(0.6, 0.4) for k in xrange(K)]
+
+PRINCIPAL1PRIORS = [beta(0.5, 0.5) for k in xrange(K)]
+PRINCIPAL2PRIORS = [beta(0.5, 0.5) for k in xrange(K)]
+
+
 
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
@@ -57,7 +59,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   realDistributions=REAL_DISTRIBUTIONS,
   principal1Priors=PRINCIPAL2PRIORS,
   principal2Priors=PRINCIPAL2PRIORS,
-  agentPriors={ 'principal1': beta(0.6, 0.4), 'principal2': beta(0.6, 0.4) }):
+  agentPriors={ 'principal1': beta(0.5, 0.5), 'principal2': beta(0.5, 0.5) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
   bestArmMean = banditProblemInstance.bestArmMean()
@@ -85,9 +87,9 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     'marketShare2' : marketShare2,
     'armCounts1' : principal1.armCounts,
     'armCounts2' : principal2.armCounts,
-    'avgRegret1': principal1.regret / float(principal1.n),
-    'avgRegret2': principal2.regret / float(principal2.n),
-    'principalHistory': principalHistory,
+    'avgRegret1': principal1.getAverageRegret(),
+    'avgRegret2': principal2.getAverageRegret(),
+    # 'principalHistory': principalHistory,
   }
 
 
@@ -114,18 +116,26 @@ def marketShareOverTime(armHistories, T):
     principal1msOverTime[i-1] = (principal1msOverTime[i-1] / numArmHistories) / i
   return principal1msOverTime
 
-N = 50
+N = 25
 numCores = multiprocessing.cpu_count()
 
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
-AGENT_ALGS = [HardMax, SoftMax]
+AGENT_ALGS = [SoftMax] #i do SoftMax and HardMaxWithRandom
+
+#greedy algorithms: [StaticGreedy, DynamicGreedy]
+#non-adaptive exploration: [DynamicEpsilonGreedy, ExploreThenExploit]
+#adaptive exploration: [UCB, ThompsonSampling]
+
+# greedy vs non-adaptive: 2x2 = 4
+# non-adaptive vs adaptive 2x2 = 4
+# greedy vs adaptive 2x2 = 4
+# UCB vs ThompsonSampling = 1
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL1_ALGS = [ThompsonSampling, DynamicEpsilonGreedy]
-PRINCIPAL2_ALGS = PRINCIPAL1_ALGS
-#PRINCIPAL2_ALGS = [ThompsonSampling, DynamicEpsilonGreedy]
+PRINCIPAL1_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
+PRINCIPAL2_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 
-MEMORY_SIZES = [1, 5, 10, 25, 50, 100]
+
 results = {}
 for agentAlg in AGENT_ALGS:
   results[agentAlg] = {}
@@ -133,47 +143,50 @@ for agentAlg in AGENT_ALGS:
     results[agentAlg][principalAlg1] = {}
     for principalAlg2 in PRINCIPAL2_ALGS:
       results[agentAlg][principalAlg1][principalAlg2] = {}
-      for memory in MEMORY_SIZES:
-        results[agentAlg][principalAlg1][principalAlg2][memory] = deepcopy(initialResultDict)
-        print('Running ' + agentAlg.__name__ + ' with memory ' + str(memory) + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
-        simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory,alpha=10) for i in xrange(N))
-        for res in simResults:
-          for k, v in res.iteritems():
-            results[agentAlg][principalAlg1][principalAlg2][memory][k].append(deepcopy(v))
 
-        print({
-          # commented this out because now we have K>2 arms
-          # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
-          # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
-          # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
-          # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
-          'averageRegret1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['avgRegret1']),
-          'averageRegret2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['avgRegret2']),
-          'averageMarketShare1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare1']),
-          'averageMarketShare2': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare2'])
-        })
+      results[agentAlg][principalAlg1][principalAlg2] = deepcopy(initialResultDict)
+      print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__)
+      simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg) for i in xrange(N))
+      for res in simResults:
+        for k, v in res.iteritems():
+          results[agentAlg][principalAlg1][principalAlg2][k].append(deepcopy(v))
+
+      regrets1 = [x for x in results[agentAlg][principalAlg1][principalAlg2]['avgRegret1'] if x is not None]
+      regrets2 = [x for x in results[agentAlg][principalAlg1][principalAlg2]['avgRegret2'] if x is not None]
+
+      print({
+        # commented this out because now we have K>2 arms
+        # 'averageArm0Counts1': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
+        # 'averageArm1Counts1': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts1']]),
+        # 'averageArm0Counts2': np.mean([l[0] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
+        # 'averageArm1Counts2': np.mean([l[1] for l in results[agentAlg][principalAlg1][principalAlg2]['armCounts2']]),
+        'averageRegret1': np.mean(regrets1),
+        'averageRegret2': np.mean(regrets2),
+        'averageMarketShare1': np.mean(results[agentAlg][principalAlg1][principalAlg2]['marketShare1']),
+        'averageMarketShare2': np.mean(results[agentAlg][principalAlg1][principalAlg2]['marketShare2'])
+      })
 
 # save "results" to disk, just for convenience, so i can look at them later
 pickle.dump(results, open("bandit_simulations.p", "wb" ))
 # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
 
-i = 0
-rows = len(AGENT_ALGS)
-cols = len(PRINCIPAL1_ALGS) * len(PRINCIPAL2_ALGS)
-f, axarr = plt.subplots(rows, cols)
-for agentAlg in AGENT_ALGS:
-  j = 0
-  for principalAlg1 in PRINCIPAL1_ALGS:
-    for principalAlg2 in PRINCIPAL2_ALGS:
-      ms = marketShareOverTime(results[agentAlg][principalAlg1][principalAlg2]['principalHistory'], T)
-      if cols > 1:
-        axarr[i, j].plot(ms)
-        axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
-      else:
-        axarr[i].plot(ms)
-        axarr[i].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
-      j += 1
-  i += 1
-plt.show()
+# i = 0
+# rows = len(AGENT_ALGS)
+# cols = len(PRINCIPAL1_ALGS) * len(PRINCIPAL2_ALGS)
+# f, axarr = plt.subplots(rows, cols)
+# for agentAlg in AGENT_ALGS:
+#   j = 0
+#   for principalAlg1 in PRINCIPAL1_ALGS:
+#     for principalAlg2 in PRINCIPAL2_ALGS:
+#       ms = marketShareOverTime(results[agentAlg][principalAlg1][principalAlg2]['principalHistory'], T)
+#       if cols > 1:
+#         axarr[i, j].plot(ms)
+#         axarr[i, j].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
+#       else:
+#         axarr[i].plot(ms)
+#         axarr[i].set_title(principalAlg1.shorthand() + ' vs ' + principalAlg2.shorthand() + ' (' + agentAlg.__name__ + ')')
+#       j += 1
+#   i += 1
+# plt.show()
 
 
