@@ -5,13 +5,14 @@ as well as decision rules for what arms to pull
 
 import abc
 from scipy.stats import beta
+from copy import deepcopy
 
 class BanditAlgorithm:
   __metaclass__ = abc.ABCMeta
 
   def __init__(self, banditProblemInstance, priors, distr='beta'):
-    self.priors = priors
-    self.posteriors = priors
+    self.priors = deepcopy(priors)
+    self.posteriors = deepcopy(priors)
     self.distr = distr
     self.banditProblemInstance = banditProblemInstance
     self.resetStats()
