@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  3 DEC 2017 22:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  4 DEC 2017 21:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -968,10 +968,10 @@ Overfull \vbox (5.65616pt too high) detected at line 86
 File: memory_exp.png Graphic file (type png)
 
 <use memory_exp.png>
-Package pdftex.def Info: memory_exp.png used on input line 155.
+Package pdftex.def Info: memory_exp.png used on input line 162.
 (pdftex.def)             Requested size: 309.15424pt x 81.80542pt.
 
-Overfull \hbox (23.76442pt too wide) in paragraph at lines 155--155
+Overfull \hbox (23.76442pt too wide) in paragraph at lines 162--162
 []  
  []
 
@@ -983,10 +983,10 @@ Overfull \hbox (23.76442pt too wide) in paragraph at lines 155--155
 File: prior_vs_alg_1.png Graphic file (type png)
 
 <use prior_vs_alg_1.png>
-Package pdftex.def Info: prior_vs_alg_1.png used on input line 172.
+Package pdftex.def Info: prior_vs_alg_1.png used on input line 179.
 (pdftex.def)             Requested size: 321.19922pt x 93.34851pt.
 
-Overfull \hbox (35.8094pt too wide) in paragraph at lines 172--172
+Overfull \hbox (35.8094pt too wide) in paragraph at lines 179--179
 []  
  []
 
@@ -996,7 +996,7 @@ Overfull \hbox (35.8094pt too wide) in paragraph at lines 172--172
 File: prior_vs_alg_2.png Graphic file (type png)
 
 <use prior_vs_alg_2.png>
-Package pdftex.def Info: prior_vs_alg_2.png used on input line 181.
+Package pdftex.def Info: prior_vs_alg_2.png used on input line 188.
 (pdftex.def)             Requested size: 279.04182pt x 66.24733pt.
  [11
 
@@ -1012,11 +1012,11 @@ Package pdftex.def Info: prior_vs_alg_2.png used on input line 181.
 \tf@snm=\write8
 \openout8 = `pres.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 190.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 190.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
  (./pres.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 190.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 190.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
 Package rerunfilecheck Info: File `pres.out' has not changed.
 (rerunfilecheck)             Checksum: 4CA0FF56E3EE124326A4720E136735D1;47.
 
@@ -1026,10 +1026,10 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 18013 strings out of 492995
- 340003 string characters out of 6132704
+ 18015 strings out of 492995
+ 340019 string characters out of 6132704
  433282 words of memory out of 5000000
- 21094 multiletter control sequences out of 15000+600000
+ 21096 multiletter control sequences out of 15000+600000
  16306 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,11n,55p,798b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1043,7 +1043,7 @@ sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr
 local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb
 >
-Output written on pres.pdf (12 pages, 230042 bytes).
+Output written on pres.pdf (12 pages, 230685 bytes).
 PDF statistics:
  133 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream

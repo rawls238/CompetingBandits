@@ -141,7 +141,14 @@
 \frame{\frametitle{Experiment 1 - Competing Algorithms}
 \begin{itemize}
 \item In this experiment, we ran several competing algorithms against each other.
-\item results
+\item Several things we learned from this experiment:
+\begin{enumerate}
+\item Regardless of the behavioral assumption, Thompson Sampling seems to get a larger market share regardless of what the competing algorithm is.
+\item In general, non-adaptive exploration algorithms seem to ``beat'' greedy algorithms.
+\item UCB does surprisingly poorly against every algorithm except for StaticGreedy
+\item There does not appear to be a large advantage to using an adaptive exploration algorithm compared to a non-adaptive exploration algorithm (as previously noted, Thompson Sampling does slightly better but UCB does worse).
+\item The results do not seem to qualitatively vary across different behavioral assumptions.
+\end{enumerate}
 \end{itemize}
 }
 %
