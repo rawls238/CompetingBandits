@@ -120,7 +120,7 @@ N = 25
 numCores = multiprocessing.cpu_count()
 
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]
-AGENT_ALGS = [SoftMax] #i do SoftMax and HardMaxWithRandom
+AGENT_ALGS = [HardMax] #i do SoftMax and HardMaxWithRandom
 
 #greedy algorithms: [StaticGreedy, DynamicGreedy]
 #non-adaptive exploration: [DynamicEpsilonGreedy, ExploreThenExploit]
@@ -132,8 +132,8 @@ AGENT_ALGS = [SoftMax] #i do SoftMax and HardMaxWithRandom
 # UCB vs ThompsonSampling = 1
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL1_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-PRINCIPAL2_ALGS = [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
+PRINCIPAL1_ALGS = [ThompsonSampling]
+PRINCIPAL2_ALGS = [StaticGreedy]
 
 
 results = {}
