@@ -15,7 +15,7 @@ class Agent:
     self.memory = memory
 
     # for each principal store the number of times selected and total reward
-    self.informationSet = InformationSet(principals, K, priors, memory=memory)
+    self.informationSet = InformationSet(principals, K, priors, memory=memory, score=score)
 
   @abc.abstractmethod
   def selectPrincipal(self):

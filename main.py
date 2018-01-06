@@ -116,7 +116,7 @@ def marketShareOverTime(armHistories, T):
     principal1msOverTime[i-1] = (principal1msOverTime[i-1] / numArmHistories) / i
   return principal1msOverTime
 
-N = 25
+N = 200
 numCores = multiprocessing.cpu_count()
 
 # AGENT_ALGS = [HardMax, SoftMax, HardMaxWithRandom, SoftMaxWithRandom]

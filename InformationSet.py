@@ -1,19 +1,29 @@
 import random as rand
 import numpy as np
+from copy import copy
 
 # This contains the set of information for an agent about a particular principal
 class Info:
-  def __init__(self, principal, K, num_picked=0, total_reward=0.0, memory=50):
+  def __init__(self, principal, K, num_picked=0, total_reward=0.0, memory=50,discount_factor=0.99):
     # note, we actually pass a string here. this variable does not point to a variable of class BanditAlgorithm
     self.principal = principal 
     self.num_picked = num_picked
     self.total_reward = total_reward
     self.K = K
     self.arm_counts = [0.0 for k in xrange(K)]
+    self.arm_reward_history = [[] for k in xrange(K)] # this contains the reward history for each arm
+    self.total_reward_history = [] #this contains the (arm, reward) pairs
     self.arm_history = []
     self.reward_history = [total_reward]
     self.sliding_window_size = memory
     self.moving_average = self.getMeanScore()
+    self.discounted_moving_average = self.getMeanScore()
+    self.discount_factor = discount_factor
+
+  def getDiscountedMovingAverageScore(self):
+    reward_history = copy(self.reward_history).reverse()
+    reward_history = reward_history[:self.sliding_window_size]
+    return sum([reward_history[i]*self.discount_factor**i for i in xrange(len(reward_history))])
 
   def getMovingAverageScore(self):
     return self.moving_average
@@ -41,7 +51,8 @@ class Info:
   def getScore(self, t):
     scores = {
       'mean': self.getMeanScore,
-      'moving_average': self.getMovingAverageScore
+      'moving_average': self.getMovingAverageScore,
+      'discounted_moving_average': self.getDiscountedMovingAverageScore
     }
     return scores[t]()
 
@@ -51,15 +62,18 @@ class InformationSet:
 
   # We initialize an information class for each principal, initializing each principal as though it has been picked once 
   # and the mean of its prior distribution is considered to be the only observed reward
-  def __init__(self, principals, K, priors, memory):
+  def __init__(self, principals, K, priors, memory, score):
     # note: here, principal is actually a string variable ("principal1") and v is a variable of class BanditAlgorithm
     self.infoSet  = { principal: Info(principal, K, 1, priors[principal].mean(), memory=memory) for (principal, v) in principals.iteritems() }
+    self.score = score
     self.K = K
 
   # simply gets the principal with the highest expected reward
-  def getMaxPrincipalsAndScores(self, typeOfScore='moving_average', infoSet = None):
+  def getMaxPrincipalsAndScores(self, typeOfScore=None, infoSet = None):
     if infoSet is None:
       infoSet = self.infoSet
+    if typeOfScore is None:
+      typeOfScore = 'moving_average'
     maxScore = -1
     maxPrincipals = []
     for (k, v) in infoSet.iteritems():
@@ -84,7 +98,9 @@ class InformationSet:
 
   # get the set of scores for all principals
   # return value looks like {'principal1': 0.4, 'principal2': 0.3}
-  def getScores(self, typeOfScore='moving_average'):
+  def getScores(self, typeOfScore=None):
+    if typeOfScore is None:
+      typeOfScore = 'moving_average'
     return dict({ (k, v.getScore(typeOfScore)) for (k, v) in self.infoSet.iteritems() })
 
   def getRandPrincipal(self):
@@ -96,4 +112,6 @@ class InformationSet:
     self.infoSet[principal].arm_history.append(arm)
     self.infoSet[principal].reward_history.append(reward)
     self.infoSet[principal].total_reward += reward
+    self.infoSet[principal].arm_reward_history[arm].append(reward)
+    self.infoSet[principal].total_reward_history.append((arm, reward))
     self.infoSet[principal].updateMovingAverage()

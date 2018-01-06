@@ -56,9 +56,9 @@ PRINCIPAL2PRIORS = [beta(0.5, 0.5) for k in xrange(K)]
 def simulate(principalAlg1, principalAlg2, agentAlg,
   memory=50,
   alpha=10,
-  realDistributions=REAL_DISTRIBUTIONS,
-  principal1Priors=PRINCIPAL2PRIORS,
-  principal2Priors=PRINCIPAL2PRIORS,
+  realDistributions=deepcopy(REAL_DISTRIBUTIONS),
+  principal1Priors=deepcopy(PRINCIPAL2PRIORS),
+  principal2Priors=deepcopy(PRINCIPAL2PRIORS),
   agentPriors={ 'principal1': beta(0.5, 0.5), 'principal2': beta(0.5, 0.5) }):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
@@ -69,7 +69,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   principal2 = principalAlg2(banditProblemInstance, principal2Priors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, K, agentPriors, memory=memory)
+  agents = agentAlg(principals, K, agentPriors, memory=memory, score='discounted_moving_average')
 
   principalHistory = []
   for t in xrange(int(T)):
@@ -88,8 +88,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     'armCounts1' : principal1.armCounts,
     'armCounts2' : principal2.armCounts,
     'avgRegret1': principal1.getAverageRegret(),
-    'avgRegret2': principal2.getAverageRegret(),
-    # 'principalHistory': principalHistory,
+    'avgRegret2': principal2.getAverageRegret()
   }
 
 
@@ -116,7 +115,7 @@ def marketShareOverTime(armHistories, T):
     principal1msOverTime[i-1] = (principal1msOverTime[i-1] / numArmHistories) / i
   return principal1msOverTime
 
-N = 1
+N = 100
 numCores = multiprocessing.cpu_count()
 
 AGENT_ALGS = [HardMax]
