@@ -32,12 +32,15 @@ class Info:
     return self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
 
   def updateMovingAverage(self):
+    ''' more efficient implemenation if needed
+    
     if len(self.reward_history) <= self.sliding_window_size:
       self.moving_average = self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward
     else:
       remov = (self.reward_history[len(self.reward_history) - self.sliding_window_size - 1]) / float(self.sliding_window_size)
       add = self.reward_history[-1] / float(self.sliding_window_size)
-      self.moving_average = self.moving_average - remov + add
+      self.moving_average = self.moving_average - remov + add'''
+    self.moving_average = np.mean(self.reward_history[(-1*self.sliding_window_size):])
 
   def getLikelyArm(self):
     numRounds = len(self.arm_history)
@@ -86,7 +89,7 @@ class InformationSet:
     return (maxPrincipals, maxScore)
 
   # it looks like this returns a (maxPrincipals, maxScore) tuple, not an arm.
-  def getLikelyArm(self, preferredArm):
+  def selectByLikelyArm(self, preferredArm):
     preferredPrincipals = {}
     for (principal, info) in self.infoSet.iteritems():
       if preferredArm == info.getLikelyArm():

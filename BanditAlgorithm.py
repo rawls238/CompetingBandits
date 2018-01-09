@@ -35,7 +35,6 @@ class BanditAlgorithm:
 
   def getAverageRegret(self):
     if self.n == 0:
-      # print('no luck')
       return None
     return self.regret / float(self.n)
   

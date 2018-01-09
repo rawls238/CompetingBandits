@@ -24,3 +24,6 @@ class Agent:
   def updateInformationSet(self, reward, arm, principalName):
     self.numRounds += 1
     self.informationSet.updateInformationSet(reward, arm, principalName)
+
+  def printMeanBeliefs(self):
+    print(self.informationSet.getScores())
