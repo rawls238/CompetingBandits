@@ -1,0 +1,4 @@
+
+K = 10
+T = 5000.0
+NUM_SIMULATIONS = 20
