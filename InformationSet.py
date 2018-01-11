@@ -20,9 +20,8 @@ class Info:
     self.discounted_moving_average = self.getMeanScore()
     self.discount_factor = discount_factor
 
-  def getDiscountedMovingAverageScore(self):
+  def getDiscountedScore(self):
     reward_history = copy(self.reward_history).reverse()
-    reward_history = reward_history[:self.sliding_window_size]
     return sum([reward_history[i]*self.discount_factor**i for i in xrange(len(reward_history))])
 
   def getMovingAverageScore(self):
@@ -55,7 +54,7 @@ class Info:
     scores = {
       'mean': self.getMeanScore,
       'moving_average': self.getMovingAverageScore,
-      'discounted_moving_average': self.getDiscountedMovingAverageScore
+      'discounted_score': self.getDiscountedMovingAverageScore
     }
     return scores[t]()
 
