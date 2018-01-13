@@ -1,10 +1,13 @@
+from constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR
+
+
 import random as rand
 import numpy as np
 from copy import copy
 
 # This contains the set of information for an agent about a particular principal
 class Info:
-  def __init__(self, principal, K, num_picked=0, total_reward=0.0, memory=50,discount_factor=0.99):
+  def __init__(self, principal, K, num_picked=0, total_reward=0.0, memory=DEFAULT_MEMORY, discount_factor=DEFAULT_DISCOUNT_FACTOR):
     # note, we actually pass a string here. this variable does not point to a variable of class BanditAlgorithm
     self.principal = principal 
     self.num_picked = num_picked
@@ -14,18 +17,28 @@ class Info:
     self.arm_reward_history = [[] for k in xrange(K)] # this contains the reward history for each arm
     self.total_reward_history = [] #this contains the (arm, reward) pairs
     self.arm_history = []
-    self.reward_history = [total_reward]
+    self.reward_history = []
+    if total_reward > 0:
+      self.reward_history.append(total_reward)
     self.sliding_window_size = memory
     self.moving_average = self.getMeanScore()
-    self.discounted_moving_average = self.getMeanScore()
     self.discount_factor = discount_factor
+    self.risk_aversion = 0.0
 
   def getDiscountedScore(self):
     reward_history = copy(self.reward_history).reverse()
+    if self.risk_aversion > 0:
+      reward_history = self.getRiskAversionAdjustedScores(reward_history)
     return sum([reward_history[i]*self.discount_factor**i for i in xrange(len(reward_history))])
 
   def getMovingAverageScore(self):
     return self.moving_average
+
+  def getRiskAversionAdjustedScores(self, history):
+    for i in xrange(len(history)):
+      if history[i] == 1:
+        history[i] = (1 - self.risk_aversion) * history[i]
+    return history
 
   def getMeanScore(self):
     return self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
@@ -39,7 +52,10 @@ class Info:
       remov = (self.reward_history[len(self.reward_history) - self.sliding_window_size - 1]) / float(self.sliding_window_size)
       add = self.reward_history[-1] / float(self.sliding_window_size)
       self.moving_average = self.moving_average - remov + add'''
-    self.moving_average = np.mean(self.reward_history[(-1*self.sliding_window_size):])
+    reward_history = copy(self.reward_history[(-1*self.sliding_window_size):])
+    if self.risk_aversion > 0:
+      reward_history = self.getRiskAversionAdjustedScores(reward_history)
+    self.moving_average = np.mean(reward_history)
 
   def getLikelyArm(self):
     numRounds = len(self.arm_history)
@@ -54,7 +70,7 @@ class Info:
     scores = {
       'mean': self.getMeanScore,
       'moving_average': self.getMovingAverageScore,
-      'discounted_score': self.getDiscountedMovingAverageScore
+      'discounted': self.getDiscountedScore
     }
     return scores[t]()
 
@@ -64,22 +80,20 @@ class InformationSet:
 
   # We initialize an information class for each principal, initializing each principal as though it has been picked once 
   # and the mean of its prior distribution is considered to be the only observed reward
-  def __init__(self, principals, K, priors, memory, score):
+  def __init__(self, principals, K, priors, memory, score, discount_factor):
     # note: here, principal is actually a string variable ("principal1") and v is a variable of class BanditAlgorithm
-    self.infoSet  = { principal: Info(principal, K, 1, priors[principal].mean(), memory=memory) for (principal, v) in principals.iteritems() }
+    self.infoSet  = { principal: Info(principal, K, memory=memory, discount_factor=discount_factor) for (principal, v) in principals.iteritems() }
     self.score = score
     self.K = K
 
   # simply gets the principal with the highest expected reward
-  def getMaxPrincipalsAndScores(self, typeOfScore=None, infoSet = None):
+  def getMaxPrincipalsAndScores(self, infoSet = None):
     if infoSet is None:
       infoSet = self.infoSet
-    if typeOfScore is None:
-      typeOfScore = 'moving_average'
     maxScore = -1
     maxPrincipals = []
     for (k, v) in infoSet.iteritems():
-      score = v.getScore(typeOfScore)
+      score = v.getScore(self.score)
       if score > maxScore:
         maxPrincipals = [k]
         maxScore = score
@@ -100,10 +114,8 @@ class InformationSet:
 
   # get the set of scores for all principals
   # return value looks like {'principal1': 0.4, 'principal2': 0.3}
-  def getScores(self, typeOfScore=None):
-    if typeOfScore is None:
-      typeOfScore = 'moving_average'
-    return dict({ (k, v.getScore(typeOfScore)) for (k, v) in self.infoSet.iteritems() })
+  def getScores(self):
+    return dict({ (k, v.getScore(self.score)) for (k, v) in self.infoSet.iteritems() })
 
   def getRandPrincipal(self):
     return rand.choice(self.infoSet.keys())

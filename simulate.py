@@ -1,15 +1,9 @@
-from constants import K, T
+from constants import K, T, DEFAULT_PRINCIPAL1PRIORS, DEFAULT_PRINCIPAL2PRIORS, DEFAULT_REAL_DISTRIBUTIONS, \
+DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS
 from BanditProblemInstance import BanditProblemInstance
 
 
 from scipy.stats import bernoulli, beta
-
-
-COMMON_PRIOR = [beta(5, 5) for k in xrange(K)]
-PRINCIPAL1PRIORS = [beta(5, 5) for k in xrange(K)]
-PRINCIPAL2PRIORS = PRINCIPAL1PRIORS
-
-REAL_DISTRIBUTIONS = [bernoulli(COMMON_PRIOR[i].rvs()) for i in xrange(K)]
 
 def getRealDistributionsFromPrior(prior):
   return [bernoulli(prior[i].rvs()) for i in xrange(K)]
@@ -18,12 +12,13 @@ def getRealDistributionsFromPrior(prior):
 # principalPriors - the priors the principals have over the arms
 # agentPriors - the priors the agents have for the distribution of rewards from each principal
 def simulate(principalAlg1, principalAlg2, agentAlg,
-  memory=50,
-  alpha=10,
-  realDistributions=REAL_DISTRIBUTIONS,
-  principal1Priors=PRINCIPAL2PRIORS,
-  principal2Priors=PRINCIPAL2PRIORS,
-  agentPriors={ 'principal1': beta(0.5, 0.5), 'principal2': beta(0.5, 0.5) }):
+  memory=DEFAULT_MEMORY,
+  alpha=DEFAULT_ALPHA,
+  warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
+  discountFactor=DEFAULT_DISCOUNT_FACTOR,
+  realDistributions=DEFAULT_REAL_DISTRIBUTIONS,
+  principal1Priors=DEFAULT_PRINCIPAL2PRIORS,
+  principal2Priors=DEFAULT_PRINCIPAL2PRIORS):
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
   bestArmMean = banditProblemInstance.bestArmMean()
@@ -33,7 +28,17 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   principal2 = principalAlg2(banditProblemInstance, principal2Priors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, K, agentPriors, memory=memory)
+  agents = agentAlg(principals, K, memory=memory, discount_factor=discountFactor)
+
+  # give the agents a few observations
+  for i in xrange(warmStartNumObservations):
+    for (principalName, principal) in principals.iteritems():
+      (reward, arm) = principal.executeStep()
+      agents.updateInformationSet(reward, arm, principalName)
+
+  for principal in principals.values():
+    principal.resetStats()
+    principal.resetPriors()
 
   principalHistory = []
   for t in xrange(int(T)):
@@ -43,6 +48,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
     trueMeanOfArm = banditProblemInstance.getMeanOfArm(arm)
     principal.regret += (bestArmMean - trueMeanOfArm)
     agents.updateInformationSet(reward, arm, principalName)
+
 
   marketShare1 = principal1.n / T
   marketShare2 = principal2.n / T

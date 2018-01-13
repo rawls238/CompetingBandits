@@ -33,6 +33,9 @@ class BanditAlgorithm:
     self.rewardTotal = [0.0 for i in range(self.banditProblemInstance.K)]
     self.regret = 0.0
 
+  def resetPriors(self):
+    self.posteriors = deepcopy(self.priors)
+
   def getAverageRegret(self):
     if self.n == 0:
       return None
