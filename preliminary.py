@@ -17,14 +17,16 @@ from UCB import UCB
 from ThompsonSampling import ThompsonSampling
 from ExploreThenExploit import ExploreThenExploit
 
-from constants import DEFAULT_COMMON_PRIOR, K, uniform_real_distr
+from constants import DEFAULT_COMMON_PRIOR, uniform_real_distr
 from scipy.stats import bernoulli, beta
 
 numCores = multiprocessing.cpu_count()
 
 
-T = 2000
+T = 5000
 N = 50
+K = 10
+
 
 def sim(alg, banditPrior):
   banditProblemInstance = BanditProblemInstance(K, T, banditPrior)
