@@ -1,3 +1,1 @@
-P1 Alg,P2 Alg,Agent Alg,Market Share for P1,P1 Regret Mean,P1 Regret Std,P2 Regret Mean,P2 Regret Std,Abs Average Delta Regret,Discount Factor
-ThompsonSampling,ThompsonSampling,HardMax,1.0,0.05866827915736407,0.0,nan,nan,nan,0.5
-ThompsonSampling,ThompsonSampling,HardMax,1.0,0.05866827915736407,0.0,nan,nan,nan,0.75
+P1 Alg,P2 Alg,Time Horizon,Agent Alg,Market Share for P1,P1 Regret Mean,P1 Regret Std,P2 Regret Mean,P2 Regret Std,Abs Average Delta Regret,Discount Factor

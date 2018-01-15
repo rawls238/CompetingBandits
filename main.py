@@ -7,7 +7,7 @@ from UCB import UCB
 from ThompsonSampling import ThompsonSampling
 from ExploreThenExploit import ExploreThenExploit
 from simulate import simulate, getRealDistributionsFromPrior, initialResultDict
-from constants import NUM_SIMULATIONS, K, needle_in_haystack_real_distr, uniform_real_distr
+from constants import NUM_SIMULATIONS, K, T, needle_in_haystack_real_distr, uniform_real_distr
 
 ## Import Agent classes
 from HardMax import HardMax
@@ -32,8 +32,8 @@ PRINCIPAL2_ALGS = [ThompsonSampling]
 DISTR = uniform_real_distr
 
 
-AGGREGATE_FIELD_NAMES = ['P1 Alg', 'P2 Alg', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
-INDIVIDUAL_FIELD_NAMES = individual_fieldnames = ['P1 Alg', 'P2 Alg', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'Abs Delta Regret']
+AGGREGATE_FIELD_NAMES = ['P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'Abs Delta Regret']
 
 
 def run_discounted_experiment(discount_factors):
@@ -62,12 +62,18 @@ def run_discounted_experiment(discount_factors):
               #for i in xrange(NUM_SIMULATIONS):
               #  realDistributions[i] = getRealDistributionsFromPrior(COMMON_PRIOR)
               print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with discount factor ' + str(discount_factor))
-              simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
+              #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
+              simResults = []
+              for i in xrange(NUM_SIMULATIONS):
+                res = simulate(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR)
+                simResults.append(res)
+
               for res in simResults:
                 regret1 = res['avgRegret1'] or 0.0
                 regret2 = res['avgRegret2'] or 0.0 #fix this
                 individual_results = {
                   'Discount Factor': discount_factor,
+                  'Time Horizon': T,
                   'Agent Alg': agentAlg.__name__,
                   'P1 Alg': principalAlg1.__name__,
                   'P2 Alg': principalAlg2.__name__,
@@ -88,6 +94,7 @@ def run_discounted_experiment(discount_factors):
               regrets2 = [reportMean(x) for x in results[agentAlg][principalAlg1][principalAlg2][discount_factor]['avgRegret2']]
               aggregate_results = {
                 'Discount Factor': discount_factor,
+                'Time Horizon': T,
                 'Agent Alg': agentAlg.__name__,
                 'P1 Alg': principalAlg1.__name__,
                 'P2 Alg': principalAlg2.__name__,
@@ -129,12 +136,17 @@ def run_finite_memory_experiment(memory_sizes):
               #for i in xrange(NUM_SIMULATIONS):
               #  realDistributions[i] = getRealDistributionsFromPrior(COMMON_PRIOR)
               print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory))
-              simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
+              #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
+              simResults = []
+              for i in xrange(NUM_SIMULATIONS):
+                res = simulate(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR)
+                simResults.append(res)
               for res in simResults:
                 regret1 = res['avgRegret1'] or 0.0
                 regret2 = res['avgRegret2'] or 0.0 #fix this
                 individual_results = {
                   'Memory Size': memory,
+                  'Time Horizon': T,
                   'Agent Alg': agentAlg.__name__,
                   'P1 Alg': principalAlg1.__name__,
                   'P2 Alg': principalAlg2.__name__,
@@ -155,6 +167,7 @@ def run_finite_memory_experiment(memory_sizes):
               regrets2 = [reportMean(x) for x in results[agentAlg][principalAlg1][principalAlg2][memory]['avgRegret2']]
               aggregate_results = {
                 'Memory Size': memory,
+                'Time Horizon': T,
                 'Agent Alg': agentAlg.__name__,
                 'P1 Alg': principalAlg1.__name__,
                 'P2 Alg': principalAlg2.__name__,
@@ -165,6 +178,7 @@ def run_finite_memory_experiment(memory_sizes):
                 'Abs Average Delta Regret': np.nanmean([np.abs(regrets1[i] - regrets2[i]) for i in xrange(len(regrets1))]),
                 'Market Share for P1': np.mean(results[agentAlg][principalAlg1][principalAlg2][memory]['marketShare1']),
               }
+              print(aggregate_results)
               aggregate_writer.writerow(aggregate_results)
 
   # save "results" to disk, just for convenience, so i can look at them later
@@ -172,6 +186,6 @@ def run_finite_memory_experiment(memory_sizes):
   return results
 
 MEMORY_SIZES = [1, 5, 100, 500]
-#run_finite_memory_experiment(MEMORY_SIZES)
+run_finite_memory_experiment(MEMORY_SIZES)
 DISCOUNT_FACTORS = [0.5, 0.75, 0.9, 0.99]
-run_discounted_experiment(DISCOUNT_FACTORS)
+#run_discounted_experiment(DISCOUNT_FACTORS)

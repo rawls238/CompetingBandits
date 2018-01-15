@@ -1,3 +1,5 @@
+import numpy as np
+
 from constants import K, T, DEFAULT_PRINCIPAL1PRIORS, DEFAULT_PRINCIPAL2PRIORS, DEFAULT_REAL_DISTRIBUTIONS, \
 DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS
 from BanditProblemInstance import BanditProblemInstance
@@ -19,6 +21,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg,
   realDistributions=DEFAULT_REAL_DISTRIBUTIONS,
   principal1Priors=DEFAULT_PRINCIPAL2PRIORS,
   principal2Priors=DEFAULT_PRINCIPAL2PRIORS):
+  
+  np.random.seed()
 
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
   bestArmMean = banditProblemInstance.bestArmMean()

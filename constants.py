@@ -4,7 +4,7 @@ from scipy.stats import bernoulli, beta
 
 K = 10
 T = 500.0
-NUM_SIMULATIONS = 50
+NUM_SIMULATIONS = 20
 
 DEFAULT_MEMORY = 50
 DEFAULT_DISCOUNT_FACTOR = 0.99
