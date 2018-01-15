@@ -100,10 +100,10 @@ BANDIT_DISTR = {
 FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Reward Mean', 'Reward Std', 'Best Arm Mean']
 
 with open('results/preliminary_plots.csv', 'w') as csvfile:
+  writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
+  writer.writeheader()
   for alg in ALGS:
     for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
-      writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
-      writer.writeheader()
       simResults = []
       for i in xrange(N):
         result = sim(alg, banditDistr)
