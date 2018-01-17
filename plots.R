@@ -2,16 +2,26 @@ library("ggplot2")
 library("dplyr")
 library("reshape")
 
-dat <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_plots_2.csv")
+
+# Three datasets that currently exist are:
+# preliminary_plots.csv includes more distributions but the resulting reward means are only averaged over fifty rounds.
+# preliminary_plots_2.csv was run with N=250, T=1000
+# preliminary_plots_3.csv was run with N=250, T=5000
+
+WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
+
+dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3.csv", sep=""))
 algs <- as.list(unique(dat['Algorithm']))$Algorithm
+filter_algs <- c("ThompsonSampling", "DynamicEpsilonGreedy")
+dat <- filter(dat, Algorithm %in% filter_algs)
 dists <- as.list(unique(dat['Distribution']))$Distribution
 
 filter_by_dist_and_plot <- function(dist) {
   d <- filter(dat, Distribution == dist)
-  title <- paste("Reward Trajectory for", dist)
+  title <- paste("Reward Trajectory for", dist, "TS, Dyn eps")
   q <- ggplot(data=d) + ggtitle(title) + ylab("Mean Reward") + xlab("time") +
     geom_path(aes(x=t, y=Reward.Mean, colour=Algorithm))
-  ggsave(width=8, height=8, dpi=300, filename=paste("/Users/garidor/Desktop/bandits-rl-project/results/", title, ".pdf", sep=""), plot=q)
+  ggsave(width=8, height=8, dpi=300, filename=paste(WORKING_PATH, "/results/", title, ".pdf", sep=""), plot=q)
   
   return(d)
 }
