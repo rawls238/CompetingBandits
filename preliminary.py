@@ -88,10 +88,4 @@ with open('results/preliminary_plots_3.csv', 'w') as csvfile:
           'Reward Std': np.std(cur)
         }
         writer.writerow(res)
-      """      print(averageTrajectory)
-      plt.plot(averageTrajectory)
-      plt.ylabel('Average Reward')
-      plt.xlabel('Time')
-      plt.title(alg.__name__)
-      plt.show()"""
 
