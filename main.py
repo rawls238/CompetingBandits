@@ -1,16 +1,16 @@
 
 # Import BanditAlgorithm classes
-from StaticGreedy import StaticGreedy
-from DynamicEpsilonGreedy import DynamicEpsilonGreedy
-from DynamicGreedy import DynamicGreedy
-from UCB import UCB
-from ThompsonSampling import ThompsonSampling
-from ExploreThenExploit import ExploreThenExploit
+from lib.bandit.StaticGreedy import StaticGreedy
+from lib.bandit.DynamicEpsilonGreedy import DynamicEpsilonGreedy
+from lib.bandit.DynamicGreedy import DynamicGreedy
+from lib.bandit.UCB import UCB
+from lib.bandit.ThompsonSampling import ThompsonSampling
+from lib.bandit.ExploreThenExploit import ExploreThenExploit
+from lib.constants import NUM_SIMULATIONS, K, T, needle_in_haystack_real_distr, uniform_real_distr
 from simulate import simulate, getRealDistributionsFromPrior, initialResultDict
-from constants import NUM_SIMULATIONS, K, T, needle_in_haystack_real_distr, uniform_real_distr
 
 ## Import Agent classes
-from HardMax import HardMax
+from lib.agent.HardMax import HardMax
 
 # library imports
 import numpy as np

@@ -8,16 +8,16 @@ import csv
 from copy import deepcopy
 
 
-from BanditProblemInstance import BanditProblemInstance
+from lib.BanditProblemInstance import BanditProblemInstance
 
-from StaticGreedy import StaticGreedy
-from DynamicEpsilonGreedy import DynamicEpsilonGreedy
-from DynamicGreedy import DynamicGreedy
-from UCB import UCB
-from ThompsonSampling import ThompsonSampling
-from ExploreThenExploit import ExploreThenExploit
+from lib.bandit.StaticGreedy import StaticGreedy
+from lib.bandit.DynamicEpsilonGreedy import DynamicEpsilonGreedy
+from lib.bandit.DynamicGreedy import DynamicGreedy
+from lib.bandit.UCB import UCB
+from lib.bandit.ThompsonSampling import ThompsonSampling
+from lib.bandit.ExploreThenExploit import ExploreThenExploit
+from lib.constants import DEFAULT_COMMON_PRIOR, uniform_real_distr
 
-from constants import DEFAULT_COMMON_PRIOR, uniform_real_distr
 from scipy.stats import bernoulli, beta
 
 numCores = multiprocessing.cpu_count()
@@ -66,7 +66,7 @@ BANDIT_DISTR = {
 
 FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Reward Mean', 'Reward Std', 'Best Arm Mean']
 
-with open('results/preliminary_plots_2.csv', 'w') as csvfile:
+with open('results/preliminary_plots_3.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for alg in ALGS:
