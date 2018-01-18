@@ -1,8 +1,8 @@
 import numpy as np
 
-from constants import K, T, DEFAULT_PRINCIPAL1PRIORS, DEFAULT_PRINCIPAL2PRIORS, DEFAULT_REAL_DISTRIBUTIONS, \
+from lib.constants import K, T, DEFAULT_PRINCIPAL1PRIORS, DEFAULT_PRINCIPAL2PRIORS, DEFAULT_REAL_DISTRIBUTIONS, \
 DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS
-from BanditProblemInstance import BanditProblemInstance
+from lib.BanditProblemInstance import BanditProblemInstance
 
 
 from scipy.stats import bernoulli, beta
