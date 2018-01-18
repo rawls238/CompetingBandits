@@ -1,0 +1,110 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{fullpage}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{amsfonts}      
+             
+\graphicspath{{../results}}
+             
+\begin{document} 
+
+\title{Preliminary Experiment}
+\maketitle
+
+Bandit Prior/Instances that were considered (only for 10 arms):
+\begin{itemize}
+\item Uniform: Draw the mean rewards for the arms from [0.25, 0.75]
+\item ``HeavyTail": We took the mean rewards to be randomly drawn from Beta($\alpha=0.6,\beta=0.6$). With this distribution it was likely to have arms that were at the extremes (close to 1 and close to 0) but also some of the arms with intermediate value means.
+\item Needle-in-haystack
+\begin{enumerate}
+\item Low Mean
+\begin{enumerate}
+\item Low - 9 arms with mean 0.01, 1 arm with mean 0.02 (+ 0.01)
+\item Medium - 9 arms with mean 0.01, 1 arm with mean 0.06 (+ 0.05)
+\item High - 9 arms with mean 0.01, 1 arm with mean 0.21 (+ 0.20)
+\end{enumerate}
+\item Medium Mean
+\begin{enumerate}
+\item Low - 9 arms with mean 0.50, 1 arm with mean 0.01 (+ 0.01)
+\item Medium - 9 arms with mean 0.50, 1 arm with mean 0.55 (+ 0.05)
+\item High - 9 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
+\end{enumerate}
+\item High Mean
+\begin{enumerate}
+\item Low - 9 arms with mean 0.80, 1 arm with mean 0.81 (+ 0.01)
+\item Medium - 9 arms with mean 0.80, 1 arm with mean 0.85 (+ 0.05)
+\item High - 9 arms with mean 0.80, 1 arm with mean 1.0 (+ 0.20)
+\end{enumerate}
+\end{enumerate}
+\end{itemize}
+
+Algorithms considered:
+\begin{enumerate}
+\item ThompsonSampling with priors of $Beta(5, 5)$ for every arm.
+\item ExploreThenExploit with 100 exploration steps
+\item DynamicGreedy with priors of $Beta(5, 5)$ for every arm
+\item Dynamic $\epsilon$-greedy with $\epsilon$=0.05
+\item UCB1
+\end{enumerate}
+
+The first run considered $N=50$ runs. The main use of this run was to help us detect any qualitative differences between the different needle-in-haystack regimes we  Originally we considered three regimes of ``needle-in-haystack" instances since we weren't sure if learning would be different between the different regimes. We considered so many needle-in-haystack instances to see if there would be meaningful qualitative differences between learning when the means were at extremes vs when most means were in the middle of the range of possible means. \\
+
+The plots for all the algorithms are reported below. The ``low" $\Delta$ in the needle-in-haystack appears uninteresting across all considered means, likely because the $\Delta$ of $0.01$ is too small to be meaningful. For the ``medium" instances it appears as though there is a qualitative difference between the ``low" mean and the others. Though this may be partially due to low $N$, it appears as though there is some divergence particularly between UCB and Thompson Sampling. For the high $\Delta$ it the ``low" mean and ``medium" mean seem to have qualitatively similar results. The ``high" mean has starker differences in terms of the learning rates of the algorithms. \\
+
+First, looking at the medium range: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle01 - Medium 1"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - Medium 1"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle80 - Medium 1"}
+\\
+The low range: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle01 - Low 1"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - Low 1"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle80 - Low 1"}
+\\
+
+The high range: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle01 - High 1"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - High 1"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle80 - High 1"}
+\\
+
+Surprisingly with $N=50$ there appeared to be considerable variability in the trajectories and so the experiment was reran with $N=250$ and $T=5000$. To reduce the amount of time this took, only Uniform, HeavyTail, Needle50 - Medium, and Needle50 - High were considered. Though there were some qualitative differences between the different needle in haystack instances discussed above, they were omitted here but we can run this again with those if we decide we want some more fine-grain information.
+
+The plots with all the algorithms are reported below: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - Medium 3"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - High 3"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail 3"}
+\\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Uniform 3"}
+\\
+
+A few particular striking comparative plots: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - High UCB"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail UCB"} \\
+
+How does UCB compare against Dynamic $\epsilon$-greedy in these cases? \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - High UCB, Dyn eps"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail UCB, Dyn eps"} \\
+
+The rate of learning for UCB seems slower than for the other algorithms. Is this expected (or do we need to tune the UCB1 constant - I don't think so)? This potentially explains the results we saw that UCB1 loses in the competing bandits game because it's rate of learning growth for these bandit instances is slower than the other algorithms.
+
+Comparing ThompsonSampling to Dynamic $\epsilon$-greedy: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - High TS, Dyn eps"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail TS, Dyn eps"} \\
+
+As well, a version of the plots that smooths the trajectory: \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - Medium 3_smooth"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle50 - High 3_smooth"} \\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail 3_smooth"}
+\\
+\includegraphics[scale=0.5]{"../results/Reward Trajectory for Uniform 3_smooth"}
+\\
+
+
+
+\end{document}

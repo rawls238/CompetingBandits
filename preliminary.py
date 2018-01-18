@@ -23,7 +23,7 @@ from scipy.stats import bernoulli, beta
 numCores = multiprocessing.cpu_count()
 
 
-T = 1000
+T = 5000
 N = 250
 K = 10
 
@@ -57,7 +57,6 @@ BANDIT_DISTR = {
   'Uniform': uniform_real_distr, 
   'Needle50 - High': needle_in_haystack_50_high, 
   'Needle50 - Medium': needle_in_haystack_50_medium, 
-  'Needle50 - Low': needle_in_haystack_50_low,
   'Heavy Tail' :heavy_tailed
 }
 
@@ -89,10 +88,4 @@ with open('results/preliminary_plots_3.csv', 'w') as csvfile:
           'Reward Std': np.std(cur)
         }
         writer.writerow(res)
-      """      print(averageTrajectory)
-      plt.plot(averageTrajectory)
-      plt.ylabel('Average Reward')
-      plt.xlabel('Time')
-      plt.title(alg.__name__)
-      plt.show()"""
 
