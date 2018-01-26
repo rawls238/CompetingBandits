@@ -22,7 +22,7 @@ class BanditAlgorithm:
 
   #decide which arm to pick
   @abc.abstractmethod
-  def pickAnArm(self):
+  def pickAnArm(self, t=None):
     return
 
   def resetStats(self):
@@ -41,13 +41,13 @@ class BanditAlgorithm:
       return None
     return self.regret / float(self.n)
   
-  def executeStep(self):
-    arm = self.pickAnArm()
+  def executeStep(self, t):
+    arm = self.pickAnArm(t)
     self.n += 1
     self.armHistory.append(arm)
 
     #get the realization by calling pullArm(k)
-    reward = self.banditProblemInstance.pullArm(arm)
+    reward = self.banditProblemInstance.pullArm(arm, t)
     self.rewardHistory.append(reward)
     self.rewardTotal[arm] += reward
     self.armCounts[arm] += 1

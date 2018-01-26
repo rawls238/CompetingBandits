@@ -7,6 +7,6 @@ class DynamicGreedy(BanditAlgorithm):
   def shorthand():
     return 'DG'
 
-  def pickAnArm(self):
+  def pickAnArm(self, t):
     chosenArm = np.argmax([p.mean() for p in self.posteriors])
     return chosenArm

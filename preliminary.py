@@ -3,6 +3,7 @@ from joblib import Parallel, delayed
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import random
 
 
 from copy import deepcopy
@@ -13,10 +14,9 @@ from lib.BanditProblemInstance import BanditProblemInstance
 from lib.bandit.StaticGreedy import StaticGreedy
 from lib.bandit.DynamicEpsilonGreedy import DynamicEpsilonGreedy
 from lib.bandit.DynamicGreedy import DynamicGreedy
-from lib.bandit.UCB import UCB
+from lib.bandit.UCB import UCB1WithConstantOne, UCB1WithConstantT
 from lib.bandit.ThompsonSampling import ThompsonSampling
 from lib.bandit.ExploreThenExploit import ExploreThenExploit
-from lib.constants import DEFAULT_COMMON_PRIOR, uniform_real_distr
 
 from scipy.stats import bernoulli, beta
 
@@ -24,17 +24,22 @@ numCores = multiprocessing.cpu_count()
 
 
 T = 5000
-N = 250
-K = 10
+N = 150
+K = 3
 
 
-def sim(alg, banditPrior):
-  banditProblemInstance = BanditProblemInstance(K, T, banditPrior)
+DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
+
+
+def sim(alg, banditPrior, banditProblemInstance):
   banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
   for t in xrange(T):
-    banditAlg.executeStep()
+    banditAlg.executeStep(t)
   return banditAlg.rewardHistory
 
+
+
+uniform_real_distr = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
 
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
@@ -52,12 +57,11 @@ heavy_tail_prior = beta(0.6, 0.6)
 heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
 
 
-ALGS = [ThompsonSampling, UCB, ExploreThenExploit, DynamicGreedy, DynamicEpsilonGreedy]
+ALGS = [ThompsonSampling, UCB1WithConstantOne, UCB1WithConstantT, DynamicGreedy, DynamicEpsilonGreedy]
 BANDIT_DISTR = {
   'Uniform': uniform_real_distr, 
-  'Needle50 - High': needle_in_haystack_50_high, 
-  'Needle50 - Medium': needle_in_haystack_50_medium, 
-  'Heavy Tail' :heavy_tailed
+  'Heavy Tail' :heavy_tailed,
+  'Needle In Haystack High': needle_in_haystack_50_high
 }
 
 
@@ -65,14 +69,24 @@ BANDIT_DISTR = {
 
 FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Reward Mean', 'Reward Std', 'Best Arm Mean']
 
-with open('results/preliminary_plots_3.csv', 'w') as csvfile:
+with open('results/preliminary_plots_3_arms_2.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
-  for alg in ALGS:
-    for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
+  for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
+    if banditDistrName == 'Uniform':
+      banditDistr = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
+    else:
+      banditDistr = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
+    realizations = {}
+    for t in xrange(T):
+      realizations[t] = {}
+      for j in xrange(len(banditDistr)):
+        realizations[t][j] = banditDistr[j].rvs()
+    banditProblemInstance = BanditProblemInstance(K, T, banditDistr, realizations)
+    for alg in ALGS:
       simResults = []
       for i in xrange(N):
-        result = sim(alg, banditDistr)
+        result = sim(alg, banditDistr, banditProblemInstance)
         simResults.append(result)
       averageTrajectory = []
       for t in xrange(T):

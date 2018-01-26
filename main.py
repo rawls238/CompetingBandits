@@ -3,33 +3,38 @@
 from lib.bandit.StaticGreedy import StaticGreedy
 from lib.bandit.DynamicEpsilonGreedy import DynamicEpsilonGreedy
 from lib.bandit.DynamicGreedy import DynamicGreedy
-from lib.bandit.UCB import UCB
+from lib.bandit.UCB import UCB1WithConstantT
 from lib.bandit.ThompsonSampling import ThompsonSampling
 from lib.bandit.ExploreThenExploit import ExploreThenExploit
-from lib.constants import NUM_SIMULATIONS, K, T, needle_in_haystack_real_distr, uniform_real_distr
+from lib.constants import NUM_SIMULATIONS
 from simulate import simulate, getRealDistributionsFromPrior, initialResultDict
 
 ## Import Agent classes
 from lib.agent.HardMax import HardMax
 
 # library imports
-import numpy as np
-import csv
+from scipy.stats import bernoulli, beta
 from copy import copy, deepcopy
 from joblib import Parallel, delayed
-import multiprocessing
 from collections import Counter
-import matplotlib.pyplot as plt
+import numpy as np
+import csv
+import multiprocessing
 import pickle
+import random
 
 numCores = multiprocessing.cpu_count()
+
+K = 3
+T = 5000
 
 AGENT_ALGS = [HardMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 PRINCIPAL1_ALGS = [ThompsonSampling]
 PRINCIPAL2_ALGS = [ThompsonSampling]
-DISTR = uniform_real_distr
+DISTR = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
+
 
 
 AGGREGATE_FIELD_NAMES = ['P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
@@ -65,7 +70,7 @@ def run_discounted_experiment(discount_factors):
               #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
               simResults = []
               for i in xrange(NUM_SIMULATIONS):
-                res = simulate(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR)
+                res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, discountFactor=discount_factor, realDistributions=DISTR)
                 simResults.append(res)
 
               for res in simResults:
@@ -139,7 +144,7 @@ def run_finite_memory_experiment(memory_sizes):
               #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
               simResults = []
               for i in xrange(NUM_SIMULATIONS):
-                res = simulate(principalAlg1, principalAlg2, agentAlg, discountFactor=discount_factor, realDistributions=DISTR)
+                res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realDistributions=DISTR)
                 simResults.append(res)
               for res in simResults:
                 regret1 = res['avgRegret1'] or 0.0

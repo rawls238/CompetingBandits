@@ -7,6 +7,6 @@ class StaticGreedy(BanditAlgorithm):
   def shorthand():
     return 'SG'
 
-  def pickAnArm(self):
+  def pickAnArm(self, t):
     chosenArm = np.argmax([p.mean() for p in self.priors])
     return chosenArm

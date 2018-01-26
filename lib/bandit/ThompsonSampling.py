@@ -6,5 +6,5 @@ class ThompsonSampling(BanditAlgorithm):
   def shorthand():
     return 'TS'
 
-  def pickAnArm(self):
+  def pickAnArm(self, t):
     return np.argmax([p.rvs() for p in self.posteriors])
