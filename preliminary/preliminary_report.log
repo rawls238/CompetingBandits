@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  17 JAN 2018 13:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -581,37 +581,66 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(./preliminary_report.aux)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks24
+\c@algorithm=\count112
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count113
+\c@ALG@rem=\count114
+\c@ALG@nested=\count115
+\ALG@tlm=\skip48
+\ALG@thistlm=\skip49
+\c@ALG@Lnr=\count116
+\c@ALG@blocknr=\count117
+\c@ALG@storecount=\count118
+\c@ALG@tmpcounter=\count119
+\ALG@tmplength=\skip50
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (./preliminary_report.aux)
 \openout1 = `preliminary_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count112
+\scratchcounter=\count120
 \scratchdimen=\dimen119
 \scratchbox=\box30
-\nofMPsegments=\count113
-\nofMParguments=\count114
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count115
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count123
 \MPscratchDim=\dimen120
-\MPnumerator=\count116
-\makeMPintoPDFobject=\count117
-\everyMPtoPDFconversion=\toks25
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks26
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -630,7 +659,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 14.
+Package hyperref Info: Link coloring OFF on input line 15.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -638,22 +667,22 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count118
+\c@section@level=\count126
 )
-LaTeX Info: Redefining \ref on input line 14.
-LaTeX Info: Redefining \pageref on input line 14.
-LaTeX Info: Redefining \nameref on input line 14.
+LaTeX Info: Redefining \ref on input line 15.
+LaTeX Info: Redefining \pageref on input line 15.
+LaTeX Info: Redefining \nameref on input line 15.
 
 (./preliminary_report.out) (./preliminary_report.out)
 \@outlinefile=\write3
 \openout3 = `preliminary_report.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 18.
+LaTeX Font Info:    Try loading font information for U+msa on input line 19.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 18.
+LaTeX Font Info:    Try loading font information for U+msb on input line 19.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -661,312 +690,168 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 21.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 25.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 21.
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-[1
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 25.
+ [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
  []
 
 
-<"../results/Reward Trajectory for Needle01 - Medium 1".pdf, id=31, 578.16pt x 
-578.16pt>
-File: "../results/Reward Trajectory for Needle01 - Medium 1".pdf Graphic file (
-type pdf)
- <use "../results/Reward Trajectory for Needle01 - Medium 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle01 - Medium 1"
-.pdf used on input line 60.
+<"../results/Reward Trajectory for Needle In Haystack Low inst".pdf, id=37, 578
+.16pt x 578.16pt>
+File: "../results/Reward Trajectory for Needle In Haystack Low inst".pdf Graphi
+c file (type pdf)
+
+<use "../results/Reward Trajectory for Needle In Haystack Low inst".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack L
+ow inst".pdf used on input line 78.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle50 - Medium 1".pdf, id=32, 578.16pt x 
-578.16pt>
-File: "../results/Reward Trajectory for Needle50 - Medium 1".pdf Graphic file (
-type pdf)
- <use "../results/Reward Trajectory for Needle50 - Medium 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - Medium 1"
-.pdf used on input line 61.
+<"../results/Reward Trajectory for Needle In Haystack Medium inst".pdf, id=38, 
+578.16pt x 578.16pt>
+File: "../results/Reward Trajectory for Needle In Haystack Medium inst".pdf Gra
+phic file (type pdf)
+
+<use "../results/Reward Trajectory for Needle In Haystack Medium inst".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack M
+edium inst".pdf used on input line 79.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle80 - Medium 1".pdf, id=33, 578.16pt x 
-578.16pt>
-File: "../results/Reward Trajectory for Needle80 - Medium 1".pdf Graphic file (
-type pdf)
- <use "../results/Reward Trajectory for Needle80 - Medium 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle80 - Medium 1"
-.pdf used on input line 62.
+<"../results/Reward Trajectory for Needle In Haystack High inst".pdf, id=39, 57
+8.16pt x 578.16pt>
+File: "../results/Reward Trajectory for Needle In Haystack High inst".pdf Graph
+ic file (type pdf)
+
+<use "../results/Reward Trajectory for Needle In Haystack High inst".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack H
+igh inst".pdf used on input line 80.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle01 - Low 1".pdf, id=34, 578.16pt x 578
-.16pt>
-File: "../results/Reward Trajectory for Needle01 - Low 1".pdf Graphic file (typ
-e pdf)
- <use "../results/Reward Trajectory for Needle01 - Low 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle01 - Low 1".pd
-f used on input line 65.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Needle50 - Low 1".pdf, id=35, 578.16pt x 578
-.16pt>
-File: "../results/Reward Trajectory for Needle50 - Low 1".pdf Graphic file (typ
-e pdf)
- <use "../results/Reward Trajectory for Needle50 - Low 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - Low 1".pd
-f used on input line 66.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Needle80 - Low 1".pdf, id=36, 578.16pt x 578
-.16pt>
-File: "../results/Reward Trajectory for Needle80 - Low 1".pdf Graphic file (typ
-e pdf)
- <use "../results/Reward Trajectory for Needle80 - Low 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle80 - Low 1".pd
-f used on input line 67.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 59--69
-
- []
-
-[2 <../results/Reward Trajectory for Needle01 - Medium 1.pdf>] [3 <../results/R
-eward Trajectory for Needle50 - Medium 1.pdf> <../results/Reward Trajectory for
- Needle80 - Medium 1.pdf>] [4 <../results/Reward Trajectory for Needle01 - Low 
-1.pdf> <../results/Reward Trajectory for Needle50 - Low 1.pdf>]
-<"../results/Reward Trajectory for Needle01 - High 1".pdf, id=74, 578.16pt x 57
-8.16pt>
-File: "../results/Reward Trajectory for Needle01 - High 1".pdf Graphic file (ty
-pe pdf)
- <use "../results/Reward Trajectory for Needle01 - High 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle01 - High 1".p
-df used on input line 71.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Needle50 - High 1".pdf, id=75, 578.16pt x 57
-8.16pt>
-File: "../results/Reward Trajectory for Needle50 - High 1".pdf Graphic file (ty
-pe pdf)
- <use "../results/Reward Trajectory for Needle50 - High 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - High 1".p
-df used on input line 72.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Needle80 - High 1".pdf, id=76, 578.16pt x 57
-8.16pt>
-File: "../results/Reward Trajectory for Needle80 - High 1".pdf Graphic file (ty
-pe pdf)
- <use "../results/Reward Trajectory for Needle80 - High 1".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle80 - High 1".p
-df used on input line 73.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--75
-
- []
-
-[5 <../results/Reward Trajectory for Needle80 - Low 1.pdf> <../results/Reward T
-rajectory for Needle01 - High 1.pdf>] [6 <../results/Reward Trajectory for Need
-le50 - High 1.pdf> <../results/Reward Trajectory for Needle80 - High 1.pdf>]
-<"../results/Reward Trajectory for Needle50 - Medium 3".pdf, id=105, 578.16pt x
- 578.16pt>
-File: "../results/Reward Trajectory for Needle50 - Medium 3".pdf Graphic file (
-type pdf)
- <use "../results/Reward Trajectory for Needle50 - Medium 3".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - Medium 3"
-.pdf used on input line 79.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Needle50 - High 3".pdf, id=106, 578.16pt x 5
-78.16pt>
-File: "../results/Reward Trajectory for Needle50 - High 3".pdf Graphic file (ty
-pe pdf)
- <use "../results/Reward Trajectory for Needle50 - High 3".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - High 3".p
-df used on input line 80.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Heavy Tail 3".pdf, id=107, 578.16pt x 578.16
-pt>
-File: "../results/Reward Trajectory for Heavy Tail 3".pdf Graphic file (type pd
+<"../results/Reward Trajectory for Uniform inst".pdf, id=40, 578.16pt x 578.16p
+t>
+File: "../results/Reward Trajectory for Uniform inst".pdf Graphic file (type pd
 f)
- <use "../results/Reward Trajectory for Heavy Tail 3".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail 3".pdf us
+ <use "../results/Reward Trajectory for Uniform inst".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Uniform inst".pdf us
 ed on input line 81.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Uniform 3".pdf, id=108, 578.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Uniform 3".pdf Graphic file (type pdf)
-<use "../results/Reward Trajectory for Uniform 3".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Uniform 3".pdf used 
-on input line 83.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 78--85
-
- []
-
-[7 <../results/Reward Trajectory for Needle50 - Medium 3.pdf>] [8 <../results/R
-eward Trajectory for Needle50 - High 3.pdf> <../results/Reward Trajectory for H
-eavy Tail 3.pdf>]
-<"../results/Reward Trajectory for Needle50 - High UCB".pdf, id=133, 578.16pt x
- 578.16pt>
-File: "../results/Reward Trajectory for Needle50 - High UCB".pdf Graphic file (
-type pdf)
- <use "../results/Reward Trajectory for Needle50 - High UCB".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - High UCB"
-.pdf used on input line 87.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Heavy Tail UCB".pdf, id=134, 578.16pt x 578.
+<"../results/Reward Trajectory for Heavy Tail inst".pdf, id=41, 578.16pt x 578.
 16pt>
-File: "../results/Reward Trajectory for Heavy Tail UCB".pdf Graphic file (type 
-pdf)
- <use "../results/Reward Trajectory for Heavy Tail UCB".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail UCB".pdf 
-used on input line 88.
+File: "../results/Reward Trajectory for Heavy Tail inst".pdf Graphic file (type
+ pdf)
+ <use "../results/Reward Trajectory for Heavy Tail inst".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail inst".pdf
+ used on input line 82.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--89
+Underfull \hbox (badness 10000) in paragraph at lines 78--83
 
  []
 
-[9 <../results/Reward Trajectory for Uniform 3.pdf> <../results/Reward Trajecto
-ry for Needle50 - High UCB.pdf>]
-<"../results/Reward Trajectory for Needle50 - High UCB, Dyn eps".pdf, id=150, 5
-78.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle50 - High UCB, Dyn eps".pdf Graph
-ic file (type pdf)
+[2] [3 <../results/Reward Trajectory for Needle In Haystack Low inst.pdf> <../r
+esults/Reward Trajectory for Needle In Haystack Medium inst.pdf>] [4 <../result
+s/Reward Trajectory for Needle In Haystack High inst.pdf> <../results/Reward Tr
+ajectory for Uniform inst.pdf>]
+<"../results/Reward Trajectory for Needle In Haystack Low cumulative".pdf, id=8
+9, 578.16pt x 578.16pt>
+File: "../results/Reward Trajectory for Needle In Haystack Low cumulative".pdf 
+Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle50 - High UCB, Dyn eps".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - High UCB,
- Dyn eps".pdf used on input line 91.
+<use "../results/Reward Trajectory for Needle In Haystack Low cumulative".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack L
+ow cumulative".pdf used on input line 85.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Heavy Tail UCB, Dyn eps".pdf, id=151, 578.16
-pt x 578.16pt>
-File: "../results/Reward Trajectory for Heavy Tail UCB, Dyn eps".pdf Graphic fi
-le (type pdf)
+<"../results/Reward Trajectory for Needle In Haystack Medium cumulative".pdf, i
+d=90, 578.16pt x 578.16pt>
+File: "../results/Reward Trajectory for Needle In Haystack Medium cumulative".p
+df Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Heavy Tail UCB, Dyn eps".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail UCB, Dyn 
-eps".pdf used on input line 92.
+<use "../results/Reward Trajectory for Needle In Haystack Medium cumulative".pd
+f>
+Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack M
+edium cumulative".pdf used on input line 86.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--93
+<"../results/Reward Trajectory for Needle In Haystack High cumulative".pdf, id=
+91, 578.16pt x 578.16pt>
+File: "../results/Reward Trajectory for Needle In Haystack High cumulative".pdf
+ Graphic file (type pdf)
+
+<use "../results/Reward Trajectory for Needle In Haystack High cumulative".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack H
+igh cumulative".pdf used on input line 87.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+<"../results/Reward Trajectory for Uniform cumulative".pdf, id=92, 578.16pt x 5
+78.16pt>
+File: "../results/Reward Trajectory for Uniform cumulative".pdf Graphic file (t
+ype pdf)
+ <use "../results/Reward Trajectory for Uniform cumulative".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Uniform cumulative".
+pdf used on input line 88.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+<"../results/Reward Trajectory for Heavy Tail cumulative".pdf, id=93, 578.16pt 
+x 578.16pt>
+File: "../results/Reward Trajectory for Heavy Tail cumulative".pdf Graphic file
+ (type pdf)
+ <use "../results/Reward Trajectory for Heavy Tail cumulative".pdf>
+Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail cumulativ
+e".pdf used on input line 89.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--90
 
  []
 
-[10 <../results/Reward Trajectory for Heavy Tail UCB.pdf> <../results/Reward Tr
-ajectory for Needle50 - High UCB, Dyn eps.pdf>]
-<"../results/Reward Trajectory for Needle50 - High TS, Dyn eps".pdf, id=166, 57
-8.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle50 - High TS, Dyn eps".pdf Graphi
-c file (type pdf)
-
-<use "../results/Reward Trajectory for Needle50 - High TS, Dyn eps".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - High TS, 
-Dyn eps".pdf used on input line 97.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Heavy Tail TS, Dyn eps".pdf, id=167, 578.16p
-t x 578.16pt>
-File: "../results/Reward Trajectory for Heavy Tail TS, Dyn eps".pdf Graphic fil
-e (type pdf)
-
-<use "../results/Reward Trajectory for Heavy Tail TS, Dyn eps".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail TS, Dyn e
-ps".pdf used on input line 98.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 96--99
-
- []
-
-[11 <../results/Reward Trajectory for Heavy Tail UCB, Dyn eps.pdf>]
-<"../results/Reward Trajectory for Needle50 - Medium 3_smooth".pdf, id=177, 578
-.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle50 - Medium 3_smooth".pdf Graphic
- file (type pdf)
-
-<use "../results/Reward Trajectory for Needle50 - Medium 3_smooth".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - Medium 3_
-smooth".pdf used on input line 101.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Needle50 - High 3_smooth".pdf, id=178, 578.1
-6pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle50 - High 3_smooth".pdf Graphic f
-ile (type pdf)
-
-<use "../results/Reward Trajectory for Needle50 - High 3_smooth".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle50 - High 3_sm
-ooth".pdf used on input line 102.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Heavy Tail 3_smooth".pdf, id=179, 578.16pt x
- 578.16pt>
-File: "../results/Reward Trajectory for Heavy Tail 3_smooth".pdf Graphic file (
-type pdf)
- <use "../results/Reward Trajectory for Heavy Tail 3_smooth".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail 3_smooth"
-.pdf used on input line 103.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Uniform 3_smooth".pdf, id=180, 578.16pt x 57
-8.16pt>
-File: "../results/Reward Trajectory for Uniform 3_smooth".pdf Graphic file (typ
-e pdf)
- <use "../results/Reward Trajectory for Uniform 3_smooth".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Uniform 3_smooth".pd
-f used on input line 105.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--107
-
- []
-
-[12 <../results/Reward Trajectory for Needle50 - High TS, Dyn eps.pdf> <../resu
-lts/Reward Trajectory for Heavy Tail TS, Dyn eps.pdf>] [13 <../results/Reward T
-rajectory for Needle50 - Medium 3_smooth.pdf> <../results/Reward Trajectory for
- Needle50 - High 3_smooth.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
- [14 <../results/Reward Trajectory for Heavy Tail 3_smooth.pdf> <../results/Rew
-ard Trajectory for Uniform 3_smooth.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
-
-(./preliminary_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 110.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
+[5 <../results/Reward Trajectory for Heavy Tail inst.pdf>] [6 <../results/Rewar
+d Trajectory for Needle In Haystack Low cumulative.pdf> <../results/Reward Traj
+ectory for Needle In Haystack Medium cumulative.pdf>] [7 <../results/Reward Tra
+jectory for Needle In Haystack High cumulative.pdf> <../results/Reward Trajecto
+ry for Uniform cumulative.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
+ [8 <../results/Reward Trajectory for Heavy Tail cumulative.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
+ (./preliminary_report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
 Package rerunfilecheck Info: File `preliminary_report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 6701 strings out of 492995
- 100339 string characters out of 6132704
- 191946 words of memory out of 5000000
- 10113 multiletter control sequences out of 15000+600000
- 10132 words of font info for 39 fonts, out of 8000000 for 9000
+ 7209 strings out of 492995
+ 105157 string characters out of 6132704
+ 199504 words of memory out of 5000000
+ 10619 multiletter control sequences out of 15000+600000
+ 11651 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,25p,703b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on preliminary_report.pdf (14 pages, 1579301 bytes).
+ 28i,6n,25p,841b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on preliminary_report.pdf (8 pages, 274110 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
- 193 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 208 PDF objects out of 1000 (max. 8388607)
+ 164 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
