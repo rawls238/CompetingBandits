@@ -29,8 +29,10 @@ class BanditAlgorithm:
     self.n = 0 # how many times have i been picked
     self.armHistory = [] # an array of integers (0..K-1) of the arms i picked. arms are 0-indexed
     self.rewardHistory = []
-    self.armCounts = [0.0 for i in range(self.banditProblemInstance.K)]
-    self.rewardTotal = [0.0 for i in range(self.banditProblemInstance.K)]
+    self.cumulativeRewardHistory = []
+    self.armCounts = [0.0 for i in xrange(self.banditProblemInstance.K)]
+    self.rewardTotal = [0.0 for i in xrange(self.banditProblemInstance.K)]
+    self.empiricalMeans = [0.0 for i in xrange(self.banditProblemInstance.K)]
     self.regret = 0.0
 
   def resetPriors(self):
@@ -46,11 +48,16 @@ class BanditAlgorithm:
     self.n += 1
     self.armHistory.append(arm)
 
-    #get the realization by calling pullArm(k)
+    # get the realization by calling pullArm(k)
     reward = self.banditProblemInstance.pullArm(arm, t)
     self.rewardHistory.append(reward)
+    if len(self.cumulativeRewardHistory) == 0:
+      self.cumulativeRewardHistory.append(reward)
+    else:
+      self.cumulativeRewardHistory.append((self.cumulativeRewardHistory[-1] + reward))
     self.rewardTotal[arm] += reward
     self.armCounts[arm] += 1
+    self.empiricalMeans[arm] = float(self.rewardTotal[arm]) / self.armCounts[arm]
     self.updatePosterior(arm, reward)
     return (reward, arm)
   

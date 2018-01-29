@@ -9,7 +9,9 @@ library("reshape")
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms_2.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms.csv", sep=""))
+dat2 <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms_2.csv", sep=""))
+dat <- rbind(dat, dat2)
 algs <- as.list(unique(dat['Algorithm']))$Algorithm
 filter_algs <- algs
 dat <- filter(dat, Algorithm %in% filter_algs)
@@ -17,8 +19,8 @@ dists <- as.list(unique(dat['Distribution']))$Distribution
 
 filter_by_dist_and_plot <- function(dist) {
   d <- filter(dat, Distribution == dist)
-  title <- paste("Reward Trajectory for", dist, " two UCB")
-  q <- ggplot(data=d, aes(x=t, y=Reward.Mean, colour=Algorithm)) + ggtitle(title) + ylab("Mean Reward") + xlab("time") +
+  title <- paste("Reward Trajectory for", dist, "all")
+  q <- ggplot(data=d, aes(x=t, y=Instantaneous.Reward.Mean, colour=Algorithm)) + ggtitle(title) + ylab("Cumulative Mean Reward") + xlab("time") +
     #geom_path() # just plot the raw trajectory
     geom_smooth(method="loess") #+ smooths the trajectory 
     #geom_errorbar(aes(ymin=Reward.Mean-1.96*Reward.Std, ymax=Reward.Mean+1.96*Reward.Std))
