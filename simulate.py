@@ -1,9 +1,9 @@
 import numpy as np
 
-from lib.constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS
+from lib.constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS, RECORD_STATS_AT
 from lib.BanditProblemInstance import BanditProblemInstance
 
-
+import random
 from scipy.stats import bernoulli, beta
 
 def getDefaultPrior(K):
@@ -13,8 +13,12 @@ def getDefaultRealDistributions(K):
   prior = getDefaultPrior(K)
   return [bernoulli(prior[i].rvs()) for i in xrange(K)]
 
-def getRealDistributionsFromPrior(prior, K):
-  return [bernoulli(prior[i].rvs()) for i in xrange(K)]
+def getRealDistributionsFromPrior(priorName, prior, K):
+  if priorName == 'Uniform':
+    return [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
+  elif priorName == 'Heavy Tail':
+    return [bernoulli(prior.rvs()) for i in xrange(K)]
+  return prior
 
 # realDistributions - the true distribution of the arms
 # principalPriors - the priors the principals have over the arms
@@ -58,26 +62,26 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
     principal.resetPriors()
 
   principalHistory = []
+  results = []
   for t in xrange(int(T)):
+    if t in RECORD_STATS_AT:
+      results.append({
+        'marketShare1' : principal1.n / float(T),
+        'marketShare2' : principal2.n / float(T),
+        'armCounts1' : principal1.armCounts,
+        'armCounts2' : principal2.armCounts,
+        'avgRegret1': principal1.getAverageRegret(),
+        'avgRegret2': principal2.getAverageRegret(),
+        'time': t
+      })
     (principalName, principal) = agents.selectPrincipal()
     principalHistory.append(principalName)
     (reward, arm) = principal.executeStep(t)
     trueMeanOfArm = banditProblemInstance.getMeanOfArm(arm)
     principal.regret += (bestArmMean - trueMeanOfArm)
     agents.updateInformationSet(reward, arm, principalName)
-
-
-  marketShare1 = principal1.n / T
-  marketShare2 = principal2.n / T
-  return {
-    'marketShare1' : marketShare1,
-    'marketShare2' : marketShare2,
-    'armCounts1' : principal1.armCounts,
-    'armCounts2' : principal2.armCounts,
-    'avgRegret1': principal1.getAverageRegret(),
-    'avgRegret2': principal2.getAverageRegret(),
-    # 'principalHistory': principalHistory,
-  }
+  
+  return results
 
 
 initialResultDict = {
@@ -87,7 +91,8 @@ initialResultDict = {
   'armCounts2': [],
   'avgRegret1': [],
   'avgRegret2': [],
-  'principalHistory': []
+  'principalHistory': [],
+  'time': []
 }
 
 

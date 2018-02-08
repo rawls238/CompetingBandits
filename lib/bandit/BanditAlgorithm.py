@@ -4,6 +4,7 @@ as well as decision rules for what arms to pull
 '''
 
 import abc
+import numpy as np
 from scipy.stats import beta
 from copy import deepcopy
 
@@ -28,8 +29,10 @@ class BanditAlgorithm:
   def resetStats(self):
     self.n = 0 # how many times have i been picked
     self.armHistory = [] # an array of integers (0..K-1) of the arms i picked. arms are 0-indexed
-    self.rewardHistory = []
-    self.cumulativeRewardHistory = []
+    self.realizedRewardHistory = []
+    self.realizedCumulativeRewardHistory = []
+    self.meanRewardHistory = []
+    self.meanCumulativeRewardHistory = []
     self.armCounts = [0.0 for i in xrange(self.banditProblemInstance.K)]
     self.rewardTotal = [0.0 for i in xrange(self.banditProblemInstance.K)]
     self.empiricalMeans = [0.0 for i in xrange(self.banditProblemInstance.K)]
@@ -40,21 +43,27 @@ class BanditAlgorithm:
 
   def getAverageRegret(self):
     if self.n == 0:
-      return None
+      return np.nan
     return self.regret / float(self.n)
   
   def executeStep(self, t):
     arm = self.pickAnArm(t)
+    meanOfArm = self.banditProblemInstance.getMeanOfArm(arm)
     self.n += 1
     self.armHistory.append(arm)
 
     # get the realization by calling pullArm(k)
     reward = self.banditProblemInstance.pullArm(arm, t)
-    self.rewardHistory.append(reward)
-    if len(self.cumulativeRewardHistory) == 0:
-      self.cumulativeRewardHistory.append(reward)
+    if len(self.realizedCumulativeRewardHistory) == 0:
+      self.realizedCumulativeRewardHistory.append(reward)
+      self.meanCumulativeRewardHistory.append(meanOfArm)
     else:
-      self.cumulativeRewardHistory.append((self.cumulativeRewardHistory[-1] + reward))
+      self.realizedCumulativeRewardHistory.append(self.realizedCumulativeRewardHistory[-1] + reward)
+      self.meanCumulativeRewardHistory.append(self.meanCumulativeRewardHistory[-1] + meanOfArm)
+
+    self.realizedRewardHistory.append(reward)
+    self.meanRewardHistory.append(meanOfArm)
+
     self.rewardTotal[arm] += reward
     self.armCounts[arm] += 1
     self.empiricalMeans[arm] = float(self.rewardTotal[arm]) / self.armCounts[arm]

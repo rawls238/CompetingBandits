@@ -8,7 +8,6 @@ from copy import deepcopy
 
 from lib.BanditProblemInstance import BanditProblemInstance
 
-from lib.bandit.Bandit
 from lib.bandit.StaticGreedy import StaticGreedy
 from lib.bandit.DynamicEpsilonGreedy import NonBayesianEpsilonGreedy
 from lib.bandit.DynamicGreedy import DynamicGreedy
@@ -19,8 +18,8 @@ from lib.bandit.ExploreThenExploit import ExploreThenExploit
 from scipy.stats import bernoulli, beta
 
 
-T = 5000
-N = 200
+T = 1
+N = 4
 K = 3
 
 
@@ -30,8 +29,7 @@ DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
 def sim(alg):
   for t in xrange(T):
     banditAlg.executeStep(t)
-  return (banditAlg.rewardHistory, banditAlg.cumulativeRewardHistory)
-
+  return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory)
 
 
 uniform_real_distr = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
@@ -64,7 +62,7 @@ BANDIT_DISTR = {
 
 # Algorithm, Arms, Prior, t, n, reward
 
-FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Instantaneous Reward Mean', 'Instantaneous Reward Std', 'Cumulative Reward Mean', 'Cumulative Reward Std', 'Best Arm Mean']
+FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
 simResults = {}
 
 
@@ -72,7 +70,7 @@ simResults = {}
 This runs N iterations of the experiment. In each iteration a set of true distributions is chosen and then for each algorithm we record the reward history. After this is done we aggregate the results and report them.
 '''
 
-with open('results/preliminary_plots_3_arms.csv', 'w') as csvfile:
+with open('results/preliminary_plots_3_arms_3.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
@@ -128,20 +126,28 @@ with open('results/preliminary_plots_3_arms.csv', 'w') as csvfile:
           name = 'NonBayesianEpsilonGreedy, (t+1)^(-1/3)'
         else:
           name = alg.__name__
-        cumulative = []
-        instantaneous = []
+        cumulative_realized = []
+        instantaneous_realized = []
+        cumulative_mean = []
+        instantaneous_mean = []
         for j in xrange(len(algResult)):
-          instantaneous.append(algResult[j][0][t])
-          cumulative.append(algResult[j][1][t])
+          instantaneous_realized.append(algResult[j][0][t])
+          cumulative_realized.append(algResult[j][1][t])
+          instantaneous_mean.append(algResult[j][2][t])
+          cumulative_mean.append(algResult[j][3][t])
         res = {
           'Algorithm': name,
           'K': str(K),
           'Distribution': banditDistrName,
           't': str(t),
-          'Instantaneous Reward Mean': np.mean(instantaneous),
-          'Instantaneous Reward Std': np.std(instantaneous),
-          'Cumulative Reward Mean': np.mean(cumulative),
-          'Cumulative Reward Std': np.std(cumulative),
+          'Instantaneous Realized Reward Mean': np.mean(instantaneous_realized),
+          'Instantaneous Realized Reward Std': np.std(instantaneous_realized),
+          'Cumulative Realized Reward Mean': np.mean(cumulative_realized),
+          'Cumulative Realized Reward Std': np.std(cumulative_realized),
+          'Instantaneous Mean Reward Mean': np.mean(instantaneous_mean),
+          'Instantaneous Mean Reward Std': np.std(instantaneous_mean),
+          'Cumulative Mean Reward Mean': np.mean(cumulative_mean),
+          'Cumulative Mean Reward Std': np.std(cumulative_mean),
           'Best Arm Mean': bestArmMean
         }
         writer.writerow(res)

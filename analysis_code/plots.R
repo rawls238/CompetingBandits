@@ -12,7 +12,7 @@ dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms.csv"
 dat2 <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms_2.csv", sep=""))
 dat <- rbind(dat, dat2)
 algs <- as.list(unique(dat['Algorithm']))$Algorithm
-filter_algs <- algs
+filter_algs <- c("ThompsonSampling", "UCBWithConstant1", "NonBayesianGreedy 0.05")
 dat <- filter(dat, Algorithm %in% filter_algs)
 dists <- as.list(unique(dat['Distribution']))$Distribution
 
@@ -35,9 +35,9 @@ find_average_std_dev <- function() {
     return(lapply(algs, function(alg) {
       d <- filter(dat, Distribution == dist)
       d <- filter(d, Algorithm == alg)
-      return(mean(d['Instantaneous.Reward.Std'][[1]]))
+      return((d['Instantaneous.Reward.Std'][[1]])[5000])
     })) 
   })
 }
 
-#print(find_average_std_dev())
+print(find_average_std_dev())

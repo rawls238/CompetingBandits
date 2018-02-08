@@ -15,7 +15,7 @@ class DynamicEpsilonGreedy(BanditAlgorithm):
 
   def pickAnArm(self, t):
     if self.dynamicEpsilon:
-      self.epsilon = 1.0 / (t + 1)
+      self.epsilon = (t + 1)**(-1/3)
     chosenArm = np.argmax([p.mean() for p in self.posteriors])
     if rand.random() > self.epsilon:
       return chosenArm
