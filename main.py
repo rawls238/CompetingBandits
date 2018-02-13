@@ -11,6 +11,8 @@ from simulate import simulate, getRealDistributionsFromPrior, initialResultDict
 
 ## Import Agent classes
 from lib.agent.HardMax import HardMax
+from lib.agent.SoftMax import SoftMax
+from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 
 # library imports
 from scipy.stats import bernoulli, beta
@@ -26,13 +28,13 @@ import random
 numCores = multiprocessing.cpu_count()
 
 K = 3
-T = 1001
-NUM_SIMULATIONS = 5
+T = 5002
+NUM_SIMULATIONS = 125
 
-AGENT_ALGS = [HardMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy)] #,(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
 
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
@@ -50,7 +52,6 @@ BANDIT_DISTR = {
   'Heavy Tail' :heavy_tail_prior,
   'Needle In Haystack High': needle_in_haystack_50_high,
   'Needle In Haystack Medium': needle_in_haystack_50_medium,
-  'Needle In Haystack Low': needle_in_haystack_50_medium,
 }
 
 

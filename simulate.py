@@ -49,7 +49,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principal2 = principalAlg2(banditProblemInstance, principal2Priors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, K, memory=memory, discount_factor=discountFactor)
+  agents = agentAlg(principals, K, memory=memory)
 
   # give the agents a few observations
   for i in xrange(warmStartNumObservations):
