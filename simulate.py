@@ -66,8 +66,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for t in xrange(int(T)):
     if t in RECORD_STATS_AT:
       results.append({
-        'marketShare1' : principal1.n / float(T),
-        'marketShare2' : principal2.n / float(T),
+        'marketShare1' : principal1.n / float(t),
+        'marketShare2' : principal2.n / float(t),
         'armCounts1' : principal1.armCounts,
         'armCounts2' : principal2.armCounts,
         'avgRegret1': principal1.getAverageRegret(),
