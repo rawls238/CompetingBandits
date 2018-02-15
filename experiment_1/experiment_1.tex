@@ -19,7 +19,7 @@
 
 \section*{Simulation Details}
 
-Considered $K = 3$, $T = 5005$. Report statistics at $t = 1000, 3000, 5000$ \\
+Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000, 5000$ \\
 \textbf{The Bandit priors that were considered}:
 \begin{itemize}
 \item Uniform: Draw the mean rewards for the arms from [0.25, 0.75]
@@ -53,9 +53,9 @@ Considered $K = 3$, $T = 5005$. Report statistics at $t = 1000, 3000, 5000$ \\
 \begin{algorithm}
 \begin{algorithmic}[1]
 \For{Each prior $p$}
-	\For{Each agent algorithm $agent_alg$}
-		\For{Each principal algorithm pair $principal_alg1$, $principal_alg2$}
-			\For{Each simulation $i$}
+	\For{Each agent algorithm $agent alg$}
+		\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
+			\For{$N$ simulations}
 				\State Generate true distribution from $p$ (except for needle-in-		haystack, just use $p$ itself)
 				\State Run simulation for T periods
 			\EndFor
@@ -79,34 +79,34 @@ Performance of ThompsonSampling vs DynamicGreedy and DynamicEpsilonGreedy across
 
 Now, looking across different memory sizes for each agent model (still using each prior): \\
 \textbf{HardMax} \\
-\includegraphics[scale=0.75]{hm_ts_deg} \\
-\includegraphics[scale=0.75]{hm_ts_dg} \\
+\includegraphics[scale=1]{hm_ts_deg} \\
+\includegraphics[scale=1]{hm_ts_dg}
 
 \pagebreak
 \textbf{HardMaxWithRandom} \\
-\includegraphics[scale=0.75]{hmr_ts_deg} \\
-\includegraphics[scale=0.75]{hmr_ts_dg} \\
+\includegraphics[scale=1]{hmr_ts_deg} \\
+\includegraphics[scale=1]{hmr_ts_dg}
 
 \pagebreak
 \textbf{SoftMax} \\
-\includegraphics[scale=0.75]{sm_ts_deg} \\
-\includegraphics[scale=0.75]{sm_ts_dg} \\
+\includegraphics[scale=1]{sm_ts_deg} \\
+\includegraphics[scale=1]{sm_ts_dg}
 
 \pagebreak
 We'll now look fix memory size to be 100 and look at the performance across priors.\\
 \textbf{HardMax} \\
-\includegraphics[scale=0.75]{hm_ts_deg_prior} \\
-\includegraphics[scale=0.75]{hm_ts_dg_prior} \\
+\includegraphics[scale=1]{hm_ts_deg_prior} \\
+\includegraphics[scale=1]{hm_ts_dg_prior}
 
 \pagebreak
 \textbf{HardMaxWithRandom} \\
-\includegraphics[scale=0.75]{hmr_ts_deg_prior} \\
-\includegraphics[scale=0.75]{hmr_ts_dg_prior} \\
+\includegraphics[scale=1]{hmr_ts_deg_prior} \\
+\includegraphics[scale=1]{hmr_ts_dg_prior}
 
 \pagebreak
 \textbf{SoftMax} \\
-\includegraphics[scale=0.75]{sm_ts_deg_prior} \\
-\includegraphics[scale=0.75]{sm_ts_dg_prior} \\
+\includegraphics[scale=1]{sm_ts_deg_prior} \\
+\includegraphics[scale=1]{sm_ts_dg_prior}
 
 
 
