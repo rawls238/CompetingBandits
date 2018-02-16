@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  14 FEB 2018 23:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  16 FEB 2018 00:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,16 +702,16 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 <ts_perf_dg.pdf, id=33, 397.485pt x 289.08pt>
 File: ts_perf_dg.pdf Graphic file (type pdf)
  <use ts_perf_dg.pdf>
-Package pdftex.def Info: ts_perf_dg.pdf used on input line 77.
+Package pdftex.def Info: ts_perf_dg.pdf used on input line 79.
 (pdftex.def)             Requested size: 298.113pt x 216.80946pt.
 
 <ts_perf_deg.pdf, id=34, 397.485pt x 289.08pt>
 File: ts_perf_deg.pdf Graphic file (type pdf)
  <use ts_perf_deg.pdf>
-Package pdftex.def Info: ts_perf_deg.pdf used on input line 78.
+Package pdftex.def Info: ts_perf_deg.pdf used on input line 80.
 (pdftex.def)             Requested size: 298.113pt x 216.80946pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--79
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
 
@@ -719,96 +719,110 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--79
 <hm_ts_deg.pdf, id=60, 397.485pt x 289.08pt>
 File: hm_ts_deg.pdf Graphic file (type pdf)
  <use hm_ts_deg.pdf>
-Package pdftex.def Info: hm_ts_deg.pdf used on input line 82.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hm_ts_deg.pdf used on input line 84.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
 
 <hm_ts_dg.pdf, id=61, 397.485pt x 289.08pt>
 File: hm_ts_dg.pdf Graphic file (type pdf)
  <use hm_ts_dg.pdf>
-Package pdftex.def Info: hm_ts_dg.pdf used on input line 83.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hm_ts_dg.pdf used on input line 85.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  [4 <./hm_ts_deg.pdf> <./hm_ts_dg.pdf>] <hmr_ts_deg.pdf, id=86, 397.485pt x 289
 .08pt>
 File: hmr_ts_deg.pdf Graphic file (type pdf)
 
 <use hmr_ts_deg.pdf>
-Package pdftex.def Info: hmr_ts_deg.pdf used on input line 87.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hmr_ts_deg.pdf used on input line 90.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  <hmr_ts_dg.pdf, id=87, 397.485pt x 289.08pt>
 File: hmr_ts_dg.pdf Graphic file (type pdf)
 
 <use hmr_ts_dg.pdf>
-Package pdftex.def Info: hmr_ts_dg.pdf used on input line 88.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hmr_ts_dg.pdf used on input line 91.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  [5 <./hmr_ts_deg.pdf> <./hmr_ts_dg.pdf>]
 <sm_ts_deg.pdf, id=112, 397.485pt x 289.08pt>
 File: sm_ts_deg.pdf Graphic file (type pdf)
  <use sm_ts_deg.pdf>
-Package pdftex.def Info: sm_ts_deg.pdf used on input line 92.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: sm_ts_deg.pdf used on input line 96.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
 
 <sm_ts_dg.pdf, id=113, 397.485pt x 289.08pt>
 File: sm_ts_dg.pdf Graphic file (type pdf)
  <use sm_ts_dg.pdf>
-Package pdftex.def Info: sm_ts_dg.pdf used on input line 93.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: sm_ts_dg.pdf used on input line 97.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  [6 <./sm_ts_deg.pdf> <./sm_ts_dg.pdf>] <hm_ts_deg_prior.pdf, id=138, 397.485pt
  x 289.08pt>
 File: hm_ts_deg_prior.pdf Graphic file (type pdf)
 
 <use hm_ts_deg_prior.pdf>
-Package pdftex.def Info: hm_ts_deg_prior.pdf used on input line 98.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hm_ts_deg_prior.pdf used on input line 103.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  <hm_ts_dg_prior.pdf, id=139, 397.485pt x 289.08pt>
 File: hm_ts_dg_prior.pdf Graphic file (type pdf)
 
 <use hm_ts_dg_prior.pdf>
-Package pdftex.def Info: hm_ts_dg_prior.pdf used on input line 99.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hm_ts_dg_prior.pdf used on input line 104.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  [7 <./hm_ts_deg_prior.pdf> <./hm_ts_dg_prior.pdf>]
 <hmr_ts_deg_prior.pdf, id=166, 397.485pt x 289.08pt>
 File: hmr_ts_deg_prior.pdf Graphic file (type pdf)
 
 <use hmr_ts_deg_prior.pdf>
-Package pdftex.def Info: hmr_ts_deg_prior.pdf used on input line 103.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hmr_ts_deg_prior.pdf used on input line 109.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  <hmr_ts_dg_prior.pdf, id=167, 397.485pt x 289.08pt>
 File: hmr_ts_dg_prior.pdf Graphic file (type pdf)
 
 <use hmr_ts_dg_prior.pdf>
-Package pdftex.def Info: hmr_ts_dg_prior.pdf used on input line 104.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: hmr_ts_dg_prior.pdf used on input line 110.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
  [8 <./hmr_ts_deg_prior.pdf> <./hmr_ts_dg_prior.pdf>]
 <sm_ts_deg_prior.pdf, id=192, 397.485pt x 289.08pt>
 File: sm_ts_deg_prior.pdf Graphic file (type pdf)
  <use sm_ts_deg_prior.pdf>
-Package pdftex.def Info: sm_ts_deg_prior.pdf used on input line 108.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package pdftex.def Info: sm_ts_deg_prior.pdf used on input line 116.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
 
 <sm_ts_dg_prior.pdf, id=193, 397.485pt x 289.08pt>
 File: sm_ts_dg_prior.pdf Graphic file (type pdf)
  <use sm_ts_dg_prior.pdf>
-Package pdftex.def Info: sm_ts_dg_prior.pdf used on input line 109.
-(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 113.
+Package pdftex.def Info: sm_ts_dg_prior.pdf used on input line 117.
+(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
 
 [9 <./sm_ts_deg_prior.pdf> <./sm_ts_dg_prior.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 113.
+<ts_regret_agent_algs.pdf, id=218, 397.485pt x 289.08pt>
+File: ts_regret_agent_algs.pdf Graphic file (type pdf)
+
+<use ts_regret_agent_algs.pdf>
+Package pdftex.def Info: ts_regret_agent_algs.pdf used on input line 123.
+(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+
+<ts_regret_memory.pdf, id=219, 397.485pt x 289.08pt>
+File: ts_regret_memory.pdf Graphic file (type pdf)
+
+<use ts_regret_memory.pdf>
+Package pdftex.def Info: ts_regret_memory.pdf used on input line 124.
+(pdftex.def)             Requested size: 397.48402pt x 289.07928pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
+ [10 <./ts_regret_agent_algs.pdf> <./ts_regret_memory.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
  (./experiment_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 113.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 113.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
 Package rerunfilecheck Info: File `experiment_1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 113.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
- 7232 strings out of 492995
- 103287 string characters out of 6132704
+ 7245 strings out of 492995
+ 103602 string characters out of 6132704
  198504 words of memory out of 5000000
- 10632 multiletter control sequences out of 15000+600000
+ 10640 multiletter control sequences out of 15000+600000
  11344 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,25p,298b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,6n,25p,391b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -817,10 +831,10 @@ sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loca
 l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on experiment_1.pdf (9 pages, 302236 bytes).
+Output written on experiment_1.pdf (10 pages, 331496 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 278 PDF objects out of 1000 (max. 8388607)
+ 207 compressed objects within 3 object streams
+ 24 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

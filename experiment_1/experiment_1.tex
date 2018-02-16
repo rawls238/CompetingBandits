@@ -56,7 +56,8 @@ Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000,
 	\For{Each agent algorithm $agent alg$}
 		\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
 			\For{$N$ simulations}
-				\State Generate true distribution from $p$ (except for needle-in-		haystack, just use $p$ itself)
+				\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+				\State Give the agents 5 observations from each principal
 				\State Run simulation for T periods
 			\EndFor
 		\EndFor
@@ -69,44 +70,59 @@ Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000,
 \section*{Results}
 
 One thing which is ambiguous to define is the regret value to use when a principal never gets chosen in a given simulation. When calculating any of the aggregate regret statistics we drop these simulations, but we do record how many rounds have an undefined regret. \\
-\vspace{1cm}
-
-First, we'll restrict focus to $t = 5000$ and look at the performance of ThompsonSampling. Note that the y axis here represents the market share that the ThompsonSampling principal gets.
 \vspace{0.5cm}
+
+First, we'll restrict focus to $t = 5000$ and look at the performance of ThompsonSampling. Note that the y axis here represents the market share that the ThompsonSampling principal gets. \\
+\vspace{0.5cm}
+
 Performance of ThompsonSampling vs DynamicGreedy and DynamicEpsilonGreedy across all agent models, memory sizes, and priors: \\
 \includegraphics[scale=0.75]{ts_perf_dg} \\
 \includegraphics[scale=0.75]{ts_perf_deg} \\
 
 Now, looking across different memory sizes for each agent model (still using each prior): \\
 \textbf{HardMax} \\
-\includegraphics[scale=1]{hm_ts_deg} \\
-\includegraphics[scale=1]{hm_ts_dg}
+\includegraphics[scale=0.9]{hm_ts_deg} \\
+\includegraphics[scale=0.9]{hm_ts_dg} \\
+Under HardMax it's clear that there is high variability in market share that is increasing in memory size and indicative of less competition but the median across memory sizes still has ThompsonSampling winning.
 
 \pagebreak
 \textbf{HardMaxWithRandom} \\
-\includegraphics[scale=1]{hmr_ts_deg} \\
-\includegraphics[scale=1]{hmr_ts_dg}
+\includegraphics[scale=0.9]{hmr_ts_deg} \\
+\includegraphics[scale=0.9]{hmr_ts_dg} \\
+Under HardMaxWithRandom, the amount of variability decreases (more competition) but is still increasing in memory size and ThompsonSampling still wins in most simulations.
 
 \pagebreak
 \textbf{SoftMax} \\
-\includegraphics[scale=1]{sm_ts_deg} \\
-\includegraphics[scale=1]{sm_ts_dg}
+\includegraphics[scale=0.9]{sm_ts_deg} \\
+\includegraphics[scale=0.9]{sm_ts_dg} \\
+Under SoftMax there is less variability (more competition) that does not change much with memory size and here ThompsonSampling wins more in the median simulation but only a bit.
 
 \pagebreak
 We'll now look fix memory size to be 100 and look at the performance across priors.\\
 \textbf{HardMax} \\
-\includegraphics[scale=1]{hm_ts_deg_prior} \\
-\includegraphics[scale=1]{hm_ts_dg_prior}
+\includegraphics[scale=0.9]{hm_ts_deg_prior} \\
+\includegraphics[scale=0.9]{hm_ts_dg_prior} \\
+With HardMax there is significant variability (as noted before), but we have that in the needle in haystack medium case the median is approximately 0.5 while in Uniform + Needle in Haystack High the median is 1 and heavy tail it is almost 0. I don't know if this is something interesting or just noise due to the variability in HardMax. Will have to look into this more.
 
 \pagebreak
 \textbf{HardMaxWithRandom} \\
-\includegraphics[scale=1]{hmr_ts_deg_prior} \\
-\includegraphics[scale=1]{hmr_ts_dg_prior}
+\includegraphics[scale=0.9]{hmr_ts_deg_prior} \\
+\includegraphics[scale=0.9]{hmr_ts_dg_prior} \\
+With TS vs DEG we see roughly the same performance across priors, but for TS vs DG we see as with HardMax that in the needle in haystack high instance we have that TS wins by a lot but not so much in the heavy tail case. This makes sense as TS (and DEG) should generally find the ``good" arm while DG may sometimes wrongly identify the best arm, leading to this disparity.
+
 
 \pagebreak
 \textbf{SoftMax} \\
-\includegraphics[scale=1]{sm_ts_deg_prior} \\
-\includegraphics[scale=1]{sm_ts_dg_prior}
+\includegraphics[scale=0.9]{sm_ts_deg_prior} \\
+\includegraphics[scale=0.9]{sm_ts_dg_prior} \\
+Nothing horribly interesting here besides noting that the same TS vs DG difference appears in the Needle in haystack high prior.
+
+
+\pagebreak
+Now, a couple of plots giving a sense of regret values for ThompsonSampling across different agent algorithms and memory values.\\
+\includegraphics[scale=1]{ts_regret_agent_algs} \\
+\includegraphics[scale=1]{ts_regret_memory}
+
 
 
 
