@@ -47,10 +47,38 @@ dt.data[SubAlgorithm %in% c("UCB1WithConstantOne",
 
 dt.data[(Distribution=="Needle In Haystack Medium" & Algorithm == "NonBayesianEpsilonGreedy")]
 
-ggplot(dt.data[(Distribution=="Needle In Haystack Medium" & Algorithm=="NonBayesianEpsilonGreedy")], aes(x=t, y=Instantaneous.Reward.Mean, color=Algorithm, linetype=SubAlgorithm)) +
+ggplot(dt.data[(Distribution=="Needle In Haystack Medium")], aes(x=t, y=Instantaneous.Reward.Mean, color=Algorithm, linetype=SubAlgorithm)) +
   # geom_point(alpha=0.1) +
-  geom_smooth(method="loess", se=TRUE) +
+  geom_smooth(method="loess", se=FALSE) +
   scale_x_continuous("Time") +
   scale_y_continuous('Average instantaneous reward') +
   theme_bw() +
   ggtitle("Average reward over time")
+
+
+
+#===== 2018-02-20
+
+# free_obs_experiment_raw_results.csv
+# memory_experiment_raw_results_2.csv
+dt.data <- data.table(read.csv("~/dev/bandits-rl-project/results/free_obs_experiment_raw_results.csv", header=T, stringsAsFactors=T))
+
+unique(dt.data$Memory.Size)
+
+dt.data_subset = dt.data[(Time.Horizon==5000 & Memory.Size==100)]
+
+ggplot(dt.data, aes(x=as.factor(Memory.Size), y=Market.Share.for.P1, color=as.factor(Time.Horizon))) + 
+  facet_grid(Prior + P1.Alg ~ Agent.Alg + P2.Alg) + 
+  geom_boxplot(alpha=0.5) +
+  geom_hline(yintercept=0.5, alpha=0.6) +
+  
+  stat_summary_bin(fun.y=mean, geom="point", shape=18, size=3) +
+  # stat_summary(fun.y=mean, geom="point", shape=18, size=3) +
+  # stat_summary_bin(fun.y=var) +
+  
+  scale_x_discrete("Memory size") +
+  scale_y_continuous('Market share for P1') +
+  coord_cartesian(ylim=c(0, 1)) +
+  scale_color_discrete('Time Horizon') +
+  theme_bw()
+
