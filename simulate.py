@@ -39,8 +39,6 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   if realDistributions is None:
     realDistributions = getDefaultRealDistributions(K)
 
-  np.random.seed()
-
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
   bestArmMean = banditProblemInstance.bestArmMean()
 
@@ -60,6 +58,11 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for principal in principals.values():
     principal.resetStats()
     principal.resetPriors()
+
+  #for j in range(1000):
+  #  (reward, arm) = principals['principal2'].executeStep(i)
+  #  agents.updateInformationSet(reward, arm, 'principal2')
+  #principals['principal2'].resetStats()
 
   principalHistory = []
   results = []
