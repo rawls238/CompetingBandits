@@ -1,0 +1,183 @@
+
+Non-competitive shares are defined as simulations when the market share for one principal is above .9.
+Reported are the mean market share with 95% confidence intervals as well as Variance with confidence intervals.
+All the results are reported with memory size fixed at 100.
+
+
+These are the reported results from "Experiment 1" where algorithms simply compete against each other. The results are averaged over 125 simulations where T=5000 The reported market share is the market share of principal 1 and principal 1 is the first algorithm listed (so ThompsonSampling vs DynamicEpsilonGreedy means that ThompsonSampling is the first principal)
+
+
+Results for Needle In Haystack Medium  -  ThompsonSampling vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                       
+HardMax           "Mean Market Share: 0.5382 +/- 0.0829 Non-competitive share (as %) 0.848 Var(Market Share): 0.219282 95% CI 0.173507 0.28601"   
+HardMaxWithRandom "Mean Market Share: 0.4854 +/- 0.06265 Non-competitive share (as %) 0.408 Var(Market Share): 0.125221 95% CI 0.0990808 0.163325"
+SoftMax           "Mean Market Share: 0.4931 +/- 0.01528 Non-competitive share (as %) 0 Var(Market Share): 0.0074542 95% CI 0.00589814 0.00972252"
+                  Time 3000                                                                                                                       
+HardMax           "Mean Market Share: 0.5248 +/- 0.08155 Non-competitive share (as %) 0.816 Var(Market Share): 0.212189 95% CI 0.167894 0.276758" 
+HardMaxWithRandom "Mean Market Share: 0.5375 +/- 0.05326 Non-competitive share (as %) 0.24 Var(Market Share): 0.0905114 95% CI 0.0716172 0.118054"
+SoftMax           "Mean Market Share: 0.5034 +/- 0.009352 Non-competitive share (as %) 0 Var(Market Share): 0.0027909 95% CI 0.0022083 0.00364017"
+                  Time 5000                                                                                                                         
+HardMax           "Mean Market Share: 0.5286 +/- 0.0813 Non-competitive share (as %) 0.824 Var(Market Share): 0.210887 95% CI 0.166864 0.27506"     
+HardMaxWithRandom "Mean Market Share: 0.5687 +/- 0.04801 Non-competitive share (as %) 0.16 Var(Market Share): 0.0735457 95% CI 0.058193 0.0959258"  
+SoftMax           "Mean Market Share: 0.5075 +/- 0.008611 Non-competitive share (as %) 0 Var(Market Share): 0.00236591 95% CI 0.00187202 0.00308586"
+
+
+Results for Needle In Haystack Medium  -  ThompsonSampling vs DynamicGreedy 
+                  Time 1000                                                                                                                        
+HardMax           "Mean Market Share: 0.5004 +/- 0.08005 Non-competitive share (as %) 0.768 Var(Market Share): 0.204464 95% CI 0.161782 0.266683"  
+HardMaxWithRandom "Mean Market Share: 0.5192 +/- 0.06025 Non-competitive share (as %) 0.392 Var(Market Share): 0.115839 95% CI 0.0916575 0.151089" 
+SoftMax           "Mean Market Share: 0.5081 +/- 0.01487 Non-competitive share (as %) 0 Var(Market Share): 0.00705597 95% CI 0.00558304 0.00920311"
+                  Time 3000                                                                                                                       
+HardMax           "Mean Market Share: 0.51 +/- 0.08121 Non-competitive share (as %) 0.792 Var(Market Share): 0.210421 95% CI 0.166495 0.274452"   
+HardMaxWithRandom "Mean Market Share: 0.5315 +/- 0.05097 Non-competitive share (as %) 0.192 Var(Market Share): 0.0828871 95% CI 0.0655844 0.10811"
+SoftMax           "Mean Market Share: 0.5234 +/- 0.01191 Non-competitive share (as %) 0 Var(Market Share): 0.0045232 95% CI 0.00357898 0.00589961"
+                  Time 5000                                                                                                                        
+HardMax           "Mean Market Share: 0.5094 +/- 0.08125 Non-competitive share (as %) 0.816 Var(Market Share): 0.210627 95% CI 0.166658 0.274721"  
+HardMaxWithRandom "Mean Market Share: 0.5548 +/- 0.04668 Non-competitive share (as %) 0.144 Var(Market Share): 0.0695204 95% CI 0.055008 0.0906756"
+SoftMax           "Mean Market Share: 0.5307 +/- 0.011 Non-competitive share (as %) 0 Var(Market Share): 0.00386267 95% CI 0.00305634 0.00503808"  
+
+ 
+Results for Needle In Haystack Medium  -  DynamicGreedy vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.4658 +/- 0.08306 Non-competitive share (as %) 0.864 Var(Market Share): 0.22015 95% CI 0.174194 0.287142" 
+HardMaxWithRandom "Mean Market Share: 0.451 +/- 0.06515 Non-competitive share (as %) 0.512 Var(Market Share): 0.135422 95% CI 0.107152 0.176631" 
+SoftMax           "Mean Market Share: 0.4969 +/- 0.0154 Non-competitive share (as %) 0 Var(Market Share): 0.0075713 95% CI 0.00599079 0.00987525"
+                  Time 3000                                                                                                                         
+HardMax           "Mean Market Share: 0.4785 +/- 0.08277 Non-competitive share (as %) 0.816 Var(Market Share): 0.21859 95% CI 0.172959 0.285107"    
+HardMaxWithRandom "Mean Market Share: 0.4446 +/- 0.04767 Non-competitive share (as %) 0.168 Var(Market Share): 0.0725227 95% CI 0.0573836 0.0945914"
+SoftMax           "Mean Market Share: 0.491 +/- 0.01271 Non-competitive share (as %) 0 Var(Market Share): 0.00515403 95% CI 0.00407812 0.0067224"   
+                  Time 5000                                                                                                                         
+HardMax           "Mean Market Share: 0.4856 +/- 0.08192 Non-competitive share (as %) 0.832 Var(Market Share): 0.214133 95% CI 0.169433 0.279294"   
+HardMaxWithRandom "Mean Market Share: 0.4288 +/- 0.04295 Non-competitive share (as %) 0.104 Var(Market Share): 0.0588657 95% CI 0.0465775 0.0767786"
+SoftMax           "Mean Market Share: 0.4829 +/- 0.01235 Non-competitive share (as %) 0 Var(Market Share): 0.00486881 95% CI 0.00385244 0.00635039" 
+
+ 
+Results for Needle In Haystack High  -  ThompsonSampling vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.52 +/- 0.08728 Non-competitive share (as %) 0.96 Var(Market Share): 0.243047 95% CI 0.192311 0.317006"   
+HardMaxWithRandom "Mean Market Share: 0.5682 +/- 0.07578 Non-competitive share (as %) 0.776 Var(Market Share): 0.183212 95% CI 0.144967 0.238964"
+SoftMax           "Mean Market Share: 0.5117 +/- 0.02476 Non-competitive share (as %) 0 Var(Market Share): 0.0195546 95% CI 0.0154726 0.0255051" 
+                  Time 3000                                                                                                                       
+HardMax           "Mean Market Share: 0.5251 +/- 0.08817 Non-competitive share (as %) 1 Var(Market Share): 0.248076 95% CI 0.19629 0.323566"      
+HardMaxWithRandom "Mean Market Share: 0.5923 +/- 0.06395 Non-competitive share (as %) 0.52 Var(Market Share): 0.130503 95% CI 0.10326 0.170215"   
+SoftMax           "Mean Market Share: 0.5246 +/- 0.01676 Non-competitive share (as %) 0 Var(Market Share): 0.00896526 95% CI 0.00709376 0.0116934"
+                  Time 5000                                                                                                                        
+HardMax           "Mean Market Share: 0.525 +/- 0.08821 Non-competitive share (as %) 0.992 Var(Market Share): 0.248258 95% CI 0.196434 0.323803"   
+HardMaxWithRandom "Mean Market Share: 0.6017 +/- 0.05462 Non-competitive share (as %) 0.36 Var(Market Share): 0.0951942 95% CI 0.0753224 0.124162" 
+SoftMax           "Mean Market Share: 0.5235 +/- 0.01271 Non-competitive share (as %) 0 Var(Market Share): 0.00515357 95% CI 0.00407776 0.00672181"
+Results for Needle In Haystack High  -  ThompsonSampling vs DynamicGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.5754 +/- 0.08571 Non-competitive share (as %) 0.944 Var(Market Share): 0.234382 95% CI 0.185455 0.305705"
+HardMaxWithRandom "Mean Market Share: 0.6297 +/- 0.06789 Non-competitive share (as %) 0.632 Var(Market Share): 0.147082 95% CI 0.116379 0.191839"
+SoftMax           "Mean Market Share: 0.5266 +/- 0.03151 Non-competitive share (as %) 0 Var(Market Share): 0.0316724 95% CI 0.0250608 0.0413104" 
+                  Time 3000                                                                                                                       
+HardMax           "Mean Market Share: 0.5897 +/- 0.08478 Non-competitive share (as %) 0.952 Var(Market Share): 0.229315 95% CI 0.181445 0.299096" 
+HardMaxWithRandom "Mean Market Share: 0.6761 +/- 0.05935 Non-competitive share (as %) 0.504 Var(Market Share): 0.112391 95% CI 0.0889291 0.146591"
+SoftMax           "Mean Market Share: 0.5695 +/- 0.02623 Non-competitive share (as %) 0 Var(Market Share): 0.0219519 95% CI 0.0173695 0.0286319"  
+                  Time 5000                                                                                                                       
+HardMax           "Mean Market Share: 0.5983 +/- 0.08459 Non-competitive share (as %) 0.944 Var(Market Share): 0.228315 95% CI 0.180654 0.297791" 
+HardMaxWithRandom "Mean Market Share: 0.6876 +/- 0.05362 Non-competitive share (as %) 0.496 Var(Market Share): 0.0917507 95% CI 0.0725977 0.11967"
+SoftMax           "Mean Market Share: 0.5786 +/- 0.02575 Non-competitive share (as %) 0 Var(Market Share): 0.0211633 95% CI 0.0167454 0.0276033"  
+
+ 
+Results for Needle In Haystack High  -  DynamicGreedy vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.4637 +/- 0.08632 Non-competitive share (as %) 0.952 Var(Market Share): 0.237731 95% CI 0.188105 0.310073"
+HardMaxWithRandom "Mean Market Share: 0.4782 +/- 0.07687 Non-competitive share (as %) 0.792 Var(Market Share): 0.188525 95% CI 0.14917 0.245893" 
+SoftMax           "Mean Market Share: 0.4921 +/- 0.03276 Non-competitive share (as %) 0 Var(Market Share): 0.03425 95% CI 0.0271003 0.0446723"   
+                  Time 3000                                                                                                                      
+HardMax           "Mean Market Share: 0.4563 +/- 0.08649 Non-competitive share (as %) 0.968 Var(Market Share): 0.238681 95% CI 0.188857 0.311312"
+HardMaxWithRandom "Mean Market Share: 0.4827 +/- 0.06623 Non-competitive share (as %) 0.536 Var(Market Share): 0.139948 95% CI 0.110734 0.182535"
+SoftMax           "Mean Market Share: 0.4614 +/- 0.02836 Non-competitive share (as %) 0 Var(Market Share): 0.0256601 95% CI 0.0203036 0.0334685" 
+                  Time 5000                                                                                                                      
+HardMax           "Mean Market Share: 0.4563 +/- 0.08656 Non-competitive share (as %) 0.96 Var(Market Share): 0.239065 95% CI 0.18916 0.311812"  
+HardMaxWithRandom "Mean Market Share: 0.4677 +/- 0.05911 Non-competitive share (as %) 0.392 Var(Market Share): 0.111478 95% CI 0.088207 0.145401"
+SoftMax           "Mean Market Share: 0.4541 +/- 0.02631 Non-competitive share (as %) 0 Var(Market Share): 0.0220853 95% CI 0.017475 0.0288058"  
+
+ 
+Results for Heavy Tail  -  ThompsonSampling vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.4622 +/- 0.08713 Non-competitive share (as %) 0.968 Var(Market Share): 0.242219 95% CI 0.191656 0.315927"
+HardMaxWithRandom "Mean Market Share: 0.5232 +/- 0.08018 Non-competitive share (as %) 0.896 Var(Market Share): 0.205123 95% CI 0.162304 0.267542"
+SoftMax           "Mean Market Share: 0.5214 +/- 0.0228 Non-competitive share (as %) 0 Var(Market Share): 0.016587 95% CI 0.0131244 0.0216344"   
+                  Time 3000                                                                                                                        
+HardMax           "Mean Market Share: 0.4633 +/- 0.08786 Non-competitive share (as %) 0.976 Var(Market Share): 0.246326 95% CI 0.194905 0.321283"  
+HardMaxWithRandom "Mean Market Share: 0.5514 +/- 0.06718 Non-competitive share (as %) 0.536 Var(Market Share): 0.144023 95% CI 0.113958 0.18785"   
+SoftMax           "Mean Market Share: 0.5324 +/- 0.01201 Non-competitive share (as %) 0 Var(Market Share): 0.00460111 95% CI 0.00364062 0.00600123"
+                  Time 5000                                                                                                                        
+HardMax           "Mean Market Share: 0.4635 +/- 0.08813 Non-competitive share (as %) 0.992 Var(Market Share): 0.24783 95% CI 0.196095 0.323245"   
+HardMaxWithRandom "Mean Market Share: 0.5966 +/- 0.0507 Non-competitive share (as %) 0.264 Var(Market Share): 0.0820082 95% CI 0.064889 0.106963"  
+SoftMax           "Mean Market Share: 0.5289 +/- 0.008896 Non-competitive share (as %) 0 Var(Market Share): 0.0025249 95% CI 0.00199783 0.00329323"
+Results for Heavy Tail  -  ThompsonSampling vs DynamicGreedy 
+                  Time 1000                                                                                                                     
+HardMax           "Mean Market Share: 0.4108 +/- 0.08655 Non-competitive share (as %) 0.992 Var(Market Share): 0.23902 95% CI 0.189124 0.311753"
+HardMaxWithRandom "Mean Market Share: 0.4543 +/- 0.07707 Non-competitive share (as %) 0.8 Var(Market Share): 0.18954 95% CI 0.149974 0.247217"  
+SoftMax           "Mean Market Share: 0.513 +/- 0.02549 Non-competitive share (as %) 0 Var(Market Share): 0.020728 95% CI 0.0164011 0.0270356"  
+                  Time 3000                                                                                                                      
+HardMax           "Mean Market Share: 0.4106 +/- 0.08682 Non-competitive share (as %) 0.984 Var(Market Share): 0.240526 95% CI 0.190316 0.313718"
+HardMaxWithRandom "Mean Market Share: 0.4786 +/- 0.06896 Non-competitive share (as %) 0.584 Var(Market Share): 0.151738 95% CI 0.120063 0.197912"
+SoftMax           "Mean Market Share: 0.5363 +/- 0.02128 Non-competitive share (as %) 0 Var(Market Share): 0.0144553 95% CI 0.0114377 0.018854"  
+                  Time 5000                                                                                                                      
+HardMax           "Mean Market Share: 0.416 +/- 0.08658 Non-competitive share (as %) 0.984 Var(Market Share): 0.239198 95% CI 0.189265 0.311986" 
+HardMaxWithRandom "Mean Market Share: 0.5097 +/- 0.0576 Non-competitive share (as %) 0.352 Var(Market Share): 0.105869 95% CI 0.0837692 0.138086"
+SoftMax           "Mean Market Share: 0.5433 +/- 0.02037 Non-competitive share (as %) 0 Var(Market Share): 0.0132377 95% CI 0.0104743 0.0172659" 
+
+ 
+Results for Heavy Tail  -  DynamicGreedy vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.5396 +/- 0.08459 Non-competitive share (as %) 0.912 Var(Market Share): 0.228328 95% CI 0.180665 0.297809"
+HardMaxWithRandom "Mean Market Share: 0.5477 +/- 0.07001 Non-competitive share (as %) 0.632 Var(Market Share): 0.15639 95% CI 0.123744 0.20398"  
+SoftMax           "Mean Market Share: 0.4936 +/- 0.02533 Non-competitive share (as %) 0 Var(Market Share): 0.02047 95% CI 0.0161969 0.026699"    
+                  Time 3000                                                                                                                     
+HardMax           "Mean Market Share: 0.5533 +/- 0.08422 Non-competitive share (as %) 0.88 Var(Market Share): 0.226306 95% CI 0.179065 0.295171"
+HardMaxWithRandom "Mean Market Share: 0.5634 +/- 0.06095 Non-competitive share (as %) 0.408 Var(Market Share): 0.118547 95% CI 0.0938 0.15462"  
+SoftMax           "Mean Market Share: 0.4843 +/- 0.02276 Non-competitive share (as %) 0 Var(Market Share): 0.0165267 95% CI 0.0130767 0.0215557"
+                  Time 5000                                                                                                                       
+HardMax           "Mean Market Share: 0.5644 +/- 0.08447 Non-competitive share (as %) 0.904 Var(Market Share): 0.22767 95% CI 0.180144 0.29695"   
+HardMaxWithRandom "Mean Market Share: 0.5713 +/- 0.05706 Non-competitive share (as %) 0.336 Var(Market Share): 0.103898 95% CI 0.0822091 0.135514"
+SoftMax           "Mean Market Share: 0.4821 +/- 0.02259 Non-competitive share (as %) 0 Var(Market Share): 0.016287 95% CI 0.0128871 0.0212431"   
+
+ 
+Results for Uniform  -  ThompsonSampling vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.5186 +/- 0.08626 Non-competitive share (as %) 0.944 Var(Market Share): 0.237423 95% CI 0.187861 0.309671"
+HardMaxWithRandom "Mean Market Share: 0.5103 +/- 0.07456 Non-competitive share (as %) 0.712 Var(Market Share): 0.17736 95% CI 0.140336 0.231331" 
+SoftMax           "Mean Market Share: 0.5167 +/- 0.02015 Non-competitive share (as %) 0 Var(Market Share): 0.0129574 95% CI 0.0102525 0.0169003" 
+                  Time 3000                                                                                                                      
+HardMax           "Mean Market Share: 0.531 +/- 0.08672 Non-competitive share (as %) 0.96 Var(Market Share): 0.239982 95% CI 0.189886 0.313009"  
+HardMaxWithRandom "Mean Market Share: 0.5201 +/- 0.06424 Non-competitive share (as %) 0.488 Var(Market Share): 0.131696 95% CI 0.104205 0.171772"
+SoftMax           "Mean Market Share: 0.52 +/- 0.01261 Non-competitive share (as %) 0 Var(Market Share): 0.00507459 95% CI 0.00401526 0.00661879"
+                  Time 5000                                                                                                                        
+HardMax           "Mean Market Share: 0.5361 +/- 0.08661 Non-competitive share (as %) 0.944 Var(Market Share): 0.239327 95% CI 0.189368 0.312155"  
+HardMaxWithRandom "Mean Market Share: 0.5324 +/- 0.0575 Non-competitive share (as %) 0.336 Var(Market Share): 0.105494 95% CI 0.0834722 0.137596"  
+SoftMax           "Mean Market Share: 0.5157 +/- 0.01008 Non-competitive share (as %) 0 Var(Market Share): 0.00324225 95% CI 0.00256543 0.00422887"
+Results for Uniform  -  ThompsonSampling vs DynamicGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.5107 +/- 0.08552 Non-competitive share (as %) 0.912 Var(Market Share): 0.233374 95% CI 0.184657 0.30439" 
+HardMaxWithRandom "Mean Market Share: 0.4605 +/- 0.07171 Non-competitive share (as %) 0.656 Var(Market Share): 0.164071 95% CI 0.129821 0.213998"
+SoftMax           "Mean Market Share: 0.5022 +/- 0.02372 Non-competitive share (as %) 0 Var(Market Share): 0.0179527 95% CI 0.014205 0.0234157"  
+                  Time 3000                                                                                                                       
+HardMax           "Mean Market Share: 0.5212 +/- 0.08657 Non-competitive share (as %) 0.96 Var(Market Share): 0.239111 95% CI 0.189197 0.311873"  
+HardMaxWithRandom "Mean Market Share: 0.4525 +/- 0.06181 Non-competitive share (as %) 0.408 Var(Market Share): 0.121916 95% CI 0.0964659 0.159015"
+SoftMax           "Mean Market Share: 0.5292 +/- 0.01893 Non-competitive share (as %) 0 Var(Market Share): 0.0114332 95% CI 0.0090465 0.0149123"  
+                  Time 5000                                                                                                                       
+HardMax           "Mean Market Share: 0.526 +/- 0.08672 Non-competitive share (as %) 0.96 Var(Market Share): 0.239956 95% CI 0.189865 0.312975"   
+HardMaxWithRandom "Mean Market Share: 0.4955 +/- 0.05429 Non-competitive share (as %) 0.264 Var(Market Share): 0.0940584 95% CI 0.0744237 0.12268"
+SoftMax           "Mean Market Share: 0.5386 +/- 0.01774 Non-competitive share (as %) 0 Var(Market Share): 0.0100365 95% CI 0.00794141 0.0130907" 
+
+ 
+Results for Uniform  -  DynamicGreedy vs DynamicEpsilonGreedy 
+                  Time 1000                                                                                                                      
+HardMax           "Mean Market Share: 0.4737 +/- 0.08523 Non-competitive share (as %) 0.92 Var(Market Share): 0.231803 95% CI 0.183414 0.302341" 
+HardMaxWithRandom "Mean Market Share: 0.4743 +/- 0.06833 Non-competitive share (as %) 0.608 Var(Market Share): 0.148957 95% CI 0.117862 0.194285"
+SoftMax           "Mean Market Share: 0.4802 +/- 0.0252 Non-competitive share (as %) 0 Var(Market Share): 0.0202635 95% CI 0.0160335 0.0264297"  
+                  Time 3000                                                                                                                       
+HardMax           "Mean Market Share: 0.4655 +/- 0.08319 Non-competitive share (as %) 0.88 Var(Market Share): 0.220842 95% CI 0.174742 0.288045"  
+HardMaxWithRandom "Mean Market Share: 0.4414 +/- 0.05917 Non-competitive share (as %) 0.376 Var(Market Share): 0.111699 95% CI 0.0883815 0.145689"
+SoftMax           "Mean Market Share: 0.472 +/- 0.02211 Non-competitive share (as %) 0 Var(Market Share): 0.0156006 95% CI 0.012344 0.0203479"    
+                  Time 5000                                                                                                                       
+HardMax           "Mean Market Share: 0.4665 +/- 0.08399 Non-competitive share (as %) 0.88 Var(Market Share): 0.225094 95% CI 0.178106 0.293591"  
+HardMaxWithRandom "Mean Market Share: 0.4305 +/- 0.05458 Non-competitive share (as %) 0.312 Var(Market Share): 0.0950635 95% CI 0.075219 0.123991"
+SoftMax           "Mean Market Share: 0.4625 +/- 0.0211 Non-competitive share (as %) 0 Var(Market Share): 0.0142024 95% CI 0.0112376 0.0185242"   
+
+ 
