@@ -1,0 +1,64 @@
+
+```{r echo=FALSE,message=FALSE}
+
+library(dplyr)
+library(knitr)
+WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
+
+dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/memory_experiment_raw_results_2.csv", sep=""))
+p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
+p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
+agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
+time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
+priors <- as.list(unique(dat['Prior']))$Prior
+EXPERIMENT_1_CV_HIGH <- 156.71410383 #chisquared critical values for 124 degrees of freedom
+EXPERIMENT_1_CV_LOW <- 95.07008897
+
+EXPERIMENT_2_CV_HIGH <- 128.42198864
+EXPERIMENT_2_CV_LOW <- 73.36108019
+
+
+ZERO_ONE_CUTOFF <- 0.1
+```
+
+```{r echo=FALSE, xtable, results="asis"}
+algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
+options(xtable.sanitize.text.function=identity)
+options(xtable.caption.placement="top")
+library(xtable)
+for (prior in priors) {
+  for (i in 1:length(agent_algs)) {
+    agent_alg <- agent_algs[i]
+    for (j in 1:length(time_horizons)) {
+      time <- time_horizons[j]
+      results <- matrix(nrow=length(algs), ncol=length(algs))
+      colnames(results) <- algs
+      rownames(results) <- algs
+      for (k in 1:length(algs)) {
+        for (l in 1:length(algs)) {
+          p1alg = algs[k]
+          p2alg = algs[l]
+          if (p1alg == p2alg) { next }
+          filtered_dat <- filter(dat, P1.Alg == p1alg & P2.Alg == p2alg & Memory.Size == 100 & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
+          if (nrow(filtered_dat) == 0) {
+            next
+          }
+          share <- filtered_dat$Market.Share.for.P1
+          test <- t.test(share)
+          cin <- signif(test$conf.int[2] - mean(share), digits=4)
+          shares <- sum(share >= (1 - ZERO_ONE_CUTOFF) | share <= ZERO_ONE_CUTOFF, na.rm=TRUE) / nrow(filtered_dat)
+          lower_var <- signif((length(share) - 1) * var(share) / EXPERIMENT_1_CV_HIGH, digits=4)
+          high_var <- signif((length(share) - 1) * var(share) / EXPERIMENT_1_CV_LOW, digits=4)
+          results[k, l] <- paste("<b>",signif(mean(share), digits=4), "</b> +/-", cin, "<br>", signif(var(share), digits=4), paste("(", lower_var, ", ", high_var, ")", sep=""), "<br>", "Extreme Shares:", shares)
+        }
+      }
+      tab <-xtable(results, caption=paste("Results for", agent_alg, time, prior))
+      print(tab, type="html")
+    }
+    print('<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>')
+  }
+}
+
+
+```
+

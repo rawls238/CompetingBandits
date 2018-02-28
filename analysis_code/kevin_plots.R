@@ -1,7 +1,7 @@
 library(data.table)
 library(ggplot2)
 
-#dt.data <- data.table(read.csv("~/Desktop/bandits-rl-project/results/preliminary_plots.csv", header=T, stringsAsFactors=T))
+#dt.data <- data.table(read.csv("~/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots.csv", header=T, stringsAsFactors=T))
 
 
 # dt.data[(Algorithm == 'ThompsonSampling' & K==10)]
@@ -22,8 +22,8 @@ print(q)
 
 WORKING_PATH <- '/Users/garidor/Desktop/bandits-rl-project'
 
-dat <- data.table(read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms.csv", sep="")))
-dat2 <- data.table(read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms_2.csv", sep="")))
+dat <- data.table(read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_3_arms.csv", sep="")))
+dat2 <- data.table(read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_3_arms_2.csv", sep="")))
 dt.data <- rbind(dat, dat2)
 rm(dat)
 rm(dat2)
@@ -61,7 +61,7 @@ ggplot(dt.data[(Distribution=="Needle In Haystack Medium")], aes(x=t, y=Instanta
 
 # free_obs_experiment_raw_results.csv
 # memory_experiment_raw_results_2.csv
-dt.data <- data.table(read.csv("~/Desktop/bandits-rl-project/results/free_obs_experiment_raw_results_2.csv", header=T, stringsAsFactors=T))
+dt.data <- data.table(read.csv("~/Desktop/bandits-rl-project/free_obs_raw_results/results/free_obs_experiment_raw_results_4.csv", header=T, stringsAsFactors=T))
 
 unique(dt.data$Memory.Size)
 

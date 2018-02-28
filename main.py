@@ -29,9 +29,9 @@ numCores = multiprocessing.cpu_count()
 
 K = 3
 T = 5002
-NUM_SIMULATIONS = 125
+NUM_SIMULATIONS = 100
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
@@ -137,8 +137,8 @@ def run_discounted_experiment(discount_factors):
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
-  with open('results/memory_experiment_aggregate_results.csv', 'w') as aggregate_csv:
-    with open('results/memory_experiment_raw_results.csv', 'w') as raw_csv:
+  with open('results/free_obs_experiment_aggregate_results_3.csv', 'w') as aggregate_csv:
+    with open('results/free_obs_experiment_raw_results_3.csv', 'w') as raw_csv:
       aggregate_fieldnames = copy(AGGREGATE_FIELD_NAMES)
       aggregate_fieldnames.append('Memory Size')
       aggregate_writer = csv.DictWriter(aggregate_csv, fieldnames=aggregate_fieldnames)
@@ -212,7 +212,7 @@ def run_finite_memory_experiment(memory_sizes):
   pickle.dump(results, open("bandit_simulations.p", "wb" )) # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
   return results
 
-MEMORY_SIZES = [10, 25, 100]
+MEMORY_SIZES = [100]
 run_finite_memory_experiment(MEMORY_SIZES)
 #DISCOUNT_FACTORS = [0.5, 0.75, 0.9, 0.99]
 #run_discounted_experiment(DISCOUNT_FACTORS)

@@ -8,8 +8,8 @@ library("reshape")
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms.csv", sep=""))
-dat2 <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_plots_3_arms_2.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_3_arms.csv", sep=""))
+dat2 <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_3_arms_2.csv", sep=""))
 dat <- rbind(dat, dat2)
 algs <- as.list(unique(dat['Algorithm']))$Algorithm
 print(algs)
@@ -24,7 +24,7 @@ filter_by_dist_and_plot <- function(dist) {
     #geom_path() # just plot the raw trajectory
     geom_smooth(method="loess") #+ smooths the trajectory 
     #geom_errorbar(aes(ymin=Instantaneous.Reward.Mean-1.96*Instantaneous.Reward.Std, ymax=Instantaneous.Reward.Mean+1.96*Instantaneous.Reward.Std))
-  ggsave(width=8, height=8, dpi=300, filename=paste(WORKING_PATH, "/results/", title, ".pdf", sep=""), plot=q)
+  ggsave(width=8, height=8, dpi=300, filename=paste(WORKING_PATH, "/results/preliminary_figures/", title, ".pdf", sep=""), plot=q)
   
   return(d)
 }

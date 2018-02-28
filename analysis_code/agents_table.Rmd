@@ -1,0 +1,78 @@
+
+```{r echo=FALSE,message=FALSE}
+
+library(dplyr)
+library(knitr)
+WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
+
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_raw_results_4.csv", sep=""))
+p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
+p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
+agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
+time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
+priors <- as.list(unique(dat['Prior']))$Prior
+EXPERIMENT_1_CV_HIGH <- 156.71410383 #chisquared critical values for 124 degrees of freedom
+EXPERIMENT_1_CV_LOW <- 95.07008897
+
+EXPERIMENT_2_CV_HIGH <- 128.42198864
+EXPERIMENT_2_CV_LOW <- 73.36108019
+
+
+ZERO_ONE_CUTOFF <- 0.1
+```
+
+```{r echo=FALSE, xtable, results="asis"}
+
+concise_rep <- function(alg) {
+  if (alg == "ThompsonSampling") {
+    return("TS")
+  } else if (alg == "DynamicEpsilonGreedy") {
+    return("DEG")
+  } else if (alg == "DynamicGreedy") {
+    return("DG")
+  }
+}
+
+algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
+options(xtable.sanitize.text.function=identity)
+options(xtable.caption.placement="top")
+
+alg_pairs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "ThompsonSampling", "DynamicGreedy", "DynamicGreedy", "DynamicEpsilonGreedy")
+print("Reported means are for principal 1 which is the first algorithm listed in the pair for each column<br>")
+print("In each cell, first line is mean, second line is variance, third line is % of the time that market share > 0.1 or market share < 0.9")
+library(xtable)
+for (prior in priors) {
+  for (j in 1:length(time_horizons)) {
+    results <- matrix(nrow=length(agent_algs), ncol=length(algs))
+    colnames(results) <- c(paste(concise_rep(alg_pairs[1]), concise_rep(alg_pairs[2]), sep=" vs "), paste(concise_rep(alg_pairs[3]), concise_rep(alg_pairs[4]), sep=" vs "), paste(concise_rep(alg_pairs[5]), concise_rep(alg_pairs[6]), sep=" vs "))
+    rownames(results) <- agent_algs
+    for (i in 1:length(agent_algs)) {
+      agent_alg <- agent_algs[i]
+      time <- time_horizons[j]
+      for (k in 1:length(alg_pairs)) {
+        if (k %% 2 == 0) { next }
+          p1alg = alg_pairs[k]
+          p2alg = alg_pairs[k+1]
+          filtered_dat <- filter(dat, P1.Alg == p1alg & P2.Alg == p2alg & Memory.Size == 100 & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
+          if (nrow(filtered_dat) == 0) {
+            next
+          }
+          share <- filtered_dat$Market.Share.for.P1
+          test <- t.test(share)
+          cin <- signif(test$conf.int[2] - mean(share), digits=2)
+          shares <- sum(share >= (1 - ZERO_ONE_CUTOFF) | share <= ZERO_ONE_CUTOFF, na.rm=TRUE) / nrow(filtered_dat)
+          shares_percent <- signif(shares * 100, digits=2)
+          lower_var <- signif((length(share) - 1) * var(share) / EXPERIMENT_1_CV_HIGH, digits=2)
+          high_var <- signif((length(share) - 1) * var(share) / EXPERIMENT_1_CV_LOW, digits=2)
+          results[i, (k+1)/2] <- paste("<b>",signif(mean(share), digits=2), "</b> +/-", cin, "<br>", signif(var(share), digits=2), paste("(", lower_var, ", ", high_var, ")", sep=""), "<br>", "Extreme Shares:", shares_percent, "%")
+        }
+      }
+      tab <-xtable(results, caption=paste("Results for", time, prior))
+      print(tab, type="html")
+  }
+  print('<br><br><br><br><br><br>')
+  }
+
+
+```
+
