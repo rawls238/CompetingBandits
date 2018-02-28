@@ -1,4 +1,8 @@
-
+ <style>
+   th,td{
+     padding:10px;
+   }
+ </style>
 ```{r echo=FALSE,message=FALSE}
 
 library(dplyr)
@@ -23,7 +27,7 @@ ZERO_ONE_CUTOFF <- 0.1
 
 ```{r echo=FALSE, xtable, results="asis"}
 
-concise_rep <- function(alg) {
+concise_alg_rep <- function(alg) {
   if (alg == "ThompsonSampling") {
     return("TS")
   } else if (alg == "DynamicEpsilonGreedy") {
@@ -31,6 +35,24 @@ concise_rep <- function(alg) {
   } else if (alg == "DynamicGreedy") {
     return("DG")
   }
+}
+
+concise_agent_rep <- function(agent_alg) {
+  if (agent_alg == "HardMax") {
+    return("HM")
+  } else if (agent_alg == "HardMaxWithRandom") {
+    return("HMR")
+  } else if (agent_alg == "SoftMax") {
+    return("SM")
+  }
+}
+
+get_agent_rep <- function(repre) {
+  res <- c()
+  for(a in repre) {
+    res <- c(res, concise_agent_rep(a))
+  }
+  return(res)
 }
 
 algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
@@ -44,8 +66,8 @@ library(xtable)
 for (prior in priors) {
   for (j in 1:length(time_horizons)) {
     results <- matrix(nrow=length(agent_algs), ncol=length(algs))
-    colnames(results) <- c(paste(concise_rep(alg_pairs[1]), concise_rep(alg_pairs[2]), sep=" vs "), paste(concise_rep(alg_pairs[3]), concise_rep(alg_pairs[4]), sep=" vs "), paste(concise_rep(alg_pairs[5]), concise_rep(alg_pairs[6]), sep=" vs "))
-    rownames(results) <- agent_algs
+    colnames(results) <- c(paste(concise_alg_rep(alg_pairs[1]), concise_alg_rep(alg_pairs[2]), sep=" vs "), paste(concise_alg_rep(alg_pairs[3]), concise_alg_rep(alg_pairs[4]), sep=" vs "), paste(concise_alg_rep(alg_pairs[5]), concise_alg_rep(alg_pairs[6]), sep=" vs "))
+    rownames(results) <- get_agent_rep(agent_algs)
     for (i in 1:length(agent_algs)) {
       agent_alg <- agent_algs[i]
       time <- time_horizons[j]
