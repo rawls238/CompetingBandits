@@ -9,7 +9,8 @@ from copy import deepcopy
 from lib.BanditProblemInstance import BanditProblemInstance
 
 from lib.bandit.StaticGreedy import StaticGreedy
-from lib.bandit.DynamicEpsilonGreedy import NonBayesianEpsilonGreedy
+from lib.bandit.DynamicEpsilonGreedy import DynamicEpsilonGreedy
+from lib.bandit.NonBayesianEpsilonGreedy import NonBayesianEpsilonGreedy
 from lib.bandit.DynamicGreedy import DynamicGreedy
 from lib.bandit.UCB import UCB1WithConstantOne, UCB1WithConstantT
 from lib.bandit.ThompsonSampling import ThompsonSampling
@@ -18,9 +19,9 @@ from lib.bandit.ExploreThenExploit import ExploreThenExploit
 from scipy.stats import bernoulli, beta
 
 
-T = 1
-N = 4
-K = 3
+T = 10000
+N = 200
+K = 20
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
@@ -31,32 +32,26 @@ def sim(alg):
     banditAlg.executeStep(t)
   return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory)
 
-
-uniform_real_distr = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
-
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
 needle_in_haystack_50_high = deepcopy(needle_in_haystack)
 needle_in_haystack_50_high[int(K/2)] = bernoulli(default_mean + 0.2)
 
-needle_in_haystack_50_medium = deepcopy(needle_in_haystack)
-needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
-
-needle_in_haystack_50_low = deepcopy(needle_in_haystack)
-needle_in_haystack_50_low[int(K/2)] = bernoulli(default_mean + 0.01)
-
-heavy_tail_prior = beta(0.6, 0.6)
-heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
+needle_in_haystack_50_one_medium_one_high = deepcopy(needle_in_haystack)
+needle_in_haystack_50_one_medium_one_high[int(K/2)] = bernoulli(default_mean + 0.3)
+needle_in_haystack_50_one_medium_one_high[int(K/2) + 1] = bernoulli(default_mean + 0.1)
 
 
-ALGS = [NonBayesianEpsilonGreedy, NonBayesianEpsilonGreedy, NonBayesianEpsilonGreedy, ThompsonSampling, UCB1WithConstantOne, UCB1WithConstantT, DynamicGreedy]
+
+#heavy_tail_prior = beta(0.6, 0.6)
+#heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
+
+
+ALGS = [NonBayesianEpsilonGreedy, ThompsonSampling, UCB1WithConstantOne, DynamicEpsilonGreedy, DynamicGreedy]
 BANDIT_DISTR = {
-  'Uniform': uniform_real_distr, 
-  'Heavy Tail' :heavy_tailed,
-  'Needle In Haystack High': needle_in_haystack_50_high,
-  'Needle In Haystack Medium': needle_in_haystack_50_medium,
-  'Needle In Haystack Low': needle_in_haystack_50_medium,
+  'Needle In Haystack 1 High': needle_in_haystack_50_high,
+  'Needle In Haystack 1 Medium 1 High': needle_in_haystack_50_one_medium_one_high
 }
 
 
@@ -70,15 +65,12 @@ simResults = {}
 This runs N iterations of the experiment. In each iteration a set of true distributions is chosen and then for each algorithm we record the reward history. After this is done we aggregate the results and report them.
 '''
 
-with open('results/preliminary_plots_3_arms_3.csv', 'w') as csvfile:
+with open('results/preliminary_raw_results/preliminary_plots_20_arms.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
     for a in xrange(len(ALGS)):
-      if a <= 2:
-        simResults[a] = []
-      else:
-        simResults[ALGS[a]] = []
+      simResults[ALGS[a]] = []
 
     for i in xrange(N):
       ''' get realizations of distributions'''
@@ -97,35 +89,13 @@ with open('results/preliminary_plots_3_arms_3.csv', 'w') as csvfile:
 
       for a in xrange(len(ALGS)):
         alg = ALGS[a]
-        if alg.shorthand() == 'NBDEG':
-          if a == 0:
-            banditAlg = NonBayesianEpsilonGreedy(banditProblemInstance, DEFAULT_COMMON_PRIOR)
-            res = sim(banditAlg)
-            simResults[a].append(res)
-          elif a == 1:
-            banditAlg = NonBayesianEpsilonGreedy(banditProblemInstance, DEFAULT_COMMON_PRIOR, epsilon=(T**(-1/3)))
-            res = sim(banditAlg)
-            simResults[a].append(res)
-          elif a == 2:
-            banditAlg = NonBayesianEpsilonGreedy(banditProblemInstance, DEFAULT_COMMON_PRIOR, dynamicEpsilon=True)
-            res = sim(banditAlg)
-            simResults[a].append(res)
-        else:
-          banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
-          res = sim(banditAlg)
-          simResults[alg].append(res)
+        banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
+        res = sim(banditAlg)
+        simResults[alg].append(res)
       
     for t in xrange(T):
       for (alg, algResult) in simResults.iteritems():
-        # hacky but works for now - makes it so we can test all different epsilon-greedy formulations
-        if alg == 0:
-          name = 'NonBayesianEpsilonGreedy, 0.05'
-        elif alg == 1:
-          name = 'NonBayesianEpsilonGreedy, T^(-1/3)'
-        elif alg == 2:
-          name = 'NonBayesianEpsilonGreedy, (t+1)^(-1/3)'
-        else:
-          name = alg.__name__
+        name = alg.__name__
         cumulative_realized = []
         instantaneous_realized = []
         cumulative_mean = []
