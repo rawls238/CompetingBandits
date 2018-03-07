@@ -30,7 +30,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   discountFactor=DEFAULT_DISCOUNT_FACTOR,
   realDistributions=None,
   principal1Priors=None,
-  principal2Priors=None):
+  principal2Priors=None,
+  realizations=None):
 
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
@@ -63,6 +64,11 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   #  (reward, arm) = principals['principal2'].executeStep(i)
   #  agents.updateInformationSet(reward, arm, 'principal2')
   #principals['principal2'].resetStats()
+
+
+  # we first define the problem instance WITHOUT the realizations so that the "warm start" observations do not draw from the same
+  # realization set, but the actual run of competing bandits will pull from it
+  banditProblemInstance = BanditProblemInstance(K, T, realDistributions, realizations)
 
   principalHistory = []
   results = []

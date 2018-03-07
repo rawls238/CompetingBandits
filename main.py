@@ -28,8 +28,8 @@ import random
 numCores = multiprocessing.cpu_count()
 
 K = 3
-T = 5002
-NUM_SIMULATIONS = 100
+T = 1002
+NUM_SIMULATIONS = 2
 
 AGENT_ALGS = [HardMax, HardMaxWithRandom]
 
@@ -61,8 +61,8 @@ INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
-  with open('results/free_obs_experiment_aggregate_results_3.csv', 'w') as aggregate_csv:
-    with open('results/free_obs_experiment_raw_results_3.csv', 'w') as raw_csv:
+  with open('results/free_obs_experiment_tournament_aggregate_results.csv', 'w') as aggregate_csv:
+    with open('results/free_obs_experiment_tournament_raw_results.csv', 'w') as raw_csv:
       aggregate_fieldnames = copy(AGGREGATE_FIELD_NAMES)
       aggregate_fieldnames.append('Memory Size')
       aggregate_writer = csv.DictWriter(aggregate_csv, fieldnames=aggregate_fieldnames)
@@ -83,13 +83,15 @@ def run_finite_memory_experiment(memory_sizes):
               for t in RECORD_STATS_AT:
                 results[agentAlg][(principalAlg1, principalAlg2)][memory][t] = deepcopy(initialResultDict)
               realDistributions = {}
+              realizations = {}
               for i in xrange(NUM_SIMULATIONS):
                 realDistributions[i] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+                realizations = [[realDistributions[i][j].rvs() for j in xrange(len(realDistributions[i]))] for k in xrange(T)]
               print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
               #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
               simResults = []
               for i in xrange(NUM_SIMULATIONS):
-                res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realDistributions=realDistributions[i])
+                res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i])
                 simResults.append(res)
               for sim in simResults:
                 for res in sim:
@@ -128,7 +130,7 @@ def run_finite_memory_experiment(memory_sizes):
                   'P2 Regret Std': np.nanstd(regrets2),
                   'Prior': banditDistrName,
                   'Abs Average Delta Regret': np.nanmean([np.abs(regrets1[i] - regrets2[i]) for i in xrange(len(regrets1))]),
-                  'Market Share for P1': np.mean(results[agentAlg][(principalAlg1, principalAlg2)][memory][t]['marketShare1']),
+                  'Market Share for P1': np.mean(results[agentAlg][(principalAlg1, principalAlg2)][memory][t]['marketShare1'])
                 }
                 aggregate_writer.writerow(aggregate_results)
 
