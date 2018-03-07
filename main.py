@@ -27,15 +27,15 @@ import random
 numCores = multiprocessing.cpu_count()
 
 K = 3
-T = 2
-NUM_SIMULATIONS = 2
+T = 1002
+NUM_SIMULATIONS = 500
 
-AGENT_ALGS = [HardMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
-        #    (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy),
-        #    (DynamicEpsilonGreedy, ThompsonSampling), (DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
+            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy),
+            (DynamicEpsilonGreedy, ThompsonSampling), (DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
