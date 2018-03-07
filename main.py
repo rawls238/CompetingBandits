@@ -17,7 +17,6 @@ from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 # library imports
 from scipy.stats import bernoulli, beta
 from copy import copy, deepcopy
-from joblib import Parallel, delayed
 from collections import Counter
 import numpy as np
 import csv
@@ -31,7 +30,7 @@ K = 3
 T = 1002
 NUM_SIMULATIONS = 500
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom]
+AGENT_ALGS = [HardMax, HardMaxWithRandom,SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
@@ -62,8 +61,9 @@ INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
-  with open('results/free_obs_experiment_tournament_aggregate_results.csv', 'w') as aggregate_csv:
-    with open('results/free_obs_experiment_tournament_raw_results.csv', 'w') as raw_csv:
+  with open('/rigel/home/ga2449/bandits-rl-project/results/free_obs_experiment_tournament_aggregate_results.csv', 'w') as aggregate_csv:
+    with open('/rigel/home/ga2449/bandits-rl-project/results/free_obs_experiment_tournament_raw_results.csv', 'w') as raw_csv:
+	with(open('/rigel/home/ga2449/bandits-rl-project/results/free_obs_table.csv', 'w') as tabl:
       aggregate_fieldnames = copy(AGGREGATE_FIELD_NAMES)
       aggregate_fieldnames.append('Memory Size')
       aggregate_writer = csv.DictWriter(aggregate_csv, fieldnames=aggregate_fieldnames)
