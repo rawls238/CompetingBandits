@@ -58,7 +58,6 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
 
   for principal in principals.values():
     principal.resetStats()
-    principal.resetPriors()
 
   #for j in range(1000):
   #  (reward, arm) = principals['principal2'].executeStep(i)
@@ -66,8 +65,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   #principals['principal2'].resetStats()
 
 
-  # we first define the problem instance WITHOUT the realizations so that the "warm start" observations do not draw from the same
-  # realization set, but the actual run of competing bandits will pull from it
+  # we first define the problem instance WITHOUT the realizations so that the "warm start" observations do not draw from the same pre-drawn
+  # realization set, but the actual run of competing bandits will pull from it and so we re-instantiate the instance here
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions, realizations)
 
   principalHistory = []

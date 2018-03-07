@@ -29,7 +29,7 @@ numCores = multiprocessing.cpu_count()
 
 K = 3
 T = 1002
-NUM_SIMULATIONS = 2
+NUM_SIMULATIONS = 500
 
 AGENT_ALGS = [HardMax, HardMaxWithRandom]
 
@@ -74,6 +74,11 @@ def run_finite_memory_experiment(memory_sizes):
       individual_writer.writeheader()
 
       for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
+        realDistributions = {}
+        realizations = {}
+        for q in xrange(NUM_SIMULATIONS):
+          realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+          realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
         for agentAlg in AGENT_ALGS:
           results[agentAlg] = {}
           for (principalAlg1, principalAlg2) in ALG_PAIRS:
@@ -82,11 +87,6 @@ def run_finite_memory_experiment(memory_sizes):
               results[agentAlg][(principalAlg1, principalAlg2)][memory] = {}
               for t in RECORD_STATS_AT:
                 results[agentAlg][(principalAlg1, principalAlg2)][memory][t] = deepcopy(initialResultDict)
-              realDistributions = {}
-              realizations = {}
-              for i in xrange(NUM_SIMULATIONS):
-                realDistributions[i] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
-                realizations = [[realDistributions[i][j].rvs() for j in xrange(len(realDistributions[i]))] for k in xrange(T)]
               print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
               #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
               simResults = []
