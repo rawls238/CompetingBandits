@@ -34,7 +34,9 @@ NUM_SIMULATIONS = 500
 AGENT_ALGS = [HardMax, HardMaxWithRandom]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
+            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy),
+            (DynamicEpsilonGreedy, ThompsonSampling), (DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
@@ -50,8 +52,7 @@ heavy_tail_prior = beta(0.6, 0.6)
 BANDIT_DISTR = {
   'Uniform': None,
   'Heavy Tail' :heavy_tail_prior,
-  'Needle In Haystack High': needle_in_haystack_50_high,
-  'Needle In Haystack Medium': needle_in_haystack_50_medium,
+  'Needle In Haystack High': needle_in_haystack_50_high
 }
 
 
