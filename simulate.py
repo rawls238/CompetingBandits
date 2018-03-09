@@ -59,10 +59,10 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for principal in principals.values():
     principal.resetStats()
 
-  for j in range(200):
-    (reward, arm) = principals['principal2'].executeStep(i)
-    agents.updateInformationSet(reward, arm, 'principal2')
-  principals['principal2'].resetStats()
+  #for j in range(200):
+  #  (reward, arm) = principals['principal2'].executeStep(i)
+  #  agents.updateInformationSet(reward, arm, 'principal2')
+  #principals['principal2'].resetStats()
 
 
   # we first define the problem instance WITHOUT the realizations so that the "warm start" observations do not draw from the same pre-drawn
