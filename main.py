@@ -28,13 +28,14 @@ numCores = multiprocessing.cpu_count()
 
 K = 3
 T = 1002
-NUM_SIMULATIONS = 600
+NUM_SIMULATIONS = 500
 
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
-            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy)]
+            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy),
+            (DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
@@ -59,10 +60,10 @@ INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
-  with open(WORKING_DIRECTORY + 'results/tournament_raw_results/full_tournament_aggregate_results.csv', 'w') as aggregate_csv:
-    with open(WORKING_DIRECTORY + 'results/tournament_raw_results/full_tournament_raw_results.csv', 'w') as raw_csv:
-      with open(WORKING_DIRECTORY + 'results/tournament_raw_results/tournament_realizations.csv', 'w') as tabl:
-        with open(WORKING_DIRECTORY + 'results/tournament_raw_results/tournament_dist.csv', 'w') as dist:
+  with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_experiment_tournament_aggregate_results.csv', 'w') as aggregate_csv:
+    with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_experiment_tournament_raw_results.csv', 'w') as raw_csv:
+      with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_realizations.csv', 'w') as tabl:
+        with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_dist.csv', 'w') as dist:
           aggregate_fieldnames = copy(AGGREGATE_FIELD_NAMES)
           aggregate_fieldnames.append('Memory Size')
           aggregate_writer = csv.DictWriter(aggregate_csv, fieldnames=aggregate_fieldnames)

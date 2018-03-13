@@ -41,6 +41,9 @@ class BanditAlgorithm:
   def resetPriors(self):
     self.posteriors = deepcopy(self.priors)
 
+  def setBanditInstance(self, banditInstance):
+    self.banditProblemInstance = banditInstance
+
   def getAverageRegret(self):
     if self.n == 0:
       return np.nan

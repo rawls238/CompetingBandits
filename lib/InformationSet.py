@@ -1,6 +1,5 @@
 from constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR
 
-
 import random as rand
 import numpy as np
 from copy import copy
