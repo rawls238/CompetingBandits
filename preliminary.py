@@ -21,7 +21,7 @@ from scipy.stats import bernoulli, beta
 
 T = 10000
 N = 200
-K = 20
+K = 3
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
@@ -38,20 +38,21 @@ needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 needle_in_haystack_50_high = deepcopy(needle_in_haystack)
 needle_in_haystack_50_high[int(K/2)] = bernoulli(default_mean + 0.2)
 
-needle_in_haystack_50_one_medium_one_high = deepcopy(needle_in_haystack)
-needle_in_haystack_50_one_medium_one_high[int(K/2)] = bernoulli(default_mean + 0.3)
-needle_in_haystack_50_one_medium_one_high[int(K/2) + 1] = bernoulli(default_mean + 0.1)
+#needle_in_haystack_50_one_medium_one_high = deepcopy(needle_in_haystack)
+#needle_in_haystack_50_one_medium_one_high[int(K/2)] = bernoulli(default_mean + 0.3)
+#needle_in_haystack_50_one_medium_one_high[int(K/2) + 1] = bernoulli(default_mean + 0.1)
 
 
 
-#heavy_tail_prior = beta(0.6, 0.6)
-#heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
+heavy_tail_prior = beta(0.6, 0.6)
+heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
 
 
 ALGS = [NonBayesianEpsilonGreedy, ThompsonSampling, UCB1WithConstantOne, DynamicEpsilonGreedy, DynamicGreedy]
 BANDIT_DISTR = {
   'Needle In Haystack 1 High': needle_in_haystack_50_high,
-  'Needle In Haystack 1 Medium 1 High': needle_in_haystack_50_one_medium_one_high
+  'Uniform': None,
+  'Heavy Tail': None
 }
 
 
@@ -65,7 +66,7 @@ simResults = {}
 This runs N iterations of the experiment. In each iteration a set of true distributions is chosen and then for each algorithm we record the reward history. After this is done we aggregate the results and report them.
 '''
 
-with open('results/preliminary_raw_results/preliminary_plots_20_arms.csv', 'w') as csvfile:
+with open('results/preliminary_raw_results/preliminary_plots_3_arms_3.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():

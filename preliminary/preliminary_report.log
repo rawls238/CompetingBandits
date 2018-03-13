@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 MAR 2018 10:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -699,159 +699,132 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
 
-<"../results/Reward Trajectory for Needle In Haystack Low inst".pdf, id=37, 578
-.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle In Haystack Low inst".pdf Graphi
-c file (type pdf)
+<"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for N
+eedle In Haystack 1 High 10 arms".pdf, id=25, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
+for Needle In Haystack 1 High 10 arms".pdf Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle In Haystack Low inst".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack L
-ow inst".pdf used on input line 78.
+<use "../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+or Needle In Haystack 1 High 10 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
+ Reward Trajectory for Needle In Haystack 1 High 10 arms".pdf used on input lin
+e 61.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle In Haystack Medium inst".pdf, id=38, 
-578.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle In Haystack Medium inst".pdf Gra
-phic file (type pdf)
+<"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for N
+eedle In Haystack 1 Medium 1 High 10 arms".pdf, id=26, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
+for Needle In Haystack 1 Medium 1 High 10 arms".pdf Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle In Haystack Medium inst".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack M
-edium inst".pdf used on input line 79.
+<use "../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+or Needle In Haystack 1 Medium 1 High 10 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
+ Reward Trajectory for Needle In Haystack 1 Medium 1 High 10 arms".pdf used on 
+input line 62.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle In Haystack High inst".pdf, id=39, 57
-8.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle In Haystack High inst".pdf Graph
-ic file (type pdf)
+<"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for N
+eedle In Haystack 1 High 3 arms".pdf, id=27, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
+for Needle In Haystack 1 High 3 arms".pdf Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle In Haystack High inst".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack H
-igh inst".pdf used on input line 80.
+<use "../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+or Needle In Haystack 1 High 3 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
+ Reward Trajectory for Needle In Haystack 1 High 3 arms".pdf used on input line
+ 63.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Uniform inst".pdf, id=40, 578.16pt x 578.16p
-t>
-File: "../results/Reward Trajectory for Uniform inst".pdf Graphic file (type pd
-f)
- <use "../results/Reward Trajectory for Uniform inst".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Uniform inst".pdf us
-ed on input line 81.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Heavy Tail inst".pdf, id=41, 578.16pt x 578.
-16pt>
-File: "../results/Reward Trajectory for Heavy Tail inst".pdf Graphic file (type
- pdf)
- <use "../results/Reward Trajectory for Heavy Tail inst".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail inst".pdf
- used on input line 82.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 78--83
+Underfull \hbox (badness 10000) in paragraph at lines 60--64
 
  []
 
-[2] [3 <../results/Reward Trajectory for Needle In Haystack Low inst.pdf> <../r
-esults/Reward Trajectory for Needle In Haystack Medium inst.pdf>] [4 <../result
-s/Reward Trajectory for Needle In Haystack High inst.pdf> <../results/Reward Tr
-ajectory for Uniform inst.pdf>]
-<"../results/Reward Trajectory for Needle In Haystack Low cumulative".pdf, id=8
-9, 578.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle In Haystack Low cumulative".pdf 
-Graphic file (type pdf)
+[2 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory for
+ Needle In Haystack 1 High 10 arms.pdf>]
+<"../results/preliminary_figures/Instantaneous True Mean Reward Trajectory for 
+Needle In Haystack 1 High 10 arms".pdf, id=43, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous True Mean Reward Trajectory
+ for Needle In Haystack 1 High 10 arms".pdf Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle In Haystack Low cumulative".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack L
-ow cumulative".pdf used on input line 85.
+<use "../results/preliminary_figures/Instantaneous True Mean Reward Trajectory 
+for Needle In Haystack 1 High 10 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous True Mea
+n Reward Trajectory for Needle In Haystack 1 High 10 arms".pdf used on input li
+ne 67.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle In Haystack Medium cumulative".pdf, i
-d=90, 578.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle In Haystack Medium cumulative".p
-df Graphic file (type pdf)
+<"../results/preliminary_figures/Instantaneous True Mean Reward Trajectory for 
+Needle In Haystack 1 Medium 1 High 10 arms".pdf, id=44, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous True Mean Reward Trajectory
+ for Needle In Haystack 1 Medium 1 High 10 arms".pdf Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle In Haystack Medium cumulative".pd
-f>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack M
-edium cumulative".pdf used on input line 86.
+<use "../results/preliminary_figures/Instantaneous True Mean Reward Trajectory 
+for Needle In Haystack 1 Medium 1 High 10 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous True Mea
+n Reward Trajectory for Needle In Haystack 1 Medium 1 High 10 arms".pdf used on
+ input line 68.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Needle In Haystack High cumulative".pdf, id=
-91, 578.16pt x 578.16pt>
-File: "../results/Reward Trajectory for Needle In Haystack High cumulative".pdf
- Graphic file (type pdf)
+<"../results/preliminary_figures/Instantaneous True Mean Reward Trajectory for 
+Needle In Haystack 1 High 3 arms".pdf, id=45, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous True Mean Reward Trajectory
+ for Needle In Haystack 1 High 3 arms".pdf Graphic file (type pdf)
 
-<use "../results/Reward Trajectory for Needle In Haystack High cumulative".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Needle In Haystack H
-igh cumulative".pdf used on input line 87.
+<use "../results/preliminary_figures/Instantaneous True Mean Reward Trajectory 
+for Needle In Haystack 1 High 3 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous True Mea
+n Reward Trajectory for Needle In Haystack 1 High 3 arms".pdf used on input lin
+e 69.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"../results/Reward Trajectory for Uniform cumulative".pdf, id=92, 578.16pt x 5
-78.16pt>
-File: "../results/Reward Trajectory for Uniform cumulative".pdf Graphic file (t
-ype pdf)
- <use "../results/Reward Trajectory for Uniform cumulative".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Uniform cumulative".
-pdf used on input line 88.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-<"../results/Reward Trajectory for Heavy Tail cumulative".pdf, id=93, 578.16pt 
-x 578.16pt>
-File: "../results/Reward Trajectory for Heavy Tail cumulative".pdf Graphic file
- (type pdf)
- <use "../results/Reward Trajectory for Heavy Tail cumulative".pdf>
-Package pdftex.def Info: "../results/Reward Trajectory for Heavy Tail cumulativ
-e".pdf used on input line 89.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--90
+Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
 
-[5 <../results/Reward Trajectory for Heavy Tail inst.pdf>] [6 <../results/Rewar
-d Trajectory for Needle In Haystack Low cumulative.pdf> <../results/Reward Traj
-ectory for Needle In Haystack Medium cumulative.pdf>] [7 <../results/Reward Tra
-jectory for Needle In Haystack High cumulative.pdf> <../results/Reward Trajecto
-ry for Uniform cumulative.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
- [8 <../results/Reward Trajectory for Heavy Tail cumulative.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
- (./preliminary_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
+[3 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory for
+ Needle In Haystack 1 Medium 1 High 10 arms.pdf> <../results/preliminary_figure
+s/Instantaneous Realized Reward Trajectory for Needle In Haystack 1 High 3 arms
+.pdf>] [4 <../results/preliminary_figures/Instantaneous True Mean Reward Trajec
+tory for Needle In Haystack 1 High 10 arms.pdf> <../results/preliminary_figures
+/Instantaneous True Mean Reward Trajectory for Needle In Haystack 1 Medium 1 Hi
+gh 10 arms.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 72.
+ [5 <../results/preliminary_figures/Instantaneous True Mean Reward Trajectory f
+or Needle In Haystack 1 High 3 arms.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 72.
+
+(./preliminary_report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 72.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 72.
 Package rerunfilecheck Info: File `preliminary_report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 72.
  ) 
 Here is how much of TeX's memory you used:
- 7209 strings out of 492995
- 105157 string characters out of 6132704
- 199504 words of memory out of 5000000
- 10619 multiletter control sequences out of 15000+600000
+ 7173 strings out of 492995
+ 105241 string characters out of 6132704
+ 197504 words of memory out of 5000000
+ 10599 multiletter control sequences out of 15000+600000
  11651 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,25p,841b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,6n,25p,732b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
-exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on preliminary_report.pdf (8 pages, 274110 bytes).
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loca
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on preliminary_report.pdf (5 pages, 159425 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 164 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 131 PDF objects out of 1000 (max. 8388607)
+ 102 compressed objects within 2 object streams
+ 18 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

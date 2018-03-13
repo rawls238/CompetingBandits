@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 FEB 2018 20:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 MAR 2018 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -610,37 +610,85 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip50
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (./experiment_2.aux)
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2017/01/14 v0.5h Insert pages of external PDF documents (AM)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count120
+\calc@Bcount=\count121
+\calc@Adimen=\dimen119
+\calc@Bdimen=\dimen120
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count122
+\calc@Cskip=\skip53
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+))
+\AM@pagewidth=\dimen121
+\AM@pageheight=\dimen122
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2017/01/14 v0.5h Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box30
+\AM@global@opts=\toks25
+\AM@toc@title=\toks26
+\c@AM@survey=\count123
+\AM@templatesizebox=\box31
+)
+(./experiment_2.aux)
 \openout1 = `experiment_2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
-\scratchdimen=\dimen119
-\scratchbox=\box30
-\nofMPsegments=\count121
-\nofMParguments=\count122
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count123
-\MPscratchDim=\dimen120
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count124
+\scratchdimen=\dimen123
+\scratchbox=\box32
+\nofMPsegments=\count125
+\nofMParguments=\count126
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen124
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
+\everyMPtoPDFconversion=\toks28
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -658,8 +706,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 15.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring OFF on input line 16.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -667,22 +715,31 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count126
+\c@section@level=\count130
 )
-LaTeX Info: Redefining \ref on input line 15.
-LaTeX Info: Redefining \pageref on input line 15.
-LaTeX Info: Redefining \nameref on input line 15.
+LaTeX Info: Redefining \ref on input line 16.
+LaTeX Info: Redefining \pageref on input line 16.
+LaTeX Info: Redefining \nameref on input line 16.
 
 (./experiment_2.out) (./experiment_2.out)
 \@outlinefile=\write3
 \openout3 = `experiment_2.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 19.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 20.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 19.
+LaTeX Font Info:    Try loading font information for U+msb on input line 20.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -690,102 +747,119 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 28.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
  [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<hm_ts_dg_memory_5000.pdf, id=35, 397.485pt x 289.08pt>
-File: hm_ts_dg_memory_5000.pdf Graphic file (type pdf)
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
-<use hm_ts_dg_memory_5000.pdf>
-Package pdftex.def Info: hm_ts_dg_memory_5000.pdf used on input line 77.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
+ []
 
-<hm_ts_deg_memory_5000.pdf, id=36, 397.485pt x 289.08pt>
-File: hm_ts_deg_memory_5000.pdf Graphic file (type pdf)
+<tournament_table.pdf, id=25, 614.295pt x 794.97pt>
+File: tournament_table.pdf Graphic file (type pdf)
+ <use tournament_table.pdf>
+Package pdftex.def Info: tournament_table.pdf used on input line 86.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use hm_ts_deg_memory_5000.pdf>
-Package pdftex.def Info: hm_ts_deg_memory_5000.pdf used on input line 77.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
- [3 <./hm_ts_dg_memory_5000.pdf> <./hm_ts_deg_memory_5000.pdf>] <hmr_ts_dg_memo
-ry_5000.pdf, id=62, 397.485pt x 289.08pt>
-File: hmr_ts_dg_memory_5000.pdf Graphic file (type pdf)
+<use tournament_table.pdf>
+Package pdftex.def Info: tournament_table.pdf used on input line 86.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<use hmr_ts_dg_memory_5000.pdf>
-Package pdftex.def Info: hmr_ts_dg_memory_5000.pdf used on input line 82.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
+<tournament_table.pdf, id=28, page=1, 614.295pt x 794.97pt>
+File: tournament_table.pdf Graphic file (type pdf)
 
-<hmr_ts_deg_memory_5000.pdf, id=63, 397.485pt x 289.08pt>
-File: hmr_ts_deg_memory_5000.pdf Graphic file (type pdf)
+<use tournament_table.pdf, page 1>
+Package pdftex.def Info: tournament_table.pdf, page1 used on input line 86.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: tournament_table.pdf Graphic file (type pdf)
+ <use tournament_table.pdf, page 1>
+Package pdftex.def Info: tournament_table.pdf, page1 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [2]
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use hmr_ts_deg_memory_5000.pdf>
-Package pdftex.def Info: hmr_ts_deg_memory_5000.pdf used on input line 82.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
- [4 <./hmr_ts_dg_memory_5000.pdf> <./hmr_ts_deg_memory_5000.pdf>] <sm_ts_dg_mem
-ory_5000.pdf, id=88, 397.485pt x 289.08pt>
-File: sm_ts_dg_memory_5000.pdf Graphic file (type pdf)
+<use tournament_table.pdf, page 1>
+Package pdftex.def Info: tournament_table.pdf, page1 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_table.pdf Graphic file (type pdf)
+ <use tournament_table.pdf, page 1>
+Package pdftex.def Info: tournament_table.pdf, page1 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use sm_ts_dg_memory_5000.pdf>
-Package pdftex.def Info: sm_ts_dg_memory_5000.pdf used on input line 86.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
+<use tournament_table.pdf, page 1>
+Package pdftex.def Info: tournament_table.pdf, page1 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [3 <./tournament_table.pdf
 
-<sm_ts_deg_memory_5000.pdf, id=89, 397.485pt x 289.08pt>
-File: sm_ts_deg_memory_5000.pdf Graphic file (type pdf)
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_table.pdf): PDF
+ inclusion: invalid other resource which is no dict (key 'ProcSets', type <arra
+y>); ignored.
+>] <tournament_table.pdf, id=59, page=2, 614.295pt x 794.97pt>
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use sm_ts_deg_memory_5000.pdf>
-Package pdftex.def Info: sm_ts_deg_memory_5000.pdf used on input line 86.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
- [5 <./sm_ts_dg_memory_5000.pdf> <./sm_ts_deg_memory_5000.pdf>] <hm_ts_deg_25_t
-imehorizon.pdf, id=114, 397.485pt x 289.08pt>
-File: hm_ts_deg_25_timehorizon.pdf Graphic file (type pdf)
+<use tournament_table.pdf, page 2>
+Package pdftex.def Info: tournament_table.pdf, page2 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_table.pdf Graphic file (type pdf)
+ <use tournament_table.pdf, page 2>
+Package pdftex.def Info: tournament_table.pdf, page2 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use hm_ts_deg_25_timehorizon.pdf>
-Package pdftex.def Info: hm_ts_deg_25_timehorizon.pdf used on input line 90.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
+<use tournament_table.pdf, page 2>
+Package pdftex.def Info: tournament_table.pdf, page2 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [4 <./tournament_table.pdf
 
-<hm_ts_dg_25_timehorizon.pdf, id=115, 397.485pt x 289.08pt>
-File: hm_ts_dg_25_timehorizon.pdf Graphic file (type pdf)
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_table.pdf): PDF
+ inclusion: invalid other resource which is no dict (key 'ProcSets', type <arra
+y>); ignored.
+>] <tournament_table.pdf, id=64, page=3, 614.295pt x 794.97pt>
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use hm_ts_dg_25_timehorizon.pdf>
-Package pdftex.def Info: hm_ts_dg_25_timehorizon.pdf used on input line 90.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
- [6 <./hm_ts_deg_25_timehorizon.pdf> <./hm_ts_dg_25_timehorizon.pdf>]
-<hm_ts_deg_100_timehorizon.pdf, id=140, 397.485pt x 289.08pt>
-File: hm_ts_deg_100_timehorizon.pdf Graphic file (type pdf)
+<use tournament_table.pdf, page 3>
+Package pdftex.def Info: tournament_table.pdf, page3 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_table.pdf Graphic file (type pdf)
+ <use tournament_table.pdf, page 3>
+Package pdftex.def Info: tournament_table.pdf, page3 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_table.pdf Graphic file (type pdf)
 
-<use hm_ts_deg_100_timehorizon.pdf>
-Package pdftex.def Info: hm_ts_deg_100_timehorizon.pdf used on input line 95.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
+<use tournament_table.pdf, page 3>
+Package pdftex.def Info: tournament_table.pdf, page3 used on input line 86.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [5 <./tournament_table.pdf
 
-<hm_ts_dg_100_timehorizon.pdf, id=141, 397.485pt x 289.08pt>
-File: hm_ts_dg_100_timehorizon.pdf Graphic file (type pdf)
-
-<use hm_ts_dg_100_timehorizon.pdf>
-Package pdftex.def Info: hm_ts_dg_100_timehorizon.pdf used on input line 95.
-(pdftex.def)             Requested size: 357.73318pt x 260.16959pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
- [7 <./hm_ts_deg_100_timehorizon.pdf> <./hm_ts_dg_100_timehorizon.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_table.pdf): PDF
+ inclusion: invalid other resource which is no dict (key 'ProcSets', type <arra
+y>); ignored.
+>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 93.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 93.
  (./experiment_2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 93.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 93.
 Package rerunfilecheck Info: File `experiment_2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 93.
  ) 
 Here is how much of TeX's memory you used:
- 7209 strings out of 492995
- 103473 string characters out of 6132704
- 199504 words of memory out of 5000000
- 10617 multiletter control sequences out of 15000+600000
- 11690 words of font info for 44 fonts, out of 8000000 for 9000
+ 8290 strings out of 492995
+ 118300 string characters out of 6132704
+ 222593 words of memory out of 5000000
+ 11694 multiletter control sequences out of 15000+600000
+ 11344 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,25p,914b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,18n,46p,298b,475s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -793,12 +867,11 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on experiment_2.pdf (7 pages, 249655 bytes).
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on experiment_2.pdf (6 pages, 156370 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 105 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

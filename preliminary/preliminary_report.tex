@@ -19,39 +19,23 @@
 
 \section*{Simulation Details}
 
-Considered $K = 3$, $T = 6000$. \\
+$N = 200$ simulations were run. \\
 \textbf{The Bandit priors that were considered}:
 \begin{itemize}
-\item Uniform: Draw the mean rewards for the arms from [0.25, 0.75]
-\item ``HeavyTail": We took the mean rewards to be randomly drawn from Beta($\alpha=0.6,\beta=0.6$). With this distribution it was likely to have arms that were at the extremes (close to 1 and close to 0) but also some of the arms with intermediate value means.
 \item Needle-in-haystack
 \begin{enumerate}
-\item Low - 9 arms with mean 0.50, 1 arm with mean 0.01 (+ 0.01)
-\item Medium - 9 arms with mean 0.50, 1 arm with mean 0.55 (+ 0.05)
-\item High - 9 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
+\item High (with three arms) - 2 arms with mean 0.50, 1 arm with mean 0.7 (+ 0.2)
+\item High (with ten arms) - 9 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
+\item Medium-High (with ten arms) - 8 arms with mean 0.50, 1 arm with 0.60, 1 arm 0.80
 \end{enumerate}
 \end{itemize}
 \textbf{Algorithms considered}:
 \begin{enumerate}
 \item ThompsonSampling with priors of $Beta(1, 1)$ for every arm.
 \item DynamicGreedy with priors of $Beta(1, 1)$ for every arm
-\item Bayesian Dynamic $\epsilon$-greedy with priors of $Beta(1, 1)$ for every arm
-\begin{enumerate}
-\item $\epsilon=t^{-1/3}$
-\item $\epsilon=T^{-1/3}$
-\item $\epsilon=0.05$
-\end{enumerate}
-\item Non-Bayesian $\epsilon$-greedy - the greedy decision was made based on empirical mean. When there were zero observations, assumed that the empirical mean was 0 (this seems questionable).
-\begin{enumerate}
-\item $\epsilon=t^{-1/3}$
-\item $\epsilon=T^{-1/3}$
-\item $\epsilon=0.05$
-\end{enumerate}
-\item UCB1
-\begin{enumerate}
-\item UCB1 with constant $\sqrt{2log(t)}$
-\item UCB1 with constant $1$
-\end{enumerate}
+\item Bayesian Dynamic $\epsilon$-greedy with priors of $Beta(1, 1)$ for every arm and $\epsilon = 0.05$
+\item Non-Bayesian $\epsilon$-greedy - the greedy decision was made based on empirical mean. When there were zero observations, assumed that the empirical mean was 0 (this seems questionable), $\epsilon = 0.05$
+\item UCB1 (with constant $1$)
 \end{enumerate}
 \pagebreak
 \textbf{Simulation Procedure}
@@ -59,7 +43,7 @@ Considered $K = 3$, $T = 6000$. \\
 \begin{algorithmic}[1]
 \For{Each prior $p$}
 	\For{Each experiment $i$}
-		\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+		\State Use $p$ as the true distribution of the arms
 		\State Generate realizations for each arm and round $t$ and instantiate bandit instance
 		\For{Each algorithm $alg$}
 			\State Run simulation for $T$ periods
@@ -69,27 +53,20 @@ Considered $K = 3$, $T = 6000$. \\
 \end{algorithmic}
 \end{algorithm}
 
-One caveat to the reported results is that the Bayesian greedy results were run separately and thus have different true distributions and realizations than the rest of the algorithms. If we decide to include the Bayesian version instead of the non-Bayesian version we'll have to re-run these simulations.
-
 \section*{Results}
 
-The confidence bands come from the standard error of the loess regression used to generate the curves. The actual datapoints, when plotted, are incredibly volatile but this volatility decreases as we increase N. Part of this comes from the fact that what is plotted is the actual realized reward and not the mean reward \textbf{*}. We briefly discussed this last time and perhaps we should be reporting this instead (or in addition). \\
-\subsection*{Instantaneous Reward Plots}
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle In Haystack Low inst"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle In Haystack Medium inst"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle In Haystack High inst"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Uniform inst"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail inst"} \\
+The confidence bands come from the standard error of the loess regression used to generate the curves. The actual datapoints, when plotted, are incredibly volatile but this volatility decreases as we increase N. Part of this comes from the fact that what is plotted is the actual realized reward and not the mean reward. \\
+\subsection*{Instantaneous Realized Reward Plots}
+These plots contain the fitted lines for the instantaneous realized reward. \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Needle In Haystack 1 High 10 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Needle In Haystack 1 Medium 1 High 10 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Needle In Haystack 1 High 3 arms"} \\
 
-\subsection*{Cumulative Reward Plots}
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle In Haystack Low cumulative"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle In Haystack Medium cumulative"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Needle In Haystack High cumulative"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Uniform cumulative"} \\
-\includegraphics[scale=0.5]{"../results/Reward Trajectory for Heavy Tail cumulative"} \\
+\subsection*{Instantaneous True Mean Reward Plots}
+These plots contain the fitted lines for the TRUE mean reward for the selected arms. \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous True Mean Reward Trajectory for Needle In Haystack 1 High 10 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous True Mean Reward Trajectory for Needle In Haystack 1 Medium 1 High 10 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous True Mean Reward Trajectory for Needle In Haystack 1 High 3 arms"} \\
 
-\subsection*{Empirical Standard Deviation}
-
-Another thing we discussed previously was reporting and plotting the empirical standard deviation of the realized rewards. These tend to be quite large. Across almost every distribution and algorithm, the empirical standard deviation of the vector of realized rewards was on average ~0.4-0.5. This was calculated, for each algorithm and prior, as follows: we have a vector of $N$ realized rewards for each $t$ and we can find the empirical standard deviation of this vector. Averaging across each $t$ for each algorithm and prior, all of them have an average empirical standard deviation between 0.4-0.5. An alternative statistic of potential interest would be to look at the empirical standard of the mean rewards of the selected arms which would likely be smaller. Not sure which makes more sense.
-
+Comments: It does appear that using $10$ arms instead of $3$ in this case does not appear too different. It appears that Thompson Sampling and UCB learn quickly (roughly seem to flatline at $t = 2000$) and DynamicGreedy slowly improves but does not seem to get to convergence even by $t = 10000$. However, the difference between the TS and DG trajectories is not vastly different between the 3 arm and 10 arm case. One difference to note is that it seems like one thing that does change between the two is that Dynamic $\epsilon$-greedy seems to take longer to learn (doesn't even appear to converge by $t = 10000$) in the more complex cases but seems to converge as quickly as TS and UCB in the 3 arm case.
 \end{document}

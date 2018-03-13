@@ -9,28 +9,25 @@
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{algorithm,algpseudocode}
+\usepackage{pdfpages}
              
 \graphicspath{{../results}}
-             
+
 \begin{document} 
 
 \title{Experiment 2}
 \maketitle
 
-\section*{Differences from Experiment 1}
-
-The only difference between this experiment and experiment 1 is that we give principal 2 a ``headstart" in the sense of letting them be the only firm in the market for the first 1000 periods. Thus, the principals are effectively given 1000 free observations for learning and the agents are given 1000 free observations in order to form a reputation score for principal 2. The question this simulation then attempts to answer is if \textit{information advantage} can be viewed as a barrier to entry. Namely, it attempts to begin to answer if the first mover advantage manifests itself in this model by giving the incumbent firm a better prior than any entrants (who we assume come in with only ``fake" priors). Under what assumptions about the agent rationality (response functions or memory sizes) and what algorithms do we see the entering firm able to gain any market share?
 \section*{Simulation Details}
 
-Considered $K = 3$, $T = 5005$, $N = 60$. Report statistics at $t = 1000, 3000, 5000$ \\
+Considered $K = 3$, $T = 1001$, $N = 500$. Report statistics at $t = 1000$ \\
 \textbf{The Bandit priors that were considered}:
 \begin{itemize}
 \item Uniform: Draw the mean rewards for the arms from [0.25, 0.75]
 \item ``HeavyTail": We took the mean rewards to be randomly drawn from Beta($\alpha=0.6,\beta=0.6$). With this distribution it was likely to have arms that were at the extremes (close to 1 and close to 0) but also some of the arms with intermediate value means.
 \item Needle-in-haystack
 \begin{enumerate}
-\item Medium - 9 arms with mean 0.50, 1 arm with mean 0.55 (+ 0.05)
-\item High - 9 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
+\item High - 2 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
 \end{enumerate}
 \end{itemize}
 \textbf{Algorithms considered}:
@@ -43,26 +40,25 @@ Considered $K = 3$, $T = 5005$, $N = 60$. Report statistics at $t = 1000, 3000, 
 \begin{enumerate}
 \item HardMax
 \item HardMaxWithRandom
-\item SoftMax
+\item SoftMax ($\alpha = 10$)
 \end{enumerate}
 \textbf{Memory Sizes}
 \begin{enumerate}
-\item 10
-\item 25
 \item 100
 \end{enumerate}
-
-The simulation procedure is the only thing that has changed compared to Experiment 1:
+\pagebreak
 \textbf{Simulation Procedure}
-\begin{algorithm}[H]
+\begin{algorithm}
 \begin{algorithmic}[1]
 \For{Each prior $p$}
+\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+\State Generate $T \times K$ realizations for the arms 
 	\For{Each agent algorithm $agent alg$}
 		\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
 			\For{$N$ simulations}
-				\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+				
 				\State Give the agents 5 observations from each principal
-				\State Give principal 2 1000 free observations (and give the agents this information too)
+				\State Give principal 2 200 free observations (the agents also get these observations)
 				\State Run simulation for T periods
 			\EndFor
 		\EndFor
@@ -71,28 +67,25 @@ The simulation procedure is the only thing that has changed compared to Experime
 \end{algorithmic}
 \end{algorithm}
 
-\pagebreak
 \section*{Results}
-\textbf{HardMax} \\
-\includegraphics[scale=0.9]{hm_ts_dg_memory_5000} \\ \includegraphics[scale=0.9]{hm_ts_deg_memory_5000} \\
-The main interesting result here is that for ThompsonSampling vs DEG, with low memory sizes we have that ThompsonSampling almost catches up to DEG, but as we increase memory size TS gets almost no market share! Should re-run this experiment with higher N to validate this. 
+All results are reported for memory size = 100. \\
+\vspace{0.25cm}
 
-\pagebreak
-\textbf{HardMaxWithRandom}  \\
-\includegraphics[scale=0.9]{hmr_ts_dg_memory_5000} \\ \includegraphics[scale=0.9]{hmr_ts_deg_memory_5000}
+The rows represent Principal 1 and the columns represent Principal 2. Thus, the cell (1, 2) represents principal 1 playing Thompson Sampling and principal 2 playing DynamicEpsilonGreedy. In this experiment remember that principal 2 gets 200 free observations.  \\
+\vspace{0.1cm}
 
-\pagebreak
-\textbf{SoftMax} \\
-\includegraphics[scale=0.9]{sm_ts_dg_memory_5000} \\ \includegraphics[scale=0.9]{sm_ts_deg_memory_5000}
+Within each cell, the following data are presented: \\
 
-\pagebreak
-Zooming in on the HardMax results and looking at them over time we get (for memory = 25): \\
-\includegraphics[scale=0.9]{hm_ts_deg_25_timehorizon} \\ \includegraphics[scale=0.9]{hm_ts_dg_25_timehorizon}
+\begin{enumerate}
+\item The first row displays the sample mean market share for principal 1 as well as a 95\% confidence band of the mean.
 
-\pagebreak
-\textbf{Memory = 100} \\
-Take note of the scale on the y-axis on this graph. \\
-\includegraphics[scale=0.9]{hm_ts_deg_100_timehorizon} \\ \includegraphics[scale=0.9]{hm_ts_dg_100_timehorizon}
+\item The second row displays the sample variance of the market share and in parentheses are 95 \% confidence bands for the variance.
+
+\item The third row displays the \% of simulations that resulted in ``extreme" market shares. Extreme market shares are defined as being simulations were one of the principals (either principal 1 or 2) ended up with 90\% or more of the market.
+\end{enumerate}
+\includepdf[pages={-}]{tournament_table}
+
+Comments: The story I seem to get from this is (roughly) that the worse the algorithm that the incumbent plays is, the better the entrant will do. However, in order for the entrant to do as well as possible, the entrant should play a worse algorithm! This seems counterintuitive, it means that the worst case for the entrant is when we're both playing ThompsonSampling and the best case for the entrant is when we're both playing DynamicGreedy.
 
 
 

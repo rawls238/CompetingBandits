@@ -9,9 +9,10 @@
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{algorithm,algpseudocode}
+\usepackage{pdfpages}
              
 \graphicspath{{../results}}
-             
+
 \begin{document} 
 
 \title{Experiment 1}
@@ -19,15 +20,14 @@
 
 \section*{Simulation Details}
 
-Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000, 5000$ \\
+Considered $K = 3$, $T = 1001$, $N = 1200$. Report statistics at $t = 1000$ \\
 \textbf{The Bandit priors that were considered}:
 \begin{itemize}
 \item Uniform: Draw the mean rewards for the arms from [0.25, 0.75]
 \item ``HeavyTail": We took the mean rewards to be randomly drawn from Beta($\alpha=0.6,\beta=0.6$). With this distribution it was likely to have arms that were at the extremes (close to 1 and close to 0) but also some of the arms with intermediate value means.
 \item Needle-in-haystack
 \begin{enumerate}
-\item Medium - 9 arms with mean 0.50, 1 arm with mean 0.55 (+ 0.05)
-\item High - 9 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
+\item High - 2 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
 \end{enumerate}
 \end{itemize}
 \textbf{Algorithms considered}:
@@ -40,12 +40,10 @@ Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000,
 \begin{enumerate}
 \item HardMax
 \item HardMaxWithRandom
-\item SoftMax
+\item SoftMax ($\alpha = 30$)
 \end{enumerate}
 \textbf{Memory Sizes}
 \begin{enumerate}
-\item 10
-\item 25
 \item 100
 \end{enumerate}
 \pagebreak
@@ -53,10 +51,12 @@ Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000,
 \begin{algorithm}
 \begin{algorithmic}[1]
 \For{Each prior $p$}
+\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+\State Generate $T \times K$ realizations for the arms 
 	\For{Each agent algorithm $agent alg$}
 		\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
 			\For{$N$ simulations}
-				\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+				
 				\State Give the agents 5 observations from each principal
 				\State Run simulation for T periods
 			\EndFor
@@ -66,63 +66,29 @@ Considered $K = 3$, $T = 5005$, $N = 125$. Report statistics at $t = 1000, 3000,
 \end{algorithmic}
 \end{algorithm}
 
-\pagebreak
 \section*{Results}
+All results are reported for memory size = 100. \\
+\vspace{0.25cm}
 
-One thing which is ambiguous to define is the regret value to use when a principal never gets chosen in a given simulation. When calculating any of the aggregate regret statistics we drop these simulations, but we do record how many rounds have an undefined regret. \\
-\vspace{0.5cm}
+The rows represent the agent algorithms (defined as above). The columns represent principal 1 vs principal 2 (e.g. TS vs DG means Thompson Sampling is principal 1 and Dynamic Greedy is principal 2).  \\
+\vspace{0.1cm}
 
-First, we'll restrict focus to $t = 5000$ and look at the performance of ThompsonSampling. Note that the y axis here represents the market share that the ThompsonSampling principal gets. \\
-\vspace{0.5cm}
+Within each cell, the following data are presented: \\
 
-Performance of ThompsonSampling vs DynamicGreedy and DynamicEpsilonGreedy across all agent models, memory sizes, and priors: \\
-\includegraphics[scale=0.75]{ts_perf_dg} \\
-\includegraphics[scale=0.75]{ts_perf_deg} \\
+\begin{enumerate}
+\item The first row displays the sample mean market share for principal 1 as well as a 95\% confidence band of the mean.
 
-Now, looking across different memory sizes for each agent model (still using each prior): \\
-\textbf{HardMax} \\
-\includegraphics[scale=0.9]{hm_ts_deg} \\
-\includegraphics[scale=0.9]{hm_ts_dg} \\
-Under HardMax it's clear that there is high variability in market share that is increasing in memory size and indicative of less competition but the median across memory sizes still has ThompsonSampling winning.
+\item The second row displays the sample variance of the market share and in parentheses are 95 \% confidence bands for the variance.
 
-\pagebreak
-\textbf{HardMaxWithRandom} \\
-\includegraphics[scale=0.9]{hmr_ts_deg} \\
-\includegraphics[scale=0.9]{hmr_ts_dg} \\
-Under HardMaxWithRandom, the amount of variability decreases (more competition) but is still increasing in memory size and ThompsonSampling still wins in most simulations.
-
-\pagebreak
-\textbf{SoftMax} \\
-\includegraphics[scale=0.9]{sm_ts_deg} \\
-\includegraphics[scale=0.9]{sm_ts_dg} \\
-Under SoftMax there is less variability (more competition) that does not change much with memory size and here ThompsonSampling wins more in the median simulation but only a bit.
-
-\pagebreak
-We'll now look fix memory size to be 100 and look at the performance across priors.\\
-\textbf{HardMax} \\
-\includegraphics[scale=0.9]{hm_ts_deg_prior} \\
-\includegraphics[scale=0.9]{hm_ts_dg_prior} \\
-With HardMax there is significant variability (as noted before), but we have that in the needle in haystack medium case the median is approximately 0.5 while in Uniform + Needle in Haystack High the median is 1 and heavy tail it is almost 0. I don't know if this is something interesting or just noise due to the variability in HardMax. Will have to look into this more.
-
-\pagebreak
-\textbf{HardMaxWithRandom} \\
-\includegraphics[scale=0.9]{hmr_ts_deg_prior} \\
-\includegraphics[scale=0.9]{hmr_ts_dg_prior} \\
-With TS vs DEG we see roughly the same performance across priors, but for TS vs DG we see as with HardMax that in the needle in haystack high instance we have that TS wins by a lot but not so much in the heavy tail case. This makes sense as TS (and DEG) should generally find the ``good" arm while DG may sometimes wrongly identify the best arm, leading to this disparity.
-
-
-\pagebreak
-\textbf{SoftMax} \\
-\includegraphics[scale=0.9]{sm_ts_deg_prior} \\
-\includegraphics[scale=0.9]{sm_ts_dg_prior} \\
-Nothing horribly interesting here besides noting that the same TS vs DG difference appears in the Needle in haystack high prior.
-
-
-\pagebreak
-Now, a couple of plots giving a sense of regret values for ThompsonSampling across different agent algorithms and memory values.\\
-\includegraphics[scale=1]{ts_regret_agent_algs} \\
-\includegraphics[scale=1]{ts_regret_memory}
-
+\item The third row displays the \% of simulations that resulted in ``extreme" market shares. Extreme market shares are defined as being simulations were one of the principals (either principal 1 or 2) ended up with 90\% or more of the market.
+\end{enumerate}
+\includepdf[pages={-}]{agents_table}
+Comments: Almost everything is just a 50-50 split!
+\begin{enumerate}
+\item Almost all of the same algorithms pitted against each other ended with getting a 50/50 market share. This seems to be a good sanity check.
+\item Strange things: focus on TS vs DEG (Heavy Tail). DEG wins for HM and HMR, but TS wins for SM. This seems weird? TS also seems to lose on HMR with Uniform prior.
+\item Why does DynamicGreedy do so well on the HeavyTail prior? Does this make sense?
+\end{enumerate}
 
 
 

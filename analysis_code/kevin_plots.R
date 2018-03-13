@@ -61,11 +61,11 @@ ggplot(dt.data[(Distribution=="Needle In Haystack Medium")], aes(x=t, y=Instanta
 
 # free_obs_experiment_raw_results.csv
 # memory_experiment_raw_results_2.csv
-dt.data <- data.table(read.csv("/Users/garidor/Desktop/bandits-rl-project/results/free_obs_raw_results/free_obs_experiment_raw_results_1.csv", header=T, stringsAsFactors=T))
+dt.data <- data.table(read.csv("/Users/garidor/Desktop/bandits-rl-project/results/free_obs_raw_results/free_obs_experiment_tournament_raw_results.csv", header=T, stringsAsFactors=T))
 
 unique(dt.data$Memory.Size)
 
-dt.data_subset = dt.data[(Memory.Size==1000)]
+dt.data_subset = dt.data[(Memory.Size==100)]
 
 ggplot(dt.data_subset, aes(x=as.factor(Memory.Size), y=Market.Share.for.P1, color=as.factor(Time.Horizon))) + 
   facet_grid(Prior + P1.Alg ~ Agent.Alg + P2.Alg) + 
