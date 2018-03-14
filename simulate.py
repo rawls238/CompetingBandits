@@ -31,7 +31,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   realDistributions=None,
   principal1Priors=None,
   principal2Priors=None,
-  realizations=None):
+  realizations=None,
+  freeObsForP2=False):
 
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
@@ -59,10 +60,11 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for principal in principals.values():
     principal.resetStats()
 
-  #for j in range(200):
-  #  (reward, arm) = principals['principal2'].executeStep(i)
-  #  agents.updateInformationSet(reward, arm, 'principal2')
-  #principals['principal2'].resetStats()
+  if freeObsForP2:
+    for j in range(200):
+      (reward, arm) = principals['principal2'].executeStep(i)
+      agents.updateInformationSet(reward, arm, 'principal2')
+    principals['principal2'].resetStats()
 
 
   # we first define the problem instance WITHOUT the realizations so that the "warm start" observations do not draw from the same pre-drawn

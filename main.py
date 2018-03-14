@@ -30,6 +30,8 @@ K = 3
 T = 1002
 NUM_SIMULATIONS = 500
 
+FREE_OBS = True
+
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
@@ -100,7 +102,7 @@ def run_finite_memory_experiment(memory_sizes):
                   #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
                   simResults = []
                   for i in xrange(NUM_SIMULATIONS):
-                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i])
+                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS)
                     simResults.append(res)
                   for sim in simResults:
                     for res in sim:
