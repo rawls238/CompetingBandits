@@ -86,8 +86,8 @@ Within each cell, the following data are presented: \\
 Comments: Almost everything is just a 50-50 split!
 \begin{enumerate}
 \item Almost all of the same algorithms pitted against each other ended with getting a 50/50 market share. This seems to be a good sanity check.
-\item Strange things: focus on TS vs DEG (Heavy Tail). DEG wins for HM and HMR, but TS wins for SM. This seems weird? TS also seems to lose on HMR with Uniform prior.
-\item Why does DynamicGreedy do so well on the HeavyTail prior? Does this make sense?
+\item Things that stand out: DynamicGreedy does surprisingly well on the Heavy Tail prior. DG seems to beat both DEG and TS with the Heavy Tail prior. DEG also beats TS in the heavy tail prior, though TS seems to beat DG when the agent response function is SoftMax. Does this make sense?
+\item Almost everything in both Uniform and Needle In Haystack - high ends up more or less being a tie.
 \end{enumerate}
 
 
