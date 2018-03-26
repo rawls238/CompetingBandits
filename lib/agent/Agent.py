@@ -33,5 +33,8 @@ class Agent:
     self.numRounds += 1
     self.informationSet.updateInformationSet(reward, arm, principalName)
 
+  def resetInformationSet(self):
+    self.informationSet = InformationSet(self.principals, self.K, self.priors, memory=self.memory, discount_factor=self.discount_factor, score=self.score)
+
   def printMeanBeliefs(self):
     print(self.informationSet.getScores())

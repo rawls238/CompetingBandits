@@ -27,17 +27,19 @@ import random
 numCores = multiprocessing.cpu_count()
 
 K = 3
-T = 1002
-NUM_SIMULATIONS = 500
+T = 8000
+NUM_SIMULATIONS = 100
 
-FREE_OBS = True
+FREE_OBS = False
+FREE_OBS_NUM = 100
+exp_name = 'large_epsilon'
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMaxWithRandom]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
-            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy),
-            (DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
+            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy)]
+            #(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
@@ -55,17 +57,30 @@ BANDIT_DISTR = {
   'Needle In Haystack High': needle_in_haystack_50_high
 }
 
-WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
-#WORKING_DIRECTORY = ''
+#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+WORKING_DIRECTORY = ''
+
+if FREE_OBS:
+  dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
+  base_name = dir_name + 'free_obs_experiment' + exp_name
+else:
+  dir_name = WORKING_DIRECTORY + 'results/tournament_raw_results/'
+  base_name = dir_name + 'tournament_experiment' + exp_name
+
+aggregate_name = base_name + '_aggregate.csv'
+raw_name = base_name + '_raw.csv'
+realizations_name = base_name + '_realizations.csv'
+dist_name = base_name + '_dist.csv'
+
 AGGREGATE_FIELD_NAMES = ['P1 Number of NaNs', 'P2 Number of NaNs', 'Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
 INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'Abs Delta Regret']
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
-  with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_experiment_tournament_aggregate_results.csv', 'w') as aggregate_csv:
-    with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_experiment_tournament_raw_results.csv', 'w') as raw_csv:
-      with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_realizations.csv', 'w') as tabl:
-        with open(WORKING_DIRECTORY + 'results/free_obs_raw_results/free_obs_dist.csv', 'w') as dist:
+  with open(aggregate_name, 'w') as aggregate_csv:
+    with open(raw_name, 'w') as raw_csv:
+      with open(realizations_name, 'w') as tabl:
+        with open(dist_name, 'w') as dist:
           aggregate_fieldnames = copy(AGGREGATE_FIELD_NAMES)
           aggregate_fieldnames.append('Memory Size')
           aggregate_writer = csv.DictWriter(aggregate_csv, fieldnames=aggregate_fieldnames)
@@ -102,7 +117,7 @@ def run_finite_memory_experiment(memory_sizes):
                   #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
                   simResults = []
                   for i in xrange(NUM_SIMULATIONS):
-                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS)
+                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM)
                     simResults.append(res)
                   for sim in simResults:
                     for res in sim:

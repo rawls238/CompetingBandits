@@ -19,7 +19,7 @@ from lib.bandit.ExploreThenExploit import ExploreThenExploit
 from scipy.stats import bernoulli, beta
 
 
-T = 10000
+T = 5000
 N = 200
 K = 3
 
@@ -50,8 +50,6 @@ heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
 
 ALGS = [NonBayesianEpsilonGreedy, ThompsonSampling, UCB1WithConstantOne, DynamicEpsilonGreedy, DynamicGreedy]
 BANDIT_DISTR = {
-  'Needle In Haystack 1 High': needle_in_haystack_50_high,
-  'Uniform': None,
   'Heavy Tail': None
 }
 
@@ -66,7 +64,7 @@ simResults = {}
 This runs N iterations of the experiment. In each iteration a set of true distributions is chosen and then for each algorithm we record the reward history. After this is done we aggregate the results and report them.
 '''
 
-with open('results/preliminary_raw_results/preliminary_plots_3_arms_3.csv', 'w') as csvfile:
+with open('results/preliminary_raw_results/preliminary_plots_3_arms_heavy_tail.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():

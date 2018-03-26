@@ -32,7 +32,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principal1Priors=None,
   principal2Priors=None,
   realizations=None,
-  freeObsForP2=False):
+  freeObsForP2=False,
+  freeObsNum=100):
 
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
@@ -61,8 +62,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
     principal.resetStats()
 
   if freeObsForP2:
-    for j in range(200):
-      (reward, arm) = principals['principal2'].executeStep(i)
+    for j in range(freeObsNum):
+      (reward, arm) = principals['principal2'].executeStep(j)
       agents.updateInformationSet(reward, arm, 'principal2')
     principals['principal2'].resetStats()
 
