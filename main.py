@@ -34,7 +34,7 @@ FREE_OBS = False
 FREE_OBS_NUM = 100
 exp_name = 'large_epsilon'
 
-AGENT_ALGS = [HardMaxWithRandom]
+AGENT_ALGS = [HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),

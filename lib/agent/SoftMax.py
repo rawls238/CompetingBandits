@@ -3,7 +3,7 @@ import numpy as np
 from Agent import Agent
 
 
-DEFAULT_ALPHA = 10
+DEFAULT_ALPHA = 50
 class SoftMax(Agent):
   # epsilon: must be in (0, 0.5). baseline probability that each principal gets picked
   def __init__(self, principals, K, priors=None, alpha=DEFAULT_ALPHA, epsilon=0.1, memory=50):
