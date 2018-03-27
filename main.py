@@ -25,14 +25,14 @@ import pickle
 import random
 
 K = 3
-T = 20002
+T = 15002
 NUM_SIMULATIONS = 150
 
 FREE_OBS = False
 FREE_OBS_NUM = 100
 exp_name = 'large_horizon'
 
-AGENT_ALGS = [HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
