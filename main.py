@@ -18,7 +18,6 @@ from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 from scipy.stats import bernoulli, beta
 from copy import copy, deepcopy
 from collections import Counter
-from numba import njit, prange
 import numpy as np
 import csv
 import pickle
@@ -30,7 +29,7 @@ NUM_SIMULATIONS = 150
 
 FREE_OBS = False
 FREE_OBS_NUM = 100
-exp_name = 'large_horizon'
+exp_name = 'large_horizon_2'
 
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
