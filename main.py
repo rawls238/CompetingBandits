@@ -18,27 +18,24 @@ from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 from scipy.stats import bernoulli, beta
 from copy import copy, deepcopy
 from collections import Counter
+from numba import njit, prange
 import numpy as np
 import csv
-import multiprocessing
 import pickle
 import random
 
-numCores = multiprocessing.cpu_count()
-
 K = 3
-T = 8000
-NUM_SIMULATIONS = 100
+T = 20002
+NUM_SIMULATIONS = 150
 
 FREE_OBS = False
 FREE_OBS_NUM = 100
-exp_name = 'large_epsilon'
+exp_name = 'large_horizon'
 
 AGENT_ALGS = [HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
-            (ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
             #(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
@@ -52,20 +49,18 @@ needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Uniform': None,
-  'Heavy Tail' :heavy_tail_prior,
   'Needle In Haystack High': needle_in_haystack_50_high
 }
 
-#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
-WORKING_DIRECTORY = ''
+WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+#WORKING_DIRECTORY = ''
 
 if FREE_OBS:
   dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
-  base_name = dir_name + 'free_obs_experiment' + exp_name
+  base_name = dir_name + 'free_obs_experiment_' + exp_name
 else:
   dir_name = WORKING_DIRECTORY + 'results/tournament_raw_results/'
-  base_name = dir_name + 'tournament_experiment' + exp_name
+  base_name = dir_name + 'tournament_experiment_' + exp_name
 
 aggregate_name = base_name + '_aggregate.csv'
 raw_name = base_name + '_raw.csv'
@@ -115,10 +110,7 @@ def run_finite_memory_experiment(memory_sizes):
                     results[agentAlg][(principalAlg1, principalAlg2)][memory][t] = deepcopy(initialResultDict)
                   print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
                   #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
-                  simResults = []
-                  for i in xrange(NUM_SIMULATIONS):
-                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM)
-                    simResults.append(res)
+                  simResults = run_simulations(principalAlg1, principalAlg2, agentAlg, K, T, memory, realizations, realDistributions)
                   for sim in simResults:
                     for res in sim:
                       t = res['time']

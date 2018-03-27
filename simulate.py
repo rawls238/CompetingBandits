@@ -25,15 +25,16 @@ def getRealDistributionsFromPrior(priorName, prior, K):
 # agentPriors - the priors the agents have for the distribution of rewards from each principal
 def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   memory=DEFAULT_MEMORY,
-  alpha=DEFAULT_ALPHA,
-  warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
   discountFactor=DEFAULT_DISCOUNT_FACTOR,
   realDistributions=None,
-  principal1Priors=None,
-  principal2Priors=None,
   realizations=None,
   freeObsForP2=False,
-  freeObsNum=100):
+  freeObsNum=100,
+  alpha=DEFAULT_ALPHA,
+  warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
+  principal1Priors=None,
+  principal2Priors=None
+):
 
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
