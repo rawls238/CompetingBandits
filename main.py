@@ -109,8 +109,10 @@ def run_finite_memory_experiment(memory_sizes):
                   for t in RECORD_STATS_AT:
                     results[agentAlg][(principalAlg1, principalAlg2)][memory][t] = deepcopy(initialResultDict)
                   print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
-                  #simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, memory=memory, realDistributions=DISTR) for i in xrange(NUM_SIMULATIONS))
-                  simResults = run_simulations(principalAlg1, principalAlg2, agentAlg, K, T, memory, realizations, realDistributions)
+                  simResults = []
+                  for i in xrange(NUM_SIMULATIONS):
+                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM)
+                    simResults.append(res)
                   for sim in simResults:
                     for res in sim:
                       t = res['time']
