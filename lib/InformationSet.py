@@ -79,7 +79,7 @@ class InformationSet:
 
   # We initialize an information class for each principal, initializing each principal as though it has been picked once 
   # and the mean of its prior distribution is considered to be the only observed reward
-  def __init__(self, principals, K, priors, memory, score, discount_factor):
+  def __init__(self, principals, K, memory, score, discount_factor):
     # note: here, principal is actually a string variable ("principal1") and v is a variable of class BanditAlgorithm
     self.infoSet  = { principal: Info(principal, K, memory=memory, discount_factor=discount_factor) for (principal, v) in principals.iteritems() }
     self.score = score

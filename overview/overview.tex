@@ -1,0 +1,127 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{fullpage}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{algorithm,algpseudocode}
+\usepackage{pdfpages}
+             
+\graphicspath{{../results}}
+
+\begin{document} 
+
+\title{Overview}
+\maketitle
+
+\section*{Simulation Details}
+
+Considered $K = 3$, $Memory = 100$ (unless otherwise noted) \\
+\textbf{The Bandit priors that were considered}:
+\begin{itemize}
+\item Uniform: Draw the mean rewards for the arms from [0.25, 0.75]
+\item ``HeavyTail": We took the mean rewards to be randomly drawn from Beta($\alpha=0.6,\beta=0.6$). With this distribution it was likely to have arms that were at the extremes (close to 1 and close to 0) but also some of the arms with intermediate value means.
+\item Needle-in-haystack
+\begin{enumerate}
+\item High - 2 arms with mean 0.50, 1 arm with mean 0.70 (+ 0.20)
+\end{enumerate}
+\end{itemize}
+\textbf{Algorithms considered}:
+\begin{enumerate}
+\item ThompsonSampling with priors of $Beta(1, 1)$ for every arm.
+\item DynamicGreedy with priors of $Beta(1, 1)$ for every arm
+\item Bayesian Dynamic $\epsilon$-greedy with priors of $Beta(1, 1)$ for every arm and $\epsilon=0.05$
+\end{enumerate}
+\textbf{Agent Algorithms considered}:
+\begin{enumerate}
+\item HardMax
+\item HardMaxWithRandom ($\epsilon = 0.05$)
+\item SoftMax ($\alpha = 30$)
+\end{enumerate}
+\textbf{Memory Sizes}
+\begin{enumerate}
+\item 100
+\end{enumerate}
+\pagebreak
+\textbf{Simulation Procedure}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\For{Each prior $p$}
+\State Generate true distribution from $p$ (except for needle-in-haystack, just use $p$ itself)
+\State Generate $T \times K$ realizations for the arms 
+	\For{Each agent algorithm $agent alg$}
+		\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
+			\For{$N$ simulations}
+				
+				\State Give the agents $k$ observations from each principal
+				\State Give principal 2 $X$ free observations (the agents also get these observations)
+				\State Run simulation for T periods
+			\EndFor
+		\EndFor
+	\EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\section*{Results}
+
+First, let's look at the preliminary simulation results on the instances we considered:
+
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Needle In Haystack 1 High 3 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Uniform 3 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Heavy Tail 3 arms"}
+
+The first set of results we will consider are $X = 0$ and $k = 5$ so that there is simultaneous entry and only a small cold start. Recall to read the tables: \\
+\begin{enumerate}
+\item In bold is the average market share for principal 1 and with a 95\% confidence interval
+\item The var term is the variance of the market shares
+\item The ``share" line means the \% of simulations that ended up with one principal getting more than 90\% of the market.
+\end{enumerate}
+
+\section*{Simultaneous Entry}
+
+\textbf{Question of Interest}: What algorithms should win under different agent response models?
+\textbf{Conjecture}: HardMaxWithRandom and SoftMax should eventually lead to the better algorithm winning. \\
+\textbf{Why?} Looking at the preliminary calibration plots, since there is some randomness in the choice rule of the agents, each principal should always be getting some free observations (our parameters such as the $\alpha$ in SoftMax and $\epsilon$ in HardMaxWithRandom tune how many expected observations a principal should get for a fixed $T$).  Let's fix attention on the case of ThompsonSampling vs Bayesian/Dynamic Greedy. Looking at each of the preliminary plots we see that ThompsonSampling beats Dynamic / Bayesian Greedy for sufficiently large $T$. Thus, if we calibrate the time horizon long enough so that the principal playing Thompson Sampling should, in expectation, get sufficiently many samples to be on the part of the curve where learning is almost done then it should be able to accumulate a higher reputation score (by having better arm selection than DynamicGreedy) and eventually get more of the market. \\
+
+This seems to be confirmed in the simulations. Using the calibration from above ($\epsilon = 0.05$ for HMR and $\alpha = 30$ for SoftMax), the following are the results looking at $t = 2000$ and $t = 15000$ for each of the priors.
+
+\includepdf[pages={-}]{tournament_results}
+
+On the next page are the results for large number of simulations ($N=1200$), but low $T$ \\
+
+\includepdf[pages={-}]{low_time_high_num_sim}
+
+The conjecture for HMR and SM seems to be consistent with the data generated from the simulation. However, what is going on with HardMax appears confusing. A conjecture is that since there is very little initial information, the algorithm choice matters very little and random noise in the early rounds seems to lead to one firm taking the market. To get some evidence for this, we re-run simulations but track market share over time. In most cases, we get evidence of this and the vast majority of market shares over time look as follows:
+
+\includegraphics[scale=0.25]{decreasing_ms_over_time} \\
+\includegraphics[scale=0.25]{standard_ms_over_time} \\
+\vspace{0.25cm}
+
+However, there are some simulations where we do not observe this. For instance, \\
+\includegraphics[scale=0.25]{odd_ms_over_time} \\
+
+I am not sure what happens in these cases, but one conjecture is that these arise from random noise from a low memory size (memory here is 100, as we have been using in our experiment). I've re-run this experiment for a memory size of 1000 and there are fewer cases which have odd switches as shown above. However, would need to look into this more if we think this is worth digging into more.\\
+As a comparison, what do the trajectories for the HardMaxWithRandom agent response functions look like? Haven't dug too deeply into the data for these simulations, but here is a sample one (ThompsonSampling vs DEG) that is similar to many in those that I have looked at: \\
+\includegraphics[scale=0.25]{hmr_over_time} \\
+
+\section*{Incumbent Experiment}
+Now, we change $X = 200$. In words, we give principal 2 $X$ free observations (the ``incumbent") and this updates her information set and reputation amongst the agents. In this setting what should the incumbent do? What should the entrant do? Does this depend on the agent model? I would conjecture that when we have sufficient randomness in the agent model the same conclusions as before should hold - namely that the entrant, even if getting beat upon entry, should eventually get enough ``free" observations that she can catch up and take more of the market. However, the time horizon, in contrast to the simultaneous entry case, seems like it may be way longer! So far, most of the simulations have simply looked at $t = 1000$, but it may make sense to look at longer time horizons due to the conjecture from above. \\
+\vspace{0.25cm}
+
+What about with HardMax? The only intuition I have is for the incumbent. For the entrant, it is not clear to me what the entrant should do. For the incumbent, in our simulations we fix a $X$ when the entrant will come in and the incumbent should want to maximize both the information that she accrues before then and the reputation that she amongst the agents. However, this seems exactly like the standard exploration exploitation dilemma where reputation is simply the cumulative reward and ``smart" algorithms like Thompson Sampling ought to be better than the ``dumb" algorithms at maximizing information gain while at the same time optimizing cumulative reward. Thus, I expect that Thompson Sampling should be in a better starting position at the start of the competing bandits game (we can view the incumbent experiment as being the simultaneous entry game where the incumbent starts with a head start in terms of information and reputation) and thus control more of the market. This seems to be the case in the reported simulations, both with large $X = 200$ and $X = 100$. Below are the results, the first for $X = 200$ and the second for $X = 100$.
+
+To read the tables: the columns represent the algorithm played by the incumbent and the row represents the algorithm played by the incumbent. For instance, looking at the second cell in the first row we have that the Incumbent played Dynamic (Bayesian) Epsilon Greedy and the entrant played Thompson Sampling and the reported mean is the average market share for the entrant.
+
+\includepdf[pages={-}]{free_obs_tournament}
+
+Now, look at $X = 100$
+
+\includepdf[pages={-}]{less_free_obs_tournament_table}
+
+
+\end{document}

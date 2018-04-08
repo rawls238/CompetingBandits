@@ -17,24 +17,22 @@ class Agent:
     self.principals = principals
     self.priors = priors
     self.score = score
-    self.numRounds = 0
     self.K = K
     self.memory = memory
     self.discount_factor = discount_factor
 
     # for each principal store the number of times selected and total reward
-    self.informationSet = InformationSet(principals, K, priors, memory=memory, discount_factor=discount_factor, score=score)
+    self.informationSet = InformationSet(principals, K, memory=memory, discount_factor=discount_factor, score=score)
 
   @abc.abstractmethod
   def selectPrincipal(self):
     return
 
   def updateInformationSet(self, reward, arm, principalName):
-    self.numRounds += 1
     self.informationSet.updateInformationSet(reward, arm, principalName)
 
   def resetInformationSet(self):
-    self.informationSet = InformationSet(self.principals, self.K, self.priors, memory=self.memory, discount_factor=self.discount_factor, score=self.score)
+    self.informationSet = InformationSet(self.principals, self.K, discount_factor=self.discount_factor, memory=self.memory, score=self.score)
 
   def printMeanBeliefs(self):
     print(self.informationSet.getScores())

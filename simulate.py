@@ -33,7 +33,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   alpha=DEFAULT_ALPHA,
   warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
   principal1Priors=None,
-  principal2Priors=None
+  principal2Priors=None,
+  recordStatsAt=RECORD_STATS_AT
 ):
 
   if principal1Priors is None:
@@ -78,7 +79,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principalHistory = []
   results = []
   for t in xrange(int(T)):
-    if t in RECORD_STATS_AT:
+    if t in recordStatsAt:
       results.append({
         'marketShare1' : principal1.n / float(t),
         'marketShare2' : principal2.n / float(t),
@@ -93,7 +94,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
     (reward, arm) = principal.executeStep(t)
     trueMeanOfArm = banditProblemInstance.getMeanOfArm(arm)
     principal.regret += (bestArmMean - trueMeanOfArm)
-    agents.updateInformationSet(reward, arm, principalName)
+    agents.updateInformationSet(trueMeanOfArm, arm, principalName)
   
   return results
 

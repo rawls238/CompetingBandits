@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 OCT 2017 13:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 APR 2018 19:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**proposal.tex
-(./proposal.tex
+**overview.tex
+(./overview.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -22,6 +22,10 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2017/05/19 3.10 The Babel package
@@ -358,7 +362,7 @@ Now handling font encoding U ...
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2016/11/05 v2.16a AMS math features
-\@mathmargin=\skip43
+\@mathmargin=\skip44
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -408,8 +412,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \totwidth@=\dimen111
 \lineht@=\dimen112
 \@envbody=\toks19
-\multlinegap=\skip44
-\multlinetaggap=\skip45
+\multlinegap=\skip45
+\multlinetaggap=\skip46
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
@@ -560,7 +564,7 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip46
+\Hy@SectionHShift=\skip47
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
@@ -577,52 +581,114 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
-\Gm@cnth=\count112
-\Gm@cntv=\count113
-\c@Gm@tempcnt=\count114
-\Gm@bindingoffset=\dimen119
-\Gm@wd@mp=\dimen120
-\Gm@odd@mp=\dimen121
-\Gm@even@mp=\dimen122
-\Gm@layoutwidth=\dimen123
-\Gm@layoutheight=\dimen124
-\Gm@layouthoffset=\dimen125
-\Gm@layoutvoffset=\dimen126
-\Gm@dimlist=\toks24
-)
-(./proposal.aux)
-\openout1 = `proposal.aux'.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks24
+\c@algorithm=\count112
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count113
+\c@ALG@rem=\count114
+\c@ALG@nested=\count115
+\ALG@tlm=\skip48
+\ALG@thistlm=\skip49
+\c@ALG@Lnr=\count116
+\c@ALG@blocknr=\count117
+\c@ALG@storecount=\count118
+\c@ALG@tmpcounter=\count119
+\ALG@tmplength=\skip50
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2017/01/14 v0.5h Insert pages of external PDF documents (AM)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count120
+\calc@Bcount=\count121
+\calc@Adimen=\dimen119
+\calc@Bdimen=\dimen120
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count122
+\calc@Cskip=\skip53
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+))
+\AM@pagewidth=\dimen121
+\AM@pageheight=\dimen122
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2017/01/14 v0.5h Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box30
+\AM@global@opts=\toks25
+\AM@toc@title=\toks26
+\c@AM@survey=\count123
+\AM@templatesizebox=\box31
+)
+(./overview.aux)
+\openout1 = `overview.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
-\scratchdimen=\dimen127
-\scratchbox=\box30
-\nofMPsegments=\count116
-\nofMParguments=\count117
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count118
-\MPscratchDim=\dimen128
-\MPnumerator=\count119
-\makeMPintoPDFobject=\count120
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count124
+\scratchdimen=\dimen123
+\scratchbox=\box32
+\nofMPsegments=\count125
+\nofMParguments=\count126
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen124
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
+\everyMPtoPDFconversion=\toks28
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -640,8 +706,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 12.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring OFF on input line 16.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -649,89 +715,466 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count121
+\c@section@level=\count130
 )
-LaTeX Info: Redefining \ref on input line 12.
-LaTeX Info: Redefining \pageref on input line 12.
-LaTeX Info: Redefining \nameref on input line 12.
+LaTeX Info: Redefining \ref on input line 16.
+LaTeX Info: Redefining \pageref on input line 16.
+LaTeX Info: Redefining \nameref on input line 16.
 
-(./proposal.out) (./proposal.out)
+(./overview.out) (./overview.out)
 \@outlinefile=\write3
-\openout3 = `proposal.out'.
+\openout3 = `overview.out'.
 
 
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-*geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
-* paper: a4paper
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(36.135pt, 525.23788pt, 36.135pt)
-* v-part:(T,H,B)=(36.135pt, 772.77686pt, 36.135pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=525.23788pt
-* \textheight=772.77686pt
-* \oddsidemargin=-36.135pt
-* \evensidemargin=-36.135pt
-* \topmargin=-73.135pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=10.0pt
-* \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+LaTeX Font Info:    Try loading font information for U+msb on input line 20.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 31.
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 31.
- (./proposal.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 31.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 31.
-Package rerunfilecheck Info: File `proposal.out' has not changed.
+<"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for N
+eedle In Haystack 1 High 3 arms".pdf, id=25, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
+for Needle In Haystack 1 High 3 arms".pdf Graphic file (type pdf)
+
+<use "../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+or Needle In Haystack 1 High 3 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
+ Reward Trajectory for Needle In Haystack 1 High 3 arms".pdf used on input line
+ 74.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+<"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for U
+niform 3 arms".pdf, id=26, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
+for Uniform 3 arms".pdf Graphic file (type pdf)
+
+<use "../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+or Uniform 3 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
+ Reward Trajectory for Uniform 3 arms".pdf used on input line 75.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+<"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for H
+eavy Tail 3 arms".pdf, id=27, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
+for Heavy Tail 3 arms".pdf Graphic file (type pdf)
+
+<use "../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+or Heavy Tail 3 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
+ Reward Trajectory for Heavy Tail 3 arms".pdf used on input line 76.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+ [2 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory fo
+r Needle In Haystack 1 High 3 arms.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
+ []
+
+[3 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory for
+ Uniform 3 arms.pdf> <../results/preliminary_figures/Instantaneous Realized Rew
+ard Trajectory for Heavy Tail 3 arms.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 87--90
+
+ []
+
+<tournament_results.pdf, id=62, 614.295pt x 794.97pt>
+File: tournament_results.pdf Graphic file (type pdf)
+
+<use tournament_results.pdf>
+Package pdftex.def Info: tournament_results.pdf used on input line 93.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: tournament_results.pdf Graphic file (type pdf)
+ <use tournament_results.pdf>
+Package pdftex.def Info: tournament_results.pdf used on input line 93.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+
+<tournament_results.pdf, id=65, page=1, 614.295pt x 794.97pt>
+File: tournament_results.pdf Graphic file (type pdf)
+
+<use tournament_results.pdf, page 1>
+Package pdftex.def Info: tournament_results.pdf, page1 used on input line 93.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: tournament_results.pdf Graphic file (type pdf)
+ <use tournament_results.pdf, page 1>
+Package pdftex.def Info: tournament_results.pdf, page1 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+
+[4]
+File: tournament_results.pdf Graphic file (type pdf)
+ <use tournament_results.pdf, page 1>
+Package pdftex.def Info: tournament_results.pdf, page1 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_results.pdf Graphic file (type pdf)
+ <use tournament_results.pdf, page 1>
+Package pdftex.def Info: tournament_results.pdf, page1 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_results.pdf Graphic file (type pdf)
+
+<use tournament_results.pdf, page 1>
+Package pdftex.def Info: tournament_results.pdf, page1 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [5 <./tournament_results.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_results.pdf): P
+DF inclusion: invalid other resource which is no dict (key 'ProcSets', type <ar
+ray>); ignored.
+>] <tournament_results.pdf, id=95, page=2, 614.295pt x 794.97pt>
+File: tournament_results.pdf Graphic file (type pdf)
+
+<use tournament_results.pdf, page 2>
+Package pdftex.def Info: tournament_results.pdf, page2 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_results.pdf Graphic file (type pdf)
+ <use tournament_results.pdf, page 2>
+Package pdftex.def Info: tournament_results.pdf, page2 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: tournament_results.pdf Graphic file (type pdf)
+
+<use tournament_results.pdf, page 2>
+Package pdftex.def Info: tournament_results.pdf, page2 used on input line 93.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [6 <./tournament_results.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_results.pdf): P
+DF inclusion: invalid other resource which is no dict (key 'ProcSets', type <ar
+ray>); ignored.
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
+
+ []
+
+<low_time_high_num_sim.pdf, id=100, 614.295pt x 794.97pt>
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+
+<use low_time_high_num_sim.pdf>
+Package pdftex.def Info: low_time_high_num_sim.pdf used on input line 97.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+ <use low_time_high_num_sim.pdf>
+Package pdftex.def Info: low_time_high_num_sim.pdf used on input line 97.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+
+<low_time_high_num_sim.pdf, id=103, page=1, 614.295pt x 794.97pt>
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+
+<use low_time_high_num_sim.pdf, page 1>
+Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 97
+.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+
+<use low_time_high_num_sim.pdf, page 1>
+Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 97
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [7]
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+
+<use low_time_high_num_sim.pdf, page 1>
+Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 97
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+
+<use low_time_high_num_sim.pdf, page 1>
+Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 97
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: low_time_high_num_sim.pdf Graphic file (type pdf)
+
+<use low_time_high_num_sim.pdf, page 1>
+Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 97
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [8 <./low_time_high_num_sim.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./low_time_high_num_sim.pdf)
+: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
+<array>); ignored.
+>] <decreasing_ms_over_time.pdf, id=130, 614.295pt x 794.97pt>
+File: decreasing_ms_over_time.pdf Graphic file (type pdf)
+
+<use decreasing_ms_over_time.pdf>
+Package pdftex.def Info: decreasing_ms_over_time.pdf used on input line 101.
+(pdftex.def)             Requested size: 153.57336pt x 198.742pt.
+
+<standard_ms_over_time.pdf, id=131, 614.295pt x 794.97pt>
+File: standard_ms_over_time.pdf Graphic file (type pdf)
+
+<use standard_ms_over_time.pdf>
+Package pdftex.def Info: standard_ms_over_time.pdf used on input line 102.
+(pdftex.def)             Requested size: 153.57336pt x 198.742pt.
+
+<odd_ms_over_time.pdf, id=132, 614.295pt x 794.97pt>
+File: odd_ms_over_time.pdf Graphic file (type pdf)
+
+<use odd_ms_over_time.pdf>
+Package pdftex.def Info: odd_ms_over_time.pdf used on input line 106.
+(pdftex.def)             Requested size: 153.57336pt x 198.742pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
+
+ []
+
+[9 <./decreasing_ms_over_time.pdf> <./standard_ms_over_time.pdf>]
+<hmr_over_time.pdf, id=149, 614.295pt x 794.97pt>
+File: hmr_over_time.pdf Graphic file (type pdf)
+ <use hmr_over_time.pdf>
+Package pdftex.def Info: hmr_over_time.pdf used on input line 110.
+(pdftex.def)             Requested size: 153.57336pt x 198.742pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--111
+
+ []
+
+[10 <./odd_ms_over_time.pdf> <./hmr_over_time.pdf>]
+<free_obs_tournament.pdf, id=168, 614.295pt x 794.97pt>
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf>
+Package pdftex.def Info: free_obs_tournament.pdf used on input line 120.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+ <use free_obs_tournament.pdf>
+Package pdftex.def Info: free_obs_tournament.pdf used on input line 120.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+
+<free_obs_tournament.pdf, id=171, page=1, 614.295pt x 794.97pt>
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf, page 1>
+Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 120.
+
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+ <use free_obs_tournament.pdf, page 1>
+Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+
+[11]
+File: free_obs_tournament.pdf Graphic file (type pdf)
+ <use free_obs_tournament.pdf, page 1>
+Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf, page 1>
+Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+ <use free_obs_tournament.pdf, page 1>
+Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+
+[12 <./free_obs_tournament.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./free_obs_tournament.pdf): 
+PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <a
+rray>); ignored.
+>] <free_obs_tournament.pdf, id=197, page=2, 614.295pt x 794.97pt>
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf, page 2>
+Package pdftex.def Info: free_obs_tournament.pdf, page2 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+ <use free_obs_tournament.pdf, page 2>
+Package pdftex.def Info: free_obs_tournament.pdf, page2 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf, page 2>
+Package pdftex.def Info: free_obs_tournament.pdf, page2 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [13 <./free_obs_tournament.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./free_obs_tournament.pdf): 
+PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <a
+rray>); ignored.
+>] <free_obs_tournament.pdf, id=203, page=3, 614.295pt x 794.97pt>
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf, page 3>
+Package pdftex.def Info: free_obs_tournament.pdf, page3 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+ <use free_obs_tournament.pdf, page 3>
+Package pdftex.def Info: free_obs_tournament.pdf, page3 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: free_obs_tournament.pdf Graphic file (type pdf)
+
+<use free_obs_tournament.pdf, page 3>
+Package pdftex.def Info: free_obs_tournament.pdf, page3 used on input line 120.
+
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [14 <./free_obs_tournament.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./free_obs_tournament.pdf): 
+PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <a
+rray>); ignored.
+>] <less_free_obs_tournament_table.pdf, id=208, 614.295pt x 794.97pt>
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf used on input line 
+124.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf used on input line 
+124.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+
+<less_free_obs_tournament_table.pdf, id=211, page=1, 614.295pt x 794.97pt>
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 1>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 1>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [15]
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 1>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 1>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 1>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [16 <./less_free_obs_tournament_table.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./less_free_obs_tournament_t
+able.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSet
+s', type <array>); ignored.
+>] <less_free_obs_tournament_table.pdf, id=237, page=2, 614.295pt x 794.97pt>
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 2>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page2 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 2>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page2 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 2>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page2 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [17 <./less_free_obs_tournament_table.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./less_free_obs_tournament_t
+able.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSet
+s', type <array>); ignored.
+>] <less_free_obs_tournament_table.pdf, id=242, page=3, 614.295pt x 794.97pt>
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 3>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page3 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 3>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page3 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
+
+<use less_free_obs_tournament_table.pdf, page 3>
+Package pdftex.def Info: less_free_obs_tournament_table.pdf, page3 used on inpu
+t line 124.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [18 <./less_free_obs_tournament_table.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./less_free_obs_tournament_t
+able.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSet
+s', type <array>); ignored.
+>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
+ (./overview.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
+Package rerunfilecheck Info: File `overview.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 31.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 6958 strings out of 492995
- 98777 string characters out of 6132704
- 204641 words of memory out of 5000000
- 10422 multiletter control sequences out of 15000+600000
- 10283 words of font info for 41 fonts, out of 8000000 for 9000
+ 8380 strings out of 492995
+ 121744 string characters out of 6132704
+ 221593 words of memory out of 5000000
+ 11752 multiletter control sequences out of 15000+600000
+ 11344 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,32p,1379b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on proposal.pdf (1 page, 56362 bytes).
+ 40i,18n,46p,1172b,469s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loca
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on overview.pdf (18 pages, 1268726 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 282 PDF objects out of 1000 (max. 8388607)
+ 193 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

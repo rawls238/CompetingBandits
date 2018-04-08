@@ -50,13 +50,15 @@ heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
 
 ALGS = [NonBayesianEpsilonGreedy, ThompsonSampling, UCB1WithConstantOne, DynamicEpsilonGreedy, DynamicGreedy]
 BANDIT_DISTR = {
-  'Heavy Tail': None
+  'Heavy Tail': heavy_tail_prior,
+  'Uniform': None,
+  'Needle In Haystack High': needle_in_haystack_50_high
 }
 
 
 # Algorithm, Arms, Prior, t, n, reward
 
-FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
+FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Reputation', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
 simResults = {}
 
 
@@ -64,7 +66,7 @@ simResults = {}
 This runs N iterations of the experiment. In each iteration a set of true distributions is chosen and then for each algorithm we record the reward history. After this is done we aggregate the results and report them.
 '''
 
-with open('results/preliminary_raw_results/preliminary_plots_3_arms_heavy_tail.csv', 'w') as csvfile:
+with open('results/preliminary_raw_results/preliminary_plots_3_arms_reputation.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
@@ -99,7 +101,9 @@ with open('results/preliminary_raw_results/preliminary_plots_3_arms_heavy_tail.c
         instantaneous_realized = []
         cumulative_mean = []
         instantaneous_mean = []
+        reputation_realized = []
         for j in xrange(len(algResult)):
+          reputation_realized.append(np.mean(algResult[j][0][max(0,t-100):t]))
           instantaneous_realized.append(algResult[j][0][t])
           cumulative_realized.append(algResult[j][1][t])
           instantaneous_mean.append(algResult[j][2][t])
@@ -117,7 +121,8 @@ with open('results/preliminary_raw_results/preliminary_plots_3_arms_heavy_tail.c
           'Instantaneous Mean Reward Std': np.std(instantaneous_mean),
           'Cumulative Mean Reward Mean': np.mean(cumulative_mean),
           'Cumulative Mean Reward Std': np.std(cumulative_mean),
-          'Best Arm Mean': bestArmMean
+          'Best Arm Mean': bestArmMean,
+          'Reputation': np.mean(reputation_realized)
         }
         writer.writerow(res)
       
