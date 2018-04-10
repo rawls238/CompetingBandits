@@ -69,11 +69,11 @@ Considered $K = 3$, $Memory = 100$ (unless otherwise noted) \\
 
 \section*{Results}
 
-First, let's look at the preliminary simulation results on the instances we considered:
+First, let's look at the preliminary simulation results on the instances we considered. What is plotted here is the reputation score for a memory size of $100$ for each of the priors and each of the algorithms:
 
-\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Needle In Haystack 1 High 3 arms"} \\
-\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Uniform 3 arms"} \\
-\includegraphics[scale=0.5]{"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for Heavy Tail 3 arms"}
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Reputation Trajectory for Needle In Haystack High 3 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Reputation Trajectory for Uniform 3 arms"} \\
+\includegraphics[scale=0.5]{"../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arms"}
 
 The first set of results we will consider are $X = 0$ and $k = 5$ so that there is simultaneous entry and only a small cold start. Recall to read the tables: \\
 \begin{enumerate}
@@ -84,30 +84,38 @@ The first set of results we will consider are $X = 0$ and $k = 5$ so that there 
 
 \section*{Simultaneous Entry}
 
-\textbf{Question of Interest}: What algorithms should win under different agent response models?
-\textbf{Conjecture}: HardMaxWithRandom and SoftMax should eventually lead to the better algorithm winning. \\
+\textbf{Question of Interest}: What algorithms should win under different agent response models? \\
+\textbf{Conjecture}: HardMaxWithRandom and SoftMax should eventually lead to the better algorithm winning as long as, on the instance we are considering there is a gap in the long-term reward of the better algorithms. \\
 \textbf{Why?} Looking at the preliminary calibration plots, since there is some randomness in the choice rule of the agents, each principal should always be getting some free observations (our parameters such as the $\alpha$ in SoftMax and $\epsilon$ in HardMaxWithRandom tune how many expected observations a principal should get for a fixed $T$).  Let's fix attention on the case of ThompsonSampling vs Bayesian/Dynamic Greedy. Looking at each of the preliminary plots we see that ThompsonSampling beats Dynamic / Bayesian Greedy for sufficiently large $T$. Thus, if we calibrate the time horizon long enough so that the principal playing Thompson Sampling should, in expectation, get sufficiently many samples to be on the part of the curve where learning is almost done then it should be able to accumulate a higher reputation score (by having better arm selection than DynamicGreedy) and eventually get more of the market. \\
 
-This seems to be confirmed in the simulations. Using the calibration from above ($\epsilon = 0.05$ for HMR and $\alpha = 30$ for SoftMax), the following are the results looking at $t = 2000$ and $t = 15000$ for each of the priors.
+\textbf{Conjecture}: Under HardMax, the early rounds should dictate almost everything since we suppose the algorithms start with little initial information and thus the difference between the algorithms should not make much of a difference. Since the rewards are randomly drawn, lucky early round draws may dictate the course of the game. Thus a conjecture is that the mean market share will be 50/50.
 
-\includepdf[pages={-}]{tournament_results}
-
-On the next page are the results for large number of simulations ($N=1200$), but low $T$ \\
+The first conjecture seems to be confirmed in the simulations. Using the calibration from above ($\epsilon = 0.05$ for HMR and $\alpha = 30$ for SoftMax). However, the HardMax results require some more validation. First, we look at the results for low $T$ (1000) but high $N$ (1200). Then we extend the time horizon, but look at lower $N$.
 
 \includepdf[pages={-}]{low_time_high_num_sim}
 
-The conjecture for HMR and SM seems to be consistent with the data generated from the simulation. However, what is going on with HardMax appears confusing. A conjecture is that since there is very little initial information, the algorithm choice matters very little and random noise in the early rounds seems to lead to one firm taking the market. To get some evidence for this, we re-run simulations but track market share over time. In most cases, we get evidence of this and the vast majority of market shares over time look as follows:
+\includepdf[pages={-}]{tournament_results}
 
-\includegraphics[scale=0.25]{decreasing_ms_over_time} \\
-\includegraphics[scale=0.25]{standard_ms_over_time} \\
+The conjecture for HMR and SM seems to be consistent with the data generated from the simulation. However, what is going on with HardMax appears confusing. To get some more evidence for the original conjecture, we re-run simulations but track market share over time. In most cases, we get evidence of this and the vast majority of market shares over time look as follows:
+
+\includegraphics[scale=0.30]{decreasing_ms_over_time} \\
+\includegraphics[scale=0.30]{standard_ms_over_time} \\
 \vspace{0.25cm}
 
 However, there are some simulations where we do not observe this. For instance, \\
-\includegraphics[scale=0.25]{odd_ms_over_time} \\
+\includegraphics[scale=0.30]{odd_ms_over_time} \\
 
 I am not sure what happens in these cases, but one conjecture is that these arise from random noise from a low memory size (memory here is 100, as we have been using in our experiment). I've re-run this experiment for a memory size of 1000 and there are fewer cases which have odd switches as shown above. However, would need to look into this more if we think this is worth digging into more.\\
-As a comparison, what do the trajectories for the HardMaxWithRandom agent response functions look like? Haven't dug too deeply into the data for these simulations, but here is a sample one (ThompsonSampling vs DEG) that is similar to many in those that I have looked at: \\
+As a comparison, what do the trajectories for the HardMaxWithRandom agent response functions look like? Haven't dug too deeply into the data for these simulations, but here is a sample one (ThompsonSampling vs DEG - plotted market share is for ThompsonSampling) that is similar to many in those that I have looked at: \\
 \includegraphics[scale=0.25]{hmr_over_time} \\
+\textbf{Puzzles}: Inconsistent with this interpretation of the HardMax results is the result for the Heavy Tail prior. Why does Thompson Sampling do so poorly! Looking at the reputation plots we see that in the early rounds there is very little difference between the algorithms but Thompson Sampling still does better, even if only slightly. Thus, it's kind of confusing as to what is actually going on. Perhaps worth looking more closely at some of the trajectory plots for this prior.\\
+
+In general, it seems that differences in algorithm performance in early rounds is important for determining results in HardMax and differences in algorithm performance for large $T$ is important for determining results in HardMaxWithRandom and SoftMax.
+
+Look at the performance on using the TRUE means:
+
+[insert plot]
+
 
 \section*{Incumbent Experiment}
 Now, we change $X = 200$. In words, we give principal 2 $X$ free observations (the ``incumbent") and this updates her information set and reputation amongst the agents. In this setting what should the incumbent do? What should the entrant do? Does this depend on the agent model? I would conjecture that when we have sufficient randomness in the agent model the same conclusions as before should hold - namely that the entrant, even if getting beat upon entry, should eventually get enough ``free" observations that she can catch up and take more of the market. However, the time horizon, in contrast to the simultaneous entry case, seems like it may be way longer! So far, most of the simulations have simply looked at $t = 1000$, but it may make sense to look at longer time horizons due to the conjecture from above. \\
@@ -119,9 +127,10 @@ To read the tables: the columns represent the algorithm played by the incumbent 
 
 \includepdf[pages={-}]{free_obs_tournament}
 
-Now, look at $X = 100$
-
-\includepdf[pages={-}]{less_free_obs_tournament_table}
-
-
+What next? Have re-run this for lower values of $X$ and higher $T$ (3000) and seen qualitatively similar results. Some potential follow-up questions of interest are:
+\begin{enumerate}
+\item Does reputation or information play a bigger role in the dominance of the incumbent? Can test this by re-initializing either reputation or information of the incumbent when the entrant wins the market (and re-running simulations of that).
+\item Even for HardMax it seems that the entrant gets a non-zero market share (the average seems to be between .05 and .25 usually). What do the market share trajectories look like? Are there a lot of simulations where the entrant simply gets zero and some where the entrant seems to get lucky upon entry and has an increasing market share over time?
+\item Run for a larger time horizon for the models with agent randomness to see if better algorithms win in the long-run.
+\end{enumerate}
 \end{document}
