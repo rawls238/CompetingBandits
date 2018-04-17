@@ -1,4 +1,5 @@
 '''The actual bandit instance that stores the true distributions of the arms and draws realizations from the given distributions'''
+import numpy as np
 
 class BanditProblemInstance:
   def __init__(self, K, T, distributions, realizations = None):
@@ -17,6 +18,9 @@ class BanditProblemInstance:
 
   def getMeanOfArm(self, arm):
     return self.distributions[arm].mean()
+
+  def getBestArm(self):
+    return np.argmax([distr.mean() for distr in self.distributions])
 
   def bestArmMean(self):
     return max([distr.mean() for distr in self.distributions])

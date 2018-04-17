@@ -26,6 +26,10 @@ class BanditAlgorithm:
   def pickAnArm(self, t=None):
     return
 
+  # by default this does nothing - mainly for classes that want to be able to switch algorithms
+  def switchAlgorithm(self):
+    return
+
   def resetStats(self):
     self.n = 0 # how many times have i been picked
     self.armHistory = [] # an array of integers (0..K-1) of the arms i picked. arms are 0-indexed
@@ -68,7 +72,7 @@ class BanditAlgorithm:
 
     self.realizedRewardHistory.append(reward)
     self.meanRewardHistory.append(meanOfArm)
-    curRegret = bestArmMean - meanOfArm
+    curRegret = self.bestArmMean - meanOfArm
     self.regret += curRegret
     self.regretHistory.append(curRegret) 
 
