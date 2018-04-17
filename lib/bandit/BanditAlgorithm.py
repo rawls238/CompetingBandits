@@ -15,7 +15,7 @@ class BanditAlgorithm:
     self.priors = deepcopy(priors)
     self.posteriors = deepcopy(priors)
     self.distr = distr
-    self.banditProblemInstance = banditProblemInstance
+    self.setBanditInstance(banditProblemInstance)
     self.resetStats()
 
   def getArmHistory(self):
@@ -36,6 +36,7 @@ class BanditAlgorithm:
     self.armCounts = [0.0 for i in xrange(self.banditProblemInstance.K)]
     self.rewardTotal = [0.0 for i in xrange(self.banditProblemInstance.K)]
     self.empiricalMeans = [0.0 for i in xrange(self.banditProblemInstance.K)]
+    self.regretHistory = []
     self.regret = 0.0
 
   def resetPriors(self):
@@ -43,6 +44,7 @@ class BanditAlgorithm:
 
   def setBanditInstance(self, banditInstance):
     self.banditProblemInstance = banditInstance
+    self.bestArmMean = banditInstance.bestArmMean()
 
   def getAverageRegret(self):
     if self.n == 0:
@@ -66,6 +68,9 @@ class BanditAlgorithm:
 
     self.realizedRewardHistory.append(reward)
     self.meanRewardHistory.append(meanOfArm)
+    curRegret = bestArmMean - meanOfArm
+    self.regret += curRegret
+    self.regretHistory.append(curRegret) 
 
     self.rewardTotal[arm] += reward
     self.armCounts[arm] += 1

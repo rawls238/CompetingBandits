@@ -32,6 +32,19 @@ def sim(alg):
     banditAlg.executeStep(t)
   return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory)
 
+def sim_best_arm(alg):
+  bestArm = banditAlg.banditProblemInstance.getBestArm()
+  res = []
+  look_at = [100, 200, 250, 500, 1000, 2000, 3000, 4000]
+  for t in xrange(T):
+    if t in look_at:
+      identifiedBestArm = np.argmax([banditAlg.posteriors[i].mean() for i in xrange(K)])
+      res.append((t,identifiedBestArm == bestArm))
+    banditAlg.executeStep(t)
+  identifiedBestArm = np.argmax([banditAlg.posteriors[i].mean() for i in xrange(K)])
+  res.append((T, identifiedBestArm == bestArm))
+  return res
+
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
@@ -48,7 +61,7 @@ heavy_tail_prior = beta(0.6, 0.6)
 heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
 
 
-ALGS = [NonBayesianEpsilonGreedy, ThompsonSampling, UCB1WithConstantOne, DynamicEpsilonGreedy, DynamicGreedy]
+ALGS = [ThompsonSampling, DynamicEpsilonGreedy, DynamicGreedy]
 BANDIT_DISTR = {
   'Heavy Tail': heavy_tail_prior,
   'Uniform': None,
@@ -58,15 +71,14 @@ BANDIT_DISTR = {
 
 # Algorithm, Arms, Prior, t, n, reward
 
-FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'True Mean Reputation', ' Realized Reputation', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
+FIELDNAMES = ['Algorithm', 'K', 'Distribution', 'Iter', 't', 'Best Arm Identification']
 simResults = {}
-
 
 '''
 This runs N iterations of the experiment. In each iteration a set of true distributions is chosen and then for each algorithm we record the reward history. After this is done we aggregate the results and report them.
 '''
 
-with open('results/preliminary_raw_results/preliminary_plots_3_arms_reputation_2.csv', 'w') as csvfile:
+with open('results/preliminary_raw_results/preliminary_plots_best_arm.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
@@ -74,7 +86,46 @@ with open('results/preliminary_raw_results/preliminary_plots_3_arms_reputation_2
       simResults[ALGS[a]] = []
 
     for i in xrange(N):
-      ''' get realizations of distributions'''
+      if banditDistrName == 'Uniform':
+        banditDistr = [bernoulli(random.uniform(0.25, 0.75)) for j in xrange(K)]
+      elif banditDistrName == 'Heavy Tail':
+        banditDistr = [bernoulli(heavy_tail_prior.rvs()) for j in xrange(K)]
+
+      realizations = {}
+      for t in xrange(T):
+        realizations[t] = {}
+        for j in xrange(len(banditDistr)):
+          realizations[t][j] = banditDistr[j].rvs()
+      banditProblemInstance = BanditProblemInstance(K, T, banditDistr, realizations)
+      bestArmMean = banditProblemInstance.bestArmMean()
+
+      for a in xrange(len(ALGS)):
+        alg = ALGS[a]
+        banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
+        results = sim_best_arm(banditAlg)
+        name = alg.__name__
+        for (t, res) in results:
+          res = {
+            'Algorithm': name,
+            'Iter': i,
+            't': t,
+            'K': str(K),
+            'Distribution': banditDistrName,
+            'Best Arm Identification': res
+          }
+          writer.writerow(res)
+
+print('all done!')
+
+'''
+with open('results/preliminary_raw_results/preliminary_plots_3_arms_reputation_.csv', 'w') as csvfile:
+  writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
+  writer.writeheader()
+  for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
+    for a in xrange(len(ALGS)):
+      simResults[ALGS[a]] = []
+
+    for i in xrange(N):
       if banditDistrName == 'Uniform':
         banditDistr = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
       elif banditDistrName == 'Heavy Tail':
@@ -93,7 +144,7 @@ with open('results/preliminary_raw_results/preliminary_plots_3_arms_reputation_2
         banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
         res = sim(banditAlg)
         simResults[alg].append(res)
-      
+        print(simResults[alg][0][0])
     for t in xrange(T):
       for (alg, algResult) in simResults.iteritems():
         name = alg.__name__
@@ -124,9 +175,9 @@ with open('results/preliminary_raw_results/preliminary_plots_3_arms_reputation_2
           'Cumulative Mean Reward Mean': np.mean(cumulative_mean),
           'Cumulative Mean Reward Std': np.std(cumulative_mean),
           'Best Arm Mean': bestArmMean,
-          'Reputation': np.mean(reputation_realized),
+          'Realized Reputation': np.mean(reputation_realized),
           'True Mean Reputation': np.mean(reputation_true)
         }
         writer.writerow(res)
-      
+'''   
 
