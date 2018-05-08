@@ -47,7 +47,7 @@ Considered $K = 3$, $Memory = 100$ (unless otherwise noted) \\
 \item 100
 \end{enumerate}
 \pagebreak
-\textbf{Simulation Procedure}
+\textbf{Competing Bandits Simulation Procedure}
 \begin{algorithm}
 \begin{algorithmic}[1]
 \For{Each prior $p$}
@@ -67,22 +67,31 @@ Considered $K = 3$, $Memory = 100$ (unless otherwise noted) \\
 \end{algorithmic}
 \end{algorithm}
 
-\section*{Results}
+\section*{Preliminary Calibration}
 
-First, let's look at the preliminary simulation results on the instances we considered. What is plotted here is the reputation score for a memory size of $100$ for each of the priors and each of the algorithms:
+First, let's look at the preliminary simulation results on the instances we considered. In these simulations we simply run the selected bandit algorithm on the selected prior (no competition).  What is plotted here is the reputation score for a memory size of $100$ for each of the priors and each of the algorithms (recall that reputation score is the average of the last 100 observations):
 
 \includegraphics[scale=0.5]{"../results/preliminary_figures/Reputation Trajectory for Needle In Haystack High 3 arms"} \\
 \includegraphics[scale=0.5]{"../results/preliminary_figures/Reputation Trajectory for Uniform 3 arms"} \\
 \includegraphics[scale=0.5]{"../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arms"}
 
-The first set of results we will consider are $X = 0$ and $k = 5$ so that there is simultaneous entry and only a small cold start. Recall to read the tables: \\
+One thing which may be problematic with these plots is that for Heavy Tail and Uniform the means for the instances are randomly drawn for each simulation but these plots just take averages over all of the simulations.
+
+Some additional preliminary calibration plots. These plots show the \% of simulations over $N=200$ that identified the best arm over time (based on looking at the posterior distributions at a given time): \\
+\includegraphics[scale=0.5]{"needle_in_haystack_best_arm_ident"} \\
+\includegraphics[scale=0.5]{"heavy_tail_best_arm_ident"} \\
+\includegraphics[scale=0.5]{"uniform_best_arm_identification"} 
+
+
+\section*{Simultaneous Entry}
+
+The first set of results we will consider are $X = 0$ and $k = 5$ so that there is simultaneous entry. Recall to read the tables: \\
 \begin{enumerate}
 \item In bold is the average market share for principal 1 and with a 95\% confidence interval
 \item The var term is the variance of the market shares
 \item The ``share" line means the \% of simulations that ended up with one principal getting more than 90\% of the market.
 \end{enumerate}
 
-\section*{Simultaneous Entry}
 
 \textbf{Question of Interest}: What algorithms should win under different agent response models? \\
 \textbf{Overall Conjecture}: For the agent response functions with randomness (HMR and SoftMax), the algorithm performance in the later rounds of the single agent case should dictate which algorithm does better in the long-run in the competing bandits game. For the agent response functions without randomness (HM), the algorithm that does better in the very short-run of the single agent case should do better in the long-run in the competing bandits game. \\
@@ -97,7 +106,7 @@ The first conjecture seems to be confirmed in the simulations. Using the calibra
 
 \includepdf[pages={-}]{tournament_results}
 
-The conjecture for HMR and SM seems to be consistent with the data generated from the simulation. However, what is going on with HardMax appears confusing. To get some more evidence for the original conjecture, we re-run simulations but track market share over time. In most cases, we get evidence of this and the vast majority of market shares over time look as follows:
+The conjecture for HMR and SM seems to be consistent with the data generated from the simulation (the one exception seems to be HeavyTail for BG vs BEG - more on this later). However, what is going on with HardMax appears confusing. To get some more evidence for the original conjecture, we re-run simulations but track market share over time. In most cases, we get evidence of this and the vast majority of market shares over time look as follows:
 
 \includegraphics[scale=0.30]{decreasing_ms_over_time} \\
 \includegraphics[scale=0.30]{standard_ms_over_time} \\
@@ -110,11 +119,9 @@ I am not sure what happens in these cases, but one conjecture is that these aris
 
 As a comparison, what do the trajectories for the HardMaxWithRandom agent response functions look like? Haven't dug too deeply into the data for these simulations, but here is a sample one (ThompsonSampling vs DEG - plotted market share is for ThompsonSampling) that is similar to many in those that I have looked at: \\
 \includegraphics[scale=0.25]{hmr_over_time} \\
-\textbf{Puzzles}: Inconsistent with this interpretation of the HardMax results is the result for the Heavy Tail prior. Why does Thompson Sampling do so poorly! Looking at the reputation plots we see that in the early rounds there is very little difference between the algorithms but Thompson Sampling still does better, even if only slightly. Thus, it's kind of confusing as to what is actually going on. Perhaps worth looking more closely at some of the trajectory plots for this prior.\\
+\textbf{Puzzles}: Inconsistent with this interpretation of the HardMax results is the result for the Heavy Tail prior. Why does Thompson Sampling do so poorly! Looking at the reputation plots we see that in the early rounds there is very little difference between the algorithms but Thompson Sampling still does better, even if only slightly. Thus, it's kind of confusing as to what is actually going on. Perhaps worth looking more closely at some of the trajectory plots for this prior. As well, Bayesian Greedy seems to beat Bayesian Epsilon Greedy on this prior even when there is randomness in the agent response model which seems puzzling given the preliminary plots. \\
 
-In general, the conjecture that differences in algorithm performance in early rounds is important for determining results in HardMax and differences in algorithm performance for large $T$ is important for determining results in HardMaxWithRandom and SoftMax seems to be roughly validated.
-
-
+In general, the conjecture that differences in algorithm performance in early rounds is important for determining results in HardMax and differences in algorithm performance for large $T$ is important for determining results in HardMaxWithRandom and SoftMax seems to be roughly validated (but there are some cases we need to think more about what is happening).
 
 \section*{Incumbent Experiment}
 Now, we change $X = 200$. In words, we give principal 2 $X$ free observations (the ``incumbent") and this updates her information set and reputation amongst the agents. In this setting what should the incumbent do? What should the entrant do? Does this depend on the agent model? I would conjecture that when we have sufficient randomness in the agent model the same conclusions as before should hold - namely that the entrant, even if getting beat upon entry, should eventually get enough ``free" observations that she can catch up and take more of the market. However, the time horizon, in contrast to the simultaneous entry case, seems like it may be way longer! So far, most of the simulations have simply looked at $t = 1000$, but it may make sense to look at longer time horizons due to the conjecture from above. \\

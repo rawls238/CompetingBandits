@@ -1,0 +1,1 @@
+res <- read.csv("/Users/garidor/Desktop/bandits-rl-projects/results/preliminary_raw_results/preliminary_plots_best_arm.csv")

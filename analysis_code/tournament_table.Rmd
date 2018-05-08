@@ -10,19 +10,19 @@ library(dplyr)
 library(knitr)
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-#dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/full_tournament_raw_results.csv", sep=""))
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_tournament_raw_results.csv", sep=""))
+#dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_reputation_window_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_greedy_thompson_2_raw.csv", sep=""))
 p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
 memory_sizes <- sort(as.list(unique(dat['Memory.Size']))$Memory.Size, decreasing=TRUE)
 agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
 time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
-time_horizons <- c(1000)
+time_horizons <- c(3000)
 priors <- as.list(unique(dat['Prior']))$Prior
 
 ZERO_ONE_CUTOFF <- 0.1
-algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
-alg_names <- c("Thompson Sampling", "Bayesian Epsilon Greedy", "Bayesian Greedy")
+algs <- c("ThompsonSampling", "ThompsonStaticGreedy", "ThompsonDynamicGreedy")
+alg_names <- c("Thompson Sampling", "Thompson Static Greedy", "Thompson Dynamci Greedy")
 options(xtable.sanitize.text.function=identity)
 options(xtable.caption.placement="top")
 library(xtable)
