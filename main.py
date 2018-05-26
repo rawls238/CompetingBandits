@@ -110,7 +110,7 @@ def run_finite_memory_experiment(memory_sizes):
                   print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
                   simResults = []
                   for i in xrange(NUM_SIMULATIONS):
-                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM)
+                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, seed=i)
                     simResults.append(res)
                   for sim in simResults:
                     for res in sim:
