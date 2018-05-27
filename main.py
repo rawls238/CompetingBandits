@@ -19,11 +19,10 @@ from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 from joblib import Parallel, delayed
 from scipy.stats import bernoulli, beta
 from copy import copy, deepcopy
-from collections import Counter
 import numpy as np
 import csv
+import sys
 import pickle
-import random
 
 K = 3
 T = 5
@@ -34,6 +33,8 @@ FREE_OBS_NUM = 2
 exp_name = 'test_4'
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 1
+if len(sys.argv) > 1:
+  numCores = sys.argv[1]
 
 AGENT_ALGS = [HardMax]
 
@@ -208,5 +209,6 @@ def run_finite_memory_experiment(memory_sizes):
 
 MEMORY_SIZES = [100]
 run_finite_memory_experiment(MEMORY_SIZES)
+print('all done!')
 #DISCOUNT_FACTORS = [0.5, 0.75, 0.9, 0.99]
 #run_discounted_experiment(DISCOUNT_FACTORS)
