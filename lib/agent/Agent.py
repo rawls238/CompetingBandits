@@ -28,6 +28,9 @@ class Agent:
   def selectPrincipal(self):
     return
 
+  def getScores(self):
+    return self.informationSet.getScores()
+
   def updateInformationSet(self, reward, arm, principalName):
     self.informationSet.updateInformationSet(reward, arm, principalName)
 

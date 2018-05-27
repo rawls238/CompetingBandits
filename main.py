@@ -6,8 +6,9 @@ from lib.bandit.DynamicGreedy import DynamicGreedy
 from lib.bandit.UCB import UCB1WithConstantT
 from lib.bandit.ThompsonSampling import ThompsonSampling
 from lib.bandit.ExploreThenExploit import ExploreThenExploit
-from lib.constants import RECORD_STATS_AT
+from lib.constants import RECORD_STATS_AT, DEFAULT_WARM_START_NUM_OBSERVATIONS
 from simulate import simulate, getRealDistributionsFromPrior, initialResultDict
+
 
 ## Import Agent classes
 from lib.agent.HardMax import HardMax
@@ -25,16 +26,16 @@ import pickle
 import random
 
 K = 3
-T = 5002
-NUM_SIMULATIONS = 100
+T = 5
+NUM_SIMULATIONS = 2
 
-FREE_OBS = False
-FREE_OBS_NUM = 100
-exp_name = 'test_2'
-REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
+FREE_OBS = True
+FREE_OBS_NUM = 2
+exp_name = 'test_4'
+REALIZATIONS_NAME = 'test_3' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 1
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
@@ -51,8 +52,7 @@ needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Uniform': None,
-  'Needle In Haystack High': needle_in_haystack_50_high,
+  'Uniform': None
 }
 
 #WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
@@ -72,7 +72,7 @@ realizations_name = exp_base_name + '_realizations.csv'
 dist_name = exp_base_name + '_dist.csv'
 
 AGGREGATE_FIELD_NAMES = ['P1 Number of NaNs', 'P2 Number of NaNs', 'Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
-INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'Abs Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
 def fetch_distributions(filename, priorname):
   realDistributions = {}
@@ -87,16 +87,26 @@ def fetch_distributions(filename, priorname):
 
 def fetch_realizations(filename, priorname):
   realizations = {}
+  warmStartRealizations = {}
+  numWarmStartRealizations = DEFAULT_WARM_START_NUM_OBSERVATIONS
+  if FREE_OBS:
+    numWarmStartRealizations += FREE_OBS_NUM
   with open(base_name + filename + '_realizations.csv', 'rb') as realizations_csv:
     realizations_reader = csv.reader(realizations_csv)
     for row in realizations_reader:
       if row[0] != priorname: continue
       n = int(row[2])
       t = int(row[1])
-      if n not in realizations:
-        realizations[n] = [[] for q in xrange(T)]
-      realizations[n][t] = [int(row[i]) for i in xrange(3, len(row))]
-  return realizations
+      if t >= 0: 
+        if n not in realizations:
+          realizations[n] = [[] for q in xrange(T)]
+        realizations[n][t] = [int(row[i]) for i in xrange(3, len(row))]
+      else:
+        t = -1*t - 1
+        if n not in warmStartRealizations:
+          warmStartRealizations[n] = [[] for q in xrange(numWarmStartRealizations)]
+        warmStartRealizations[n][t] = [int(row[i]) for i in xrange(3, len(row))]
+  return (realizations, warmStartRealizations)
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
@@ -123,13 +133,20 @@ def run_finite_memory_experiment(memory_sizes):
           for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
             realDistributions = {}
             realizations = {}
-            if len(REALIZATIONS_NAME) > 0:
+            warmStartRealizations = {}
+            if REALIZATIONS_NAME and len(REALIZATIONS_NAME) > 0:
               realDistributions = fetch_distributions(REALIZATIONS_NAME, banditDistrName)
-              realizations = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
+              (realizations, warmStartRealizations) = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
             else:
               for q in xrange(NUM_SIMULATIONS):
                 realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
                 free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
+                warmStartRealizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)]
+                free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[q][k]] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)])
+                if FREE_OBS:
+                  other_warm_start_obs = -1*DEFAULT_WARM_START_NUM_OBSERVATIONS
+                  warmStartRealizations[q].append([[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)])
+                  free_obs_realization_writer.writerows([[banditDistrName, other_warm_start_obs - k - 1, q] + [z for z in warmStartRealizations[q][k+other_warm_start_obs]] for k in xrange(FREE_OBS_NUM)])
                 realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
                 free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
             for agentAlg in AGENT_ALGS:
@@ -141,7 +158,7 @@ def run_finite_memory_experiment(memory_sizes):
                   for t in RECORD_STATS_AT:
                     results[agentAlg][(principalAlg1, principalAlg2)][memory][t] = deepcopy(initialResultDict)
                   print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
-                  simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i]) for i in xrange(NUM_SIMULATIONS))
+                  simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], warmStartRealizations=warmStartRealizations[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i]) for i in xrange(NUM_SIMULATIONS))
                   for sim in simResults:
                     for res in sim:
                       t = res['time']
@@ -156,6 +173,8 @@ def run_finite_memory_experiment(memory_sizes):
                         'P2 Alg': principalAlg2.__name__,
                         'P1 Regret': regret1,
                         'P2 Regret': regret2,
+                        'P1 Reputation': res['reputation1'],
+                        'P2 Reputation': res['reputation2'],
                         'Abs Delta Regret': np.abs(regret1 - regret2),
                         'Market Share for P1': res['marketShare1'],
                       }

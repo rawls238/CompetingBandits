@@ -27,6 +27,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   memory=DEFAULT_MEMORY,
   discountFactor=DEFAULT_DISCOUNT_FACTOR,
   realDistributions=None,
+  warmStartRealizations=None,
   realizations=None,
   freeObsForP2=False,
   freeObsNum=100,
@@ -37,7 +38,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   recordStatsAt=RECORD_STATS_AT,
   seed=None
 ):
-  np.random.seed(seed)
+  #np.random.seed(seed)
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
   if principal2Priors is None:
@@ -45,8 +46,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   if realDistributions is None:
     realDistributions = getDefaultRealDistributions(K)
 
-  banditProblemInstance = BanditProblemInstance(K, T, realDistributions)
-  bestArmMean = banditProblemInstance.bestArmMean()
+  banditProblemInstance = BanditProblemInstance(K, T, realDistributions, warmStartRealizations)
 
   # instantiate 2 principals (who are of some subclass of BanditAlgorithm)
   principal1 = principalAlg1(banditProblemInstance, principal1Priors)
@@ -81,6 +81,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   results = []
   for t in xrange(int(T)):
     if t in recordStatsAt:
+      reputation = agents.getScores()
       results.append({
         'marketShare1' : principal1.n / float(t),
         'marketShare2' : principal2.n / float(t),
@@ -88,6 +89,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
         'armCounts2' : principal2.armCounts,
         'avgRegret1': principal1.getAverageRegret(),
         'avgRegret2': principal2.getAverageRegret(),
+        'reputation1': reputation['principal1'],
+        'reputation2': reputation['principal2'],
         'time': t
       })
     (principalName, principal) = agents.selectPrincipal()
