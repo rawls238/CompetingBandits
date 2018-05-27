@@ -93,8 +93,6 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
     (principalName, principal) = agents.selectPrincipal()
     principalHistory.append(principalName)
     (reward, arm) = principal.executeStep(t)
-    trueMeanOfArm = banditProblemInstance.getMeanOfArm(arm)
-    principal.regret += (bestArmMean - trueMeanOfArm)
     agents.updateInformationSet(reward, arm, principalName)
   
   return results
