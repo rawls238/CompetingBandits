@@ -25,22 +25,23 @@ import sys
 import pickle
 
 K = 3
-T = 5
-NUM_SIMULATIONS = 2
+T = 2002
+NUM_SIMULATIONS = 300
 
 FREE_OBS = True
-FREE_OBS_NUM = 2
-exp_name = 'test_4'
+FREE_OBS_NUM = 200
+exp_name = 're_run'
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
-numCores = 1
+numCores = 10
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
-            #(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy), 
+(ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy), 
+(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
@@ -53,11 +54,13 @@ needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Uniform': None
+  'Needle In Haystack High': needle_in_haystack_50_high,
+  'Uniform': None,
+  'Heavy Tail': heavy_tail_prior
 }
 
-#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 WORKING_DIRECTORY = ''
+WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 
 if FREE_OBS:
   dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
@@ -142,12 +145,14 @@ def run_finite_memory_experiment(memory_sizes):
               for q in xrange(NUM_SIMULATIONS):
                 realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
                 free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
-                warmStartRealizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)]
-                free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[q][k]] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)])
-                if FREE_OBS:
-                  other_warm_start_obs = -1*DEFAULT_WARM_START_NUM_OBSERVATIONS
-                  warmStartRealizations[q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
-                  free_obs_realization_writer.writerows([[banditDistrName, other_warm_start_obs - k - 1, q] + [z for z in warmStartRealizations[q][k+other_warm_start_obs]] for k in xrange(FREE_OBS_NUM)])
+                if FREE_OBS: # the free obs observations go first, before the warm start observations
+                  warmStartRealizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
+                  free_obs_realization_writer.writerows([[banditDistrName,  -1*k - 1, q] + [z for z in warmStartRealizations[q][k]] for k in xrange(FREE_OBS_NUM)])
+                  warmStartRealizations[q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)]
+                  free_obs_realization_writer.writerows([[banditDistrName, -1*FREE_OBS_NUM - k - 1, q] + [z for z in warmStartRealizations[q][k+FREE_OBS_NUM]] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)])
+                else:
+                  warmStartRealizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)]
+                  free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[q][k]] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)])
                 realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
                 free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
             for agentAlg in AGENT_ALGS:

@@ -57,6 +57,12 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principals = { 'principal1': principal1, 'principal2': principal2 }
   agents = agentAlg(principals, K, memory=memory)
 
+  if freeObsForP2:
+    for j in range(freeObsNum):
+      (reward, arm) = principals['principal2'].executeStep(j)
+      agents.updateInformationSet(reward, arm, 'principal2')
+    principals['principal2'].resetStats()
+
   # give the agents a few observations
   for i in xrange(warmStartNumObservations):
     for (principalName, principal) in principals.iteritems():
@@ -66,15 +72,6 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for principal in principals.values():
     principal.resetStats()
 
-  if freeObsForP2:
-    for j in range(freeObsNum):
-      (reward, arm) = principals['principal2'].executeStep(j)
-      agents.updateInformationSet(reward, arm, 'principal2')
-    principals['principal2'].resetStats()
-
-
-  # we first define the problem instance WITHOUT the realizations so that the "warm start" observations do not draw from the same pre-drawn
-  # realization set, but the actual run of competing bandits will pull from it and so we re-instantiate the instance here
   banditProblemInstance = BanditProblemInstance(K, T, realDistributions, realizations)
   for principal in principals.values():
     principal.setBanditInstance(banditProblemInstance)
