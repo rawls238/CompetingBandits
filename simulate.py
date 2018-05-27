@@ -34,9 +34,10 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
   principal1Priors=None,
   principal2Priors=None,
-  recordStatsAt=RECORD_STATS_AT
+  recordStatsAt=RECORD_STATS_AT,
+  seed=None
 ):
-  np.random.seed(None)
+  np.random.seed(seed)
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
   if principal2Priors is None:
