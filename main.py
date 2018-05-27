@@ -32,7 +32,7 @@ NUM_SIMULATIONS = 2
 FREE_OBS = True
 FREE_OBS_NUM = 2
 exp_name = 'test_4'
-REALIZATIONS_NAME = 'test_3' #if you want to pull in past realizations, fill this in with the realizations base name
+REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 1
 
 AGENT_ALGS = [HardMax]
@@ -145,7 +145,7 @@ def run_finite_memory_experiment(memory_sizes):
                 free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[q][k]] for k in xrange(DEFAULT_WARM_START_NUM_OBSERVATIONS)])
                 if FREE_OBS:
                   other_warm_start_obs = -1*DEFAULT_WARM_START_NUM_OBSERVATIONS
-                  warmStartRealizations[q].append([[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)])
+                  warmStartRealizations[q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
                   free_obs_realization_writer.writerows([[banditDistrName, other_warm_start_obs - k - 1, q] + [z for z in warmStartRealizations[q][k+other_warm_start_obs]] for k in xrange(FREE_OBS_NUM)])
                 realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
                 free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
