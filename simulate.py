@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 from lib.constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS, RECORD_STATS_AT
 from lib.BanditProblemInstance import BanditProblemInstance
@@ -38,7 +39,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   recordStatsAt=RECORD_STATS_AT,
   seed=None
 ):
-  #np.random.seed(seed)
+  np.random.seed(int(time.time() * seed) % 2**32)
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
   if principal2Priors is None:
@@ -108,6 +109,8 @@ initialResultDict = {
   'armCounts2': [],
   'avgRegret1': [],
   'avgRegret2': [],
+  'reputation1': [],
+  'reputation2': [],
   'principalHistory': [],
   'time': []
 }
