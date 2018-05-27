@@ -1,4 +1,3 @@
-import random as rand
 from Agent import Agent
 
 # chooses between two principals uniformly at random

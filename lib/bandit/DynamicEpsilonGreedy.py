@@ -1,7 +1,6 @@
 from BanditAlgorithm import BanditAlgorithm
 
 import numpy as np
-import random as rand
 
 # shouldn't this be a subclass of DynamicGreedy?
 class DynamicEpsilonGreedy(BanditAlgorithm):
@@ -18,8 +17,8 @@ class DynamicEpsilonGreedy(BanditAlgorithm):
     if self.dynamicEpsilon:
       self.epsilon = (t + 1)**(-1/3)
     chosenArm = np.argmax([p.mean() for p in self.posteriors])
-    if rand.random() > self.epsilon:
+    if np.random.rand() > self.epsilon:
       return chosenArm
     else:
-      return rand.choice(range(self.banditProblemInstance.K))
+      return np.random.choice(range(self.banditProblemInstance.K))
 

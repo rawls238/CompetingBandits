@@ -7,4 +7,6 @@ class ThompsonSampling(BanditAlgorithm):
     return 'TS'
 
   def pickAnArm(self, t):
-    return np.argmax([p.rvs() for p in self.posteriors])
+    vals = [p.rvs() for p in self.posteriors]
+    return np.argmax(vals)
+

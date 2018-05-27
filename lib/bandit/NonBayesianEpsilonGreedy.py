@@ -1,7 +1,6 @@
 from BanditAlgorithm import BanditAlgorithm
 
 import numpy as np
-import random as rand
 
 
 class NonBayesianEpsilonGreedy(BanditAlgorithm):
@@ -17,7 +16,7 @@ class NonBayesianEpsilonGreedy(BanditAlgorithm):
   def pickAnArm(self, t):
     if self.dynamicEpsilon:
       self.epsilon = (t + 1)**(-1/3)
-    if rand.random() > self.epsilon:
+    if np.random.rand() > self.epsilon:
       return np.argmax([mean for mean in self.empiricalMeans])
     else:
       return rand.choice(range(self.banditProblemInstance.K))

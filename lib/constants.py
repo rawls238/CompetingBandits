@@ -1,4 +1,3 @@
-import random
 from scipy.stats import bernoulli, beta
 
 DEFAULT_MEMORY = 50

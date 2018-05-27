@@ -1,6 +1,5 @@
 from constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR
 
-import random as rand
 import numpy as np
 from copy import copy
 
@@ -111,7 +110,7 @@ class InformationSet:
     return dict({ (k, v.getScore(self.score)) for (k, v) in self.infoSet.iteritems() })
 
   def getRandPrincipal(self):
-    return rand.choice(self.infoSet.keys())
+    return np.random.choice(self.infoSet.keys())
 
   def updateInformationSet(self, reward, arm, principal):
     self.infoSet[principal].num_picked += 1

@@ -1,4 +1,4 @@
-import random as rand
+import numpy as np
 from Agent import Agent
 
 class HardMax(Agent):
@@ -8,4 +8,4 @@ class HardMax(Agent):
     return (maxPrincipal, self.principals[maxPrincipal])
 
   def tieBreak(self, items):
-    return rand.choice(items)
+    return np.random.choice(items)

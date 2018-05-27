@@ -1,5 +1,5 @@
-import random as rand
 from Agent import Agent
+import numpy as np
 
 # this hasn't been well fleshed out yet
 class HeterogenousHardMax(Agent):
@@ -10,4 +10,4 @@ class HeterogenousHardMax(Agent):
     return (maxPrincipal, self.principals[maxPrincipal])
 
   def tieBreak(self, items):
-    return rand.choice(items)
+    return np.random.choice(items)

@@ -1,4 +1,4 @@
-import random as rand
+import numpy as np
 from HardMax import HardMax
 
 class HardMaxWithRandom(HardMax):
@@ -9,7 +9,7 @@ class HardMaxWithRandom(HardMax):
     self.epsilon = epsilon
 
   def selectPrincipal(self):
-    if rand.random() > self.epsilon:
+    if np.random.rand() > self.epsilon:
       return super(HardMaxWithRandom, self).selectPrincipal()
     else:
       principal = self.informationSet.getRandPrincipal()

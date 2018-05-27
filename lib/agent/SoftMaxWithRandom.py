@@ -1,4 +1,4 @@
-import random as rand
+import numpy as np
 from SoftMax import SoftMax, DEFAULT_ALPHA
 
 class SoftMaxWithRandom(SoftMax):
@@ -7,7 +7,7 @@ class SoftMaxWithRandom(SoftMax):
     self.epsilon = epsilon
 
   def selectPrincipal(self):
-    if rand.random() > self.epsilon:
+    if np.random.rand() > self.epsilon:
       return super(SoftMaxWithRandom, self).selectPrincipal()
     else:
       principal = self.informationSet.getRandPrincipal()
