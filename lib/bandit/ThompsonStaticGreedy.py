@@ -1,14 +1,14 @@
 import numpy as np
 from BanditAlgorithm import BanditAlgorithm
-from deepcopy import deepcopy
+from copy import deepcopy
 
-class ThompsonDynamicGreedy(BanditAlgorithm):
+class ThompsonStaticGreedy(BanditAlgorithm):
   @staticmethod
   def shorthand():
-    return 'TSDG'
+    return 'TSSG'
 
   def __init__(self, banditProblemInstance, priors, distr='beta'):
-    super(ExploreThenExploit, self).__init__(banditProblemInstance, priors, distr)
+    super(ThompsonStaticGreedy, self).__init__(banditProblemInstance, priors, distr)
     self.greedy = False
 
   def switchAlgorithm(self):

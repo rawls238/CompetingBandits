@@ -100,9 +100,10 @@ The first set of results we will consider are $X = 0$ and $k = 5$ so that there 
 
 \textbf{Conjecture}: Under HardMax, the early rounds should dictate almost everything since we suppose the algorithms start with little initial information and thus the difference between the algorithms should not make much of a difference. Since the rewards are randomly drawn, lucky early round draws may dictate the course of the game. Thus a conjecture is that the mean market share will be 50/50.
 
-The first conjecture seems to be confirmed in the simulations. Using the calibration from above ($\epsilon = 0.05$ for HMR and $\alpha = 30$ for SoftMax). However, the HardMax results require some more validation. First, we look at the results for low $T$ (1000) but high $N$ (1200). Then we extend the time horizon, but look at lower $N$. One annoying note, it is hard to compare SoftMax across these next two simulations since in the first $\alpha = 10$ and the in the second $\alpha = 30$
+The first conjecture seems to be confirmed in the simulations. Using the calibration from above ($\epsilon = 0.05$ for HMR and $\alpha = 30$ for SoftMax). When does this not hold? Consider the case of 
 
-\includepdf[pages={-}]{low_time_high_num_sim}
+
+However, the HardMax results require some more validation. First, we look at the results for low $T$ (1000) but high $N$ (1200). Then we extend the time horizon, but look at lower $N$.
 
 \includepdf[pages={-}]{tournament_results}
 

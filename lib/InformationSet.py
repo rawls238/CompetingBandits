@@ -42,19 +42,13 @@ class Info:
   def getMeanScore(self):
     return self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward # don't divide by 0
 
-  def updateMovingAverage(self):
-    ''' more efficient implemenation if needed
-    
+  def updateMovingAverage(self):    
     if len(self.reward_history) <= self.sliding_window_size:
       self.moving_average = self.total_reward / self.num_picked if self.num_picked != 0 else self.total_reward
     else:
       remov = (self.reward_history[len(self.reward_history) - self.sliding_window_size - 1]) / float(self.sliding_window_size)
       add = self.reward_history[-1] / float(self.sliding_window_size)
-      self.moving_average = self.moving_average - remov + add'''
-    reward_history = copy(self.reward_history[(-1*self.sliding_window_size):])
-    if self.risk_aversion > 0:
-      reward_history = self.getRiskAversionAdjustedScores(reward_history)
-    self.moving_average = np.mean(reward_history)
+      self.moving_average = self.moving_average - remov + add
 
   def getLikelyArm(self):
     numRounds = len(self.arm_history)

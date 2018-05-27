@@ -7,7 +7,7 @@ class ThompsonDynamicGreedy(BanditAlgorithm):
     return 'TSDG'
 
   def __init__(self, banditProblemInstance, priors, distr='beta'):
-    super(ExploreThenExploit, self).__init__(banditProblemInstance, priors, distr)
+    super(ThompsonDynamicGreedy, self).__init__(banditProblemInstance, priors, distr)
     self.greedy = False
 
   def switchAlgorithm(self):

@@ -15,6 +15,7 @@ from lib.agent.SoftMax import SoftMax
 from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 
 # library imports
+from joblib import Parallel, delayed
 from scipy.stats import bernoulli, beta
 from copy import copy, deepcopy
 from collections import Counter
@@ -24,12 +25,14 @@ import pickle
 import random
 
 K = 3
-T = 15002
-NUM_SIMULATIONS = 150
+T = 5002
+NUM_SIMULATIONS = 100
 
 FREE_OBS = False
 FREE_OBS_NUM = 100
-exp_name = 'large_horizon_2'
+exp_name = 'test_2'
+REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
+numCores = 1
 
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
@@ -48,26 +51,52 @@ needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Needle In Haystack High': needle_in_haystack_50_high
+  'Uniform': None,
+  'Needle In Haystack High': needle_in_haystack_50_high,
 }
 
-WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
-#WORKING_DIRECTORY = ''
+#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+WORKING_DIRECTORY = ''
 
 if FREE_OBS:
   dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
-  base_name = dir_name + 'free_obs_experiment_' + exp_name
+  base_name = dir_name + 'free_obs_experiment_'
 else:
   dir_name = WORKING_DIRECTORY + 'results/tournament_raw_results/'
-  base_name = dir_name + 'tournament_experiment_' + exp_name
+  base_name = dir_name + 'tournament_experiment_'
 
-aggregate_name = base_name + '_aggregate.csv'
-raw_name = base_name + '_raw.csv'
-realizations_name = base_name + '_realizations.csv'
-dist_name = base_name + '_dist.csv'
+exp_base_name = base_name + exp_name
+aggregate_name = exp_base_name + '_aggregate.csv'
+raw_name = exp_base_name + '_raw.csv'
+realizations_name = exp_base_name + '_realizations.csv'
+dist_name = exp_base_name + '_dist.csv'
 
 AGGREGATE_FIELD_NAMES = ['P1 Number of NaNs', 'P2 Number of NaNs', 'Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
 INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'Abs Delta Regret']
+
+def fetch_distributions(filename, priorname):
+  realDistributions = {}
+  count = 0
+  with open(base_name + filename + '_dist.csv', 'rb') as dist_csv:
+    dist_reader = csv.reader(dist_csv)
+    for row in dist_reader:
+      if row[0] != priorname: continue
+      realDistributions[count] = [bernoulli(float(row[i])) for i in xrange(1, len(row))]
+      count += 1
+  return realDistributions
+
+def fetch_realizations(filename, priorname):
+  realizations = {}
+  with open(base_name + filename + '_realizations.csv', 'rb') as realizations_csv:
+    realizations_reader = csv.reader(realizations_csv)
+    for row in realizations_reader:
+      if row[0] != priorname: continue
+      n = int(row[2])
+      t = int(row[1])
+      if n not in realizations:
+        realizations[n] = [[] for q in xrange(T)]
+      realizations[n][t] = [int(row[i]) for i in xrange(3, len(row))]
+  return realizations
 
 def run_finite_memory_experiment(memory_sizes):
   results = {}
@@ -94,11 +123,15 @@ def run_finite_memory_experiment(memory_sizes):
           for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
             realDistributions = {}
             realizations = {}
-            for q in xrange(NUM_SIMULATIONS):
-              realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
-              free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
-              realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
-              free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
+            if len(REALIZATIONS_NAME) > 0:
+              realDistributions = fetch_distributions(REALIZATIONS_NAME, banditDistrName)
+              realizations = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
+            else:
+              for q in xrange(NUM_SIMULATIONS):
+                realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+                free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
+                realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
+                free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
             for agentAlg in AGENT_ALGS:
               results[agentAlg] = {}
               for (principalAlg1, principalAlg2) in ALG_PAIRS:
@@ -108,10 +141,7 @@ def run_finite_memory_experiment(memory_sizes):
                   for t in RECORD_STATS_AT:
                     results[agentAlg][(principalAlg1, principalAlg2)][memory][t] = deepcopy(initialResultDict)
                   print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with memory ' + str(memory) + ' with prior ' + banditDistrName)
-                  simResults = []
-                  for i in xrange(NUM_SIMULATIONS):
-                    res = simulate(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], realDistributions=realDistributions[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM)
-                    simResults.append(res)
+                  simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=memory, realizations=realizations[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i]) for i in xrange(NUM_SIMULATIONS))
                   for sim in simResults:
                     for res in sim:
                       t = res['time']

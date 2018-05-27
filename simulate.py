@@ -36,7 +36,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principal2Priors=None,
   recordStatsAt=RECORD_STATS_AT
 ):
-
+  np.random.seed(None)
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
   if principal2Priors is None:
