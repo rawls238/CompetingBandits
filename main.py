@@ -36,7 +36,7 @@ numCores = 1
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
-AGENT_ALGS = [HardMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)]
