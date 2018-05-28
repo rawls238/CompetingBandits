@@ -71,7 +71,7 @@ BANDIT_DISTR = {
 # Algorithm, Arms, Prior, t, n, reward
 
 
-FIELDNAMES = ['Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
+FIELDNAMES = ['True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
 simResults = {}
 
 with open('/rigel/home/ga2449/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_10_arms_reputation.csv', 'w') as csvfile:
