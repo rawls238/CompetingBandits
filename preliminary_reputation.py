@@ -18,8 +18,8 @@ from lib.bandit.ExploreThenExploit import ExploreThenExploit
 from scipy.stats import bernoulli, beta
 
 
-T = 1501
-N = 100
+T = 5001
+N = 150
 K = 10
 
 
@@ -70,10 +70,11 @@ BANDIT_DISTR = {
 
 # Algorithm, Arms, Prior, t, n, reward
 
-FIELDNAMES = ['Algorithm', 'K', 'Distribution', 'Iter', 't', 'Best Arm Identification']
+
+FIELDNAMES = ['True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
 simResults = {}
 
-with open('results/preliminary_raw_results/preliminary_plots_10_arms_reputation.csv', 'w') as csvfile:
+with open('/rigel/home/ga2449/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_10_arms_reputation.csv', 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
