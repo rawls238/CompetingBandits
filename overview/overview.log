@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  24 MAY 2018 13:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 MAY 2018 09:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -764,7 +764,7 @@ ack High 3 arms".pdf Graphic file (type pdf)
 <use "../results/preliminary_figures/Reputation Trajectory for Needle In Haysta
 ck High 3 arms".pdf>
 Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
-for Needle In Haystack High 3 arms".pdf used on input line 74.
+for Needle In Haystack High 3 arms".pdf used on input line 73.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
 <"../results/preliminary_figures/Reputation Trajectory for Uniform 3 arms".pdf,
@@ -775,7 +775,7 @@ File: "../results/preliminary_figures/Reputation Trajectory for Uniform 3 arms"
 <use "../results/preliminary_figures/Reputation Trajectory for Uniform 3 arms".
 pdf>
 Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
-for Uniform 3 arms".pdf used on input line 75.
+for Uniform 3 arms".pdf used on input line 74.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
 <"../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arms".p
@@ -786,291 +786,468 @@ ms".pdf Graphic file (type pdf)
 <use "../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arm
 s".pdf>
 Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
-for Heavy Tail 3 arms".pdf used on input line 76.
+for Heavy Tail 3 arms".pdf used on input line 75.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
  [2 <../results/preliminary_figures/Reputation Trajectory for Needle In Haystac
 k High 3 arms.pdf>]
-<"needle_in_haystack_best_arm_ident".png, id=42, 415.5525pt x 352.31625pt>
-File: "needle_in_haystack_best_arm_ident".png Graphic file (type png)
+<"../results/preliminary_figures/Reputation Trajectory for Needle In Haystack H
+igh 10 arms".pdf, id=42, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Reputation Trajectory for Needle In Hayst
+ack High 10 arms".pdf Graphic file (type pdf)
 
-<use "needle_in_haystack_best_arm_ident".png>
-Package pdftex.def Info: "needle_in_haystack_best_arm_ident".png used on input 
-line 81.
-(pdftex.def)             Requested size: 207.77574pt x 176.15768pt.
+<use "../results/preliminary_figures/Reputation Trajectory for Needle In Haysta
+ck High 10 arms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
+for Needle In Haystack High 10 arms".pdf used on input line 77.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<"heavy_tail_best_arm_ident".png, id=44, 415.5525pt x 352.31625pt>
-File: "heavy_tail_best_arm_ident".png Graphic file (type png)
+<"../results/preliminary_figures/Reputation Trajectory for Uniform 10 arms".pdf
+, id=43, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Reputation Trajectory for Uniform 10 arms
+".pdf Graphic file (type pdf)
 
-<use "heavy_tail_best_arm_ident".png>
-Package pdftex.def Info: "heavy_tail_best_arm_ident".png used on input line 82.
+<use "../results/preliminary_figures/Reputation Trajectory for Uniform 10 arms"
+.pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
+for Uniform 10 arms".pdf used on input line 78.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-(pdftex.def)             Requested size: 207.77574pt x 176.15768pt.
+<"../results/preliminary_figures/Reputation Trajectory for Heavy Tail 10 arms".
+pdf, id=44, 578.16pt x 578.16pt>
+File: "../results/preliminary_figures/Reputation Trajectory for Heavy Tail 10 a
+rms".pdf Graphic file (type pdf)
 
-<"uniform_best_arm_identification".png, id=45, 415.5525pt x 352.31625pt>
-File: "uniform_best_arm_identification".png Graphic file (type png)
-
-<use "uniform_best_arm_identification".png>
-Package pdftex.def Info: "uniform_best_arm_identification".png used on input li
-ne 83.
-(pdftex.def)             Requested size: 207.77574pt x 176.15768pt.
+<use "../results/preliminary_figures/Reputation Trajectory for Heavy Tail 10 ar
+ms".pdf>
+Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
+for Heavy Tail 10 arms".pdf used on input line 79.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
  [3 <../results/preliminary_figures/Reputation Trajectory for Uniform 3 arms.pd
 f> <../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arms.
-pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+pdf>] [4 <../results/preliminary_figures/Reputation Trajectory for Needle In Ha
+ystack High 10 arms.pdf> <../results/preliminary_figures/Reputation Trajectory 
+for Uniform 10 arms.pdf>]
+<"preliminary_nih_3_arms".png, id=85, 373.395pt x 353.32pt>
+File: "preliminary_nih_3_arms".png Graphic file (type png)
+
+<use "preliminary_nih_3_arms".png>
+Package pdftex.def Info: "preliminary_nih_3_arms".png used on input line 84.
+(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
+
+<"preliminary_best_arm_heavy_tail_3".png, id=87, 373.395pt x 353.32pt>
+File: "preliminary_best_arm_heavy_tail_3".png Graphic file (type png)
+
+<use "preliminary_best_arm_heavy_tail_3".png>
+Package pdftex.def Info: "preliminary_best_arm_heavy_tail_3".png used on input 
+line 85.
+(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
+
+<"uniform_best_arm_identification_3_arms".png, id=88, 373.395pt x 353.32pt>
+File: "uniform_best_arm_identification_3_arms".png Graphic file (type png)
+
+<use "uniform_best_arm_identification_3_arms".png>
+Package pdftex.def Info: "uniform_best_arm_identification_3_arms".png used on i
+nput line 86.
+(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
+
+<preliminary_nih_10_arms.png, id=89, 373.395pt x 353.32pt>
+File: preliminary_nih_10_arms.png Graphic file (type png)
+
+<use preliminary_nih_10_arms.png>
+Package pdftex.def Info: preliminary_nih_10_arms.png used on input line 87.
+(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
+
+<preliminary_best_arm_uniform_10.png, id=90, 373.395pt x 353.32pt>
+File: preliminary_best_arm_uniform_10.png Graphic file (type png)
+
+<use preliminary_best_arm_uniform_10.png>
+Package pdftex.def Info: preliminary_best_arm_uniform_10.png used on input line
+ 88.
+(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
+
+<preliminary_best_arm_heavy_tail_10.png, id=91, 373.395pt x 353.32pt>
+File: preliminary_best_arm_heavy_tail_10.png Graphic file (type png)
+
+<use preliminary_best_arm_heavy_tail_10.png>
+Package pdftex.def Info: preliminary_best_arm_heavy_tail_10.png used on input l
+ine 89.
+(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
+ [5 <../results/preliminary_figures/Reputation Trajectory for Heavy Tail 10 arm
+s.pdf> <./preliminary_nih_3_arms.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-[4 <./needle_in_haystack_best_arm_ident.png> <./heavy_tail_best_arm_ident.png> 
-<./uniform_best_arm_identification.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 96--100
+[6 <./preliminary_best_arm_heavy_tail_3.png> <./uniform_best_arm_identification
+_3_arms.png> <./preliminary_nih_10_arms.png> <./preliminary_best_arm_uniform_10
+.png> <./preliminary_best_arm_heavy_tail_10.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 101--105
 
  []
 
-<low_time_high_num_sim.pdf, id=73, 614.295pt x 794.97pt>
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
+<many_arms_vs_few_arms.pdf, id=115, 614.295pt x 794.97pt>
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use low_time_high_num_sim.pdf>
-Package pdftex.def Info: low_time_high_num_sim.pdf used on input line 105.
+<use many_arms_vs_few_arms.pdf>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf used on input line 112.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
- <use low_time_high_num_sim.pdf>
-Package pdftex.def Info: low_time_high_num_sim.pdf used on input line 105.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+ <use many_arms_vs_few_arms.pdf>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf used on input line 112.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<low_time_high_num_sim.pdf, id=76, page=1, 614.295pt x 794.97pt>
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
+<many_arms_vs_few_arms.pdf, id=118, page=1, 614.295pt x 794.97pt>
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use low_time_high_num_sim.pdf, page 1>
-Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 10
-5.
+<use many_arms_vs_few_arms.pdf, page 1>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 11
+2.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use low_time_high_num_sim.pdf, page 1>
-Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 10
-5.
+<use many_arms_vs_few_arms.pdf, page 1>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 11
+2.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [5]
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
+ [7]
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use low_time_high_num_sim.pdf, page 1>
-Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 10
-5.
+<use many_arms_vs_few_arms.pdf, page 1>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 11
+2.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use low_time_high_num_sim.pdf, page 1>
-Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 10
-5.
+<use many_arms_vs_few_arms.pdf, page 1>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 11
+2.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: low_time_high_num_sim.pdf Graphic file (type pdf)
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use low_time_high_num_sim.pdf, page 1>
-Package pdftex.def Info: low_time_high_num_sim.pdf, page1 used on input line 10
-5.
+<use many_arms_vs_few_arms.pdf, page 1>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 11
+2.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [6 <./low_time_high_num_sim.pdf
+ [8 <./many_arms_vs_few_arms.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./low_time_high_num_sim.pdf)
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
 : PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
 <array>); ignored.
->] <tournament_results.pdf, id=106, 614.295pt x 794.97pt>
-File: tournament_results.pdf Graphic file (type pdf)
+>] <many_arms_vs_few_arms.pdf, id=148, page=2, 614.295pt x 794.97pt>
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
 
-<use tournament_results.pdf>
-Package pdftex.def Info: tournament_results.pdf used on input line 107.
+<use many_arms_vs_few_arms.pdf, page 2>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page2 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 2>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page2 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 2>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page2 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [9 <./many_arms_vs_few_arms.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
+: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
+<array>); ignored.
+>] <many_arms_vs_few_arms.pdf, id=153, page=3, 614.295pt x 794.97pt>
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 3>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page3 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 3>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page3 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 3>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page3 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [10 <./many_arms_vs_few_arms.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
+: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
+<array>); ignored.
+>] <many_arms_vs_few_arms.pdf, id=158, page=4, 614.295pt x 794.97pt>
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 4>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page4 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 4>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page4 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+
+<use many_arms_vs_few_arms.pdf, page 4>
+Package pdftex.def Info: many_arms_vs_few_arms.pdf, page4 used on input line 11
+2.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [11 <./many_arms_vs_few_arms.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
+: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
+<array>); ignored.
+>] [12] <reputation_vs_information.pdf, id=170, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf>
+Package pdftex.def Info: reputation_vs_information.pdf used on input line 134.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: tournament_results.pdf Graphic file (type pdf)
- <use tournament_results.pdf>
-Package pdftex.def Info: tournament_results.pdf used on input line 107.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-
-<tournament_results.pdf, id=109, page=1, 614.295pt x 794.97pt>
-File: tournament_results.pdf Graphic file (type pdf)
-
-<use tournament_results.pdf, page 1>
-Package pdftex.def Info: tournament_results.pdf, page1 used on input line 107.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: tournament_results.pdf Graphic file (type pdf)
- <use tournament_results.pdf, page 1>
-Package pdftex.def Info: tournament_results.pdf, page1 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: tournament_results.pdf Graphic file (type pdf)
-
-<use tournament_results.pdf, page 1>
-Package pdftex.def Info: tournament_results.pdf, page1 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: tournament_results.pdf Graphic file (type pdf)
- <use tournament_results.pdf, page 1>
-Package pdftex.def Info: tournament_results.pdf, page1 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: tournament_results.pdf Graphic file (type pdf)
-
-<use tournament_results.pdf, page 1>
-Package pdftex.def Info: tournament_results.pdf, page1 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [7 <./tournament_results.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_results.pdf): P
-DF inclusion: invalid other resource which is no dict (key 'ProcSets', type <ar
-ray>); ignored.
->] <tournament_results.pdf, id=132, page=2, 614.295pt x 794.97pt>
-File: tournament_results.pdf Graphic file (type pdf)
-
-<use tournament_results.pdf, page 2>
-Package pdftex.def Info: tournament_results.pdf, page2 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: tournament_results.pdf Graphic file (type pdf)
- <use tournament_results.pdf, page 2>
-Package pdftex.def Info: tournament_results.pdf, page2 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: tournament_results.pdf Graphic file (type pdf)
-
-<use tournament_results.pdf, page 2>
-Package pdftex.def Info: tournament_results.pdf, page2 used on input line 107.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [8 <./tournament_results.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tournament_results.pdf): P
-DF inclusion: invalid other resource which is no dict (key 'ProcSets', type <ar
-ray>); ignored.
->] <decreasing_ms_over_time.pdf, id=137, 614.295pt x 794.97pt>
-File: decreasing_ms_over_time.pdf Graphic file (type pdf)
-
-<use decreasing_ms_over_time.pdf>
-Package pdftex.def Info: decreasing_ms_over_time.pdf used on input line 111.
-(pdftex.def)             Requested size: 184.28992pt x 238.49284pt.
-
-<standard_ms_over_time.pdf, id=138, 614.295pt x 794.97pt>
-File: standard_ms_over_time.pdf Graphic file (type pdf)
-
-<use standard_ms_over_time.pdf>
-Package pdftex.def Info: standard_ms_over_time.pdf used on input line 112.
-(pdftex.def)             Requested size: 184.28992pt x 238.49284pt.
-
-<odd_ms_over_time.pdf, id=139, 614.295pt x 794.97pt>
-File: odd_ms_over_time.pdf Graphic file (type pdf)
-
-<use odd_ms_over_time.pdf>
-Package pdftex.def Info: odd_ms_over_time.pdf used on input line 116.
-(pdftex.def)             Requested size: 184.28992pt x 238.49284pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--117
-
- []
-
-[9 <./decreasing_ms_over_time.pdf> <./standard_ms_over_time.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
-
- []
-
-<hmr_over_time.pdf, id=156, 614.295pt x 794.97pt>
-File: hmr_over_time.pdf Graphic file (type pdf)
- <use hmr_over_time.pdf>
-Package pdftex.def Info: hmr_over_time.pdf used on input line 121.
-(pdftex.def)             Requested size: 153.57336pt x 198.742pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--123
-
- []
-
-[10 <./odd_ms_over_time.pdf>] [11 <./hmr_over_time.pdf>]
-<free_obs_tournament.pdf, id=179, 614.295pt x 794.97pt>
-File: free_obs_tournament.pdf Graphic file (type pdf)
-
-<use free_obs_tournament.pdf>
-Package pdftex.def Info: free_obs_tournament.pdf used on input line 134.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
- <use free_obs_tournament.pdf>
-Package pdftex.def Info: free_obs_tournament.pdf used on input line 134.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+ <use reputation_vs_information.pdf>
+Package pdftex.def Info: reputation_vs_information.pdf used on input line 134.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<free_obs_tournament.pdf, id=182, page=1, 614.295pt x 794.97pt>
-File: free_obs_tournament.pdf Graphic file (type pdf)
+<reputation_vs_information.pdf, id=173, page=1, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-<use free_obs_tournament.pdf, page 1>
-Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 134.
-
+<use reputation_vs_information.pdf, page 1>
+Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
- <use free_obs_tournament.pdf, page 1>
-Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 134.
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
+<use reputation_vs_information.pdf, page 1>
+Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [13]
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-[12]
-File: free_obs_tournament.pdf Graphic file (type pdf)
- <use free_obs_tournament.pdf, page 1>
-Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 134.
-
+<use reputation_vs_information.pdf, page 1>
+Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-<use free_obs_tournament.pdf, page 1>
-Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 134.
-
+<use reputation_vs_information.pdf, page 1>
+Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
- <use free_obs_tournament.pdf, page 1>
-Package pdftex.def Info: free_obs_tournament.pdf, page1 used on input line 134.
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
+<use reputation_vs_information.pdf, page 1>
+Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [14 <./reputation_vs_information.pdf
 
-[13 <./free_obs_tournament.pdf
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=202, page=2, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./free_obs_tournament.pdf): 
-PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <a
-rray>); ignored.
->] <free_obs_tournament.pdf, id=209, page=2, 614.295pt x 794.97pt>
-File: free_obs_tournament.pdf Graphic file (type pdf)
-
-<use free_obs_tournament.pdf, page 2>
-Package pdftex.def Info: free_obs_tournament.pdf, page2 used on input line 134.
-
+<use reputation_vs_information.pdf, page 2>
+Package pdftex.def Info: reputation_vs_information.pdf, page2 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
- <use free_obs_tournament.pdf, page 2>
-Package pdftex.def Info: free_obs_tournament.pdf, page2 used on input line 134.
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
+<use reputation_vs_information.pdf, page 2>
+Package pdftex.def Info: reputation_vs_information.pdf, page2 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-<use free_obs_tournament.pdf, page 2>
-Package pdftex.def Info: free_obs_tournament.pdf, page2 used on input line 134.
-
+<use reputation_vs_information.pdf, page 2>
+Package pdftex.def Info: reputation_vs_information.pdf, page2 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [14 <./free_obs_tournament.pdf
+ [15 <./reputation_vs_information.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./free_obs_tournament.pdf): 
-PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <a
-rray>); ignored.
->] <free_obs_tournament.pdf, id=214, page=3, 614.295pt x 794.97pt>
-File: free_obs_tournament.pdf Graphic file (type pdf)
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=207, page=3, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-<use free_obs_tournament.pdf, page 3>
-Package pdftex.def Info: free_obs_tournament.pdf, page3 used on input line 134.
-
+<use reputation_vs_information.pdf, page 3>
+Package pdftex.def Info: reputation_vs_information.pdf, page3 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
- <use free_obs_tournament.pdf, page 3>
-Package pdftex.def Info: free_obs_tournament.pdf, page3 used on input line 134.
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
+<use reputation_vs_information.pdf, page 3>
+Package pdftex.def Info: reputation_vs_information.pdf, page3 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_tournament.pdf Graphic file (type pdf)
+File: reputation_vs_information.pdf Graphic file (type pdf)
 
-<use free_obs_tournament.pdf, page 3>
-Package pdftex.def Info: free_obs_tournament.pdf, page3 used on input line 134.
-
+<use reputation_vs_information.pdf, page 3>
+Package pdftex.def Info: reputation_vs_information.pdf, page3 used on input lin
+e 134.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [15 <./free_obs_tournament.pdf
+ [16 <./reputation_vs_information.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./free_obs_tournament.pdf): 
-PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <a
-rray>); ignored.
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=212, page=4, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 4>
+Package pdftex.def Info: reputation_vs_information.pdf, page4 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 4>
+Package pdftex.def Info: reputation_vs_information.pdf, page4 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 4>
+Package pdftex.def Info: reputation_vs_information.pdf, page4 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [17 <./reputation_vs_information.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=217, page=5, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 5>
+Package pdftex.def Info: reputation_vs_information.pdf, page5 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 5>
+Package pdftex.def Info: reputation_vs_information.pdf, page5 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 5>
+Package pdftex.def Info: reputation_vs_information.pdf, page5 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [18 <./reputation_vs_information.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=222, page=6, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 6>
+Package pdftex.def Info: reputation_vs_information.pdf, page6 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 6>
+Package pdftex.def Info: reputation_vs_information.pdf, page6 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 6>
+Package pdftex.def Info: reputation_vs_information.pdf, page6 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [19 <./reputation_vs_information.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=228, page=7, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 7>
+Package pdftex.def Info: reputation_vs_information.pdf, page7 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 7>
+Package pdftex.def Info: reputation_vs_information.pdf, page7 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 7>
+Package pdftex.def Info: reputation_vs_information.pdf, page7 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [20 <./reputation_vs_information.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=233, page=8, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 8>
+Package pdftex.def Info: reputation_vs_information.pdf, page8 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 8>
+Package pdftex.def Info: reputation_vs_information.pdf, page8 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 8>
+Package pdftex.def Info: reputation_vs_information.pdf, page8 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [21 <./reputation_vs_information.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
+>] <reputation_vs_information.pdf, id=238, page=9, 614.295pt x 794.97pt>
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 9>
+Package pdftex.def Info: reputation_vs_information.pdf, page9 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 9>
+Package pdftex.def Info: reputation_vs_information.pdf, page9 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: reputation_vs_information.pdf Graphic file (type pdf)
+
+<use reputation_vs_information.pdf, page 9>
+Package pdftex.def Info: reputation_vs_information.pdf, page9 used on input lin
+e 134.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [22 <./reputation_vs_information.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
+pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
+ype <array>); ignored.
 >]
 <"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for N
-eedle In Haystack 1 High 3 arms".pdf, id=219, 578.16pt x 578.16pt>
+eedle In Haystack 1 High 3 arms".pdf, id=243, 578.16pt x 578.16pt>
 File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
 for Needle In Haystack 1 High 3 arms".pdf Graphic file (type pdf)
 
@@ -1082,7 +1259,7 @@ Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
 <"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for U
-niform 3 arms".pdf, id=220, 578.16pt x 578.16pt>
+niform 3 arms".pdf, id=244, 578.16pt x 578.16pt>
 File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
 for Uniform 3 arms".pdf Graphic file (type pdf)
 
@@ -1093,7 +1270,7 @@ Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
 <"../results/preliminary_figures/Instantaneous Realized Reward Trajectory for H
-eavy Tail 3 arms".pdf, id=221, 578.16pt x 578.16pt>
+eavy Tail 3 arms".pdf, id=245, 578.16pt x 578.16pt>
 File: "../results/preliminary_figures/Instantaneous Realized Reward Trajectory 
 for Heavy Tail 3 arms".pdf Graphic file (type pdf)
 
@@ -1102,18 +1279,18 @@ or Heavy Tail 3 arms".pdf>
 Package pdftex.def Info: "../results/preliminary_figures/Instantaneous Realized
  Reward Trajectory for Heavy Tail 3 arms".pdf used on input line 153.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
- [16 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+ [23 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
 or Needle In Haystack 1 High 3 arms.pdf>]
-<"reputation_true_mean".png, id=239, 674.52pt x 492.84125pt>
+<"reputation_true_mean".png, id=263, 674.52pt x 492.84125pt>
 File: "reputation_true_mean".png Graphic file (type png)
 
 <use "reputation_true_mean".png>
 Package pdftex.def Info: "reputation_true_mean".png used on input line 158.
 (pdftex.def)             Requested size: 337.25917pt x 246.42001pt.
- [17 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
+ [24 <../results/preliminary_figures/Instantaneous Realized Reward Trajectory f
 or Uniform 3 arms.pdf> <../results/preliminary_figures/Instantaneous Realized R
 eward Trajectory for Heavy Tail 3 arms.pdf>]
-<less_free_obs_tournament_table.pdf, id=260, 614.295pt x 794.97pt>
+<less_free_obs_tournament_table.pdf, id=284, 614.295pt x 794.97pt>
 File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 
 <use less_free_obs_tournament_table.pdf>
@@ -1127,7 +1304,7 @@ Package pdftex.def Info: less_free_obs_tournament_table.pdf used on input line
 164.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<less_free_obs_tournament_table.pdf, id=263, page=1, 614.295pt x 794.97pt>
+<less_free_obs_tournament_table.pdf, id=287, page=1, 614.295pt x 794.97pt>
 File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 
 <use less_free_obs_tournament_table.pdf, page 1>
@@ -1140,7 +1317,7 @@ File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
 t line 164.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [18 <./reputation_true_mean.png>]
+ [25 <./reputation_true_mean.png>]
 File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
  <use less_free_obs_tournament_table.pdf, page 1>
 Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
@@ -1158,12 +1335,12 @@ File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 Package pdftex.def Info: less_free_obs_tournament_table.pdf, page1 used on inpu
 t line 164.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [19 <./less_free_obs_tournament_table.pdf
+ [26 <./less_free_obs_tournament_table.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./less_free_obs_tournament_t
 able.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSet
 s', type <array>); ignored.
->] <less_free_obs_tournament_table.pdf, id=293, page=2, 614.295pt x 794.97pt>
+>] <less_free_obs_tournament_table.pdf, id=318, page=2, 614.295pt x 794.97pt>
 File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 
 <use less_free_obs_tournament_table.pdf, page 2>
@@ -1182,12 +1359,12 @@ File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 Package pdftex.def Info: less_free_obs_tournament_table.pdf, page2 used on inpu
 t line 164.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [20 <./less_free_obs_tournament_table.pdf
+ [27 <./less_free_obs_tournament_table.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./less_free_obs_tournament_t
 able.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSet
 s', type <array>); ignored.
->] <less_free_obs_tournament_table.pdf, id=298, page=3, 614.295pt x 794.97pt>
+>] <less_free_obs_tournament_table.pdf, id=323, page=3, 614.295pt x 794.97pt>
 File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 
 <use less_free_obs_tournament_table.pdf, page 3>
@@ -1206,7 +1383,7 @@ File: less_free_obs_tournament_table.pdf Graphic file (type pdf)
 Package pdftex.def Info: less_free_obs_tournament_table.pdf, page3 used on inpu
 t line 164.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [21 <./less_free_obs_tournament_table.pdf
+ [28 <./less_free_obs_tournament_table.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./less_free_obs_tournament_t
 able.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSet
@@ -1222,10 +1399,10 @@ Package rerunfilecheck Info: File `overview.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 167.
  ) 
 Here is how much of TeX's memory you used:
- 8426 strings out of 492995
- 123788 string characters out of 6132704
- 222593 words of memory out of 5000000
- 11781 multiletter control sequences out of 15000+600000
+ 8457 strings out of 492995
+ 125805 string characters out of 6132704
+ 223593 words of memory out of 5000000
+ 11806 multiletter control sequences out of 15000+600000
  11651 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,18n,46p,1169b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1237,10 +1414,10 @@ sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loca
 l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on overview.pdf (21 pages, 1396146 bytes).
+Output written on overview.pdf (28 pages, 550671 bytes).
 PDF statistics:
- 343 PDF objects out of 1000 (max. 8388607)
- 236 compressed objects within 3 object streams
- 44 named destinations out of 1000 (max. 500000)
- 176 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 368 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 
