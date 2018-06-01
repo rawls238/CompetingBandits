@@ -58,7 +58,7 @@ BANDIT_DISTR = {
 }
 
 WORKING_DIRECTORY = ''
-#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 
 if FREE_OBS:
   dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
