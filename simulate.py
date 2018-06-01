@@ -19,6 +19,8 @@ def getRealDistributionsFromPrior(priorName, prior, K):
     return [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
   elif priorName == 'Heavy Tail':
     return [bernoulli(prior.rvs()) for i in xrange(K)]
+  elif priorName == '.5/.7 Random Draw'
+    return [bernoulli(random.choice([0.5, 0.75])) for i in xrange(K)]
   return prior
 
 # realDistributions - the true distribution of the arms

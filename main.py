@@ -24,13 +24,13 @@ import csv
 import sys
 import pickle
 
-K = 3
-T = 2002
-NUM_SIMULATIONS = 300
+K = 10
+T = 15002
+NUM_SIMULATIONS = 1000
 
-FREE_OBS = True
+FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 're_run'
+exp_name = 'random_draw'
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 10
 if len(sys.argv) > 1:
@@ -39,9 +39,9 @@ if len(sys.argv) > 1:
 AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy), 
-(ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy), 
-(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)] 
+#(ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy), 
+#(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
@@ -54,9 +54,7 @@ needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Needle In Haystack High': needle_in_haystack_50_high,
-  'Uniform': None,
-  'Heavy Tail': heavy_tail_prior
+  '.5/.7 Random Draw': None
 }
 
 WORKING_DIRECTORY = ''
