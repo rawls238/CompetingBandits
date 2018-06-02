@@ -26,35 +26,36 @@ import pickle
 
 K = 10
 T = 2002
-NUM_SIMULATIONS = 1500
+NUM_SIMULATIONS = 500
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 'vary_warm_start'
+exp_name = 'needle_in_haystack_multiple'
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 10
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
-AGENT_ALGS = [HardMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)] 
 #(ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy), 
 #(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
-default_mean = 0.5
-needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
 
-needle_in_haystack_50_high = deepcopy(needle_in_haystack)
-needle_in_haystack_50_high[int(K/2)] = bernoulli(default_mean + 0.2)
-
-needle_in_haystack_50_medium = deepcopy(needle_in_haystack)
-needle_in_haystack_50_medium[int(K/2)] = bernoulli(default_mean + 0.05)
+def get_needle_in_haystack(starting_mean):
+  default_mean = 0.5
+  needle_in_haystack = [bernoulli(starting_mean) for i in xrange(K)]
+  needle_in_haystack[int(K/2)] = bernoulli(starting_mean + 0.2)
+  return needle_in_haystack
 
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  '.5/.7 Random Draw': None
+  'Needle In Haystack - 0.1': get_needle_in_haystack(0.1),
+  'Needle In Haystack - 0.3': get_needle_in_haystack(0.3),
+  'Needle In Haystack - 0.5': get_needle_in_haystack(0.5),
+  'Needle In Haystack - 0.7': get_needle_in_haystack(0.7)
 }
 
 WORKING_DIRECTORY = ''
@@ -214,7 +215,7 @@ def run_experiment(startSizes):
   pickle.dump(results, open("bandit_simulations.p", "wb" )) # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
   return results
 
-START_SIZES = [1, 5, 10, 15, 20, 50, 100]
+START_SIZES = [5]
 run_experiment(START_SIZES)
 print('all done!')
 #DISCOUNT_FACTORS = [0.5, 0.75, 0.9, 0.99]
