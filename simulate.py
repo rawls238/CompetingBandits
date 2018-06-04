@@ -78,8 +78,9 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for principal in principals.values():
     principal.setBanditInstance(banditProblemInstance)
 
-  principalHistory = []
   results = []
+  lastPrincipalPicked = None
+  effectiveEndOfGame = None
   for t in xrange(int(T)):
     if t in recordStatsAt:
       reputation = agents.getScores()
@@ -95,10 +96,13 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
         'time': t
       })
     (principalName, principal) = agents.selectPrincipal()
-    principalHistory.append(principalName)
+    if lastPrincipalPicked != principalName:
+      lastPrincipalPicked = principalName
+      effectiveEndOfGame = t
     (reward, arm) = principal.executeStep(t)
     agents.updateInformationSet(reward, arm, principalName)
-  
+  for i in xrange(len(results)):
+    results[i]['effectiveEndOfGame'] = effectiveEndOfGame  
   return results
 
 
@@ -111,6 +115,7 @@ initialResultDict = {
   'avgRegret2': [],
   'reputation1': [],
   'reputation2': [],
+  'effectiveEndOfGame': [],
   'principalHistory': [],
   'time': []
 }

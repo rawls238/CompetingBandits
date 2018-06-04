@@ -26,17 +26,17 @@ import pickle
 
 K = 10
 T = 2002
-NUM_SIMULATIONS = 500
+NUM_SIMULATIONS = 1000
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 'needle_in_haystack_multiple'
+exp_name = 'effective_end_of_game'
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 10
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)] 
@@ -44,7 +44,6 @@ ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, Dynamic
 #(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 
 def get_needle_in_haystack(starting_mean):
-  default_mean = 0.5
   needle_in_haystack = [bernoulli(starting_mean) for i in xrange(K)]
   needle_in_haystack[int(K/2)] = bernoulli(starting_mean + 0.2)
   return needle_in_haystack
@@ -52,14 +51,13 @@ def get_needle_in_haystack(starting_mean):
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Needle In Haystack - 0.1': get_needle_in_haystack(0.1),
-  'Needle In Haystack - 0.3': get_needle_in_haystack(0.3),
+  'Heavy Tail': heavy_tail_prior,
   'Needle In Haystack - 0.5': get_needle_in_haystack(0.5),
-  'Needle In Haystack - 0.7': get_needle_in_haystack(0.7)
+  'Uniform': None
 }
 
 WORKING_DIRECTORY = ''
-WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 
 if FREE_OBS:
   dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
@@ -75,7 +73,7 @@ realizations_name = exp_base_name + '_realizations.csv'
 dist_name = exp_base_name + '_dist.csv'
 
 AGGREGATE_FIELD_NAMES = ['P1 Number of NaNs', 'P2 Number of NaNs', 'Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
-INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
 def fetch_distributions(filename, priorname):
   realDistributions = {}
@@ -182,6 +180,7 @@ def run_experiment(startSizes):
                         'P2 Alg': principalAlg2.__name__,
                         'P1 Regret': regret1,
                         'P2 Regret': regret2,
+                        'EEOG': res['effectiveEndOfGame'],
                         'P1 Reputation': res['reputation1'],
                         'P2 Reputation': res['reputation2'],
                         'Abs Delta Regret': np.abs(regret1 - regret2),
