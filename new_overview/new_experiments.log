@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  22 MAY 2018 15:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 JUN 2018 23:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -747,395 +747,156 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-<many_arms_vs_few_arms.pdf, id=4, 614.295pt x 794.97pt>
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf used on input line 47.
+<eeog_old_priors.pdf, id=4, 614.295pt x 794.97pt>
+File: eeog_old_priors.pdf Graphic file (type pdf)
+ <use eeog_old_priors.pdf>
+Package pdftex.def Info: eeog_old_priors.pdf used on input line 29.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
- <use many_arms_vs_few_arms.pdf>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf used on input line 47.
+File: eeog_old_priors.pdf Graphic file (type pdf)
+
+<use eeog_old_priors.pdf>
+Package pdftex.def Info: eeog_old_priors.pdf used on input line 29.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<many_arms_vs_few_arms.pdf, id=7, page=1, 614.295pt x 794.97pt>
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+<eeog_old_priors.pdf, id=7, page=1, 614.295pt x 794.97pt>
+File: eeog_old_priors.pdf Graphic file (type pdf)
 
-<use many_arms_vs_few_arms.pdf, page 1>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 47
-.
+<use eeog_old_priors.pdf, page 1>
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 1>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 47
-.
+File: eeog_old_priors.pdf Graphic file (type pdf)
+ <use eeog_old_priors.pdf, page 1>
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
- <use many_arms_vs_few_arms.pdf, page 1>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 47
-.
+File: eeog_old_priors.pdf Graphic file (type pdf)
+
+<use eeog_old_priors.pdf, page 1>
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 1>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 47
-.
+File: eeog_old_priors.pdf Graphic file (type pdf)
+ <use eeog_old_priors.pdf, page 1>
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+File: eeog_old_priors.pdf Graphic file (type pdf)
 
-<use many_arms_vs_few_arms.pdf, page 1>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page1 used on input line 47
-.
+<use eeog_old_priors.pdf, page 1>
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [2 <./many_arms_vs_few_arms.pdf
+ [2 <./eeog_old_priors.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
-: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
-<array>); ignored.
->] <many_arms_vs_few_arms.pdf, id=51, page=2, 614.295pt x 794.97pt>
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./eeog_old_priors.pdf): PDF 
+inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
+>); ignored.
+>] <eeog_old_priors.pdf, id=40, page=2, 614.295pt x 794.97pt>
+File: eeog_old_priors.pdf Graphic file (type pdf)
 
-<use many_arms_vs_few_arms.pdf, page 2>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page2 used on input line 47
-.
+<use eeog_old_priors.pdf, page 2>
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 2>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page2 used on input line 47
-.
+File: eeog_old_priors.pdf Graphic file (type pdf)
+ <use eeog_old_priors.pdf, page 2>
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
+File: eeog_old_priors.pdf Graphic file (type pdf)
 
-<use many_arms_vs_few_arms.pdf, page 2>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page2 used on input line 47
-.
+<use eeog_old_priors.pdf, page 2>
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 29.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [3 <./many_arms_vs_few_arms.pdf
+ [3 <./eeog_old_priors.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
-: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
-<array>); ignored.
->] <many_arms_vs_few_arms.pdf, id=56, page=3, 614.295pt x 794.97pt>
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 3>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page3 used on input line 47
-.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 3>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page3 used on input line 47
-.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 3>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page3 used on input line 47
-.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [4 <./many_arms_vs_few_arms.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
-: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
-<array>); ignored.
->] <many_arms_vs_few_arms.pdf, id=61, page=4, 614.295pt x 794.97pt>
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 4>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page4 used on input line 47
-.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 4>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page4 used on input line 47
-.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: many_arms_vs_few_arms.pdf Graphic file (type pdf)
-
-<use many_arms_vs_few_arms.pdf, page 4>
-Package pdftex.def Info: many_arms_vs_few_arms.pdf, page4 used on input line 47
-.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [5 <./many_arms_vs_few_arms.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./many_arms_vs_few_arms.pdf)
-: PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type 
-<array>); ignored.
->] <reputation_vs_information.pdf, id=66, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf>
-Package pdftex.def Info: reputation_vs_information.pdf used on input line 61.
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./eeog_old_priors.pdf): PDF 
+inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
+>); ignored.
+>] <haystack_eeog.pdf, id=45, 614.295pt x 794.97pt>
+File: haystack_eeog.pdf Graphic file (type pdf)
+ <use haystack_eeog.pdf>
+Package pdftex.def Info: haystack_eeog.pdf used on input line 33.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
- <use reputation_vs_information.pdf>
-Package pdftex.def Info: reputation_vs_information.pdf used on input line 61.
+File: haystack_eeog.pdf Graphic file (type pdf)
+
+<use haystack_eeog.pdf>
+Package pdftex.def Info: haystack_eeog.pdf used on input line 33.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<reputation_vs_information.pdf, id=69, page=1, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
+<haystack_eeog.pdf, id=48, page=1, 614.295pt x 794.97pt>
+File: haystack_eeog.pdf Graphic file (type pdf)
 
-<use reputation_vs_information.pdf, page 1>
-Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
-e 61.
+<use haystack_eeog.pdf, page 1>
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 1>
-Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
-e 61.
+File: haystack_eeog.pdf Graphic file (type pdf)
+ <use haystack_eeog.pdf, page 1>
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [6]
-File: reputation_vs_information.pdf Graphic file (type pdf)
+ [4]
+File: haystack_eeog.pdf Graphic file (type pdf)
 
-<use reputation_vs_information.pdf, page 1>
-Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
-e 61.
+<use haystack_eeog.pdf, page 1>
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 1>
-Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
-e 61.
+File: haystack_eeog.pdf Graphic file (type pdf)
+ <use haystack_eeog.pdf, page 1>
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
+File: haystack_eeog.pdf Graphic file (type pdf)
 
-<use reputation_vs_information.pdf, page 1>
-Package pdftex.def Info: reputation_vs_information.pdf, page1 used on input lin
-e 61.
+<use haystack_eeog.pdf, page 1>
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [7 <./reputation_vs_information.pdf
+ [5 <./haystack_eeog.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=100, page=2, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./haystack_eeog.pdf): PDF in
+clusion: invalid other resource which is no dict (key 'ProcSets', type <array>)
+; ignored.
+>] <haystack_eeog.pdf, id=75, page=2, 614.295pt x 794.97pt>
+File: haystack_eeog.pdf Graphic file (type pdf)
 
-<use reputation_vs_information.pdf, page 2>
-Package pdftex.def Info: reputation_vs_information.pdf, page2 used on input lin
-e 61.
+<use haystack_eeog.pdf, page 2>
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 2>
-Package pdftex.def Info: reputation_vs_information.pdf, page2 used on input lin
-e 61.
+File: haystack_eeog.pdf Graphic file (type pdf)
+ <use haystack_eeog.pdf, page 2>
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
+File: haystack_eeog.pdf Graphic file (type pdf)
 
-<use reputation_vs_information.pdf, page 2>
-Package pdftex.def Info: reputation_vs_information.pdf, page2 used on input lin
-e 61.
+<use haystack_eeog.pdf, page 2>
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 33.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [8 <./reputation_vs_information.pdf
+ [6 <./haystack_eeog.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=105, page=3, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 3>
-Package pdftex.def Info: reputation_vs_information.pdf, page3 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 3>
-Package pdftex.def Info: reputation_vs_information.pdf, page3 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 3>
-Package pdftex.def Info: reputation_vs_information.pdf, page3 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [9 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=110, page=4, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 4>
-Package pdftex.def Info: reputation_vs_information.pdf, page4 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 4>
-Package pdftex.def Info: reputation_vs_information.pdf, page4 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 4>
-Package pdftex.def Info: reputation_vs_information.pdf, page4 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [10 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=115, page=5, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 5>
-Package pdftex.def Info: reputation_vs_information.pdf, page5 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 5>
-Package pdftex.def Info: reputation_vs_information.pdf, page5 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 5>
-Package pdftex.def Info: reputation_vs_information.pdf, page5 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [11 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=120, page=6, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 6>
-Package pdftex.def Info: reputation_vs_information.pdf, page6 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 6>
-Package pdftex.def Info: reputation_vs_information.pdf, page6 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 6>
-Package pdftex.def Info: reputation_vs_information.pdf, page6 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [12 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=125, page=7, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 7>
-Package pdftex.def Info: reputation_vs_information.pdf, page7 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 7>
-Package pdftex.def Info: reputation_vs_information.pdf, page7 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 7>
-Package pdftex.def Info: reputation_vs_information.pdf, page7 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [13 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=131, page=8, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 8>
-Package pdftex.def Info: reputation_vs_information.pdf, page8 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 8>
-Package pdftex.def Info: reputation_vs_information.pdf, page8 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 8>
-Package pdftex.def Info: reputation_vs_information.pdf, page8 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [14 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
->] <reputation_vs_information.pdf, id=136, page=9, 614.295pt x 794.97pt>
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 9>
-Package pdftex.def Info: reputation_vs_information.pdf, page9 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 9>
-Package pdftex.def Info: reputation_vs_information.pdf, page9 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: reputation_vs_information.pdf Graphic file (type pdf)
-
-<use reputation_vs_information.pdf, page 9>
-Package pdftex.def Info: reputation_vs_information.pdf, page9 used on input lin
-e 61.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [15 <./reputation_vs_information.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./reputation_vs_information.
-pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', t
-ype <array>); ignored.
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./haystack_eeog.pdf): PDF in
+clusion: invalid other resource which is no dict (key 'ProcSets', type <array>)
+; ignored.
 >]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 37.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 37.
  (./new_experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 63.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 37.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 37.
 Package rerunfilecheck Info: File `new_experiments.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 37.
  ) 
 Here is how much of TeX's memory you used:
- 8294 strings out of 492995
- 119096 string characters out of 6132704
- 223593 words of memory out of 5000000
- 11690 multiletter control sequences out of 15000+600000
- 11083 words of font info for 42 fonts, out of 8000000 for 9000
+ 8239 strings out of 492995
+ 117647 string characters out of 6132704
+ 218593 words of memory out of 5000000
+ 11657 multiletter control sequences out of 15000+600000
+ 9489 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,18n,46p,628b,475s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,18n,46p,282b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on new_experiments.pdf (15 pages, 218648 bytes).
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on new_experiments.pdf (6 pages, 155862 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 98 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
