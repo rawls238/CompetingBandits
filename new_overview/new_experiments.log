@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 JUN 2018 23:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 JUN 2018 13:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -750,23 +750,23 @@ LaTeX Warning: No \author given.
 <eeog_old_priors.pdf, id=4, 614.295pt x 794.97pt>
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf>
-Package pdftex.def Info: eeog_old_priors.pdf used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf used on input line 26.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf>
-Package pdftex.def Info: eeog_old_priors.pdf used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf used on input line 26.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
 <eeog_old_priors.pdf, id=7, page=1, 614.295pt x 794.97pt>
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [1
 
@@ -774,129 +774,239 @@ Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [2 <./eeog_old_priors.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./eeog_old_priors.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
 >); ignored.
->] <eeog_old_priors.pdf, id=40, page=2, 614.295pt x 794.97pt>
+>] <eeog_old_priors.pdf, id=41, page=2, 614.295pt x 794.97pt>
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 2>
-Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf, page 2>
-Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 2>
-Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 29.
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 26.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [3 <./eeog_old_priors.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./eeog_old_priors.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
 >); ignored.
->] <haystack_eeog.pdf, id=45, 614.295pt x 794.97pt>
+>] <"Reputation Trajectory for 5_7".pdf, id=46, 578.16pt x 578.16pt>
+File: "Reputation Trajectory for 5_7".pdf Graphic file (type pdf)
+
+<use "Reputation Trajectory for 5_7".pdf>
+Package pdftex.def Info: "Reputation Trajectory for 5_7".pdf used on input line
+ 34.
+(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
+
+<5_7_results.pdf, id=47, 614.295pt x 794.97pt>
+File: 5_7_results.pdf Graphic file (type pdf)
+ <use 5_7_results.pdf>
+Package pdftex.def Info: 5_7_results.pdf used on input line 38.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf>
+Package pdftex.def Info: 5_7_results.pdf used on input line 38.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+ <5_7_results.pdf, id=50, page=1, 614.295pt x 794.97pt>
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf, page 1>
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+ <use 5_7_results.pdf, page 1>
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [4 <./Reputation Trajectory for 5_7.pdf>]
+File: 5_7_results.pdf Graphic file (type pdf)
+ <use 5_7_results.pdf, page 1>
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf, page 1>
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+ <use 5_7_results.pdf, page 1>
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [5 <./5_7_results.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./5_7_results.pdf): PDF incl
+usion: invalid other resource which is no dict (key 'ProcSets', type <array>); 
+ignored.
+>] <5_7_results.pdf, id=85, page=2, 614.295pt x 794.97pt>
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf, page 2>
+Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+ <use 5_7_results.pdf, page 2>
+Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf, page 2>
+Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [6 <./5_7_results.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./5_7_results.pdf): PDF incl
+usion: invalid other resource which is no dict (key 'ProcSets', type <array>); 
+ignored.
+>] <5_7_results.pdf, id=90, page=3, 614.295pt x 794.97pt>
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf, page 3>
+Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+ <use 5_7_results.pdf, page 3>
+Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 5_7_results.pdf Graphic file (type pdf)
+
+<use 5_7_results.pdf, page 3>
+Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 38.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [7 <./5_7_results.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./5_7_results.pdf): PDF incl
+usion: invalid other resource which is no dict (key 'ProcSets', type <array>); 
+ignored.
+>]
+<"./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf, id=96, 578.16p
+t x 578.16pt>
+File: "./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf Graphic fi
+le (type pdf)
+
+<use "./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf>
+Package pdftex.def Info: "./Reputation Trajectory for Needle In Haystack 1 10 a
+rms".pdf used on input line 54.
+(pdftex.def)             Requested size: 231.2599pt x 231.2599pt.
+
+<"./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf, id=97, 578.16p
+t x 578.16pt>
+File: "./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf Graphic fi
+le (type pdf)
+
+<use "./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf>
+Package pdftex.def Info: "./Reputation Trajectory for Needle In Haystack 3 10 a
+rms".pdf used on input line 55.
+(pdftex.def)             Requested size: 231.2599pt x 231.2599pt.
+
+<haystack_eeog.pdf, id=98, 614.295pt x 794.97pt>
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf>
-Package pdftex.def Info: haystack_eeog.pdf used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf used on input line 57.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf>
-Package pdftex.def Info: haystack_eeog.pdf used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf used on input line 57.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<haystack_eeog.pdf, id=48, page=1, 614.295pt x 794.97pt>
+<haystack_eeog.pdf, id=101, page=1, 614.295pt x 794.97pt>
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [4]
+ [8 <./Reputation Trajectory for Needle In Haystack 1 10 arms.pdf> <./Reputatio
+n Trajectory for Needle In Haystack 3 10 arms.pdf>]
+File: haystack_eeog.pdf Graphic file (type pdf)
+ <use haystack_eeog.pdf, page 1>
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: haystack_eeog.pdf Graphic file (type pdf)
-
-<use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 33.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [5 <./haystack_eeog.pdf
+ [9 <./haystack_eeog.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./haystack_eeog.pdf): PDF in
 clusion: invalid other resource which is no dict (key 'ProcSets', type <array>)
 ; ignored.
->] <haystack_eeog.pdf, id=75, page=2, 614.295pt x 794.97pt>
+>] <haystack_eeog.pdf, id=148, page=2, 614.295pt x 794.97pt>
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 2>
-Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 57.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 2>
-Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 57.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 2>
-Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 33.
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 57.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [6 <./haystack_eeog.pdf
+ [10 <./haystack_eeog.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./haystack_eeog.pdf): PDF in
 clusion: invalid other resource which is no dict (key 'ProcSets', type <array>)
 ; ignored.
 >]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 37.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 37.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 61.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 61.
  (./new_experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 37.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 37.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 61.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 61.
 Package rerunfilecheck Info: File `new_experiments.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 37.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
  ) 
 Here is how much of TeX's memory you used:
- 8239 strings out of 492995
- 117647 string characters out of 6132704
- 218593 words of memory out of 5000000
- 11657 multiletter control sequences out of 15000+600000
- 9489 words of font info for 36 fonts, out of 8000000 for 9000
+ 8285 strings out of 492995
+ 118998 string characters out of 6132704
+ 219593 words of memory out of 5000000
+ 11687 multiletter control sequences out of 15000+600000
+ 10737 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,18n,46p,282b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,18n,46p,536b,469s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on new_experiments.pdf (6 pages, 155862 bytes).
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on new_experiments.pdf (10 pages, 261196 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 18 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
