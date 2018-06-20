@@ -20,7 +20,7 @@ def getRealDistributionsFromPrior(priorName, prior, K):
   elif priorName == 'Heavy Tail':
     return [bernoulli(prior.rvs()) for i in xrange(K)]
   elif priorName == '.5/.7 Random Draw':
-    return [bernoulli(random.choice([0.5, 0.75])) for i in xrange(K)]
+    return [bernoulli(random.choice([0.5, 0.7])) for i in xrange(K)]
   return prior
 
 # realDistributions - the true distribution of the arms
@@ -39,7 +39,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principal1Priors=None,
   principal2Priors=None,
   recordStatsAt=RECORD_STATS_AT,
-  seed=1.0
+  seed=1.0,
+  eraseReputation = False
 ):
   seed = int(time.time() * float(seed)) % 2**32
   np.random.seed(seed)
@@ -70,6 +71,14 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
     for (principalName, principal) in principals.iteritems():
       (reward, arm) = principal.executeStep(i)
       agents.updateInformationSet(reward, arm, principalName)
+
+  if eraseReputation:
+    agents.resetInformationSet()
+    for i in xrange(5):
+      for (principalName, principal) in principals.iteritems():
+        (reward, arm) = principal.executeStep(i)
+        agents.updateInformationSet(reward, arm, principalName)
+
 
   for principal in principals.values():
     principal.resetStats()

@@ -30,13 +30,13 @@ NUM_SIMULATIONS = 1000
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 'effective_end_of_game'
+exp_name = 'low_haystack'
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 10
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
-AGENT_ALGS = [HardMax]
+AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)] 
@@ -51,9 +51,8 @@ def get_needle_in_haystack(starting_mean):
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Heavy Tail': heavy_tail_prior,
-  'Needle In Haystack - 0.5': get_needle_in_haystack(0.5),
-  'Uniform': None
+  'Needle In Haystack - 0.1': get_needle_in_haystack(0.1),
+  'Needle In Haystack - 0.3': get_needle_in_haystack(0.3)
 }
 
 WORKING_DIRECTORY = ''
@@ -67,13 +66,11 @@ else:
   base_name = dir_name + 'tournament_experiment_'
 
 exp_base_name = base_name + exp_name
-aggregate_name = exp_base_name + '_aggregate.csv'
 raw_name = exp_base_name + '_raw.csv'
 realizations_name = exp_base_name + '_realizations.csv'
 dist_name = exp_base_name + '_dist.csv'
 
-AGGREGATE_FIELD_NAMES = ['P1 Number of NaNs', 'P2 Number of NaNs', 'Prior', 'P1 Alg', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret Mean', 'P1 Regret Std', 'P2 Regret Mean', 'P2 Regret Std', 'Abs Average Delta Regret']
-INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'Reputation Erased', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
 def fetch_distributions(filename, priorname):
   realDistributions = {}
@@ -111,108 +108,100 @@ def fetch_realizations(filename, priorname):
 
 def run_experiment(startSizes):
   results = {}
-  with open(aggregate_name, 'w') as aggregate_csv:
-    with open(raw_name, 'w') as raw_csv:
-      with open(realizations_name, 'w') as tabl:
-        with open(dist_name, 'w') as dist:
-          aggregate_fieldnames = copy(AGGREGATE_FIELD_NAMES)
-          aggregate_fieldnames.append('Warm Start')
-          aggregate_writer = csv.DictWriter(aggregate_csv, fieldnames=aggregate_fieldnames)
-          aggregate_writer.writeheader()
+  with open(raw_name, 'w') as raw_csv:
+    with open(realizations_name, 'w') as tabl:
+      with open(dist_name, 'w') as dist:
+        individual_fieldnames = copy(INDIVIDUAL_FIELD_NAMES)
+        individual_fieldnames.append('Warm Start')
+        individual_writer = csv.DictWriter(raw_csv, fieldnames=individual_fieldnames)
+        individual_writer.writeheader()
 
-          individual_fieldnames = copy(INDIVIDUAL_FIELD_NAMES)
-          individual_fieldnames.append('Warm Start')
-          individual_writer = csv.DictWriter(raw_csv, fieldnames=individual_fieldnames)
-          individual_writer.writeheader()
+        free_obs_dist_writer = csv.writer(dist)
+        free_obs_dist_writer.writerow(['Prior'] + [i for i in xrange(K)])
 
-          free_obs_dist_writer = csv.writer(dist)
-          free_obs_dist_writer.writerow(['Prior'] + [i for i in xrange(K)])
+        free_obs_realization_writer = csv.writer(tabl)
+        free_obs_realization_writer.writerow(['Prior', 't', 'n'] + [i for i in xrange(K)])
 
-          free_obs_realization_writer = csv.writer(tabl)
-          free_obs_realization_writer.writerow(['Prior', 't', 'n'] + [i for i in xrange(K)])
-
-          for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
-            realDistributions = {}
-            realizations = {}
-            warmStartRealizations = {}
-            if REALIZATIONS_NAME and len(REALIZATIONS_NAME) > 0:
-              realDistributions = fetch_distributions(REALIZATIONS_NAME, banditDistrName)
-              (realizations, warmStartRealizations) = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
-            else:
+        for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
+          realDistributions = {}
+          realizations = {}
+          warmStartRealizations = {}
+          if REALIZATIONS_NAME and len(REALIZATIONS_NAME) > 0:
+            realDistributions = fetch_distributions(REALIZATIONS_NAME, banditDistrName)
+            (realizations, warmStartRealizations) = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
+          else:
+            for q in xrange(NUM_SIMULATIONS):
+              realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+              free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
+              realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
+              free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
+            for start in startSizes:
+              warmStartRealizations[start] = {}
               for q in xrange(NUM_SIMULATIONS):
-                realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
-                free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
-                realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
-                free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
-              for start in startSizes:
-                warmStartRealizations[start] = {}
-                for q in xrange(NUM_SIMULATIONS):
-                  if FREE_OBS: # the free obs observations go first, before the warm start observations
-                    warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
-                    free_obs_realization_writer.writerows([[banditDistrName,  -1*k - 1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(FREE_OBS_NUM)])
-                    warmStartRealizations[start][q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
-                    free_obs_realization_writer.writerows([[banditDistrName, -1*FREE_OBS_NUM - k - 1, q] + [z for z in warmStartRealizations[start][q][k+FREE_OBS_NUM]] for k in xrange(start)])
-                  else:
-                    warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
-                    free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(start)])
-              
-            for agentAlg in AGENT_ALGS:
-              results[agentAlg] = {}
-              for (principalAlg1, principalAlg2) in ALG_PAIRS:
-                results[agentAlg][(principalAlg1, principalAlg2)] = {}
-                for startSize in startSizes:
-                  results[agentAlg][(principalAlg1, principalAlg2)][startSize] = {}
-                  for t in RECORD_STATS_AT:
-                    results[agentAlg][(principalAlg1, principalAlg2)][startSize][t] = deepcopy(initialResultDict)
-                  print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior ' + banditDistrName)
-                  simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1) for i in xrange(NUM_SIMULATIONS))
-                  for sim in simResults:
-                    for res in sim:
-                      t = res['time']
-                      regret1 = res['avgRegret1']
-                      regret2 = res['avgRegret2']
-                      individual_results = {
-                        'Warm Start': startSize,
-                        'Time Horizon': t,
-                        'Prior': banditDistrName,
-                        'Agent Alg': agentAlg.__name__,
-                        'P1 Alg': principalAlg1.__name__,
-                        'P2 Alg': principalAlg2.__name__,
-                        'P1 Regret': regret1,
-                        'P2 Regret': regret2,
-                        'EEOG': res['effectiveEndOfGame'],
-                        'P1 Reputation': res['reputation1'],
-                        'P2 Reputation': res['reputation2'],
-                        'Abs Delta Regret': np.abs(regret1 - regret2),
-                        'Market Share for P1': res['marketShare1'],
-                      }
-                      individual_writer.writerow(individual_results)
-                      for k, v in res.iteritems():
-                        results[agentAlg][(principalAlg1, principalAlg2)][startSize][t][k].append(deepcopy(v))
-                  for t in RECORD_STATS_AT:
-                    regrets1 = [x for x in results[agentAlg][(principalAlg1, principalAlg2)][startSize][t]['avgRegret1']]
-                    regrets2 = [x for x in results[agentAlg][(principalAlg1, principalAlg2)][startSize][t]['avgRegret2']]
-                    aggregate_results = {
+                if FREE_OBS: # the free obs observations go first, before the warm start observations
+                  warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
+                  free_obs_realization_writer.writerows([[banditDistrName,  -1*k - 1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(FREE_OBS_NUM)])
+                  warmStartRealizations[start][q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
+                  free_obs_realization_writer.writerows([[banditDistrName, -1*FREE_OBS_NUM - k - 1, q] + [z for z in warmStartRealizations[start][q][k+FREE_OBS_NUM]] for k in xrange(start)])
+                else:
+                  warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
+                  free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(start)])
+            
+          for agentAlg in AGENT_ALGS:
+            for (principalAlg1, principalAlg2) in ALG_PAIRS:
+              for startSize in startSizes:
+                print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior ' + banditDistrName)
+                simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=False) for i in xrange(NUM_SIMULATIONS))
+                simResultsNoRep = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=True) for i in xrange(NUM_SIMULATIONS))
+                for sim in simResults:
+                  for res in sim:
+                    t = res['time']
+                    regret1 = res['avgRegret1']
+                    regret2 = res['avgRegret2']
+                    individual_results = {
                       'Warm Start': startSize,
+                      'Reputation Erased': 0,
                       'Time Horizon': t,
+                      'Prior': banditDistrName,
                       'Agent Alg': agentAlg.__name__,
                       'P1 Alg': principalAlg1.__name__,
                       'P2 Alg': principalAlg2.__name__,
-                      'P1 Regret Mean': np.nanmean(regrets1),
-                      'P1 Number of NaNs': regrets1.count(np.nan),
-                      'P2 Regret Mean': np.nanmean(regrets2),
-                      'P2 Number of NaNs': regrets2.count(np.nan),
-                      'P1 Regret Std': np.nanstd(regrets1),
-                      'P2 Regret Std': np.nanstd(regrets2),
-                      'Prior': banditDistrName,
-                      'Abs Average Delta Regret': np.nanmean([np.abs(regrets1[i] - regrets2[i]) for i in xrange(len(regrets1))]),
-                      'Market Share for P1': np.mean(results[agentAlg][(principalAlg1, principalAlg2)][startSize][t]['marketShare1'])
+                      'P1 Regret': regret1,
+                      'P2 Regret': regret2,
+                      'EEOG': res['effectiveEndOfGame'],
+                      'P1 Reputation': res['reputation1'],
+                      'P2 Reputation': res['reputation2'],
+                      'Abs Delta Regret': np.abs(regret1 - regret2),
+                      'Market Share for P1': res['marketShare1'],
                     }
-                    aggregate_writer.writerow(aggregate_results)
+                    individual_writer.writerow(individual_results)
+
+                for sim in simResultsNoRep:
+                  for res in sim:
+                    t = res['time']
+                    regret1 = res['avgRegret1']
+                    regret2 = res['avgRegret2']
+                    individual_results = {
+                      'Warm Start': startSize,
+                      'Reputation Erased': 0,
+                      'Time Horizon': t,
+                      'Prior': banditDistrName,
+                      'Agent Alg': agentAlg.__name__,
+                      'P1 Alg': principalAlg1.__name__,
+                      'P2 Alg': principalAlg2.__name__,
+                      'P1 Regret': regret1,
+                      'P2 Regret': regret2,
+                      'EEOG': res['effectiveEndOfGame'],
+                      'P1 Reputation': res['reputation1'],
+                      'P2 Reputation': res['reputation2'],
+                      'Abs Delta Regret': np.abs(regret1 - regret2),
+                      'Market Share for P1': res['marketShare1'],
+                    }
+                    individual_writer.writerow(individual_results)
 
   # save "results" to disk, just for convenience, so i can look at them later
-  pickle.dump(results, open("bandit_simulations.p", "wb" )) # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
-  return results
+  #pickle.dump(results, open("bandit_simulations.p", "wb" )) # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
+  #return results
 
 START_SIZES = [5]
 run_experiment(START_SIZES)
