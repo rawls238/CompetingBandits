@@ -25,8 +25,8 @@ import sys
 import pickle
 
 K = 10
-T = 2002
-NUM_SIMULATIONS = 1000
+T = 2
+NUM_SIMULATIONS = 2
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
@@ -70,7 +70,7 @@ raw_name = exp_base_name + '_raw.csv'
 realizations_name = exp_base_name + '_realizations.csv'
 dist_name = exp_base_name + '_dist.csv'
 
-INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'Reputation Erased', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'Instance Complexity', 'Reputation Erased', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
 def fetch_distributions(filename, priorname):
   realDistributions = {}
@@ -169,6 +169,7 @@ def run_experiment(startSizes):
                       'P1 Regret': regret1,
                       'P2 Regret': regret2,
                       'EEOG': res['effectiveEndOfGame'],
+                      'Instance Complexity': res['complexity'],
                       'P1 Reputation': res['reputation1'],
                       'P2 Reputation': res['reputation2'],
                       'Abs Delta Regret': np.abs(regret1 - regret2),
@@ -191,6 +192,7 @@ def run_experiment(startSizes):
                       'P2 Alg': principalAlg2.__name__,
                       'P1 Regret': regret1,
                       'P2 Regret': regret2,
+                      'Instance Complexity': res['complexity'],
                       'EEOG': res['effectiveEndOfGame'],
                       'P1 Reputation': res['reputation1'],
                       'P2 Reputation': res['reputation2'],

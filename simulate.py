@@ -87,6 +87,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   for principal in principals.values():
     principal.setBanditInstance(banditProblemInstance)
 
+  instanceComplexity = banditProblemInstance.getComplexityMetric()
   results = []
   lastPrincipalPicked = None
   effectiveEndOfGame = None
@@ -102,7 +103,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
         'avgRegret2': principal2.getAverageRegret(),
         'reputation1': reputation['principal1'],
         'reputation2': reputation['principal2'],
-        'time': t
+        'time': t,
+        'complexity': instanceComplexity
       })
     (principalName, principal) = agents.selectPrincipal()
     if lastPrincipalPicked != principalName:
