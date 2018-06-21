@@ -25,18 +25,20 @@ import sys
 import pickle
 
 K = 10
-T = 2
-NUM_SIMULATIONS = 2
+T = 5002
+NUM_SIMULATIONS = 300
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 'low_haystack'
+exp_name = 'true_mean_hardmax'
+print('Exp name', exp_name)
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
+ERASE_REPUTATION = False
 numCores = 10
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
 ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)] 
@@ -51,8 +53,10 @@ def get_needle_in_haystack(starting_mean):
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Needle In Haystack - 0.1': get_needle_in_haystack(0.1),
-  'Needle In Haystack - 0.3': get_needle_in_haystack(0.3)
+  'Needle In Haystack - 0.5': get_needle_in_haystack(0.5),
+  'Heavy Tail': heavy_tail_prior,
+  'Uniform': None,
+  '.5/.7 Random Draw': None
 }
 
 WORKING_DIRECTORY = ''
@@ -151,8 +155,7 @@ def run_experiment(startSizes):
             for (principalAlg1, principalAlg2) in ALG_PAIRS:
               for startSize in startSizes:
                 print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior ' + banditDistrName)
-                simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=False) for i in xrange(NUM_SIMULATIONS))
-                simResultsNoRep = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=True) for i in xrange(NUM_SIMULATIONS))
+                simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=ERASE_REPUTATION) for i in xrange(NUM_SIMULATIONS))
                 for sim in simResults:
                   for res in sim:
                     t = res['time']
@@ -160,7 +163,7 @@ def run_experiment(startSizes):
                     regret2 = res['avgRegret2']
                     individual_results = {
                       'Warm Start': startSize,
-                      'Reputation Erased': 0,
+                      'Reputation Erased': ERASE_REPUTATION,
                       'Time Horizon': t,
                       'Prior': banditDistrName,
                       'Agent Alg': agentAlg.__name__,
@@ -170,30 +173,6 @@ def run_experiment(startSizes):
                       'P2 Regret': regret2,
                       'EEOG': res['effectiveEndOfGame'],
                       'Instance Complexity': res['complexity'],
-                      'P1 Reputation': res['reputation1'],
-                      'P2 Reputation': res['reputation2'],
-                      'Abs Delta Regret': np.abs(regret1 - regret2),
-                      'Market Share for P1': res['marketShare1'],
-                    }
-                    individual_writer.writerow(individual_results)
-
-                for sim in simResultsNoRep:
-                  for res in sim:
-                    t = res['time']
-                    regret1 = res['avgRegret1']
-                    regret2 = res['avgRegret2']
-                    individual_results = {
-                      'Warm Start': startSize,
-                      'Reputation Erased': 0,
-                      'Time Horizon': t,
-                      'Prior': banditDistrName,
-                      'Agent Alg': agentAlg.__name__,
-                      'P1 Alg': principalAlg1.__name__,
-                      'P2 Alg': principalAlg2.__name__,
-                      'P1 Regret': regret1,
-                      'P2 Regret': regret2,
-                      'Instance Complexity': res['complexity'],
-                      'EEOG': res['effectiveEndOfGame'],
                       'P1 Reputation': res['reputation1'],
                       'P2 Reputation': res['reputation2'],
                       'Abs Delta Regret': np.abs(regret1 - regret2),
@@ -205,7 +184,7 @@ def run_experiment(startSizes):
   #pickle.dump(results, open("bandit_simulations.p", "wb" )) # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
   #return results
 
-START_SIZES = [5]
+START_SIZES = [5, 20, 50, 100, 150, 200, 400]
 run_experiment(START_SIZES)
 print('all done!')
 #DISCOUNT_FACTORS = [0.5, 0.75, 0.9, 0.99]

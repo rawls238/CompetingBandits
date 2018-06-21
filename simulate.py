@@ -63,14 +63,16 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   if freeObsForP2:
     for j in range(freeObsNum):
       (reward, arm) = principals['principal2'].executeStep(j)
-      agents.updateInformationSet(reward, arm, 'principal2')
+      trueMean = banditProblemInstance.getMeanOfArm(arm)
+      agents.updateInformationSet(trueMean, arm, 'principal2')
     principals['principal2'].resetStats()
 
   # give the agents a few observations
   for i in xrange(warmStartNumObservations):
     for (principalName, principal) in principals.iteritems():
       (reward, arm) = principal.executeStep(i)
-      agents.updateInformationSet(reward, arm, principalName)
+      trueMean = banditProblemInstance.getMeanOfArm(arm)
+      agents.updateInformationSet(trueMean, arm, principalName)
 
   if eraseReputation:
     agents.resetInformationSet()
@@ -111,7 +113,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
       lastPrincipalPicked = principalName
       effectiveEndOfGame = t
     (reward, arm) = principal.executeStep(t)
-    agents.updateInformationSet(reward, arm, principalName)
+    trueMean = banditProblemInstance.getMeanOfArm(arm)
+    agents.updateInformationSet(trueMean, arm, principalName)
   for i in xrange(len(results)):
     results[i]['effectiveEndOfGame'] = effectiveEndOfGame  
   return results
