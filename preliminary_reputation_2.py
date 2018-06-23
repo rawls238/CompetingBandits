@@ -36,7 +36,7 @@ def sim(alg, banditDistr, realizations, seed):
   banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
   for t in xrange(T):
     banditAlg.executeStep(t)
-  return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory, banditProblemInstance.getArmMeans())
+  return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory, banditProblemInstance.getArmMeans(), banditProblemInstance.getComplexityMetric())
 
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
@@ -73,7 +73,7 @@ RESULTS_DIR = WORKING_DIRECTORY + 'results/preliminary_raw_results/'
 FILENAME = 'preliminary_plots_full_path.csv'
 
 
-FIELDNAMES = ['n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean', 'Arm Means']
+FIELDNAMES = ['Realized Complexity', 'n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean', 'Arm Means']
 simResults = {}
 
 with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
@@ -102,8 +102,7 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
     for a in xrange(len(ALGS)):
       alg = ALGS[a]
       simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistrs[j], realizations[j], j) for j in xrange(N))
-    for t in xrange(T):
-      if t < 4000: continue
+    for t in xrange(T-1001, T):
       for (alg, algResult) in simResults.iteritems():
         name = alg.__name__
         for j in xrange(len(algResult)):
@@ -121,7 +120,8 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
             'Instantaneous Mean Reward Mean': instantaneous_mean,
             'Realized Reputation': realized_reputation,
             'True Mean Reputation': true_reputation,
-            'Arm Means': str(algResult[j][3])
+            'Arm Means': str(algResult[j][3]),
+            'Realized Complexity': str(algResult[j][4])
           }
           writer.writerow(res)
 
