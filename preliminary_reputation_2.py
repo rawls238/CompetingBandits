@@ -92,7 +92,9 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
         banditDistrs[i] = [bernoulli(heavy_tail_prior.rvs()) for j in xrange(K)]
       elif banditDistrName == '.5/.7 Random Draw':
         banditDistrs[i] = [bernoulli(np.random.choice([0.5, 0.7])) for j in xrange(K)]
-
+      else:
+        banditDistrs[i] = banditDistr
+      
       realizations[i] = {}
       for t in xrange(T):
         realizations[i][t] = {}
