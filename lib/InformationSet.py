@@ -21,12 +21,9 @@ class Info:
     self.sliding_window_size = memory
     self.moving_average = self.getMeanScore()
     self.discount_factor = discount_factor
-    self.risk_aversion = 0.0
 
   def getDiscountedScore(self):
     reward_history = copy(self.reward_history).reverse()
-    if self.risk_aversion > 0:
-      reward_history = self.getRiskAversionAdjustedScores(reward_history)
     return sum([reward_history[i]*self.discount_factor**i for i in xrange(len(reward_history))])
 
   def getMovingAverageScore(self):

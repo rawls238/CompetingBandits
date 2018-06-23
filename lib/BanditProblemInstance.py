@@ -19,6 +19,9 @@ class BanditProblemInstance:
   def getMeanOfArm(self, arm):
     return self.distributions[arm].mean()
 
+  def getArmMeans(self):
+    return [distr.mean() for distr in self.distributions]
+
   def getBestArm(self):
     return np.argmax([distr.mean() for distr in self.distributions])
 
