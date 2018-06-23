@@ -56,7 +56,7 @@ def get_needle_in_haystack(starting_mean):
   needle_in_haystack[int(K/2)] = bernoulli(starting_mean + 0.2)
   return needle_in_haystack
 
-ALGS = [ThompsonSampling, DynamicEpsilonGreedy, DynamicGreedy]
+ALGS = [DynamicGreedy, ThompsonSampling, DynamicEpsilonGreedy]
 BANDIT_DISTR = {
   'Heavy Tail': heavy_tail_prior
 }
@@ -77,16 +77,17 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
     realizations = {}
+    banditDistrs = {}
     for a in xrange(len(ALGS)):
       simResults[ALGS[a]] = []
 
     for i in xrange(N):
       if banditDistrName == 'Uniform':
-        banditDistr = [bernoulli(random.uniform(0.25, 0.75)) for j in xrange(K)]
+        banditDistrs[i] = [bernoulli(np.random.uniform(0.25, 0.75)) for j in xrange(K)]
       elif banditDistrName == 'Heavy Tail':
-        banditDistr = [bernoulli(heavy_tail_prior.rvs()) for j in xrange(K)]
+        banditDistrs[i] = [bernoulli(heavy_tail_prior.rvs()) for j in xrange(K)]
       elif banditDistrName == '.5/.7 Random Draw':
-        banditDistr = [bernoulli(random.choice([0.5, 0.7])) for j in xrange(K)]
+        banditDistrs[i] = [bernoulli(np.random.choice([0.5, 0.7])) for j in xrange(K)]
 
       realizations[i] = {}
       for t in xrange(T):
@@ -96,7 +97,7 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
 
     for a in xrange(len(ALGS)):
       alg = ALGS[a]
-      simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistr, realizations[j], j) for j in xrange(N))
+      simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistr[j], realizations[j], j) for j in xrange(N))
     for t in xrange(T):
       for (alg, algResult) in simResults.iteritems():
         name = alg.__name__
