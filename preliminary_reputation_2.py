@@ -20,10 +20,10 @@ from lib.bandit.ExploreThenExploit import ExploreThenExploit
 from scipy.stats import bernoulli, beta
 
 
-T = 5000
-N = 500
+T = 5001
+N = 750
 K = 3
-numCores = 24
+numCores = 12
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
@@ -36,7 +36,7 @@ def sim(alg, banditDistr, realizations, seed):
   banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
   for t in xrange(T):
     banditAlg.executeStep(t)
-  return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory)
+  return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory, banditProblemInstance.getArmMeans())
 
 default_mean = 0.5
 needle_in_haystack = [bernoulli(default_mean) for i in xrange(K)]
@@ -58,18 +58,22 @@ def get_needle_in_haystack(starting_mean):
 
 ALGS = [DynamicGreedy, ThompsonSampling, DynamicEpsilonGreedy]
 BANDIT_DISTR = {
-  'Heavy Tail': heavy_tail_prior
+  'Heavy Tail': heavy_tail_prior,
+  'Uniform': None,
+  '.5/.7 Random Draw': None,
+  'Needle In Haystack - 0.5': get_needle_in_haystack(0.5)
 }
+
 
 WORKING_DIRECTORY = ''
 WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 # Algorithm, Arms, Prior, t, n, reward
 
 RESULTS_DIR = WORKING_DIRECTORY + 'results/preliminary_raw_results/'
-FILENAME = 'preliminary_plots_fo_sure.csv'
+FILENAME = 'preliminary_plots_full_path.csv'
 
 
-FIELDNAMES = ['n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean']
+FIELDNAMES = ['n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean', 'Arm Means']
 simResults = {}
 
 with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
@@ -92,13 +96,14 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
       realizations[i] = {}
       for t in xrange(T):
         realizations[i][t] = {}
-        for j in xrange(len(banditDistr)):
-          realizations[i][t][j] = banditDistr[j].rvs()
+        for j in xrange(len(banditDistrs[i])):
+          realizations[i][t][j] = banditDistrs[i][j].rvs()
 
     for a in xrange(len(ALGS)):
       alg = ALGS[a]
-      simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistr[j], realizations[j], j) for j in xrange(N))
+      simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistrs[j], realizations[j], j) for j in xrange(N))
     for t in xrange(T):
+      if t < 4000: continue
       for (alg, algResult) in simResults.iteritems():
         name = alg.__name__
         for j in xrange(len(algResult)):
@@ -115,7 +120,8 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
             'Instantaneous Realized Reward Mean': instantaneous_realized,
             'Instantaneous Mean Reward Mean': instantaneous_mean,
             'Realized Reputation': realized_reputation,
-            'True Mean Reputation': true_reputation
+            'True Mean Reputation': true_reputation,
+            'Arm Means': str(algResult[j][3])
           }
           writer.writerow(res)
 
