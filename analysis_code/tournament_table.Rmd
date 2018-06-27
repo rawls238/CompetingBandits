@@ -10,14 +10,15 @@ library(dplyr)
 library(knitr)
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_parallel_test_raw.csv", sep=""))
-#dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_erase_reputation_raw.csv", sep=""))
+
+
+#dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_parallel_test_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_free_obs_10_arms_raw.csv", sep=""))
 p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
-memory_sizes <- sort(as.list(unique(dat['Memory.Size']))$Memory.Size, decreasing=TRUE)
 agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
 time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
-time_horizons <- c(2000)
+time_horizons <- c(5000)
 priors <- as.list(unique(dat['Prior']))$Prior
 
 ZERO_ONE_CUTOFF <- 0.1
@@ -39,7 +40,7 @@ for (j in 1:length(time_horizons)) {
           for (l in 1:length(algs)) {
             p1alg = algs[k]
             p2alg = algs[l]
-            filtered_dat <- filter(dat, P1.Alg == p1alg & P2.Alg == p2alg & Memory.Size == 100 & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
+            filtered_dat <- filter(dat, P1.Alg == p1alg & P2.Alg == p2alg & Warm.Start == 5 & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
             if (nrow(filtered_dat) == 0) {
               if (p1alg == p2alg) { print_breaks <- TRUE }
               next
@@ -55,7 +56,7 @@ for (j in 1:length(time_horizons)) {
             results[k, l] <- paste("<b>", signif(mean(share), digits=2), "</b> +/-", cin, "<br>", signif(var(share), digits=2), paste("(", lower_var, ", ", high_var, ")", sep=""), "<br>", "Extreme Shares:", 100*signif(shares, digits=2), "%")
           }
         }
-        tab <-xtable(results, caption=paste("Results for", agent_alg, "t =", time, prior))
+        tab <-xtable(results, caption=paste("Results for", agent_alg, "t =", time, prior, "200 free obs", "K =", 10))
         print(tab, type="html")
         if (print_breaks) { print("<br>") }
       }

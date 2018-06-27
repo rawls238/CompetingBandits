@@ -2,17 +2,10 @@ library("ggplot2")
 library("dplyr")
 library("reshape")
 
-# Three datasets that currently exist are:
-# preliminary_plots.csv was run with N=250, T=6000
-# preliminary_plots_2.csv includes the Bayesian Dynamic Epsilon Greedy runs
-
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-#dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_20_arms.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_all_haystack.csv", sep=""))
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_3_arms_reputation_2.csv", sep=""))
-#dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_3_arms_3.csv", sep=""))
-#dat <- rbind(dat, dat2)
 dat$Algorithm <- replace(as.character(dat$Algorithm), dat$Algorithm == "DynamicEpsilonGreedy", "DynamicEpsilonGreedy, 0.05")
 dat$Algorithm <- replace(as.character(dat$Algorithm), dat$Algorithm == "NonBayesianEpsilonGreedy", "NonBayesianEpsilonGreedy, 0.05")
 algs <- as.list(unique(dat['Algorithm']))$Algorithm
@@ -22,7 +15,7 @@ dists <- as.list(unique(dat['Distribution']))$Distribution
 
 filter_by_dist_and_plot <- function(dist) {
   d <- filter(dat, Distribution == dist)
-  title <- paste("Reputation Trajectory for", dist, "3 arms")
+  title <- paste("Reputation Trajectory for", dist, "10 arms")
   q <- ggplot(data=d, aes(x=t, y=Realized.Reputation, colour=Algorithm)) + ggtitle(title) + ylab("Reputation") + xlab("time") +
     #geom_path() # just plot the raw trajectory
     geom_smooth(method="loess") #+ smooths the trajectory 

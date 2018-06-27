@@ -127,253 +127,444 @@ $(document).ready(function () {
    }
  </style>
 <!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Mon Jun 25 15:44:14 2018 -->
+<!-- Tue Jun 26 13:32:28 2018 -->
 <table border="1">
 <caption align="top">
-Results for HardMax t = 5000 Needle In Haystack - 0.5 200 free obs K = 10
+Results for Needle In Haystack - 0.5 HardMax K=10, erased reputation
 </caption>
 <tr>
 <th>
 </th>
 <th>
-Thompson Sampling
+WS = 5
 </th>
 <th>
-Dynamic Epsilon Greedy
+WS = 20
 </th>
 <th>
-DynamicGreedy
+WS = 40
+</th>
+<th>
+WS = 50
+</th>
+<th>
+WS = 60
+</th>
+<th>
+WS = 75
+</th>
+<th>
+WS = 100
 </th>
 </tr>
 <tr>
 <td align="right">
-Thompson Sampling
+TS vs DG
 </td>
 <td>
-<b> 0.083 </b> +/- 0.03 <br> 0.069 (0.06, 0.082) <br> Extreme Shares: 99 %
+<b>0.51</b> (0.05)<br><u>eeog</u><br> avg: 370<br>med: 36
 </td>
 <td>
-<b> 0.19 </b> +/- 0.044 <br> 0.15 (0.13, 0.17) <br> Extreme Shares: 98 %
+<b>0.6</b> (0.05)<br><u>eeog</u><br> avg: 340<br>med: 13
 </td>
 <td>
-<b> 0.34 </b> +/- 0.051 <br> 0.2 (0.17, 0.24) <br> Extreme Shares: 90 %
+<b>0.53</b> (0.05)<br><u>eeog</u><br> avg: 430<br>med: 18.5
+</td>
+<td>
+<b>0.53</b> (0.05)<br><u>eeog</u><br> avg: 350<br>med: 6
+</td>
+<td>
+<b>0.54</b> (0.05)<br><u>eeog</u><br> avg: 440<br>med: 6
+</td>
+<td>
+<b>0.53</b> (0.06)<br><u>eeog</u><br> avg: 460<br>med: 8
+</td>
+<td>
+<b>0.51</b> (0.06)<br><u>eeog</u><br> avg: 580<br>med: 15
 </td>
 </tr>
 <tr>
 <td align="right">
-Dynamic Epsilon Greedy
+TS vs DEG
 </td>
 <td>
-<b> 0.071 </b> +/- 0.028 <br> 0.06 (0.051, 0.071) <br> Extreme Shares: 98 %
+<b>0.54</b> (0.06)<br><u>eeog</u><br> avg: 170<br>med: 9
 </td>
 <td>
-<b> 0.2 </b> +/- 0.043 <br> 0.14 (0.12, 0.17) <br> Extreme Shares: 93 %
+<b>0.55</b> (0.06)<br><u>eeog</u><br> avg: 240<br>med: 11
 </td>
 <td>
-<b> 0.28 </b> +/- 0.048 <br> 0.18 (0.15, 0.21) <br> Extreme Shares: 87 %
+<b>0.51</b> (0.06)<br><u>eeog</u><br> avg: 250<br>med: 6
+</td>
+<td>
+<b>0.49</b> (0.06)<br><u>eeog</u><br> avg: 250<br>med: 3
+</td>
+<td>
+<b>0.51</b> (0.06)<br><u>eeog</u><br> avg: 310<br>med: 4
+</td>
+<td>
+<b>0.47</b> (0.06)<br><u>eeog</u><br> avg: 320<br>med: 2.5
+</td>
+<td>
+<b>0.48</b> (0.06)<br><u>eeog</u><br> avg: 440<br>med: 6
 </td>
 </tr>
 <tr>
 <td align="right">
-DynamicGreedy
+DG vs DEG
 </td>
 <td>
-<b> 0.028 </b> +/- 0.016 <br> 0.021 (0.018, 0.025) <br> Extreme Shares: 99 %
+<b>0.41</b> (0.05)<br><u>eeog</u><br> avg: 640<br>med: 157.5
 </td>
 <td>
-<b> 0.1 </b> +/- 0.032 <br> 0.077 (0.066, 0.091) <br> Extreme Shares: 95 %
+<b>0.41</b> (0.05)<br><u>eeog</u><br> avg: 630<br>med: 81
 </td>
 <td>
-<b> 0.22 </b> +/- 0.041 <br> 0.13 (0.11, 0.15) <br> Extreme Shares: 81 %
+<b>0.47</b> (0.05)<br><u>eeog</u><br> avg: 780<br>med: 169
+</td>
+<td>
+<b>0.44</b> (0.05)<br><u>eeog</u><br> avg: 800<br>med: 112
+</td>
+<td>
+<b>0.45</b> (0.05)<br><u>eeog</u><br> avg: 800<br>med: 42.5
+</td>
+<td>
+<b>0.47</b> (0.05)<br><u>eeog</u><br> avg: 810<br>med: 31
+</td>
+<td>
+<b>0.43</b> (0.05)<br><u>eeog</u><br> avg: 920<br>med: 157
+</td>
+</tr>
+</table>
+[1] “<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>” <!-- html table generated in R 3.4.0 by xtable 1.8-2 package --> <!-- Tue Jun 26 13:32:29 2018 -->
+<table border="1">
+<caption align="top">
+Results for Heavy Tail HardMax K=10, erased reputation
+</caption>
+<tr>
+<th>
+</th>
+<th>
+WS = 5
+</th>
+<th>
+WS = 20
+</th>
+<th>
+WS = 40
+</th>
+<th>
+WS = 50
+</th>
+<th>
+WS = 60
+</th>
+<th>
+WS = 75
+</th>
+<th>
+WS = 100
+</th>
+</tr>
+<tr>
+<td align="right">
+TS vs DG
+</td>
+<td>
+<b>0.3</b> (0.05)<br><u>eeog</u><br> avg: 140<br>med: 0
+</td>
+<td>
+<b>0.39</b> (0.05)<br><u>eeog</u><br> avg: 250<br>med: 1
+</td>
+<td>
+<b>0.53</b> (0.05)<br><u>eeog</u><br> avg: 350<br>med: 3
+</td>
+<td>
+<b>0.56</b> (0.05)<br><u>eeog</u><br> avg: 370<br>med: 3
+</td>
+<td>
+<b>0.62</b> (0.05)<br><u>eeog</u><br> avg: 440<br>med: 4
+</td>
+<td>
+<b>0.59</b> (0.05)<br><u>eeog</u><br> avg: 510<br>med: 6
+</td>
+<td>
+<b>0.68</b> (0.05)<br><u>eeog</u><br> avg: 650<br>med: 6
+</td>
+</tr>
+<tr>
+<td align="right">
+TS vs DEG
+</td>
+<td>
+<b>0.26</b> (0.05)<br><u>eeog</u><br> avg: 73<br>med: 0
+</td>
+<td>
+<b>0.42</b> (0.06)<br><u>eeog</u><br> avg: 150<br>med: 0
+</td>
+<td>
+<b>0.59</b> (0.05)<br><u>eeog</u><br> avg: 280<br>med: 2
+</td>
+<td>
+<b>0.64</b> (0.05)<br><u>eeog</u><br> avg: 410<br>med: 4
+</td>
+<td>
+<b>0.74</b> (0.05)<br><u>eeog</u><br> avg: 280<br>med: 4
+</td>
+<td>
+<b>0.74</b> (0.05)<br><u>eeog</u><br> avg: 360<br>med: 5
+</td>
+<td>
+<b>0.74</b> (0.05)<br><u>eeog</u><br> avg: 400<br>med: 4
+</td>
+</tr>
+<tr>
+<td align="right">
+DG vs DEG
+</td>
+<td>
+<b>0.57</b> (0.05)<br><u>eeog</u><br> avg: 720<br>med: 36
+</td>
+<td>
+<b>0.58</b> (0.05)<br><u>eeog</u><br> avg: 900<br>med: 45.5
+</td>
+<td>
+<b>0.6</b> (0.05)<br><u>eeog</u><br> avg: 770<br>med: 44.5
+</td>
+<td>
+<b>0.61</b> (0.05)<br><u>eeog</u><br> avg: 910<br>med: 43.5
+</td>
+<td>
+<b>0.6</b> (0.05)<br><u>eeog</u><br> avg: 940<br>med: 77.5
+</td>
+<td>
+<b>0.6</b> (0.05)<br><u>eeog</u><br> avg: 850<br>med: 45
+</td>
+<td>
+<b>0.6</b> (0.05)<br><u>eeog</u><br> avg: 850<br>med: 29.5
+</td>
+</tr>
+</table>
+[1] “<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>” <!-- html table generated in R 3.4.0 by xtable 1.8-2 package --> <!-- Tue Jun 26 13:32:30 2018 -->
+<table border="1">
+<caption align="top">
+Results for .5/.7 Random Draw HardMax K=10, erased reputation
+</caption>
+<tr>
+<th>
+</th>
+<th>
+WS = 5
+</th>
+<th>
+WS = 20
+</th>
+<th>
+WS = 40
+</th>
+<th>
+WS = 50
+</th>
+<th>
+WS = 60
+</th>
+<th>
+WS = 75
+</th>
+<th>
+WS = 100
+</th>
+</tr>
+<tr>
+<td align="right">
+TS vs DG
+</td>
+<td>
+<b>0.43</b> (0.05)<br><u>eeog</u><br> avg: 910<br>med: 47.5
+</td>
+<td>
+<b>0.46</b> (0.05)<br><u>eeog</u><br> avg: 1000<br>med: 149
+</td>
+<td>
+<b>0.4</b> (0.05)<br><u>eeog</u><br> avg: 1200<br>med: 279.5
+</td>
+<td>
+<b>0.37</b> (0.05)<br><u>eeog</u><br> avg: 1000<br>med: 162
+</td>
+<td>
+<b>0.39</b> (0.05)<br><u>eeog</u><br> avg: 1300<br>med: 172
+</td>
+<td>
+<b>0.41</b> (0.05)<br><u>eeog</u><br> avg: 1100<br>med: 250
+</td>
+<td>
+<b>0.39</b> (0.05)<br><u>eeog</u><br> avg: 1300<br>med: 533
+</td>
+</tr>
+<tr>
+<td align="right">
+TS vs DEG
+</td>
+<td>
+<b>0.42</b> (0.05)<br><u>eeog</u><br> avg: 1000<br>med: 127
+</td>
+<td>
+<b>0.35</b> (0.05)<br><u>eeog</u><br> avg: 980<br>med: 53.5
+</td>
+<td>
+<b>0.39</b> (0.05)<br><u>eeog</u><br> avg: 1100<br>med: 35
+</td>
+<td>
+<b>0.38</b> (0.05)<br><u>eeog</u><br> avg: 1100<br>med: 58.5
+</td>
+<td>
+<b>0.35</b> (0.05)<br><u>eeog</u><br> avg: 1200<br>med: 188
+</td>
+<td>
+<b>0.41</b> (0.05)<br><u>eeog</u><br> avg: 1100<br>med: 123.5
+</td>
+<td>
+<b>0.41</b> (0.05)<br><u>eeog</u><br> avg: 1300<br>med: 547.5
+</td>
+</tr>
+<tr>
+<td align="right">
+DG vs DEG
+</td>
+<td>
+<b>0.47</b> (0.05)<br><u>eeog</u><br> avg: 1400<br>med: 426
+</td>
+<td>
+<b>0.48</b> (0.05)<br><u>eeog</u><br> avg: 1500<br>med: 625.5
+</td>
+<td>
+<b>0.5</b> (0.05)<br><u>eeog</u><br> avg: 1500<br>med: 693.5
+</td>
+<td>
+<b>0.53</b> (0.05)<br><u>eeog</u><br> avg: 1600<br>med: 990.5
+</td>
+<td>
+<b>0.51</b> (0.05)<br><u>eeog</u><br> avg: 1700<br>med: 995.5
+</td>
+<td>
+<b>0.51</b> (0.05)<br><u>eeog</u><br> avg: 1600<br>med: 683.5
+</td>
+<td>
+<b>0.51</b> (0.05)<br><u>eeog</u><br> avg: 1800<br>med: 1385.5
 </td>
 </tr>
 </table>
 <!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Mon Jun 25 15:44:14 2018 -->
+<!-- Tue Jun 26 13:32:30 2018 -->
 <table border="1">
 <caption align="top">
-Results for HardMax t = 5000 Heavy Tail 200 free obs K = 10
+Results for Uniform HardMax K=10, erased reputation
 </caption>
 <tr>
 <th>
 </th>
 <th>
-Thompson Sampling
+WS = 5
 </th>
 <th>
-Dynamic Epsilon Greedy
+WS = 20
 </th>
 <th>
-DynamicGreedy
+WS = 40
+</th>
+<th>
+WS = 50
+</th>
+<th>
+WS = 60
+</th>
+<th>
+WS = 75
+</th>
+<th>
+WS = 100
 </th>
 </tr>
 <tr>
 <td align="right">
-Thompson Sampling
+TS vs DG
 </td>
 <td>
-<b> 0.0067 </b> +/- 0.0092 <br> 0.0066 (0.0056, 0.0078) <br> Extreme Shares: 100 %
+<b>0.43</b> (0.05)<br><u>eeog</u><br> avg: 570<br>med: 11.5
 </td>
 <td>
-<b> 0.023 </b> +/- 0.017 <br> 0.021 (0.018, 0.025) <br> Extreme Shares: 99 %
+<b>0.43</b> (0.05)<br><u>eeog</u><br> avg: 670<br>med: 9
 </td>
 <td>
-<b> 0.064 </b> +/- 0.027 <br> 0.055 (0.047, 0.065) <br> Extreme Shares: 97 %
+<b>0.36</b> (0.05)<br><u>eeog</u><br> avg: 730<br>med: 9
+</td>
+<td>
+<b>0.43</b> (0.05)<br><u>eeog</u><br> avg: 620<br>med: 9.5
+</td>
+<td>
+<b>0.38</b> (0.05)<br><u>eeog</u><br> avg: 820<br>med: 42.5
+</td>
+<td>
+<b>0.4</b> (0.05)<br><u>eeog</u><br> avg: 900<br>med: 118.5
+</td>
+<td>
+<b>0.42</b> (0.05)<br><u>eeog</u><br> avg: 870<br>med: 21.5
 </td>
 </tr>
 <tr>
 <td align="right">
-Dynamic Epsilon Greedy
+TS vs DEG
 </td>
 <td>
-<b> 0.024 </b> +/- 0.015 <br> 0.017 (0.015, 0.02) <br> Extreme Shares: 98 %
+<b>0.4</b> (0.05)<br><u>eeog</u><br> avg: 450<br>med: 7
 </td>
 <td>
-<b> 0.13 </b> +/- 0.034 <br> 0.088 (0.076, 0.1) <br> Extreme Shares: 86 %
+<b>0.4</b> (0.05)<br><u>eeog</u><br> avg: 550<br>med: 10
 </td>
 <td>
-<b> 0.14 </b> +/- 0.036 <br> 0.099 (0.085, 0.12) <br> Extreme Shares: 89 %
+<b>0.36</b> (0.05)<br><u>eeog</u><br> avg: 590<br>med: 11
+</td>
+<td>
+<b>0.37</b> (0.05)<br><u>eeog</u><br> avg: 740<br>med: 16.5
+</td>
+<td>
+<b>0.34</b> (0.05)<br><u>eeog</u><br> avg: 640<br>med: 10
+</td>
+<td>
+<b>0.42</b> (0.05)<br><u>eeog</u><br> avg: 610<br>med: 5.5
+</td>
+<td>
+<b>0.42</b> (0.05)<br><u>eeog</u><br> avg: 940<br>med: 23.5
 </td>
 </tr>
 <tr>
 <td align="right">
-DynamicGreedy
+DG vs DEG
 </td>
 <td>
-<b> 0.063 </b> +/- 0.024 <br> 0.043 (0.037, 0.051) <br> Extreme Shares: 93 %
+<b>0.44</b> (0.05)<br><u>eeog</u><br> avg: 990<br>med: 79.5
 </td>
 <td>
-<b> 0.19 </b> +/- 0.041 <br> 0.13 (0.11, 0.16) <br> Extreme Shares: 91 %
+<b>0.5</b> (0.05)<br><u>eeog</u><br> avg: 1200<br>med: 301
 </td>
 <td>
-<b> 0.15 </b> +/- 0.032 <br> 0.08 (0.069, 0.095) <br> Extreme Shares: 77 %
+<b>0.51</b> (0.05)<br><u>eeog</u><br> avg: 1200<br>med: 143
+</td>
+<td>
+<b>0.55</b> (0.05)<br><u>eeog</u><br> avg: 1400<br>med: 412
+</td>
+<td>
+<b>0.48</b> (0.05)<br><u>eeog</u><br> avg: 1300<br>med: 467.5
+</td>
+<td>
+<b>0.49</b> (0.05)<br><u>eeog</u><br> avg: 1500<br>med: 761
+</td>
+<td>
+<b>0.53</b> (0.05)<br><u>eeog</u><br> avg: 1400<br>med: 595.5
 </td>
 </tr>
 </table>
-<!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Mon Jun 25 15:44:15 2018 -->
-<table border="1">
-<caption align="top">
-Results for HardMax t = 5000 .5/.7 Random Draw 200 free obs K = 10
-</caption>
-<tr>
-<th>
-</th>
-<th>
-Thompson Sampling
-</th>
-<th>
-Dynamic Epsilon Greedy
-</th>
-<th>
-DynamicGreedy
-</th>
-</tr>
-<tr>
-<td align="right">
-Thompson Sampling
-</td>
-<td>
-<b> 0.15 </b> +/- 0.034 <br> 0.087 (0.075, 0.1) <br> Extreme Shares: 81 %
-</td>
-<td>
-<b> 0.14 </b> +/- 0.032 <br> 0.081 (0.069, 0.096) <br> Extreme Shares: 81 %
-</td>
-<td>
-<b> 0.18 </b> +/- 0.036 <br> 0.099 (0.085, 0.12) <br> Extreme Shares: 76 %
-</td>
-</tr>
-<tr>
-<td align="right">
-Dynamic Epsilon Greedy
-</td>
-<td>
-<b> 0.2 </b> +/- 0.038 <br> 0.11 (0.095, 0.13) <br> Extreme Shares: 75 %
-</td>
-<td>
-<b> 0.15 </b> +/- 0.032 <br> 0.081 (0.07, 0.096) <br> Extreme Shares: 78 %
-</td>
-<td>
-<b> 0.22 </b> +/- 0.037 <br> 0.11 (0.093, 0.13) <br> Extreme Shares: 70 %
-</td>
-</tr>
-<tr>
-<td align="right">
-DynamicGreedy
-</td>
-<td>
-<b> 0.24 </b> +/- 0.04 <br> 0.12 (0.11, 0.15) <br> Extreme Shares: 74 %
-</td>
-<td>
-<b> 0.19 </b> +/- 0.035 <br> 0.096 (0.083, 0.11) <br> Extreme Shares: 74 %
-</td>
-<td>
-<b> 0.2 </b> +/- 0.037 <br> 0.11 (0.092, 0.13) <br> Extreme Shares: 74 %
-</td>
-</tr>
-</table>
-<!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Mon Jun 25 15:44:15 2018 -->
-<table border="1">
-<caption align="top">
-Results for HardMax t = 5000 Uniform 200 free obs K = 10
-</caption>
-<tr>
-<th>
-</th>
-<th>
-Thompson Sampling
-</th>
-<th>
-Dynamic Epsilon Greedy
-</th>
-<th>
-DynamicGreedy
-</th>
-</tr>
-<tr>
-<td align="right">
-Thompson Sampling
-</td>
-<td>
-<b> 0.055 </b> +/- 0.023 <br> 0.042 (0.036, 0.05) <br> Extreme Shares: 95 %
-</td>
-<td>
-<b> 0.11 </b> +/- 0.033 <br> 0.083 (0.071, 0.098) <br> Extreme Shares: 93 %
-</td>
-<td>
-<b> 0.17 </b> +/- 0.038 <br> 0.11 (0.098, 0.14) <br> Extreme Shares: 88 %
-</td>
-</tr>
-<tr>
-<td align="right">
-Dynamic Epsilon Greedy
-</td>
-<td>
-<b> 0.13 </b> +/- 0.035 <br> 0.093 (0.08, 0.11) <br> Extreme Shares: 90 %
-</td>
-<td>
-<b> 0.12 </b> +/- 0.031 <br> 0.077 (0.066, 0.091) <br> Extreme Shares: 86 %
-</td>
-<td>
-<b> 0.19 </b> +/- 0.039 <br> 0.12 (0.1, 0.14) <br> Extreme Shares: 85 %
-</td>
-</tr>
-<tr>
-<td align="right">
-DynamicGreedy
-</td>
-<td>
-<b> 0.087 </b> +/- 0.028 <br> 0.059 (0.051, 0.07) <br> Extreme Shares: 92 %
-</td>
-<td>
-<b> 0.12 </b> +/- 0.031 <br> 0.073 (0.063, 0.087) <br> Extreme Shares: 85 %
-</td>
-<td>
-<b> 0.18 </b> +/- 0.036 <br> 0.098 (0.084, 0.12) <br> Extreme Shares: 77 %
-</td>
-</tr>
-</table>
+<p>[1] “<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>”</p>
 
 
 
