@@ -1,10 +1,14 @@
 import unittest
 
-import sys 
+import sys
+import numpy as np
+from scipy.stats import bernoulli, beta
 sys.path.append('..')
 from lib.agent.HardMax import HardMax
 from lib.agent.HardMaxWithRandom import HardMaxWithRandom
 from lib.InformationSet import InformationSet
+from lib.bandit.DynamicGreedy import DynamicGreedy
+from lib.BanditProblemInstance import BanditProblemInstance
 
 class TestAgents(unittest.TestCase):
 
@@ -20,6 +24,17 @@ class TestAgents(unittest.TestCase):
     self.assertEqual(info.getMaxPrincipalsAndScores(), (['principal1'], 2.0))
     info.updateInformationSet(-100, 1, 'principal1')
     self.assertEqual(info.getMaxPrincipalsAndScores(), (['principal2'], 0.0))
+
+  def test_reputation(self):
+    T = 1000
+    prob_instance = BanditProblemInstance(1, T, [bernoulli(0.5)])
+    principal = { 'principal1': DynamicGreedy(prob_instance, [beta(1, 1)]) }
+    agent = HardMax(principal, 1)
+    for t in xrange(T):
+        (reward, arm) = principal['principal1'].executeStep(t)
+        agent.updateInformationSet(reward, arm, 'principal1')
+    self.assertAlmostEqual(np.sum(principal['principal1'].realizedRewardHistory), T/2, delta=50)
+    self.assertAlmostEqual(agent.informationSet.getScores()['principal1'], 0.5, delta=0.05)
 
   def test_hard_max(self):
     principals = { 'principal1': None, 'principal2': None }

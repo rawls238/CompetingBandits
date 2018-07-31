@@ -20,10 +20,10 @@ from lib.bandit.ExploreThenExploit import ExploreThenExploit
 from scipy.stats import bernoulli, beta
 
 
-T = 5001
-N = 750
-K = 3
-numCores = 12
+T = 1000
+N = 250
+K = 10
+numCores = 2
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
@@ -59,18 +59,16 @@ def get_needle_in_haystack(starting_mean):
 ALGS = [DynamicGreedy, ThompsonSampling, DynamicEpsilonGreedy]
 BANDIT_DISTR = {
   'Heavy Tail': heavy_tail_prior,
-  'Uniform': None,
-  '.5/.7 Random Draw': None,
-  'Needle In Haystack - 0.5': get_needle_in_haystack(0.5)
+  'Uniform': None
 }
 
 
 WORKING_DIRECTORY = ''
-WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 # Algorithm, Arms, Prior, t, n, reward
 
 RESULTS_DIR = WORKING_DIRECTORY + 'results/preliminary_raw_results/'
-FILENAME = 'preliminary_plots_full_path.csv'
+FILENAME = 'preliminary_plots_10_arms_small_window.csv'
 
 
 FIELDNAMES = ['Realized Complexity', 'n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean', 'Arm Means']
@@ -94,7 +92,7 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
         banditDistrs[i] = [bernoulli(np.random.choice([0.5, 0.7])) for j in xrange(K)]
       else:
         banditDistrs[i] = banditDistr
-      
+
       realizations[i] = {}
       for t in xrange(T):
         realizations[i][t] = {}
@@ -104,7 +102,7 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
     for a in xrange(len(ALGS)):
       alg = ALGS[a]
       simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistrs[j], realizations[j], j) for j in xrange(N))
-    for t in xrange(T-1001, T):
+    for t in range(10, T, 10):
       for (alg, algResult) in simResults.iteritems():
         name = alg.__name__
         for j in xrange(len(algResult)):
@@ -122,8 +120,7 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
             'Instantaneous Mean Reward Mean': instantaneous_mean,
             'Realized Reputation': realized_reputation,
             'True Mean Reputation': true_reputation,
-            'Arm Means': str(algResult[j][3]),
-            'Realized Complexity': str(algResult[j][4])
+            'Realized Complexity': str(algResult[j][5])
           }
           writer.writerow(res)
 

@@ -1,10 +1,4 @@
- <style>
-   th,td{
-     padding:10px;
-   }
- </style>
-
-```{r echo=FALSE, message=FALSE, xtable, results="asis"}
+#```{r echo=FALSE, message=FALSE, xtable, results="asis"}
 
 library(dplyr)
 library(knitr)
@@ -24,13 +18,13 @@ concise_alg_rep <- function(alg) {
 }
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/"
-f <- "tournament_experiment_hm_large_ws_raw.csv"
+f <- "tournament_experiment_ws_small_raw.csv"
 dat <- read.csv(file=paste(WORKING_PATH, f, sep=""))
 #dat_2 <- read.csv(file=paste(WORKING_PATH, "tournament_experiment_tourn_.5_.7_raw.csv", sep=""))
 #dat <- rbind(dat, dat_2)
 dat <- filter(dat, Time.Horizon == 5000)
-#priors <- as.list(unique(dat['Prior']))$Prior
-priors <- c("Heavy Tail")
+priors <- as.list(unique(dat['Prior']))$Prior
+priors <- c("Needle In Haystack - 0.5")
 #warm_starts <- as.list(unique(dat['Warm.Start']))$Warm.Start
 warm_starts <- c(20, 100, 200)
 algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
@@ -52,7 +46,7 @@ for (prior in priors) {
         cin <- signif(test$conf.int[2] - mean(share), digits=1)
         eeog_mean <- signif(mean(filtered_dat$EEOG), digits=2)
         eeog_summary <- summary(filtered_dat$EEOG)
-        res_text <- paste("<b>",signif(mean(share), digits=2), "</b> (", cin, ")<br><u>eeog</u><br> avg: ", eeog_mean, "<br>med: ", eeog_summary["Median"] , sep="")
+        res_text <- paste("\\makecell{\\textbf{",signif(mean(share), digits=2), "} $\\pm$", cin, "\\\ eeog \\\ avg: ", eeog_mean, "\\\ med: ", eeog_summary["Median"], "}" , sep="")
         if (p1alg == "ThompsonSampling" && p2alg == "DynamicGreedy") {
           results[1, i] <- res_text
         } else if (p1alg == "ThompsonSampling" && p2alg == "DynamicEpsilonGreedy") {
@@ -63,9 +57,9 @@ for (prior in priors) {
       }
     }
   }
-  tab <-xtable(results, caption=paste("Results for", prior, "HardMax", "K=10"))
-  print(tab, type="html")
-
+  tab <-xtable(results, caption=paste("Results for", prior, "HardMax", "K=10"), type="latex")
+  print(tab)
+  
 }
-```
+
 

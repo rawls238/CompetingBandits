@@ -21,11 +21,44 @@ def getRealDistributionsFromPrior(priorName, prior, K):
     return [bernoulli(prior.rvs()) for i in xrange(K)]
   elif priorName == '.5/.7 Random Draw':
     return [bernoulli(random.choice([0.5, 0.7])) for i in xrange(K)]
+  elif priorName == 'Complexity':
+    return [bernoulli(np.random.rand()) for i in xrange(K)]
   return prior
 
-# realDistributions - the true distribution of the arms
-# principalPriors - the priors the principals have over the arms
-# agentPriors - the priors the agents have for the distribution of rewards from each principal
+"""
+Parameters
+  ----------
+  principalAlg1 / principalAlg2 : BanditAlgorithm object
+    The algorithm played by principal 1 and 2, respectively
+  agentAlg : Agent object
+    The decision rule utilized by the agents
+  K : Int
+    The number of arms in the bandit instance
+  T : Int
+    The time horizon for the competition game
+  memory: Int
+    Sliding window length for the reputation score
+  discountFactor: Float
+    Discount factor used in reputation score calculation
+  realDistributions: Distributions vector
+    The distributions of the K arms
+  warmStartRealizations:
+    The realizations for the warm start - realizations for each arm in each warm start round
+  realizations:
+    Realizations for each arm for T rounds
+  freeObsForP2: Boolean
+    Used for the incumbent experiment - does principal 2 (the incumbent) get free agents before the competition game?
+  freeObsNum: Int
+    For how many rounds is principal 2 the incumbent?
+  principal1Priors / principal2Priors: Vector of Distributions
+    Initial beliefs of the principals
+  recordStatsAt: Vector of times
+    We record the state of the game at these times
+  seed: Float
+    Used to reinitialize the seed for the random draws - important when using parallelization
+  eraseReputation: Boolean
+    A boolen flag on whether to erase reputation or not
+"""
 def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   memory=DEFAULT_MEMORY,
   discountFactor=DEFAULT_DISCOUNT_FACTOR,
@@ -34,7 +67,6 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   realizations=None,
   freeObsForP2=False,
   freeObsNum=100,
-  alpha=DEFAULT_ALPHA,
   warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
   principal1Priors=None,
   principal2Priors=None,

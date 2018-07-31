@@ -6,6 +6,7 @@ from lib.bandit.DynamicGreedy import DynamicGreedy
 from lib.bandit.UCB import UCB1WithConstantT
 from lib.bandit.ThompsonSampling import ThompsonSampling
 from lib.bandit.ExploreThenExploit import ExploreThenExploit
+from lib.bandit.MixedGreedy import MixedGreedy
 from lib.constants import RECORD_STATS_AT, DEFAULT_WARM_START_NUM_OBSERVATIONS
 from simulate import simulate, getRealDistributionsFromPrior, initialResultDict
 
@@ -25,12 +26,12 @@ import sys
 import pickle
 
 K = 10
-T = 5002
-NUM_SIMULATIONS = 300
+T = 1001
+NUM_SIMULATIONS = 50
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 'true_mean_hardmax'
+exp_name = 'complexity_exp'
 print('Exp name', exp_name)
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 ERASE_REPUTATION = False
@@ -50,13 +51,13 @@ def get_needle_in_haystack(starting_mean):
   needle_in_haystack[int(K/2)] = bernoulli(starting_mean + 0.2)
   return needle_in_haystack
 
+def gen_rand_instance():
+  return [bernoulli(np.random.rand()) for i in xrange(np.random.randint(10, 20))]
+
 heavy_tail_prior = beta(0.6, 0.6)
 
 BANDIT_DISTR = {
-  'Needle In Haystack - 0.5': get_needle_in_haystack(0.5),
-  'Heavy Tail': heavy_tail_prior,
-  'Uniform': None,
-  '.5/.7 Random Draw': None
+  'Uniform': None
 }
 
 WORKING_DIRECTORY = ''
@@ -76,6 +77,7 @@ dist_name = exp_base_name + '_dist.csv'
 
 INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'Instance Complexity', 'Reputation Erased', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
+# fetch distributions from previous run
 def fetch_distributions(filename, priorname):
   realDistributions = {}
   count = 0
@@ -87,6 +89,7 @@ def fetch_distributions(filename, priorname):
       count += 1
   return realDistributions
 
+# fetch realizations from previous run
 def fetch_realizations(filename, priorname):
   realizations = {}
   warmStartRealizations = {}
@@ -110,6 +113,49 @@ def fetch_realizations(filename, priorname):
         warmStartRealizations[n][t] = [int(row[i]) for i in xrange(3, len(row))]
   return (realizations, warmStartRealizations)
 
+
+# predraw the realizations table so that it is consistent across algorithms.
+# TODO: there is a performance gain to be had here by batching the random draws
+
+def get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=True, dist=None, tabl=None):
+  realDistributions = {}
+  realizations = {}
+  warmStartRealizations = {}
+  if shouldWrite:
+
+    free_obs_dist_writer = csv.writer(dist)
+    free_obs_dist_writer.writerow(['Prior'] + [i for i in xrange(K)])
+
+    free_obs_realization_writer = csv.writer(tabl)
+    free_obs_realization_writer.writerow(['Prior', 't', 'n'] + [i for i in xrange(K)])
+
+  if REALIZATIONS_NAME and len(REALIZATIONS_NAME) > 0:
+    realDistributions = fetch_distributions(REALIZATIONS_NAME, banditDistrName)
+    (realizations, warmStartRealizations) = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
+  else:
+    for q in xrange(NUM_SIMULATIONS):
+      realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+      realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
+      if shouldWrite:
+        free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
+        free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
+    for start in startSizes:
+      warmStartRealizations[start] = {}
+      for q in xrange(NUM_SIMULATIONS):
+        if FREE_OBS: # the free obs observations go first, before the warm start observations
+          warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
+          warmStartRealizations[start][q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
+          if shouldWrite:
+            free_obs_realization_writer.writerows([[banditDistrName, -1*FREE_OBS_NUM - k - 1, q] + [z for z in warmStartRealizations[start][q][k+FREE_OBS_NUM]] for k in xrange(start)])
+            free_obs_realization_writer.writerows([[banditDistrName,  -1*k - 1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(FREE_OBS_NUM)])
+        else:
+          warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
+          if shouldWrite:
+            free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(start)])
+    
+  return (realDistributions, realizations, warmStartRealizations)
+
+# Run a series of experiments that are recorded in CSV files 
 def run_experiment(startSizes):
   results = {}
   with open(raw_name, 'w') as raw_csv:
@@ -120,37 +166,8 @@ def run_experiment(startSizes):
         individual_writer = csv.DictWriter(raw_csv, fieldnames=individual_fieldnames)
         individual_writer.writeheader()
 
-        free_obs_dist_writer = csv.writer(dist)
-        free_obs_dist_writer.writerow(['Prior'] + [i for i in xrange(K)])
-
-        free_obs_realization_writer = csv.writer(tabl)
-        free_obs_realization_writer.writerow(['Prior', 't', 'n'] + [i for i in xrange(K)])
-
         for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
-          realDistributions = {}
-          realizations = {}
-          warmStartRealizations = {}
-          if REALIZATIONS_NAME and len(REALIZATIONS_NAME) > 0:
-            realDistributions = fetch_distributions(REALIZATIONS_NAME, banditDistrName)
-            (realizations, warmStartRealizations) = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
-          else:
-            for q in xrange(NUM_SIMULATIONS):
-              realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
-              free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
-              realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
-              free_obs_realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
-            for start in startSizes:
-              warmStartRealizations[start] = {}
-              for q in xrange(NUM_SIMULATIONS):
-                if FREE_OBS: # the free obs observations go first, before the warm start observations
-                  warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(FREE_OBS_NUM)]
-                  free_obs_realization_writer.writerows([[banditDistrName,  -1*k - 1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(FREE_OBS_NUM)])
-                  warmStartRealizations[start][q] += [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
-                  free_obs_realization_writer.writerows([[banditDistrName, -1*FREE_OBS_NUM - k - 1, q] + [z for z in warmStartRealizations[start][q][k+FREE_OBS_NUM]] for k in xrange(start)])
-                else:
-                  warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
-                  free_obs_realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(start)])
-            
+          (realDistributions, realizations, warmStartRealizations) = get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=False, dist=dist, tabl=tabl)
           for agentAlg in AGENT_ALGS:
             for (principalAlg1, principalAlg2) in ALG_PAIRS:
               for startSize in startSizes:
@@ -180,12 +197,46 @@ def run_experiment(startSizes):
                     }
                     individual_writer.writerow(individual_results)
 
-  # save "results" to disk, just for convenience, so i can look at them later
-  #pickle.dump(results, open("bandit_simulations.p", "wb" )) # later, you can load this by doing: results = pickle.load( open("bandit_simulations.p", "rb" ))
-  #return results
+def run_complexity_experiment(startSizes):
+  results = {}
+  N = 500
+  with open(raw_name, 'w') as raw_csv:
+    individual_fieldnames = copy(INDIVIDUAL_FIELD_NAMES)
+    individual_fieldnames.append('Warm Start')
+    individual_writer = csv.DictWriter(raw_csv, fieldnames=individual_fieldnames)
+    individual_writer.writeheader()
+    for n in xrange(N):
+      K = np.random.randint(10, 30)
+      (realDistributions, realizations, warmStartRealizations) = get_realizations(K, 'Complexity', None, startSizes, shouldWrite=False)
+      for agentAlg in AGENT_ALGS:
+        for (principalAlg1, principalAlg2) in ALG_PAIRS:
+          for startSize in startSizes:
+            print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior Complexity')
+            simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=ERASE_REPUTATION) for i in xrange(NUM_SIMULATIONS))
+            for sim in simResults:
+              for res in sim:
+                t = res['time']
+                regret1 = res['avgRegret1']
+                regret2 = res['avgRegret2']
+                individual_results = {
+                  'Warm Start': startSize,
+                  'Reputation Erased': ERASE_REPUTATION,
+                  'Time Horizon': t,
+                  'Prior': 'Complexity',
+                  'Agent Alg': agentAlg.__name__,
+                  'P1 Alg': principalAlg1.__name__,
+                  'P2 Alg': principalAlg2.__name__,
+                  'P1 Regret': regret1,
+                  'P2 Regret': regret2,
+                  'EEOG': res['effectiveEndOfGame'],
+                  'Instance Complexity': res['complexity'],
+                  'P1 Reputation': res['reputation1'],
+                  'P2 Reputation': res['reputation2'],
+                  'Abs Delta Regret': np.abs(regret1 - regret2),
+                  'Market Share for P1': res['marketShare1'],
+                }
+                individual_writer.writerow(individual_results)
 
-START_SIZES = [5, 20, 50, 100, 150, 200, 400]
-run_experiment(START_SIZES)
+START_SIZES = [20, 40, 100]
+run_complexity_experiment(START_SIZES)
 print('all done!')
-#DISCOUNT_FACTORS = [0.5, 0.75, 0.9, 0.99]
-#run_discounted_experiment(DISCOUNT_FACTORS)

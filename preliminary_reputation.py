@@ -19,7 +19,7 @@ from scipy.stats import bernoulli, beta
 
 
 T = 5001
-N = 150
+N = 500
 K = 10
 
 
@@ -54,27 +54,33 @@ needle_in_haystack_50_high[int(K/2)] = bernoulli(default_mean + 0.2)
 #needle_in_haystack_50_one_medium_one_high[int(K/2)] = bernoulli(default_mean + 0.3)
 #needle_in_haystack_50_one_medium_one_high[int(K/2) + 1] = bernoulli(default_mean + 0.1)
 
-
-
 heavy_tail_prior = beta(0.6, 0.6)
 heavy_tailed = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
 
+def get_needle_in_haystack(starting_mean):
+  needle_in_haystack = [bernoulli(starting_mean) for i in xrange(K)]
+  needle_in_haystack[int(K/2)] = bernoulli(starting_mean + 0.2)
+  return needle_in_haystack
 
 ALGS = [ThompsonSampling, DynamicEpsilonGreedy, DynamicGreedy]
 BANDIT_DISTR = {
-  'Needle In Haystack High': needle_in_haystack_50_high,
-  'Uniform': None,
-  'Heavy Tail': heavy_tail_prior
+  '.5/.7 Random Draw': None,
+  'Needle In Haystack - 0.1': get_needle_in_haystack(0.1),
+  'Needle In Haystack - 0.3': get_needle_in_haystack(0.3)
 }
 
-
+WORKING_DIRECTORY = ''
+#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 # Algorithm, Arms, Prior, t, n, reward
+
+RESULTS_DIR = WORKING_DIRECTORY + 'results/preliminary_raw_results/'
+FILENAME = 'preliminary_plots_all_haystack.csv'
 
 
 FIELDNAMES = ['True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Realized Reward Std', 'Cumulative Realized Reward Mean', 'Cumulative Realized Reward Std', 'Instantaneous Mean Reward Mean', 'Instantaneous Mean Reward Std', 'Cumulative Mean Reward Mean', 'Cumulative Mean Reward Std', 'Best Arm Mean']
 simResults = {}
 
-with open('/rigel/home/ga2449/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_10_arms_reputation.csv', 'w') as csvfile:
+with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
   writer.writeheader()
   for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
@@ -86,6 +92,8 @@ with open('/rigel/home/ga2449/bandits-rl-project/results/preliminary_raw_results
         banditDistr = [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
       elif banditDistrName == 'Heavy Tail':
         banditDistr = [bernoulli(heavy_tail_prior.rvs()) for i in xrange(K)]
+      elif banditDistrName == '.5/.7 Random Draw':
+        banditDistr = [bernoulli(random.choice([0.5, 0.7])) for i in xrange(K)]
 
       realizations = {}
       for t in xrange(T):

@@ -18,7 +18,7 @@
 \title{Competing Bandits}
 \maketitle
 
-\section*{Overview of Old Simulation Results}
+\section*{Overview of Results}
 
 First, summarizing the simulation results that we have seen:
 
@@ -27,55 +27,92 @@ First, summarizing the simulation results that we have seen:
 \item Needle In a Haystack (x, K) = (K-1) arms with a mean of x and 1 arm with mean x + 0.2
 \item Heavy Tail - means of arms randomly drawn from beta(0.6, 0.6)
 \item Uniform - means of arms randomly drawn from [0.25, 0.75]
-\item .5/.7 Prior - means of arms randomly drawn from {0.5, 0.7}
+\item .5/.7 Prior - means of arms randomly drawn from $\{0.5, 0.7\}$
 \end{enumerate}
 
 \textbf{Question}: What algorithms win when both firms start at the same time (simultaneous entry)? How does this vary across agent algorithms?
 
 \begin{enumerate}
-\item For HM
+\item Can we use any metrics of the bandit instances run in isolation that help us predict who wins in the competion game? A metric that seems to work well is the relative reputation plot that simply computes the proportion of instances when an algorithm $a$ has at least as high of a reputation than algorithm $b$ at fixed time step $t$ and on the same bandit instance (with the same realizations).
 \begin{enumerate}
-\item $TS > DEG$, DG for Needle In Haystack (0.5, 10), (0.7, 10)
-\item 50/50 for Needle In Haystack (0.5, 3), (0.1, 10), (0.3, 10),  Uniform (K = 3, 10 - low warm start), .5/.7 prior
-\item $DEG, DG > TS$ for Heavy Tail (K = 3, 10), Uniform (K = 10 - moderate warm start of 15, 20)
-\item $DG > DEG$ for Heavy Tail (this holds for really large time horizons!)
-\item Results sensitive to the warm start (see latest experiments)
-\item Effective End of Game is skewed to the right with many instances having a median of  0, which means that many of the games end simply from the choices made in the warm start, but a relatively larger mean.
-\item Many extreme shares - one principal takes most of the market
+\item For HM - fixing a warm start value $t$ (number of free observations at the start), whichever algorithm has $>0.5$ proportion of ``victories" at time $t$ according to the relative reputation plot should, on average, win more in competition
+\item For HMR and SM, whichever algorithm has $>0.5$ proportion of ``victories" for sufficiently large $t$ (i.e. when learning is more or less done) should win in competition
+\item \textbf{Question}: Does this always line up with looking at the mean reputation plots? In one case, Heavy Tail with $K = 3$, we see that the mean plots show $DEG > DG$, but our simulation results show that $DG > DEG$ in competition and $DG > DEG$ in the relative reputation plots.
 \end{enumerate}
+\item What algorithms win when fixing the HM response model?
+\begin{enumerate}
+\item We see that there is a low effective end of game\footnote{Effective End of Game (EEOG) is defined as the last round when the agent ``switched" the firm she chose}, which is skewed with many instances having a median of 0, meaning that many of the games end simply from the choices made in the warm start
+\item Many extreme shares - one principal takes most of the market
+\item What algorithm wins depends on the warm start parameter (number of initial free observations). 
+\item For low warm start of 5 we have the following results
+\begin{enumerate}
+\item $TS > DEG, DG$ for Needle In Haystack (0.5, 10), (0.7, 10)
+\item 50/50 for Needle In Haystack (0.5, 3), (0.1, 10), (0.3, 10),  Uniform (K = 3, 10), .5/.7 prior
+\item $DEG, DG > TS$ for Heavy Tail (K = 3, 10)
+\item $DG > DEG$ for Heavy Tail (K = 3)
+\end{enumerate}
+\item For moderate warm start (20, 50)
+\begin{enumerate}
+\item $DEG, DG > TS$ for Uniform (K = 10), Heavy Tail (K = 10)
+\item $TS > DEG, DG$ for Needle In Haystack (0.5, 10), (0.7, 10)
+\end{enumerate}
+\item For large warm start
+\begin{enumerate}
+\item $TS > DEG, DG$ for everything except .5/.7 prior
+\end{enumerate}
+\end{enumerate}
+
 \item For HMR:
 \begin{enumerate}
-\item $TS > DEG, DG$ wins with sufficiently large time horizon 
+\item ``Better algorithm" wins with sufficiently large time horizon, where ``better algorithm" is defined as the algorithm that has a larger proportion of wins in the relative reputation plot
 \item One exception is the .5/.7 prior (where means of the arms are randomly drawn from {0.5, 0.7}) where even this is 50/50
-\item We see that $DG > DEG$ for HeavyTail prior, with K = 3
 \item Moderate variance in the market shares
 \end{enumerate}
 \item For SM
 
 \begin{enumerate}
-\item Qualitatively similar to HMR where $TS > DEG, DG$ except in the .5/.7 prior.
-\item However, $DG > DEG$ does not hold for HeavyTail prior.
+\item Qualitatively similar to HMR where better algorithm wins for sufficiently large time horizon
+\item Results closer to 50/50 than HMR
 \item Very low variance in the shares
 \end{enumerate}
 
 \end{enumerate}
 
-\textbf{Question}: What happens if there is asymmetric entry so that one principal has an incumbency advantage? When the other principal enters the incumbent has both an informational and reputation advantage. Which serves as bigger barriers to entry?
+\textbf{Question}: What happens if there is asymmetric entry so that one principal has an incumbency advantage?
 
 \begin{enumerate}
-\item For the incumbent TS is a dominant strategy across priors and agent models that we have tested out.
+\item If the incumbency advantage is sufficiently long, then TS is a dominant strategy across priors and agent models that we have tested out.
+\item If the incumbency advantage is not sufficiently long, TS is no longer a dominant strategy
 \item For SM, TS is not better by much
 \item For HMR, TS is better by more than SM
 \item For HM, TS is better by more than HMR
-\item For the entrant, it is ambiguous still what is the best strategy
+\item For the entrant, it is ambiguous what is the best strategy
 \end{enumerate}
 
-\textbf{Information or reputation?}
+\textbf{Question}: Incumbency gives both an informational and a reputational advantage. If we artificially erase one upon entry of the entrant, does information or reputation play a bigger role as barriers to entry?
 
 \begin{enumerate}
 \item For HM erasing reputation hurts incumbent more (reputational advantage is more important than data advantage)
-\item For HMR/SM - erasing either hurts a bit, but erasing both hurts a lot implying that repetitional and data advantage substitute for one another
+\item For HMR/SM - erasing either hurts a bit, but erasing both hurts a lot implying that reputational and data advantage substitute for one another
 \end{enumerate}
+
+\section*{Story}
+
+\begin{itemize}
+\item Competition in learning environments with no prices - compete for users based on quality alone but quality of different actions is unknown and need to learn the quality of actions. Learn by committing to a learning algorithm at the start of the world. Want the adoption of better algorithms since it is socially beneficial but when does this happen (identifies best arm, maximizes social welfare - i.e. minimizes regret)?
+\item \textbf{Problem}: Competition imposes incentive compatibility constraints on myopic consumers (i.e. firm needs to choose actions so that they actually get selected by users in competition)
+\item We introduce a simple metric of reputation - agents want to maximize their reward and use a reputation score as a proxy for that. Reputation score is a sliding window average of the reward experienced by past agents that had selected this firm. Agents are myopic and non-strategic so they do not consider other factors such as the algorithm employed by the firms.
+\item Firms face a tradeoff between reputation and exploration. Exploration allows them to gather information and implement the first-best but comes at the cost of reputation. Consumers don't care about information gain but do care about reputation. Thus, algorithms that engage in pure exploration suffer reputational costs and lose in the competition game to algorithms that engage in no exploration.
+\item How to incentivize better algorithms? Sufficient number of consumers whose incentive compatibility constraints are effectively removed. A few ways this can happen
+\begin{enumerate}
+\item ``Random agents" or probabilistic decision rules (HMR or SM response)
+\item ``Warm start" or free agents at the start of the game
+\item Some period of monopoly power
+\end{enumerate}
+\item Takeaway: competition can stifle ``innovation" if learning has reputational effects. Monopoly has 
+
+\end{itemize}
+
 
 \pagebreak
 

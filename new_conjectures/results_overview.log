@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JUN 2018 06:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  2 JUL 2018 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**new_results.tex
-(./new_results.tex
+**results_overview.tex
+(./results_overview.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
@@ -658,8 +658,8 @@ File: pppdftex.def 2017/01/14 v0.5h Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count123
 \AM@templatesizebox=\box31
 )
-(./new_results.aux)
-\openout1 = `new_results.aux'.
+(./results_overview.aux)
+\openout1 = `results_overview.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
@@ -721,9 +721,9 @@ LaTeX Info: Redefining \ref on input line 16.
 LaTeX Info: Redefining \pageref on input line 16.
 LaTeX Info: Redefining \nameref on input line 16.
 
-(./new_results.out) (./new_results.out)
+(./results_overview.out) (./results_overview.out)
 \@outlinefile=\write3
-\openout3 = `new_results.out'.
+\openout3 = `results_overview.out'.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
@@ -751,463 +751,33 @@ LaTeX Warning: No \author given.
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 102.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 112.
 
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
- [3] [4]
-[5]
-<"../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arms".p
-df, id=93, 578.16pt x 578.16pt>
-File: "../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 ar
-ms".pdf Graphic file (type pdf)
-
-<use "../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arm
-s".pdf>
-Package pdftex.def Info: "../results/preliminary_figures/Reputation Trajectory 
-for Heavy Tail 3 arms".pdf used on input line 150.
-(pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
- <deg_dg_ht_3_prelim.png, id=94, 373.395pt x 353.32pt>
-File: deg_dg_ht_3_prelim.png Graphic file (type png)
-
-<use deg_dg_ht_3_prelim.png>
-Package pdftex.def Info: deg_dg_ht_3_prelim.png used on input line 154.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
- [6 <../results/preliminary_figures/Reputation Trajectory for Heavy Tail 3 arms
-.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
-
- []
-
-<ts_dg_ht_prelim_10.png, id=109, 373.395pt x 353.32pt>
-File: ts_dg_ht_prelim_10.png Graphic file (type png)
-
-<use ts_dg_ht_prelim_10.png>
-Package pdftex.def Info: ts_dg_ht_prelim_10.png used on input line 160.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_deg_ht_10_prelim.png, id=110, 373.395pt x 353.32pt>
-File: ts_deg_ht_10_prelim.png Graphic file (type png)
-
-<use ts_deg_ht_10_prelim.png>
-Package pdftex.def Info: ts_deg_ht_10_prelim.png used on input line 161.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<deg_dg_ht_10_prelim.png, id=111, 373.395pt x 353.32pt>
-File: deg_dg_ht_10_prelim.png Graphic file (type png)
-
-<use deg_dg_ht_10_prelim.png>
-Package pdftex.def Info: deg_dg_ht_10_prelim.png used on input line 162.
-(pdftex.def)             Requested size: 149.35535pt x 141.32549pt.
-
-<ts_dg_uniform_10_prelim.png, id=112, 373.395pt x 353.32pt>
-File: ts_dg_uniform_10_prelim.png Graphic file (type png)
-
-<use ts_dg_uniform_10_prelim.png>
-Package pdftex.def Info: ts_dg_uniform_10_prelim.png used on input line 163.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_deg_unif_10_prelim.png, id=113, 373.395pt x 353.32pt>
-File: ts_deg_unif_10_prelim.png Graphic file (type png)
-
-<use ts_deg_unif_10_prelim.png>
-Package pdftex.def Info: ts_deg_unif_10_prelim.png used on input line 164.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<deg_dg_unif_10_prelim.png, id=114, 373.395pt x 353.32pt>
-File: deg_dg_unif_10_prelim.png Graphic file (type png)
-
-<use deg_dg_unif_10_prelim.png>
-Package pdftex.def Info: deg_dg_unif_10_prelim.png used on input line 165.
-(pdftex.def)             Requested size: 149.35535pt x 141.32549pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--166
-
- []
-
-[7 <./deg_dg_ht_3_prelim.png> <./ts_dg_ht_prelim_10.png>] [8 <./ts_deg_ht_10_pr
-elim.png> <./deg_dg_ht_10_prelim.png> <./ts_dg_uniform_10_prelim.png>]
-<ts_dg_unif_fine.png, id=130, 445.665pt x 436.63126pt>
-File: ts_dg_unif_fine.png Graphic file (type png)
-
-<use ts_dg_unif_fine.png>
-Package pdftex.def Info: ts_dg_unif_fine.png used on input line 169.
-(pdftex.def)             Requested size: 222.83195pt x 218.3151pt.
-
-<ts_dg_heavy_fine.png, id=131, 445.665pt x 436.63126pt>
-File: ts_dg_heavy_fine.png Graphic file (type png)
-
-<use ts_dg_heavy_fine.png>
-Package pdftex.def Info: ts_dg_heavy_fine.png used on input line 170.
-(pdftex.def)             Requested size: 222.83195pt x 218.3151pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
-
- []
-
-[9 <./ts_deg_unif_10_prelim.png> <./deg_dg_unif_10_prelim.png> <./ts_dg_unif_fi
-ne.png>] <large_ws.pdf, id=139, 614.295pt x 794.97pt>
-File: large_ws.pdf Graphic file (type pdf)
- <use large_ws.pdf>
-Package pdftex.def Info: large_ws.pdf used on input line 172.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: large_ws.pdf Graphic file (type pdf)
-
-<use large_ws.pdf>
-Package pdftex.def Info: large_ws.pdf used on input line 172.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
- <large_ws.pdf, id=142, page=1, 614.295pt x 794.97pt>
-File: large_ws.pdf Graphic file (type pdf)
-
-<use large_ws.pdf, page 1>
-Package pdftex.def Info: large_ws.pdf, page1 used on input line 172.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: large_ws.pdf Graphic file (type pdf)
- <use large_ws.pdf, page 1>
-Package pdftex.def Info: large_ws.pdf, page1 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [10 <./ts_dg_heavy_fine.png>]
-File: large_ws.pdf Graphic file (type pdf)
- <use large_ws.pdf, page 1>
-Package pdftex.def Info: large_ws.pdf, page1 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws.pdf Graphic file (type pdf)
- <use large_ws.pdf, page 1>
-Package pdftex.def Info: large_ws.pdf, page1 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws.pdf Graphic file (type pdf)
-
-<use large_ws.pdf, page 1>
-Package pdftex.def Info: large_ws.pdf, page1 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [11 <./large_ws.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./large_ws.pdf): PDF inclusi
-on: invalid other resource which is no dict (key 'ProcSets', type <array>); ign
-ored.
->] <large_ws.pdf, id=170, page=2, 614.295pt x 794.97pt>
-File: large_ws.pdf Graphic file (type pdf)
-
-<use large_ws.pdf, page 2>
-Package pdftex.def Info: large_ws.pdf, page2 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws.pdf Graphic file (type pdf)
- <use large_ws.pdf, page 2>
-Package pdftex.def Info: large_ws.pdf, page2 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws.pdf Graphic file (type pdf)
-
-<use large_ws.pdf, page 2>
-Package pdftex.def Info: large_ws.pdf, page2 used on input line 172.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [12 <./large_ws.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./large_ws.pdf): PDF inclusi
-on: invalid other resource which is no dict (key 'ProcSets', type <array>); ign
-ored.
->]
-Underfull \hbox (badness 10000) in paragraph at lines 179--183
-
- []
-
-<free_obs_50_10_arms.pdf, id=175, 614.295pt x 794.97pt>
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf>
-Package pdftex.def Info: free_obs_50_10_arms.pdf used on input line 197.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf>
-Package pdftex.def Info: free_obs_50_10_arms.pdf used on input line 197.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-
-<free_obs_50_10_arms.pdf, id=178, page=1, 614.295pt x 794.97pt>
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 1>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page1 used on input line 197.
-
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf, page 1>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page1 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-
-[13]
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf, page 1>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page1 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 1>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page1 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf, page 1>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page1 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-
-[14 <./free_obs_50_10_arms.pdf>]
-<free_obs_50_10_arms.pdf, id=221, page=2, 614.295pt x 794.97pt>
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 2>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page2 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf, page 2>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page2 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 2>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page2 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [15 <./free_obs_50_10_arms.pdf>]
-<free_obs_50_10_arms.pdf, id=226, page=3, 614.295pt x 794.97pt>
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 3>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page3 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf, page 3>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page3 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 3>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page3 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [16 <./free_obs_50_10_arms.pdf>]
-<free_obs_50_10_arms.pdf, id=255, page=4, 614.295pt x 794.97pt>
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 4>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page4 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
- <use free_obs_50_10_arms.pdf, page 4>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page4 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: free_obs_50_10_arms.pdf Graphic file (type pdf)
-
-<use free_obs_50_10_arms.pdf, page 4>
-Package pdftex.def Info: free_obs_50_10_arms.pdf, page4 used on input line 197.
-
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [17 <./free_obs_50_10_arms.pdf>]
-<ts_dg_ht_3_prelim.png, id=260, 373.395pt x 353.32pt>
-File: ts_dg_ht_3_prelim.png Graphic file (type png)
-
-<use ts_dg_ht_3_prelim.png>
-Package pdftex.def Info: ts_dg_ht_3_prelim.png used on input line 203.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_deg_ht_3_prelim.png, id=261, 373.395pt x 353.32pt>
-File: ts_deg_ht_3_prelim.png Graphic file (type png)
-
-<use ts_deg_ht_3_prelim.png>
-Package pdftex.def Info: ts_deg_ht_3_prelim.png used on input line 204.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_deg_unif_3_prelim.png, id=262, 373.395pt x 353.32pt>
-File: ts_deg_unif_3_prelim.png Graphic file (type png)
-
-<use ts_deg_unif_3_prelim.png>
-Package pdftex.def Info: ts_deg_unif_3_prelim.png used on input line 205.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_dg_unif_3_prelim.png, id=263, 373.395pt x 353.32pt>
-File: ts_dg_unif_3_prelim.png Graphic file (type png)
-
-<use ts_dg_unif_3_prelim.png>
-Package pdftex.def Info: ts_dg_unif_3_prelim.png used on input line 206.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<deg_dg_unif_3_prelim.png, id=264, 373.395pt x 353.32pt>
-File: deg_dg_unif_3_prelim.png Graphic file (type png)
-
-<use deg_dg_unif_3_prelim.png>
-Package pdftex.def Info: deg_dg_unif_3_prelim.png used on input line 207.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--208
-
- []
-
-[18 <./ts_dg_ht_3_prelim.png> <./ts_deg_ht_3_prelim.png> <./ts_deg_unif_3_preli
-m.png>] <ts_deg_nih_10_prelim.png, id=273, 373.395pt x 353.32pt>
-File: ts_deg_nih_10_prelim.png Graphic file (type png)
-
-<use ts_deg_nih_10_prelim.png>
-Package pdftex.def Info: ts_deg_nih_10_prelim.png used on input line 209.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_dg_nih_10_prelim.png, id=274, 373.395pt x 353.32pt>
-File: ts_dg_nih_10_prelim.png Graphic file (type png)
-
-<use ts_dg_nih_10_prelim.png>
-Package pdftex.def Info: ts_dg_nih_10_prelim.png used on input line 210.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<deg_dg_nih_10_prelim.png, id=275, 373.395pt x 353.32pt>
-File: deg_dg_nih_10_prelim.png Graphic file (type png)
-
-<use deg_dg_nih_10_prelim.png>
-Package pdftex.def Info: deg_dg_nih_10_prelim.png used on input line 211.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_deg_nih_3_prelim.png, id=276, 373.395pt x 353.32pt>
-File: ts_deg_nih_3_prelim.png Graphic file (type png)
-
-<use ts_deg_nih_3_prelim.png>
-Package pdftex.def Info: ts_deg_nih_3_prelim.png used on input line 212.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_dg_nih_3_prelim.png, id=277, 373.395pt x 353.32pt>
-File: ts_dg_nih_3_prelim.png Graphic file (type png)
-
-<use ts_dg_nih_3_prelim.png>
-Package pdftex.def Info: ts_dg_nih_3_prelim.png used on input line 213.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<deg_dg_nih_3_prelim.png, id=278, 373.395pt x 353.32pt>
-File: deg_dg_nih_3_prelim.png Graphic file (type png)
-
-<use deg_dg_nih_3_prelim.png>
-Package pdftex.def Info: deg_dg_nih_3_prelim.png used on input line 214.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--215
-
- []
-
-[19 <./ts_dg_unif_3_prelim.png> <./deg_dg_unif_3_prelim.png> <./ts_deg_nih_10_p
-relim.png>] [20 <./ts_dg_nih_10_prelim.png> <./deg_dg_nih_10_prelim.png> <./ts_
-deg_nih_3_prelim.png>]
-<ts_deg_5_7_10_prelim.png, id=294, 373.395pt x 353.32pt>
-File: ts_deg_5_7_10_prelim.png Graphic file (type png)
-
-<use ts_deg_5_7_10_prelim.png>
-Package pdftex.def Info: ts_deg_5_7_10_prelim.png used on input line 216.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<ts_dg_5_7_10_prelim.png, id=295, 373.395pt x 353.32pt>
-File: ts_dg_5_7_10_prelim.png Graphic file (type png)
-
-<use ts_dg_5_7_10_prelim.png>
-Package pdftex.def Info: ts_dg_5_7_10_prelim.png used on input line 217.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-<deg_dg_5_7_10_prelim.png, id=296, 373.395pt x 353.32pt>
-File: deg_dg_5_7_10_prelim.png Graphic file (type png)
-
-<use deg_dg_5_7_10_prelim.png>
-Package pdftex.def Info: deg_dg_5_7_10_prelim.png used on input line 218.
-(pdftex.def)             Requested size: 186.69704pt x 176.65956pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--219
-
- []
-
-[21 <./ts_dg_nih_3_prelim.png> <./deg_dg_nih_3_prelim.png> <./ts_deg_5_7_10_pre
-lim.png>] <large_ws_erase_rep.pdf, id=304, 614.295pt x 794.97pt>
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
-
-<use large_ws_erase_rep.pdf>
-Package pdftex.def Info: large_ws_erase_rep.pdf used on input line 222.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
- <use large_ws_erase_rep.pdf>
-Package pdftex.def Info: large_ws_erase_rep.pdf used on input line 222.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-
-<large_ws_erase_rep.pdf, id=307, page=1, 614.295pt x 794.97pt>
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
-
-<use large_ws_erase_rep.pdf, page 1>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page1 used on input line 222.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
- <use large_ws_erase_rep.pdf, page 1>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page1 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-
-[22 <./ts_dg_5_7_10_prelim.png> <./deg_dg_5_7_10_prelim.png>]
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
-
-<use large_ws_erase_rep.pdf, page 1>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page1 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
- <use large_ws_erase_rep.pdf, page 1>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page1 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
-
-<use large_ws_erase_rep.pdf, page 1>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page1 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [23 <./large_ws_erase_rep.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./large_ws_erase_rep.pdf): P
-DF inclusion: invalid other resource which is no dict (key 'ProcSets', type <ar
-ray>); ignored.
->] <large_ws_erase_rep.pdf, id=335, page=2, 614.295pt x 794.97pt>
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
-
-<use large_ws_erase_rep.pdf, page 2>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page2 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
- <use large_ws_erase_rep.pdf, page 2>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page2 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
-File: large_ws_erase_rep.pdf Graphic file (type pdf)
-
-<use large_ws_erase_rep.pdf, page 2>
-Package pdftex.def Info: large_ws_erase_rep.pdf, page2 used on input line 222.
-(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
- [24 <./large_ws_erase_rep.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./large_ws_erase_rep.pdf): P
-DF inclusion: invalid other resource which is no dict (key 'ProcSets', type <ar
-ray>); ignored.
->]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
- (./new_results.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
-Package rerunfilecheck Info: File `new_results.out' has not changed.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 112.
+ [3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 126.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 126.
+
+(./results_overview.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 126.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 126.
+Package rerunfilecheck Info: File `results_overview.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 126.
  ) 
 Here is how much of TeX's memory you used:
- 8489 strings out of 492995
- 122719 string characters out of 6132704
+ 8302 strings out of 492995
+ 117985 string characters out of 6132704
  225593 words of memory out of 5000000
- 11799 multiletter control sequences out of 15000+600000
- 13581 words of font info for 52 fonts, out of 8000000 for 9000
+ 11666 multiletter control sequences out of 15000+600000
+ 13235 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,18n,46p,1713b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,39p,701b,501s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -1223,12 +793,11 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
 017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on new_results.pdf (24 pages, 844161 bytes).
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on results_overview.pdf (4 pages, 161533 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 278 compressed objects within 3 object streams
- 79 named destinations out of 1000 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 154 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
