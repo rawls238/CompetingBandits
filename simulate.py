@@ -14,7 +14,7 @@ def getDefaultRealDistributions(K):
   prior = getDefaultPrior(K)
   return [bernoulli(prior[i].rvs()) for i in xrange(K)]
 
-def getRealDistributionsFromPrior(priorName, prior, K):
+def getRealDistributionsFromPrior(priorName, prior, K, targetComplexityVal=None):
   if priorName == 'Uniform':
     return [bernoulli(random.uniform(0.25, 0.75)) for i in xrange(K)]
   elif priorName == 'Heavy Tail':
@@ -22,8 +22,35 @@ def getRealDistributionsFromPrior(priorName, prior, K):
   elif priorName == '.5/.7 Random Draw':
     return [bernoulli(random.choice([0.5, 0.7])) for i in xrange(K)]
   elif priorName == 'Complexity':
-    return [bernoulli(np.random.rand()) for i in xrange(K)]
+    a = [np.random.rand()% 0.5 for i in xrange(int(K/2))]
+    b = [(np.random.rand()% 0.5) + 0.5 for i in xrange(int(K/2),K)]
+    return a + b
+  elif priorName == 'FixedComplexity':
+    if targetComplexityVal is None:
+      print("Provide target complexity val")
+      return
+    return genInstanceForComplexityMetric(targetComplexityVal, K)
   return prior
+
+def complexityMetric(means):
+  bestArm = max(means)
+  metric = 0.0
+  for mean in means:
+    if mean < bestArm:
+      metric += 1.0 / (bestArm - mean)
+  return metric
+
+def gen_rand_instance(K):
+  a = [np.random.rand()% 0.5 for i in xrange(int(K/2))]
+  b = [(np.random.rand()% 0.5) + 0.5 for i in xrange(int(K/2),K)]
+  return a + b
+
+def genInstanceForComplexityMetric(targetVal, K):
+  while True:
+    instance = gen_rand_instance(K)
+    complexity = complexityMetric(instance)
+    if np.abs(complexity - targetVal) <= 5:
+      return [bernoulli(i) for i in instance]
 
 """
 Parameters

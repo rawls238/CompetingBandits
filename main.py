@@ -31,7 +31,7 @@ NUM_SIMULATIONS = 50
 
 FREE_OBS = False
 FREE_OBS_NUM = 200
-exp_name = 'complexity_exp'
+exp_name = 'fixed_complexity'
 print('Exp name', exp_name)
 REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
 ERASE_REPUTATION = False
@@ -61,7 +61,7 @@ BANDIT_DISTR = {
 }
 
 WORKING_DIRECTORY = ''
-#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 
 if FREE_OBS:
   dir_name = WORKING_DIRECTORY + 'results/free_obs_raw_results/'
@@ -75,7 +75,7 @@ raw_name = exp_base_name + '_raw.csv'
 realizations_name = exp_base_name + '_realizations.csv'
 dist_name = exp_base_name + '_dist.csv'
 
-INDIVIDUAL_FIELD_NAMES =['Prior', 'P1 Alg', 'EEOG', 'Instance Complexity', 'Reputation Erased', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['Prior', 'N', 'P1 Alg', 'EEOG', 'Instance Complexity', 'Reputation Erased', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
 # fetch distributions from previous run
 def fetch_distributions(filename, priorname):
@@ -113,11 +113,12 @@ def fetch_realizations(filename, priorname):
         warmStartRealizations[n][t] = [int(row[i]) for i in xrange(3, len(row))]
   return (realizations, warmStartRealizations)
 
+### Functions for the experiments drawing from priors ###
 
 # predraw the realizations table so that it is consistent across algorithms.
 # TODO: there is a performance gain to be had here by batching the random draws
 
-def get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=True, dist=None, tabl=None):
+def get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=True, dist=None, tabl=None, complexityVal=None):
   realDistributions = {}
   realizations = {}
   warmStartRealizations = {}
@@ -134,7 +135,7 @@ def get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=Tr
     (realizations, warmStartRealizations) = fetch_realizations(REALIZATIONS_NAME, banditDistrName)
   else:
     for q in xrange(NUM_SIMULATIONS):
-      realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+      realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K, targetComplexityVal=complexityVal)
       realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
       if shouldWrite:
         free_obs_dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
@@ -197,46 +198,75 @@ def run_experiment(startSizes):
                     }
                     individual_writer.writerow(individual_results)
 
-def run_complexity_experiment(startSizes):
+
+
+
+
+ ### Functions for the complexity experiment ###
+def get_distributions(N, banditDistrName, banditDistr, complexityVal=None):
+  realDistributions = {}
+  for q in xrange(N):
+    K = np.random.randint(10, 30)
+    realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K, targetComplexityVal=complexityVal)
+  return realDistributions
+
+def get_realizations_with_distr(realDistributions, startSizes, numSim):
+  realizations = {}
+  warmStartRealizations = {}
+  for q in xrange(numSim):
+    realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
+  for start in startSizes:
+    warmStartRealizations[start] = {}
+    for q in xrange(numSim):
+      warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
+  return (realizations, warmStartRealizations)
+
+
+def run_complexity_experiment(startSizes, complexityVals):
   results = {}
-  N = 500
+  N = 50
+  numSim = 50
   with open(raw_name, 'w') as raw_csv:
     individual_fieldnames = copy(INDIVIDUAL_FIELD_NAMES)
     individual_fieldnames.append('Warm Start')
     individual_writer = csv.DictWriter(raw_csv, fieldnames=individual_fieldnames)
     individual_writer.writeheader()
-    for n in xrange(N):
-      K = np.random.randint(10, 30)
-      (realDistributions, realizations, warmStartRealizations) = get_realizations(K, 'Complexity', None, startSizes, shouldWrite=False)
-      for agentAlg in AGENT_ALGS:
-        for (principalAlg1, principalAlg2) in ALG_PAIRS:
-          for startSize in startSizes:
-            print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior Complexity')
-            simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=ERASE_REPUTATION) for i in xrange(NUM_SIMULATIONS))
-            for sim in simResults:
-              for res in sim:
-                t = res['time']
-                regret1 = res['avgRegret1']
-                regret2 = res['avgRegret2']
-                individual_results = {
-                  'Warm Start': startSize,
-                  'Reputation Erased': ERASE_REPUTATION,
-                  'Time Horizon': t,
-                  'Prior': 'Complexity',
-                  'Agent Alg': agentAlg.__name__,
-                  'P1 Alg': principalAlg1.__name__,
-                  'P2 Alg': principalAlg2.__name__,
-                  'P1 Regret': regret1,
-                  'P2 Regret': regret2,
-                  'EEOG': res['effectiveEndOfGame'],
-                  'Instance Complexity': res['complexity'],
-                  'P1 Reputation': res['reputation1'],
-                  'P2 Reputation': res['reputation2'],
-                  'Abs Delta Regret': np.abs(regret1 - regret2),
-                  'Market Share for P1': res['marketShare1'],
-                }
-                individual_writer.writerow(individual_results)
+    for complexityVal in complexityVals:
+      realDistributions = get_distributions(N, 'FixedComplexity', None, complexityVal=complexityVal)
+      for n in xrange(N):
+        (realizations, warmStartRealizations) = get_realizations_with_distr(realDistributions, startSizes, numSim)
+        print("Complexity val", complexityVal, " Iteration ", n)
+        for agentAlg in AGENT_ALGS:
+          for (principalAlg1, principalAlg2) in ALG_PAIRS:
+            for startSize in startSizes:
+              #print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior Complexity')
+              simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], warmStartRealizations=warmStartRealizations[startSize][i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1, eraseReputation=ERASE_REPUTATION) for i in xrange(numSim))
+              for sim in simResults:
+                for res in sim:
+                  t = res['time']
+                  regret1 = res['avgRegret1']
+                  regret2 = res['avgRegret2']
+                  individual_results = {
+                    'Warm Start': startSize,
+                    'N': n,
+                    'Reputation Erased': ERASE_REPUTATION,
+                    'Time Horizon': t,
+                    'Prior': 'Complexity',
+                    'Agent Alg': agentAlg.__name__,
+                    'P1 Alg': principalAlg1.__name__,
+                    'P2 Alg': principalAlg2.__name__,
+                    'P1 Regret': regret1,
+                    'P2 Regret': regret2,
+                    'EEOG': res['effectiveEndOfGame'],
+                    'Instance Complexity': res['complexity'],
+                    'P1 Reputation': res['reputation1'],
+                    'P2 Reputation': res['reputation2'],
+                    'Abs Delta Regret': np.abs(regret1 - regret2),
+                    'Market Share for P1': res['marketShare1'],
+                  }
+                  individual_writer.writerow(individual_results)
 
-START_SIZES = [20, 40, 100]
-run_complexity_experiment(START_SIZES)
+START_SIZES = [50, 100, 200]
+COMPLEXITY_VALUES = [100, 500, 1000, 2500, 5000, 7500, 10000]
+run_complexity_experiment(START_SIZES, COMPLEXITY_VALUES)
 print('all done!')
