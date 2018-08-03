@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: competing_bandits.aux
+The style file: aaai.bst
+Database file #1: refs.bib
+You've used 4 entries,
+            2568 wiz_defined-function locations,
+            602 strings with 5331 characters,
+and the built_in function-call counts, 1763 in all, are:
+= -- 193
+> -- 67
+< -- 1
++ -- 22
+- -- 22
+* -- 144
+:= -- 287
+add.period$ -- 21
+call.type$ -- 4
+change.case$ -- 27
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 66
+empty$ -- 121
+format.name$ -- 33
+if$ -- 361
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 4
+newline$ -- 28
+num.names$ -- 12
+pop$ -- 20
+preamble$ -- 1
+purify$ -- 31
+quote$ -- 0
+skip$ -- 54
+stack$ -- 0
+substring$ -- 105
+swap$ -- 17
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 32
+warning$ -- 0
+while$ -- 15
+width$ -- 6
+write$ -- 59

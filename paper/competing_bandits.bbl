@@ -1,0 +1,32 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Che and H{\"o}rner}{2017}]{che2017recommender}
+Che, Y.-K., and H{\"o}rner, J.
+\newblock 2017.
+\newblock Recommender systems as mechanisms for social learning.
+\newblock {\em The Quarterly Journal of Economics} 133(2):871--925.
+
+\bibitem[\protect\citeauthoryear{Kremer, Mansour, and
+  Perry}{2014}]{kremer2014implementing}
+Kremer, I.; Mansour, Y.; and Perry, M.
+\newblock 2014.
+\newblock Implementing the “wisdom of the crowd”.
+\newblock {\em Journal of Political Economy} 122(5):988--1012.
+
+\bibitem[\protect\citeauthoryear{Mansour, Slivkins, and
+  Syrgkanis}{2015}]{mansour2015bayesian}
+Mansour, Y.; Slivkins, A.; and Syrgkanis, V.
+\newblock 2015.
+\newblock Bayesian incentive-compatible bandit exploration.
+\newblock In {\em Proceedings of the Sixteenth ACM Conference on Economics and
+  Computation},  565--582.
+\newblock ACM.
+
+\bibitem[\protect\citeauthoryear{Mansour, Slivkins, and
+  Wu}{2017}]{mansour2017competing}
+Mansour, Y.; Slivkins, A.; and Wu, Z.~S.
+\newblock 2017.
+\newblock Competing bandits: Learning under competition.
+\newblock {\em arXiv preprint arXiv:1702.08533}.
+
+\end{thebibliography}
