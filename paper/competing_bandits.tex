@@ -184,35 +184,31 @@ In this section we present simulation results of the model discussed in Section 
 
 \begin{table}[ht]
 \centering
-\caption{Needle In Haystack Prior} 
+\caption{Simultaneous Entry Needle In Haystack} 
 \begin{tabular}{rlll}
   \hline
-Alg 1 vs 2 & k = 20 & k = 100 & k = 200 \\ 
+ & k = 20 & k = 100 & k = 200 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.66} $\pm$0.05\\ eeog \\ avg: 330\\ med: 31} & \makecell{\textbf{0.61} $\pm$0.05\\ eeog \\ avg: 590\\ med: 61.5} &  \\
-\hline 
-  TS vs DEG & \makecell{\textbf{0.58} $\pm$0.06\\ eeog \\ avg: 180\\ med: 1} & \makecell{\textbf{0.54} $\pm$0.05\\ eeog \\ avg: 670\\ med: 60} &  \\ 
-  \hline 
-  DG vs DEG & \makecell{\textbf{0.41} $\pm$0.05\\ eeog \\ avg: 650\\ med: 182} & \makecell{\textbf{0.41} $\pm$0.05\\ eeog \\ avg: 1500\\ med: 672} &  \\ 
+TS vs DG & \makecell{\textbf{0.86} $\pm$0.02\\ eeog \\ avg: 14\\ med: 0} & \makecell{\textbf{0.65} $\pm$0.02\\ eeog \\ avg: 11\\ med: 0} & \makecell{\textbf{0.59} $\pm$0.02\\ eeog \\ avg: 6\\ med: 0} \\ 
+  TS vs DEG & \makecell{\textbf{0.84} $\pm$0.02\\ eeog \\ avg: 20\\ med: 0} & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 8\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 5.4\\ med: 0} \\ 
+  DG vs DEG & \makecell{\textbf{0.41} $\pm$0.02\\ eeog \\ avg: 400\\ med: 115} & \makecell{\textbf{0.47} $\pm$0.02\\ eeog \\ avg: 320\\ med: 0} & \makecell{\textbf{0.5} $\pm$0.02\\ eeog \\ avg: 290\\ med: 0} \\ 
    \hline
    \label{hm_nih}
-   \end{tabular}
+\end{tabular}
 \caption*{\tiny{The first line in each cell contains the average market share received by the firm playing Alg 1 (and the market share of Alg 2 is 1 - Alg 1 Market Share) as well as a 95 \% confidence band. For example, the cell in the top left indicates that TS gets on average 32\% of the market when played against DG. The next line contain the average and median effective end of game for this set of simulations.}}
 \end{table}
 
 
 \begin{table}[ht]
 \centering
-\caption{Heavy Tail Prior} 
+\caption{Simultaneous Entry Heavy Tail} 
 \begin{tabular}{rlll}
   \hline
-Alg 1 vs 2 & k = 20 & k = 100 & k = 200 \\ 
+ & k = 20 & k = 100 & k = 200 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.32} $\pm$0.05\\ eeog \\ avg: 150\\ med: 0} & \makecell{\textbf{0.55} $\pm$0.05\\ eeog \\ avg: 300\\ med: 0} & \makecell{\textbf{0.73} $\pm$0.04\\ eeog \\ avg: 1400\\ med: 226.5} \\ 
-\hline
-  TS vs DEG & \makecell{\textbf{0.34} $\pm$0.05\\ eeog \\ avg: 36\\ med: 0} & \makecell{\textbf{0.65} $\pm$0.05\\ eeog \\ avg: 330\\ med: 0} & \makecell{\textbf{0.91} $\pm$0.02\\ eeog \\ avg: 1100\\ med: 107.5} \\ 
-  \hline
-  DG vs DEG & \makecell{\textbf{0.62} $\pm$0.05\\ eeog \\ avg: 800\\ med: 10} & \makecell{\textbf{0.6} $\pm$0.05\\ eeog \\ avg: 1500\\ med: 866.5} & \makecell{\textbf{0.62} $\pm$0.05\\ eeog \\ avg: 1900\\ med: 1627.5} \\ 
+TS vs DG & \makecell{\textbf{0.22} $\pm$0.02\\ eeog \\ avg: 0.27\\ med: 0} & \makecell{\textbf{0.41} $\pm$0.02\\ eeog \\ avg: 0.039\\ med: 0} & \makecell{\textbf{0.58} $\pm$0.02\\ eeog \\ avg: 12\\ med: 0} \\ 
+  TS vs DEG & \makecell{\textbf{0.24} $\pm$0.02\\ eeog \\ avg: 3.2\\ med: 0} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 39\\ med: 0} & \makecell{\textbf{0.91} $\pm$0.01\\ eeog \\ avg: 84\\ med: 0} \\ 
+  DG vs DEG & \makecell{\textbf{0.8} $\pm$0.02\\ eeog \\ avg: 16\\ med: 0} & \makecell{\textbf{0.86} $\pm$0.02\\ eeog \\ avg: 4.7\\ med: 0} & \makecell{\textbf{0.83} $\pm$0.02\\ eeog \\ avg: 2.7\\ med: 0} \\ 
    \hline
    \label{hm_ht}
 \end{tabular}
@@ -224,6 +220,8 @@ TS vs DG & \makecell{\textbf{0.32} $\pm$0.05\\ eeog \\ avg: 150\\ med: 0} & \mak
 \includegraphics[scale=0.3]{figures/ts_dg_heavy_fine}
 \caption*{TODO: Reduce the range of the x-axis of this so that you can understand when TS starts to do better than DG}
 \end{figure}
+
+[IDEA: take a look at the distribution of reputation induced by each algorithm under each prior]
 
 Tables \ref{hm_nih} and \ref{hm_ht} display the results. Under Heavy Tail we see that for small warm start of $k = 20$, $DG$ gives the firm more of the market than $TS$ and $DEG$. As we increase the warm start to $k = 100, 200$ we observe that $TS$ does better than $DG$ and $DEG$. Note that, in particular for the simulations involving $TS$, the effective end of game had a median of 0. This means that the result of the simulation was \textit{completely determined by the warm start period}. Thus, when reasoning about what algorithm would win in the competition game under the HardMax decision rule we need to think about the performance of the algorithm on $k$ samples instead of $T$ samples, which may be small. For low warm start, it is thus not necessarily the case that $TS$ is the best algorithm. However, we see that under the Needle In Haystack prior $TS$ is always the best algorithm across all warm start values.
 
@@ -316,11 +314,13 @@ Thus, we see that both information and reputation advantages alone can serve as 
 
 Thus far we have largely presented simulation results utilizing the deterministic HardMax rule. This is a natural decision rule where agents simply use the reputation score as a strict decision-making rule. In this section we consider the implications of adding randomness to the agent rule. What are the implications on what algorithm the firms are incentivized to play? How does the distribution of market share change?
 
-[Discuss that, under random agent models, firms that play better learning algorithms do better in the long-run since they get enough free agents to move to the part of the relative reputation curve where better algorithms win]
+Under the HardMax decision rule, firms need to incentivize consumers to select them over their competition by having a higher reputation. First, we consider the $HardMaxWithRandom$ decision rule discussed in the Section \ref{S:3}. Similar to the result in \citet{mansour2017competing} we find that this induces firms to play the ``better" algorithm for sufficiently long time horizon (see appendix). The intuition for this is the same as before, where, even though the firm initially suffers reputation loss from exploration, eventually the firm gets sufficiently many agents that don't need to be incentivized to select the firm in order to get a higher reputation than a ``worse" algorithm. We have a similar observation for the $SoftMax$ decision rule discussed in Section \ref{S:3}.
 
-[Discuss that, under HMR, market share variance is lower and see less extreme market shares.]
+\begin{figure}
+\label{agent_variances}
+\end{figure}
 
-[Discuss that, under SM, market share variance is very low and market shares are around 50/50].
+We see that better algorithms are incentivized when we consider random agent response rules, but there are differences in the overall market composition. As Figure \ref{agent_variances} shows, the variance of market shares across simulations varies greatly. Under $HardMax$, we see that, in a single simulation, the market is generally ``winner take all" where one firm generally gets a large share of the market and there is a high variance. Under $HardMaxWithRandom$ we see that, in a single simulation, the market is mostly taken by one firm (but to a lower extent than under $HardMax$) and there is a lower, though still high, variance. Under $SoftMax$ we see that the market variance is very low and market shares are generally close to 50/50.
 
 \section{Conclusion}
 \label{S:10}
