@@ -21,11 +21,11 @@ from simulate import getRealDistributionsFromPrior
 from scipy.stats import bernoulli, beta
 
 
-T = 15
-N = 2
+T = 2001
+N = 150
 K = 10
 numCores = 10
-WARM_START_SIZE = 10
+WARM_START_SIZE = 100
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
