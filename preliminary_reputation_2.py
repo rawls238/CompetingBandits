@@ -16,14 +16,16 @@ from lib.bandit.DynamicGreedy import DynamicGreedy
 from lib.bandit.UCB import UCB1WithConstantOne, UCB1WithConstantT
 from lib.bandit.ThompsonSampling import ThompsonSampling
 from lib.bandit.ExploreThenExploit import ExploreThenExploit
+from simulate import getRealDistributionsFromPrior
 
 from scipy.stats import bernoulli, beta
 
 
-T = 1000
-N = 250
+T = 2001
+N = 150
 K = 10
 numCores = 2
+WARM_START_SIZE = 100
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
@@ -68,60 +70,66 @@ WORKING_DIRECTORY = ''
 # Algorithm, Arms, Prior, t, n, reward
 
 RESULTS_DIR = WORKING_DIRECTORY + 'results/preliminary_raw_results/'
-FILENAME = 'preliminary_plots_10_arms_small_window.csv'
-
+FILENAME = 'preliminary_plots_unified.csv'
+realizations_name = RESULTS_DIR + 'preliminary_realizations.csv'
+dist_name = RESULTS_DIR + 'preliminary_dist.csv'
 
 FIELDNAMES = ['Realized Complexity', 'n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean', 'Arm Means']
 simResults = {}
 
 with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
-  writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
-  writer.writeheader()
-  for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
-    realizations = {}
-    banditDistrs = {}
-    for a in xrange(len(ALGS)):
-      simResults[ALGS[a]] = []
+  with open(realizations_name, 'w') as realiz:
+    with open(dist_name, 'w') as dist:
 
-    for i in xrange(N):
-      if banditDistrName == 'Uniform':
-        banditDistrs[i] = [bernoulli(np.random.uniform(0.25, 0.75)) for j in xrange(K)]
-      elif banditDistrName == 'Heavy Tail':
-        banditDistrs[i] = [bernoulli(heavy_tail_prior.rvs()) for j in xrange(K)]
-      elif banditDistrName == '.5/.7 Random Draw':
-        banditDistrs[i] = [bernoulli(np.random.choice([0.5, 0.7])) for j in xrange(K)]
-      else:
-        banditDistrs[i] = banditDistr
+      writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
+      writer.writeheader()
+      for (banditDistrName, banditDistr) in BANDIT_DISTR.iteritems():
+        for a in xrange(len(ALGS)):
+          simResults[ALGS[a]] = []
+        realDistributions = {}
+        realizations = {}
+        warmStartRealizations = {}
+        warmStartRealizations[WARM_START_SIZE] = {}
 
-      realizations[i] = {}
-      for t in xrange(T):
-        realizations[i][t] = {}
-        for j in xrange(len(banditDistrs[i])):
-          realizations[i][t][j] = banditDistrs[i][j].rvs()
+        dist_writer = csv.writer(dist)
+        dist_writer.writerow(['Prior'] + [i for i in xrange(K)])
 
-    for a in xrange(len(ALGS)):
-      alg = ALGS[a]
-      simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, banditDistrs[j], realizations[j], j) for j in xrange(N))
-    for t in range(10, T, 10):
-      for (alg, algResult) in simResults.iteritems():
-        name = alg.__name__
-        for j in xrange(len(algResult)):
-          realized_reputation = np.mean(algResult[j][0][max(0,t-100):t])
-          true_reputation = np.mean(algResult[j][2][max(0,t-100):t])
-          instantaneous_realized = algResult[j][0][t]
-          instantaneous_mean = algResult[j][2][t]
-          res = {
-            'Algorithm': name,
-            'K': str(K),
-            'n': str(j),
-            'Distribution': banditDistrName,
-            't': str(t),
-            'Instantaneous Realized Reward Mean': instantaneous_realized,
-            'Instantaneous Mean Reward Mean': instantaneous_mean,
-            'Realized Reputation': realized_reputation,
-            'True Mean Reputation': true_reputation,
-            'Realized Complexity': str(algResult[j][5])
-          }
-          writer.writerow(res)
+        realization_writer = csv.writer(realiz)
+        realization_writer.writerow(['Prior', 't', 'n'] + [i for i in xrange(K)])
+
+        start = WARM_START_SIZE
+        for q in xrange(N):
+          realDistributions[q] = getRealDistributionsFromPrior(banditDistrName, banditDistr, K)
+          realizations[q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(T)]
+          dist_writer.writerow([banditDistrName] + [realDistributions[q][j].mean() for j in xrange(len(realDistributions[q]))])
+          realization_writer.writerows([[banditDistrName, k, q] + [z for z in realizations[q][k]] for k in xrange(T)])
+          warmStartRealizations[start][q] = [[realDistributions[q][j].rvs() for j in xrange(len(realDistributions[q]))] for k in xrange(start)]
+          realization_writer.writerows([[banditDistrName, -1*k-1, q] + [z for z in warmStartRealizations[start][q][k]] for k in xrange(start)])
+
+
+        for a in xrange(len(ALGS)):
+          alg = ALGS[a]
+          simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, realDistributions[j], realizations[j], j) for j in xrange(N))
+        for t in range(10, T, 5):
+          for (alg, algResult) in simResults.iteritems():
+            name = alg.__name__
+            for j in xrange(len(algResult)):
+              realized_reputation = np.mean(algResult[j][0][max(0,t-100):t])
+              true_reputation = np.mean(algResult[j][2][max(0,t-100):t])
+              instantaneous_realized = algResult[j][0][t]
+              instantaneous_mean = algResult[j][2][t]
+              res = {
+                'Algorithm': name,
+                'K': str(K),
+                'n': str(j),
+                'Distribution': banditDistrName,
+                't': str(t),
+                'Instantaneous Realized Reward Mean': instantaneous_realized,
+                'Instantaneous Mean Reward Mean': instantaneous_mean,
+                'Realized Reputation': realized_reputation,
+                'True Mean Reputation': true_reputation,
+                'Realized Complexity': str(algResult[j][5])
+              }
+              writer.writerow(res)
 
 print('all done!')
