@@ -21,21 +21,27 @@ from simulate import getRealDistributionsFromPrior
 from scipy.stats import bernoulli, beta
 
 
-T = 2001
-N = 150
+T = 15
+N = 2
 K = 10
-numCores = 2
-WARM_START_SIZE = 100
+numCores = 10
+WARM_START_SIZE = 10
 
 
 DEFAULT_COMMON_PRIOR = [beta(1, 1) for k in xrange(K)]
 
 
-def sim(alg, banditDistr, realizations, seed):
-  seed = int(time.time() * float(seed)) % 2**32
+def sim(alg, banditDistr, realizations, warmStartRealizations, seed):
+  seed = int(seed)
   np.random.seed(seed)
-  banditProblemInstance = BanditProblemInstance(K, T, banditDistr, realizations)
+
+  banditProblemInstance = BanditProblemInstance(K, T, banditDistr, warmStartRealizations)
   banditAlg = alg(banditProblemInstance, DEFAULT_COMMON_PRIOR)
+  for t in xrange(WARM_START_SIZE):
+    banditAlg.executeStep(t)
+
+  banditProblemInstance = BanditProblemInstance(K, T, banditDistr, realizations)
+  banditAlg.setBanditInstance(banditProblemInstance)
   for t in xrange(T):
     banditAlg.executeStep(t)
   return (banditAlg.realizedRewardHistory, banditAlg.realizedCumulativeRewardHistory, banditAlg.meanRewardHistory, banditAlg.meanCumulativeRewardHistory, banditProblemInstance.getArmMeans(), banditProblemInstance.getComplexityMetric())
@@ -109,8 +115,8 @@ with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
 
         for a in xrange(len(ALGS)):
           alg = ALGS[a]
-          simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, realDistributions[j], realizations[j], j) for j in xrange(N))
-        for t in range(10, T, 5):
+          simResults[alg] = Parallel(n_jobs=numCores)(delayed(sim)(alg, realDistributions[j], realizations[j], warmStartRealizations[WARM_START_SIZE][j], j+1) for j in xrange(N))
+        for t in range(5, T+WARM_START_SIZE, 5):
           for (alg, algResult) in simResults.iteritems():
             name = alg.__name__
             for j in xrange(len(algResult)):

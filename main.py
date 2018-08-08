@@ -198,10 +198,6 @@ def run_experiment(startSizes):
                     }
                     individual_writer.writerow(individual_results)
 
-
-
-
-
  ### Functions for the complexity experiment ###
 def get_distributions(N, banditDistrName, banditDistr, complexityVal=None):
   realDistributions = {}

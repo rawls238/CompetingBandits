@@ -101,7 +101,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   seed=1.0,
   eraseReputation = False
 ):
-  seed = int(time.time() * float(seed)) % 2**32
+  seed = int(seed)
   np.random.seed(seed)
   if principal1Priors is None:
     principal1Priors = getDefaultPrior(K)
@@ -122,16 +122,14 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   if freeObsForP2:
     for j in range(freeObsNum):
       (reward, arm) = principals['principal2'].executeStep(j)
-      trueMean = banditProblemInstance.getMeanOfArm(arm)
-      agents.updateInformationSet(trueMean, arm, 'principal2')
+      agents.updateInformationSet(reward, arm, 'principal2')
     principals['principal2'].resetStats()
 
   # give the agents a few observations
   for i in xrange(warmStartNumObservations):
     for (principalName, principal) in principals.iteritems():
       (reward, arm) = principal.executeStep(i)
-      trueMean = banditProblemInstance.getMeanOfArm(arm)
-      agents.updateInformationSet(trueMean, arm, principalName)
+      agents.updateInformationSet(reward, arm, principalName)
 
   if eraseReputation:
     agents.resetInformationSet()
