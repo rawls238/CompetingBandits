@@ -117,7 +117,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   principal2 = principalAlg2(banditProblemInstance, principal2Priors)
 
   principals = { 'principal1': principal1, 'principal2': principal2 }
-  agents = agentAlg(principals, K, memory=memory)
+  agents = agentAlg(principals, K)
 
   if freeObsForP2:
     for j in range(freeObsNum):
