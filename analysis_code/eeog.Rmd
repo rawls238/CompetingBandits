@@ -24,15 +24,15 @@ concise_alg_rep <- function(alg) {
 }
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/"
-f <- "tournament_experiment_hm_large_ws_raw.csv"
+f <- "tournament_experiment_test_raw.csv"
 dat <- read.csv(file=paste(WORKING_PATH, f, sep=""))
 #dat_2 <- read.csv(file=paste(WORKING_PATH, "tournament_experiment_tourn_.5_.7_raw.csv", sep=""))
 #dat <- rbind(dat, dat_2)
-dat <- filter(dat, Time.Horizon == 5000)
+dat <- filter(dat, Time.Horizon == 2000)
 #priors <- as.list(unique(dat['Prior']))$Prior
 priors <- c("Heavy Tail")
 #warm_starts <- as.list(unique(dat['Warm.Start']))$Warm.Start
-warm_starts <- c(20, 100, 200)
+warm_starts <- c(20, 50, 100)
 algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
 
 for (prior in priors) {

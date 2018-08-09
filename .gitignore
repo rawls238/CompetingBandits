@@ -1,3 +1,4 @@
 *.pyc
 .Rhistory
+.main.py.swp
 bandit_simulations.p

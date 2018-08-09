@@ -2,7 +2,8 @@ library(dplyr)
 library(ggplot2)
 library(reshape2)
 
-dat <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_10_arms_10_int.csv")
+#dat <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
+
 #dat <- read.csv("/Volumes/Mac/bandits/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_10_arms.csv")
 
 
@@ -21,7 +22,7 @@ dist_dat <- filter(dat, Distribution == dist & Realized.Complexity >= minComplex
 deg <- filter(dist_dat, Algorithm == alg1)
 dg <- filter(dist_dat, Algorithm == alg2)
 n_vals <- unique(dist_dat$n)
-t_vals <- seq(10, 1500, 10)
+t_vals <- seq(10, 2500, 10)
 
 counts <- c()
 for (t in t_vals) {
@@ -92,4 +93,12 @@ alg_1_rep <- alg_1_dat$Realized.Reputation
 alg_2_rep <- filter(filtered_dat, Algorithm == alg2)$Realized.Reputation
 rep_diff <- alg_2_rep > alg_1_rep
 print(qplot(complexity_vals, rep_diff))
+
+tmp_ts <- function(n) {
+  return(filter(ts, n == UQ(n)))
+}
+
+tmp_dg <- function(n) {
+  return(filter(dg, n == UQ(n)))
+}
 

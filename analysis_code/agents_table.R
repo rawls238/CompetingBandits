@@ -2,9 +2,9 @@ library(dplyr)
 library(knitr)
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_free_obs_10_arms_raw.csv", sep=""))
+#dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_free_obs_10_arms_raw.csv", sep=""))
 #dat_3 <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_large_horizon_3_raw.csv", sep=""))
-#dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_many_arms_haystack_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_full_ws_many_sim_raw.csv", sep=""))
 #dat_2 <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_many_arms_2_raw.csv", sep=""))
 #dat_10 <- rbind(dat, dat_2)
 #dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_ws_small_erase_rep_raw.csv", sep=""))

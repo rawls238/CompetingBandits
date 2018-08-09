@@ -53,7 +53,20 @@
 % on the second line, try using \AND instead of \And before the third
 % author name.
 
- \author{-}
+\author{Guy Aridor \\
+g.aridor@columbia.edu \\
+Columbia University \\ Department of Economics\\
+	\And Kevin Liu\\
+	kevin.liu@columbia.edu \\
+	Columbia University \\Department of Computer Science\\
+	\AND Alex Slivkins \\
+	slivkins@microsoft.edu\\
+	Microsoft Research NYC\\
+	 \\ 
+	\And Steven Wu\\
+	zsw@umn.edu\\	
+	University of Minnesota - Twin Cities \\Department of Computer Science\\	
+}
   %% Affiliation \\
   %% Address \\
   %% \texttt{email} \\
@@ -189,15 +202,14 @@ In this section we present simulation results of the model discussed in Section 
   \hline
  & k = 20 & k = 100 & k = 200 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.86} $\pm$0.02\\ eeog \\ avg: 14\\ med: 0} & \makecell{\textbf{0.65} $\pm$0.02\\ eeog \\ avg: 11\\ med: 0} & \makecell{\textbf{0.59} $\pm$0.02\\ eeog \\ avg: 6\\ med: 0} \\ 
-  TS vs DEG & \makecell{\textbf{0.84} $\pm$0.02\\ eeog \\ avg: 20\\ med: 0} & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 8\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 5.4\\ med: 0} \\ 
-  DG vs DEG & \makecell{\textbf{0.41} $\pm$0.02\\ eeog \\ avg: 400\\ med: 115} & \makecell{\textbf{0.47} $\pm$0.02\\ eeog \\ avg: 320\\ med: 0} & \makecell{\textbf{0.5} $\pm$0.02\\ eeog \\ avg: 290\\ med: 0} \\ 
+TS vs DG & \makecell{\textbf{0.66} $\pm$0.02\\ eeog \\ avg: 190\\ med: 26} & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 240\\ med: 32} &  \\ 
+  TS vs DEG & \makecell{\textbf{0.61} $\pm$0.02\\ eeog \\ avg: 150\\ med: 12} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 240\\ med: 26} &  \\ 
+  DG vs DEG & \makecell{\textbf{0.44} $\pm$0.02\\ eeog \\ avg: 360\\ med: 106} & \makecell{\textbf{0.44} $\pm$0.02\\ eeog \\ avg: 590\\ med: 312} &  \\ 
    \hline
    \label{hm_nih}
 \end{tabular}
 \caption*{\tiny{The first line in each cell contains the average market share received by the firm playing Alg 1 (and the market share of Alg 2 is 1 - Alg 1 Market Share) as well as a 95 \% confidence band. For example, the cell in the top left indicates that TS gets on average 32\% of the market when played against DG. The next line contain the average and median effective end of game for this set of simulations.}}
 \end{table}
-
 
 \begin{table}[ht]
 \centering
@@ -206,9 +218,9 @@ TS vs DG & \makecell{\textbf{0.86} $\pm$0.02\\ eeog \\ avg: 14\\ med: 0} & \make
   \hline
  & k = 20 & k = 100 & k = 200 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.22} $\pm$0.02\\ eeog \\ avg: 0.27\\ med: 0} & \makecell{\textbf{0.41} $\pm$0.02\\ eeog \\ avg: 0.039\\ med: 0} & \makecell{\textbf{0.58} $\pm$0.02\\ eeog \\ avg: 12\\ med: 0} \\ 
-  TS vs DEG & \makecell{\textbf{0.24} $\pm$0.02\\ eeog \\ avg: 3.2\\ med: 0} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 39\\ med: 0} & \makecell{\textbf{0.91} $\pm$0.01\\ eeog \\ avg: 84\\ med: 0} \\ 
-  DG vs DEG & \makecell{\textbf{0.8} $\pm$0.02\\ eeog \\ avg: 16\\ med: 0} & \makecell{\textbf{0.86} $\pm$0.02\\ eeog \\ avg: 4.7\\ med: 0} & \makecell{\textbf{0.83} $\pm$0.02\\ eeog \\ avg: 2.7\\ med: 0} \\ 
+TS vs DG & \makecell{\textbf{0.33} $\pm$0.02\\ eeog \\ avg: 49\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 120\\ med: 0} &  \\ 
+  TS vs DEG & \makecell{\textbf{0.3} $\pm$0.02\\ eeog \\ avg: 26\\ med: 0} & \makecell{\textbf{0.58} $\pm$0.02\\ eeog \\ avg: 160\\ med: 0} &  \\ 
+  DG vs DEG & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 350\\ med: 4} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 650\\ med: 398.5} &  \\ 
    \hline
    \label{hm_ht}
 \end{tabular}

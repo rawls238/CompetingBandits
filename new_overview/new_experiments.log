@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 JUN 2018 13:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  24 JUL 2018 09:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -658,37 +658,322 @@ File: pppdftex.def 2017/01/14 v0.5h Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count123
 \AM@templatesizebox=\box31
 )
-(./new_experiments.aux)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/sgame/sgame.sty
+\sglabelsep=\skip54
+\sgcolsep=\dimen123
+\sg@colwd=\dimen124
+\sg@xcolwd=\dimen125
+\sg@colnum=\count124
+\sg@colindex=\count125
+\sg@numcols=\count126
+\sg@xnumcols=\count127
+\sg@rowindex=\count128
+\sg@numrows=\count129
+\sg@strutbox=\box32
+\sg@tempsep=\dimen126
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks27
+\pgfutil@tempdima=\dimen127
+\pgfutil@tempdimb=\dimen128
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box33
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks28
+\pgfkeys@temptoks=\toks29
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks30
+))
+\pgf@x=\dimen129
+\pgf@y=\dimen130
+\pgf@xa=\dimen131
+\pgf@ya=\dimen132
+\pgf@xb=\dimen133
+\pgf@yb=\dimen134
+\pgf@xc=\dimen135
+\pgf@yc=\dimen136
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count130
+\c@pgf@countb=\count131
+\c@pgf@countc=\count132
+\c@pgf@countd=\count133
+\t@pgf@toka=\toks31
+\t@pgf@tokb=\toks32
+\t@pgf@tokc=\toks33
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count134
+\pgfsyssoftpath@bigbuffer@items=\count135
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen137
+\pgfmath@count=\count136
+\pgfmath@box=\box34
+\pgfmath@toks=\toks34
+\pgfmath@stack@operand=\toks35
+\pgfmath@stack@operation=\toks36
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count137
+))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen138
+\pgf@picmaxx=\dimen139
+\pgf@picminy=\dimen140
+\pgf@picmaxy=\dimen141
+\pgf@pathminx=\dimen142
+\pgf@pathmaxx=\dimen143
+\pgf@pathminy=\dimen144
+\pgf@pathmaxy=\dimen145
+\pgf@xx=\dimen146
+\pgf@xy=\dimen147
+\pgf@yx=\dimen148
+\pgf@yy=\dimen149
+\pgf@zx=\dimen150
+\pgf@zy=\dimen151
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen152
+\pgf@path@lasty=\dimen153
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen154
+\pgf@shorten@start@additional=\dimen155
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box35
+\pgf@hbox=\box36
+\pgf@layerbox@main=\box37
+\pgf@picture@serial@count=\count138
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen156
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen157
+\pgf@pt@y=\dimen158
+\pgf@pt@temp=\dimen159
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen160
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen161
+\pgf@sys@shading@range@num=\count139
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box38
+))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box39
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen162
+\pgf@nodesepend=\dimen163
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen164
+\pgffor@skip=\dimen165
+\pgffor@stack=\toks37
+\pgffor@toks=\toks38
+))
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count140
+\pgfplotmarksize=\dimen166
+)
+\tikz@lastx=\dimen167
+\tikz@lasty=\dimen168
+\tikz@lastxsaved=\dimen169
+\tikz@lastysaved=\dimen170
+\tikzleveldistance=\dimen171
+\tikzsiblingdistance=\dimen172
+\tikz@figbox=\box40
+\tikz@figbox@bg=\box41
+\tikz@tempbox=\box42
+\tikz@tempbox@bg=\box43
+\tikztreelevel=\count141
+\tikznumberofchildren=\count142
+\tikznumberofcurrentchild=\count143
+\tikz@fig@count=\count144
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count145
+\pgfmatrixcurrentcolumn=\count146
+\pgf@matrix@numberofcolumns=\count147
+)
+\tikz@expandcount=\count148
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+))) (./new_experiments.aux)
 \openout1 = `new_experiments.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count124
-\scratchdimen=\dimen123
-\scratchbox=\box32
-\nofMPsegments=\count125
-\nofMParguments=\count126
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count127
-\MPscratchDim=\dimen124
-\MPnumerator=\count128
-\makeMPintoPDFobject=\count129
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count149
+\scratchdimen=\dimen173
+\scratchbox=\box44
+\nofMPsegments=\count150
+\nofMParguments=\count151
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count152
+\MPscratchDim=\dimen174
+\MPnumerator=\count153
+\makeMPintoPDFobject=\count154
+\everyMPtoPDFconversion=\toks40
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -706,8 +991,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 16.
+\AtBeginShipoutBox=\box45
+Package hyperref Info: Link coloring OFF on input line 17.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -715,15 +1000,15 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count130
+\c@section@level=\count155
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (./new_experiments.out) (./new_experiments.out)
-\@outlinefile=\write3
-\openout3 = `new_experiments.out'.
+\@outlinefile=\write4
+\openout4 = `new_experiments.out'.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
@@ -734,12 +1019,13 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+ABD: EveryShipout initializing macros
+LaTeX Font Info:    Try loading font information for U+msa on input line 21.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -747,26 +1033,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-<eeog_old_priors.pdf, id=4, 614.295pt x 794.97pt>
+<eeog_old_priors.pdf, id=7, 614.295pt x 794.97pt>
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf>
-Package pdftex.def Info: eeog_old_priors.pdf used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf used on input line 27.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf>
-Package pdftex.def Info: eeog_old_priors.pdf used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf used on input line 27.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<eeog_old_priors.pdf, id=7, page=1, 614.295pt x 794.97pt>
+<eeog_old_priors.pdf, id=10, page=1, 614.295pt x 794.97pt>
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 27.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [1
 
@@ -774,123 +1060,123 @@ Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 1>
-Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page1 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [2 <./eeog_old_priors.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./eeog_old_priors.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
 >); ignored.
->] <eeog_old_priors.pdf, id=41, page=2, 614.295pt x 794.97pt>
+>] <eeog_old_priors.pdf, id=44, page=2, 614.295pt x 794.97pt>
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 2>
-Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
  <use eeog_old_priors.pdf, page 2>
-Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: eeog_old_priors.pdf Graphic file (type pdf)
 
 <use eeog_old_priors.pdf, page 2>
-Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 26.
+Package pdftex.def Info: eeog_old_priors.pdf, page2 used on input line 27.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [3 <./eeog_old_priors.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./eeog_old_priors.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
 >); ignored.
->] <"Reputation Trajectory for 5_7".pdf, id=46, 578.16pt x 578.16pt>
+>] <"Reputation Trajectory for 5_7".pdf, id=49, 578.16pt x 578.16pt>
 File: "Reputation Trajectory for 5_7".pdf Graphic file (type pdf)
 
 <use "Reputation Trajectory for 5_7".pdf>
 Package pdftex.def Info: "Reputation Trajectory for 5_7".pdf used on input line
- 34.
+ 35.
 (pdftex.def)             Requested size: 289.07928pt x 289.07928pt.
 
-<5_7_results.pdf, id=47, 614.295pt x 794.97pt>
+<5_7_results.pdf, id=50, 614.295pt x 794.97pt>
 File: 5_7_results.pdf Graphic file (type pdf)
  <use 5_7_results.pdf>
-Package pdftex.def Info: 5_7_results.pdf used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf used on input line 39.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf>
-Package pdftex.def Info: 5_7_results.pdf used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf used on input line 39.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
- <5_7_results.pdf, id=50, page=1, 614.295pt x 794.97pt>
+ <5_7_results.pdf, id=53, page=1, 614.295pt x 794.97pt>
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf, page 1>
-Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 39.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: 5_7_results.pdf Graphic file (type pdf)
  <use 5_7_results.pdf, page 1>
-Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [4 <./Reputation Trajectory for 5_7.pdf>]
 File: 5_7_results.pdf Graphic file (type pdf)
  <use 5_7_results.pdf, page 1>
-Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf, page 1>
-Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 5_7_results.pdf Graphic file (type pdf)
  <use 5_7_results.pdf, page 1>
-Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page1 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [5 <./5_7_results.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./5_7_results.pdf): PDF incl
 usion: invalid other resource which is no dict (key 'ProcSets', type <array>); 
 ignored.
->] <5_7_results.pdf, id=85, page=2, 614.295pt x 794.97pt>
+>] <5_7_results.pdf, id=88, page=2, 614.295pt x 794.97pt>
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf, page 2>
-Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 5_7_results.pdf Graphic file (type pdf)
  <use 5_7_results.pdf, page 2>
-Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf, page 2>
-Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page2 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [6 <./5_7_results.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./5_7_results.pdf): PDF incl
 usion: invalid other resource which is no dict (key 'ProcSets', type <array>); 
 ignored.
->] <5_7_results.pdf, id=90, page=3, 614.295pt x 794.97pt>
+>] <5_7_results.pdf, id=93, page=3, 614.295pt x 794.97pt>
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf, page 3>
-Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 5_7_results.pdf Graphic file (type pdf)
  <use 5_7_results.pdf, page 3>
-Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 5_7_results.pdf Graphic file (type pdf)
 
 <use 5_7_results.pdf, page 3>
-Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 38.
+Package pdftex.def Info: 5_7_results.pdf, page3 used on input line 39.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [7 <./5_7_results.pdf
 
@@ -898,81 +1184,81 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./5_7_results.pdf): PDF incl
 usion: invalid other resource which is no dict (key 'ProcSets', type <array>); 
 ignored.
 >]
-<"./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf, id=96, 578.16p
+<"./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf, id=99, 578.16p
 t x 578.16pt>
 File: "./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf Graphic fi
 le (type pdf)
 
 <use "./Reputation Trajectory for Needle In Haystack 1 10 arms".pdf>
 Package pdftex.def Info: "./Reputation Trajectory for Needle In Haystack 1 10 a
-rms".pdf used on input line 54.
+rms".pdf used on input line 55.
 (pdftex.def)             Requested size: 231.2599pt x 231.2599pt.
 
-<"./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf, id=97, 578.16p
-t x 578.16pt>
+<"./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf, id=100, 578.16
+pt x 578.16pt>
 File: "./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf Graphic fi
 le (type pdf)
 
 <use "./Reputation Trajectory for Needle In Haystack 3 10 arms".pdf>
 Package pdftex.def Info: "./Reputation Trajectory for Needle In Haystack 3 10 a
-rms".pdf used on input line 55.
+rms".pdf used on input line 56.
 (pdftex.def)             Requested size: 231.2599pt x 231.2599pt.
 
-<haystack_eeog.pdf, id=98, 614.295pt x 794.97pt>
+<haystack_eeog.pdf, id=101, 614.295pt x 794.97pt>
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf>
-Package pdftex.def Info: haystack_eeog.pdf used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf used on input line 58.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf>
-Package pdftex.def Info: haystack_eeog.pdf used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf used on input line 58.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<haystack_eeog.pdf, id=101, page=1, 614.295pt x 794.97pt>
+<haystack_eeog.pdf, id=104, page=1, 614.295pt x 794.97pt>
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 58.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [8 <./Reputation Trajectory for Needle In Haystack 1 10 arms.pdf> <./Reputatio
 n Trajectory for Needle In Haystack 3 10 arms.pdf>]
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 1>
-Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page1 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [9 <./haystack_eeog.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./haystack_eeog.pdf): PDF in
 clusion: invalid other resource which is no dict (key 'ProcSets', type <array>)
 ; ignored.
->] <haystack_eeog.pdf, id=148, page=2, 614.295pt x 794.97pt>
+>] <haystack_eeog.pdf, id=151, page=2, 614.295pt x 794.97pt>
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 2>
-Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
  <use haystack_eeog.pdf, page 2>
-Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: haystack_eeog.pdf Graphic file (type pdf)
 
 <use haystack_eeog.pdf, page 2>
-Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 57.
+Package pdftex.def Info: haystack_eeog.pdf, page2 used on input line 58.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [10 <./haystack_eeog.pdf
 
@@ -980,33 +1266,33 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./haystack_eeog.pdf): PDF in
 clusion: invalid other resource which is no dict (key 'ProcSets', type <array>)
 ; ignored.
 >]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 61.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 61.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
  (./new_experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 61.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 61.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `new_experiments.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 8285 strings out of 492995
- 118998 string characters out of 6132704
- 219593 words of memory out of 5000000
- 11687 multiletter control sequences out of 15000+600000
+ 17724 strings out of 492995
+ 325327 string characters out of 6132704
+ 395690 words of memory out of 5000000
+ 20920 multiletter control sequences out of 15000+600000
  10737 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,18n,46p,536b,469s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,536b,471s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on new_experiments.pdf (10 pages, 261196 bytes).
+Output written on new_experiments.pdf (10 pages, 261401 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
+ 183 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
  18 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 108 words of extra memory for PDF output out of 10000 (max. 10000000)
 
