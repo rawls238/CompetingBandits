@@ -1,7 +1,7 @@
 import numpy as np
 import time
 
-from lib.constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS, RECORD_STATS_AT
+from lib.constants import DEFAULT_MEMORY, DEFAULT_DISCOUNT_FACTOR, DEFAULT_ALPHA, DEFAULT_WARM_START_NUM_OBSERVATIONS, RECORD_STATS_AT, DEFAULT_FREE_OBS_NUM
 from lib.BanditProblemInstance import BanditProblemInstance
 
 import random
@@ -63,16 +63,12 @@ Parameters
     The number of arms in the bandit instance
   T : Int
     The time horizon for the competition game
-  memory: Int
-    Sliding window length for the reputation score
   discountFactor: Float
     Discount factor used in reputation score calculation
   realDistributions: Distributions vector
     The distributions of the K arms
-  warmStartRealizations:
-    The realizations for the warm start - realizations for each arm in each warm start round
   realizations:
-    Realizations for each arm for T rounds
+    Realizations for each arm for T+WARM_START + FREE_OBS rounds
   freeObsForP2: Boolean
     Used for the incumbent experiment - does principal 2 (the incumbent) get free agents before the competition game?
   freeObsNum: Int
@@ -86,14 +82,12 @@ Parameters
   eraseReputation: Boolean
     A boolen flag on whether to erase reputation or not
 """
-def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
-  memory=DEFAULT_MEMORY,
+def simulate(principalAlg1, principalAlg2, agentAlg, maxWarmStart, K, T,
   discountFactor=DEFAULT_DISCOUNT_FACTOR,
   realDistributions=None,
-  warmStartRealizations=None,
   realizations=None,
   freeObsForP2=False,
-  freeObsNum=100,
+  freeObsNum=DEFAULT_FREE_OBS_NUM,
   warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
   principal1Priors=None,
   principal2Priors=None,
@@ -110,7 +104,11 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
   if realDistributions is None:
     realDistributions = getDefaultRealDistributions(K)
 
-  banditProblemInstance = BanditProblemInstance(K, T, realDistributions, warmStartRealizations)
+  freeObsRealizations = realizations[:freeObsNum]
+  warmStartRealizations = realizations[freeObsNum:freeObsNum+maxWarmStart]
+  competitionRealizations = realizations[freeObsNum+maxWarmStart:]
+
+  banditProblemInstance = BanditProblemInstance(K, realDistributions, freeObsRealizations)
 
   # instantiate 2 principals (who are of some subclass of BanditAlgorithm)
   principal1 = principalAlg1(banditProblemInstance, principal1Priors)
@@ -123,7 +121,6 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
     for j in range(freeObsNum):
       (reward, arm) = principals['principal2'].executeStep(j)
       agents.updateInformationSet(reward, arm, 'principal2')
-    principals['principal2'].resetStats()
 
   # give the agents a few observations
   for i in xrange(warmStartNumObservations):
@@ -131,20 +128,9 @@ def simulate(principalAlg1, principalAlg2, agentAlg, K, T,
       (reward, arm) = principal.executeStep(i)
       agents.updateInformationSet(reward, arm, principalName)
 
-  if eraseReputation:
-    agents.resetInformationSet()
-    for i in xrange(5):
-      for (principalName, principal) in principals.iteritems():
-        (reward, arm) = principal.executeStep(i)
-        agents.updateInformationSet(reward, arm, principalName)
-
-
   for principal in principals.values():
     principal.resetStats()
-
-  banditProblemInstance = BanditProblemInstance(K, T, realDistributions, realizations)
-  for principal in principals.values():
-    principal.setBanditInstance(banditProblemInstance)
+    principal.setRealizations(realizations)
 
   instanceComplexity = banditProblemInstance.getComplexityMetric()
   results = []

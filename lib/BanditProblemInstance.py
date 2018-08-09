@@ -2,9 +2,8 @@
 import numpy as np
 
 class BanditProblemInstance:
-  def __init__(self, K, T, distributions, realizations = None):
+  def __init__(self, K, distributions, realizations = None):
     self.K = K
-    self.T = T
     self.distributions = distributions
     self.realizations = realizations
 
@@ -36,3 +35,6 @@ class BanditProblemInstance:
       if mean < bestArm:
         metric += 1.0 / (bestArm - mean)
     return metric
+
+  def setRealizations(self, realizations):
+    self.realizations = realizations

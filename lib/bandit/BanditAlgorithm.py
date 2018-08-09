@@ -50,6 +50,9 @@ class BanditAlgorithm:
     self.banditProblemInstance = banditInstance
     self.bestArmMean = banditInstance.bestArmMean()
 
+  def setRealizations(self, realizations):
+    self.banditProblemInstance.setRealizations(realizations)
+
   def getAverageRegret(self):
     if self.n == 0:
       return np.nan
