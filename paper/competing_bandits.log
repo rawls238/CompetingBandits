@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  9 AUG 2018 07:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 AUG 2018 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -962,22 +962,22 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 (./competing_bandits.aux)
 \openout1 = `competing_bandits.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
 \AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring OFF on input line 84.
+Package hyperref Info: Link coloring OFF on input line 71.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -987,15 +987,15 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count143
 )
-LaTeX Info: Redefining \ref on input line 84.
-LaTeX Info: Redefining \pageref on input line 84.
-LaTeX Info: Redefining \nameref on input line 84.
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
+LaTeX Info: Redefining \nameref on input line 71.
 
 (./competing_bandits.out) (./competing_bandits.out)
 \@outlinefile=\write4
 \openout4 = `competing_bandits.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 84.
+LaTeX Info: Redefining \microtypecontext on input line 71.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1043,7 +1043,7 @@ e
 ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 87.
+LaTeX Font Info:    Try loading font information for U+msa on input line 74.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1051,7 +1051,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 87.
+LaTeX Font Info:    Try loading font information for U+msb on input line 74.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1059,19 +1059,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \vbox (8.14095pt too high) detected at line 87
- []
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 74.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 87.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 87.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 141.
+put line 128.
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 [] \T1/cmr/bx/n/10 for \T1/cmr/m/n/10 (+20) Each prin-ci-pal al-go-rithm pair
  []
 
@@ -1086,7 +1084,7 @@ File: "figures/Reputation Trajectory for Heavy Tail 10 arms".pdf Graphic file (
 type pdf)
  <use "figures/Reputation Trajectory for Heavy Tail 10 arms".pdf>
 Package pdftex.def Info: "figures/Reputation Trajectory for Heavy Tail 10 arms"
-.pdf used on input line 169.
+.pdf used on input line 156.
 (pdftex.def)             Requested size: 115.62994pt x 115.62994pt.
 
 <"figures/Reputation Trajectory for Needle In Haystack High 10 arms".pdf, id=96
@@ -1096,149 +1094,159 @@ raphic file (type pdf)
 
 <use "figures/Reputation Trajectory for Needle In Haystack High 10 arms".pdf>
 Package pdftex.def Info: "figures/Reputation Trajectory for Needle In Haystack 
-High 10 arms".pdf used on input line 170.
+High 10 arms".pdf used on input line 157.
 (pdftex.def)             Requested size: 115.62994pt x 115.62994pt.
 
-<"figures/deg_dg_ht_10_prelim".png, id=97, 373.395pt x 353.32pt>
+<"figures/deg_dg_ht_10_prelim".png, id=97, 590.205pt x 385.44pt>
 File: "figures/deg_dg_ht_10_prelim".png Graphic file (type png)
 
 <use "figures/deg_dg_ht_10_prelim".png>
 Package pdftex.def Info: "figures/deg_dg_ht_10_prelim".png used on input line 1
-77.
-(pdftex.def)             Requested size: 93.34851pt x 88.32977pt.
+64.
+(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
 
-<"figures/ts_dg_ht_10_prelim".png, id=99, 373.395pt x 353.32pt>
+<"figures/ts_dg_ht_10_prelim".png, id=99, 590.205pt x 385.44pt>
 File: "figures/ts_dg_ht_10_prelim".png Graphic file (type png)
 
 <use "figures/ts_dg_ht_10_prelim".png>
-Package pdftex.def Info: "figures/ts_dg_ht_10_prelim".png used on input line 17
-8.
-(pdftex.def)             Requested size: 93.34851pt x 88.32977pt.
+Package pdftex.def Info: "figures/ts_dg_ht_10_prelim".png used on input line 16
+5.
+(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
 
-<"figures/deg_dg_nih_10_prelim".png, id=100, 373.395pt x 353.32pt>
+<"figures/deg_dg_nih_10_prelim".png, id=100, 590.205pt x 385.44pt>
 File: "figures/deg_dg_nih_10_prelim".png Graphic file (type png)
 
 <use "figures/deg_dg_nih_10_prelim".png>
 Package pdftex.def Info: "figures/deg_dg_nih_10_prelim".png used on input line 
-179.
-(pdftex.def)             Requested size: 93.34851pt x 88.32977pt.
+166.
+(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
 
-<"figures/ts_dg_nih_10_prelim".png, id=101, 373.395pt x 353.32pt>
+<"figures/ts_dg_nih_10_prelim".png, id=101, 590.205pt x 385.44pt>
 File: "figures/ts_dg_nih_10_prelim".png Graphic file (type png)
 
 <use "figures/ts_dg_nih_10_prelim".png>
 Package pdftex.def Info: "figures/ts_dg_nih_10_prelim".png used on input line 1
-80.
-(pdftex.def)             Requested size: 93.34851pt x 88.32977pt.
+67.
+(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--181
+Underfull \hbox (badness 10000) in paragraph at lines 164--168
 
  []
 
 
 LaTeX Warning: Reference `prelim_comparison' on page 2 undefined on input line 
-185.
+172.
 
 [2 <./figures/Reputation Trajectory for Heavy Tail 10 arms.pdf> <./figures/Repu
 tation Trajectory for Needle In Haystack High 10 arms.pdf> <./figures/deg_dg_ht
 _10_prelim.png> <./figures/ts_dg_ht_10_prelim.png> <./figures/deg_dg_nih_10_pre
 lim.png> <./figures/ts_dg_nih_10_prelim.png>]
 
-Package hyperref Warning: Suppressing empty link on input line 192.
+Package hyperref Warning: Suppressing empty link on input line 179.
+
+
+Overfull \hbox (10.22888pt too wide) in paragraph at lines 188--198
+ [][] 
+ []
+
+
+Overfull \hbox (10.22888pt too wide) in paragraph at lines 204--214
+ [][] 
+ []
 
 <figures/ts_dg_heavy_fine.png, id=131, 445.665pt x 436.63126pt>
 File: figures/ts_dg_heavy_fine.png Graphic file (type png)
 
 <use figures/ts_dg_heavy_fine.png>
-Package pdftex.def Info: figures/ts_dg_heavy_fine.png used on input line 232.
+Package pdftex.def Info: figures/ts_dg_heavy_fine.png used on input line 219.
 (pdftex.def)             Requested size: 133.70053pt x 130.99039pt.
 
 
-Package caption Warning: \label without proper reference on input line 230.
+Package caption Warning: \label without proper reference on input line 217.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `rel_rep_ht_fine' on page 3 undefined on input line 24
-2.
+LaTeX Warning: Reference `rel_rep_ht_fine' on page 3 undefined on input line 22
+9.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-Overfull \vbox (52.41887pt too high) detected at line 259
+Overfull \vbox (52.41887pt too high) detected at line 246
  []
 
 
-Overfull \hbox (54.84299pt too wide) in paragraph at lines 257--269
+Overfull \hbox (54.84299pt too wide) in paragraph at lines 244--256
  [][] 
  []
 
 
-Package caption Warning: \label without proper reference on input line 254.
+Package caption Warning: \label without proper reference on input line 241.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `ht_incum' on page 4 undefined on input line 272.
+LaTeX Warning: Reference `ht_incum' on page 4 undefined on input line 259.
 
 [4 <./figures/ts_dg_heavy_fine.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 278.
+(hyperref)                removing `\\' on input line 265.
 
 
-Package caption Warning: \label without proper reference on input line 254.
+Package caption Warning: \label without proper reference on input line 241.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `ht_incum' on page 5 undefined on input line 281.
+LaTeX Warning: Reference `ht_incum' on page 5 undefined on input line 268.
 
 
-Overfull \hbox (26.84982pt too wide) in paragraph at lines 286--296
+Overfull \hbox (26.84982pt too wide) in paragraph at lines 273--283
  [][] 
  []
 
 
-Overfull \hbox (32.59842pt too wide) in paragraph at lines 302--312
+Overfull \hbox (32.59842pt too wide) in paragraph at lines 289--299
  [][] 
  []
 
 [5]
 
-Package hyperref Warning: Suppressing empty link on input line 329.
+Package hyperref Warning: Suppressing empty link on input line 316.
 
 
-Package hyperref Warning: Suppressing empty link on input line 329.
+Package hyperref Warning: Suppressing empty link on input line 316.
 
 
-Package caption Warning: \label without proper reference on input line 332.
+Package caption Warning: \label without proper reference on input line 319.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `agent_variances' on page 6 undefined on input line 33
-5.
+LaTeX Warning: Reference `agent_variances' on page 6 undefined on input line 32
+2.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 (./competing_bandits.bbl) [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 345.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 345.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
  (./competing_bandits.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 345.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 345.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 332.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 332.
 Package rerunfilecheck Info: File `competing_bandits.out' has not changed.
 (rerunfilecheck)             Checksum: 8AC6A8ABAE53A679D720CA58F6998799;775.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 345.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
  ) 
 Here is how much of TeX's memory you used:
  19930 strings out of 492995
  364595 string characters out of 6132704
- 471346 words of memory out of 5000000
+ 472011 words of memory out of 5000000
  22962 multiletter control sequences out of 15000+600000
  21771 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1261,7 +1269,7 @@ texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2017/texm
 f-dist/fonts/type1/public/cm-super/sfti0600.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on competing_bandits.pdf (6 pages, 397736 bytes).
+Output written on competing_bandits.pdf (6 pages, 414666 bytes).
 PDF statistics:
  245 PDF objects out of 1000 (max. 8388607)
  203 compressed objects within 3 object streams

@@ -53,20 +53,7 @@
 % on the second line, try using \AND instead of \And before the third
 % author name.
 
-\author{Guy Aridor \\
-g.aridor@columbia.edu \\
-Columbia University \\ Department of Economics\\
-	\And Kevin Liu\\
-	kevin.liu@columbia.edu \\
-	Columbia University \\Department of Computer Science\\
-	\AND Alex Slivkins \\
-	slivkins@microsoft.edu\\
-	Microsoft Research NYC\\
-	 \\ 
-	\And Steven Wu\\
-	zsw@umn.edu\\	
-	University of Minnesota - Twin Cities \\Department of Computer Science\\	
-}
+\author{-}
   %% Affiliation \\
   %% Address \\
   %% \texttt{email} \\
@@ -174,10 +161,10 @@ In our model the reputation score is an input to the decision rule of the agents
 
 \begin{figure}
 \caption{Relative Reputation Plots}
-\includegraphics[scale=0.25]{"figures/deg_dg_ht_10_prelim"}
-\includegraphics[scale=0.25]{"figures/ts_dg_ht_10_prelim"} \\
-\includegraphics[scale=0.25]{"figures/deg_dg_nih_10_prelim"}
-\includegraphics[scale=0.25]{"figures/ts_dg_nih_10_prelim"} \\
+\includegraphics[scale=0.2]{"figures/deg_dg_ht_10_prelim"}
+\includegraphics[scale=0.2]{"figures/ts_dg_ht_10_prelim"} \\
+\includegraphics[scale=0.2]{"figures/deg_dg_nih_10_prelim"}
+\includegraphics[scale=0.2]{"figures/ts_dg_nih_10_prelim"} \\
 \caption*{\tiny{The plots contain the proportion of simulations over $250$ runs for a memory size of $100$ where, for a given $t$, the reputation of one algorithm is at least as high as the reputation of another on the same instance.}}
 \label{relative_rep}
 \end{figure}
@@ -202,9 +189,9 @@ In this section we present simulation results of the model discussed in Section 
   \hline
  & k = 20 & k = 100 & k = 200 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.66} $\pm$0.02\\ eeog \\ avg: 190\\ med: 26} & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 240\\ med: 32} &  \\ 
-  TS vs DEG & \makecell{\textbf{0.61} $\pm$0.02\\ eeog \\ avg: 150\\ med: 12} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 240\\ med: 26} &  \\ 
-  DG vs DEG & \makecell{\textbf{0.44} $\pm$0.02\\ eeog \\ avg: 360\\ med: 106} & \makecell{\textbf{0.44} $\pm$0.02\\ eeog \\ avg: 590\\ med: 312} &  \\ 
+TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 210\\ med: 28} & \makecell{\textbf{0.62} $\pm$0.03\\ eeog \\ avg: 260\\ med: 68} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 320\\ med: 0} \\ 
+  TS vs DEG & \makecell{\textbf{0.56} $\pm$0.03\\ eeog \\ avg: 150\\ med: 11} & \makecell{\textbf{0.54} $\pm$0.03\\ eeog \\ avg: 240\\ med: 24.5} & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 420\\ med: 36.5} \\ 
+  DG vs DEG & \makecell{\textbf{0.43} $\pm$0.03\\ eeog \\ avg: 330\\ med: 97.5} & \makecell{\textbf{0.42} $\pm$0.03\\ eeog \\ avg: 550\\ med: 229.5} & \makecell{\textbf{0.41} $\pm$0.02\\ eeog \\ avg: 650\\ med: 420} \\ 
    \hline
    \label{hm_nih}
 \end{tabular}
@@ -218,9 +205,9 @@ TS vs DG & \makecell{\textbf{0.66} $\pm$0.02\\ eeog \\ avg: 190\\ med: 26} & \ma
   \hline
  & k = 20 & k = 100 & k = 200 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.33} $\pm$0.02\\ eeog \\ avg: 49\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 120\\ med: 0} &  \\ 
-  TS vs DEG & \makecell{\textbf{0.3} $\pm$0.02\\ eeog \\ avg: 26\\ med: 0} & \makecell{\textbf{0.58} $\pm$0.02\\ eeog \\ avg: 160\\ med: 0} &  \\ 
-  DG vs DEG & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 350\\ med: 4} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 650\\ med: 398.5} &  \\ 
+TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 65\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 130\\ med: 0} & \makecell{\textbf{0.72} $\pm$0.02\\ eeog \\ avg: 500\\ med: 0} \\ 
+  TS vs DEG & \makecell{\textbf{0.3} $\pm$0.03\\ eeog \\ avg: 26\\ med: 0} & \makecell{\textbf{0.59} $\pm$0.03\\ eeog \\ avg: 160\\ med: 0} & \makecell{\textbf{0.86} $\pm$0.02\\ eeog \\ avg: 420\\ med: 0} \\ 
+  DG vs DEG & \makecell{\textbf{0.63} $\pm$0.03\\ eeog \\ avg: 390\\ med: 10} & \makecell{\textbf{0.62} $\pm$0.02\\ eeog \\ avg: 670\\ med: 500.5} & \makecell{\textbf{0.61} $\pm$0.02\\ eeog \\ avg: 770\\ med: 670.5} \\ 
    \hline
    \label{hm_ht}
 \end{tabular}

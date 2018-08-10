@@ -2,10 +2,7 @@ library(dplyr)
 library(ggplot2)
 library(reshape2)
 
-#dat <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
-
-#dat <- read.csv("/Volumes/Mac/bandits/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_10_arms.csv")
-
+dat <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
 
 concise_alg_rep <- function(alg) {
   if (alg == "ThompsonSampling") {

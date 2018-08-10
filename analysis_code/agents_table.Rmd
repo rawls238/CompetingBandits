@@ -14,7 +14,7 @@ WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 #dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_many_arms_haystack_raw.csv", sep=""))
 #dat_2 <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_many_arms_2_raw.csv", sep=""))
 #dat_10 <- rbind(dat, dat_2)
-dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_ws_small_erase_rep_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv", sep=""))
 dat_3 <- dat
 
 
@@ -22,7 +22,7 @@ p1_algs <- as.list(unique(dat_3['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat_3['P2.Alg']))$P2.Alg
 agent_algs <- as.list(unique(dat_3['Agent.Alg']))$Agent.Alg
 time_horizons <-  as.list(unique(dat_3['Time.Horizon']))$Time.Horizon
-time_horizons <- c(5000)
+time_horizons <- c(2000)
 priors <- as.list(unique(dat_3['Prior']))$Prior
 warm_starts <-  sort(as.list(unique(dat_3['Warm.Start']))$Warm.Start, decreasing=FALSE)
 

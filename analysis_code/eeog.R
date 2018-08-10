@@ -1,7 +1,4 @@
-#```{r echo=FALSE, message=FALSE, xtable, results="asis"}
-
 library(dplyr)
-library(knitr)
 library(xtable)
 
 options(xtable.sanitize.text.function=identity)
@@ -18,10 +15,8 @@ concise_alg_rep <- function(alg) {
 }
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/"
-f <- "tournament_experiment_full_ws_many_sim_raw.csv"
+f <- "tournament_experiment_full_sim_with_realizations_raw.csv"
 dat <- read.csv(file=paste(WORKING_PATH, f, sep=""))
-#dat_2 <- read.csv(file=paste(WORKING_PATH, "tournament_experiment_tourn_.5_.7_raw.csv", sep=""))
-#dat <- rbind(dat, dat_2)
 dat <- filter(dat, Time.Horizon == 2000)
 priors <- as.list(unique(dat['Prior']))$Prior
 priors <- c("Needle In Haystack", "Heavy Tail")

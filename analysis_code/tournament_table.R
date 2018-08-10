@@ -6,15 +6,15 @@ WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
 
 #dat <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_parallel_test_raw.csv", sep=""))
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_free_obs_10_arms_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_full_sim_with_realizations_raw.csv", sep=""))
 p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
 agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
 agent_algs - c("HardMax")
 time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
-time_horizons <- c(5000)
+time_horizons <- c(2000)
 priors <- as.list(unique(dat['Prior']))$Prior
-priors <- c("Needle In Haystack - 0.5", "Heavy Tail")
+priors <- c("Needle In Haystack", "Heavy Tail")
 
 ZERO_ONE_CUTOFF <- 0.1
 algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
