@@ -22,21 +22,26 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   alg_2 <- filter(dist_dat, Algorithm == alg2)
   n_vals <- unique(dist_dat$n)
   t_vals <- seq(100, 2000, 100)
-  df <- as.data.frame(matrix(nrow=length(t_vals), ncol=2))
+  df <- as.data.frame(matrix(nrow=length(t_vals), ncol=3))
   colnames(df) <- c("t", "relative_rep")
   df$t <- t_vals
   
   
   counts <- c()
+  ses <- c()
   for (t in t_vals) {
     cur_alg1 <- filter(alg_1,  t == UQ(t))
     cur_alg2 <- filter(alg_2, t == UQ(t))
     count <- sum(cur_alg1$Realized.Reputation - cur_alg2$Realized.Reputation >= 0)
-    counts <- c(counts, (count / length(n_vals)))
+    p <- count / length(n_vals)
+    counts <- c(counts, p)
+    ses <- c(ses, sqrt(p * (1 - p) / length(n_vals)))
   }
   df$relative_rep <- counts
+  df$se <- ses
   plot_title <- paste("Relative Reputation -", dist)
   q <- ggplot(df, aes(x=t, y=relative_rep)) + geom_line() + geom_point() +
+    geom_errorbar(aes(ymin=relative_rep-1.96*se, ymax=relative_rep+1.96*se), width=.2) +
     ggtitle(plot_title) + xlab("t") + 
     ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(reputation)"))
   
@@ -61,7 +66,7 @@ print_mean_graphs <- function (dist, alg1, alg2, minComplexity) {
   }
   plot_title <- paste("Mean Rep -", dist, "K =", K)
   q <- qplot(x=t_vals) +
-    geom_point(aes(y=means_deg)) + 
+    geom_point(aes(y=means_deg)) +
     geom_point(aes(y=means_dg)) +
     scale_linetype_discrete(name="Alg", labels=c(alg1, alg2)) +
     ggtitle(plot_title) + xlab("t") +

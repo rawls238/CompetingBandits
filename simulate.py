@@ -105,7 +105,7 @@ def simulate(principalAlg1, principalAlg2, agentAlg, maxWarmStart, K, T,
     realDistributions = getDefaultRealDistributions(K)
 
   freeObsRealizations = realizations[:freeObsNum]
-  warmStartRealizations = realizations[freeObsNum:freeObsNum+maxWarmStart]
+  warmStartRealizations = realizations[freeObsNum:freeObsNum + warmStartNumObservations]
   competitionRealizations = realizations[freeObsNum+maxWarmStart:]
 
   banditProblemInstance = BanditProblemInstance(K, realDistributions, freeObsRealizations)
@@ -117,20 +117,28 @@ def simulate(principalAlg1, principalAlg2, agentAlg, maxWarmStart, K, T,
   principals = { 'principal1': principal1, 'principal2': principal2 }
   agents = agentAlg(principals, K)
 
+  # first give the "incumbent" free observations if this is the incumbent experiment
   if freeObsForP2:
     for j in range(freeObsNum):
       (reward, arm) = principals['principal2'].executeStep(j)
       agents.updateInformationSet(reward, arm, 'principal2')
 
-  # give the agents a few observations
+
+  # now, reset the realizations to the warm start realizations so they're the same across firms and give each firm the warm start agents
+  for principal in principals.values():
+    principal.resetStats()
+    principal.setRealizations(warmStartRealizations)
+
   for i in xrange(warmStartNumObservations):
     for (principalName, principal) in principals.iteritems():
       (reward, arm) = principal.executeStep(i)
       agents.updateInformationSet(reward, arm, principalName)
 
+  # Now, reset the bandit instance realizations to the T bandit instance realizations and run the competition game
+
   for principal in principals.values():
     principal.resetStats()
-    principal.setRealizations(realizations)
+    principal.setRealizations(competitionRealizations)
 
   instanceComplexity = banditProblemInstance.getComplexityMetric()
   results = []
@@ -156,8 +164,8 @@ def simulate(principalAlg1, principalAlg2, agentAlg, maxWarmStart, K, T,
       lastPrincipalPicked = principalName
       effectiveEndOfGame = t
     (reward, arm) = principal.executeStep(t)
-    trueMean = banditProblemInstance.getMeanOfArm(arm)
-    agents.updateInformationSet(trueMean, arm, principalName)
+    agents.updateInformationSet(reward, arm, principalName)
+
   for i in xrange(len(results)):
     results[i]['effectiveEndOfGame'] = effectiveEndOfGame  
   return results
