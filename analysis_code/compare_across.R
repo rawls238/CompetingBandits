@@ -3,7 +3,7 @@ library(dplyr)
 dat_1 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
 dat_2 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
 
-dist <- "Heavy Tail"
+dist <- "Needle In Haystack"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
 compet_dat <- filter(dat_2, Prior == dist & Warm.Start == 20)

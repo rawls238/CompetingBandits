@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 AUG 2018 14:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 AUG 2018 18:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1078,56 +1078,66 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
 
 ]
-<"figures/Reputation Trajectory for Heavy Tail 10 arms".pdf, id=95, 578.16pt x 
-578.16pt>
-File: "figures/Reputation Trajectory for Heavy Tail 10 arms".pdf Graphic file (
-type pdf)
- <use "figures/Reputation Trajectory for Heavy Tail 10 arms".pdf>
-Package pdftex.def Info: "figures/Reputation Trajectory for Heavy Tail 10 arms"
-.pdf used on input line 156.
-(pdftex.def)             Requested size: 115.62994pt x 115.62994pt.
+<"figures/heavy_tail_iso_mean".png, id=95, 1035.87pt x 533.995pt>
+File: "figures/heavy_tail_iso_mean".png Graphic file (type png)
 
-<"figures/Reputation Trajectory for Needle In Haystack High 10 arms".pdf, id=96
-, 578.16pt x 578.16pt>
-File: "figures/Reputation Trajectory for Needle In Haystack High 10 arms".pdf G
-raphic file (type pdf)
+<use "figures/heavy_tail_iso_mean".png>
+Package pdftex.def Info: "figures/heavy_tail_iso_mean".png used on input line 1
+56.
+(pdftex.def)             Requested size: 207.17032pt x 106.7971pt.
 
-<use "figures/Reputation Trajectory for Needle In Haystack High 10 arms".pdf>
-Package pdftex.def Info: "figures/Reputation Trajectory for Needle In Haystack 
-High 10 arms".pdf used on input line 157.
-(pdftex.def)             Requested size: 115.62994pt x 115.62994pt.
+<"figures/nih_iso_mean".png, id=97, 1035.87pt x 533.995pt>
+File: "figures/nih_iso_mean".png Graphic file (type png)
 
-<"figures/deg_dg_ht_10_prelim".png, id=97, 590.205pt x 385.44pt>
+<use "figures/nih_iso_mean".png>
+Package pdftex.def Info: "figures/nih_iso_mean".png used on input line 157.
+(pdftex.def)             Requested size: 207.17032pt x 106.7971pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--159
+[][]
+ []
+
+<"figures/deg_dg_ht_10_prelim".png, id=98, 1035.87pt x 533.995pt>
 File: "figures/deg_dg_ht_10_prelim".png Graphic file (type png)
 
 <use "figures/deg_dg_ht_10_prelim".png>
 Package pdftex.def Info: "figures/deg_dg_ht_10_prelim".png used on input line 1
 64.
-(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
+(pdftex.def)             Requested size: 207.17032pt x 106.7971pt.
 
-<"figures/ts_dg_ht_10_prelim".png, id=99, 590.205pt x 385.44pt>
+<"figures/ts_dg_ht_10_prelim".png, id=99, 1035.87pt x 533.995pt>
 File: "figures/ts_dg_ht_10_prelim".png Graphic file (type png)
 
 <use "figures/ts_dg_ht_10_prelim".png>
 Package pdftex.def Info: "figures/ts_dg_ht_10_prelim".png used on input line 16
 5.
-(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
+(pdftex.def)             Requested size: 207.17032pt x 106.7971pt.
 
-<"figures/deg_dg_nih_10_prelim".png, id=100, 590.205pt x 385.44pt>
+<"figures/deg_dg_nih_10_prelim".png, id=100, 1035.87pt x 533.995pt>
 File: "figures/deg_dg_nih_10_prelim".png Graphic file (type png)
 
 <use "figures/deg_dg_nih_10_prelim".png>
 Package pdftex.def Info: "figures/deg_dg_nih_10_prelim".png used on input line 
 166.
-(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
+(pdftex.def)             Requested size: 207.17032pt x 106.7971pt.
 
-<"figures/ts_dg_nih_10_prelim".png, id=101, 590.205pt x 385.44pt>
+<"figures/ts_dg_nih_10_prelim".png, id=101, 1035.87pt x 533.995pt>
 File: "figures/ts_dg_nih_10_prelim".png Graphic file (type png)
 
 <use "figures/ts_dg_nih_10_prelim".png>
 Package pdftex.def Info: "figures/ts_dg_nih_10_prelim".png used on input line 1
 67.
-(pdftex.def)             Requested size: 118.0389pt x 77.08662pt.
+(pdftex.def)             Requested size: 207.17032pt x 106.7971pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--168
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--168
+[]
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 164--168
 
@@ -1137,14 +1147,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--168
 LaTeX Warning: Reference `prelim_comparison' on page 2 undefined on input line 
 172.
 
-[2 <./figures/Reputation Trajectory for Heavy Tail 10 arms.pdf> <./figures/Repu
-tation Trajectory for Needle In Haystack High 10 arms.pdf> <./figures/deg_dg_ht
-_10_prelim.png> <./figures/ts_dg_ht_10_prelim.png> <./figures/deg_dg_nih_10_pre
-lim.png> <./figures/ts_dg_nih_10_prelim.png>]
 
 Package hyperref Warning: Suppressing empty link on input line 179.
 
-
+[2 <./figures/heavy_tail_iso_mean.png> <./figures/nih_iso_mean.png>]
 Overfull \hbox (10.22888pt too wide) in paragraph at lines 188--198
  [][] 
  []
@@ -1154,25 +1160,23 @@ Overfull \hbox (10.22888pt too wide) in paragraph at lines 204--214
  [][] 
  []
 
-<figures/ts_dg_heavy_fine.png, id=131, 445.665pt x 436.63126pt>
+<figures/ts_dg_heavy_fine.png, id=112, 445.665pt x 436.63126pt>
 File: figures/ts_dg_heavy_fine.png Graphic file (type png)
 
 <use figures/ts_dg_heavy_fine.png>
 Package pdftex.def Info: figures/ts_dg_heavy_fine.png used on input line 219.
 (pdftex.def)             Requested size: 133.70053pt x 130.99039pt.
-
+ [3 <./figures/deg_dg_ht_10_prelim.png> <./figures/ts_dg_ht_10_prelim.png> <./f
+igures/deg_dg_nih_10_prelim.png> <./figures/ts_dg_nih_10_prelim.png>]
 
 Package caption Warning: \label without proper reference on input line 217.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `rel_rep_ht_fine' on page 3 undefined on input line 22
+LaTeX Warning: Reference `rel_rep_ht_fine' on page 4 undefined on input line 22
 9.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
 Overfull \vbox (52.41887pt too high) detected at line 246
  []
 
@@ -1228,9 +1232,12 @@ LaTeX Warning: Reference `agent_variances' on page 6 undefined on input line 32
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-(./competing_bandits.bbl) [6]
+ [6]
+(./competing_bandits.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
+ [7
+
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
  (./competing_bandits.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 332.
@@ -1244,9 +1251,9 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
  ) 
 Here is how much of TeX's memory you used:
- 19930 strings out of 492995
- 364595 string characters out of 6132704
- 472011 words of memory out of 5000000
+ 19931 strings out of 492995
+ 364247 string characters out of 6132704
+ 472016 words of memory out of 5000000
  22962 multiletter control sequences out of 15000+600000
  21771 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1269,10 +1276,10 @@ texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2017/texm
 f-dist/fonts/type1/public/cm-super/sfti0600.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on competing_bandits.pdf (6 pages, 414666 bytes).
+Output written on competing_bandits.pdf (7 pages, 556123 bytes).
 PDF statistics:
- 245 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
+ 237 PDF objects out of 1000 (max. 8388607)
+ 195 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
  18584 words of extra memory for PDF output out of 20736 (max. 10000000)
 
