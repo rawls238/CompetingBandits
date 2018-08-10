@@ -4,7 +4,7 @@ library("reshape")
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_plots_all_haystack.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_unified_plots.csv", sep=""))
 
 dat$Algorithm <- replace(as.character(dat$Algorithm), dat$Algorithm == "DynamicEpsilonGreedy", "DynamicEpsilonGreedy, 0.05")
 dat$Algorithm <- replace(as.character(dat$Algorithm), dat$Algorithm == "NonBayesianEpsilonGreedy", "NonBayesianEpsilonGreedy, 0.05")
