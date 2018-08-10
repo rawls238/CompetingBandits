@@ -85,18 +85,20 @@ BANDIT_DISTR = {
 
 
 WORKING_DIRECTORY = ''
-#WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
+WORKING_DIRECTORY = '/rigel/home/ga2449/bandits-rl-project/'
 # Algorithm, Arms, Prior, t, n, reward
 
 RESULTS_DIR = WORKING_DIRECTORY + 'results/preliminary_raw_results/'
-FILENAME = 'preliminary_plots_unified.csv'
-realizations_name = RESULTS_DIR + 'preliminary_realizations.csv'
-dist_name = RESULTS_DIR + 'preliminary_dist.csv'
+
+
+FILENAME = 'preliminary_plots_unified'
+realizations_name = RESULTS_DIR + FILENAME + '_realizations.csv'
+dist_name = RESULTS_DIR + FILENAME + '_dist.csv'
 
 FIELDNAMES = ['Realized Complexity', 'n', 'True Mean Reputation', 'Realized Reputation', 'Algorithm', 'K', 'Distribution', 't', 'Instantaneous Realized Reward Mean', 'Instantaneous Mean Reward Mean', 'Arm Means']
 simResults = {}
 
-with open(RESULTS_DIR + FILENAME, 'w') as csvfile:
+with open(RESULTS_DIR + FILENAME + '.csv', 'w') as csvfile:
   with open(realizations_name, 'w') as realiz:
     with open(dist_name, 'w') as dist:
 
