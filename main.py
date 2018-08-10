@@ -31,19 +31,19 @@ NUM_SIMULATIONS = 1000
 
 FREE_OBS = True
 FREE_OBS_NUM = 200
-exp_name = 'testing'
+exp_name = 'full_sim'
 print('Exp name', exp_name)
-REALIZATIONS_NAME = '' #if you want to pull in past realizations, fill this in with the realizations base name
+REALIZATIONS_NAME = 'preliminary' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 12
 if len(sys.argv) > 1:
   numCores = sys.argv[1]
 
-AGENT_ALGS = [HardMax, HardMaxWithRandom, SoftMax]
+AGENT_ALGS = [HardMax]
 
 # valid principal algs are: [StaticGreedy, UCB, DynamicEpsilonGreedy, DynamicGreedy, ExploreThenExploit, ThompsonSampling]
-ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy)] 
-#(ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy), 
-#(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
+ALG_PAIRS = [(ThompsonSampling, DynamicEpsilonGreedy),(ThompsonSampling, DynamicGreedy), (DynamicGreedy, DynamicEpsilonGreedy),
+(ThompsonSampling, ThompsonSampling), (DynamicGreedy, DynamicGreedy), (DynamicEpsilonGreedy, DynamicEpsilonGreedy),
+(DynamicGreedy, ThompsonSampling), (DynamicEpsilonGreedy, ThompsonSampling), (DynamicEpsilonGreedy, DynamicGreedy)]
 
 def get_needle_in_haystack(starting_mean):
   needle_in_haystack = [bernoulli(starting_mean) for i in xrange(K)]
@@ -155,7 +155,8 @@ def run_experiment(startSizes):
           for startSize in startSizes:
             print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior ' + banditDistrName)
             simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, maxStart, K=K, T=T, warmStartNumObservations=startSize, realizations=realizations[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1) for i in xrange(NUM_SIMULATIONS))
-            for sim in simResults:
+            for i in xrange(len(simResults)):
+              sim = simResults[i]
               for res in sim:
                 t = res['time']
                 regret1 = res['avgRegret1']
@@ -164,6 +165,7 @@ def run_experiment(startSizes):
                   'Warm Start': startSize,
                   'Time Horizon': t,
                   'Prior': banditDistrName,
+                  'N': i,
                   'Agent Alg': agentAlg.__name__,
                   'P1 Alg': principalAlg1.__name__,
                   'P2 Alg': principalAlg2.__name__,
@@ -198,51 +200,7 @@ def get_realizations_with_distr(realDistributions, startSizes, numSim):
   return (realizations, warmStartRealizations)
 
 
-def run_complexity_experiment(startSizes, complexityVals):
-  maxStart = max(startSizes)
-  results = {}
-  N = 50
-  numSim = 50
-  with open(raw_name, 'w') as raw_csv:
-    individual_fieldnames = copy(INDIVIDUAL_FIELD_NAMES)
-    individual_fieldnames.append('Warm Start')
-    individual_writer = csv.DictWriter(raw_csv, fieldnames=individual_fieldnames)
-    individual_writer.writeheader()
-    for complexityVal in complexityVals:
-      realDistributions = get_distributions(N, 'FixedComplexity', None, complexityVal=complexityVal)
-      for n in xrange(N):
-        (realizations, warmStartRealizations) = get_realizations_with_distr(realDistributions, startSizes, numSim)
-        print("Complexity val", complexityVal, " Iteration ", n)
-        for agentAlg in AGENT_ALGS:
-          for (principalAlg1, principalAlg2) in ALG_PAIRS:
-            for startSize in startSizes:
-              #print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior Complexity')
-              simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, maxStart, K=K, T=T, memory=100, warmStartNumObservations=startSize, realizations=realizations[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1) for i in xrange(numSim))
-              for sim in simResults:
-                for res in sim:
-                  t = res['time']
-                  regret1 = res['avgRegret1']
-                  regret2 = res['avgRegret2']
-                  individual_results = {
-                    'Warm Start': startSize,
-                    'N': n,
-                    'Time Horizon': t,
-                    'Prior': 'Complexity',
-                    'Agent Alg': agentAlg.__name__,
-                    'P1 Alg': principalAlg1.__name__,
-                    'P2 Alg': principalAlg2.__name__,
-                    'P1 Regret': regret1,
-                    'P2 Regret': regret2,
-                    'EEOG': res['effectiveEndOfGame'],
-                    'Instance Complexity': res['complexity'],
-                    'P1 Reputation': res['reputation1'],
-                    'P2 Reputation': res['reputation2'],
-                    'Abs Delta Regret': np.abs(regret1 - regret2),
-                    'Market Share for P1': res['marketShare1'],
-                  }
-                  individual_writer.writerow(individual_results)
-
-START_SIZES = [20, 100, 200]
+START_SIZES = [20]
 #COMPLEXITY_VALUES = [100, 500, 1000, 2500, 5000, 7500, 10000]
 #run_complexity_experiment(START_SIZES, COMPLEXITY_VALUES)
 run_experiment(START_SIZES)
