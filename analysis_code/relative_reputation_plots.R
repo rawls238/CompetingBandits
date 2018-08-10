@@ -18,7 +18,7 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   alg_1 <- filter(dist_dat, Algorithm == alg1)
   alg_2 <- filter(dist_dat, Algorithm == alg2)
   n_vals <- unique(dist_dat$n)
-  t_vals <- seq(100, 2000, 100)
+  t_vals <- seq(10, 2000, 10)
   df <- as.data.frame(matrix(nrow=length(t_vals), ncol=3))
   colnames(df) <- c("t", "relative_rep")
   df$t <- t_vals
@@ -78,10 +78,8 @@ print_mean_graphs <- function (dist, alg1, alg2, alg3, minComplexity) {
 }
 
 dists <- unique(dat$Distribution)
-#dists <- c("Heavy Tail", "Uniform")
 
 for (dist in dists) {
-  print(dist)
   print_relative_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", 0)
   print_relative_graphs(dist, "ThompsonSampling", "DynamicGreedy", 0)
   print_relative_graphs(dist, "DynamicEpsilonGreedy", "DynamicGreedy", 0)

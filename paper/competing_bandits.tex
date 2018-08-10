@@ -213,13 +213,6 @@ TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 65\\ med: 0} & \make
 \end{tabular}
 \end{table}
 
-\begin{figure}
-\label{rel_rep_ht_fine}
-\caption{Relative Reputation - Heavy Tail}
-\includegraphics[scale=0.3]{figures/ts_dg_heavy_fine}
-\caption*{TODO: Reduce the range of the x-axis of this so that you can understand when TS starts to do better than DG}
-\end{figure}
-
 [IDEA: take a look at the distribution of reputation induced by each algorithm under each prior]
 
 Tables \ref{hm_nih} and \ref{hm_ht} display the results. Under Heavy Tail we see that for small warm start of $k = 20$, $DG$ gives the firm more of the market than $TS$ and $DEG$. As we increase the warm start to $k = 100, 200$ we observe that $TS$ does better than $DG$ and $DEG$. Note that, in particular for the simulations involving $TS$, the effective end of game had a median of 0. This means that the result of the simulation was \textit{completely determined by the warm start period}. Thus, when reasoning about what algorithm would win in the competition game under the HardMax decision rule we need to think about the performance of the algorithm on $k$ samples instead of $T$ samples, which may be small. For low warm start, it is thus not necessarily the case that $TS$ is the best algorithm. However, we see that under the Needle In Haystack prior $TS$ is always the best algorithm across all warm start values.
