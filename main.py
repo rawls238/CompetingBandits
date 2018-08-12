@@ -30,8 +30,10 @@ T = 2001
 NUM_SIMULATIONS = 1000
 
 FREE_OBS = True
+ERASE_REP = True
+ERASE_INFO = False
 FREE_OBS_NUM = 200
-exp_name = 'full_sim'
+exp_name = 'full_sim_no_rep'
 print('Exp name', exp_name)
 REALIZATIONS_NAME = 'preliminary' #if you want to pull in past realizations, fill this in with the realizations base name
 numCores = 12
@@ -78,7 +80,7 @@ raw_name = exp_base_name + '_raw.csv'
 realizations_name = exp_base_name + '_realizations.csv'
 dist_name = exp_base_name + '_dist.csv'
 
-INDIVIDUAL_FIELD_NAMES =['Prior', 'N', 'P1 Alg', 'EEOG', 'Instance Complexity', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
+INDIVIDUAL_FIELD_NAMES =['Prior', 'Erase Info', 'Erase Reputation', 'N', 'P1 Alg', 'EEOG', 'Instance Complexity', 'P2 Alg', 'Time Horizon', 'Agent Alg', 'Market Share for P1', 'P1 Regret', 'P2 Regret', 'P1 Reputation', 'P2 Reputation', 'Abs Delta Regret']
 
 # fetch distributions from previous run
 def fetch_distributions(filename, priorname):
@@ -154,7 +156,7 @@ def run_experiment(startSizes):
         for (principalAlg1, principalAlg2) in ALG_PAIRS:
           for startSize in startSizes:
             print('Running ' + agentAlg.__name__ + ' and principal 1 playing ' + principalAlg1.__name__ + ' and principal 2 playing ' + principalAlg2.__name__ + ' with warm start size ' + str(startSize) + ' with prior ' + banditDistrName)
-            simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, maxStart, K=K, T=T, warmStartNumObservations=startSize, realizations=realizations[i], freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1) for i in xrange(NUM_SIMULATIONS))
+            simResults = Parallel(n_jobs=numCores)(delayed(simulate)(principalAlg1, principalAlg2, agentAlg, maxStart, K=K, T=T, warmStartNumObservations=startSize, realizations=realizations[i], eraseReputation=ERASE_REP, eraseInformation=ERASE_INFO, freeObsForP2=FREE_OBS, freeObsNum=FREE_OBS_NUM, realDistributions=realDistributions[i], seed=i+1) for i in xrange(NUM_SIMULATIONS))
             for i in xrange(len(simResults)):
               sim = simResults[i]
               for res in sim:
@@ -166,6 +168,8 @@ def run_experiment(startSizes):
                   'Time Horizon': t,
                   'Prior': banditDistrName,
                   'N': i,
+                  'Erase Reputation': ERASE_REP,
+                  'Erase Info': ERASE_INFO,
                   'Agent Alg': agentAlg.__name__,
                   'P1 Alg': principalAlg1.__name__,
                   'P2 Alg': principalAlg2.__name__,

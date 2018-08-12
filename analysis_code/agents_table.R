@@ -2,18 +2,17 @@ library(dplyr)
 library(knitr)
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
-dat_3 <- read.csv(file=paste(WORKING_PATH, "/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv", sep=""))
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_"))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_full_sim_raw.csv", sep=""))
 
-p1_algs <- as.list(unique(dat_3['P1.Alg']))$P1.Alg
-p2_algs <- as.list(unique(dat_3['P2.Alg']))$P2.Alg
-agent_algs <- as.list(unique(dat_3['Agent.Alg']))$Agent.Alg
+p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
+p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
+agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
 agent_algs <- c("HardMax")
-time_horizons <-  as.list(unique(dat_3['Time.Horizon']))$Time.Horizon
-time_horizons <- c(5000)
-priors <- as.list(unique(dat_3['Prior']))$Prior
+time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
+time_horizons <- c(2000)
+priors <- as.list(unique(dat['Prior']))$Prior
 priors <- c("Heavy Tail", "Needle In Haystack - 0.5")
-warm_starts <- c(5)
+warm_starts <- c(20)
 
 ZERO_ONE_CUTOFF <- 0.1
 
@@ -59,7 +58,6 @@ for (prior in priors) {
     results <- matrix(nrow=length(agent_algs), ncol=(length(alg_pairs) / 2))
     colnames(results) <- c(paste(concise_alg_rep(alg_pairs[1]), concise_alg_rep(alg_pairs[2]), sep=" vs "), paste(concise_alg_rep(alg_pairs[3]), concise_alg_rep(alg_pairs[4]), sep=" vs "), paste(concise_alg_rep(alg_pairs[5]), concise_alg_rep(alg_pairs[6]), sep=" vs "), paste(concise_alg_rep(alg_pairs[7]), concise_alg_rep(alg_pairs[8]), sep=" vs "), paste(concise_alg_rep(alg_pairs[9]), concise_alg_rep(alg_pairs[10]), sep=" vs "), paste(concise_alg_rep(alg_pairs[11]), concise_alg_rep(alg_pairs[12]), sep=" vs "))
     rownames(results) <- get_agent_rep(agent_algs)
-    for (q in 1:1) {
       for (start in warm_starts) {
         for (i in 1:length(agent_algs)) {
           
@@ -70,11 +68,7 @@ for (prior in priors) {
             p1alg = alg_pairs[k]
             p2alg = alg_pairs[k+1]
             K <- 10
-            if (q == 1) {
-              filtered_dat <- filter(dat, P1.Alg == p1alg & P2.Alg == p2alg & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
-            } else {
-              filtered_dat <- filter(dat_10, P1.Alg == p1alg & P2.Alg == p2alg & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
-            }
+            filtered_dat <- filter(dat, P1.Alg == p1alg & P2.Alg == p2alg & Prior == prior & Agent.Alg == agent_alg & Time.Horizon == time)
             if (nrow(filtered_dat) == 0) {
               next
             }
@@ -93,8 +87,5 @@ for (prior in priors) {
         tab <-xtable(results, caption=paste("Results for", "t=",time, prior, "Warm Start=", start, "K=", K), row.header='Entrant', col.header='Incumbent')
         print(tab, type="latex")
       }
-    }
   }
 }
-
-

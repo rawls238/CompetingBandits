@@ -73,6 +73,10 @@ Parameters
     Used for the incumbent experiment - does principal 2 (the incumbent) get free agents before the competition game?
   freeObsNum: Int
     For how many rounds is principal 2 the incumbent?
+  eraseReputation: Boolean
+    Whether to erase the reputation gain of the incumbent
+  eraseInformation: Boolean
+    Whether to erase the information gain of the incumbent
   principal1Priors / principal2Priors: Vector of Distributions
     Initial beliefs of the principals
   recordStatsAt: Vector of times
@@ -91,9 +95,10 @@ def simulate(principalAlg1, principalAlg2, agentAlg, maxWarmStart, K, T,
   warmStartNumObservations=DEFAULT_WARM_START_NUM_OBSERVATIONS,
   principal1Priors=None,
   principal2Priors=None,
+  eraseReputation=False,
+  eraseInformation=False,
   recordStatsAt=RECORD_STATS_AT,
-  seed=1.0,
-  eraseReputation = False
+  seed=1.0
 ):
   seed = int(seed)
   np.random.seed(seed)
@@ -127,7 +132,12 @@ def simulate(principalAlg1, principalAlg2, agentAlg, maxWarmStart, K, T,
   # now, reset the realizations to the warm start realizations so they're the same across firms and give each firm the warm start agents
   for principal in principals.values():
     principal.resetStats()
+    if eraseInformation:
+      principal.resetPriors()
     principal.setRealizations(warmStartRealizations)
+
+  if eraseReputation:
+    agents.resetInformationSet()
 
   for i in xrange(warmStartNumObservations):
     for (principalName, principal) in principals.iteritems():

@@ -29,7 +29,7 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   for (t in t_vals) {
     cur_alg1 <- filter(alg_1,  t == UQ(t))
     cur_alg2 <- filter(alg_2, t == UQ(t))
-    count <- sum(cur_alg1$Realized.Reputation - cur_alg2$Realized.Reputation >= 0)
+    count <- sum(cur_alg1$Realized.Reputation - cur_alg2$Realized.Reputation > 0)
     p <- count / length(n_vals)
     counts <- c(counts, p)
     ses <- c(ses, sqrt(p * (1 - p) / length(n_vals)))
@@ -84,6 +84,7 @@ for (dist in dists) {
   print_relative_graphs(dist, "ThompsonSampling", "DynamicGreedy", 0)
   print_relative_graphs(dist, "DynamicEpsilonGreedy", "DynamicGreedy", 0)
 }
+
 # print mean plots
 for (dist in dists) {
   print_mean_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0)

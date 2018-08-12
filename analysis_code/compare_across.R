@@ -1,9 +1,9 @@
 library(dplyr)
 
-dat_1 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
-dat_2 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
+#dat_1 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
+#dat_2 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/tournament_experiment_full_sim_raw.csv")
 
-dist <- "Needle In Haystack"
+dist <- "Heavy Tail"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
 compet_dat <- filter(dat_2, Prior == dist & Warm.Start == 20)
@@ -18,7 +18,7 @@ losing_n <- c()
 for (n in n_vals) {
   cur_alg1 <- filter(alg_1,  t == ws_time & n == UQ(n))
   cur_alg2 <- filter(alg_2, t == ws_time & n == UQ(n))
-  if (cur_alg1$Realized.Reputation > cur_alg2$Realized.Reputation) {
+  if (cur_alg1$Realized.Reputation >= cur_alg2$Realized.Reputation) {
     winning_n <- c(winning_n, n)
   } else {
     losing_n <- c(losing_n, n)
@@ -26,7 +26,22 @@ for (n in n_vals) {
 }
 
 compet_dat_filtered <- filter(compet_dat, Time.Horizon == 2000 & Agent.Alg == "HardMax" & P1.Alg == alg1 & P2.Alg == alg2)
-winning_dat <- filter(compet_dat_filtered, row_number() %in% winning_n)
-losing_dat <- filter(compet_dat_filtered, row_number() %in% losing_n)
-cat("Winning dat", nrow(winning_dat), "Market share", mean(winning_dat$Market.Share.for.P1))
+winning_dat <- filter(compet_dat_filtered, N %in% winning_n)
+losing_dat <- filter(compet_dat_filtered, N %in% losing_n)
+cat("Winning dat", nrow(winning_dat), "Market share", mean(winning_dat$Market.Share.for.P1), "\n")
 cat("Losing dat", nrow(losing_dat), "Market share", mean(losing_dat$Market.Share.for.P1))
+
+
+# look at density estimates of reputation
+
+dist <- "Heavy Tail"
+ws_time <- 20
+iso_dat <- filter(dat_1, Distribution == dist)
+iso_dat_t <- filter(iso_dat, t == 100)
+ggplot(iso_dat_t, aes(Realized.Reputation, colour=Algorithm)) + geom_density()
+
+iso_ts <- filter(iso_dat, t == 2000 & Algorithm == "DynamicEpsilonGreedy") 
+iso_dg <- filter(iso_dat, t == 2000 & Algorithm == "DynamicGreedy")
+iso_ts$rep_diff_dg <- iso_ts$Realized.Reputation - iso_dg$Realized.Reputation
+
+ggplot(iso_ts, aes(rep_diff_dg)) + geom_density()

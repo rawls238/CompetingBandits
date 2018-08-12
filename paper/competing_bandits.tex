@@ -95,7 +95,7 @@
 \label{S:4}
 
 \subsection{Bandit Priors}
-We study the implications of our model via simulation. For computational tractability we focus our attention on Bernoulli bandits with beta priors. We consider the following bandit ``priors" from which the bandit instances faced in simulation are drawn:
+We study the implications of our model via simulation. For computational tractability we focus our attention on Bernoulli bandit diBernoulli bandits with beta priors. We consider the following bandit ``priors" from which the bandit instances faced in simulation are drawn:
 \begin{enumerate}
 \item ``HeavyTail": We took the mean rewards to be randomly drawn from Beta($\alpha=0.6,\beta=0.6$). With this distribution it was likely to have arms that were at the extremes (close to 1 and close to 0) but also some of the arms with intermediate value means. [We should rename this prior instance]
 \item Needle-in-haystack High - $K-1$ arms with mean 0.50, 1 arm with mean 0.70. 
@@ -117,7 +117,7 @@ For our simulations we evaluate the performance of three algorithms, each endowe
 \end{enumerate}
 
 Run in isolation we expect that the performance of the algorithms (according to cumulative regret) should be \\
- Adaptive Exploration $>=$ Non-adaptive exploration $>=$ Greedy. We verify that, for the chosen algorithms and chosen priors, this is indeed the case (with some caveats, discussed in the next section).
+ Adaptive Exploration $\geq$ Non-adaptive exploration $\geq$ Greedy. We verify that, for the chosen algorithms and chosen priors, this is indeed the case (with some caveats, discussed in the next section).
 
 The primary question that we are interested in is under what conditions in competition are the firms in our model incentivized to commit to adaptive exploration algorithms.
 
@@ -128,12 +128,12 @@ Algorithm \ref{alg_1} (FIX TO BE FIGURE) describes the simulation procedure util
 \caption{Simulation Pseudo-Code}
 \begin{algorithmic}[1]
 \For{Each prior $p$}
-\State Generate true distribution from $p$
-\State Generate $T \times K$ realizations for the arms 
-	\For{Each agent algorithm $agent alg$}
-		\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
-			\For{$N$ simulations}
-				\State Give principal 2 $X$ free observations (the agents also get these observations)				
+	\For{$N$ simulations}
+		\State Generate true distribution from $p$
+		\State Generate $T \times K$ realizations for the arms 
+		\For{Each agent algorithm $agent alg$}
+			\For{Each principal algorithm pair $principalalg1$, $principalalg2$}
+				\State Give principal 2 $X$ free observations (the agents also get these observations)
 				\State Give the agents $k$ observations from each principal (warm start)
 				\State Run simulation for $T$ periods
 			\EndFor
@@ -176,10 +176,10 @@ Interestingly we observe that, on the Heavy Tail prior, $DG > DEG$ according to 
 \section{Simultaneous Entry Experiment}
 \label{S:6}
 
-In this section we present simulation results of the model discussed in Section \ref{S:2} where $X = 0$ so that both firms enter at the same time. We want to understand what algorithms the firms are incentivized to commit to in the competition game but the payoffs associated with each algorithm are too difficult to compete analytically and thus, we begin by simply imposing that the algorithm played by the firm is taken as given and study the consequences of playing them in the competition game. Additionally, for this experiment we present results for the $HardMax$ agent decision rule and postpone discussion of alternative decision rules. Besides keeping track of market share, we also will keep track of the effective end of game in order to better understand what happens in the game.
+In this section we present simulation results of the model discussed in Section \ref{S:2} where $X = 0$ so that both firms enter at the same time. We want to understand what algorithms the firms are incentivized to commit to in the competition game but the payoffs associated with each algorithm are too difficult to compute analytically and thus, we begin by simply imposing that the algorithm played by the firm is taken as given and study the consequences of playing them in the competition game. Additionally, for this experiment we present results for the $HardMax$ agent decision rule and postpone discussion of alternative decision rules. Besides keeping track of market share, we also will keep track of the ``effective end of game."
 
 \begin{definition}
-\textit{Effective End of Game (EEOG)} - the last round, $t$ in a simulation where there is a difference between the decision of the agent alive at $t-1$ and the agent alive at $t$ (todo: state this formally using notation of model)
+\textit{Effective End of Game (EEOG)} - the last round, $t$, in a simulation where there is a difference between the decision of the agent alive at $t-1$ and the agent alive at $t$ (todo: state this formally using notation of model)
 \end{definition}
 
 \begin{table}[ht]
@@ -231,22 +231,21 @@ Why is it that we see that $TS$ always wins under Needle in Haystack but, for lo
 We now fix the same parameters as before, fixing a warm start of $k = 20$ [we should re-run this] but let $X = 200$ so that firm 2 has an ``incumbency" advantage. Recall that $X$ controls the number of rounds the firm is in the market by itself before the other firm enters and so in these rounds agents arrive and must choose firm 2. Importantly, we treat $X$ as an exogenous parameter (and not something optimally chosen by the entrant) and study the consequences of a fixed value of $X$. Thus, firm 2 is a monopolist for $X$ periods and, after $X$ rounds, firm 1 enters the market and each agent that enters in subsequent periods must select between the two firms. We want to understand what algorithms the incumbent (and the entrant) are incentivized to play. In particular, we are interested if introducing this asymmetry in entry induces firms who were previously incentivized to play $DG$ to play $TS$. As a result, we present the results of this experiment for $k = 20$ and on the Heavy Tail prior, where we saw that $DG$ was preferred to $TS$.
 
 \begin{table}[ht]
-\label{ht_incum}
 \centering
-\caption{Incumbent Experiment for Heavy Tail}
+\caption{Incumbent Experiment Heavy Tail X=200} 
 \begin{tabular}{rlll}
 \multicolumn{3}{c}{Incumbent Algorithm} \\
 \multirow{3}{*}{\rotatebox{90}{Entrant Algorithm}} \\
-\hline
+  \hline
  & TS & DEG &  DG \\ 
- \hline
-TS & \makecell{\textbf{ 0.0067 } $\pm$ 0.0092 \\Variance: 0.007 \\ ES: 100 \%} & \makecell{\textbf{ 0.023 } $\pm$ 0.017 \\Variance: 0.02 \\ ES: 99 \%} & \makecell{\textbf{ 0.064 } $\pm$ 0.027 \\Variance: 0.05 \\ ES: 97 \%} \\ 
-\hline
-  DEG & \makecell{\textbf{ 0.024 } $\pm$ 0.015 \\Variance: 0.02 \\ ES: 98 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.034 \\Variance: 0.09 \\ ES: 86 \%} & \makecell{\textbf{ 0.14 } $\pm$ 0.036 \\Variance: 0.1 \\ ES: 89 \%} \\ 
-\hline   
-   DG & \makecell{\textbf{ 0.063 } $\pm$ 0.024 \\Variance: 0.04 \\ ES: 93 \%} & \makecell{\textbf{ 0.19 } $\pm$ 0.041 \\Variance: 0.1 \\ ES: 91 \%} & \makecell{\textbf{ 0.15 } $\pm$ 0.032 \\Variance: 0.08 \\ ES: 77 \%} \\ 
+  \hline
+TS & \makecell{\textbf{ 0.0029 } $\pm$ 0.0029 \\Variance: 0.002 \\ ES: 100 \%} & \makecell{\textbf{ 0.11 } $\pm$ 0.019 \\Variance: 0.09 \\ ES: 96 \%} & \makecell{\textbf{ 0.17 } $\pm$ 0.022 \\Variance: 0.1 \\ ES: 95 \%} \\ 
+  DEG & \makecell{\textbf{ 0.049 } $\pm$ 0.011 \\Variance: 0.03 \\ ES: 94 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.022 \\Variance: 0.1 \\ ES: 74 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.023 \\Variance: 0.1 \\ ES: 79 \%} \\ 
+   DG & \makecell{\textbf{ 0.12 } $\pm$ 0.017 \\Variance: 0.08 \\ ES: 87 \%} & \makecell{\textbf{ 0.35 } $\pm$ 0.026 \\Variance: 0.2 \\ ES: 77 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.023 \\Variance: 0.1 \\ ES: 65 \%} \\ 
+   \hline
 \end{tabular}
 \caption*{\tiny{TODO: fix table names and general table alignment. The first line in each cell contains the average market share for the entrant over $N=250$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one principal getting $> 90\%$ of the market. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to firm 2 do not count towards the share)}}
+\label{ht_incum}
 \end{table}
 
 Table \ref{ht_incum} shows the results of the simulations. We observe that, for the incumbent, $TS$ is a dominant strategy. In the appendix we include additional simulations where $X = 50$ and observe that $TS$ is not always a dominant strategy in this case. Qualitatively, these results are robust across the different priors we considered as well as across agent response models. Namely, for sufficiently large $X$, $TS$ is a dominant strategy for the incumbent.
@@ -314,12 +313,6 @@ Under the HardMax decision rule, firms need to incentivize consumers to select t
 
 We see that better algorithms are incentivized when we consider random agent response rules, but there are differences in the overall market composition. As Figure \ref{agent_variances} shows, the variance of market shares across simulations varies greatly. Under $HardMax$, we see that, in a single simulation, the market is generally ``winner take all" where one firm generally gets a large share of the market and there is a high variance. Under $HardMaxWithRandom$ we see that, in a single simulation, the market is mostly taken by one firm (but to a lower extent than under $HardMax$) and there is a lower, though still high, variance. Under $SoftMax$ we see that the market variance is very low and market shares are generally close to 50/50.
 
-\section{Conclusion}
-\label{S:10}
-
-...
-
-\pagebreak
 \bibliography{refs}
 
 \end{document}
