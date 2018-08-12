@@ -118,7 +118,7 @@ def fetch_realizations(filename, priorname, maxWarmStart, freeObsNum=FREE_OBS_NU
 def get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=True, dist=None, tabl=None, complexityVal=None):
   realDistributions = {}
   realizations = {}
-  maxWarmStart = max(startSizes)
+  maxWarmStart = 200
   obsToGen = T+maxWarmStart+FREE_OBS_NUM
   if shouldWrite:
 
@@ -143,7 +143,7 @@ def get_realizations(K, banditDistrName, banditDistr, startSizes, shouldWrite=Tr
 # Run a series of experiments that are recorded in CSV files 
 def run_experiment(startSizes):
   results = {}
-  maxStart = max(startSizes)
+  maxStart = 200
   with open(raw_name, 'w') as raw_csv:
     individual_fieldnames = copy(INDIVIDUAL_FIELD_NAMES)
     individual_fieldnames.append('Warm Start')
