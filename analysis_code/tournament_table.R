@@ -5,7 +5,7 @@ WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
 
 
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_full_sim_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_full_sim_no_info_raw.csv", sep=""))
 p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
 agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
@@ -51,7 +51,7 @@ for (j in 1:length(time_horizons)) {
           results[k, l] <- paste("\\makecell{\\textbf{", signif(mean(share), digits=2), "} $\\pm$", cin, "\\\\Variance:", signif(var(share), digits=1), "\\\\", "ES:", 100*signif(shares, digits=2), "\\%}")
         }
       }
-      tab <-xtable(results, caption=paste("Incumbent Experiment", prior, "X=200"))
+      tab <-xtable(results, caption=paste("Information Erased Experiment", prior, "X=200"))
       print(tab, type="latex")
     }
   }

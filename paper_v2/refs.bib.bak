@@ -38,6 +38,34 @@
   organization = {ACM},
 }
 
+@Unpublished{slivkins2017bandits,
+  author = {Aleksandrs Slivkins},
+  title  = {An Introduction to multi-armed Bandits},
+  year   = {2017},
+}
+
+@Article{bubeck2012regret,
+  author    = {Bubeck, S{\'e}bastien and Cesa-Bianchi, Nicolo and others},
+  title     = {Regret analysis of stochastic and nonstochastic multi-armed bandit problems},
+  journal   = {Foundations and Trends{\textregistered} in Machine Learning},
+  year      = {2012},
+  volume    = {5},
+  number    = {1},
+  pages     = {1--122},
+  publisher = {Now Publishers, Inc.},
+}
+
+@Article{keller2005strategic,
+  author    = {Keller, Godfrey and Rady, Sven and Cripps, Martin},
+  title     = {Strategic experimentation with exponential bandits},
+  journal   = {Econometrica},
+  year      = {2005},
+  volume    = {73},
+  number    = {1},
+  pages     = {39--68},
+  publisher = {Wiley Online Library},
+}
+
 @Article{aghion2005competition,
   author    = {Aghion, Philippe and Bloom, Nick and Blundell, Richard and Griffith, Rachel and Howitt, Peter},
   title     = {Competition and innovation: An inverted-U relationship},
@@ -56,23 +84,6 @@
   year    = {2004},
 }
 
-@Article{bubeck2012regret,
-  author    = {Bubeck, S{\'e}bastien and Cesa-Bianchi, Nicolo and others},
-  title     = {Regret analysis of stochastic and nonstochastic multi-armed bandit problems},
-  journal   = {Foundations and Trends{\textregistered} in Machine Learning},
-  year      = {2012},
-  volume    = {5},
-  number    = {1},
-  pages     = {1--122},
-  publisher = {Now Publishers, Inc.},
-}
-
-@Unpublished{slivkins2017bandits,
-  author = {Aleksandrs Slivkins},
-  title  = {An Introduction to multi-armed Bandits},
-  year   = {2017},
-}
-
 @Article{bolton1999strategic,
   author    = {Bolton, Patrick and Harris, Christopher},
   title     = {Strategic experimentation},
@@ -82,6 +93,20 @@
   number    = {2},
   pages     = {349--374},
   publisher = {Wiley Online Library},
+}
+
+@Book{tirole1988theory,
+  title     = {The theory of industrial organization},
+  publisher = {MIT press},
+  year      = {1988},
+  author    = {Tirole, Jean},
+}
+
+@Book{schumpeter2010capitalism,
+  title     = {Capitalism, socialism and democracy},
+  publisher = {Routledge},
+  year      = {2010},
+  author    = {Schumpeter, Joseph A},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

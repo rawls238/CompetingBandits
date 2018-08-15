@@ -1,15 +1,28 @@
 library(dplyr)
 
 #dat_1 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
-#dat_2 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/tournament_experiment_full_sim_raw.csv")
+#dat_2 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
 
-dist <- "Heavy Tail"
+
+concise_alg_rep <- function(alg) {
+  if (alg == "ThompsonSampling") {
+    return("TS")
+  } else if (alg == "DynamicEpsilonGreedy") {
+    return("DEG")
+  } else if (alg == "DynamicGreedy") {
+    return("DG")
+  }
+}
+
+dat_1$Algorithm<- sapply(dat_1$Algorithm, concise_alg_rep)
+tmp <- mutate(dat_1, Algorithm = concise_alg_rep(Algorithm))
+dist <- ".5/.7 Random Draw"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
 compet_dat <- filter(dat_2, Prior == dist & Warm.Start == 20)
 
-alg1 <- "ThompsonSampling"
-alg2 <- "DynamicGreedy"
+alg1 <- "TS"
+alg2 <- "DG"
 alg_1 <- filter(iso_dat, Algorithm == alg1)
 alg_2 <- filter(iso_dat, Algorithm == alg2)
 n_vals <- unique(iso_dat$n)
@@ -34,14 +47,41 @@ cat("Losing dat", nrow(losing_dat), "Market share", mean(losing_dat$Market.Share
 
 # look at density estimates of reputation
 
-dist <- "Heavy Tail"
+dist <- "Needle In Haystack"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
-iso_dat_t <- filter(iso_dat, t == 100)
-ggplot(iso_dat_t, aes(Realized.Reputation, colour=Algorithm)) + geom_density()
+iso_dat_t <- filter(iso_dat, t == 500)
+ggplot(iso_dat_t, aes(Realized.Reputation, colour=Algorithm)) +
+  geom_density() +
+  ggtitle("Reputation Distribution, Needle In Haystack") +
+  theme_bw(base_size = 12) +
+  xlab("Reputation") + 
+  theme(plot.title = element_text(hjust = 0.5))
 
-iso_ts <- filter(iso_dat, t == 2000 & Algorithm == "DynamicEpsilonGreedy") 
-iso_dg <- filter(iso_dat, t == 2000 & Algorithm == "DynamicGreedy")
-iso_ts$rep_diff_dg <- iso_ts$Realized.Reputation - iso_dg$Realized.Reputation
+iso_deg <- filter(iso_dat, t %in% t_vals & Algorithm == "ThompsonSampling") 
+iso_dg <- filter(iso_dat, t %in% t_vals & Algorithm == "DynamicGreedy")
+iso_deg$rep_diff_dg <- iso_deg$Realized.Reputation - iso_dg$Realized.Reputation
 
-ggplot(iso_ts, aes(rep_diff_dg)) + geom_density()
+ggplot(iso_deg, aes(rep_diff_dg)) + geom_density() + 
+  ggtitle("DEG - DG Reputation Distribution, Heavy Tail") + 
+  xlab("Reputation Difference") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+dist <- "Needle In Haystack"
+ws_time <- 20
+iso_dat <- filter(dat_1, Distribution == dist)
+t_vals <- c(500,1000, 2000)
+alg1 <- "TS"
+alg2 <- "DG"
+
+iso_alg1 <- filter(iso_dat, t %in% t_vals & Algorithm == alg1) 
+iso_alg2 <- filter(iso_dat, t %in% t_vals & Algorithm == alg2)
+iso_alg1$rep_diff <- iso_alg1$Realized.Reputation - iso_alg2$Realized.Reputation
+
+title <- paste(alg1, "-", alg2, "Reputation Distribution,", dist)
+ggplot(iso_alg1, aes(rep_diff)) + geom_density(aes(group=t, colour=t)) + 
+  ggtitle(title) + 
+  xlab("Reputation Difference") +
+  theme_bw(base_size = 12) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlim(c(-0.25, 0.25))
