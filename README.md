@@ -1,1 +1,1 @@
-Final project for Bandits / RL class
+Code for Competing Bandits
