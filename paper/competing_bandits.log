@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  15 AUG 2018 23:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  16 AUG 2018 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1076,15 +1076,24 @@ File: "figures/nih_iso_mean".png Graphic file (type png)
 
 <use "figures/nih_iso_mean".png>
 Package pdftex.def Info: "figures/nih_iso_mean".png used on input line 157.
-(pdftex.def)             Requested size: 171.64082pt x 86.07135pt.
- [3 <./figures/nih_iso_mean.png>]
+(pdftex.def)             Requested size: 240.30135pt x 120.50198pt.
+
+Overfull \hbox (0.90697pt too wide) in paragraph at lines 157--159
+[][]
+ []
+
+[3 <./figures/nih_iso_mean.png>]
 <figures/rep_distribution_nih.png, id=148, 686.565pt x 344.28625pt>
 File: figures/rep_distribution_nih.png Graphic file (type png)
 
 <use figures/rep_distribution_nih.png>
 Package pdftex.def Info: figures/rep_distribution_nih.png used on input line 16
 8.
-(pdftex.def)             Requested size: 205.97108pt x 103.28667pt.
+(pdftex.def)             Requested size: 240.30135pt x 120.50198pt.
+
+Overfull \hbox (0.90697pt too wide) in paragraph at lines 168--170
+[][]
+ []
 
 <figures/ts_dg_rep_diff_nih.png, id=151, 686.565pt x 344.28625pt>
 File: figures/ts_dg_rep_diff_nih.png Graphic file (type png)
@@ -1092,7 +1101,12 @@ File: figures/ts_dg_rep_diff_nih.png Graphic file (type png)
 <use figures/ts_dg_rep_diff_nih.png>
 Package pdftex.def Info: figures/ts_dg_rep_diff_nih.png used on input line 177.
 
-(pdftex.def)             Requested size: 205.97108pt x 103.28667pt.
+(pdftex.def)             Requested size: 240.30135pt x 120.50198pt.
+
+Overfull \hbox (0.90697pt too wide) in paragraph at lines 177--179
+[][]
+ []
+
 
 <figures/relative_uniform_annotated_plot.png, id=154, 686.565pt x 344.28625pt>
 File: figures/relative_uniform_annotated_plot.png Graphic file (type png)
@@ -1129,10 +1143,8 @@ Package hyperref Warning: Suppressing empty link on input line 199.
 
 Package hyperref Warning: Suppressing empty link on input line 203.
 
-
-Underfull \vbox (badness 1189) has occurred while \output is active []
-
-
+[5 <./figures/relative_uniform_annotated_plot.png> <./figures/ts_dg_nih_10_prel
+im.png>]
 Overfull \hbox (10.22888pt too wide) in paragraph at lines 225--235
  [][] 
  []
@@ -1147,8 +1159,7 @@ Overfull \hbox (10.22888pt too wide) in paragraph at lines 258--268
  [][] 
  []
 
-[5 <./figures/relative_uniform_annotated_plot.png> <./figures/ts_dg_nih_10_prel
-im.png>]
+
 Overfull \hbox (22.3494pt too wide) in paragraph at lines 279--288
  [][] 
  []
@@ -1182,13 +1193,13 @@ Package rerunfilecheck Info: File `competing_bandits.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
  ) 
 Here is how much of TeX's memory you used:
- 19990 strings out of 492995
- 365367 string characters out of 6132704
- 483047 words of memory out of 5000000
+ 20004 strings out of 492995
+ 365515 string characters out of 6132704
+ 476047 words of memory out of 5000000
  22974 multiletter control sequences out of 15000+600000
- 25653 words of font info for 129 fonts, out of 8000000 for 9000
+ 26071 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,54p,1578b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,16n,54p,1592b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -1214,7 +1225,7 @@ s/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2017/texmf-dist/fonts/
 type1/public/cm-super/sfti0600.pfb></usr/local/texlive/2017/texmf-dist/fonts/ty
 pe1/public/cm-super/sfti0900.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/public/cm-super/sfti1000.pfb>
-Output written on competing_bandits.pdf (8 pages, 576253 bytes).
+Output written on competing_bandits.pdf (8 pages, 574237 bytes).
 PDF statistics:
  309 PDF objects out of 1000 (max. 8388607)
  262 compressed objects within 3 object streams

@@ -13,7 +13,7 @@ agent_algs - c("HardMax")
 time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
 time_horizons <- c(2000)
 priors <- as.list(unique(dat['Prior']))$Prior
-priors <- c("Needle In Haystack", "Heavy Tail")
+priors <- c("Heavy Tail")
 warm_start <- 20
 
 ZERO_ONE_CUTOFF <- 0.1
@@ -42,16 +42,16 @@ for (j in 1:length(time_horizons)) {
           }
           share <- filtered_dat$Market.Share.for.P1
           test <- t.test(share)
-          cin <- signif(test$conf.int[2] - mean(share), digits=2)
+          cin <- signif(test$conf.int[2] - mean(share), digits=1)
           shares <- sum(share >= (1 - ZERO_ONE_CUTOFF) | share <= ZERO_ONE_CUTOFF, na.rm=TRUE) / nrow(filtered_dat)
           cv_high <- qchisq(.975, df=length(share) - 1)
           cv_low <- qchisq(.025, df=length(share) - 1)
           lower_var <- signif((length(share) - 1) * var(share) / cv_high, digits=2)
           high_var <- signif((length(share) - 1) * var(share) / cv_low, digits=2)
-          results[k, l] <- paste("\\makecell{\\textbf{", signif(mean(share), digits=2), "} $\\pm$", cin, "\\\\Variance:", signif(var(share), digits=1), "\\\\", "ES:", 100*signif(shares, digits=2), "\\%}")
+          results[k, l] <- paste("\\makecell{\\textbf{", signif(mean(share), digits=2), "} $\\pm$", cin, "\\\\Var:", signif(var(share), digits=1), "\\\\", "ES:", 100*signif(shares, digits=2), "\\%}")
         }
       }
-      tab <-xtable(results, caption=paste("Information Erased Experiment", prior, "X=200"))
+      tab <-xtable(results, caption=paste("Temporary Monopoly Experiment", prior))
       print(tab, type="latex")
     }
   }

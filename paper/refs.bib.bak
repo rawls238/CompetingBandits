@@ -126,4 +126,13 @@
   organization = {ACM},
 }
 
+@Article{kerin1992first,
+  author    = {Kerin, Roger A and Varadarajan, P Rajan and Peterson, Robert A},
+  title     = {First-mover advantage: A synthesis, conceptual framework, and research propositions},
+  journal   = {The Journal of Marketing},
+  year      = {1992},
+  pages     = {33--52},
+  publisher = {JSTOR},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
