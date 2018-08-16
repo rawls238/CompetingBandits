@@ -116,7 +116,7 @@ $R_{jt} = \frac{1}{M} \sum\limits_{i=1}^{M} r_{t_j-i}$
 
 Note that the reputation score is in terms of \textit{local} and not global time so that it is the sliding window average of the last $M$ times that firm $j$ was selected by the agents. The warm start of $k$ rounds allows this reputation score to be well-defined once the ``competition game" begins. In our model the agents deterministically choose the firm with the higher reputation score and ties are broken uniformly at random.
 
-\noindent \textbf{firms} We suppose that the firms simply care about maximizing their expected market share (i.e. maximizing the number of $T$ agents who select them). We model the ``competition game" between firms as a simultaneous move game where both firms commit to a learning algorithm.
+\noindent \textbf{Firms} We suppose that the firms simply care about maximizing their expected market share (i.e. maximizing the number of $T$ agents who select them). We model the ``competition game" between firms as a simultaneous move game where both firms commit to a learning algorithm.
 
 \noindent \textbf{MAB algorithms} We suppose that firms commit to a learning algorithm from a fixed set of algorithms $\mathcal{A}$. We partition the set of possible learning algorithms into three different types of learning algorithms and restrict $\mathcal{A}$ to contain a representative each algorithm from each class:
 \begin{enumerate}
