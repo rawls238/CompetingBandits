@@ -1,10 +1,70 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Aghion \bgroup et al\mbox.\egroup
+  }{2005}]{aghion2005competition}
+Aghion, P.; Bloom, N.; Blundell, R.; Griffith, R.; and Howitt, P.
+\newblock 2005.
+\newblock Competition and innovation: An inverted-u relationship.
+\newblock {\em The Quarterly Journal of Economics} 120(2):701--728.
+
+\bibitem[\protect\citeauthoryear{Agrawal and Goyal}{2012}]{agrawal2012analysis}
+Agrawal, S., and Goyal, N.
+\newblock 2012.
+\newblock Analysis of thompson sampling for the multi-armed bandit problem.
+\newblock In {\em Conference on Learning Theory},  39--1.
+
+\bibitem[\protect\citeauthoryear{Barro and Sala-i
+  Martin}{2004}]{barro2004economic}
+Barro, R.~J., and Sala-i Martin, X.
+\newblock 2004.
+\newblock Economic growth: Mit press.
+\newblock {\em Cambridge, Massachusettes}.
+
+\bibitem[\protect\citeauthoryear{Bolton and Harris}{1999}]{bolton1999strategic}
+Bolton, P., and Harris, C.
+\newblock 1999.
+\newblock Strategic experimentation.
+\newblock {\em Econometrica} 67(2):349--374.
+
+\bibitem[\protect\citeauthoryear{Bubeck, Cesa-Bianchi, and
+  others}{2012}]{bubeck2012regret}
+Bubeck, S.; Cesa-Bianchi, N.; et~al.
+\newblock 2012.
+\newblock Regret analysis of stochastic and nonstochastic multi-armed bandit
+  problems.
+\newblock {\em Foundations and Trends{\textregistered} in Machine Learning}
+  5(1):1--122.
+
 \bibitem[\protect\citeauthoryear{Che and H{\"o}rner}{2017}]{che2017recommender}
 Che, Y.-K., and H{\"o}rner, J.
 \newblock 2017.
 \newblock Recommender systems as mechanisms for social learning.
 \newblock {\em The Quarterly Journal of Economics} 133(2):871--925.
+
+\bibitem[\protect\citeauthoryear{Immorlica \bgroup et al\mbox.\egroup
+  }{2011}]{immorlica2011dueling}
+Immorlica, N.; Kalai, A.~T.; Lucier, B.; Moitra, A.; Postlewaite, A.; and
+  Tennenholtz, M.
+\newblock 2011.
+\newblock Dueling algorithms.
+\newblock In {\em Proceedings of the forty-third annual ACM symposium on Theory
+  of computing},  215--224.
+\newblock ACM.
+
+\bibitem[\protect\citeauthoryear{Keller, Rady, and
+  Cripps}{2005}]{keller2005strategic}
+Keller, G.; Rady, S.; and Cripps, M.
+\newblock 2005.
+\newblock Strategic experimentation with exponential bandits.
+\newblock {\em Econometrica} 73(1):39--68.
+
+\bibitem[\protect\citeauthoryear{Kerin, Varadarajan, and
+  Peterson}{1992}]{kerin1992first}
+Kerin, R.~A.; Varadarajan, P.~R.; and Peterson, R.~A.
+\newblock 1992.
+\newblock First-mover advantage: A synthesis, conceptual framework, and
+  research propositions.
+\newblock {\em The Journal of Marketing}  33--52.
 
 \bibitem[\protect\citeauthoryear{Kremer, Mansour, and
   Perry}{2014}]{kremer2014implementing}
@@ -28,5 +88,22 @@ Mansour, Y.; Slivkins, A.; and Wu, Z.~S.
 \newblock 2017.
 \newblock Competing bandits: Learning under competition.
 \newblock {\em arXiv preprint arXiv:1702.08533}.
+
+\bibitem[\protect\citeauthoryear{Schumpeter}{2010}]{schumpeter2010capitalism}
+Schumpeter, J.~A.
+\newblock 2010.
+\newblock {\em Capitalism, socialism and democracy}.
+\newblock Routledge.
+
+\bibitem[\protect\citeauthoryear{Slivkins}{2017}]{slivkins2017bandits}
+Slivkins, A.
+\newblock 2017.
+\newblock An introduction to multi-armed bandits.
+
+\bibitem[\protect\citeauthoryear{Tirole}{1988}]{tirole1988theory}
+Tirole, J.
+\newblock 1988.
+\newblock {\em The theory of industrial organization}.
+\newblock MIT press.
 
 \end{thebibliography}

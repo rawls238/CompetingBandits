@@ -3,44 +3,46 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: competing_bandits.aux
 The style file: aaai.bst
 Database file #1: refs.bib
-You've used 4 entries,
+Warning--empty note in slivkins2017bandits
+You've used 15 entries,
             2568 wiz_defined-function locations,
-            602 strings with 5331 characters,
-and the built_in function-call counts, 1763 in all, are:
-= -- 193
-> -- 67
-< -- 1
-+ -- 22
-- -- 22
-* -- 144
-:= -- 287
-add.period$ -- 21
-call.type$ -- 4
-change.case$ -- 27
-chr.to.int$ -- 4
-cite$ -- 4
-duplicate$ -- 66
-empty$ -- 121
-format.name$ -- 33
-if$ -- 361
+            665 strings with 6970 characters,
+and the built_in function-call counts, 6175 in all, are:
+= -- 669
+> -- 242
+< -- 4
++ -- 82
+- -- 80
+* -- 491
+:= -- 1009
+add.period$ -- 76
+call.type$ -- 15
+change.case$ -- 97
+chr.to.int$ -- 15
+cite$ -- 16
+duplicate$ -- 241
+empty$ -- 425
+format.name$ -- 111
+if$ -- 1266
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 4
-newline$ -- 28
-num.names$ -- 12
-pop$ -- 20
+missing$ -- 16
+newline$ -- 94
+num.names$ -- 45
+pop$ -- 80
 preamble$ -- 1
-purify$ -- 31
+purify$ -- 114
 quote$ -- 0
-skip$ -- 54
+skip$ -- 195
 stack$ -- 0
-substring$ -- 105
-swap$ -- 17
-text.length$ -- 1
+substring$ -- 327
+swap$ -- 61
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 32
-warning$ -- 0
-while$ -- 15
-width$ -- 6
-write$ -- 59
+type$ -- 112
+warning$ -- 1
+while$ -- 54
+width$ -- 22
+write$ -- 209
+(There was 1 warning)
