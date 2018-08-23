@@ -15,13 +15,13 @@ concise_alg_rep <- function(alg) {
 }
 
 WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/"
-f <- "tournament_experiment_full_sim_with_realizations_raw.csv"
+f <- "tournament_experiment_longer_ws_raw.csv"
 dat <- read.csv(file=paste(WORKING_PATH, f, sep=""))
 dat <- filter(dat, Time.Horizon == 2000)
 priors <- as.list(unique(dat['Prior']))$Prior
-priors <- c("Needle In Haystack", "Heavy Tail")
+priors <- c("Needle In Haystack", "Heavy Tail", "Uniform")
 warm_starts <- as.list(unique(dat['Warm.Start']))$Warm.Start
-warm_starts <- c(20, 100, 200)
+warm_starts <- c(20, 250, 500)
 algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
 
 for (prior in priors) {
@@ -52,7 +52,7 @@ for (prior in priors) {
       }
     }
   }
-  tab <-xtable(results, caption=paste("Simultaneous Entry", prior), type="latex")
+  tab <-xtable(results, caption=paste("Duopoly Experiment", prior), type="latex")
   print(tab)
   
 }
