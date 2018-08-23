@@ -286,13 +286,13 @@ TS & \makecell{\textbf{ 0.0029 } $\pm$ 0.003 \\Var: 0.002 \\ ES: 100 \%} & \make
 \end{table}
 Why do we observe that $TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, for this warm start, $DG$ was preferred to $TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. This intuition is very similar to that observed in the previous section by increasing warm start. In some sense one can view allowing one firm to temporarily be a monopolist as temporarily relaxing the "incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration. Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $TS$.
 
-What about for the entrant? The results are not consistent across priors and are summarized as follows:
+What about for the entrant? The results are not the same across priors and are summarized as follows:
 \begin{enumerate}
 \item Needle In Haystack - $TS > DG, DEG$
 \item Heavy Tail - $DG > TS, DEG$
 \item Uniform - $DG \sim DEG > TS$
 \end{enumerate}
-The raw results can be found in the GitHub appendix and though they are not consistent, it is interesting to note that on the priors where we see the relative reputation cost for $TS$ we have that $DG$ is preferred to $TS$ and for the priors where we see that exploration is not costly, we have that $TS$ is preferred to $DG$.
+The raw results can be found in the GitHub appendix and though they are not same across priors, it is interesting to note that on the priors where we see the relative reputation cost for $TS$ we have that $DG$ is preferred to $TS$ and for the priors where we see that exploration is not costly, we have that $TS$ is preferred to $DG$.
 
 \section{Data and Reputation as Barriers to Entry}\label{section:6}
 
@@ -329,7 +329,7 @@ TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makec
 \end{tabular}
 \end{table}
 
-Tables \ref{rep_erase} and \ref{info_erase} display the results of these experiments. Maintaining the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. The main interesting finding here, which is robust across priors for this parameterization, is that information serves as a larger barrier to entry than reputation. One possible intuition for this is that, for Heavy Tail, the information acquired after the $X$ rounds under $TS$ is sufficient so that it becomes relatively easier for $TS$ to recover the reputation loss compared to the information loss, but since $DEG$ and $DG$ learn slower and they've acquired less information over the $X$ rounds relative to $TS$ there is less of an informational advantage.
+Tables \ref{rep_erase} and \ref{info_erase} display the results of these experiments. Maintaining the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. The main interesting finding here, which is robust across priors for this parameterization, is that information serves as a larger barrier to entry than reputation when the incumbent plays $TS$. One possible intuition for this is that, for Heavy Tail, the information acquired after the $X$ rounds under $TS$ is sufficient so that it becomes relatively easier for $TS$ to recover the reputation loss compared to the information loss, but since $DEG$ and $DG$ learn slower and they've acquired less information over the $X$ rounds relative to $TS$ there is less of an informational advantage.
 
 Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same with the exception of the Uniform prior where $TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
 

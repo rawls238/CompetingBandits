@@ -2,6 +2,8 @@ results/
 *.pyc
 .Rhistory
 .main.py.swp
+paper/*.pdf
+*.out
 *.aux
 *.log
 *.synctex.gz
