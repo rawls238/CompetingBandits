@@ -17,7 +17,7 @@
 % \usepackage[nonatbib]{nips_2018}
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
-\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+%\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 \usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
@@ -30,7 +30,7 @@
 \usepackage{amsthm}
 \usepackage{float}
 \usepackage{sgame, tikz} % Game theory packages
-\usepackage{caption} 
+\usepackage{caption}
 \usepackage{algorithm,algpseudocode}
 \usepackage{makecell}
  \usepackage{multirow}
@@ -79,7 +79,7 @@ We ask whether better algorithms are incentivized under varying degrees of compe
 
 Many modern online platforms simultaneously compete for users as well as learn from the users they manage to attract. For instance, Google Search and Bing compete for users in the search engine market yet at the same time need to experiment with their search algorithms to learn what algorithms work the best. This creates a tradeoff between \textit{exploration} and \textit{competition} since firms need to experiment with potentially sub-optimal options for the benefit of gaining information to make better decisions tomorrow while at the same time firms need to incentivize consumers to select them over their competitors today.
 
-From a social welfare perspective it is better for firms to adopt "better" learning algorithms and our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm. 
+From a social welfare perspective it is better for firms to adopt "better" learning algorithms and our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm.
 
 Unlike in the classic models in economics regarding the interplay between competition and innovation described in \citet{barro2004economic}, here we have no explicit R \& D cost. Rather, firms are not incentivized to experiment under duopoly because experimentation has an implicit relative \textit{reputational} cost compared to the myopic alternative and, in our model, consumers only care about the reputation of a firm. Thus, competition disincentivizes experimentation by firms precisely because competition forces firms to take actions in order to incentivize consumers to select them over their competitors and, as a result, by allowing a firm to be a temporary monopolist the firm can experiment without worrying about the reputational consequences. Our findings give an alternative intuition to the empirically documented inverse-U relationship between competition and innovation discussed in \citet{aghion2005competition}.
 
@@ -87,7 +87,7 @@ Unlike in the classic models in economics regarding the interplay between compet
 
 The three-way tradeoff between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
 
-The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}. 
+The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}.
 
 Our setting is also closely related to the "dueling algorithms" framework described in \cite{immorlica2011dueling}, but this framework considers offline scenarios whereas we focus on online learning problems.
 
@@ -136,9 +136,9 @@ We evaluate the consequences of our model via simulation.
 \item Needle In Haystack - $K-1$ arms with mean 0.5 and 1 arm with 0.7.
 \item Uniform - the $K$ arms have means drawn uniformly at random from $[0.25, 0.75]$
 \item "Heavy Tail" - the $K$ arms have means drawn from $Beta(\alpha=0.6, \beta = 0.6)$. With this prior it was likely to have means at the "extremes" or means that were close to 0 as well as means that were close to 1.
-\end{enumerate} 
+\end{enumerate}
 
-\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$. 
+\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$.
 
 This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.
 
@@ -217,14 +217,14 @@ Focusing on reasonable warm starts, $DG > TS$ when it appears that better algori
 
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Needle In Haystack} 
+\caption{Duopoly Experiment Needle In Haystack}
 \begin{tabular}{rlll}
   \hline
- & k = 20 & k = 250 & k = 500 \\ 
+ & k = 20 & k = 250 & k = 500 \\
   \hline
-TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\ 
-  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\ 
-  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\ 
+TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\
+  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\
+  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\
    \hline
 \end{tabular}
 \label{sim_nih}
@@ -234,14 +234,14 @@ TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \ma
 % Thu Aug 16 13:13:00 2018
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Heavy Tail} 
+\caption{Duopoly Experiment Heavy Tail}
 \begin{tabular}{rlll}
   \hline
- & k = 20 & k = 250 & k = 500 \\ 
+ & k = 20 & k = 250 & k = 500 \\
   \hline
-TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \makecell{\textbf{0.72} $\pm$0.02\\ eeog \\ avg: 570\\ med: 0} & \makecell{\textbf{0.76} $\pm$0.02\\ eeog \\ avg: 620\\ med: 98.5} \\ 
-  TS vs DEG & \makecell{\textbf{0.3} $\pm$0.03\\ eeog \\ avg: 37\\ med: 0} & \makecell{\textbf{0.88} $\pm$0.01\\ eeog \\ avg: 480\\ med: 0} & \makecell{\textbf{0.9} $\pm$0.01\\ eeog \\ avg: 570\\ med: 113.5} \\ 
-  DG vs DEG & \makecell{\textbf{0.62} $\pm$0.03\\ eeog \\ avg: 410\\ med: 7} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 790\\ med: 762} & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 730\\ med: 608} \\ 
+TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \makecell{\textbf{0.72} $\pm$0.02\\ eeog \\ avg: 570\\ med: 0} & \makecell{\textbf{0.76} $\pm$0.02\\ eeog \\ avg: 620\\ med: 98.5} \\
+  TS vs DEG & \makecell{\textbf{0.3} $\pm$0.03\\ eeog \\ avg: 37\\ med: 0} & \makecell{\textbf{0.88} $\pm$0.01\\ eeog \\ avg: 480\\ med: 0} & \makecell{\textbf{0.9} $\pm$0.01\\ eeog \\ avg: 570\\ med: 113.5} \\
+  DG vs DEG & \makecell{\textbf{0.62} $\pm$0.03\\ eeog \\ avg: 410\\ med: 7} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 790\\ med: 762} & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 730\\ med: 608} \\
    \hline
 \end{tabular}
 \label{sim_ht}
@@ -250,20 +250,20 @@ TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \make
 % Thu Aug 16 13:13:01 2018
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Uniform} 
+\caption{Duopoly Experiment Uniform}
 \begin{tabular}{rlll}
   \hline
- & k = 20 & k = 250 & k = 500 \\ 
+ & k = 20 & k = 250 & k = 500 \\
   \hline
-TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\ 
-  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\ 
-  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\ 
+TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\
+  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\
+  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\
    \hline
 \end{tabular}
 \label{sim_unif}
 \end{table}
 
-\textbf{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to setting $X = 200$. For this section we report results fixing $k = 20$. Does this lead the incumbent to commit to $TS$? How about the entrant? 
+\textbf{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to setting $X = 200$. For this section we report results fixing $k = 20$. Does this lead the incumbent to commit to $TS$? How about the entrant?
 
 Table \ref{ht_incum} shows the results of the simulations for this parameterization. We observe that, for the incumbent, $TS$ is the dominant strategy across all priors. In the appendix we include additional simulations where $X = 50$ and observe that $TS$ is not always a dominant strategy in this case. This result is robust across all of the priors that we considered so that for sufficiently large $X$, $TS$ is a dominant strategy for the incumbent where $X$ depends on the set of instances that we are considering.
 
@@ -271,14 +271,14 @@ Table \ref{ht_incum} shows the results of the simulations for this parameterizat
 % Wed Aug 15 19:03:20 2018
 \begin{table}[ht]
 \centering
-\caption{Temporary Monopoly Experiment Heavy Tail} 
+\caption{Temporary Monopoly Experiment Heavy Tail}
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\ 
+ & TS & DEG &  DG \\
   \hline
-TS & \makecell{\textbf{ 0.0029 } $\pm$ 0.003 \\Var: 0.002 \\ ES: 100 \%} & \makecell{\textbf{ 0.11 } $\pm$ 0.02 \\Var: 0.09 \\ ES: 96 \%} & \makecell{\textbf{ 0.17 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 95 \%} \\ 
-  DEG & \makecell{\textbf{ 0.049 } $\pm$ 0.01 \\Var: 0.03 \\ ES: 94 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 74 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 79 \%} \\ 
-   DG & \makecell{\textbf{ 0.12 } $\pm$ 0.02 \\Var: 0.08 \\ ES: 87 \%} & \makecell{\textbf{ 0.35 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 77 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 65 \%} \\ 
+TS & \makecell{\textbf{ 0.0029 } $\pm$ 0.003 \\Var: 0.002 \\ ES: 100 \%} & \makecell{\textbf{ 0.11 } $\pm$ 0.02 \\Var: 0.09 \\ ES: 96 \%} & \makecell{\textbf{ 0.17 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 95 \%} \\
+  DEG & \makecell{\textbf{ 0.049 } $\pm$ 0.01 \\Var: 0.03 \\ ES: 94 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 74 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 79 \%} \\
+   DG & \makecell{\textbf{ 0.12 } $\pm$ 0.02 \\Var: 0.08 \\ ES: 87 \%} & \makecell{\textbf{ 0.35 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 77 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 65 \%} \\
    \hline
 \end{tabular}
 \caption*{\tiny{The columns represent the strategy of the incumbent and the rows represent the strategy of the entrant. The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting $> 90\%$ of the market. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to firm 2 do not count towards the share)}}
@@ -300,14 +300,14 @@ An alternative interpretation of the results in the previous section is that the
 
 \begin{table}[ht]
 \centering
-\caption{Reputation Erased Experiment, Heavy Tail} 
+\caption{Reputation Erased Experiment, Heavy Tail}
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\ 
+ & TS & DEG &  DG \\
   \hline
-TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.2 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 96 \%} \\ 
-  DEG & \makecell{\textbf{ 0.068 } $\pm$ 0.013 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 75 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 80 \%} \\ 
-   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.019 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 67 \%} \\ 
+TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.2 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 96 \%} \\
+  DEG & \makecell{\textbf{ 0.068 } $\pm$ 0.013 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 75 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 80 \%} \\
+   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.019 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 67 \%} \\
    \hline
    \label{rep_erase}
 \end{tabular}
@@ -316,14 +316,14 @@ TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makec
 % Sun Jul 22 14:23:06 2018
 \begin{table}[ht]
 \centering
-\caption{Information Erased Experiment, Heavy Tail} 
+\caption{Information Erased Experiment, Heavy Tail}
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\ 
+ & TS & DEG &  DG \\
   \hline
-TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.022 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 95 \%} \\ 
-  DEG & \makecell{\textbf{ 0.24 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 72 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 76 \%} \\ 
-   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.026 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.023 \\Var: 0.1 \\ ES: 58 \%} \\ 
+TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.022 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 95 \%} \\
+  DEG & \makecell{\textbf{ 0.24 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 72 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 76 \%} \\
+   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.026 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.023 \\Var: 0.1 \\ ES: 58 \%} \\
    \hline
    \label{info_erase}
 \end{tabular}
