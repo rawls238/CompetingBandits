@@ -2,4 +2,10 @@ results/
 *.pyc
 .Rhistory
 .main.py.swp
+*.aux
+*.log
+*.synctex.gz
+*.bbl
+*.blg
+*.bib.bak
 bandit_simulations.p
