@@ -17,7 +17,6 @@
 % \usepackage[nonatbib]{nips_2018}
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
-%\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 \usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
@@ -30,17 +29,17 @@
 \usepackage{amsthm}
 \usepackage{float}
 \usepackage{sgame, tikz} % Game theory packages
-\usepackage{caption}
+\usepackage{caption} 
 \usepackage{algorithm,algpseudocode}
 \usepackage{makecell}
  \usepackage{multirow}
  \usepackage{graphicx}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\newtheorem{finding}{Finding}
 \captionsetup{font=footnotesize}
 \bibliographystyle{aaai}
-
-
+\frenchspacing
 
 
 % The \author macro works with any number of authors. There are two
@@ -79,15 +78,15 @@ We ask whether better algorithms are incentivized under varying degrees of compe
 
 Many modern online platforms simultaneously compete for users as well as learn from the users they manage to attract. For instance, Google Search and Bing compete for users in the search engine market yet at the same time need to experiment with their search algorithms to learn what algorithms work the best. This creates a tradeoff between \textit{exploration} and \textit{competition} since firms need to experiment with potentially sub-optimal options for the benefit of gaining information to make better decisions tomorrow while at the same time firms need to incentivize consumers to select them over their competitors today.
 
-From a social welfare perspective it is better for firms to adopt "better" learning algorithms and our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm.
+From a social welfare perspective it is better for firms to adopt "better" learning algorithms and our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm. 
 
-Unlike in the classic models in economics regarding the interplay between competition and innovation described in \citet{barro2004economic}, here we have no explicit R \& D cost. Rather, firms are not incentivized to experiment under duopoly because experimentation has an implicit relative \textit{reputational} cost compared to the myopic alternative and, in our model, consumers only care about the reputation of a firm. Thus, competition disincentivizes experimentation by firms precisely because competition forces firms to take actions in order to incentivize consumers to select them over their competitors and, as a result, by allowing a firm to be a temporary monopolist the firm can experiment without worrying about the reputational consequences. Our findings give an alternative intuition to the empirically documented inverse-U relationship between competition and innovation discussed in \citet{aghion2005competition}.
+Unlike in the classic models in economics regarding the interplay between competition and innovation described in \citet{barro2004economic}, here we have no explicit R \& D cost. Rather, firms are not incentivized to experiment under duopoly because exploration has an implicit relative \textit{reputational} cost compared to the greedy alternative and, in our model, consumers only care about the reputation of a firm. Thus, competition disincentivizes exploration by firms precisely because competition forces firms to take actions in order to incentivize consumers to select them over their competitors and, as a result, by allowing a firm to be a temporary monopolist the firm can experiment without worrying about the reputational consequences. Our findings give an alternative intuition to the empirically documented inverse-U relationship between competition and innovation discussed in \citet{aghion2005competition}.
 
 \textbf{Related Work} A major underlying component of our model is that firms face a multi-armed bandit (MAB) problem. Multi-armed bandits (MAB) are a tractable abstraction for the tradeoff between exploration and exploitation. MAB problems have been studied for many decades (see \citet{bubeck2012regret} for an overview). Most relevant to this paper is the thread that focuses on designing "smart" and tractable algorithms that combine exploration and exploitation and "naive" algorithms that separate exploration and exploitation (see \citet{slivkins2017bandits}).
 
 The three-way tradeoff between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
 
-The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}.
+The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}. 
 
 Our setting is also closely related to the "dueling algorithms" framework described in \cite{immorlica2011dueling}, but this framework considers offline scenarios whereas we focus on online learning problems.
 
@@ -98,16 +97,16 @@ The most closely related work to this paper is \citealt*{mansour2018competing}. 
 \textbf{Overview} There are two firms and $T+2k$ agents where $k$ is the warm start, or the agents that each firm gets for free at the beginning of the game and $T$ is the number of rounds in the game. The timing of events is as follows:
 \begin{enumerate}
 \item At $t = 0$, the firms simultaneously commit to following a learning algorithm from a set of algorithms $\mathcal{A}$
-\item Still at $t = 0$ we suppose that each firm gets $k$ agents as a "warm" start. The algorithm that the firm commits to makes $k$ rounds of progress and uses this information to initialize its information set. Additionally, the reputation score of the agents is initialized using the rewards from these $k$ rounds.
-\item A new agent arrives each round (and lives for only one round), starting at $t = 1$, and chooses among 2 firms, given a reputation score for both firms.
+\item Still at $t = 0$ we suppose that each firm gets $k$ agents as a ``warm" start. The algorithm that the firm commits to makes $k$ rounds of progress and uses this information to initialize its information set. Additionally, the reputation score used by the agents is initialized using the rewards from these $k$ rounds.
+\item A new agent arrives each round (and lives for only one round), starting at $t = 1$, and chooses the firm with the higher reputation at the time.
 \item The firm that is chosen selects an action $a_{t} \in A$ from a set of actions that is fixed across firms and rounds.
 \item Both the agent and the firm observe the reward $r_t \in [0, 1]$ from the action. The agent reports this reward to the firm and the future agents and the reputation score for the chosen firm is updated.
 \item Repeat 2-4 for $T$ rounds.
 \end{enumerate}
 
-Generally, the rewards are independent and identically distributed with a common prior.  For computational tractability we restrict our focus to Bernoulli-distributed rewards with Beta priors. Each firm faces a multi-armed bandit problem with no initial information \footnote{For algorithms that require some sort of prior to operate, such as Thompson Sampling, we use a "fake" prior of $Beta(\alpha=1,\beta=1)$}. We assume that the firms commit to a multi-armed bandit learning algorithm at the start of the world and that there are no informational spillovers from their competitors so that they can only learn from the agents that select them.
+Generally, the rewards are independent and identically distributed with a common prior.  For computational tractability we restrict our focus to Bernoulli-distributed rewards with Beta priors. Each firm faces a multi-armed bandit problem with no initial information \footnote{For algorithms that require a prior to operate, such as Thompson Sampling, we use a "fake" prior of $Beta(\alpha=1,\beta=1)$}. We assume that the firms commit to a multi-armed bandit learning algorithm at the start of the world and that there are no informational spillovers from their competitors so that they can only learn from the agents that select them.
 
-\noindent \textbf{Agents} We suppose that agents are homogenous, myopic, and non-strategic. The utility function for the agents is simply to maximize their reward in the one period in which they are alive. We suppose that agents do not attempt to manipulate the strategy of the firm nor do they take the strategies of the firm into account when choosing between the firms. In our model, each agent uses the average reward of past agents as a proxy for their expected utility. For simplicity, the reputation score, $R_{jt}$ is defined as a sliding window average\footnote{Another natural formulation would be to have exponential discounting of the past rewards. We believe that the results should be qualitatively similar to those presented here as in both formulations the more recent past matters more than the distant past.}.
+\noindent \textbf{Agents} We suppose that agents are homogenous, myopic, and non-strategic. The utility function for the agents is simply to maximize their reward in the one period in which they are alive. We suppose that agents do not attempt to manipulate the strategy of the firm, do not take the strategies of the firm into account when choosing between the firms, and do not condition their behavior on calendar time. In our model, each agent uses the average reward of past agents as a proxy for their expected utility. For simplicity, the reputation score, $R_{jt}$ is defined as a sliding window average\footnote{Another natural formulation would be to have exponential discounting of the past rewards. We believe that the results should be qualitatively similar to those presented here as in both formulations the more recent past matters more than the distant past.}.
 \begin{center}
 $R_{jt} = \frac{1}{M} \sum\limits_{i=1}^{M} r_{t_j-i}$
 \end{center}
@@ -136,9 +135,9 @@ We evaluate the consequences of our model via simulation.
 \item Needle In Haystack - $K-1$ arms with mean 0.5 and 1 arm with 0.7.
 \item Uniform - the $K$ arms have means drawn uniformly at random from $[0.25, 0.75]$
 \item "Heavy Tail" - the $K$ arms have means drawn from $Beta(\alpha=0.6, \beta = 0.6)$. With this prior it was likely to have means at the "extremes" or means that were close to 0 as well as means that were close to 1.
-\end{enumerate}
+\end{enumerate} 
 
-\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$.
+\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$. 
 
 This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.
 
@@ -155,18 +154,36 @@ We evaluate the performance of the different learning algorithms on the bandit p
 \caption*{\tiny{The plots contain the average reputation over $1000$ runs for a memory size of $100$ where, for a given $t$, we record the reputation of a given algorithm on a given instance and then average this value across all the runs. The shaded area display 95\% confidence intervals.}}
 \end{figure}
 
-Figure \ref{prelim_means} shows that the mean reputation ordering is as we would expect for the Needle In Haystack prior. The mean reputation ordering that we expect also holds for the other two priors and the results for those can be found in the GitHub appendix.
+Figure \ref{prelim_means} shows that the mean reputation ordering is as we would expect for the Needle In Haystack prior \footnote{The mean reputation ordering that we expect also holds for the other two priors and the results for those can be found in the supplementary material.}.
 
-In the "competition game" the agents decide between the firms using the \textit{relative} reputation between the two firms. Namely, if firm $A$ has a higher reputation than firm $B$ agents will select firm $A$. A natural question to ask is whether looking at the mean performance is sufficient for understanding performance in the competition game. Figure \ref{rep_dist_nih} displays the reputation distribution at $t = 500$ for the same prior we reported the mean plot for previously. We see that the "naive" algorithms $DG$ and $DEG$ have a bi-modal reputation distribution whereas $TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $TS$ or $DEG$. In these cases its reputation may be substantially worse but for the competition game the difference between the reputation does not matter but only the binary comparison between them \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, considering the SoftMax decision rule in \citet{mansour2018competing}}.
+\begin{finding}
+\textit{The mean performance of an algorithm is not a sufficient statistic for understanding the performance of an algorithm in competition. Looking at the distribution of reputation difference between algorithms we find that it tend is skewed to the right. Additionally we show that the mean performance of the algorithms is not always predictive of the competition game, even when both algorithms are given a large number of agents for free.}
+\end{finding}
+
+Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $DEG$ have a bi-modal reputation distribution whereas $TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $TS$ or $DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \citet{mansour2018competing}}.
+
+To better capture the comparison between two algorithms we explicitly plot the distribution of the reputation difference between $TS$ and $DG$. This figure seems to confirm the intuition noted previously since the reputation distribution has its largest mass around the point just below 0 but it is skewed to the right even as $t$ gets large. Given the skewedness of the distribution, the mean is not a representative statistic of the entire reputation difference distribution. There are alternative statistics that we could consider such as the median or numerically calculating $\Pr(reputation(TS) - reputation(DG)) > 0$ using the estimated density, but instead we define a simple and natural statistic to help us reason about what happens under competition, the relative reputation proportion.
 
 \begin{figure}
 \caption{Reputation Distribution}
 \includegraphics[scale=0.35]{figures/rep_distribution_nih}
 \label{rep_dist_nih}
-\caption*{\tiny{The plots contain a kernel density estimate of the reputation distribution at $t = 200$}}
-\end{figure}
+\caption*{\tiny{The plots contain a kernel density estimate of the reputation distribution at $t = 500$}}
+\end{figure} 
 
-This motivates looking at the entire distribution of reputation difference between two algorithms. Figure \ref{ts_dg_rep_diff_nih} shows the distribution of reputation difference between $TS$ and $DG$ across $t$. This figure seems to confirm the intuition noted previously since the reputation distribution has its largest mass around the point just below 0 but it is skewed to the right even as $t$ gets large. Thus, the mean is not a representative statistic of the entire reputation difference distribution. As an alternative statistic for understanding the results of the competition game we introduce the \textit{relative reputation proportion} which looks at the proportion of simulations in which algorithm $A$ had at least as high of a reputation as algorithm $B$ for a fixed time $t$. This corresponds to running the bandit algorithms in isolation on the same instance and with the same realizations for $t$ rounds and then calculating the fraction of simulations at which an agent would select a firm playing $A$ over a firm playing $B$ at time $t$ \footnote{Though we do not discuss it here, one may be interested in if there is ever a case where, for sufficiently large $t$, we observe that $DEG >DG$ or $TS > DG$ according to the mean reputation but $DG > DEG$ or $DG > TS$ according to the relative reputation proportion. In the GitHub appendix we have results showing that, for Heavy Tail prior with $K=3$ we have that $DEG > DG$ according to the mean reputation but $DG > DEG$ according to the relative reputation proportion. Additionally, these results carry over to the competition game}.
+
+We define the \textit{relative reputation proportion} in order to better understand what happens under competition.
+
+\begin{definition}
+\textit{Relative Reputation Proportion} - the proportion of simulations in which algorithm $A$ had at least as high of a reputation as algorithm $B$ for a fixed time $t$
+\end{definition}
+
+
+\begin{finding}
+\textit{Algorithms that engage in purposeful exploration can lead to implicit relative reputation costs compared to the greedy alternative in the earlier rounds. We observe this under the Uniform and Heavy Tail priors. However, it is not observed under the Needle In Haystack prior}
+\end{finding}
+
+The relative reputation statistic corresponds to running the bandit algorithms in isolation on the same instance and with the same realizations for $t$ rounds and then calculating the fraction of simulations at which an agent would select a firm playing $A$ over a firm playing $B$ at time $t$ \footnote{As further motivation for this statistic, one may be interested in if there is ever a case where, for sufficiently large $t$, we observe that $DEG >DG$ or $TS > DG$ according to the mean reputation but $DG > DEG$ or $DG > TS$ according to the relative reputation proportion. In the supplementary material we have results showing that, for Heavy Tail prior with $K=3$ we have that $DEG > DG$ according to the mean reputation but $DG > DEG$ according to the relative reputation proportion. Additionally, these results carry over to the competition game}.
 
 \begin{figure}
 \caption{Reputation Difference Distribution}
@@ -175,7 +192,11 @@ This motivates looking at the entire distribution of reputation difference betwe
 \caption*{\tiny{The plots contain a kernel density estimate of the difference in reputation between $TS$ and $DG$ across $t$}}
 \end{figure}
 
-Figure \ref{relative_rep_plots} shows plots of the relative reputation proportion for $TS$ vs $DG$ on the Uniform and Needle In Haystack prior. For the Uniform prior we see that, in the early rounds, $DG > TS$ for the majority of the simulations but that, eventually, $TS > DG$. The intuition behind this is that, especially since the firms start with no substantive initial information, $TS$ does purposeful exploration in the early rounds in order to acquire information. However, this exploration leads to what we define as a \textit{relative reputation cost}. Namely, exploration leads to lower reputation relative to the myopic alternative. However, eventually the information acquired in the early rounds allows $TS$ to make better decisions and achieve a higher reputation, especially when the instance is "hard enough" so that $DG$ cannot trivially find the best arm. We define this as the \textit{relative reputation benefit} \footnote{We see similar behavior for the Heavy Tail prior}.
+Figure \ref{relative_rep_plots} shows plots of the relative reputation proportion for $TS$ vs $DG$ on the Uniform and Needle In Haystack prior. For the Uniform prior we see that, in the early rounds, $DG > TS$ for the majority of the simulations but that, eventually, $TS > DG$. The intuition behind this is that, especially since the firms start with no substantive initial information, $TS$ does purposeful exploration in the early rounds in order to acquire information. However, eventually the information acquired from purposeful exploration in the early rounds allows $TS$ to make better decisions and achieve a higher reputation, especially when the instance is ``hard enough" so that $DG$ cannot trivially find the best arm. The early exploration leads to what we define as a \textit{relative reputation cost} and the eventual gain in reputation leads to what we define as a \textit{relative reputation benefit}.
+
+\begin{definition}
+\textit{Relative reputation cost and benefit} - the relative reputation loss from an algorithm that engages in purposeful exploration compared to the greedy alternative. It is an empirical definition based on the relative reputation proportion where the ``cost" regime is when the proportion $< 0.5$ and the ``benefit" regime is when the proportion is $> 0.5$ for the better algorithm. We call the priors where there is an early costly period followed by a later benefit period, relative reputation costly priors.
+\end{definition}
 
 \begin{figure}
 \caption{Relative Reputation Plots}
@@ -186,11 +207,24 @@ Figure \ref{relative_rep_plots} shows plots of the relative reputation proportio
 
 \end{figure}
 
-Is exploration always costly? Figure \ref{relative_rep_plots} also shows that for the Needle In Haystack prior, $TS$ always does relatively better than $DG$. There are two contributing factors to this. First, $TS$ identifies the best arm faster in the Needle In Haystack prior than the Uniform prior so that there is a shorter time horizon where $TS$ needs to engage in purposeful exploration. Second, in the Needle In Haystack prior there are no "bad" arms as there may be in the Uniform prior since by construction all the arms except one in Needle In Haystack are the same. Thus, when $TS$ pulls a sub-optimal arm relative to its current information, the expected reward is the same as the greedy option that has not identified the best arm. However, with the Uniform prior, it is possible that the sub-optimal arm that is pulled has substantially lower expected reward relative to the greedy option.
+Is exploration always costly? Figure \ref{relative_rep_plots} also shows that for the Needle In Haystack prior, $TS$ always does relatively better than $DG$. There are two contributing factors to this. First, $TS$ identifies the best arm faster in the Needle In Haystack prior than the Uniform prior so that there is a shorter time horizon where $TS$ needs to engage in purposeful exploration. Second, in the Needle In Haystack prior there are no ``bad" arms as there may be in the Uniform prior since by construction all the arms except one in Needle In Haystack are the same. Thus, when $TS$ pulls a sub-optimal arm relative to its current information, the expected reward is the same as the greedy option that has not identified the best arm. However, with the Uniform prior, it is possible that the sub-optimal arm that is pulled has substantially lower expected reward relative to the greedy option. Thus, only the Uniform and Heavy Tail priors are relative reputation costly priors.
 
 \section{Competition vs Better Algorithms: Inverted-U}\label{section:5}
 
-In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \citet{aghion2005competition}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly. In the permanent monopoly and permanent duopoly cases we show that, under certain conditions, firms are incentivized to commit to $DG$ whereas in the temporary monopoly case firms are incentivized to commit to $TS$. We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in "market power" as decreases in the number of rounds where a firm has to compete for agents.
+In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \citet{aghion2005competition}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
+
+\begin{finding}
+\textit{Under the priors that are relative reputation costly and with low warm start, the optimal strategies in the competition game are:
+\begin{center}
+\textbf{Permanent Monopoly} - $DG$ \\
+\textbf{Temporary Monopoly} - $TS$ \\
+\textbf{Permanent Duopoly} - $DG$ \\
+\end{center}
+The conditions on $TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.
+}
+\end{finding}
+
+We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in "market power" as decreases in the number of rounds where a firm has to compete for agents.
 
 We utilize the same instances and realizations as in the section 4 and simulate the model described in section 2. We initially take the strategies of the firms as exogenous (chosen from $\mathcal{A}$) and simulate the model given these strategies in order to determine the expected payoffs associated with each pair of algorithms. Unless otherwise noted, all the results are reported at $t = 2000$.
 
@@ -202,29 +236,46 @@ We utilize the same instances and realizations as in the section 4 and simulate 
 \textit{Effective End of Game (EEOG)} - the last round, $t$, in a simulation where the agent alive at $t-1$ and the agent alive at $t$ choose different firms.
 \end{definition}
 
-Since both firms enter at the same time the game is symmetric and we only need to compute the payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Tables \ref{sim_nih}, \ref{sim_ht}, and \ref{sim_unif} report the results.
-\begin{enumerate}
-\item Under Needle In Haystack we have that $TS$ always does weakly better than $DEG$ and $DG$, regardless of the warm start
-\item Under Heavy Tail we have that, for low warm start, $DEG, DG > TS$ but that for the higher warm start values we consider $TS > DEG, DG$. Interestingly, even under the relatively high warm start we see $DG > DEG$.
-\item Under Uniform we have that $DEG, DG > TS$ for low warm start and $TS > DEG, DG$ for sufficiently high warm start.
-\end{enumerate}
+Since both firms enter at the same time the game is symmetric and we only need to compute the payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50.
 
-Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start value as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $k$. Combined with the fact that the EEOG values being relatively low across all warm starts \footnote{Interestingly, the EEOG also appears to be skewed to the right, similar to the distribution of reputation differences}, these observations seem to imply that understanding the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotically.
+\begin{finding}
+\textit{For low warm starts, when exploration is relative reputation costly $DG >TS$ in competition, whereas when exploration is not relative reputation costly $TS > DG$. For sufficiently large warm starts, $TS$ is dominant across all priors.}
+\end{finding}
 
-For the low values of the warm start we can see that $DG > TS$ for the Uniform prior but $TS > DG$ for the Needle In Haystack prior and this corresponds to what we see in the relative reputation proportion plots. The intuition for this result aligns with the intuition given in the discussion of the relative reputation plots. Namely, for low warm start values $TS$ incurs a relative reputation cost compared to $DG$ since it engages in purposeful exploration. Moving to a sufficiently large warm start so that the better algorithm has recovered from the relative reputation cost incurred via exploration leads to better algorithms winning. However, it appears that the warm starts required for this are unreasonably high, especially for the Uniform prior.
+Table \ref{sim_unif} shows the results under the Uniform prior. For the low values of the warm start we can see that $DG > TS$, but that for larger warm starts, $TS > DG$ \footnote{The same results hold for the Heavy Tail prior and are reported in the supplemental material}. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start value as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $k$. The intuition for the result in competition aligns with the fact that for Uniform and Heavy Tail, $TS$ is relative reputation costly compared to $DG$ and so, for low warm starts, $TS$ has not yet recovered from the relative reputation loss due to purposeful exploration and so $DG$ beats $TS$. However, if we move the warm start sufficiently high so that $TS$ moves to the relative reputation benefit regime, $TS > DG$.
 
-Focusing on reasonable warm starts, $DG > TS$ when it appears that better algorithms suffer an early relative reputational cost due to exploration and that both firms enter at the same time so that there is a "permanent duopoly."
+However, we do not always see that $DG > TS$ under some warm starts. Table \ref{sim_nih} shows the results for the Needle In Haystack prior where we see that $TS > DG$. The intuition for this is precisely that, under the Needle In Haystack, $TS$ is not relative reputation costly compared to $DG$ and thus we see that $TS > DG$.
+
+
+Combining these results with the fact that the EEOG values are relatively low across all warm starts \footnote{Interestingly, the EEOG also appears to be skewed to the right, similar to the distribution of reputation differences}, these observations seem to imply that understanding the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotically.
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Thu Aug 16 13:13:01 2018
+\begin{table}[ht]
+\centering
+\caption{Duopoly Experiment Uniform} 
+\begin{tabular}{rlll}
+  \hline
+ & k = 20 & k = 250 & k = 500 \\ 
+  \hline
+TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\ 
+  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\ 
+  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\ 
+   \hline
+\end{tabular}
+\label{sim_unif}
+\end{table}
 
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Needle In Haystack}
+\caption{Duopoly Experiment Needle In Haystack} 
 \begin{tabular}{rlll}
   \hline
- & k = 20 & k = 250 & k = 500 \\
+ & k = 20 & k = 250 & k = 500 \\ 
   \hline
-TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\
-  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\
-  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\
+TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\ 
+  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\ 
+  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\ 
    \hline
 \end{tabular}
 \label{sim_nih}
@@ -232,82 +283,49 @@ TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \ma
 \end{table}
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:00 2018
-\begin{table}[ht]
-\centering
-\caption{Duopoly Experiment Heavy Tail}
-\begin{tabular}{rlll}
-  \hline
- & k = 20 & k = 250 & k = 500 \\
-  \hline
-TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \makecell{\textbf{0.72} $\pm$0.02\\ eeog \\ avg: 570\\ med: 0} & \makecell{\textbf{0.76} $\pm$0.02\\ eeog \\ avg: 620\\ med: 98.5} \\
-  TS vs DEG & \makecell{\textbf{0.3} $\pm$0.03\\ eeog \\ avg: 37\\ med: 0} & \makecell{\textbf{0.88} $\pm$0.01\\ eeog \\ avg: 480\\ med: 0} & \makecell{\textbf{0.9} $\pm$0.01\\ eeog \\ avg: 570\\ med: 113.5} \\
-  DG vs DEG & \makecell{\textbf{0.62} $\pm$0.03\\ eeog \\ avg: 410\\ med: 7} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 790\\ med: 762} & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 730\\ med: 608} \\
-   \hline
-\end{tabular}
-\label{sim_ht}
-\end{table}
-% latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Thu Aug 16 13:13:01 2018
-\begin{table}[ht]
-\centering
-\caption{Duopoly Experiment Uniform}
-\begin{tabular}{rlll}
-  \hline
- & k = 20 & k = 250 & k = 500 \\
-  \hline
-TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\
-  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\
-  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\
-   \hline
-\end{tabular}
-\label{sim_unif}
-\end{table}
 
-\textbf{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to setting $X = 200$. For this section we report results fixing $k = 20$. Does this lead the incumbent to commit to $TS$? How about the entrant?
+\textbf{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to varying the value of $X$. For this section we report results fixing $k = 20$ and focus on the priors where we observed that, for this warm start, $DG > TS$ \footnote{However, we report the results for the Needle In Haystack prior in the supplementary material. The results are unsurprising, where $TS$ is the dominant strategy for both the entrant and incumbent.}. It seems clear that the temporary monopoly will get a larger market share regardless of what algorithm it plays, but is the incumbent incentivized to commit to $TS$?
 
-Table \ref{ht_incum} shows the results of the simulations for this parameterization. We observe that, for the incumbent, $TS$ is the dominant strategy across all priors. In the appendix we include additional simulations where $X = 50$ and observe that $TS$ is not always a dominant strategy in this case. This result is robust across all of the priors that we considered so that for sufficiently large $X$, $TS$ is a dominant strategy for the incumbent where $X$ depends on the set of instances that we are considering.
+\begin{finding}
+\textit{Counterintuitively, allowing one firm to be a temporary monopolist for a sufficiently long time will induce that firm to commit to the better learning algorithm, $TS$, even if, under the permanent duopoly, they would commit to $DG$}
+\end{finding}
+
+In table \ref{ht_incum} we can see that, for $X = 200$, $TS$ is a dominant strategy for the incumbent and that $DG$ is the dominant strategy for the entrant on the Heavy Tail prior \footnote{The result for the Uniform is the same, though it takes a higher $X$ to induce the incumbent to play $TS$. However, while $DG > TS$ for the entrant, $DG$ does roughly the same as $DEG$ on the Uniform prior. The results are in the supplementary material.}. In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $TS$ is the dominant strategy for the incumbent is robust across priors.
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Aug 15 19:03:20 2018
 \begin{table}[ht]
 \centering
-\caption{Temporary Monopoly Experiment Heavy Tail}
-\begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
+\caption{Temporary Monopoly Heavy Tail X = 200} 
+\begin{tabular}{rlll}
   \hline
- & TS & DEG &  DG \\
+ & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{ 0.0029 } $\pm$ 0.003 \\Var: 0.002 \\ ES: 100 \%} & \makecell{\textbf{ 0.11 } $\pm$ 0.02 \\Var: 0.09 \\ ES: 96 \%} & \makecell{\textbf{ 0.17 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 95 \%} \\
-  DEG & \makecell{\textbf{ 0.049 } $\pm$ 0.01 \\Var: 0.03 \\ ES: 94 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 74 \%} & \makecell{\textbf{ 0.24 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 79 \%} \\
-   DG & \makecell{\textbf{ 0.12 } $\pm$ 0.02 \\Var: 0.08 \\ ES: 87 \%} & \makecell{\textbf{ 0.35 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 77 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 65 \%} \\
+TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\textbf{0.083} $\pm$0.02\\Var:0.07\\ES:97\%} & \makecell{\textbf{0.17} $\pm$0.02\\Var:0.1\\ES:95\%} \\ 
+  DEG & \makecell{\textbf{0.045} $\pm$0.01\\Var:0.03\\ES:92\%} & \makecell{\textbf{0.25} $\pm$0.02\\Var:0.1\\ES:75\%} & \makecell{\textbf{0.23} $\pm$0.02\\Var:0.1\\ES:78\%} \\ 
+   DG & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:88\%} & \makecell{\textbf{0.36} $\pm$0.03\\Var:0.2\\ES:76\%} & \makecell{\textbf{0.3} $\pm$0.02\\Var:0.1\\ES:64\%} \\ 
    \hline
 \end{tabular}
-\caption*{\tiny{The columns represent the strategy of the incumbent and the rows represent the strategy of the entrant. The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting $> 90\%$ of the market. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to firm 2 do not count towards the share)}}
 \label{ht_incum}
+\caption*{\tiny{The columns represent the strategy of the incumbent and the rows represent the strategy of the entrant. The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting $> 90\%$ of the market. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to firm 2 do not count towards the share)}}
 \end{table}
-Why do we observe that $TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, for this warm start, $DG$ was preferred to $TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. This intuition is very similar to that observed in the previous section by increasing warm start. In some sense one can view allowing one firm to temporarily be a monopolist as temporarily relaxing the "incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration. Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $TS$.
 
-What about for the entrant? The results are not the same across priors and are summarized as follows:
-\begin{enumerate}
-\item Needle In Haystack - $TS > DG, DEG$
-\item Heavy Tail - $DG > TS, DEG$
-\item Uniform - $DG \sim DEG > TS$
-\end{enumerate}
-The raw results can be found in the GitHub appendix and though they are not same across priors, it is interesting to note that on the priors where we see the relative reputation cost for $TS$ we have that $DG$ is preferred to $TS$ and for the priors where we see that exploration is not costly, we have that $TS$ is preferred to $DG$.
+Why do we observe that $TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same other conditions, $DG$ was preferred to $TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. This intuition is very similar to that observed in the previous section by increasing warm start. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the "incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration. Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $TS$.
 
 \section{Data and Reputation as Barriers to Entry}\label{section:6}
 
-An alternative interpretation of the results in the previous section is that the "temporary monopoly" provides a first mover advantage to the incumbent firm and that this first mover advantage allows the firm to both get a data advantage as well as a reputational advantage over the entrant. This provides an alternative interpretation of the classic "first mover advantage" that has been well-studied in economics and marketing \citep*{kerin1992first} where, in our model, an incumbent can use data and reputation as a barrier to entry. Which plays a bigger role in preventing the entrant from being able to establish market share? We run two additional experiments, modifying the previous incumbent experiment so that in one set of simulations the reputation of the incumbent is artificially erased and another in which the information gained by the incumbent is artificially erased so that the posterior is reset to the prior.
+An alternative interpretation of the results in the previous section is that the "temporary monopoly" provides a first mover advantage to the incumbent firm and that this first mover advantage allows the firm to both get a data advantage as well as a reputational advantage over the entrant. This provides an alternative interpretation of the classic "first mover advantage" that has been well-studied in economics and marketing \citep*{kerin1992first} where, in our model, an incumbent can use data and reputation as a barrier to entry simply due to the fact that they were in the market before the entrant. Which plays a bigger role in preventing the entrant from being able to establish market share? We run two additional experiments, modifying the previous temporary monopoly experiment so that in one experiment the reputation of the incumbent is artificially erased (Reputation Erased Experiment) and another in which the information gained by the incumbent is artificially erased so that the posterior is reset to the prior (Information Erased Experiment).
 
 \begin{table}[ht]
 \centering
-\caption{Reputation Erased Experiment, Heavy Tail}
+\caption{Reputation Erased Experiment, Heavy Tail} 
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\
+ & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.2 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 96 \%} \\
-  DEG & \makecell{\textbf{ 0.068 } $\pm$ 0.013 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 75 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 80 \%} \\
-   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.019 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 67 \%} \\
+TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.2 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 96 \%} \\ 
+  DEG & \makecell{\textbf{ 0.068 } $\pm$ 0.013 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 75 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 80 \%} \\ 
+   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.019 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 67 \%} \\ 
    \hline
    \label{rep_erase}
 \end{tabular}
@@ -316,22 +334,26 @@ TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makec
 % Sun Jul 22 14:23:06 2018
 \begin{table}[ht]
 \centering
-\caption{Information Erased Experiment, Heavy Tail}
+\caption{Information Erased Experiment, Heavy Tail} 
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\
+ & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.022 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 95 \%} \\
-  DEG & \makecell{\textbf{ 0.24 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 72 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 76 \%} \\
-   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.026 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.023 \\Var: 0.1 \\ ES: 58 \%} \\
+TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.022 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 95 \%} \\ 
+  DEG & \makecell{\textbf{ 0.24 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 72 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 76 \%} \\ 
+   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.026 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.023 \\Var: 0.1 \\ ES: 58 \%} \\ 
    \hline
    \label{info_erase}
 \end{tabular}
 \end{table}
 
-Tables \ref{rep_erase} and \ref{info_erase} display the results of these experiments. Maintaining the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. The main interesting finding here, which is robust across priors for this parameterization, is that information serves as a larger barrier to entry than reputation when the incumbent plays $TS$. One possible intuition for this is that, for Heavy Tail, the information acquired after the $X$ rounds under $TS$ is sufficient so that it becomes relatively easier for $TS$ to recover the reputation loss compared to the information loss, but since $DEG$ and $DG$ learn slower and they've acquired less information over the $X$ rounds relative to $TS$ there is less of an informational advantage.
+\begin{finding}
+\textit{When the incumbent plays $TS$, the data advantage serves as a larger barrier to entry compared to reputation. However, when the incumbent plays $DEG$ or $DG$ it does not} 
+\end{finding}
 
-Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same with the exception of the Uniform prior where $TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
+Tables \ref{rep_erase} and \ref{info_erase} display the results of these experiments. Maintaining either the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. The main interesting finding here, which is robust across priors for this parameterization, is that information serves as a larger barrier to entry than reputation when the incumbent plays $TS$. One possible intuition for this is that, for Heavy Tail, the information acquired after the $X$ rounds under $TS$ is sufficient so that it becomes relatively easier for $TS$ to recover the reputation loss compared to the information loss, but since $DEG$ and $DG$ learn slower and they've acquired less information over the $X$ rounds relative to $TS$ there is less of an informational advantage.
+
+Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same for the Heavy Tail prior, but for the Uniform prior they change where $TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
 
 \bibliography{refs}
 
