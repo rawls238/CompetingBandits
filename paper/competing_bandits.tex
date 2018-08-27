@@ -29,7 +29,7 @@
 \usepackage{amsthm}
 \usepackage{float}
 \usepackage{sgame, tikz} % Game theory packages
-\usepackage{caption} 
+\usepackage{caption}
 \usepackage{algorithm,algpseudocode}
 \usepackage{makecell}
  \usepackage{multirow}
@@ -38,7 +38,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{finding}{Finding}
 \captionsetup{font=footnotesize}
-\bibliographystyle{aaai}
+
 \frenchspacing
 
 
@@ -53,32 +53,51 @@
 % author name.
 
 
-
+\newcommand{\OMIT}[1]{}
 
 \begin{document}
 
 \title{Learning and Reputation under Monopoly and Duopoly: \\A Competing Bandits Approach}
 
-\author{Guy Aridor\textsuperscript{1}, Kevin Liu\textsuperscript{2}, Aleksandrs Slivkins\textsuperscript{3},
-Zhiwei Steven Wu\textsuperscript{4} \\
-{\textsuperscript{1}Columbia University, Department of Economics}\\
-{\textsuperscript{2}Columbia University, Department of Computer Science}\\
-{\textsuperscript{3}Microsoft Research, New York, NY}\\
-{\textsuperscript{4}University of Minnesota - Twin Cities, Department of Computer Science}
-}
+\title{Competing Bandits: Exploration and Competition under Duopoly}
+
+
+%\author{Guy Aridor\textsuperscript{1}, Kevin Liu\textsuperscript{2}, Aleksandrs Slivkins\textsuperscript{3},
+%Zhiwei Steven Wu\textsuperscript{4} \\
+%{\textsuperscript{1}Columbia University, Department of Economics}\\
+%{\textsuperscript{2}Columbia University, Department of Computer Science}\\
+%{\textsuperscript{3}Microsoft Research, New York, NY}\\
+%{\textsuperscript{4}University of Minnesota - Twin Cities, Department of Computer Science}
+%}
 \maketitle
 
+
+\begin{abstract}
+We empirically study the interplay between \textit{exploration} and \textit{competition}. Systems that learn from interactions with users
+often engage in \emph{exploration}: making potentially suboptimal decisions in order to acquire new information for future decisions. However, exploration may hurt system's reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral" when decreasing market share leaves the system with less users to learn from, which degrades system's performance relative to competition and further decreases the market share.
+
+We consider an idealized model in which two firms deploy multi-armed bandit algorithms and compete for myopic users. The users select between the firms based on a reputation score, which depends on the past users' rewards. We run extensive numerical experiments, asking whether better bandit algorithms are incentivized under varying degrees of competition, from monopoly to a temporary monopoly (a duopoly with an early entrant) to a duopoly. We find that duopoly (as well as monopoly) tends to favor the ``greedy algorithm" that does not explore, whereas a temporary monopoly may incentivize the adoption of better bandit algorithms. Our results provide new intuition on the ``first-mover advantage" phenomenon in the digital economy, where the incumbent firm enjoys both a ``data advantage" and a ``reputational advantange". We further investigate which of the two is a stronger barrier to entry. 
+\end{abstract}
+
+
+\OMIT{ %%% Guy's original abstract
 \begin{abstract}
 We empirically study the interplay between \textit{exploration} and \textit{competition} - how systems that learn from interactions with users tradeoff between making potentially suboptimal choices in order to acquire new information and the reputational consequences of this exploration which potentially has adverse competitive effects. Our model considers competition for myopic users between two firms deploying multi-armed bandit algorithms that face the same underlying multi-armed bandit instance. The users select between the firms according to a reputation score, which is a function of the rewards past users have experienced from this firm.
 
 We ask whether better algorithms are incentivized under varying degrees of competition. The environments we consider are a monopoly, a duopoly with one firm serving as an early entrant (a temporary monopoly), and a duopoly. We show that, under certain conditions, monopoly and duopoly do not incentivize the adoption of better learning algorithms due to the reputational costs of exploration, but that a temporary monopoly may incentivize the adoption of better learning algorithms. Additionally, we interpret our results as providing an alternative intuition behind the classic first-mover advantage which gives the incumbent firm both a data advantage and a reputational advantange. Finally, we ask whether in this setting the data advantage or the reputational advantage of the early entrant serves as stronger barriers to entry.
 \end{abstract}
+} %%%%%%%
 
 \section{Introduction}\label{section:1}
 
-Many modern online platforms simultaneously compete for users as well as learn from the users they manage to attract. For instance, Google Search and Bing compete for users in the search engine market yet at the same time need to experiment with their search algorithms to learn what algorithms work the best. This creates a tradeoff between \textit{exploration} and \textit{competition} since firms need to experiment with potentially sub-optimal options for the benefit of gaining information to make better decisions tomorrow while at the same time firms need to incentivize consumers to select them over their competitors today.
+Many modern online platforms simultaneously compete for users as well as learn from the users they manage to attract. This creates a tradeoff between \textit{exploration} and \textit{competition}: firms experiment with potentially sub-optimal options for the sake of gaining information to make better decisions tomorrow, while they need to incentivize consumers to select them over their competitors today. For instance, Google Search and Bing compete for users in the search engine market yet at the same time need to experiment with their search and ranking algorithms to learn what works best. 
 
-From a social welfare perspective it is better for firms to adopt "better" learning algorithms and our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm. 
+Platforms routinely deploy randomized controlled trials (a.k.a. A/B tests), and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. While deploying ``better" learning algorithms for exploration would (deployment/maintenance costs aside) improve performance, this is not necessarily beneficial under competition. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term, which would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
+
+STOPPED HERE.
+
+
+From a social welfare perspective it is better for firms to adopt "better" learning algorithms for exploration. Our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm.
 
 Unlike in the classic models in economics regarding the interplay between competition and innovation described in \citet{barro2004economic}, here we have no explicit R \& D cost. Rather, firms are not incentivized to experiment under duopoly because exploration has an implicit relative \textit{reputational} cost compared to the greedy alternative and, in our model, consumers only care about the reputation of a firm. Thus, competition disincentivizes exploration by firms precisely because competition forces firms to take actions in order to incentivize consumers to select them over their competitors and, as a result, by allowing a firm to be a temporary monopolist the firm can experiment without worrying about the reputational consequences. Our findings give an alternative intuition to the empirically documented inverse-U relationship between competition and innovation discussed in \citet{aghion2005competition}.
 
@@ -86,7 +105,7 @@ Unlike in the classic models in economics regarding the interplay between compet
 
 The three-way tradeoff between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
 
-The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}. 
+The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}.
 
 Our setting is also closely related to the "dueling algorithms" framework described in \cite{immorlica2011dueling}, but this framework considers offline scenarios whereas we focus on online learning problems.
 
@@ -135,9 +154,9 @@ We evaluate the consequences of our model via simulation.
 \item Needle In Haystack - $K-1$ arms with mean 0.5 and 1 arm with 0.7.
 \item Uniform - the $K$ arms have means drawn uniformly at random from $[0.25, 0.75]$
 \item "Heavy Tail" - the $K$ arms have means drawn from $Beta(\alpha=0.6, \beta = 0.6)$. With this prior it was likely to have means at the "extremes" or means that were close to 0 as well as means that were close to 1.
-\end{enumerate} 
+\end{enumerate}
 
-\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$. 
+\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$.
 
 This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.
 
@@ -161,7 +180,7 @@ Figure \ref{prelim_means} shows that the mean reputation ordering is as we would
 \includegraphics[scale=0.35]{figures/rep_distribution_nih}
 \label{rep_dist_nih}
 \caption*{\tiny{The plots contain a kernel density estimate of the reputation distribution at $t = 500$}}
-\end{figure} 
+\end{figure}
 
 \begin{finding}
 \textit{The mean performance of an algorithm is not a sufficient statistic for understanding the performance of an algorithm in competition. Looking at the distribution of reputation difference between algorithms we find that it tend is skewed to the right. Additionally we provide a counterexample where the mean performance does not predict the result of the competition game.}
@@ -254,14 +273,14 @@ Combining these results with the fact that the EEOG values are relatively low ac
 % Thu Aug 16 13:13:01 2018
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Uniform} 
+\caption{Duopoly Experiment Uniform}
 \begin{tabular}{rlll}
   \hline
- & k = 20 & k = 250 & k = 500 \\ 
+ & k = 20 & k = 250 & k = 500 \\
   \hline
-TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\ 
-  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\ 
-  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\ 
+TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\
+  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\
+  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\
    \hline
 \end{tabular}
 \label{sim_unif}
@@ -269,14 +288,14 @@ TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \mak
 
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Needle In Haystack} 
+\caption{Duopoly Experiment Needle In Haystack}
 \begin{tabular}{rlll}
   \hline
- & k = 20 & k = 250 & k = 500 \\ 
+ & k = 20 & k = 250 & k = 500 \\
   \hline
-TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\ 
-  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\ 
-  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\ 
+TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\
+  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\
+  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\
    \hline
 \end{tabular}
 \label{sim_nih}
@@ -297,14 +316,14 @@ In table \ref{ht_incum} we can see that, for $X = 200$, $TS$ is a dominant strat
 % Wed Aug 15 19:03:20 2018
 \begin{table}[ht]
 \centering
-\caption{Temporary Monopoly Heavy Tail X = 200} 
+\caption{Temporary Monopoly Heavy Tail X = 200}
 \begin{tabular}{rlll}
   \hline
- & TS & DEG &  DG \\ 
+ & TS & DEG &  DG \\
   \hline
-TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\textbf{0.083} $\pm$0.02\\Var:0.07\\ES:97\%} & \makecell{\textbf{0.17} $\pm$0.02\\Var:0.1\\ES:95\%} \\ 
-  DEG & \makecell{\textbf{0.045} $\pm$0.01\\Var:0.03\\ES:92\%} & \makecell{\textbf{0.25} $\pm$0.02\\Var:0.1\\ES:75\%} & \makecell{\textbf{0.23} $\pm$0.02\\Var:0.1\\ES:78\%} \\ 
-   DG & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:88\%} & \makecell{\textbf{0.36} $\pm$0.03\\Var:0.2\\ES:76\%} & \makecell{\textbf{0.3} $\pm$0.02\\Var:0.1\\ES:64\%} \\ 
+TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\textbf{0.083} $\pm$0.02\\Var:0.07\\ES:97\%} & \makecell{\textbf{0.17} $\pm$0.02\\Var:0.1\\ES:95\%} \\
+  DEG & \makecell{\textbf{0.045} $\pm$0.01\\Var:0.03\\ES:92\%} & \makecell{\textbf{0.25} $\pm$0.02\\Var:0.1\\ES:75\%} & \makecell{\textbf{0.23} $\pm$0.02\\Var:0.1\\ES:78\%} \\
+   DG & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:88\%} & \makecell{\textbf{0.36} $\pm$0.03\\Var:0.2\\ES:76\%} & \makecell{\textbf{0.3} $\pm$0.02\\Var:0.1\\ES:64\%} \\
    \hline
 \end{tabular}
 \label{ht_incum}
@@ -319,14 +338,14 @@ An alternative interpretation of the results in the previous section is that the
 
 \begin{table}[ht]
 \centering
-\caption{Reputation Erased Experiment, Heavy Tail} 
+\caption{Reputation Erased Experiment, Heavy Tail}
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\ 
+ & TS & DEG &  DG \\
   \hline
-TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.2 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 96 \%} \\ 
-  DEG & \makecell{\textbf{ 0.068 } $\pm$ 0.013 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 75 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 80 \%} \\ 
-   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.019 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 67 \%} \\ 
+TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.2 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 96 \%} \\
+  DEG & \makecell{\textbf{ 0.068 } $\pm$ 0.013 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 75 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 80 \%} \\
+   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.019 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.024 \\Var: 0.2 \\ ES: 67 \%} \\
    \hline
    \label{rep_erase}
 \end{tabular}
@@ -335,21 +354,21 @@ TS & \makecell{\textbf{ 0.016 } $\pm$ 0.0075 \\Var: 0.01 \\ ES: 100 \%} & \makec
 % Sun Jul 22 14:23:06 2018
 \begin{table}[ht]
 \centering
-\caption{Information Erased Experiment, Heavy Tail} 
+\caption{Information Erased Experiment, Heavy Tail}
 \begin{tabular}{c@{\hspace{1.0\tabcolsep}}ccc}
   \hline
- & TS & DEG &  DG \\ 
+ & TS & DEG &  DG \\
   \hline
-TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.022 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 95 \%} \\ 
-  DEG & \makecell{\textbf{ 0.24 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 72 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 76 \%} \\ 
-   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.026 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.023 \\Var: 0.1 \\ ES: 58 \%} \\ 
+TS & \makecell{\textbf{ 0.024 } $\pm$ 0.0094 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.022 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 95 \%} \\
+  DEG & \makecell{\textbf{ 0.24 } $\pm$ 0.025 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 72 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.024 \\Var: 0.1 \\ ES: 76 \%} \\
+   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.028 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.38 } $\pm$ 0.026 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.023 \\Var: 0.1 \\ ES: 58 \%} \\
    \hline
    \label{info_erase}
 \end{tabular}
 \end{table}
 
 \begin{finding}
-\textit{When the incumbent plays $TS$, the data advantage serves as a larger barrier to entry compared to reputation. However, when the incumbent plays $DEG$ or $DG$ there is no substantial difference between the two.} 
+\textit{When the incumbent plays $TS$, the data advantage serves as a larger barrier to entry compared to reputation. However, when the incumbent plays $DEG$ or $DG$ there is no substantial difference between the two.}
 \end{finding}
 
 Tables \ref{rep_erase} and \ref{info_erase} display the results of these experiments. Maintaining either the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. The main interesting finding here, which is robust across priors for this parameterization, is that information serves as a larger barrier to entry than reputation when the incumbent plays $TS$. One possible intuition for this is that, for Heavy Tail, the information acquired after the $X$ rounds under $TS$ is sufficient so that it becomes relatively easier for $TS$ to recover the reputation loss compared to the information loss, but since $DEG$ and $DG$ learn slower and they've acquired less information over the $X$ rounds relative to $TS$ there is less of an informational advantage.
@@ -357,5 +376,5 @@ Tables \ref{rep_erase} and \ref{info_erase} display the results of these experim
 Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same for the Heavy Tail prior, but for the Uniform prior they change where $TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
 
 \bibliography{refs}
-
+\bibliographystyle{aaai}
 \end{document}
