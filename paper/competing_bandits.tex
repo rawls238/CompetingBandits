@@ -156,20 +156,28 @@ We evaluate the performance of the different learning algorithms on the bandit p
 
 Figure \ref{prelim_means} shows that the mean reputation ordering is as we would expect for the Needle In Haystack prior \footnote{The mean reputation ordering that we expect also holds for the other two priors and the results for those can be found in the supplementary material.}.
 
-\begin{finding}
-\textit{The mean performance of an algorithm is not a sufficient statistic for understanding the performance of an algorithm in competition. Looking at the distribution of reputation difference between algorithms we find that it tend is skewed to the right. Additionally we provide a counterexample where the mean performance does not predict the result of the competition game.}
-\end{finding}
-
-Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $DEG$ have a bi-modal reputation distribution whereas $TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $TS$ or $DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \citet{mansour2018competing}}.
-
-To better capture the comparison between two algorithms we explicitly plot the distribution of the reputation difference between $TS$ and $DG$. This figure seems to confirm the intuition noted previously since the reputation distribution has its largest mass around the point just below 0 but it is skewed to the right even as $t$ gets large. Given the skewedness of the distribution, the mean is not a representative statistic of the entire reputation difference distribution. There are alternative statistics that we could consider such as the median or numerically calculating $\Pr(reputation(TS) - reputation(DG)) > 0$ using the estimated density, but instead we define a simple and natural statistic to help us reason about what happens under competition, the \textit{relative reputation proportion}.
-
 \begin{figure}[H]
 \caption{Reputation Distribution}
 \includegraphics[scale=0.35]{figures/rep_distribution_nih}
 \label{rep_dist_nih}
 \caption*{\tiny{The plots contain a kernel density estimate of the reputation distribution at $t = 500$}}
 \end{figure} 
+
+\begin{finding}
+\textit{The mean performance of an algorithm is not a sufficient statistic for understanding the performance of an algorithm in competition. Looking at the distribution of reputation difference between algorithms we find that it tend is skewed to the right. Additionally we provide a counterexample where the mean performance does not predict the result of the competition game.}
+\end{finding}
+
+
+Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $DEG$ have a bi-modal reputation distribution whereas $TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $TS$ or $DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \citet{mansour2018competing}}.
+
+To better capture the comparison between two algorithms we explicitly plot the distribution of the reputation difference between $TS$ and $DG$. This figure seems to confirm the intuition noted previously since the reputation distribution has its largest mass around the point just below 0 but it is skewed to the right even as $t$ gets large. Given the skewedness of the distribution, the mean is not a representative statistic of the entire reputation difference distribution. There are alternative statistics that we could consider such as the median or numerically calculating $\Pr(reputation(TS) - reputation(DG)) > 0$ using the estimated density, but instead we define a simple and natural statistic to help us reason about what happens under competition, the \textit{relative reputation proportion}.
+
+\begin{figure}[H]
+\caption{Reputation Difference Distribution}
+\includegraphics[scale=0.35]{figures/ts_dg_rep_diff_nih}
+\label{ts_dg_rep_diff_nih}
+\caption*{\tiny{The plots contain a kernel density estimate of the difference in reputation between $TS$ and $DG$ across $t$}}
+\end{figure}
 
 \begin{definition}
 \textit{Relative Reputation Proportion} - the proportion of simulations in which algorithm $A$ had at least as high of a reputation as algorithm $B$ for a fixed time $t$
@@ -182,8 +190,7 @@ To better capture the comparison between two algorithms we explicitly plot the d
 
 The relative reputation statistic corresponds to running the bandit algorithms in isolation on the same instance and with the same realizations for $t$ rounds and then calculating the fraction of simulations at which an agent would select a firm playing $A$ over a firm playing $B$ at time $t$ \footnote{As further motivation for this statistic, one may be interested in if there is ever a case where, for sufficiently large $t$, we observe that $DEG >DG$ or $TS > DG$ according to the mean reputation but $DG > DEG$ or $DG > TS$ according to the relative reputation proportion. In the supplementary material we have results showing that, for Heavy Tail prior with $K=3$ we have that $DEG > DG$ according to the mean reputation but $DG > DEG$ according to the relative reputation proportion. Additionally, these results carry over to the competition game}.
 
-
-\begin{figure}[H]
+\begin{figure}[ht]
 \caption{Relative Reputation Plots}
 \includegraphics[scale=0.35]{figures/relative_uniform_annotated_plot}
 \includegraphics[scale=0.35]{figures/ts_dg_nih_10_prelim}
