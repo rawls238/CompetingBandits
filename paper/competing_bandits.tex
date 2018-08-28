@@ -1,32 +1,23 @@
-\documentclass{article}
-
-% if you need to pass options to natbib, use, e.g.:
-% \PassOptionsToPackage{numbers, compress}{natbib}
-
-% ready for submission
+\documentclass[letterpaper]{article}
 \usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{url}
+\usepackage{graphicx}
+\frenchspacing
 
-% to compile a preprint version, e.g., for submission to arXiv, add
-% add the [preprint] option:
-% \usepackage[preprint]{nips_2018}
-
-% to compile a camera-ready version, add the [final] option, e.g.:
-% \usepackage[final]{nips_2018}
-
-% to avoid loading the natbib package, add option nonatbib:
-% \usepackage[nonatbib]{nips_2018}
-
-\usepackage[utf8]{inputenc} % allow utf-8 input
-\usepackage{hyperref}       % hyperlinks
+%\usepackage[utf8]{inputenc} % allow utf-8 input -- cannot use with AAAI! A.S.
+%\usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 \usepackage{amssymb}
-\usepackage{natbib}
-%% The amsthm package provides extended theorem environments
-\usepackage{amsthm}
+%\usepackage{natbib} % cannot use with AAAI! A.S.
+
+\usepackage{amsthm} % The amsthm package provides extended theorem environments
 \usepackage{float}
 \usepackage{sgame, tikz} % Game theory packages
 \usepackage{caption}
@@ -38,8 +29,6 @@
 \newtheorem{definition}{Definition}
 \newtheorem{finding}{Finding}
 \captionsetup{font=footnotesize}
-
-\frenchspacing
 
 
 % The \author macro works with any number of authors. There are two
@@ -53,8 +42,13 @@
 % author name.
 
 
+% Alex' macro
+\usepackage{xspace}
 \newcommand{\OMIT}[1]{}
 \newcommand{\xhdr}[1]{\vspace{1mm} \noindent{\bf #1}}
+\newcommand{\ie}{{\em i.e.,~\xspace}}
+\newcommand{\eg}{{\em e.g.,~\xspace}}
+
 
 % a very useful package for edits and comments, from David Kempe (USC)
 \usepackage{color-edits}
@@ -115,18 +109,27 @@ The disincentives to explore under duopoly arise entirely because of ``reputatio
 
 \subsection{Discussion and related work} 
 
-Adoption of better exploration algorithms is a form of ``innovation", the interplay between competition and innovation being a well-studied topic in economics \citep[e.g.,][]{barro2004economic,aghion2005competition}, dating back to \citet{schumpeter2010capitalism}. A familiar theme is an ``inverted-U relationship" between competition and innovation -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
+Adoption of better exploration algorithms is a form of ``innovation", the interplay between competition and innovation being a well-studied topic in economics, \eg \cite{barro2004economic,aghion2005competition}, dating back to \cite{schumpeter2010capitalism}. A familiar theme is an ``inverted-U relationship" between competition and innovation -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
 
-Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, e.g., see \citealt*{Bubeck-survey12} for background. We consider a simple and well-understood MAB model with i.i.d. rewards. We focus on a (well-known) distinction between the ``greedy" (exploitation-only) algorithm, "naive" exploration algorithms that separate exploration and exploitation, and more sophisticated algorithms that combine the two.
+Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, \eg see \cite{Bubeck-survey12} for background. We consider a simple and well-understood MAB model with i.i.d. rewards. We focus on a (well-known) distinction between the ``greedy" (exploitation-only) algorithm, "naive" exploration algorithms that separate exploration and exploitation, and more sophisticated algorithms that combine the two.
 
-STOPPED HERE.
+The study of competition vs. exploration has been initiated in \cite{CompetingBandits-itcs16}. Their model differs from ours in two key respects. First, users do not see any signal about firms' past performance, and instead choose between firms according to the Bayesian-expected reward. Second, they vary the strength of competition using assumptions about (ir)rational consumer behavior, whereas we use early entry. Their results are purely theoretical; their model is amenable to proofs but not to numerical experiments.
 
+The interplay between exploration, exploitation and incentives has been studied in other scenarios: incentivizing exploration in a recommendation system
+    \cite{Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17},
+dynamic auctions
+    \cite{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
+pay-per-click ad auctions 
+    \cite{MechMAB-ec09,DevanurK09,Transform-ec10-jacm},
+and human computation
+    \cite{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
+
+\OMIT{ %%%%%%
 The interplay between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
+} %%%%%%%%
 
+Our setting is also closely related to the "dueling algorithms" framework \cite{DuelingAlgs-stoc11}, but this framework considers offline / full feedback scenarios whereas we focus on online machine learning problems.
 
-Our setting is also closely related to the "dueling algorithms" framework described in \cite{immorlica2011dueling}, but this framework considers offline scenarios whereas we focus on online learning problems.
-
-The most closely related work to this paper is \citealt*{mansour2018competing}. Our motivating questions are the same as \citet{mansour2018competing} though while \citet{mansour2018competing} use the rationality of consumers as their primary knob of competitiveness, we consider differences in the number of firms in the market as our primary knob. Additionally, while in \citet{mansour2018competing} agents select firms based on which firm they expect to have a larger Bayesian expected reward, in our model the agents select firms based on a frequentist reputation score that is derived from the signals sent from past agents. This allows the model to become tractable for the purposes of evaluating it via simulation and this is the primary method of analysis that we employ.
 
 \section{Model}\label{sec:model}
 
@@ -153,7 +156,7 @@ Note $t_j$ is the \textit{local} time of the firm, not the global time, so the r
 
 \noindent \textbf{MAB algorithms} We suppose that firms commit to a learning algorithm from a fixed set of algorithms $\mathcal{A}$. We partition the set of possible learning algorithms into three different types of learning algorithms and restrict $\mathcal{A}$ to contain a representative each algorithm from each class:
 \begin{enumerate}
-\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider $Thompson Sampling$ (from hereon $TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward \citep{agrawal2012analysis}.
+\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider $Thompson Sampling$ (from hereon $TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward \cite{agrawal2012analysis}.
 \item "Naive" algorithms that engage in non-adaptive exploration algorithms and separate exploration and exploitation. We consider $Dynamic$ $\epsilon$-$greedy$ (from hereon $DEG$) from this class, which, in a given period, pulls the arms with the highest posterior mean for $1 - \epsilon$ probability and selects a random arm with $\epsilon$ probability. For our experiments we keep $\epsilon = 0.05$ fixed.
 \item Greedy / myopic algorithms that engage in no purposeful exploration and take the best short-sighted action. We consider $DynamicGreedy$ (from hereon $DG$) from this class, which, in a given period, pulls the arm with the highest posterior mean.
 \end{enumerate}
@@ -204,7 +207,7 @@ Figure \ref{prelim_means} shows that the mean reputation ordering is as we would
 \end{finding}
 
 
-Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $DEG$ have a bi-modal reputation distribution whereas $TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $TS$ or $DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \citet{mansour2018competing}}.
+Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $DEG$ have a bi-modal reputation distribution whereas $TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $TS$ or $DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \cite{mansour2018competing}}.
 
 To better capture the comparison between two algorithms we explicitly plot the distribution of the reputation difference between $TS$ and $DG$. This figure seems to confirm the intuition noted previously since the reputation distribution has its largest mass around the point just below 0 but it is skewed to the right even as $t$ gets large. Given the skewedness of the distribution, the mean is not a representative statistic of the entire reputation difference distribution. There are alternative statistics that we could consider such as the median or numerically calculating $\Pr(reputation(TS) - reputation(DG)) > 0$ using the estimated density, but instead we define a simple and natural statistic to help us reason about what happens under competition, the \textit{relative reputation proportion}.
 
@@ -248,7 +251,7 @@ Is exploration always costly? Figure \ref{relative_rep_plots} also shows that fo
 
 \section{Competition vs Better Algorithms: Inverted-U}\label{section:5}
 
-In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \citet{aghion2005competition}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
+In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \cite{aghion2005competition}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
 
 \begin{finding}
 \textit{Under the priors that are relative reputation costly and with low warm start, the optimal strategies in the competition game are:
@@ -351,7 +354,7 @@ Why do we observe that $TS$ is the dominant strategy for the incumbent whereas i
 
 \section{Data and Reputation as Barriers to Entry}\label{section:6}
 
-An alternative interpretation of the results in the previous section is that the "temporary monopoly" provides a first mover advantage to the incumbent firm and that this first mover advantage allows the firm to both get a data advantage as well as a reputational advantage over the entrant. This provides an alternative interpretation of the classic "first mover advantage" that has been well-studied in economics and marketing \citep*{kerin1992first} where, in our model, an incumbent can use data and reputation as a barrier to entry simply due to the fact that they were in the market before the entrant. Which plays a bigger role in preventing the entrant from being able to establish market share? We run two additional experiments, modifying the previous temporary monopoly experiment so that in one experiment the reputation of the incumbent is artificially erased (Reputation Erased Experiment) and another in which the information gained by the incumbent is artificially erased so that the posterior is reset to the prior (Information Erased Experiment).
+An alternative interpretation of the results in the previous section is that the "temporary monopoly" provides a first mover advantage to the incumbent firm and that this first mover advantage allows the firm to both get a data advantage as well as a reputational advantage over the entrant. This provides an alternative interpretation of the classic "first mover advantage" that has been well-studied in economics and marketing \cite*{kerin1992first} where, in our model, an incumbent can use data and reputation as a barrier to entry simply due to the fact that they were in the market before the entrant. Which plays a bigger role in preventing the entrant from being able to establish market share? We run two additional experiments, modifying the previous temporary monopoly experiment so that in one experiment the reputation of the incumbent is artificially erased (Reputation Erased Experiment) and another in which the information gained by the incumbent is artificially erased so that the posterior is reset to the prior (Information Erased Experiment).
 
 \begin{table}[ht]
 \centering
@@ -392,6 +395,6 @@ Tables \ref{rep_erase} and \ref{info_erase} display the results of these experim
 
 Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same for the Heavy Tail prior, but for the Uniform prior they change where $TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
 
-\bibliography{refs,bib-bandits}
+\bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
 \bibliographystyle{aaai}
 \end{document}
