@@ -54,6 +54,16 @@
 
 
 \newcommand{\OMIT}[1]{}
+\newcommand{\xhdr}[1]{\vspace{1mm} \noindent{\bf #1}}
+
+% a very useful package for edits and comments, from David Kempe (USC)
+\usepackage{color-edits}
+%\usepackage[suppress]{color-edits}  % use this to suppress the package
+\addauthor{as}{red}    % as for Alex
+\addauthor{ga}{blue}  % ga for Guy
+\addauthor{sw}{green} % sw for Steven
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+
 
 \begin{document}
 
@@ -76,13 +86,13 @@
 We empirically study the interplay between \textit{exploration} and \textit{competition}. Systems that learn from interactions with users
 often engage in \emph{exploration}: making potentially suboptimal decisions in order to acquire new information for future decisions. However, exploration may hurt system's reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral" when decreasing market share leaves the system with less users to learn from, which degrades system's performance relative to competition and further decreases the market share.
 
-We consider an idealized model in which two firms deploy multi-armed bandit algorithms and compete for myopic users. The users select between the firms based on a reputation score, which depends on the past users' rewards. We run extensive numerical experiments, asking whether better bandit algorithms are incentivized under varying degrees of competition, from monopoly to a temporary monopoly (a duopoly with an early entrant) to a duopoly. We find that duopoly (as well as monopoly) tends to favor the ``greedy algorithm" that does not explore, whereas a temporary monopoly may incentivize the adoption of better bandit algorithms. Our results provide new intuition on the ``first-mover advantage" phenomenon in the digital economy, where the incumbent firm enjoys both a ``data advantage" and a ``reputational advantange". We further investigate which of the two is a stronger barrier to entry. 
+We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly (as well as monopoly) tends to favor a primitive ``greedy algorithm" that does not explore. However, a temporary monopoly (a duopoly with an early entrant) may incentivize the adoption of better bandit algorithms. Our findings provide new intuition on the ``first-mover advantage" phenomenon in the digital economy.
 \end{abstract}
 
 
 \OMIT{ %%% Guy's original abstract
 \begin{abstract}
-We empirically study the interplay between \textit{exploration} and \textit{competition} - how systems that learn from interactions with users tradeoff between making potentially suboptimal choices in order to acquire new information and the reputational consequences of this exploration which potentially has adverse competitive effects. Our model considers competition for myopic users between two firms deploying multi-armed bandit algorithms that face the same underlying multi-armed bandit instance. The users select between the firms according to a reputation score, which is a function of the rewards past users have experienced from this firm.
+We empirically study the interplay between \textit{exploration} and \textit{competition} - how platforms that learn from interactions with users tradeoff between making potentially suboptimal choices in order to acquire new information and the reputational consequences of this exploration which potentially has adverse competitive effects. Our model considers competition for myopic users between two firms deploying multi-armed bandit algorithms that face the same underlying multi-armed bandit instance. The users select between the firms according to a reputation score, which is a function of the rewards past users have experienced from this firm.
 
 We ask whether better algorithms are incentivized under varying degrees of competition. The environments we consider are a monopoly, a duopoly with one firm serving as an early entrant (a temporary monopoly), and a duopoly. We show that, under certain conditions, monopoly and duopoly do not incentivize the adoption of better learning algorithms due to the reputational costs of exploration, but that a temporary monopoly may incentivize the adoption of better learning algorithms. Additionally, we interpret our results as providing an alternative intuition behind the classic first-mover advantage which gives the incumbent firm both a data advantage and a reputational advantange. Finally, we ask whether in this setting the data advantage or the reputational advantage of the early entrant serves as stronger barriers to entry.
 \end{abstract}
@@ -92,26 +102,33 @@ We ask whether better algorithms are incentivized under varying degrees of compe
 
 Many modern online platforms simultaneously compete for users as well as learn from the users they manage to attract. This creates a tradeoff between \textit{exploration} and \textit{competition}: firms experiment with potentially sub-optimal options for the sake of gaining information to make better decisions tomorrow, while they need to incentivize consumers to select them over their competitors today. For instance, Google Search and Bing compete for users in the search engine market yet at the same time need to experiment with their search and ranking algorithms to learn what works best. 
 
-Platforms routinely deploy randomized controlled trials (a.k.a. A/B tests), and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. While deploying ``better" learning algorithms for exploration would (deployment/maintenance costs aside) improve performance, this is not necessarily beneficial under competition. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term, which would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
+Platforms routinely deploy randomized controlled trials (A/B tests), and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. While deploying ``better" learning algorithms for exploration would (deployment/maintenance costs aside) improve performance, this is not necessarily beneficial under competition. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term. This would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
+
+We ask whether competition incentivizes adoption of "better" algorithms for exploration. We investigate this issue via extensive numerical experiments in a stylized duopoly model. In our model, two firms compete for users, and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firms' objective is the market share.
+
+
+We consider varying levels of competition, from monopoly to \emph{temporary monopoly} (a duopoly with an early entrant), to a true duopoly in which both firms start at the same time. We find that a ``greedy algorithm" that does not explicitly explore is most beneficial under duopoly. This algorithm also prevails under monopoly simply because it tends to be easier to deploy. Whereas a temporary monopoly incentives more advanced exploration algorithms that perform better in the long run. These findings can be framed in terms of an ``inverted-U relationship" between competition and innovation.
+
+The disincentives to explore under duopoly arise entirely because of ``reputational cost", rather than R\&D costs (the latter are absent in our model). Our findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. In this scenario, the incumbent firm enjoys both a ``data advantage" and a ``reputational advantange". We further investigate which of the two is a stronger barrier to entry. \ascomment{and find what? and what's the new intuition?}
+
+
+
+\subsection{Discussion and related work} 
+
+Adoption of better exploration algorithms is a form of ``innovation", the interplay between competition and innovation being a well-studied topic in economics \citep[e.g.,][]{barro2004economic,aghion2005competition}, dating back to \citet{schumpeter2010capitalism}. A familiar theme is an ``inverted-U relationship" between competition and innovation -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
+
+Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, e.g., see \citealt*{Bubeck-survey12} for background. We consider a simple and well-understood MAB model with i.i.d. rewards. We focus on a (well-known) distinction between the ``greedy" (exploitation-only) algorithm, "naive" exploration algorithms that separate exploration and exploitation, and more sophisticated algorithms that combine the two.
 
 STOPPED HERE.
 
+The interplay between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
 
-From a social welfare perspective it is better for firms to adopt "better" learning algorithms for exploration. Our main high-level question is asking under what levels of competition are firms incentivized to adopt "better" learning algorithms. Our primary contribution is that in our model, even in the case of a duopoly, firms are not incentivized to adopt better learning algorithms but that allowing one firm to be a temporary monopolist will incentivize this firm to play a better learning algorithm.
-
-Unlike in the classic models in economics regarding the interplay between competition and innovation described in \citet{barro2004economic}, here we have no explicit R \& D cost. Rather, firms are not incentivized to experiment under duopoly because exploration has an implicit relative \textit{reputational} cost compared to the greedy alternative and, in our model, consumers only care about the reputation of a firm. Thus, competition disincentivizes exploration by firms precisely because competition forces firms to take actions in order to incentivize consumers to select them over their competitors and, as a result, by allowing a firm to be a temporary monopolist the firm can experiment without worrying about the reputational consequences. Our findings give an alternative intuition to the empirically documented inverse-U relationship between competition and innovation discussed in \citet{aghion2005competition}.
-
-\textbf{Related Work} A major underlying component of our model is that firms face a multi-armed bandit (MAB) problem. Multi-armed bandits (MAB) are a tractable abstraction for the tradeoff between exploration and exploitation. MAB problems have been studied for many decades (see \citet{bubeck2012regret} for an overview). Most relevant to this paper is the thread that focuses on designing "smart" and tractable algorithms that combine exploration and exploitation and "naive" algorithms that separate exploration and exploitation (see \citet{slivkins2017bandits}).
-
-The three-way tradeoff between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
-
-The relationship between competition and innovation has been heavily studied in industrial organization \citep{tirole1988theory} and endogenous growth theory \citep{aghion2005competition, barro2004economic}, dating back to \citet{schumpeter2010capitalism}.
 
 Our setting is also closely related to the "dueling algorithms" framework described in \cite{immorlica2011dueling}, but this framework considers offline scenarios whereas we focus on online learning problems.
 
 The most closely related work to this paper is \citealt*{mansour2018competing}. Our motivating questions are the same as \citet{mansour2018competing} though while \citet{mansour2018competing} use the rationality of consumers as their primary knob of competitiveness, we consider differences in the number of firms in the market as our primary knob. Additionally, while in \citet{mansour2018competing} agents select firms based on which firm they expect to have a larger Bayesian expected reward, in our model the agents select firms based on a frequentist reputation score that is derived from the signals sent from past agents. This allows the model to become tractable for the purposes of evaluating it via simulation and this is the primary method of analysis that we employ.
 
-\section{Model}\label{section:2}
+\section{Model}\label{sec:model}
 
 \textbf{Overview} There are two firms and $T+2k$ agents where $k$ is the warm start, or the agents that each firm gets for free at the beginning of the game and $T$ is the number of rounds in the game. The timing of events is as follows:
 \begin{enumerate}
@@ -375,6 +392,6 @@ Tables \ref{rep_erase} and \ref{info_erase} display the results of these experim
 
 Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same for the Heavy Tail prior, but for the Uniform prior they change where $TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
 
-\bibliography{refs}
+\bibliography{refs,bib-bandits}
 \bibliographystyle{aaai}
 \end{document}
