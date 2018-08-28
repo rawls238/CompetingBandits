@@ -5,6 +5,7 @@
 \usepackage{courier}
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage{tikz} % SW: Added for plots
 \frenchspacing
 
 %\usepackage[utf8]{inputenc} % allow utf-8 input -- cannot use with AAAI! A.S.
@@ -55,7 +56,7 @@
 %\usepackage[suppress]{color-edits}  % use this to suppress the package
 \addauthor{as}{red}    % as for Alex
 \addauthor{ga}{blue}  % ga for Guy
-\addauthor{sw}{green} % sw for Steven
+\addauthor{sw}{orange} % sw for Steven
 % e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
 
 
@@ -96,12 +97,34 @@ We ask whether better algorithms are incentivized under varying degrees of compe
 
 Many modern online platforms simultaneously compete for users as well as learn from the users they manage to attract. This creates a tradeoff between \textit{exploration} and \textit{competition}: firms experiment with potentially sub-optimal options for the sake of gaining information to make better decisions tomorrow, while they need to incentivize consumers to select them over their competitors today. For instance, Google Search and Bing compete for users in the search engine market yet at the same time need to experiment with their search and ranking algorithms to learn what works best. 
 
-Platforms routinely deploy randomized controlled trials (A/B tests), and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. While deploying ``better" learning algorithms for exploration would (deployment/maintenance costs aside) improve performance, this is not necessarily beneficial under competition. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term. This would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
+Platforms routinely deploy randomized controlled trials (A/B tests), and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. While deploying ``better" learning algorithms for exploration would improve performance, this is not necessarily beneficial under competition \swedit{(putting deployment/maintenance costs aside)}. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term. This would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
 
-We ask whether competition incentivizes adoption of "better" algorithms for exploration. We investigate this issue via extensive numerical experiments in a stylized duopoly model. In our model, two firms compete for users, and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firms' objective is the market share.
+We ask whether competition incentivizes adoption of "better" algorithms for exploration. We investigate this issue via extensive numerical experiments in a stylized duopoly model. In our model, two firms compete for users, and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. \swedit{The objective of both firms is to maximize the market share ---the fraction of users coming to them.}
 
 
-We consider varying levels of competition, from monopoly to \emph{temporary monopoly} (a duopoly with an early entrant), to a true duopoly in which both firms start at the same time. We find that a ``greedy algorithm" that does not explicitly explore is most beneficial under duopoly. This algorithm also prevails under monopoly simply because it tends to be easier to deploy. Whereas a temporary monopoly incentives more advanced exploration algorithms that perform better in the long run. These findings can be framed in terms of an ``inverted-U relationship" between competition and innovation.
+We consider varying levels of competition, from monopoly to \emph{temporary monopoly} (a duopoly with an early entrant), to a true duopoly in which both firms start at the same time. We find that a ``greedy algorithm" that does not explicitly explore is most beneficial under duopoly. This algorithm also prevails under monopoly simply because it tends to be easier to deploy. Whereas a temporary monopoly incentives more advanced exploration algorithms that perform better in the long run. These findings can be framed in terms of an ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}).
+
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4.0cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+\tikzstyle{below} = [align=center]
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+      \draw[->] (-.5,0) -- (6,0) node[right] {};
+      \draw[->] (0,-.5) -- (0,2) node[above] {Better algorithms};
+      \draw[scale=0.6,domain=0.7:8.3,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{3.4 - 0.2 * (\x - 4.5)^2});
+     \node[below] at (0.7, -0.15) {\footnotesize monopoly};
+     \node[below] at (3, 0) {\footnotesize temporary \\ monopoly};
+     \node[below] at (5, -0.15) {\footnotesize duopoly};
+ \end{tikzpicture}
+ \caption{Inverted-U relationship between different regimes of
+   competition and the incentivized exploration algorithms.}
+\label{fig:inverted-U}
+\end{center}
+\end{figure}
+
+
 
 The disincentives to explore under duopoly arise entirely because of ``reputational cost", rather than R\&D costs (the latter are absent in our model). Our findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. In this scenario, the incumbent firm enjoys both a ``data advantage" and a ``reputational advantange". We further investigate which of the two is a stronger barrier to entry. \ascomment{and find what? and what's the new intuition?}
 
@@ -398,3 +421,8 @@ Though the setup is purely experimental, it is nonetheless interesting to look a
 \bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
 \bibliographystyle{aaai}
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
