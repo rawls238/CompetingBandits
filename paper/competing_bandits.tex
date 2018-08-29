@@ -63,7 +63,7 @@
 
 \begin{document}
 
-\title{Learning and Reputation under Monopoly and Duopoly: \\A Competing Bandits Approach}
+%\title{Learning and Reputation under Monopoly and Duopoly: \\A Competing Bandits Approach}
 
 \title{Competing Bandits: Exploration and Competition under Duopoly}
 
@@ -139,7 +139,7 @@ Our findings on temporary monopoly shed light on the ``first-mover advantage" ph
 
 
 \subsection{Discussion and related work}
-Our work is related to a longstanding economics literature on the interplay between competition and innovation, \eg \cite{Schumpeter-42,barro2004economic,aghion2005competition}. While this literature focuses on R\&D costs of innovation, ``reputational costs" thereof seem new and specific to exploration.
+Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" thereof seem new and specific to exploration.
 
 Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, \eg see \cite{Bubeck-survey12} for background. We consider a simple and well-understood MAB model with i.i.d. rewards. We focus on a (well-known) distinction between the ``greedy" (exploitation-only) algorithm, "naive" exploration algorithms that separate exploration and exploitation, and more sophisticated algorithms that combine the two.
 
@@ -186,7 +186,7 @@ Note $t_j$ is the \textit{local} time of the firm, not the global time, so the r
 
 \noindent \textbf{MAB algorithms} We suppose that firms commit to a learning algorithm from a fixed set of algorithms $\mathcal{A}$. We partition the set of possible learning algorithms into three different types of learning algorithms and restrict $\mathcal{A}$ to contain a representative each algorithm from each class:
 \begin{enumerate}
-\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward \cite{agrawal2012analysis}.
+\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward \cite{Shipra-colt12}.
 \item "Naive" algorithms that engage in non-adaptive exploration algorithms and separate exploration and exploitation. We consider $Dynamic$ $\epsilon$-$greedy$ (from hereon $\DEG$) from this class, which, in a given period, pulls the arms with the highest posterior mean for $1 - \epsilon$ probability and selects a random arm with $\epsilon$ probability. For our experiments we keep $\epsilon = 0.05$ fixed.
 \item Greedy / myopic algorithms that engage in no purposeful exploration and take the best short-sighted action. We consider $DynamicGreedy$ (from hereon $DG$) from this class, which, in a given period, pulls the arm with the highest posterior mean.
 \end{enumerate}
@@ -237,7 +237,7 @@ Figure \ref{prelim_means} shows that the mean reputation ordering is as we would
 \end{finding}
 
 
-Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $\DEG$ have a bi-modal reputation distribution whereas $\TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $\TS$ or $\DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \cite{mansour2018competing}}.
+Is looking at the mean performance of between two algorithms sufficient for understanding what happens in competition? To answer this, we first look at the entire reputation distribution at $t = 500$ in Figure \ref{rep_dist_nih}. We see that the ``naive" algorithms $DG$ and $\DEG$ have a bi-modal reputation distribution whereas $\TS$ does not. The intuition for this is that, for Needle In Haystack, $DG$ either finds the best arm or not. If it does, then since it engages in no purposeful exploration it will do better than any algorithm that engages in purposeful exploration over sufficiently many rounds. However, if it does not then it will get stuck on a bad arm and lose to $\TS$ or $\DEG$. In these cases its reputation may be substantially worse but for the competition game the relative comparison between them is all that matters \footnote{This holds for our model and the decision rule of the agents, though the absolute difference may matter if, for instance, we consider the SoftMax decision rule in \cite{CompetingBandits-itcs16}}.
 
 To better capture the comparison between two algorithms we explicitly plot the distribution of the reputation difference between $\TS$ and $DG$. This figure seems to confirm the intuition noted previously since the reputation distribution has its largest mass around the point just below 0 but it is skewed to the right even as $t$ gets large. Given the skewedness of the distribution, the mean is not a representative statistic of the entire reputation difference distribution. There are alternative statistics that we could consider such as the median or numerically calculating $\Pr(reputation(TS) - reputation(DG)) > 0$ using the estimated density, but instead we define a simple and natural statistic to help us reason about what happens under competition, the \textit{relative reputation proportion}.
 
@@ -281,7 +281,7 @@ Is exploration always costly? Figure \ref{relative_rep_plots} also shows that fo
 
 \section{Competition vs Better Algorithms: Inverted-U}\label{section:5}
 
-In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \cite{aghion2005competition}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
+In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \cite{Aghion-QJE05}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
 
 \begin{finding}
 \textit{Under the priors that are relative reputation costly and with low warm start, the optimal strategies in the competition game are:
