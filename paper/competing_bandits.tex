@@ -139,7 +139,7 @@ Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between ex
 The study of competition vs. exploration has been initiated in \cite{CompetingBandits-itcs16}. Their model differs from ours in two key respects. First, users do not see any signal about firms' past performance, and instead choose between firms according to the Bayesian-expected reward. Second, they vary the strength of competition using assumptions about (ir)rational consumer behavior, whereas we use early entry. Their results are purely theoretical; their model is amenable to proofs but not to numerical experiments.
 
 The interplay between exploration, exploitation and incentives has been studied in other scenarios: incentivizing exploration in a recommendation system
-    \cite{Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17},
+    \cite{Frazier-ec14,Kremer-JPE14,Che-13,ICexploration-ec15,Bimpikis-exploration-ms17},
 dynamic auctions
     \cite{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
 pay-per-click ad auctions 
@@ -148,7 +148,7 @@ and human computation
     \cite{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
 
 \OMIT{ %%%%%%
-The interplay between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \citealt*{che2017recommender}, \citealt*{kremer2014implementing}, \citealt*{mansour2015bayesian}. The strategic experimentation literature in economics, such as \citealt*{bolton1999strategic} and \citealt*{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
+The interplay between exploration, exploitation, and incentives has been studied in several other settings, the most relevant to this paper being \cite{che2017recommender}, \cite{kremer2014implementing}, \cite{mansour2015bayesian}. The strategic experimentation literature in economics, such as \cite{bolton1999strategic} and \cite{keller2005strategic}, studies models with self-interested agents jointly performing exploration whereas in this paper the firms cannot observe the actions or the payoffs of the other firms and exploration is coordinated by the consumers.
 } %%%%%%%%
 
 Our setting is also closely related to the "dueling algorithms" framework \cite{DuelingAlgs-stoc11}, but this framework considers offline / full feedback scenarios whereas we focus on online machine learning problems.
@@ -377,7 +377,7 @@ Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas 
 
 \section{Data and Reputation as Barriers to Entry}\label{section:6}
 
-An alternative interpretation of the results in the previous section is that the "temporary monopoly" provides a first mover advantage to the incumbent firm and that this first mover advantage allows the firm to both get a data advantage as well as a reputational advantage over the entrant. This provides an alternative interpretation of the classic "first mover advantage" that has been well-studied in economics and marketing \cite*{kerin1992first} where, in our model, an incumbent can use data and reputation as a barrier to entry simply due to the fact that they were in the market before the entrant. Which plays a bigger role in preventing the entrant from being able to establish market share? We run two additional experiments, modifying the previous temporary monopoly experiment so that in one experiment the reputation of the incumbent is artificially erased (Reputation Erased Experiment) and another in which the information gained by the incumbent is artificially erased so that the posterior is reset to the prior (Information Erased Experiment).
+An alternative interpretation of the results in the previous section is that the "temporary monopoly" provides a first mover advantage to the incumbent firm and that this first mover advantage allows the firm to both get a data advantage as well as a reputational advantage over the entrant. This provides an alternative interpretation of the classic "first mover advantage" that has been well-studied in economics and marketing \cite{kerin1992first} where, in our model, an incumbent can use data and reputation as a barrier to entry simply due to the fact that they were in the market before the entrant. Which plays a bigger role in preventing the entrant from being able to establish market share? We run two additional experiments, modifying the previous temporary monopoly experiment so that in one experiment the reputation of the incumbent is artificially erased (Reputation Erased Experiment) and another in which the information gained by the incumbent is artificially erased so that the posterior is reset to the prior (Information Erased Experiment).
 
 \begin{table}[ht]
 \centering
