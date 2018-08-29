@@ -166,14 +166,14 @@ Our setting is also closely related to the "dueling algorithms" framework \cite{
 \item Repeat 2-4 for $T$ rounds.
 \end{enumerate}
 
-Generally, the rewards are independent and identically distributed with a common prior.  For computational tractability we restrict our focus to Bernoulli-distributed rewards with Beta priors. Each firm faces a multi-armed bandit problem with no initial information \footnote{For algorithms that require a prior to operate, such as Thompson Sampling, we use a "fake" prior of $Beta(\alpha=1,\beta=1)$}. We assume that the firms commit to a multi-armed bandit learning algorithm at the start of the world and that there are no informational spillovers from their competitors so that they can only learn from the agents that select them.
+Generally, the rewards are independent and identically distributed with a common prior.  For computational tractability we restrict our focus to Bernoulli-distributed rewards with Beta priors. Each firm faces a multi-armed bandit problem with no initial information \footnote{For algorithms that require a prior to operate, such as Thompson Sampling, we use a "fake" prior of $Beta(\alpha=1,\beta=1)$}. We assume that the firms commit to a multi-armed bandit learning algorithm at the start of the world and that there are no informational spillovers from their competitors so that they can only learn from the agents that select them.\swcomment{this seems misleading and should not be here. just say that each action has bernouli rewards with unknown means}
 
 \noindent \textbf{Agents} We suppose that agents are homogenous, myopic, and non-strategic. The utility function for the agents is simply to maximize their reward in the one period in which they are alive. We suppose that agents do not attempt to manipulate the strategy of the firm, do not take the strategies of the firm into account when choosing between the firms, and do not condition their behavior on calendar time. In our model, each agent uses the average reward of past agents as a proxy for their expected utility. For simplicity, the reputation score, $R_{jt}$ is defined as a sliding window average\footnote{Another natural formulation would be to have exponential discounting of the past rewards. We believe that the results should be qualitatively similar to those presented here as in both formulations the more recent past matters more than the distant past.}.
 \begin{center}
 $R_{jt} = \frac{1}{M} \sum\limits_{i=1}^{M} r_{t_j-i}$
 \end{center}
 
-Note $t_j$ is the \textit{local} time of the firm, not the global time, so the reputation score is the sliding window average of the last $M$ times that firm $j$ was selected by the agents. The warm start of $k$ rounds allows this reputation score to be well-defined once the "competition game" begins. In our model the agents deterministically choose the firm with the higher reputation score and ties are broken uniformly at random.
+Note $t_j$ is the \textit{local} time of the firm, not the global time, so the reputation score is the sliding window average of the last $M$ times that firm $j$ was selected by the agents.\swcomment{define ``calendar time'' and ``local time'' formally... don't think the current reputation defn makes sense} The warm start of $k$ rounds allows this reputation score to be well-defined once the "competition game" begins. In our model the agents deterministically choose the firm with the higher reputation score and ties are broken uniformly at random.
 
 \noindent \textbf{Firms} We suppose that the firms simply care about maximizing their expected market share (i.e. maximizing the number of $T$ agents who select them). We model the "competition game" between firms as a simultaneous move game where both firms commit to a learning algorithm at $t = 0$.
 
@@ -190,9 +190,9 @@ In the standard multi-armed bandit problem it is known that $\TS > \DEG > DG$ in
 
 \section{Simulation Details}\label{section:3}
 
-We evaluate the consequences of our model via simulation.
+We evaluate the consequences of our model via simulation.\swcomment{In the process of removing ``prior'' throughout}
 
-\textbf{Bandit Priors} We look at bandit instances drawn from three different bandit "priors" that are different types of learning problems. Recall that we only consider Bernoulli-distributed arms and so we draw the true means of the arms from these priors. For these experiments we fix the number of arms we consider, $K = 10$.
+\textbf{Bandit Instances} We look at bandit instances drawn from three different bandit \swedit{distributions} that capture different types of learning problems. Recall that we only consider Bernoulli rewards, which are fully parameterized by the means. For these experiments we fix the number of arms we consider, $K = 10$.
 \begin{enumerate}
 \item Needle In Haystack - $K-1$ arms with mean 0.5 and 1 arm with 0.7.
 \item Uniform - the $K$ arms have means drawn uniformly at random from $[0.25, 0.75]$
