@@ -65,7 +65,9 @@
 
 %\title{Learning and Reputation under Monopoly and Duopoly: \\A Competing Bandits Approach}
 
-\title{Competing Bandits: Exploration and Competition under Duopoly}
+%\title{Competing Bandits: Exploration and Competition under Duopoly}
+
+\title{Competing Bandits: The Perils of Exploration under Competition}
 
 
 %\author{Guy Aridor\textsuperscript{1}, Kevin Liu\textsuperscript{2}, Aleksandrs Slivkins\textsuperscript{3},
@@ -141,16 +143,18 @@ Our findings on temporary monopoly shed light on the ``first-mover advantage" ph
 \subsection{Discussion and related work}
 Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" thereof seem new and specific to exploration.
 
-Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, \eg see \cite{Bubeck-survey12} for background. We consider a simple and well-understood MAB model with i.i.d. rewards. We focus on a (well-known) distinction between the ``greedy" (exploitation-only) algorithm, "naive" exploration algorithms that separate exploration and exploitation, and more sophisticated algorithms that combine the two.
+Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, see \cite{Bubeck-survey12} for background. We consider a simple and well-understood MAB model with i.i.d. rewards \cite{bandits-ucb1}. We focus on a well-known distinction between the ``greedy" (exploitation-only) algorithm, "naive" MAB  algorithms that separate exploration and exploitation, and better MAB algorithms that combine the two. As a token example of ``near-optimal" bandit algorithms, 
+we use a classic algorithm called ``Thompson Sampling", see \cite{TS-survey-FTML18} for background.
 
 The study of competition vs. exploration has been initiated in \cite{CompetingBandits-itcs16}. Their model differs from ours in two key respects. First, users do not see any signal about firms' past performance, and instead choose between firms according to the Bayesian-expected reward. Second, they vary the strength of competition using assumptions about (ir)rational consumer behavior, whereas we use early entry. Their results are purely theoretical; their model is amenable to proofs but not to numerical experiments.
 
 The interplay between exploration, exploitation and incentives has been studied in other scenarios: incentivizing exploration in a recommendation system
     \cite{Frazier-ec14,Kremer-JPE14,Che-13,ICexploration-ec15,Bimpikis-exploration-ms17},
 dynamic auctions
-    \cite{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
-pay-per-click ad auctions
-    \cite{MechMAB-ec09,DevanurK09,Transform-ec10-jacm},
+    (see \cite{DynAuctions-survey10} for background),
+pay-per-click auctions
+    \cite{MechMAB-ec09,DevanurK09,Transform-ec10-jacm}
+%\cite{Amin-auctions-nips13,Jieming-ec18},
 and human computation
     \cite{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
 
@@ -186,7 +190,7 @@ Note $t_j$ is the \textit{local} time of the firm, not the global time, so the r
 
 \noindent \textbf{MAB algorithms} We suppose that firms commit to a learning algorithm from a fixed set of algorithms $\mathcal{A}$. We partition the set of possible learning algorithms into three different types of learning algorithms and restrict $\mathcal{A}$ to contain a representative each algorithm from each class:
 \begin{enumerate}
-\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward \cite{Shipra-colt12}.
+\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward %\cite{Shipra-colt12}.
 \item "Naive" algorithms that engage in non-adaptive exploration algorithms and separate exploration and exploitation. We consider $Dynamic$ $\epsilon$-$greedy$ (from hereon $\DEG$) from this class, which, in a given period, pulls the arms with the highest posterior mean for $1 - \epsilon$ probability and selects a random arm with $\epsilon$ probability. For our experiments we keep $\epsilon = 0.05$ fixed.
 \item Greedy / myopic algorithms that engage in no purposeful exploration and take the best short-sighted action. We consider $DynamicGreedy$ (from hereon $DG$) from this class, which, in a given period, pulls the arm with the highest posterior mean.
 \end{enumerate}
