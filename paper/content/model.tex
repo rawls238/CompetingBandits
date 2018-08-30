@@ -41,7 +41,7 @@ For concreteness, we fix one algorithm from each class. Our pilot experiments in
 
 For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
 
-Both \DEG and \TS are classic MAB algorithms, see \cite{Bubeck-survey12,TS-survey-FTML18} for background. It is well-known that \TS is near-optimal in terms of the cumulative rewards, and \DEG is very suboptimal, but still much better than \DG.%
+Both \DEG and \TS are classic and well-understood MAB algorithms, see \cite{Bubeck-survey12,TS-survey-FTML18} for background. It is well-known that \TS is near-optimal in terms of the cumulative rewards, and \DEG is very suboptimal, but still much better than \DG.%
 \footnote{Formally, \TS achieves regret 
     $\tilde{O}(\sqrt{TK})$ and
     $O(\tfrac{1}{\Delta} \log T)$,
