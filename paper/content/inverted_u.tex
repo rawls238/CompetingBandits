@@ -1,0 +1,107 @@
+\documentclass[../competing_bandits.tex]{subfiles}
+\begin{document}
+
+\section{Competition vs Better Algorithms: Inverted-U}\label{section:5}
+
+In this section we document our main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \cite{Aghion-QJE05}. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
+
+\begin{finding}
+\textit{Under the priors that are relative reputation costly and with low warm start, the optimal strategies in the competition game are:
+\begin{center}
+\textbf{Permanent Monopoly} - $DG$ \\
+\textbf{Temporary Monopoly} - $\TS$ \\
+\textbf{Permanent Duopoly} - $DG$ \\
+\end{center}
+The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.
+}
+\end{finding}
+
+We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in "market power" as decreases in the number of rounds where a firm has to compete for agents.
+
+We utilize the same instances and realizations as in the section 4 and simulate the model described in section 2. We initially take the strategies of the firms as exogenous (chosen from $\mathcal{A}$) and simulate the model given these strategies in order to determine the expected payoffs associated with each pair of algorithms. Unless otherwise noted, all the results are reported at $t = 2000$.
+
+\textbf{Permanent Monopoly} Under permanent monopoly only a single firm exists in the market for every period. Since, in our formulation, the firm only gets utility from a larger market share it is indifferent between each algorithm in $\mathcal{A}$ since, regardless of the algorithm it deploys, it will get the entire market. If we suppose that deploying the "better" algorithms has even an $\epsilon > 0$ cost, then the firm would choose to deploy $DG$.
+
+\textbf{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $k$. Additionally, we report the mean and median of an additional quantity which we define as the effective end of game.
+
+\begin{definition}
+\textit{Effective End of Game (EEOG)} - the last round, $t$, in a simulation where the agent alive at $t-1$ and the agent alive at $t$ choose different firms.
+\end{definition}
+
+Since both firms enter at the same time the game is symmetric and we only need to compute the payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50.
+
+\begin{finding}
+\textit{For low warm starts, when exploration is relative reputation costly $DG >TS$ in competition, whereas when exploration is not relative reputation costly $\TS > DG$. For sufficiently large warm starts, $\TS$ is dominant across all priors.}
+\end{finding}
+
+Table \ref{sim_unif} shows the results under the Uniform prior. For the low values of the warm start we can see that $DG > TS$, but that for larger warm starts, $\TS > DG$ \footnote{The same results hold for the Heavy Tail prior and are reported in the supplemental material}. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $k$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $k$. The intuition for the result in competition aligns with the fact that, for Uniform and Heavy Tail, $\TS$ is relative reputation costly compared to $DG$ and so, for low warm starts, $\TS$ has not yet recovered from the relative reputation loss due to purposeful exploration and so $DG$ beats $\TS$. However, if we move the warm start sufficiently high so that $\TS$ moves to the relative reputation benefit regime, $\TS > DG$.
+
+However, we do not always see that $DG > TS$ under some warm starts. Table \ref{sim_nih} shows the results for the Needle In Haystack prior where we see that $\TS > DG$. This is precisely due to the fact that, under the Needle In Haystack, $\TS$ is not relative reputation costly compared to $DG$ and thus we see that $\TS > DG$.
+
+
+Combining these results with the fact that the EEOG values are relatively low across all warm starts \footnote{Interestingly, the EEOG also appears to be skewed to the right, similar to the distribution of reputation differences}, these observations seem to imply that understanding the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotically.
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Thu Aug 16 13:13:01 2018
+\begin{table}[ht]
+\centering
+\caption{Duopoly Experiment Uniform}
+\begin{tabular}{rlll}
+  \hline
+ & k = 20 & k = 250 & k = 500 \\
+  \hline
+TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \makecell{\textbf{0.52} $\pm$0.02\\ eeog \\ avg: 800\\ med: 754} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 910\\ med: 906.5} \\
+  TS vs DEG & \makecell{\textbf{0.41} $\pm$0.03\\ eeog \\ avg: 180\\ med: 0} & \makecell{\textbf{0.51} $\pm$0.02\\ eeog \\ avg: 810\\ med: 734} & \makecell{\textbf{0.55} $\pm$0.02\\ eeog \\ avg: 970\\ med: 987} \\
+  DG vs DEG & \makecell{\textbf{0.51} $\pm$0.03\\ eeog \\ avg: 470\\ med: 57.5} & \makecell{\textbf{0.48} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1088} & \makecell{\textbf{0.45} $\pm$0.02\\ eeog \\ avg: 1000\\ med: 1142} \\
+   \hline
+\end{tabular}
+\label{sim_unif}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Duopoly Experiment Needle In Haystack}
+\begin{tabular}{rlll}
+  \hline
+ & k = 20 & k = 250 & k = 500 \\
+  \hline
+TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\
+  TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\
+  DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\
+   \hline
+\end{tabular}
+\label{sim_nih}
+\caption*{\tiny{The first line in each cell contains the average market share received by the firm playing Alg 1 (and the market share of Alg 2 is 1 - Alg 1 Market Share) as well as a 95 \% confidence band. For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. The next line contain the average and median effective end of game for this set of simulations.}}
+\end{table}
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Thu Aug 16 13:13:00 2018
+
+\textbf{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to varying the value of $X$. For this section we report results fixing $k = 20$ and focus on the priors where we observed that, for this warm start, $DG > TS$ \footnote{However, we report the results for the Needle In Haystack prior in the supplementary material. The results are unsurprising, where $\TS$ is the dominant strategy for both the entrant and incumbent.}. It seems clear that the temporary monopoly will get a larger market share regardless of what algorithm it plays, but is the incumbent incentivized to commit to $\TS$?
+
+\begin{finding}
+\textit{Counterintuitively, allowing one firm to be a temporary monopolist for a sufficiently long time will induce that firm to commit to the better learning algorithm, $\TS$, even if, under the permanent duopoly, they would commit to $DG$}
+\end{finding}
+
+In table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $DG$ is the dominant strategy for the entrant on the Heavy Tail prior \footnote{The result for the Uniform is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$. However, while $DG > TS$ for the entrant, $DG$ does roughly the same as $\DEG$ on the Uniform prior. The results are in the supplementary material.}. In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across priors.
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Wed Aug 15 19:03:20 2018
+\begin{table}[ht]
+\centering
+\caption{Temporary Monopoly Heavy Tail X = 200}
+\begin{tabular}{rlll}
+  \hline
+ & TS & DEG &  DG \\
+  \hline
+TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\textbf{0.083} $\pm$0.02\\Var:0.07\\ES:97\%} & \makecell{\textbf{0.17} $\pm$0.02\\Var:0.1\\ES:95\%} \\
+  DEG & \makecell{\textbf{0.045} $\pm$0.01\\Var:0.03\\ES:92\%} & \makecell{\textbf{0.25} $\pm$0.02\\Var:0.1\\ES:75\%} & \makecell{\textbf{0.23} $\pm$0.02\\Var:0.1\\ES:78\%} \\
+   DG & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:88\%} & \makecell{\textbf{0.36} $\pm$0.03\\Var:0.2\\ES:76\%} & \makecell{\textbf{0.3} $\pm$0.02\\Var:0.1\\ES:64\%} \\
+   \hline
+\end{tabular}
+\label{ht_incum}
+\caption*{\tiny{The columns represent the strategy of the incumbent and the rows represent the strategy of the entrant. The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting $> 90\%$ of the market. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to firm 2 do not count towards the share)}}
+\end{table}
+
+Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same other conditions, $DG$ was preferred to $\TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. This intuition is very similar to that observed in the previous section by increasing warm start. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the "incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration. Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $\TS$.
+
+\end{document}
