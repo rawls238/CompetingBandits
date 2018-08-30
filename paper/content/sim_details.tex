@@ -1,21 +1,26 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\section{Simulation Details}\label{section:3}
+%\subsubsection{Simulation details.}
+%\label{section:3}
 
-We evaluate the consequences of our model via simulation.\swcomment{In the process of removing ``prior'' throughout}
-
-\textbf{Bandit Instances} We look at bandit instances drawn from three different bandit \swedit{distributions} that capture different types of learning problems. Recall that we only consider Bernoulli rewards, which are fully parameterized by the means. For these experiments we fix the number of arms we consider, $K = 10$.
+\subsubsection{MAB instances.} We consider several representative instances of the MAB problem, hencenforth \emph{MAB instances}. In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, a problem instance is specified by the mean reward $\mu(a)$ of each arm $a$. The mean rewards are chosen initially from some distribution, as specified below:
 \begin{enumerate}
-\item Needle In Haystack - $K-1$ arms with mean 0.5 and 1 arm with 0.7.
-\item Uniform - the $K$ arms have means drawn uniformly at random from $[0.25, 0.75]$
-\item "Heavy Tail" - the $K$ arms have means drawn from $Beta(\alpha=0.6, \beta = 0.6)$. With this prior it was likely to have means at the "extremes" or means that were close to 0 as well as means that were close to 1.
+\item \emph{Needle In Haystack}: one arm (the ``needle") is chosen uniformly at random. This arm has mean reward $.7$, and the remaining ones have mean reward $.5$.
+
+\item \emph{Uniform instance}: the mean reward of each arm is drawn independently and uniformly from $[0.25, 0.75]$.
+\item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution.%
+    \footnote{This distribution has substantial ``tail probabilities".}
 \end{enumerate}
 
-\noindent \textbf{Simulation of Competition Game} Unless otherwise noted, all of the reported results utilize the same set of randomly drawn bandit instances and realizations from the prior. Namely, for each bandit prior we draw $N = 1000$ bandit instances. For each of these instances we run simulations of our model for varying values of $k$ and $X$. We take the maximum values of $k$ and $X$ for the simulations we run, $k_{max}$ and $X_{max}$ respectively, and compute a realization table of dimension $(T+k_{max}+X_{max}) \times K$.
+A particular realization of the mean rewards of the arms is called a \emph{realized} MAB instance. (Note that the actual rewards are still drawn stochastically.)
 
-This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.
+\subsubsection{Simulation details.} For each MAB instance we draw $N = 1000$ realized MAB instances. For each of these $N$ instances we simulate our model for varying values of $T_0$ and $X$. Taking the maximum values of these parameters to be $T_0^{\max}$ and $X^{\max}$. resp., we compute the table of realized rewards (\emph{realization table}) of dimension $(T+T_0^{\max}+X^{\max}) \times K$. Rows of this table correspond to rounds, and columns correspond to arms. For each cell in column $a$, we draw the reward independently from Bernoulli distribution with expectation $\mu(a)$. We use the same table to specify realized rewards for all algorithms and all experiments on this realized MAB instance. This ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game, we use the last $T$ rows of the table, for consistency if we vary $T_0$ and $X$.
 
-For the simulations we fix the sliding window size $M = 100$. Low values of $M$ induced too much random noise into the results and we found that increasing $M$ to be larger than $100$ did not make a substantial qualitative difference so we fix this value.
 
-\end{document}
+
+\OMIT{This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.}
+
+We fix the sliding window size $M = 100$. We found that low values of $M$ induced too much random noise into the results, and further increasing $M$ did not make a substantial qualitative difference.
+
+\end{document} 
