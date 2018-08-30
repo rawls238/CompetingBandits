@@ -1,7 +1,7 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\section{Model}\label{sec:model}
+\section{Model and Preliminaries}\label{sec:model}
 
 %\textbf{Overview} 
 We consider a game involving two firms and $T$ customers (henceforth, \emph{agents}). The game lasts for $T$ rounds. In each round, a new agent arrives, chooses among the two firms, interacts with the chosen firm, and leaves forever. 
@@ -12,27 +12,39 @@ From each firm's perspective, the interactions with agents follow the protocol o
 
 Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that show up before the game starts, and interact with the firm in the same way as described above.
 
+In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"). Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$. 
+
+
 \subsubsection{Agents.}
 Agents are myopic and non-strategic: they choose among the firms so as to maximize their expected reward, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
 
 Concretely, each firm has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
 
-\subsubsection{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated and better-performing. For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen.
-
-STOPPED HERE.
+\subsubsection{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated: 
 
 \begin{enumerate}
-\item \emph{Greedy} algorithms that strive to take actions with maximal mean reward, based on the current information. 
-
-do not do explicit exploration. engage in no purposeful exploration and take the best short-sighted action. We consider $DynamicGreedy$ (from hereon $DG$) from this class, which, in a given period, pulls the arm with the highest posterior mean.
-
-
-\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward.
-\item "Naive" algorithms that engage in non-adaptive exploration algorithms and separate exploration and exploitation. We consider $Dynamic$ $\epsilon$-$greedy$ (from hereon $\DEG$) from this class, which, in a given period, pulls the arms with the highest posterior mean for $1 - \epsilon$ probability and selects a random arm with $\epsilon$ probability. For our experiments we keep $\epsilon = 0.05$ fixed.
+\item \emph{Greedy algorithms} that strive to take actions with maximal mean reward, based on the current information. 
+    
+\item \emph{Exploration-separating algorithms} that separate exploration and exploitation. The ``exploitation" choices strives to maximize mean reward in the next round, and the ``exploration" choices do not use the rewards observed so far.
+\item \emph{Adaptive exploration}: algorithms that combine exploration and exploitation, and sway the exploration choices towards more promising alternatives.
 \end{enumerate}
 
-In the standard multi-armed bandit problem it is known that $\TS > \DEG > DG$ in terms of maximizing cumulative reward over a sufficiently large time horizon. The primary question that we want to understand is when, in competition, are the firms incentivized to adopt the "better" algorithms?
+For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen. For technical reasons, we consider Bayesian versions initialized with a ``fake" prior (\ie not based on actual knowledge). We consider: 
 
-\noindent \textbf{Incumbent} In some of our experiments we modify our model so that one firm enters the market $X$ number of rounds before the other. We refer to the firm that enters before as the "incumbent" and the firm that enters after $X$ rounds as the "entrant." In the $X$ rounds before the "entrant" enters the incumbent is a temporary monopolist as the agents that arrive in these $X$ rounds are forced to select the incumbent since it is the only firm in the market and there is no outside option. We treat $X$ as being an exogenous element of the model and study the consequences for a fixed $X$. We have that both the incumbent and entrant commit to a learning algorithm \textit{before} either firm receives any agent. After the $X$ rounds, both firms still receive the $T_0$ warm start agents.
+\begin{enumerate}
+\item a greedy algorithm that chooses an arm with largest posterior mean reward. We call it "Dynamic Greedy" (because the chosen arm may change over time), \DG in short.
+
+\item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.
+    
+\item an adaptive-exploration algorithm called "Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
+\end{enumerate}
+
+For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a Beta(1,1) distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+
+Both \DEG and \TS are classic MAB algorithms, see \cite{Bubeck-survey12,TS-survey-FTML18} for background. It is well-known that \TS is near-optimal in terms of the cumulative rewards, and \DEG is very suboptimal, but still much better than \DG.%
+\footnote{Precise formulations, namely upper/lower bound on \emph{regret} of the three algorithms, are not very relevant to this paper.} In a formula:
+    $ \TS \gg \DEG \gg \DG $
+as stand-alone MAB algorithms.
+
 
 \end{document} 
