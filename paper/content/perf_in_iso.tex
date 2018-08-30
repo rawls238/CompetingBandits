@@ -1,9 +1,13 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\section{Performance in Isolation}\label{section:4}
+\section{Algorithms' Performance in Isolation}\label{section:4}
 
-We evaluate the performance of the different learning algorithms on the bandit priors we consider in isolation. There are two reasons why this is important to consider. First, we want to confirm that the reputation ordering of the algorithms is what we would expect according to the multi-armed bandit literature where, according to the mean reputation, $\TS > \DEG > DG$ for sufficiently large $t$. Second, we want to better understand what statistics of the priors we can look at in isolation in order to help us predict and understand what to expect in the competition game.
+We start with a pilot experiment in which we investigate each algorithm's performance "in isolation": in a stand-alone bandit problem without the competition. 
+
+STOPPED HERE.
+
+First, we want to confirm that the reputation ordering of the algorithms is what we would expect according to the multi-armed bandit literature where, according to the mean reputation, $\TS > \DEG > DG$ for sufficiently large $t$. Second, we want to better understand what statistics of the priors we can look at in isolation in order to help us predict and understand what to expect in the competition game.
 
 \begin{figure}
 \caption{Mean Reputation Trajectories in Isolation}
@@ -68,4 +72,4 @@ Figure \ref{relative_rep_plots} shows plots of the relative reputation proportio
 \end{definition}
 Is exploration always costly? Figure \ref{relative_rep_plots} also shows that for the Needle In Haystack prior, $\TS$ always does relatively better than $DG$. There are two contributing factors to this. First, $\TS$ identifies the best arm faster in the Needle In Haystack prior than the Uniform prior so that there is a shorter time horizon where $\TS$ needs to engage in purposeful exploration. Second, in the Needle In Haystack prior there are no ``bad" arms as there may be in the Uniform prior since by construction all the arms except one in Needle In Haystack are the same. Thus, when $\TS$ pulls a sub-optimal arm relative to its current information, the expected reward is the same as the greedy option that has not identified the best arm. However, with the Uniform prior, it is possible that the sub-optimal arm that is pulled has substantially lower expected reward relative to the greedy option. Thus, only the Uniform and Heavy Tail priors are relative reputation costly priors.
 
-\end{document}
+\end{document} 
