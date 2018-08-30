@@ -3,36 +3,36 @@
 
 \section{Model}\label{sec:model}
 
-\textbf{Overview} There are two firms and $T+2k$ agents where $k$ is the warm start, or the agents that each firm gets for free at the beginning of the game and $T$ is the number of rounds in the game. The timing of events is as follows:
+%\textbf{Overview} 
+We consider a game involving two firms and $T$ customers (henceforth, \emph{agents}). The game lasts for $T$ rounds. In each round, a new agent arrives, chooses among the two firms, interacts with the chosen firm, and leaves forever. 
+
+Each interaction between a firm and an agent proceeds as follows. There is a set $A$ of $K$ actions, henceforth \emph{arms}, same for both firms and all rounds. The firm chooses an arm, and the agent experiences a numerical reward observed by the firm. Each arm corresponds to a different version of the experience that a firm can provide for an agent, and the reward corresponds to the agent's satisfaction level. The other firm does not observe anything about this interaction, not even the fact that this interaction has happened.
+
+From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. rewards: each reward is drawn independently from a distribution that depends on the chosen arm but not on the firm or the round. For concreteness, each reward is either $0$ or $1$. The mean reward of each action is the same for both firms (and each round), but initially unknown.  
+
+Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that show up before the game starts, and interact with the firm in the same way as described above.
+
+\subsubsection{Agents.}
+Agents are myopic and non-strategic: they choose among the firms so as to maximize their expected reward, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
+
+Concretely, each firm has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
+
+\subsubsection{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated and better-performing. For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen.
+
+STOPPED HERE.
+
 \begin{enumerate}
-\item At $t = 0$, the firms simultaneously commit to following a learning algorithm from a set of algorithms $\mathcal{A}$
-\item Still at $t = 0$ we suppose that each firm gets $k$ agents as a ``warm" start. The algorithm that the firm commits to makes $k$ rounds of progress and uses this information to initialize its information set. Additionally, the reputation score used by the agents is initialized using the rewards from these $k$ rounds.
-\item A new agent arrives each round (and lives for only one round), starting at $t = 1$, and chooses the firm with the higher reputation at the time.
-\item The firm that is chosen selects an action $a_{t} \in A$ from a set of actions that is fixed across firms and rounds.
-\item Both the agent and the firm observe the reward $r_t \in [0, 1]$ from the action. The agent reports this reward to the firm and the future agents and the reputation score for the chosen firm is updated.
-\item Repeat 2-4 for $T$ rounds.
-\end{enumerate}
+\item \emph{Greedy} algorithms that strive to take actions with maximal mean reward, based on the current information. 
 
-Generally, the rewards are independent and identically distributed with a common prior.  For computational tractability we restrict our focus to Bernoulli-distributed rewards with Beta priors. Each firm faces a multi-armed bandit problem with no initial information \footnote{For algorithms that require a prior to operate, such as Thompson Sampling, we use a "fake" prior of $Beta(\alpha=1,\beta=1)$}. We assume that the firms commit to a multi-armed bandit learning algorithm at the start of the world and that there are no informational spillovers from their competitors so that they can only learn from the agents that select them.\swcomment{this seems misleading and should not be here. just say that each action has bernouli rewards with unknown means}
+do not do explicit exploration. engage in no purposeful exploration and take the best short-sighted action. We consider $DynamicGreedy$ (from hereon $DG$) from this class, which, in a given period, pulls the arm with the highest posterior mean.
 
-\noindent \textbf{Agents} We suppose that agents are homogenous, myopic, and non-strategic. The utility function for the agents is simply to maximize their reward in the one period in which they are alive. We suppose that agents do not attempt to manipulate the strategy of the firm, do not take the strategies of the firm into account when choosing between the firms, and do not condition their behavior on calendar time. In our model, each agent uses the average reward of past agents as a proxy for their expected utility. For simplicity, the reputation score, $R_{jt}$ is defined as a sliding window average\footnote{Another natural formulation would be to have exponential discounting of the past rewards. We believe that the results should be qualitatively similar to those presented here as in both formulations the more recent past matters more than the distant past.}.
-\begin{center}
-$R_{jt} = \frac{1}{M} \sum\limits_{i=1}^{M} r_{t_j-i}$
-\end{center}
 
-Note $t_j$ is the \textit{local} time of the firm, not the global time, so the reputation score is the sliding window average of the last $M$ times that firm $j$ was selected by the agents.\swcomment{define ``calendar time'' and ``local time'' formally... don't think the current reputation defn makes sense} \gacomment{yea, good point. Should define local time formally} The warm start of $k$ rounds allows this reputation score to be well-defined once the "competition game" begins. In our model the agents deterministically choose the firm with the higher reputation score and ties are broken uniformly at random.
-
-\noindent \textbf{Firms} We suppose that the firms simply care about maximizing their expected market share (i.e. maximizing the number of $T$ agents who select them). We model the "competition game" between firms as a simultaneous move game where both firms commit to a learning algorithm at $t = 0$.
-
-\noindent \textbf{MAB algorithms} We suppose that firms commit to a learning algorithm from a fixed set of algorithms $\mathcal{A}$. We partition the set of possible learning algorithms into three different types of learning algorithms and restrict $\mathcal{A}$ to contain a representative each algorithm from each class:
-\begin{enumerate}
-\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward \cite{Shipra-colt12}.
+\item "Smart" algorithms that engage in adaptive exploration and combine exploration and exploitation. We consider Thompson Sampling (from hereon $\TS$) from this class, which, in a given period, will pull an arm according to the probability that that arm is "optimal" in the sense of having the highest mean reward.
 \item "Naive" algorithms that engage in non-adaptive exploration algorithms and separate exploration and exploitation. We consider $Dynamic$ $\epsilon$-$greedy$ (from hereon $\DEG$) from this class, which, in a given period, pulls the arms with the highest posterior mean for $1 - \epsilon$ probability and selects a random arm with $\epsilon$ probability. For our experiments we keep $\epsilon = 0.05$ fixed.
-\item Greedy / myopic algorithms that engage in no purposeful exploration and take the best short-sighted action. We consider $DynamicGreedy$ (from hereon $DG$) from this class, which, in a given period, pulls the arm with the highest posterior mean.
 \end{enumerate}
 
 In the standard multi-armed bandit problem it is known that $\TS > \DEG > DG$ in terms of maximizing cumulative reward over a sufficiently large time horizon. The primary question that we want to understand is when, in competition, are the firms incentivized to adopt the "better" algorithms?
 
-\noindent \textbf{Incumbent} In some of our experiments we modify our model so that one firm enters the market $X$ number of rounds before the other. We refer to the firm that enters before as the "incumbent" and the firm that enters after $X$ rounds as the "entrant." In the $X$ rounds before the "entrant" enters the incumbent is a temporary monopolist as the agents that arrive in these $X$ rounds are forced to select the incumbent since it is the only firm in the market and there is no outside option. We treat $X$ as being an exogenous element of the model and study the consequences for a fixed $X$. We have that both the incumbent and entrant commit to a learning algorithm \textit{before} either firm receives any agent. After the $X$ rounds, both firms still receive the $k$ warm start agents.
+\noindent \textbf{Incumbent} In some of our experiments we modify our model so that one firm enters the market $X$ number of rounds before the other. We refer to the firm that enters before as the "incumbent" and the firm that enters after $X$ rounds as the "entrant." In the $X$ rounds before the "entrant" enters the incumbent is a temporary monopolist as the agents that arrive in these $X$ rounds are forced to select the incumbent since it is the only firm in the market and there is no outside option. We treat $X$ as being an exogenous element of the model and study the consequences for a fixed $X$. We have that both the incumbent and entrant commit to a learning algorithm \textit{before} either firm receives any agent. After the $X$ rounds, both firms still receive the $T_0$ warm start agents.
 
-\end{document}
+\end{document} 
