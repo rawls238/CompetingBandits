@@ -39,10 +39,10 @@ For concreteness, we fix one algorithm from each class. Our pilot experiments in
 \item an adaptive-exploration algorithm called "Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
 \end{enumerate}
 
-For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a Beta(1,1) distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
 
 Both \DEG and \TS are classic MAB algorithms, see \cite{Bubeck-survey12,TS-survey-FTML18} for background. It is well-known that \TS is near-optimal in terms of the cumulative rewards, and \DEG is very suboptimal, but still much better than \DG.%
-\footnote{Precise formulations, namely upper/lower bound on \emph{regret} of the three algorithms, are not very relevant to this paper.} In a formula:
+\footnote{Precise formulations, namely upper/lower bound on \emph{regret} of the three algorithms, are not very relevant to this paper.} In a stylized formula:
     $ \TS \gg \DEG \gg \DG $
 as stand-alone MAB algorithms.
 
