@@ -148,13 +148,12 @@ we use a classic algorithm called ``Thompson Sampling", see \cite{TS-survey-FTML
 
 The study of competition vs. exploration has been initiated in \cite{CompetingBandits-itcs16}. Their model differs from ours in two key respects. First, users do not see any signal about firms' past performance, and instead choose between firms according to the Bayesian-expected reward. Second, they vary the strength of competition using assumptions about (ir)rational consumer behavior, whereas we use early entry. Their results are purely theoretical; their model is amenable to proofs but not to numerical experiments.
 
-The interplay between exploration, exploitation and incentives has been studied in other scenarios: incentivizing exploration in a recommendation system
-    \cite{Frazier-ec14,Kremer-JPE14,Che-13,ICexploration-ec15,Bimpikis-exploration-ms17},
+The interplay between exploration, exploitation and incentives has been studied in other scenarios: incentivizing exploration in a recommendation system,
+    \eg \cite{Kremer-JPE14,Frazier-ec14,Che-13,ICexploration-ec15,Bimpikis-exploration-ms17},
 dynamic auctions
     (see \cite{DynAuctions-survey10} for background),
-pay-per-click auctions
-    \cite{MechMAB-ec09,DevanurK09,Transform-ec10-jacm}
-%\cite{Amin-auctions-nips13,Jieming-ec18},
+online ad auctions, \eg
+    \cite{MechMAB-ec09,DevanurK09,NSV08,Transform-ec10-jacm,Amin-auctions-nips13},
 and human computation
     \cite{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
 
