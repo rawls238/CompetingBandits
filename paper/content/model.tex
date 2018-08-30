@@ -20,7 +20,7 @@ Generally, the rewards are independent and identically distributed with a common
 $R_{jt} = \frac{1}{M} \sum\limits_{i=1}^{M} r_{t_j-i}$
 \end{center}
 
-Note $t_j$ is the \textit{local} time of the firm, not the global time, so the reputation score is the sliding window average of the last $M$ times that firm $j$ was selected by the agents.\swcomment{define ``calendar time'' and ``local time'' formally... don't think the current reputation defn makes sense} The warm start of $k$ rounds allows this reputation score to be well-defined once the "competition game" begins. In our model the agents deterministically choose the firm with the higher reputation score and ties are broken uniformly at random.
+Note $t_j$ is the \textit{local} time of the firm, not the global time, so the reputation score is the sliding window average of the last $M$ times that firm $j$ was selected by the agents.\swcomment{define ``calendar time'' and ``local time'' formally... don't think the current reputation defn makes sense} \gacomment{yea, good point. Should define local time formally} The warm start of $k$ rounds allows this reputation score to be well-defined once the "competition game" begins. In our model the agents deterministically choose the firm with the higher reputation score and ties are broken uniformly at random.
 
 \noindent \textbf{Firms} We suppose that the firms simply care about maximizing their expected market share (i.e. maximizing the number of $T$ agents who select them). We model the "competition game" between firms as a simultaneous move game where both firms commit to a learning algorithm at $t = 0$.
 
