@@ -8,7 +8,7 @@ We consider a game involving two firms and $T$ customers (henceforth, \emph{agen
 
 Each interaction between a firm and an agent proceeds as follows. There is a set $A$ of $K$ actions, henceforth \emph{arms}, same for both firms and all rounds. The firm chooses an arm, and the agent experiences a numerical reward observed by the firm. Each arm corresponds to a different version of the experience that a firm can provide for an agent, and the reward corresponds to the agent's satisfaction level. The other firm does not observe anything about this interaction, not even the fact that this interaction has happened.
 
-From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. rewards: each reward is drawn independently from a distribution that depends on the chosen arm but not on the firm or the round. For concreteness, each reward is either $0$ or $1$. The mean reward of each action is the same for both firms (and each round), but initially unknown.  
+From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but but initially unknown.
 
 Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that show up before the game starts, and interact with the firm in the same way as described above.
 
