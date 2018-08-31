@@ -4,7 +4,8 @@
 %\subsubsection{Simulation details.}
 %\label{section:3}
 
-\subsubsection{MAB instances.} We consider several representative instances of the MAB problem, hencenforth \emph{MAB instances}. In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, a problem instance is specified by the mean reward $\mu(a)$ of each arm $a$. The mean rewards are chosen initially from some distribution, as specified below:
+\subsubsection{MAB instances.} 
+In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the mean reward vector $(\mu(a):\; a\in A)$, henceforth \MRV. Initially the \MRV is drawn from some distribution, termed \emph{MAB instance}. We consider several representative MAB instances.
 \begin{enumerate}
 \item \emph{Needle In Haystack}: one arm (the ``needle") is chosen uniformly at random. This arm has mean reward $.7$, and the remaining ones have mean reward $.5$.
 
@@ -13,14 +14,16 @@
     \footnote{This distribution has substantial ``tail probabilities".}
 \end{enumerate}
 
-A particular realization of the mean rewards of the arms is called a \emph{realized} MAB instance. (Note that the actual rewards are still drawn stochastically.)
+\subsubsection{Simulation details.} 
+For each MAB instance we draw $N = 1000$ \MRVs independently from the corresponding distribution. We use this same collection of \MRVs for all experiments with this MAB instance. For each \MRV we draw a table of realized rewards (\emph{realization table}), and use this same table for all experiments on this \MRV. This ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns which correspond to arms, and $T+T_{\max}$ rows, which correspond to rounds. Here $T_{\max}$ is the maximal duration of the ``warm start" in our experiments, \ie the maximal value of $X+T_0$. For each arm $a$, each value $W(\cdot,a)$ is drawn independently from Bernoulli distribution with expectation $\mu(a)$. Then in each experiment, the reward of this arm in round $t$ of the warm start is taken to be $W(t,a)$, and its reward in round $t$ of the game is $W(T_{\max}+t,a)$.
 
-\subsubsection{Simulation details.} For each MAB instance we draw $N = 1000$ realized MAB instances. For each of these $N$ instances we simulate our model for varying values of $T_0$ and $X$. Taking the maximum values of these parameters to be $T_0^{\max}$ and $X^{\max}$. resp., we compute the table of realized rewards (\emph{realization table}) of dimension $(T+T_0^{\max}+X^{\max}) \times K$. Rows of this table correspond to rounds, and columns correspond to arms. For each cell in column $a$, we draw the reward independently from Bernoulli distribution with expectation $\mu(a)$. We use the same table to specify realized rewards for all algorithms and all experiments on this realized MAB instance. This ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game, we use the last $T$ rows of the table, for consistency if we vary $T_0$ and $X$.
 
 
 
 \OMIT{This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.}
 
 We fix the sliding window size $M = 100$. We found that low values of $M$ induced too much random noise in the results, and increasing $M$ further did not make a substantial qualitative difference.
+
+While we experiments with various MAB instances and parameter settings, in the main paper we only report plots for selected, representative experiments. Additional plots can be found in the supplement. Unless noted otherwise, our findings are based on and consistent with all these plots.
 
 \end{document} 
