@@ -1,15 +1,15 @@
 
 library(dplyr)
 library(knitr)
-WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
+WORKING_PATH <- "/Users/garidor/Desktop/CompetingBandits"
 
 
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_full_sim_no_info_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_longer_ws_with_no_rep_raw.csv", sep=""))
 p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
 agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
-agent_algs - c("HardMax")
+agent_algs <- c("HardMax")
 time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
 time_horizons <- c(2000)
 priors <- as.list(unique(dat['Prior']))$Prior
@@ -51,7 +51,7 @@ for (j in 1:length(time_horizons)) {
           results[k, l] <- paste("\\makecell{\\textbf{", signif(mean(share), digits=2), "} $\\pm$", cin, "\\\\Var:", signif(var(share), digits=1), "\\\\", "ES:", 100*signif(shares, digits=2), "\\%}")
         }
       }
-      tab <-xtable(results, caption=paste("Temporary Monopoly Experiment", prior))
+      tab <-xtable(results, caption=paste("Information Erased Experiment", prior))
       print(tab, type="latex")
     }
   }

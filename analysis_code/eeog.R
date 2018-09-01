@@ -14,7 +14,7 @@ concise_alg_rep <- function(alg) {
   }
 }
 
-WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/"
+WORKING_PATH <- "/Users/garidor/Desktop/CompetingBandits/results/tournament_raw_results/"
 f <- "tournament_experiment_longer_ws_raw.csv"
 dat <- read.csv(file=paste(WORKING_PATH, f, sep=""))
 dat <- filter(dat, Time.Horizon == 2000)
@@ -27,7 +27,7 @@ algs <- c("ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy")
 for (prior in priors) {
   results <- matrix(nrow=3, ncol=length(warm_starts))
   rownames(results) <- c("TS vs DG", "TS vs DEG", "DG vs DEG")
-  colnames(results) <- lapply(warm_starts, function (start) { return(paste("k =", start))})
+  colnames(results) <- lapply(warm_starts, function (start) { return(paste("$T_0$ =", start))})
   for (i in 1:length(warm_starts)) {
     warm_start = warm_starts[i]
     for (k in 1:length(algs)) {

@@ -4,13 +4,52 @@
 \usepackage{helvet}
 \usepackage{courier}
 \usepackage{url}
-\usepackage{subfiles}
 \usepackage{graphicx}
-\usepackage{tikz} % SW: Added for plots
 \frenchspacing
+% Add additional packages here. The following
+% packages may NOT be used  (this list
+% is not exhaustive:
+% authblk, caption, CJK, float, fullpage, geometry,
+%hyperref, layout, nameref, natbib, savetrees,
+%setspace, titlesec, tocbibind, ulem
+%
+%US Lettersize Paper Is Required
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+%
+%
+% PDFINFO
+% You are required to complete the following
+% for pass-through to the PDF.
+% No LaTeX commands of any kind may be
+% entered. The parentheses and spaces
+% are an integral part of the
+% pdfinfo script and must not be removed.
+%
+\pdfinfo{
+/Title  (Competing Bandits: The Perils of Exploration under Competition)
+/Author (John Doe, Jane Doe)
+/Keywords (Input your keywords in this optional area)
+}
+%
+%Section Numbers
+% Uncomment if you want to use section numbers
+% and change the 0 to a 1 or 2
+ \setcounter{secnumdepth}{2} % section & subsection numbers
+
+% Title and Author Information Must Immediately Follow
+% the pdfinfo within the preamble
+%
+
+
+
+
+
 
 %\usepackage[utf8]{inputenc} % allow utf-8 input -- cannot use with AAAI! A.S.
 %\usepackage{hyperref}       % hyperlinks
+\usepackage{tikz} % SW: Added for plots
+\usepackage{subfiles}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
@@ -28,7 +67,8 @@
  \usepackage{graphicx}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
-\newtheorem{finding}{Finding}
+\newtheorem{finding}[definition]{Finding}
+\newtheorem{conjecture}[definition]{Conjecture}
 \captionsetup{font=footnotesize}
 
 
@@ -58,8 +98,8 @@
 
 \newcommand{\eps}{\varepsilon}
 
-\newcommand{\MRV}{MRV\xspace} % mean reward vector
-\newcommand{\MRVs}{MRVs\xspace} % mean reward vector
+\newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
+\newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
 
 
 
@@ -70,7 +110,6 @@
 \addauthor{ga}{blue}  % ga for Guy
 \addauthor{sw}{orange} % sw for Steven
 % e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
-
 
 \begin{document}
 
@@ -117,6 +156,8 @@ We ask whether better algorithms are incentivized under varying degrees of compe
 \subfile{content/perf_in_iso}
 
 \subfile{content/inverted_u}
+
+\subfile{content/revisited}
 
 \subfile{content/barriers}
 

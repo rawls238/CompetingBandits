@@ -1,7 +1,7 @@
 library(dplyr)
 
-#dat_1 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/preliminary_raw_results/preliminary_plots_unified.csv")
-#dat_2 <- read.csv("/Users/garidor/Desktop/bandits-rl-project/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
+dat_1 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/longer_ws.csv")
+#dat_2 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
 
 
 concise_alg_rep <- function(alg) {
@@ -70,7 +70,7 @@ ggplot(iso_deg, aes(rep_diff_dg)) + geom_density() +
 dist <- "Needle In Haystack"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
-t_vals <- c(500,1000, 2000)
+t_vals <- c(500,1000,2000)
 alg1 <- "TS"
 alg2 <- "DG"
 
