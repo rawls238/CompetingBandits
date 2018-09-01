@@ -2,12 +2,12 @@
 \begin{document}
 
 \section{Competition vs Better Algorithms}\label{section:5}
-
-\swedit{Now we demonstrate the inverted-U relationship between the
-  incentivized algorithms and the competition levels in the game. In
-  the order of increasing competition levels, we study three different
-  settings: permanent monopoly, temporary monopoly, and permanent
-  duopoly. In more details:}
+\swedit{how about just name the section ``inverted U''?}  \swedit{Now
+  we demonstrate the inverted-U relationship between the incentivized
+  algorithms and the competition levels. In particular, we investigate
+  the incentivized algorithms under three different regimes: permanent
+  monopoly, temporary monopoly, and permanent duopoly. First, the
+  story for permanent monopoly is relatively straightforward.}
 
 \OMIT{main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \cite{Aghion-QJE05}. 
 }
@@ -32,17 +32,26 @@ The conditions on $\TS$ being dominant under the temporary monopoly are that the
 We utilize the same instances and realizations as in the section 3  and simulate the model described in section 2. We initially take the strategies of the firms as exogenous (chosen from $\mathcal{A}$) and simulate the model given these strategies in order to determine the expected payoffs associated with each pair of algorithms. Unless otherwise noted, all the results are reported at $t = 2000$.
 }
 
-\swedit{\xhdr{Permanent Monopoly.} There is only a single firm in the market
-for the entire period. In this case, the firm will can the entire
-market, regardless what algorithm it deploys. Assuming the deployment
-of any exploration algorithms will incur certain cost, then the firm
-would choose to deploy $\DG$.}
+\swedit{\xhdr{Permanent Monopoly.} Since there is only a single firm
+  in the market for the entire period, the firm can take the entire
+  market regardless what algorithm it deploys. Assuming the deployment
+  of any exploration algorithms will incur certain cost, the firm
+  would choose to deploy $\DG$.}
+
+Next, to describe our results for temporary monopoly, we will
+introduce the following notion of \textit{effective end of game
+  (EEOG)} --- the last round $t$ such that the agent at round $(t-1)$
+and the next agent around at $t$ choose different firms.
+
+
 
 \xhdr{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of an additional quantity which we define as the \textit{effective end of game}.
 
+\OMIT{
 \begin{definition}
 \textit{Effective End of Game (EEOG)} - the last round, $t$, in a simulation where the agent alive at $t-1$ and the agent alive at $t$ choose different firms.
 \end{definition}
+}
 
 Since both firms enter at the same time the game is symmetric and we only need to compute the payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50.
 
