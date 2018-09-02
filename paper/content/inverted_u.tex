@@ -31,12 +31,12 @@ around at $t$ choose different firms.
 
 \xhdr{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of the effective end of game.
 
-Since both firms enter at the same time the game is symmetric and the competition game is zero-sum so we only need to compute the expected payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Since our results are from simulations, we interpret algorithm $A$ being better than algorithm $B$ if the resulting market share of $A$ is statistically greater than $0.5$. Otherwise, the firm is indifferent between $A$ and $B$ with ties broken towards algorithms that are easier to deploy.
+Since both firms enter at the same time the game is symmetric and the competition game is zero-sum so we only need to compute the expected payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Since our results are from simulations, we interpret algorithm $A$ being better than algorithm $B$ if the resulting average market share of $A$ is statistically greater than $0.5$. Otherwise, the firm is indifferent between $A$ and $B$ with ties broken towards algorithms that are easier to deploy.
 
 Tables \ref{sim_ht} and \ref{sim_nih} show the results of the simulations. For the most part Conjecture~\ref{conj:inverted-u} is validated where, for the Heavy Tail and Uniform instances, we see that $\DG$ does better than $\TS$ and is a weakly dominant strategy in the game. However, there are two results that are at odds with the conjecture:
 
 \begin{puzzle}\label{puz:dg_ht}
-Even for large warm start, $\DG$ is better than $\DEG$ under Heavy Tail
+Even for large warm start, $\DG$ is better than $\DEG$ under Heavy Tail \footnote{We demonstrate this holds even for $K = 3$ in the supplementary material}
 \end{puzzle}
 
 \begin{puzzle}\label{puz:nih}
