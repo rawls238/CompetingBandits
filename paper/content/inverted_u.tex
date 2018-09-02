@@ -5,14 +5,7 @@
   we demonstrate the inverted-U relationship between the incentivized
   algorithms and the competition levels. In particular, we investigate
   the incentivized algorithms under three different regimes: permanent
-  monopoly, temporary monopoly, and permanent duopoly. First, the
-  story for permanent monopoly is relatively straightforward.}
-
-\swdelete{We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in ``market power" as decreases in the number of rounds where a firm has to compete for agents.
-
-% couldn't get section references to work so hardcoding for now
-We utilize the same instances and realizations as in the section 3  and simulate the model described in section 2. We initially take the strategies of the firms as exogenous (chosen from $\mathcal{A}$) and simulate the model given these strategies in order to determine the expected payoffs associated with each pair of algorithms. Unless otherwise noted, all the results are reported at $t = 2000$.
-}
+  monopoly, temporary monopoly, and permanent duopoly. \gaedit{We break indifference between exploration algorithms and non-exploration algorithms towards non-exploration algorithms.} First, the story for permanent monopoly is relatively straightforward.}
 
 \swedit{\xhdr{Permanent Monopoly.} Since there is only a single firm
   in the market for the entire period, the firm can take the entire
@@ -33,7 +26,7 @@ We utilize the same instances and realizations as in the section 3  and simulate
 \xhdr{Permanent Monopoly} Under permanent monopoly only a single firm exists in the market for every period. In our model the firm only gets utility from a larger market share so it is indifferent between each algorithm in $\mathcal{A}$ since, regardless of the algorithm it deploys, it will get the entire market. If we suppose that deploying the ``better" algorithms has even an $\epsilon > 0$ cost or, equivalently, that firms break indifference towards algorithms that are easier to deploy, then the firm would choose to deploy $\DG$.
 }
 
-\xhdr{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of an additional quantity which we define as the \textit{effective end of game}.
+\xhdr{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of the effective end of game.
 
 \OMIT{
 \begin{definition}
@@ -47,7 +40,7 @@ Since both firms enter at the same time the game is symmetric and we only need t
 \begin{enumerate}
 \item For low warm starts, under Heavy Tail and Uniform \\ $\DG > \TS$ in competition (see Table \ref{sim_ht}),
 \item Under Needle In Haystack, \\ $\TS > \DG$ (see Table \ref{sim_nih}). 
-\item For sufficiently large warm starts, $\TS$ is dominant across all the families of instances.
+\item For sufficiently large warm starts, $\TS$ is dominant across all instances.
 \item Even for a large warm start, $\DG > \DEG$ under Heavy Tail
 \end{enumerate}
 }
@@ -103,7 +96,7 @@ TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \ma
 \textit{Counterintuitively, allowing one firm to be a temporary monopolist for a sufficiently long time will induce that firm to commit to the better learning algorithm, $\TS$, even if, under the permanent duopoly, they would commit to $DG$}
 \end{finding}
 
-In table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the Heavy Tail family \footnote{The result for the Uniform is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$. However, while $\DG > \TS$ for the entrant, $\DG$ does roughly the same as $\DEG$ on the Uniform family. The results are in the supplementary material.}. In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the family of instances we consider.
+In table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the Heavy Tail family \footnote{The result for the Uniform is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$.}. In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the family of instances we consider.
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Aug 15 19:03:20 2018
@@ -126,6 +119,8 @@ TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\text
 \caption*{\tiny{The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting an ``extreme" market share of $> 90\%$. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to the incumbent do not count towards the share)}}
 \end{table}
 
-Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same parameters, $\DG$ was preferred to $\TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the ``incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. \OMIT{As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration.} Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $\TS$.
+Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same parameters, $\DG$ was preferred to $\TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the ``incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. 
+
+\OMIT{As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration.} Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $\TS$.
 
 \end{document}

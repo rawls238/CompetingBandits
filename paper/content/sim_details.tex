@@ -24,7 +24,7 @@ More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns wh
 
 \OMIT{This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.}
 
-We fix the sliding window size $M = 100$. We found that low values of $M$ induced too much random noise in the results, and increasing $M$ further did not make a substantial qualitative difference.
+We fix the sliding window size $M = 100$. We found that low values of $M$ induced too much random noise in the results, and increasing $M$ further did not make a substantial qualitative difference. Unless otherwise noted, all results are reported at $t = 2000$.
 
 While we experiments with various MAB instances and parameter settings, in the main paper we only report plots for selected, representative experiments. Additional plots can be found in the supplement. Unless noted otherwise, our findings are based on and consistent with all these plots.
 
