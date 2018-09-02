@@ -1,40 +1,45 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
-
 \section{Competition vs Better Algorithms}\label{section:5}
+\swedit{how about just name the section ``inverted U''?}  \swedit{Now
+  we demonstrate the inverted-U relationship between the incentivized
+  algorithms and the competition levels. In particular, we investigate
+  the incentivized algorithms under three different regimes: permanent
+  monopoly, temporary monopoly, and permanent duopoly. First, the
+  story for permanent monopoly is relatively straightforward.}
 
-In this section we document the results of the competition game for various parameterizations of our model. We consider three separate settings for our model: permanent monopoly, temporary monopoly (incumbent vs entrant), and permanent duopoly.
+\swdelete{We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in ``market power" as decreases in the number of rounds where a firm has to compete for agents.
 
-\OMIT{main results that can be summarized via the empirically documented inverted-U relationship between competition and innovation described in \cite{Aghion-QJE05}. 
+% couldn't get section references to work so hardcoding for now
+We utilize the same instances and realizations as in the section 3  and simulate the model described in section 2. We initially take the strategies of the firms as exogenous (chosen from $\mathcal{A}$) and simulate the model given these strategies in order to determine the expected payoffs associated with each pair of algorithms. Unless otherwise noted, all the results are reported at $t = 2000$.
 }
 
+\swedit{\xhdr{Permanent Monopoly.} Since there is only a single firm
+  in the market for the entire period, the firm can take the entire
+  market regardless what algorithm it deploys. Assuming the deployment
+  of any exploration algorithms will incur certain cost, the firm
+  would choose to deploy $\DG$.}
 
-\OMIT{
-\begin{finding}
-\textit{For sufficiently low warm start, the optimal strategies in the competition game are:
-\begin{center}
-\textbf{Permanent Monopoly} - $\DG$ \\
-\textbf{Temporary Monopoly} - $\TS$ \\
-\textbf{Permanent Duopoly} - $\DG$ \\
-\end{center}
-The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.
-}
-\end{finding}
-}
+Next, to describe our results for temporary monopoly, we will
+introduce the following notion of \textit{effective end of game
+  (EEOG)} --- the last round $t$ such that the agent at round $(t-1)$
+and the next agent around at $t$ choose different firms.
 
-We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in ``market power" as decreases in the number of rounds where a firm has to compete for agents.
+\swdelete{We interpret the move from permanent monopoly to temporary monopoly and temporary monopoly to permanent duopoly as increases in competition. We believe this is reasonable and consistent with the empirical results which define increases in competition as increases in a measure of market power (1 - the Lerner Index). In our model we have no prices and no costs and so we interpret increases in ``market power" as decreases in the number of rounds where a firm has to compete for agents.
 
 % couldn't get section references to work so hardcoding for now
 We utilize the same instances and realizations as in the section 3  and simulate the model described in section 2. We initially take the strategies of the firms as exogenous (chosen from $\mathcal{A}$) and simulate the model given these strategies in order to determine the expected payoffs associated with each pair of algorithms. Unless otherwise noted, all the results are reported at $t = 2000$.
 
-\textbf{Permanent Monopoly} Under permanent monopoly only a single firm exists in the market for every period. In our model the firm only gets utility from a larger market share so it is indifferent between each algorithm in $\mathcal{A}$ since, regardless of the algorithm it deploys, it will get the entire market. If we suppose that deploying the ``better" algorithms has even an $\epsilon > 0$ cost or, equivalently, that firms break indifference towards algorithms that are easier to deploy, then the firm would choose to deploy $\DG$.
+\xhdr{Permanent Monopoly} Under permanent monopoly only a single firm exists in the market for every period. In our model the firm only gets utility from a larger market share so it is indifferent between each algorithm in $\mathcal{A}$ since, regardless of the algorithm it deploys, it will get the entire market. If we suppose that deploying the ``better" algorithms has even an $\epsilon > 0$ cost or, equivalently, that firms break indifference towards algorithms that are easier to deploy, then the firm would choose to deploy $\DG$.
+}
 
-\textbf{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of an additional quantity which we define as the \textit{effective end of game}.
+\xhdr{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of an additional quantity which we define as the \textit{effective end of game}.
 
+\OMIT{
 \begin{definition}
 \textit{Effective End of Game (EEOG)} - the last round, $t$, in a simulation where the agent alive at $t-1$ and the agent alive at $t$ choose different firms.
 \end{definition}
-
+}
 Since both firms enter at the same time the game is symmetric and we only need to compute the payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50.
 
 \begin{finding}
@@ -92,7 +97,7 @@ TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \ma
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:00 2018
 
-\textbf{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to varying the value of $X$. For this section we report results fixing $T_0 = 20$ and focus on the family of instances where we observed that, for this warm start, $\DG > \TS$ \footnote{However, we report the results for the Needle In Haystack family in the supplementary material. The results are unsurprising, where $\TS$ is the dominant strategy for both the entrant and incumbent.}. It seems clear that the temporary monopoly will get a larger market share regardless of what algorithm it plays, but is the incumbent incentivized to commit to $\TS$?
+\xhdr{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to varying the value of $X$. For this section we report results fixing $T_0 = 20$ and focus on the family of instances where we observed that, for this warm start, $\DG > \TS$ \footnote{However, we report the results for the Needle In Haystack family in the supplementary material. The results are unsurprising, where $\TS$ is the dominant strategy for both the entrant and incumbent.}. It seems clear that the temporary monopoly will get a larger market share regardless of what algorithm it plays, but is the incumbent incentivized to commit to $\TS$?
 
 \begin{finding}
 \textit{Counterintuitively, allowing one firm to be a temporary monopolist for a sufficiently long time will induce that firm to commit to the better learning algorithm, $\TS$, even if, under the permanent duopoly, they would commit to $DG$}
