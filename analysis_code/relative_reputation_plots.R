@@ -3,7 +3,7 @@ library(ggplot2)
 library(reshape2)
 library(pBrackets)
 
-dat <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/ht_3_arm_many_sim.csv")
+#dat <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/longer_ws.csv")
 
 
 bracketsGrob <- function(...){
@@ -53,14 +53,13 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   q <- ggplot(df, aes(x=t, y=relative_rep)) + geom_line() + geom_point() +
     geom_errorbar(aes(ymin=relative_rep-1.96*se, ymax=relative_rep+1.96*se), width=.2) +
     ggtitle(plot_title) + xlab("time") + 
-    theme_grey(base_size = 12) +
     ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(reputation)")) +
-    #annotation_custom(b1) +
-    #annotation_custom(b2) +
+    annotation_custom(b1) +
+    annotation_custom(b2) +
     ylim(c(0.2, 0.7)) +
-    #annotate("text", x = 225, y = 0.25, label = "Relative Reputation Cost") +
-    #annotate("text", x = 1000, y = 0.25, label = "Relative Reputation Benefit") +
-    theme_bw() +  
+    annotate("text", x = 225, y = 0.25, label = "Relative Reputation Cost") +
+    annotate("text", x = 1000, y = 0.25, label = "Relative Reputation Benefit") +
+    theme_bw(base_size = 16) +  
     theme(plot.title = element_text(hjust = 0.5))
   print(q)
 }
@@ -88,23 +87,23 @@ print_mean_graphs <- function (dist, alg1, alg2, alg3, minComplexity) {
   df$ci <- as.numeric(df$ci)
 
   plot_title <- paste("Mean Reputation -", dist)
-  q <- ggplot(data=df, aes(x=t, y=mean_rep, colour=alg)) + geom_smooth() +#geom_line() +
+  q <- ggplot(data=df, aes(x=t, y=mean_rep, colour=alg)) + geom_line() +
     geom_errorbar(aes(ymin=mean_rep-ci, ymax=mean_rep+ci), width=.2) +
     ggtitle(plot_title) + xlab("time") +
     ylab("Mean Reputation") +
-    theme_bw(base_size = 12) +
+    theme_bw(base_size = 16) +
     theme(plot.title = element_text(hjust = 0.5))
   
   print(q)
 }
 
 dists <- unique(dat$Distribution)
-#dists <- c("Needle In Haystack")
-#for (dist in dists) {
- # print_relative_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", 0)
- # print_relative_graphs(dist, "ThompsonSampling", "DynamicGreedy", 0)
- # print_relative_graphs(dist, "DynamicEpsilonGreedy", "DynamicGreedy", 0)
-#}
+dists <- c("Needle In Haystack")
+for (dist in dists) {
+  #print_relative_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", 0)
+  print_relative_graphs(dist, "ThompsonSampling", "DynamicGreedy", 0)
+  #print_relative_graphs(dist, "DynamicEpsilonGreedy", "DynamicGreedy", 0)
+}
 # print mean plots
 for (dist in dists) {
   print_mean_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0)

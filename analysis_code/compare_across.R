@@ -1,6 +1,7 @@
 library(dplyr)
 
 dat_1 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/longer_ws.csv")
+dat_1$Algorithm<- sapply(dat_1$Algorithm, concise_alg_rep)
 #dat_2 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
 
 
@@ -14,9 +15,7 @@ concise_alg_rep <- function(alg) {
   }
 }
 
-dat_1$Algorithm<- sapply(dat_1$Algorithm, concise_alg_rep)
-tmp <- mutate(dat_1, Algorithm = concise_alg_rep(Algorithm))
-dist <- ".5/.7 Random Draw"
+dist <- "Uniform"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
 compet_dat <- filter(dat_2, Prior == dist & Warm.Start == 20)
@@ -54,7 +53,7 @@ iso_dat_t <- filter(iso_dat, t == 500)
 ggplot(iso_dat_t, aes(Realized.Reputation, colour=Algorithm)) +
   geom_density() +
   ggtitle("Reputation Distribution, Needle In Haystack") +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 16) +
   xlab("Reputation") + 
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -82,6 +81,6 @@ title <- paste(alg1, "-", alg2, "Reputation Distribution,", dist)
 ggplot(iso_alg1, aes(rep_diff)) + geom_density(aes(group=t, colour=t)) + 
   ggtitle(title) + 
   xlab("Reputation Difference") +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 16) +
   theme(plot.title = element_text(hjust = 0.5)) +
   xlim(c(-0.25, 0.25))
