@@ -5,7 +5,22 @@
 
 An alternative interpretation of the results in the previous section is that the temporary monopoly provides a first mover advantage to the incumbent firm. The early entry allows the incumbent to acquire data on potentially suboptimal actions without incurring an immediate reputational consequence as well as the ability to eventually build up a high reputation before the entrant enters the market. Thus, the early entry gives the incumbent both a \textit{data} advantage and a \textit{reputational} advantage over the entrant. This gives new intuition for the classic ``first mover advantage" \cite{kerin1992first} in the digital economy where data can serve as a barrier to entry in many markets.
 
-While combined these two advantages serve as strong barriers to entry a natural question to ask is would having only the data advantage or only the reputation advantage still serve as such strong barriers to entry? Which of the two serves as a stronger barrier to entry and under what conditions? In order to answer these questions we run two additional experiments, artificially modifying the previous temporary monopoly experiment. In one experiment the reputation of the incumbent is artificially erased upon the entry of the entrant (Reputation Erased Experiment) and in the other the information gained by the incumbent is artificially erased so that the posterior is reset to the prior (Information Erased Experiment).
+While combined these two advantages serve as strong barriers to entry,
+a natural question to ask is would having only the data advantage or
+only the reputation advantage still serve as such strong barriers to
+entry? Which of the two serves as a stronger barrier to entry and
+under what conditions?
+
+\swedit{To answer these questions, we isolate the effects from the two
+  advantages and run two additional experiments. In the first
+  experiment (called \emph{reputation erased experiment}), the
+  reputation of the incumbent is artificially erased upon the entry of
+  the entrant. In the second experiment (called \emph{information
+    erased experiment}), the information gained by the incumbent is
+  erased in the sense that its posterior is reset to the initial
+  (fake) prior upon the entry of the entrant.}
+
+\swcomment{Guy, could you make it clear what the first ``erase'' mean? Like reset to default?}
 
 \begin{table}[ht]
 \centering
@@ -44,7 +59,7 @@ TS & \makecell{\textbf{0.0096} $\pm$0.006\\Var:0.009\\ES:100\%} & \makecell{\tex
 \end{table}
 
 \begin{finding}
-\textit{Maintaining either the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. \\ \indent When the incumbent plays $\TS$, the data advantage serves as a larger barrier to entry compared to reputation, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two.}
+\textit{Maintaining either the data or reputation advantage alone still allows the incumbent to retain a significant portion of the market. \swcomment{too vague. what does significant mean?}\\ \indent When the incumbent plays $\TS$, the data advantage serves as a larger barrier to entry compared to reputation, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two.}
 \end{finding}
 
 Tables \ref{info_erase} and \ref{rep_erase} display the results of these experiments. The reason for the finding is that, under $\TS$, the early entry allows the incumbent to do exploration without immediate reputational consequence in the early rounds and so, even when reputation is erased, the incumbent has already acquired sufficient information that simply exploiting that information allows her to quickly recover her reputation. However, while the reputational advantage gives the incumbent some cushion for doing exploration the incumbent is still vulnerable to getting unlucky while doing exploration and suffering the reputational consequences. This only happens under $\TS$ and not under $\DEG$ or $\DG$ since $\TS$, by construction, is more intelligent about the data that it acquires compared to $\DEG$ and $\DG$.
@@ -52,3 +67,7 @@ Tables \ref{info_erase} and \ref{rep_erase} display the results of these experim
 Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same for the Heavy Tail instance, but for the Uniform instance they change where $\TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.
 
 \end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../competing_bandits"
+%%% End:
