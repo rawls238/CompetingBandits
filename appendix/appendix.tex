@@ -28,16 +28,22 @@
 \maketitle
 
 \appendix
-\section{Additional Mean Performance Plots}
+\section{Additional Isolation Performance Plots}
+
+In this section we present the additional mean reputation graphs that were omitted from the main text. Additionally, we provide graphs of the smoothed mean instantaneous reward for each of the family of instances that we consider.
+
 \begin{center}
 \includegraphics[scale=0.5]{figures/uniform_mean} \\
-\includegraphics[scale=0.5]{figures/ht_mean}
+\includegraphics[scale=0.5]{figures/ht_mean} \\
+\includegraphics[scale=0.5]{figures/mean_inst_reward_ht} \\
+\includegraphics[scale=0.5]{figures/mean_inst_reward_nih} \\
+\includegraphics[scale=0.5]{figures/mean_inst_reward_uniform}
 \end{center}
 
 \pagebreak
 \section{Reversal between Mean Reputation and Relative Reputation}
 
-In this section we present the results in isolation and in competition over the "Heavy Tail" prior discussed in the text for $K = 3$. We demonstrate evidence that $DEG > DG$ according to the mean reputation metric but that $DG > DEG$ according to the relative reputation proportion statistic and in the competition game.
+In this section we present the results in isolation and in competition over the ``Heavy Tail" prior discussed in the text for $K = 3$. We demonstrate evidence that $DEG > DG$ according to the mean reputation metric but that $DG > DEG$ according to the relative reputation proportion statistic and in the competition game. As shown in the text, the same results also hold for $K = 10$ for the warm starts that we consider.
 
 \begin{center}
 \includegraphics[scale=0.5]{figures/mean_ht_3_arms} \\
@@ -59,6 +65,9 @@ TS vs DG & \makecell{\textbf{0.4} $\pm$0.02\\ eeog \\ avg: 770\\ med: 0} & \make
 \end{table}
 
 \section{Additional Permanent Duopoly Experiments}
+
+We present all of the results for the permanent duopoly experiments across the family of instances that we consider. The results displayed in the table are the same contain the same information as those in the text and are the average over $N = 1000$ simulations.
+
 \begin{table}[H]
 \centering
 \caption{Duopoly Experiment Needle In Haystack} 
@@ -107,11 +116,16 @@ TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \mak
 
 \section{Additional Temporary Monopoly Experiments}
 
+We present results for the temporary monopoly experiment across the family of instances that we consider for varying values of $X$. These results confirm the claim in the text that, for sufficiently large $X$, Thompson Sampling is preferred over all other algorithms for the incumbent. However, it also shows that, for smaller values of $X$ it is not necessarily the case that Thompson Sampling is the preferred algorithm. We provide many different parameterizations in order to check the robustness of the results. The results displayed in the table are the same contain the same information as those in the text and are the average over $N = 1000$ simulations.
+
 \subsection*{Heavy Tail Prior}
 \begin{table}[H]
 \centering
 \caption{Temporary Monopoly Experiment Heavy Tail X = 50} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -125,6 +139,9 @@ TS & \makecell{\textbf{0.054} $\pm$0.01\\Var:0.05\\ES:100\%} & \makecell{\textbf
 \centering
 \caption{Temporary Monopoly Experiment Heavy Tail X = 200} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -139,6 +156,9 @@ TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\text
 \centering
 \caption{Temporary Monopoly Experiment Heavy Tail X = 300} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -153,6 +173,9 @@ TS & \makecell{\textbf{0.0017} $\pm$0.002\\Var:0.001\\ES:100\%} & \makecell{\tex
 \centering
 \caption{Temporary Monopoly Experiment Heavy Tail X = 500} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -171,6 +194,9 @@ TS & \makecell{\textbf{0.002} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\text
 \centering
 \caption{Temporary Monopoly Experiment Needle In Haystack X = 50} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -187,6 +213,9 @@ TS & \makecell{\textbf{0.34} $\pm$0.03\\Var:0.2\\ES:92\%} & \makecell{\textbf{0.
 \centering
 \caption{Temporary Monopoly Experiment Needle In Haystack X = 200} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -203,6 +232,9 @@ TS & \makecell{\textbf{0.17} $\pm$0.02\\Var:0.1\\ES:95\%} & \makecell{\textbf{0.
 \centering
 \caption{Temporary Monopoly Experiment Needle In Haystack X = 300} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -219,6 +251,9 @@ TS & \makecell{\textbf{0.1} $\pm$0.02\\Var:0.07\\ES:95\%} & \makecell{\textbf{0.
 \centering
 \caption{Temporary Monopoly Experiment Needle In Haystack X = 500} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -238,6 +273,9 @@ TS & \makecell{\textbf{0.053} $\pm$0.01\\Var:0.04\\ES:95\%} & \makecell{\textbf{
 \centering
 \caption{Temporary Monopoly Experiment Uniform X = 50} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -254,7 +292,10 @@ TS & \makecell{\textbf{0.27} $\pm$0.03\\Var:0.2\\ES:91\%} & \makecell{\textbf{0.
 \centering
 \caption{Temporary Monopoly Experiment Uniform X = 200} 
 \begin{tabular}{rlll}
-  \hline
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
+\hline
  & TS & DEG &  DG \\ 
   \hline
 TS & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:89\%} & \makecell{\textbf{0.16} $\pm$0.02\\Var:0.1\\ES:87\%} & \makecell{\textbf{0.2} $\pm$0.02\\Var:0.1\\ES:84\%} \\ 
@@ -270,6 +311,9 @@ TS & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:89\%} & \makecell{\textbf{0
 \centering
 \caption{Temporary Monopoly Experiment Uniform X = 300} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -284,6 +328,9 @@ TS & \makecell{\textbf{0.094} $\pm$0.02\\Var:0.06\\ES:90\%} & \makecell{\textbf{
 \centering
 \caption{Temporary Monopoly Experiment Uniform X = 500} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
@@ -296,16 +343,21 @@ TS & \makecell{\textbf{0.061} $\pm$0.01\\Var:0.03\\ES:91\%} & \makecell{\textbf{
 
 \section{Reputation and Information Erased Experiment}
 
+This section contains the results on all of the family of instances for the reputation and information erased experiment discussed in the ``Data and Reputation as Barriers to Entry" section of the paper.
+
 \begin{table}[H]
 \centering
 \caption{Reputation Erased Experiment Heavy Tail} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{0.0017} $\pm$0.002\\Var:0.001\\ES:100\%} & \makecell{\textbf{0.06} $\pm$0.01\\Var:0.05\\ES:99\%} & \makecell{\textbf{0.18} $\pm$0.02\\Var:0.1\\ES:95\%} \\ 
-  DEG & \makecell{\textbf{0.04} $\pm$0.009\\Var:0.02\\ES:93\%} & \makecell{\textbf{0.24} $\pm$0.02\\Var:0.1\\ES:78\%} & \makecell{\textbf{0.25} $\pm$0.02\\Var:0.1\\ES:79\%} \\ 
-   DG & \makecell{\textbf{0.12} $\pm$0.02\\Var:0.08\\ES:88\%} & \makecell{\textbf{0.35} $\pm$0.03\\Var:0.2\\ES:80\%} & \makecell{\textbf{0.33} $\pm$0.02\\Var:0.2\\ES:66\%} \\ 
+TS & \makecell{\textbf{ 0.0096 } $\pm$ 0.006 \\Var: 0.009 \\ ES: 100 \%} & \makecell{\textbf{ 0.11 } $\pm$ 0.02 \\Var: 0.09 \\ ES: 98 \%} & \makecell{\textbf{ 0.18 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 95 \%} \\ 
+  DEG & \makecell{\textbf{ 0.073 } $\pm$ 0.01 \\Var: 0.05 \\ ES: 93 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 78 \%} & \makecell{\textbf{ 0.25 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 79 \%} \\ 
+   DG & \makecell{\textbf{ 0.15 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 89 \%} & \makecell{\textbf{ 0.39 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 78 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 66 \%} \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -314,12 +366,52 @@ TS & \makecell{\textbf{0.0017} $\pm$0.002\\Var:0.001\\ES:100\%} & \makecell{\tex
 \centering
 \caption{Information Erased Experiment Heavy Tail} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{ 0.022 } $\pm$ 0.009 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.13 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.21 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 95 \%} \\ 
-  DEG & \makecell{\textbf{ 0.26 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 73 \%} & \makecell{\textbf{ 0.28 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 74 \%} \\ 
-   DG & \makecell{\textbf{ 0.33 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.39 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 73 \%} & \makecell{\textbf{ 0.34 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 58 \%} \\ 
+TS & \makecell{\textbf{ 0.021 } $\pm$ 0.009 \\Var: 0.02 \\ ES: 100 \%} & \makecell{\textbf{ 0.16 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 97 \%} & \makecell{\textbf{ 0.21 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 95 \%} \\ 
+  DEG & \makecell{\textbf{ 0.26 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 95 \%} & \makecell{\textbf{ 0.3 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.26 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 76 \%} \\ 
+   DG & \makecell{\textbf{ 0.34 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 94 \%} & \makecell{\textbf{ 0.4 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 74 \%} & \makecell{\textbf{ 0.33 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 58 \%} \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Sun Aug 26 09:51:12 2018
+\begin{table}[H]
+\centering
+\caption{Reputation Erased Experiment Needle In Haystack} 
+\begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
+  \hline
+ & TS & DEG &  DG \\ 
+  \hline
+TS & \makecell{\textbf{ 0.25 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 96 \%} & \makecell{\textbf{ 0.36 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 93 \%} & \makecell{\textbf{ 0.45 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 89 \%} \\ 
+  DEG & \makecell{\textbf{ 0.21 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 93 \%} & \makecell{\textbf{ 0.32 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 89 \%} & \makecell{\textbf{ 0.41 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 83 \%} \\ 
+   DG & \makecell{\textbf{ 0.18 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 92 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 86 \%} & \makecell{\textbf{ 0.4 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 78 \%} \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Information Erased Experiment Needle In Haystack}
+\begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
+  \hline
+ & TS & DEG &  DG \\ 
+  \hline
+TS & \makecell{\textbf{ 0.35 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 93 \%} & \makecell{\textbf{ 0.43 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 88 \%} & \makecell{\textbf{ 0.52 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 82 \%} \\ 
+  DEG & \makecell{\textbf{ 0.26 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 90 \%} & \makecell{\textbf{ 0.36 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.43 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 71 \%} \\ 
+   DG & \makecell{\textbf{ 0.19 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 85 \%} & \makecell{\textbf{ 0.3 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 73 \%} & \makecell{\textbf{ 0.36 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 64 \%} \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -330,12 +422,15 @@ TS & \makecell{\textbf{ 0.022 } $\pm$ 0.009 \\Var: 0.02 \\ ES: 100 \%} & \makece
 \centering
 \caption{Reputation Erased Experiment Uniform} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{0.14} $\pm$0.02\\Var:0.09\\ES:90\%} & \makecell{\textbf{0.18} $\pm$0.02\\Var:0.1\\ES:88\%} & \makecell{\textbf{0.26} $\pm$0.03\\Var:0.2\\ES:87\%} \\ 
-  DEG & \makecell{\textbf{0.26} $\pm$0.02\\Var:0.2\\ES:81\%} & \makecell{\textbf{0.26} $\pm$0.02\\Var:0.1\\ES:79\%} & \makecell{\textbf{0.34} $\pm$0.03\\Var:0.2\\ES:75\%} \\ 
-   DG & \makecell{\textbf{0.25} $\pm$0.02\\Var:0.1\\ES:79\%} & \makecell{\textbf{0.27} $\pm$0.02\\Var:0.1\\ES:77\%} & \makecell{\textbf{0.34} $\pm$0.03\\Var:0.2\\ES:73\%} \\ 
+TS & \makecell{\textbf{ 0.2 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 89 \%} & \makecell{\textbf{ 0.22 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 88 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 87 \%} \\ 
+  DEG & \makecell{\textbf{ 0.33 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 81 \%} & \makecell{\textbf{ 0.32 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 79 \%} & \makecell{\textbf{ 0.35 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 75 \%} \\ 
+   DG & \makecell{\textbf{ 0.32 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 80 \%} & \makecell{\textbf{ 0.31 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 77 \%} & \makecell{\textbf{ 0.35 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 73 \%} \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -344,42 +439,15 @@ TS & \makecell{\textbf{0.14} $\pm$0.02\\Var:0.09\\ES:90\%} & \makecell{\textbf{0
 \centering
 \caption{Information Erased Experiment Uniform} 
 \begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Incumbent Algorithm}\\
+\multirow{12}{0.6in}{\rotatebox{90}{Entrant Algorithm}} \\
   \hline
  & TS & DEG &  DG \\ 
   \hline
-TS & \makecell{\textbf{0.24} $\pm$0.02\\Var:0.1\\ES:88\%} & \makecell{\textbf{0.2} $\pm$0.02\\Var:0.1\\ES:86\%} & \makecell{\textbf{0.26} $\pm$0.02\\Var:0.2\\ES:85\%} \\ 
-  DEG & \makecell{\textbf{0.37} $\pm$0.03\\Var:0.2\\ES:85\%} & \makecell{\textbf{0.29} $\pm$0.02\\Var:0.1\\ES:75\%} & \makecell{\textbf{0.31} $\pm$0.02\\Var:0.1\\ES:70\%} \\ 
-   DG & \makecell{\textbf{0.35} $\pm$0.03\\Var:0.2\\ES:84\%} & \makecell{\textbf{0.27} $\pm$0.02\\Var:0.1\\ES:68\%} & \makecell{\textbf{0.3} $\pm$0.02\\Var:0.1\\ES:62\%} \\ 
-   \hline
-\end{tabular}
-\end{table}
-
-% latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Sun Aug 26 09:51:12 2018
-\begin{table}[H]
-\centering
-\caption{Reputation Erased Experiment Needle In Haystack} 
-\begin{tabular}{rlll}
-  \hline
- & TS & DEG &  DG \\ 
-  \hline
-TS & \makecell{\textbf{0.098} $\pm$0.02\\Var:0.07\\ES:95\%} & \makecell{\textbf{0.27} $\pm$0.03\\Var:0.2\\ES:94\%} & \makecell{\textbf{0.41} $\pm$0.03\\Var:0.2\\ES:90\%} \\ 
-  DEG & \makecell{\textbf{0.093} $\pm$0.02\\Var:0.07\\ES:96\%} & \makecell{\textbf{0.24} $\pm$0.02\\Var:0.2\\ES:89\%} & \makecell{\textbf{0.38} $\pm$0.03\\Var:0.2\\ES:84\%} \\ 
-   DG & \makecell{\textbf{0.064} $\pm$0.01\\Var:0.05\\ES:96\%} & \makecell{\textbf{0.22} $\pm$0.02\\Var:0.1\\ES:90\%} & \makecell{\textbf{0.37} $\pm$0.03\\Var:0.2\\ES:79\%} \\ 
-   \hline
-\end{tabular}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Information Erased Experiment Needle In Haystack} 
-\begin{tabular}{rlll}
-  \hline
- & TS & DEG &  DG \\ 
-  \hline
-TS & \makecell{\textbf{0.29} $\pm$0.03\\Var:0.2\\ES:92\%} & \makecell{\textbf{0.44} $\pm$0.03\\Var:0.2\\ES:87\%} & \makecell{\textbf{0.52} $\pm$0.03\\Var:0.2\\ES:81\%} \\ 
-  DEG & \makecell{\textbf{0.19} $\pm$0.02\\Var:0.1\\ES:91\%} & \makecell{\textbf{0.35} $\pm$0.03\\Var:0.2\\ES:81\%} & \makecell{\textbf{0.42} $\pm$0.03\\Var:0.2\\ES:71\%} \\ 
-   DG & \makecell{\textbf{0.15} $\pm$0.02\\Var:0.1\\ES:90\%} & \makecell{\textbf{0.27} $\pm$0.02\\Var:0.1\\ES:75\%} & \makecell{\textbf{0.35} $\pm$0.02\\Var:0.2\\ES:63\%} \\ 
+TS & \makecell{\textbf{ 0.27 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 91 \%} & \makecell{\textbf{ 0.23 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 87 \%} & \makecell{\textbf{ 0.27 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 84 \%} \\ 
+  DEG & \makecell{\textbf{ 0.4 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 86 \%} & \makecell{\textbf{ 0.3 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 72 \%} & \makecell{\textbf{ 0.32 } $\pm$ 0.02 \\Var: 0.2 \\ ES: 69 \%} \\ 
+   DG & \makecell{\textbf{ 0.36 } $\pm$ 0.03 \\Var: 0.2 \\ ES: 83 \%} & \makecell{\textbf{ 0.29 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 69 \%} & \makecell{\textbf{ 0.3 } $\pm$ 0.02 \\Var: 0.1 \\ ES: 60 \%} \\ 
    \hline
 \end{tabular}
 \end{table}
