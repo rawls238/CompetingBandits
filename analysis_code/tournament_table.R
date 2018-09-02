@@ -5,7 +5,7 @@ WORKING_PATH <- "/Users/garidor/Desktop/CompetingBandits"
 
 
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_longer_ws_with_no_rep_raw.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "/results/free_obs_raw_results/free_obs_experiment_longer_ws_no_info_raw.csv", sep=""))
 p1_algs <- as.list(unique(dat['P1.Alg']))$P1.Alg
 p2_algs <- as.list(unique(dat['P2.Alg']))$P2.Alg
 agent_algs <- as.list(unique(dat['Agent.Alg']))$Agent.Alg
@@ -13,7 +13,7 @@ agent_algs <- c("HardMax")
 time_horizons <-  as.list(unique(dat['Time.Horizon']))$Time.Horizon
 time_horizons <- c(2000)
 priors <- as.list(unique(dat['Prior']))$Prior
-priors <- c("Heavy Tail")
+#priors <- c("Heavy Tail")
 warm_start <- 20
 
 ZERO_ONE_CUTOFF <- 0.1

@@ -3,7 +3,7 @@ library(ggplot2)
 library(reshape2)
 library(pBrackets)
 
-#dat <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/longer_ws.csv")
+dat <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/ht_3_arm_many_sim.csv")
 
 
 bracketsGrob <- function(...){
@@ -79,17 +79,17 @@ print_mean_graphs <- function (dist, alg1, alg2, alg3, minComplexity) {
     cur_alg1 <- filter(alg_1, t == UQ(t))
     cur_alg2 <- filter(alg_2, t == UQ(t))
     cur_alg3 <- filter(alg_3, t == UQ(t))
-    df[nrow(df) + 1,] <-c(t, mean(cur_alg1$Instantaneous.Realized.Reward.Mean), 1.96 * sd(cur_alg1$Instantaneous.Realized.Reward.Mean) / sqrt(nrow(cur_alg1)), concise_alg_rep(alg1))
-    df[nrow(df) + 1,] <- c(t, mean(cur_alg2$Instantaneous.Realized.Reward.Mean), 1.96 * sd(cur_alg2$Instantaneous.Realized.Reward.Mean) / sqrt(nrow(cur_alg2)), concise_alg_rep(alg2))
-    df[nrow(df) + 1,] <-c(t, mean(cur_alg3$Instantaneous.Realized.Reward.Mean), 1.96 * sd(cur_alg3$Instantaneous.Realized.Reward.Mean) / sqrt(nrow(cur_alg3)), concise_alg_rep(alg3))
+    df[nrow(df) + 1,] <-c(t, mean(cur_alg1$Realized.Reputation), 1.96 * sd(cur_alg1$Realized.Reputation) / sqrt(nrow(cur_alg1)), concise_alg_rep(alg1))
+    df[nrow(df) + 1,] <- c(t, mean(cur_alg2$Realized.Reputation), 1.96 * sd(cur_alg2$Realized.Reputation) / sqrt(nrow(cur_alg2)), concise_alg_rep(alg2))
+    df[nrow(df) + 1,] <-c(t, mean(cur_alg3$Realized.Reputation), 1.96 * sd(cur_alg3$Realized.Reputation) / sqrt(nrow(cur_alg3)), concise_alg_rep(alg3))
   }
   df$t <- as.numeric(df$t)
   df$mean_rep <- as.numeric(df$mean_rep)
   df$ci <- as.numeric(df$ci)
 
-  plot_title <- paste("Mean Instantaneous Reward -", dist)
+  plot_title <- paste("Mean Reputation -", dist)
   q <- ggplot(data=df, aes(x=t, y=mean_rep, colour=alg)) + geom_smooth() +#geom_line() +
-    #geom_errorbar(aes(ymin=mean_rep-ci, ymax=mean_rep+ci), width=.2) +
+    geom_errorbar(aes(ymin=mean_rep-ci, ymax=mean_rep+ci), width=.2) +
     ggtitle(plot_title) + xlab("time") +
     ylab("Mean Reputation") +
     theme_bw(base_size = 12) +
