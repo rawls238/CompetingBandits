@@ -3,13 +3,9 @@
 
 \section{Algorithms' Performance in Isolation: Revisited}\label{section:revisited}
 
-The results from the previous section present a few puzzles:
-\begin{enumerate}
-\item $\DG > \DEG$ on Heavy Tail even for large warm starts does not seem consistent with the ordering of the means.
-\item Why does $\TS$ beat $\DG$ for Needle In Haystack for low warm starts whereas on Uniform and Heavy Tail it does not?
-\end{enumerate}
+Conjecture~\ref{conj:inverted-u} for the most part is validated by our simulation results, but Puzzles~\ref{puz:dg_ht} and \ref{puz:nih} seem to be problematic for it.
 
-We first attempt to explain the first puzzle. We revisit Conjecture~\ref{conj:mean-trajectories} and find a more nuanced picture.
+We first attempt to explain Puzzle~\ref{puz:dg_ht} by revisiting Conjecture~\ref{conj:mean-trajectories}.
 
 \begin{finding}
 \textit{
@@ -60,21 +56,22 @@ The relative reputation proportion statistic corresponds to running the bandit a
 
 \end{figure}
 
-Figure \ref{relative_rep_plots} shows plots of the relative reputation proportion for $\TS$ vs $\DG$ on the Uniform and Needle In Haystack instances. For the Uniform instance we see that, in the early rounds, $\DG > \TS$ for the majority of the simulations but that, eventually, $\TS > \DG$. The intuition behind this is that, especially since the firms start with no substantive initial information, $\TS$ does purposeful exploration in the early rounds in order to acquire information. However, eventually the information acquired from purposeful exploration in the early rounds allows $\TS$ to make better decisions and achieve a higher reputation, especially when the instance is ``hard enough" so that $\DG$ cannot trivially find the best arm. The early exploration leads to what we define as a \textit{relative reputation cost} and the eventual gain in reputation leads to what we define as a \textit{relative reputation benefit}.
+Figure \ref{relative_rep_plots} shows plots of the relative reputation proportion for $\TS$ vs $\DG$ on the Uniform and Needle In Haystack instances. For the Uniform instance we see that, in the early rounds, the relative reputation proportion for $\TS$  vs. $\DG$ is less than 0.5 meaning that $\DG$ has a higher reputation in a majority of the simulations  but that, eventually, the proportion $\TS$ does better than $\DG$ in a majority of the simulations. The intuition behind this is that, especially since the firms start with no substantive initial information, $\TS$ does purposeful exploration in the early rounds in order to acquire information. However, eventually the information acquired from purposeful exploration in the early rounds allows $\TS$ to make better decisions and achieve a higher reputation, especially when the instance is ``hard enough" so that $\DG$ cannot trivially find the best arm. The early exploration leads to what we define as a \textit{relative reputation cost} and the eventual gain in reputation leads to what we define as a \textit{relative reputation benefit}.
 
 \begin{definition}
 \textit{Relative reputation cost and benefit} - the relative reputation loss an algorithm incurs from purposeful exploration compared to the greedy alternative. Here we treat it as an empirical definition based on the relative reputation proportion where the ``cost" regime is when the proportion $< 0.5$ and the ``benefit" regime is when the proportion is $> 0.5$ for the better algorithm. We call the priors where there is an early costly period followed by a later benefit period relative reputation costly instances.
 \end{definition}
+
 Is exploration always costly? Figure \ref{relative_rep_plots} also shows that for the Needle In Haystack instances, $\TS$ always does relatively better than $\DG$. There are two contributing factors to this. First, $\TS$ identifies the best arm faster in the Needle In Haystack prior than the Uniform prior so that there is a shorter time horizon where $\TS$ needs to engage in purposeful exploration. Second, in the Needle In Haystack prior there are no ``bad" arms as there may be in the Uniform prior since by construction all the arms except one in Needle In Haystack are the same. Thus, when $\TS$ pulls a sub-optimal arm relative to its current information, the expected reward is the same as the greedy option that has not identified the best arm. However, with the Uniform prior, it is possible that the sub-optimal arm that is pulled has substantially lower expected reward relative to the greedy option. Thus, only the Uniform and Heavy Tail instances are relative reputation costly priors.
 
-This observation allows us to explain the second puzzle from the competition game with a more nuanced view of the inverted-U.
+This observation allows us to explain the Puzzle~\ref{puz:nih} from the competition game and establish a more nuanced view of the inverted-U.
 
 \begin{finding}
-\textit{For sufficiently low warm start on relative reputation costly instances the optimal strategies in the competition game are:
+\textit{For sufficiently low warm start \emph{under the instances that are relative reputation costly}, the optimal strategies in the competition game are:
 \begin{center}
-\textbf{Permanent Monopoly} - $\DG$ \\
+\textbf{Permanent Monopoly} - $DG$ \\
 \textbf{Temporary Monopoly} - $\TS$ \\
-\textbf{Permanent Duopoly} - $\DG$ \\
+\textbf{Permanent Duopoly} - $DG$ \\
 \end{center}
 The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.
 }
