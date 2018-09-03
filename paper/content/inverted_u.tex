@@ -9,17 +9,16 @@ permanent monopoly, temporary monopoly, and permanent duopoly:
   non-exploration algorithms towards non-exploration algorithms due to
   deployment costs.}  \swdelete{We summarize the relationship between
   the different competition levels and incentivized algorithms as
-  follows:} \swcomment{deleted the discussion of tie-breaking since it
-  feels out of place.}
+  follows:} \swcomment{think the tie-breaking should be discussed in the prelim?}
 \begin{finding}\label{conj:inverted-u}
   \textit{For sufficiently low warm start, the optimal strategies
     \swcomment{for whom??} in the competition game are:
 \begin{center}
-\textbf{Permanent Monopoly} - $\DG$ \\
-\textbf{Temporary Monopoly} - $\TS$ \\
-\textbf{Permanent Duopoly} - $\DG$ \\
+{Permanent Monopoly} - $\DG$ \\
+{Temporary Monopoly} - $\TS$ \\
+{Permanent Duopoly} - $\DG$ \\
 \end{center}
-The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.\swcomment{vague here. }
+The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.\swcomment{can we quantify?}
 }
 \end{finding}
   
@@ -37,35 +36,41 @@ introduce the notion of \textit{effective end of game (EEOG)} --- the
 last round $t$ such that the agent at round $(t-1)$ and the next agent
 around at $t$ choose different firms.
 
-\xhdr{Permanent Duopoly} \swdelete{Permanent duopoly corresponds to the model
-described in section 2 where $X = 0$ so that both firms enter the
-market simultaneously. What algorithms are firms incentivized to
-deploy? We report the average market share taken over the $N$
-simulations for a set of exogenous values of $T_0$. Additionally, we
-report the mean and median of the effective end of game.}
-\swedit{
+\xhdr{Permanent Duopoly} \swdelete{Permanent duopoly corresponds to
+  the model described in section 2 where $X = 0$ so that both firms
+  enter the market simultaneously. What algorithms are firms
+  incentivized to deploy? We report the average market share taken
+  over the $N$ simulations for a set of exogenous values of
+  $T_0$. Additionally, we report the mean and median of the effective
+  end of game.}  \swedit{Since both firms enter at the same time, they
+  will both get an expected market share of $1/2$ whenever they deploy
+  the same algorithms. We will mainly investigate the market shares
+  when the firms play different algorithms.  In Tables \ref{sim_ht}
+  and \ref{sim_nih}, we report the average market share taken over the
+  $N$ simulations for different values of warm-up length $T_0$, and
+  also the mean and median of the EEOG, under heavy tail and needle in
+  haystack instances.
 
-  Since in this case both firms enter at the same time, they will both
-  get an expected market share of $1/2$ whenever they deploy the same
-  algorithms. 
+  For the heavy tail and uniform instances,\footnote{We defer the
+    table for uniform instances to the appendix.} we see that $\DG$ is
+  a weakly dominant strategy for the competition game, and in
+  particular weakly dominates $\TS$. This establishes our claim that
+  $\DG$ is the incentivized algorithm.  However, there are two results
+  that are at odds with the conjecture: }
 
-To see what algorithms are the firms incentivized to deploy, we look at the average market
-share taken over the $N$ simulations for different values of warm-up length $T_0$.
-
-
-
-}
-
-\swdelete{Since both firms enter at the same time the game is symmetric and the competition game is zero-sum so we only need to compute the expected payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Since our results are from simulations, we interpret algorithm $A$ being better than algorithm $B$ if the resulting average market share of $A$ is statistically greater than $0.5$. Otherwise, the firm is indifferent between $A$ and $B$ with ties broken towards algorithms that are easier to deploy.}
+\swdelete{Since both firms enter at the same time the game is symmetric and the competition game is zero-sum so we only need to compute the expected payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Since our results are from simulations, we interpret algorithm $A$ being better than algorithm $B$ if the resulting average market share of $A$ is statistically greater than $0.5$. Otherwise, the firm is indifferent between $A$ and $B$ with ties broken towards algorithms that are easier to deploy.
 
 Tables \ref{sim_ht} and \ref{sim_nih} show the results of the simulations. For the most part Conjecture~\ref{conj:inverted-u} is validated where, for the Heavy Tail and Uniform instances, we see that $\DG$ does better than $\TS$ and is a weakly dominant strategy in the game. However, there are two results that are at odds with the conjecture:
+}
+
+\swcomment{Guy, please check above! for what instances are $\DG$ a weakly dominant strategy again? Also, what is $N$?}
 
 \begin{puzzle}\label{puz:dg_ht}
-Even for large warm start, $\DG$ is better than $\DEG$ under Heavy Tail \footnote{We demonstrate this holds even for $K = 3$ in the supplementary material}
+Even for large warm start, $\DG$ is better than $\DEG$ under heavy tail instances.\footnote{We demonstrate this holds even for $K = 3$ in the supplementary material}
 \end{puzzle}
 
 \begin{puzzle}\label{puz:nih}
-Under Needle In Haystack, $\TS$ is weakly dominant across all warm starts
+Under Needle In Haystack, $\TS$ is weakly dominant across all warm starts. 
 \end{puzzle}
 
 \OMIT{
@@ -94,7 +99,7 @@ We defer the explanation for these puzzles until the next section. Looking at th
 % Thu Aug 16 13:13:01 2018
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Heavy Tail}
+\caption{Duopoly experiment for heavy tail instances}
 \begin{tabular}{rlll}
   \hline
  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\ 
@@ -109,7 +114,7 @@ TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \make
 
 \begin{table}[ht]
 \centering
-\caption{Duopoly Experiment Needle In Haystack}
+\caption{Duopoly experiment for needle in haystack instances}
 \begin{tabular}{rlll}
   \hline
  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
@@ -120,18 +125,34 @@ TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \ma
    \hline
 \end{tabular}
 \label{sim_nih}
-\caption*{\tiny{The first line in each cell contains the average market share received by the firm playing Alg 1 (and the market share of Alg 2 is 1 - Alg 1 Market Share) as well as a 95\% confidence band. For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. The next line contain the average and median effective end of game for this set of simulations.}}
+\caption*{{The first line in each cell contains the average market share received by the firm playing Alg 1 (and the market share of Alg 2 is 1 - Alg 1 Market Share) as well as a 95\% confidence band. For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. The next line contain the average and median effective end of game for this set of simulations.}}
 \end{table}
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:00 2018
 
-\xhdr{Temporary Monopoly} We now consider asymmetries in the timing of entry so that one firm enters the market before the other and serves as a monopolist in the periods until the other firm enters. In terms of our model, this corresponds to varying the value of $X$. For this section we report results fixing $T_0 = 20$ and focus on the family of instances where we observed that, for this warm start, $\DG$ was the optimal strategy \footnote{However, we report the results for the Needle In Haystack instances in the supplementary material. The results are unsurprising, where $\TS$ is the dominant strategy for both the entrant and incumbent.}. It seems clear that the temporary monopoly will get a larger market share regardless of what algorithm it plays, but is the incumbent incentivized to commit to $\TS$?
+\swcomment{Guy: could you add lines and make the table 3 $\times$ 3 grid? Now it's hard to read which number belongs to which cell...}
+
+
+\xhdr{Temporary Monopoly.} Recall that the incumbent firm enters the
+market and serves as a monopolist until the entrant firm enters at
+round $X$. For this section we report results fixing $T_0 = 20$ and
+focus on the family of instances where we observed that, for this warm
+start, $\DG$ was the optimal strategy.\footnote{However, we report the
+  results for the Needle In Haystack instances in the supplementary
+  material. The results are unsurprising, where $\TS$ is the dominant
+  strategy for both the entrant and incumbent.}\swcomment{I don't
+  understand this sentence. what's the point?} \swdelete{It seems clear that the
+  temporary monopoly will get a larger market share regardless of what
+  algorithm it plays.}
 
 \begin{finding}
-\textit{Counterintuitively, allowing one firm to be a temporary monopolist for a sufficiently long time will induce that firm to commit to the better learning algorithm, $\TS$, even if, under the permanent duopoly, they would commit to $DG$}
+  \textit{If the incumbent firm can stay as a temporary monopolist for
+    a sufficiently long time, it will deploy the better learning
+    algorithm, $\TS$, even though, under the permanent duopoly, they
+    would commit to $\DG$.}
 \end{finding}
 
-In table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the Heavy Tail instances \footnote{The result for the Uniform instances is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$.}. In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the instances we consider.
+In Table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the heavy tail instances.\footnote{The result for the Uniform instances is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$.} In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the instances we consider.
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Aug 15 19:03:20 2018
@@ -151,7 +172,7 @@ TS & \makecell{\textbf{0.003} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\text
    \hline
 \end{tabular}
 \label{ht_incum}
-\caption*{\tiny{The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting an ``extreme" market share of $> 90\%$. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to the incumbent do not count towards the share)}}
+\caption*{{The first line in each cell contains the average market share for the entrant over $N=1000$ simulations as well as a 95\% confidence interval. The second line contains the sample variance of the observed market shares and the third line contains the fraction of simulations that ended up with one firm getting an ``extreme" market share of $> 90\%$. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to the incumbent do not count towards the share)}}
 \end{table}
 
 Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same parameters, $\DG$ was preferred to $\TS$? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the ``incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. 
