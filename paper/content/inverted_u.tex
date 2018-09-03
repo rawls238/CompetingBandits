@@ -1,37 +1,62 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 \section{Competition vs Better Algorithms: Inverted-U}\label{section:5}
- Now we demonstrate the inverted-U relationship between the incentivized
-  algorithms and the competition levels. In particular, we investigate
-  the incentivized algorithms under three different regimes: permanent
-  monopoly, temporary monopoly, and permanent duopoly. \gaedit{We break indifference between exploration algorithms and non-exploration algorithms towards non-exploration algorithms due to deployment costs.} \gadelete{First, the story for permanent monopoly is relatively straightforward.}
- We summarize the relationship between the different competition levels and incentivized algorithms as follows:
-  
-\begin{conjecture}\label{conj:inverted-u}
-\textit{For sufficiently low warm start,
- the optimal strategies in the competition game are:
+Now we demonstrate the inverted-U relationship between the
+incentivized algorithms and the competition levels. In particular, we
+investigate the incentivized algorithms under three different regimes:
+permanent monopoly, temporary monopoly, and permanent duopoly:
+\swdelete{We break indifference between exploration algorithms and
+  non-exploration algorithms towards non-exploration algorithms due to
+  deployment costs.}  \swdelete{We summarize the relationship between
+  the different competition levels and incentivized algorithms as
+  follows:} \swcomment{deleted the discussion of tie-breaking since it
+  feels out of place.}
+\begin{finding}\label{conj:inverted-u}
+  \textit{For sufficiently low warm start, the optimal strategies
+    \swcomment{for whom??} in the competition game are:
 \begin{center}
 \textbf{Permanent Monopoly} - $\DG$ \\
 \textbf{Temporary Monopoly} - $\TS$ \\
 \textbf{Permanent Duopoly} - $\DG$ \\
 \end{center}
-The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.
+The conditions on $\TS$ being dominant under the temporary monopoly are that the incumbent is a temporary monopoly for sufficiently many periods.\swcomment{vague here. }
 }
-\end{conjecture}
+\end{finding}
   
 
-\xhdr{Permanent Monopoly.} Since there is only a single firm
-  in the market for the entire period, the firm can take the entire
-  market regardless what algorithm it deploys. \gadelete{Assuming the deployment of any exploration algorithms will incur certain cost} \gaedit{Since we break indifferences by supposing the firm prefers easier to deploy algorithms}, the firm would choose to deploy $\DG$.
+\xhdr{Permanent Monopoly.} Since there is only a single firm in the
+market for the entire period, the firm can take the entire market
+regardless what algorithm it deploys. \gadelete{Assuming the
+  deployment of any exploration algorithms will incur certain cost}
+\swedit{Since we assume that exploration algorithms ($\DEG$ and $\TS$)
+  would incur deployment cost}, the firm would choose to deploy $\DG$.
+
 
 Next, to describe our results for temporary monopoly, we will
 introduce the notion of \textit{effective end of game (EEOG)} --- the
 last round $t$ such that the agent at round $(t-1)$ and the next agent
 around at $t$ choose different firms.
 
-\xhdr{Permanent Duopoly} Permanent duopoly corresponds to the model described in section 2 where $X = 0$ so that both firms enter the market simultaneously. What algorithms are firms incentivized to deploy? We report the average market share taken over the $N$ simulations for a set of exogenous values of $T_0$. Additionally, we report the mean and median of the effective end of game.
+\xhdr{Permanent Duopoly} \swdelete{Permanent duopoly corresponds to the model
+described in section 2 where $X = 0$ so that both firms enter the
+market simultaneously. What algorithms are firms incentivized to
+deploy? We report the average market share taken over the $N$
+simulations for a set of exogenous values of $T_0$. Additionally, we
+report the mean and median of the effective end of game.}
+\swedit{
 
-Since both firms enter at the same time the game is symmetric and the competition game is zero-sum so we only need to compute the expected payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Since our results are from simulations, we interpret algorithm $A$ being better than algorithm $B$ if the resulting average market share of $A$ is statistically greater than $0.5$. Otherwise, the firm is indifferent between $A$ and $B$ with ties broken towards algorithms that are easier to deploy.
+  Since in this case both firms enter at the same time, they will both
+  get an expected market share of $1/2$ whenever they deploy the same
+  algorithms. 
+
+To see what algorithms are the firms incentivized to deploy, we look at the average market
+share taken over the $N$ simulations for different values of warm-up length $T_0$.
+
+
+
+}
+
+\swdelete{Since both firms enter at the same time the game is symmetric and the competition game is zero-sum so we only need to compute the expected payoffs of three pairs of strategies. We do not report them in the figures, but when both firms play the same algorithm the expected market share is 50/50. Since our results are from simulations, we interpret algorithm $A$ being better than algorithm $B$ if the resulting average market share of $A$ is statistically greater than $0.5$. Otherwise, the firm is indifferent between $A$ and $B$ with ties broken towards algorithms that are easier to deploy.}
 
 Tables \ref{sim_ht} and \ref{sim_nih} show the results of the simulations. For the most part Conjecture~\ref{conj:inverted-u} is validated where, for the Heavy Tail and Uniform instances, we see that $\DG$ does better than $\TS$ and is a weakly dominant strategy in the game. However, there are two results that are at odds with the conjecture:
 
@@ -134,3 +159,7 @@ Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas 
 \OMIT{As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration.} Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $\TS$.
 
 \end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../competing_bandits"
+%%% End:
