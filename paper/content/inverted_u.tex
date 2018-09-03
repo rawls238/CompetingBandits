@@ -100,12 +100,14 @@ We defer the explanation for these puzzles until the next section. Looking at th
 \begin{table}[ht]
 \centering
 \caption{Duopoly experiment for heavy tail instances}
-\begin{tabular}{rlll}
+\begin{tabular}{|c|c|c|c|}
   \hline
  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\ 
   \hline
 TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \makecell{\textbf{0.72} $\pm$0.02\\ eeog \\ avg: 570\\ med: 0} & \makecell{\textbf{0.76} $\pm$0.02\\ eeog \\ avg: 620\\ med: 98.5} \\ 
+\hline  
   TS vs DEG & \makecell{\textbf{0.3} $\pm$0.03\\ eeog \\ avg: 37\\ med: 0} & \makecell{\textbf{0.88} $\pm$0.01\\ eeog \\ avg: 480\\ med: 0} & \makecell{\textbf{0.9} $\pm$0.01\\ eeog \\ avg: 570\\ med: 113.5} \\ 
+\hline  
   DG vs DEG & \makecell{\textbf{0.62} $\pm$0.03\\ eeog \\ avg: 410\\ med: 7} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 790\\ med: 762} & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 730\\ med: 608} \\ 
    \hline
 \end{tabular}
@@ -115,12 +117,14 @@ TS vs DG & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \make
 \begin{table}[ht]
 \centering
 \caption{Duopoly experiment for needle in haystack instances}
-\begin{tabular}{rlll}
+\begin{tabular}{|c|c|c|c|}
   \hline
  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
   \hline
 TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\
+\hline  
   TS vs DEG & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\
+  \hline
   DG vs DEG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\
    \hline
 \end{tabular}
@@ -130,19 +134,18 @@ TS vs DG & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \ma
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:00 2018
 
-\swcomment{Guy: could you add lines and make the table 3 $\times$ 3 grid? Now it's hard to read which number belongs to which cell...}
-
 
 \xhdr{Temporary Monopoly.} Recall that the incumbent firm enters the
 market and serves as a monopolist until the entrant firm enters at
-round $X$. For this section we report results fixing $T_0 = 20$ and
-focus on the family of instances where we observed that, for this warm
-start, $\DG$ was the optimal strategy.\footnote{However, we report the
+round $X$. \gaedit{For this section we focus on the warm start values (concretely, $T_0 = 20$) and on the instances where we observed that, under permanent duopoly, $\DG$ was the weakly dominant strategy} \footnote{However, we report the
   results for the Needle In Haystack instances in the supplementary
   material. The results are unsurprising, where $\TS$ is the dominant
-  strategy for both the entrant and incumbent.}\swcomment{I don't
-  understand this sentence. what's the point?} \swdelete{It seems clear that the
-  temporary monopoly will get a larger market share regardless of what
+  strategy for both the entrant and incumbent.}.
+
+\gadelete{we report results fixing $T_0 = 20$ and
+focus on the family of instances where we observed that, for this warm
+start, $\DG$ was the optimal strategy.}\swcomment{I don't
+  understand this sentence. what's the point?} \swdelete{It seems clear that the temporary monopoly will get a larger market share regardless of what
   algorithm it plays.}
 
 \begin{finding}
