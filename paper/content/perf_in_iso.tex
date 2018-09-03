@@ -7,10 +7,10 @@ We start with a pilot experiment in which we investigate each algorithm's perfor
 
 First, we confirm that\gaedit{, for a sufficiently long time horizon,} algorithms' performance is ordered as we'd expect:
     $\TS \gg \DEG \gg \DG$.
-For each algorithm and each MAB instance, we compute the mean reputation score at each round, averaged over all \MRVs. We plot the \emph{mean reputation trajectory}: how this score evolves over time. Figure \ref{prelim_means} shows such plot for the Needle In Haystack instance (for other MAB instances the plots are similar). We summarize this finding as follows:
+For each algorithm and each MAB instance, we compute the mean reputation score at each round, averaged over all \MRVs. We plot the \emph{mean reputation trajectory}: how this score evolves over time. Figure \ref{prelim_means} shows such \gaedit{a} plot for the Needle In Haystack instance (for other MAB instances the plots are similar). We summarize this finding as follows:
 
 \begin{finding}
-\textit{The mean reputation trajectories \gaedit{for sufficiently long time horizon} are arranged as predicted by prior work:
+\textit{The mean reputation trajectories\gaedit{, for sufficiently long time horizon,} are arranged as predicted by prior work:
     $\TS > \DEG > \DG$.}
 \end{finding}
 
@@ -22,13 +22,43 @@ For each algorithm and each MAB instance, we compute the mean reputation score a
 %\caption*{\tiny{Mean reputation trajectory The plots contain the average reputation over $1000$ runs for a memory size of $100$ where, for a given $t$, we record the reputation of a given algorithm on a given instance and then average this value across all the runs. The shaded area display 95\% confidence intervals.}}
 \end{figure}
 
-The mean reputation trajectory is, arguably, the most natural way to represent an algorithm's performance on a given problem instance. But is it the right statistic for our purposes? That is, how well do these trajectories predict the outcomes of the competition game? The following conjecture is natural:
+The mean reputation trajectory is, arguably, the most natural way to represent an algorithm's performance on a given problem instance. But is it the right statistic for our purposes? That is, how well do these trajectories predict the outcomes of the competition game?
+
+Our experiments led us to consider a statistic with a more direct connection to the competition game: for each time $t$, the proportion of \MRVs for which one algorithm has a higher reputation score than the other which we define as the \textit{relative reputation proportion}.
+
+
+
+\begin{figure}[ht]
+\caption{Relative Reputation Proportion Plots for $\TS$ vs $\DG$. Shaded area display 95\% confidence intervals.}
+\includegraphics[scale=0.35]{figures/relative_uniform_annotated_plot}
+\includegraphics[scale=0.35]{figures/relative_nih_ts_dg.png}
+%\caption*{\tiny{The plots contain the average reputation over $1000$ runs for a memory size of $100$ where, for a given $t$, we record the reputation of both of the algorithms on a given instance and then calculate the proportion of runs where $\TS \geq \DG$. The shaded area display 95\% confidence intervals.}}
+\label{relative_rep_plots}
+
+\end{figure}
+
+Figure \ref{relative_rep_plots} shows plots of the relative reputation proportion for $\TS$ vs $\DG$ on the Uniform and Needle In Haystack instances. For the Uniform instance we see that, in the early rounds, the relative reputation proportion for $\TS$  vs. $\DG$ is less than 0.5 meaning that $\DG$ has a higher reputation in a majority of the simulations but that, eventually, $\TS$ has a higher reputation than $\DG$ in a majority of the simulations. The intuition behind this is that, especially since the firms start with no substantive initial information, $\TS$ does purposeful exploration in the early rounds in order to acquire information which leads to a relatively lower reputation compared to $\DG$. However, eventually the information acquired from purposeful exploration in the early rounds allows $\TS$ to make better decisions and achieve a higher reputation, especially when the instance is ``hard enough" so that $\DG$ cannot trivially find the best arm.
+
+
+\begin{definition}
+\textit When purposeful exploration leads to a relative reputation loss compared to the greedy alternative we define this as a \textit{relative reputation cost}. The eventual gain in reputation from the early acquired information leads to what we define as a \textit{relative reputation benefit}. Here we treat it as an empirical definition based on the relative reputation proportion where the ``cost" regime is when the proportion $< 0.5$ and the ``benefit" regime is when the proportion is $> 0.5$ for the better algorithm. We call the instances where there is an early costly period followed by a later benefit period \textit{relative reputation costly instances}.
+\end{definition}
+
+\begin{finding}
+\textit{Purposeful exploration can lead to relative reputational costs and, as a result, the relative reputation proportion of $\TS$ vs $\DG$ favors $\DG$ for small time horizons. We observe this under the Uniform and Heavy Tail instances. However, it is not observed under the Needle In Haystack instances}
+\end{finding}
+
+Is exploration always costly? Figure \ref{relative_rep_plots} also shows that for the Needle In Haystack instances, $\TS$ always does relatively better than $\DG$. There are two contributing factors to this. First, $\TS$ identifies the best arm faster in the Needle In Haystack instances than the Uniform instances so that there is a shorter time horizon where $\TS$ needs to engage in purposeful exploration. Second, in the Needle In Haystack instances there are no ``bad" arms as there may be in the Uniform instances since by construction all the arms except one in Needle In Haystack are the same. Thus, when $\TS$ pulls a sub-optimal arm relative to its current information, the expected reward is the same as the greedy option that has not identified the best arm. However, with the Uniform instances, it is possible that the sub-optimal arm that is pulled has substantially lower expected reward relative to the greedy option. Thus, only the Uniform and Heavy Tail instances are relative reputation costly instances.
+
+
+\OMIT{The following conjecture is natural:
 
 \begin{conjecture}\label{conj:mean-trajectories}
 For a given MAB instance, if one algorithm's mean reputation trajectory lies above another at time $T_0$, then the first algorithm prevails in the competition game.
 \end{conjecture}
 
 We revisit this conjecture after documenting the results in the competition game.
+}
 
 \OMIT{
 However, we find a more nuanced picture. 
@@ -73,7 +103,7 @@ However, the mean reputation trajectory of an algorithm would summarize all this
 %\caption*{\tiny{The plots contain a kernel density estimate of the difference in reputation between $\TS$ and $\DG$ across $t$}}
 \end{figure}
 
-Let us consider a statistic with a more direct connection to the competition game: for each time $t$, the proportion of \MRVs for which one algorithm has a higher reputation score than the other. 
+. 
 
 \ascomment{Stopped here.}
 
