@@ -13,8 +13,7 @@ From each firm's perspective, the interactions with agents follow the protocol o
 Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that show up before the game starts, and interact with the firm in the same way as described above.
 
 In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"). Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$. 
-
-\swcomment{did we ever define what the competition game is? this might be a good place to talk about ``weakly dominance''}
+\swedit{Each firm aims to maximize its market share---the number of agents coming to them.}
 
 
 
@@ -52,6 +51,15 @@ where $\Delta$ is the gap in mean rewards between the best and second-best arms.
 In a stylized formula:
     $ \TS \gg \DEG \gg \DG $
 as stand-alone MAB algorithms.
+
+
+\swedit{For any fixed firm, we say that algorithm 1 \emph{weakly
+    dominates} algorithm 2 if algorithm 1 never provides a lower
+  market share than than 2 against all opposing strategies. An
+  algorithm is a weakly dominant strategy for a firm if the algorithm
+  weakly dominates all other algorithms.}
+
+\swcomment{please use the above terminology}
 
 
 \end{document} 
