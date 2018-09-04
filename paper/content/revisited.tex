@@ -1,14 +1,14 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\section{Algorithms' Performance in Isolation: Revisited}\label{section:revisited}
+\section{Performance in Isolation, Revisited}\label{section:revisited}
 
 A natural question to ask is why we had to introduce the relative reputation proportion instead of simply using the mean to understand the results. For instance, the following would have been a natural conjecture:
 \begin{conjecture}\label{conj:mean-trajectories}
 Given a sufficiently large $T_0$, if one algorithm's mean reputation trajectory lies above another (for instance, Figure  \ref{prelim_means}), then the first algorithm prevails in the competition game.
 \end{conjecture}
 
-However, we find a more nuanced picture. 
+However, we find a more nuanced picture.
 
 \begin{finding}
 \textit{
@@ -37,7 +37,7 @@ However, the mean reputation trajectory \swedit{may fail to capture} this comple
 We observe that the distribution is skewed to the right, precisely due to the fact that $\DG$ either does slightly better than $\TS$ or does substantially worse. This means that the mean is not a good measure of the central tendency, or typical value, of the reputation difference distribution and overstates how well an advanced exploration algorithm (that will eventually find the best arm) should do in competition compared to a naive algorithm that may never find the best arm.
 
 
-\end{document} 
+\end{document}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../competing_bandits"
