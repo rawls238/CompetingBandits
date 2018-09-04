@@ -3,17 +3,16 @@
 
 \section{Model and Preliminaries}\label{sec:model}
 
-%\textbf{Overview} 
-We consider a game involving two firms and $T$ customers (henceforth, \emph{agents}). The game lasts for $T$ rounds. In each round, a new agent arrives, chooses among the two firms, interacts with the chosen firm, and leaves forever. 
+%\textbf{Overview}
+We consider a game involving two firms and $T$ customers (henceforth, \emph{agents}). The game lasts for $T$ rounds. In each round, a new agent arrives, chooses among the two firms, interacts with the chosen firm, and leaves forever.
 
 Each interaction between a firm and an agent proceeds as follows. There is a set $A$ of $K$ actions, henceforth \emph{arms}, same for both firms and all rounds. The firm chooses an arm, and the agent experiences a numerical reward observed by the firm. Each arm corresponds to a different version of the experience that a firm can provide for an agent, and the reward corresponds to the agent's satisfaction level. The other firm does not observe anything about this interaction, not even the fact that this interaction has happened.
 
 From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but but initially unknown.
 
-Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that show up before the game starts, and interact with the firm in the same way as described above.
+Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. \asedit{Each firm's objective is to maximize its market share: the fraction of users who chose this firm.}
 
-In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"). Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$. 
-\swedit{Each firm aims to maximize its market share---the number of agents coming to them.}
+In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"). Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
 
 
 
@@ -22,29 +21,29 @@ Agents are myopic and non-strategic: they choose among the firms so as to maximi
 
 Concretely, each firm has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
 
-\subsubsection{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated: 
+\subsubsection{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated:
 
 \begin{enumerate}
-\item \emph{Greedy algorithms} that strive to take actions with maximal mean reward, based on the current information. 
-    
+\item \emph{Greedy algorithms} that strive to take actions with maximal mean reward, based on the current information.
+
 \item \emph{Exploration-separating algorithms} that separate exploration and exploitation. The ``exploitation" choices strives to maximize mean reward in the next round, and the ``exploration" choices do not use the rewards observed so far.
 \item \emph{Adaptive exploration}: algorithms that combine exploration and exploitation, and sway the exploration choices towards more promising alternatives.
 \end{enumerate}
 
-For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen. For technical reasons, we consider Bayesian versions initialized with a ``fake" prior (\ie not based on actual knowledge). We consider: 
+For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen. For technical reasons, we consider Bayesian versions initialized with a ``fake" prior (\ie not based on actual knowledge). We consider:
 
 \begin{enumerate}
 \item a greedy algorithm that chooses an arm with largest posterior mean reward. We call it "Dynamic Greedy" (because the chosen arm may change over time), \DG in short.
 
 \item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.\gaedit{\footnote{For our experiments, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.}}
-    
+
 \item an adaptive-exploration algorithm called "Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
 \end{enumerate}
 
 For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
 
 Both \DEG and \TS are classic and well-understood MAB algorithms, see \cite{Bubeck-survey12,TS-survey-FTML18} for background. It is well-known that \TS is near-optimal in terms of the cumulative rewards, and \DEG is very suboptimal, but still much better than \DG.%
-\footnote{Formally, \TS achieves regret 
+\footnote{Formally, \TS achieves regret
     $\tilde{O}(\sqrt{TK})$ and
     $O(\tfrac{1}{\Delta} \log T)$,
 where $\Delta$ is the gap in mean rewards between the best and second-best arms. \DEG has regret $\tilde{\Theta}(T^{2/3} K^{1/3})$ in the worst case. And \DG can have regret as high as $\Omega(T)$. Deeper discussion of these distinctions is not very relevant to this paper.}
@@ -52,16 +51,35 @@ In a stylized formula:
     $ \TS \gg \DEG \gg \DG $
 as stand-alone MAB algorithms.
 
+\subsubsection{MAB instances.}
+In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the mean reward vector $(\mu(a):\; a\in A)$, henceforth \MRV. Initially the \MRV is drawn from some distribution, termed \emph{MAB instance}. We consider several representative MAB instances.
+\begin{enumerate}
+\item \emph{Needle-In-Haystack}: one arm (the ``needle") is chosen uniformly at random. This arm has mean reward $.7$, and the remaining ones have mean reward $.5$.
 
-\swedit{For any single firm, we say that algorithm 1 \emph{weakly
-    dominates} algorithm 2 if algorithm 1 never provides a lower
-  market share than 2 against all opposing strategies. An
-  algorithm is a weakly dominant strategy for a firm if the algorithm
-  weakly dominates all other algorithms.}
-  \gaedit{Since the algorithms that involve exploration have larger deployment costs, we break any indifference towards algorithms that do not involve exploration (i.e. if \DG and \DEG provide the same market share, the firm will play \DG).}
-\swcomment{please use the above terminology}
+\item \emph{Uniform instance}: the mean reward of each arm is drawn independently and uniformly from $[0.25, 0.75]$.
+\item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution.%
+    \footnote{This distribution has substantial ``tail probabilities".}
+\end{enumerate}
 
-\end{document} 
+\subsubsection{Terminology.}
+\asedit{Following a standard game-theoretic terminology, algorithm Alg1 \emph{(weakly) dominates} algorithm Alg2 for a given firm if Alg1 provides a larger (or equal) market share than Alg2 at the end of the game. An algorithm is a (weakly) dominant strategy for the firm if it (weakly) dominates all other algorithms. This is for a particular MAB instance and a particular selection of the game parameters.}
+
+\OMIT{\gaedit{Since the algorithms that involve exploration have larger deployment costs, we break any indifference towards algorithms that do not involve exploration (i.e. if \DG and \DEG provide the same market share, the firm will play \DG).}}
+
+
+\subsubsection{Simulation details.}
+For each MAB instance we draw $N = 1000$ \MRVs independently from the corresponding distribution. We use this same collection of \MRVs for all experiments with this MAB instance. For each \MRV we draw a table of realized rewards (\emph{realization table}), and use this same table for all experiments on this \MRV. This ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings.
+
+More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns which correspond to arms, and $T+T_{\max}$ rows, which correspond to rounds. Here $T_{\max}$ is the maximal duration of the ``warm start" in our experiments, \ie the maximal value of $X+T_0$. For each arm $a$, each value $W(\cdot,a)$ is drawn independently from Bernoulli distribution with expectation $\mu(a)$. Then in each experiment, the reward of this arm in round $t$ of the warm start is taken to be $W(t,a)$, and its reward in round $t$ of the game is $W(T_{\max}+t,a)$.
+
+We fix the sliding window size $M = 100$. We found that lower values induced too much random noise in the results, and increasing $M$ further did not make a qualitative difference. Unless otherwise noted, \asedit{we used $T = 2000$}.
+
+\asedit{The simulations are computationally intensive. An experiment on a particular MAB instance comprised multiple runs of the competition game: $N$ mean reward vectors times $9$ pairs of algorithms times three values for the warm start. We used a parallel implementation over a cluster of 12 XX Hz CPU cores, with 8 GB RAM per core. With this implementation, each experiment took about XX hours.}
+
+While we experiments with various MAB instances and parameter settings, in the main paper we only report plots for selected, representative experiments. Additional plots can be found in the supplement. Unless noted otherwise, our findings are based on and consistent with all these plots.
+
+
+\end{document}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../competing_bandits"
