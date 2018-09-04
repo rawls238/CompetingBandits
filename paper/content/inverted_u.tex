@@ -5,10 +5,10 @@
 Now we demonstrate the inverted-U relationship between the
 incentivized algorithms and the competition levels. In particular, we
 investigate the incentivized algorithms under three different regimes:
-permanent monopoly, temporary monopoly, and permanent duopoly: \swcomment{think the tie-breaking should be discussed in the prelim?}
+permanent monopoly, temporary monopoly, and permanent duopoly:
   
 \begin{finding}
-\textit{For sufficiently low warm start under the instances that are relative reputation costly, the optimal strategies in the competition game are:
+\textit{For sufficiently low warm start under the instances that are relative reputation costly, the unique pure Nash equilibrium strategies in the competition game are:\footnote{the uniqueness comes from the fact that we break indifferences towards easier to deploy algorithms}
 \begin{center}
 \textbf{Permanent Monopoly} - $\DG$ \\
 \textbf{Temporary Monopoly} (incumbent)- $\TS$ \\
@@ -20,10 +20,7 @@ The conditions on $\TS$ being dominant under the temporary monopoly are that the
 
 \xhdr{Permanent Monopoly.} Since there is only a single firm in the
 market for the entire period, the firm can take the entire market
-regardless of what algorithm it deploys. \gadelete{Assuming the
-  deployment of any exploration algorithms will incur certain cost}
-\swedit{Since we assume that exploration algorithms ($\DEG$ and $\TS$)
-  would incur deployment cost}, the firm would choose to deploy $\DG$.
+regardless of what algorithm it deploys. \swedit{Since we assume that exploration algorithms ($\DEG$ and $\TS$) would incur deployment cost and firms break indifferences towards easier to deploy algorithms}, the firm would choose to deploy $\DG$.
 
 
 Next, to describe our results for temporary monopoly, we will
@@ -31,14 +28,7 @@ introduce the notion of \textit{effective end of game (EEOG)} --- the
 last round $t$ such that the agent at round $(t-1)$ and the next agent
 around at $t$ choose different firms.
 
-\xhdr{Permanent Duopoly} \swdelete{Permanent duopoly corresponds to
-  the model described in section 2 where $X = 0$ so that both firms
-  enter the market simultaneously. What algorithms are firms
-  incentivized to deploy? We report the average market share taken
-  over the $N$ simulations for a set of exogenous values of
-  $T_0$. Additionally, we report the mean and median of the effective
-  end of game.}  \swedit{Since both firms enter at the same time, they
-  will both get an expected market share of $1/2$ whenever they deploy
+\xhdr{Permanent Duopoly} \swedit{Since both firms enter at the same time, they will both get an expected market share of $1/2$ whenever they deploy
   the same algorithms. We will mainly investigate the market shares
   when the firms play different algorithms.  In Tables \ref{sim_ht}
   and \ref{sim_nih}, we report the average market share taken over the
@@ -46,17 +36,7 @@ around at $t$ choose different firms.
   also the mean and median of the EEOG, under heavy tail and needle in
   haystack instances.}
 
-For the relative reputation costly instances,\footnote{We defer the table for uniform instances to the appendix.} we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm. 
-
-\gadelete{
-\begin{puzzle}\label{puz:dg_ht}
-Even for large warm start, $\DG$ is better than $\DEG$ under heavy tail instances.\footnote{We demonstrate this holds even for $K = 3$ in the supplementary material}
-\end{puzzle}
-
-\begin{puzzle}\label{puz:nih}
-Under Needle In Haystack, $\TS$ is weakly dominant across all warm starts. 
-\end{puzzle}
-}
+For the relative reputation costly instances,\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium} we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm. 
 
 The reason we see that $\DG$ weakly dominates under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds leads it to suffer a relative reputational cost in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the relative reputation costly instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
 
