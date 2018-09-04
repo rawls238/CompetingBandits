@@ -11,7 +11,7 @@ from lib.bandit.DynamicGreedy import DynamicGreedy
 from lib.BanditProblemInstance import BanditProblemInstance
 
 class TestAgents(unittest.TestCase):
-
+  
   def test_moving_average(self):
     principals = { 'principal1': None, 'principal2': None }
     info = InformationSet(principals, 3, memory=2, score='moving_average', discount_factor=0.99)
@@ -26,8 +26,8 @@ class TestAgents(unittest.TestCase):
     self.assertEqual(info.getMaxPrincipalsAndScores(), (['principal2'], 0.0))
 
   def test_reputation(self):
-    T = 1000
-    prob_instance = BanditProblemInstance(1, T, [bernoulli(0.5)])
+    T = 5000
+    prob_instance = BanditProblemInstance(1, [bernoulli(0.5)])
     principal = { 'principal1': DynamicGreedy(prob_instance, [beta(1, 1)]) }
     agent = HardMax(principal, 1)
     for t in xrange(T):
@@ -58,7 +58,7 @@ class TestAgents(unittest.TestCase):
     for i in xrange(N):
       if agent.selectPrincipal()[0] == 'principal2':
         c += 1
-    self.assertAlmostEqual(c, 25, delta=10)
+    self.assertAlmostEqual(c, 25, delta=15)
 
 if __name__ == '__main__':
     unittest.main()
