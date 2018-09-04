@@ -23,37 +23,80 @@ under what conditions?
 \swcomment{Guy, could you make it clear what the first ``erase'' mean? Like reset to default?}
 
 
-\begin{table}[ht]
+\begin{table*}[h]
 \centering
-\begin{tabular}{cc|c|c|c|}
-  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
-  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
-            & $\TS$ & \makecell{\textbf{0.021} \\$\pm$0.009}& 		\makecell{\textbf{0.16} \\$\pm$0.02} & 
-            \makecell{\textbf{0.21} \\ $\pm$0.02} \\ \cline{3-5}
-Entrant  & $\DEG$ & \makecell{\textbf{0.26} \\$\pm$0.03} & \makecell{\textbf{0.3} \\$\pm$0.02} & 
-\makecell{\textbf{0.26} \\ $\pm$0.02} \\ \cline{3-5}
-            & $\DG$ & \makecell{\textbf{0.34} \\ $\pm$0.03} & \makecell{\textbf{0.4} \\$\pm$0.03} & 
-            \makecell{\textbf{0.33} \\$\pm$0.02} \\\cline{3-5}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+\hline
+  & \multicolumn{3}{c}{Information erased}
+  & \multicolumn{3}{c}{Reputation erased}\\
+\hline
+& $\TS$  & $\DEG$  & $\DG$ 
+& $\TS$  & $\DEG$  & $\DG$
+\\\hline
+$\TS$ 
+    & \makecell{\textbf{0.021}$\pm$0.009}
+    & \makecell{\textbf{0.16}$\pm$0.02} 
+    & \makecell{\textbf{0.21} $\pm$0.02} 
+    %%
+    & \makecell{\textbf{0.0096}$\pm$0.006}
+    & \makecell{\textbf{0.11}$\pm$0.02}
+    & \makecell{\textbf{0.18}$\pm$0.02} 
+    \\ \hline
+$\DEG$ 
+    & \makecell{\textbf{0.26}$\pm$0.03} 
+    & \makecell{\textbf{0.3}$\pm$0.02} 
+    & \makecell{\textbf{0.26}$\pm$0.02} 
+    %%
+    & \makecell{\textbf{0.073}$\pm$0.01}
+    & \makecell{\textbf{0.29}$\pm$0.02}
+    & \makecell{\textbf{0.25}$\pm$0.02} 
+    \\ \hline
+$\DG$ 
+    & \makecell{\textbf{0.34}$\pm$0.03} 
+    & \makecell{\textbf{0.4}$\pm$0.03} 
+    & \makecell{\textbf{0.33}$\pm$0.02} 
+    %%
+    & \makecell{\textbf{0.15}$\pm$0.02}
+    & \makecell{\textbf{0.39}$\pm$0.03}
+    & \makecell{\textbf{0.33}$\pm$0.02}
+    \\\hline
 \end{tabular}
-\caption{Information Erased Experiment Heavy Tail}
+\caption{Information-erased vs. reputation-erased experiment, on Heavy-Tail MAB instance. Each cell describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share in this game: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.}
 \label{info_erase}
-\end{table}
+\end{table*}
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{cc|c|c|c|}
-  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
-  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
-            & $\TS$ & \makecell{\textbf{0.0096} \\$\pm$0.006}& 		\makecell{\textbf{0.11} \\$\pm$0.02} & 
-            \makecell{\textbf{0.18} \\$\pm$0.02} \\ \cline{3-5}
-Entrant  & $\DEG$ & \makecell{\textbf{0.073} \\ $\pm$0.01} & \makecell{\textbf{0.29} \\ $\pm$0.02} & 
-\makecell{\textbf{0.25} \\$\pm$0.02} \\ \cline{3-5}
-            & $\DG$ &\makecell{\textbf{0.15} \\$\pm$0.02} & \makecell{\textbf{0.39} \\$\pm$0.03} & 
-           \makecell{\textbf{0.33} \\ $\pm$0.02} \\\cline{3-5}
-\end{tabular}
-\caption{Reputation Erased Experiment Heavy Tail}
-\label{rep_erase}
-\end{table}
+
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{cc|c|c|c|}
+%  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
+%  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
+%            & $\TS$ & \makecell{\textbf{0.021} \\$\pm$0.009}& 		\makecell{\textbf{0.16} \\$\pm$0.02} &
+%            \makecell{\textbf{0.21} \\ $\pm$0.02} \\ \cline{3-5}
+%Entrant  & $\DEG$ & \makecell{\textbf{0.26} \\$\pm$0.03} & \makecell{\textbf{0.3} \\$\pm$0.02} &
+%\makecell{\textbf{0.26} \\ $\pm$0.02} \\ \cline{3-5}
+%            & $\DG$ & \makecell{\textbf{0.34} \\ $\pm$0.03} & \makecell{\textbf{0.4} \\$\pm$0.03} &
+%            \makecell{\textbf{0.33} \\$\pm$0.02} \\\cline{3-5}
+%\end{tabular}
+%\caption{Information Erased Experiment Heavy Tail}
+%\label{info_erase}
+%\end{table}
+%
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{cc|c|c|c|}
+%  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
+%  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
+%            & $\TS$ & \makecell{\textbf{0.0096} \\$\pm$0.006}& 		\makecell{\textbf{0.11} \\$\pm$0.02} &
+%            \makecell{\textbf{0.18} \\$\pm$0.02} \\ \cline{3-5}
+%Entrant  & $\DEG$ & \makecell{\textbf{0.073} \\ $\pm$0.01} & \makecell{\textbf{0.29} \\ $\pm$0.02} &
+%\makecell{\textbf{0.25} \\$\pm$0.02} \\ \cline{3-5}
+%            & $\DG$ &\makecell{\textbf{0.15} \\$\pm$0.02} & \makecell{\textbf{0.39} \\$\pm$0.03} &
+%           \makecell{\textbf{0.33} \\ $\pm$0.02} \\\cline{3-5}
+%\end{tabular}
+%\caption{Reputation Erased Experiment Heavy Tail}
+%\label{rep_erase}
+%\end{table}
 
 \begin{finding}
 \textit{Maintaining either the data or reputation advantage alone still allows the incumbent \gaedit{to retain a larger share of the market compared to the share they get under permanent duopoly}.\\ \indent When the incumbent plays $\TS$, the data advantage serves as a larger barrier to entry compared to reputation, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two barriers.}
