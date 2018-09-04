@@ -28,19 +28,6 @@ introduce the notion of \textit{effective end of game (EEOG)} --- the
 last round $t$ such that the agent at round $(t-1)$ and the next agent
 around at $t$ choose different firms.
 
-\xhdr{Permanent Duopoly} \swedit{Since both firms enter at the same time, they will both get an expected market share of $1/2$ whenever they deploy
-  the same algorithms. We will mainly investigate the market shares
-  when the firms play different algorithms.  In Tables \ref{sim_ht}
-  and \ref{sim_nih}, we report the average market share taken over the
-  $N$ simulations for different values of warm-up length $T_0$, and
-  also the mean and median of the EEOG, under heavy tail and needle in
-  haystack instances.}
-
-For the exploration-disadvantaged instances, we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm.\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium}
-
-The reason we see that $\DG$ is incentivized under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds puts it in a disadvantage in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the exploration-disadvantaged instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
-
-What happens after the first agent? Looking at the EEOG values we note that, even though the game continues until $t=2000$, the game effectively ends much earlier than that. This seems to imply that when attempting to understand the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotic performance. This is due to the fact that the losing firm may enter into a ``death spiral" where the winner keeps learning and improving from its customers thus increasing its reputation while the losing firm gets starved of customers and progressively falls farther and farther behind its competitors. As a result, even though if $\TS$ could get sufficiently many agents it would eventually have a higher reputation than $\DG$, since it starts the game by losing agents to $\DG$ due to its lowered reputation from exploration in the warm start it ends up doing worse in the competition game.
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:01 2018
@@ -88,8 +75,21 @@ What happens after the first agent? Looking at the EEOG values we note that, eve
 \caption{The duopoly experiment for Uniform and Needle-in-Haystack instances. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. The first line in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
 %For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. 
 The second line specifies the ``effective end of game" (\Eeog): the average and the median (in brackets).}
-\label{sim_ht}
+\label{sim_table}
 \end{table*}
+\xhdr{Permanent Duopoly} \swedit{Since both firms enter at the same time, they will both get an expected market share of $1/2$ whenever they deploy
+  the same algorithms. We will mainly investigate the market shares
+  when the firms play different algorithms.  In Table \ref{sim_table}, we report the average market share taken over the
+  $N$ simulations for different values of warm-up length $T_0$, and
+  also the mean and median of the EEOG, under heavy tail and needle in
+  haystack instances.}
+
+For the exploration-disadvantaged instances, we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm.\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium}
+
+The reason we see that $\DG$ is incentivized under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds puts it in a disadvantage in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the exploration-disadvantaged instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
+
+What happens after the first agent? Looking at the EEOG values we note that, even though the game continues until $t=2000$, the game effectively ends much earlier than that. This seems to imply that when attempting to understand the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotic performance. This is due to the fact that the losing firm may enter into a ``death spiral" where the winner keeps learning and improving from its customers thus increasing its reputation while the losing firm gets starved of customers and progressively falls farther and farther behind its competitors. As a result, even though if $\TS$ could get sufficiently many agents it would eventually have a higher reputation than $\DG$, since it starts the game by losing agents to $\DG$ due to its lowered reputation from exploration in the warm start it ends up doing worse in the competition game.
+
 
 \OMIT{ %%%%%%
 \begin{table}[ht]
