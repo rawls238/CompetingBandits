@@ -19,12 +19,7 @@ For each MAB instance we draw $N = 1000$ \MRVs independently from the correspond
 
 More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns which correspond to arms, and $T+T_{\max}$ rows, which correspond to rounds. Here $T_{\max}$ is the maximal duration of the ``warm start" in our experiments, \ie the maximal value of $X+T_0$. For each arm $a$, each value $W(\cdot,a)$ is drawn independently from Bernoulli distribution with expectation $\mu(a)$. Then in each experiment, the reward of this arm in round $t$ of the warm start is taken to be $W(t,a)$, and its reward in round $t$ of the game is $W(T_{\max}+t,a)$.
 
-
-
-
-\OMIT{This realization table, as well as fixing the random seed for the same bandit instance and realization table across experiments, ensures that differences in algorithm performance are not due to noise in the realizations but due to differences in the algorithms in the different experimental settings. In the competition game we draw from the $T \times K$ portion of the table, so that if two different algorithms picks arm $a$ at time $t$, they get the same $[a, t]$ realization in the table. This setup also ensures that in the warm start period, increasing the warm start from $k$ to $k + 10$ results in the same behavior in the first $k$ rounds.}
-
-We fix the sliding window size $M = 100$. We found that low values of $M$ induced too much random noise in the results, and increasing $M$ further did not make a substantial qualitative difference. Unless otherwise noted, all results are reported at $t = 2000$.
+We fix the sliding window size $M = 100$. We found that low values of $M$ induced too much random noise in the results, and increasing $M$ further did not make a substantial qualitative difference. Unless otherwise noted, all results are reported at $t = 2000$. \gaedit{The simulations are computationally intensive with each experiment, after extensive optimization, usually taking around half a day parallelized over a cluster of 12 CPU cores.}
 
 While we experiments with various MAB instances and parameter settings, in the main paper we only report plots for selected, representative experiments. Additional plots can be found in the supplement. Unless noted otherwise, our findings are based on and consistent with all these plots.
 

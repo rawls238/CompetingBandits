@@ -32,7 +32,7 @@ We consider varying levels of competition, from monopoly to \emph{temporary mono
 
 Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of an ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This relationship -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better -- is a familiar theme in the economics literature, dating back to \cite{Schumpeter-42}.
 
-Our findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. In this scenario, the incumbent firm enjoys both a ``data advantage" and a ``reputational advantage". We further investigate which of the two is a stronger barrier to entry.\swcomment{so which of the two?} We find that both are strong barriers on its own: removing either one substantially helps the late entrant. Further, the data advantage tends to be a stronger barrier when the incumbent commits to a more advanced bandit algorithm.
+Our findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. In this scenario, the incumbent firm enjoys both a ``data advantage" and a ``reputational advantage". We further investigate which of the two is a stronger barrier to entry. We find that both are strong barriers on its own: removing either one substantially helps the late entrant. Further, the data advantage tends to be a stronger barrier when the incumbent commits to a more advanced bandit algorithm.
 
 
 
@@ -43,7 +43,7 @@ Our findings on temporary monopoly shed light on the ``first-mover advantage" ph
 \subsubsection{Related work.}
 Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
 
-Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, see \cite{Bubeck-survey12} for background. We consider i.i.d. rewards, a well-studied and well-understood MAB model \cite{bandits-ucb1}. We focus on a well-known distinction between ``greedy", exploitation-only algorithms, "naive" algorithms that separate exploration and exploitation, and better algorithms that combine the two. 
+Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, see \cite{Bubeck-survey12} for background. We consider i.i.d. rewards, a well-studied and well-understood MAB model \cite{bandits-ucb1}. We focus on a well-known distinction between ``greedy", exploitation-only algorithms, ``naive" algorithms that separate exploration and exploitation, and better algorithms that combine the two. 
 
 The study of competition vs. exploration has been initiated in \cite{CompetingBandits-itcs16}. Their model differs from ours in two key respects. First, users do not see any signal about firms' past performance, and instead choose between firms according to the Bayesian-expected reward. Second, they vary the strength of competition using assumptions about (ir)rational consumer behavior, whereas we use early entry. Their results are purely theoretical; their model is amenable to proofs but not to numerical experiments. \asedit{Their high-level conclusion is an inverted-U relationship between competition and innovation that is similar to ours.}
 
@@ -55,7 +55,7 @@ online ad auctions, \eg
     \cite{MechMAB-ec09,DevanurK09,NSV08,Transform-ec10-jacm,Amin-auctions-nips13},
 and human computation
     \cite{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
-Our setting is also closely related to the "dueling algorithms" framework \cite{DuelingAlgs-stoc11}, but this framework considers offline / full feedback scenarios whereas we focus on online machine learning problems.
+Our setting is also closely related to the ``dueling algorithms" framework \cite{DuelingAlgs-stoc11}, but this framework considers offline / full feedback scenarios whereas we focus on online machine learning problems.
 
 
 \end{document} 

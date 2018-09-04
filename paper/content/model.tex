@@ -36,7 +36,7 @@ For concreteness, we fix one algorithm from each class. Our pilot experiments in
 \begin{enumerate}
 \item a greedy algorithm that chooses an arm with largest posterior mean reward. We call it "Dynamic Greedy" (because the chosen arm may change over time), \DG in short.
 
-\item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.
+\item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.\gaedit{\footnote{For our experiments, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.}}
     
 \item an adaptive-exploration algorithm called "Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
 \end{enumerate}
