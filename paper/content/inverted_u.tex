@@ -1,12 +1,10 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
-\section{Competition vs Better Algorithms: Inverted-U}\label{section:5}
+\section{Competition and Better MAB Algorithms}\label{section:5}
 
-Now we demonstrate the inverted-U relationship between the
-incentivized algorithms and the competition levels. In particular, we
-investigate the incentivized algorithms under three different regimes:
-permanent monopoly, temporary monopoly, and permanent duopoly:
-  
+We describe our main experiments with the duopoly game. On a high level, we demonstrate the inverted-U relationship between the algorithms incentivized by the competition algorithms and the intensity of the competition, from 
+permanent monopoly to temporary monopoly to permanent duopoly.
+
 \begin{finding}
 \textit{For sufficiently low warm start under the instances that are relative reputation costly, the unique pure Nash equilibrium strategies in the competition game are:\footnote{the uniqueness comes from the fact that we break indifferences towards easier to deploy algorithms}
 \begin{center}
@@ -36,7 +34,7 @@ around at $t$ choose different firms.
   also the mean and median of the EEOG, under heavy tail and needle in
   haystack instances.}
 
-For the relative reputation costly instances,\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium} we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm. 
+For the relative reputation costly instances,\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium} we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm.
 
 The reason we see that $\DG$ weakly dominates under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds leads it to suffer a relative reputational cost in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the relative reputation costly instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
 
@@ -44,23 +42,55 @@ What happens after the first agent? Looking at the EEOG values we note that, eve
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:01 2018
-\begin{table}[ht]
+\begin{table*}[h]
 \centering
-\caption{Duopoly experiment for heavy tail instances}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
- & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\ 
+  & \multicolumn{3}{c}{Heavy-Tail} 
+  & \multicolumn{3}{c}{Needle-in-Haystack}\\
+  \hline 
+  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 
+  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
   \hline
-$\TS$ vs $\DG$ & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} & \makecell{\textbf{0.72} $\pm$0.02\\ eeog \\ avg: 570\\ med: 0} & \makecell{\textbf{0.76} $\pm$0.02\\ eeog \\ avg: 620\\ med: 98.5} \\ 
-\hline  
-  $\TS$ vs $\DEG$ & \makecell{\textbf{0.3} $\pm$0.03\\ eeog \\ avg: 37\\ med: 0} & \makecell{\textbf{0.88} $\pm$0.01\\ eeog \\ avg: 480\\ med: 0} & \makecell{\textbf{0.9} $\pm$0.01\\ eeog \\ avg: 570\\ med: 113.5} \\ 
-\hline  
-  $\DG$ vs $\DEG$ & \makecell{\textbf{0.62} $\pm$0.03\\ eeog \\ avg: 410\\ med: 7} & \makecell{\textbf{0.6} $\pm$0.02\\ eeog \\ avg: 790\\ med: 762} & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 730\\ med: 608} \\ 
+\TS vs \DG 
+  & \makecell{\textbf{0.29} $\pm$0.03\\ \Eeog 55 (0)} 
+  & \makecell{\textbf{0.72} $\pm$0.02\\ \Eeog 570 (0)} 
+  & \makecell{\textbf{0.76} $\pm$0.02\\ \Eeog 620 (99)} 
+  %%
+  & \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 200 (27)}
+  & \makecell{\textbf{0.6} $\pm$0.03\\ \Eeog 370 (0}
+  & \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 580 (122)}
+  \\
+\hline
+  $\TS$ vs $\DEG$ 
+  & \makecell{\textbf{0.3} $\pm$0.03\\ \Eeog 37 (0)} 
+  & \makecell{\textbf{0.88} $\pm$0.01\\ \Eeog 480 (0)}
+  & \makecell{\textbf{0.9} $\pm$0.01\\ \Eeog 570 (114)} 
+  %%
+  & \makecell{\textbf{0.57} $\pm$0.03\\ \Eeog 150 (14}
+  & \makecell{\textbf{0.52} $\pm$0.03\\ \Eeog 460 (79)}
+  & \makecell{\textbf{0.56} $\pm$0.02\\ \Eeog 740 (628)} 
+  \\
+\hline
+  $\DG$ vs $\DEG$ 
+  & \makecell{\textbf{0.62} $\pm$0.03\\ \Eeog 410 (7)}
+  & \makecell{\textbf{0.6} $\pm$0.02\\ \Eeog 790 (762)}
+  & \makecell{\textbf{0.57} $\pm$0.03\\ \Eeog 730 (608)} 
+  %%
+  & \makecell{\textbf{0.46} $\pm$0.03\\ \Eeog 340 (129)}
+  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 650 (408)}
+  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 690 (467)} 
+  \\
    \hline
 \end{tabular}
+\caption{The duopoly experiment for Uniform and Needle-in-Haystack instances. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. The first line in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+%For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. 
+The second line specifies the ``effective end of game" (\Eeog): the average and the median (in brackets).
+\ascomment{Can't add vertical lines in the top row - pls help!}}
 \label{sim_ht}
-\end{table}
+\end{table*}
 
+\OMIT{ %%%%%%
 \begin{table}[ht]
 \centering
 \caption{Duopoly experiment for needle in haystack instances}
@@ -68,11 +98,20 @@ $\TS$ vs $\DG$ & \makecell{\textbf{0.29} $\pm$0.03\\ eeog \\ avg: 55\\ med: 0} &
   \hline
  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
   \hline
-$\TS$ vs $\DG$ & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27} & \makecell{\textbf{0.6} $\pm$0.03\\ eeog \\ avg: 370\\ med: 0} & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 580\\ med: 121.5} \\
-\hline  
-  $\TS$ vs $\DEG$ & \makecell{\textbf{0.57} $\pm$0.03\\ eeog \\ avg: 150\\ med: 14} & \makecell{\textbf{0.52} $\pm$0.03\\ eeog \\ avg: 460\\ med: 78.5} & \makecell{\textbf{0.56} $\pm$0.02\\ eeog \\ avg: 740\\ med: 627.5} \\
+$\TS$ vs $\DG$ 
+& \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 200 (27)} 
+& \makecell{\textbf{0.6} $\pm$0.03\\ \Eeog 370 (0} 
+& \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 580 (122)} \\
+\hline
+  $\TS$ vs $\DEG$ 
+  & \makecell{\textbf{0.57} $\pm$0.03\\ \Eeog 150 (14} 
+  & \makecell{\textbf{0.52} $\pm$0.03\\ \Eeog 460 (79)} 
+  & \makecell{\textbf{0.56} $\pm$0.02\\ \Eeog 740 (628)} \\
   \hline
-  $\DG$ vs $\DEG$ & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 340\\ med: 128.5} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 650\\ med: 408} & \makecell{\textbf{0.42} $\pm$0.02\\ eeog \\ avg: 690\\ med: 466.5} \\
+  $\DG$ vs $\DEG$ 
+  & \makecell{\textbf{0.46} $\pm$0.03\\ \Eeog 340 (129)} 
+  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 650 (408)} 
+  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 690 (467)} \\
    \hline
 \end{tabular}
 \label{sim_nih}
@@ -80,7 +119,7 @@ $\TS$ vs $\DG$ & \makecell{\textbf{0.64} $\pm$0.03\\ eeog \\ avg: 200\\ med: 27}
 \end{table}
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Thu Aug 16 13:13:00 2018
-
+} %%%%%%%
 
 \xhdr{Temporary Monopoly.} Recall that the incumbent firm enters the
 market and serves as a monopolist until the entrant firm enters at
@@ -95,11 +134,35 @@ round $X$. \gaedit{For this section we focus on the warm start values and on the
     would commit to $\DG$.}
 \end{finding}
 
-In Table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the heavy tail instances.\footnote{The result for the Uniform instances is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$.} In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the instances we consider.
+In Table \ref{ht_incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the heavy tail instances.\footnote{The result for the Uniform instances is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$.} In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the
+instances we consider.
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
+$\TS$ 
+    & \makecell{\textbf{0.003}$\pm$0.003} 
+    & \makecell{\textbf{0.083}$\pm$0.02} 
+    & \makecell{\textbf{0.17}$\pm$0.02} \\\hline
+$\DEG$ 
+    & \makecell{\textbf{0.045}$\pm$0.01} 
+    & \makecell{\textbf{0.25}$\pm$0.02} 
+    & \makecell{\textbf{0.23}$\pm$0.02} \\\hline
+$\DG$ 
+    & \makecell{\textbf{0.12}$\pm$0.02} 
+    & \makecell{\textbf{0.36}$\pm$0.03} 
+    & \makecell{\textbf{0.3}$\pm$0.02} \\\hline
+\end{tabular}
+\label{ht_incum}
+\caption{The temporary monopoly experiment with $X=200$ (and $T_0=\asedit{???}$), for the Heavy-Tail MAB instance. Each cell describes the duopoly game between the entrant's algorithm (the row) and the incumbent's algorithm (the column). The cell specifies the entrant's market share for the rounds in which he was present. We give the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.}
+\end{table}
+
+
+\OMIT{ %%%%%%%
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Aug 15 19:03:20 2018
-
 \begin{table}[ht]
 \centering
 \caption{Temporary Monopoly Heavy Tail X = 200}
@@ -113,8 +176,9 @@ Entrant  & $\DEG$ & \makecell{\textbf{0.045} \\$\pm$0.01} & \makecell{\textbf{0.
 \label{ht_incum}
 \caption*{{The table contains the average market share for the entrant as well as 95\% confidence intervals. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to the incumbent do not count towards the share)}}
 \end{table}
+} %%%%%%%
 
-Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same parameters, $\DG$ was the weakly dominant strategy? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the ``incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition. 
+Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same parameters, $\DG$ was the weakly dominant strategy? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the ``incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition.
 
 As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same immediate relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration. Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $\TS$.
 
