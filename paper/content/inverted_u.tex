@@ -5,8 +5,10 @@
 We describe our main experiments with the duopoly game. On a high level, we demonstrate the inverted-U relationship between the algorithms incentivized by the competition algorithms and the intensity of the competition, from 
 permanent monopoly to temporary monopoly to permanent duopoly.
 
+\ascomment{stopped here.}
+
 \begin{finding}
-\textit{For sufficiently low warm start under the instances that are relative reputation costly, the unique pure Nash equilibrium strategies in the competition game are:\footnote{the uniqueness comes from the fact that we break indifferences towards easier to deploy algorithms}
+\textit{For sufficiently low warm start under the instances that are exploration-disadvantaged, the unique pure Nash equilibrium strategies in the competition game are:\footnote{the uniqueness comes from the fact that we break indifferences towards easier to deploy algorithms}
 \begin{center}
 \textbf{Permanent Monopoly} - $\DG$ \\
 \textbf{Temporary Monopoly} (incumbent)- $\TS$ \\
@@ -34,9 +36,9 @@ around at $t$ choose different firms.
   also the mean and median of the EEOG, under heavy tail and needle in
   haystack instances.}
 
-For the relative reputation costly instances,\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium} we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm.
+For the exploration-disadvantaged instances,\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium} we see that, for low warm start, $\DG$ is a weakly dominant strategy for the competition game, and in particular weakly dominates $\TS$. This establishes our claim that $\DG$ is the incentivized algorithm.
 
-The reason we see that $\DG$ weakly dominates under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds leads it to suffer a relative reputational cost in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the relative reputation costly instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
+The reason we see that $\DG$ weakly dominates under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds leads it to suffer a relative reputational cost in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the exploration-disadvantaged instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
 
 What happens after the first agent? Looking at the EEOG values we note that, even though the game continues until $t=2000$, the game effectively ends much earlier than that. This seems to imply that when attempting to understand the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotic performance. This is due to the fact that the losing firm may enter into a ``death spiral" where the winner keeps learning and improving from its customers thus increasing its reputation while the losing firm gets starved of customers and progressively falls farther and farther behind its competitors. As a result, even though if $\TS$ could get sufficiently many agents it would eventually have a higher reputation than $\DG$, since it starts the game by losing agents to $\DG$ due to its lowered reputation from exploration in the warm start it ends up doing worse in the competition game.
 
@@ -123,7 +125,7 @@ $\TS$ vs $\DG$
 
 \xhdr{Temporary Monopoly.} Recall that the incumbent firm enters the
 market and serves as a monopolist until the entrant firm enters at
-round $X$. \gaedit{For this section we focus on the warm start values and on the relative reputation costly instances where we observed that, under permanent duopoly, $\DG$ was the weakly dominant strategy. Concretely, our presented results are for $T_0 = 20$.} \footnote{However, we report the results for the Needle In Haystack instances in the supplementary
+round $X$. \gaedit{For this section we focus on the warm start values and on the exploration-disadvantaged instances where we observed that, under permanent duopoly, $\DG$ was the weakly dominant strategy. Concretely, our presented results are for $T_0 = 20$.} \footnote{However, we report the results for the Needle In Haystack instances in the supplementary
   material. The results are unsurprising, where $\TS$ is the dominant
   strategy for both the entrant and incumbent.}
 
