@@ -21,8 +21,6 @@ For each algorithm and each MAB instance, we compute the mean reputation score a
 \label{prelim_means}
 \end{figure}
 
-\ascomment{Rewrote from here down.}
-
 The mean reputation trajectory is probably the most natural way to represent an algorithm's performance on a given MAB instance. However, we found that the outcomes of the competition game are better explained with a different ``performance-in-isolation" statistic that is more directly connected to the game. Consider the  performance of two algorithms, Alg1 and Alg2, ``in isolation" on a particular MAB instance. The \emph{relative reputation} of Alg1 (vs. Alg2) at a given time $t$ is the fraction of \MRVs / realization tables for which Alg1 has a higher reputation score than Alg2. The intuition is that agent's selection in our model depends only on the comparison between the reputation scores.
 
 \begin{figure}[ht]
@@ -33,7 +31,7 @@ The mean reputation trajectory is probably the most natural way to represent an 
 \label{relative_rep_plots}
 \end{figure}
 
-This angle allows a more nuanced analysis of reputation costs vs. benefits under competition. Figure \ref{relative_rep_plots} (top) shows the relative reputation trajectory for $\TS$ vs $\DG$ for the Uniform instance. The relative reputation is less than $\tfrac12$ in the early rounds, meaning that $\DG$ has a higher reputation score in a majority of the simulations, and more than $\tfrac12$ later on. The reason is the exploration in \TS leads to worse decisions initially, but allows for better decisions later. The time period when relative reputation vs. \DG dips below $\tfrac12$ can be seen as an explanation for the competitive disadvantage of exploration. However, such period does not exist for the Needle-in-Haystack instance, see Figure \ref{relative_rep_plots} (bottom).%
+This angle allows a more nuanced analysis of reputation costs vs. benefits under competition. Figure \ref{relative_rep_plots} (top) shows the relative reputation trajectory for $\TS$ vs $\DG$ for the Uniform instance. The relative reputation is less than $\tfrac12$ in the early rounds, meaning that $\DG$ has a higher reputation score in a majority of the simulations, and more than $\tfrac12$ later on. The reason is the exploration in \TS leads to worse decisions initially, but allows for better decisions later. The time period when relative reputation vs. \DG dips below $\tfrac12$ can be seen as an explanation for the competitive disadvantage of exploration. \asedit{Such period also exists for the Heavy-tail MAB instance.} However, it does not exist for the Needle-in-Haystack instance, see Figure \ref{relative_rep_plots} (bottom).%
 \footnote{We see two explanations for this: $\TS$ identifies the best arm faster  for the Uniform instance, and there are no ``very bad" arms which make exploration very expensive in the short term.}
 
 
@@ -45,13 +43,15 @@ This angle allows a more nuanced analysis of reputation costs vs. benefits under
 For a particular MAB algorithm, a time period when relative reputation vs. \DG goes below $\tfrac12$ is called {\em exploration disadvantage period}. An MAB instance is called \emph{exploration-disadvantaged} if such period exists.
 \end{definition}
 
+\asedit{Thus, Uniform and Heavy-tail instance are exploration-disadvantaged, but Needle-in-Haystack is not.}
+
 \OMIT{ %%%%%%%
 \begin{definition}
 When purposeful exploration leads to a relative reputation loss compared to the greedy alternative we define this as a \textit{relative reputation cost}. The eventual gain in reputation from the early acquired information leads to what we define as a \textit{relative reputation benefit}. Here we treat it as an empirical definition based on the relative reputation proportion where the ``cost" regime is when the proportion $< 0.5$ and the ``benefit" regime is when the proportion is $> 0.5$ for the better algorithm. We call the instances where there is an early costly period followed by a later benefit period \textit{relative reputation costly instances}.
 \end{definition}
 } %%%%%
 
-\OMIT{ %%%%% 
+\OMIT{ %%%%%
 $\TS$ identifies the best arm faster for Needle-in-Haystack than for Uniform instance, so that there is a shorter time horizon where $\TS$ needs to engage in purposeful exploration. Second, in the Needle In Haystack instances there are no ``bad" arms as there may be in the Uniform instances since by construction all the arms except one in Needle In Haystack are the same. Thus, when $\TS$ pulls a sub-optimal arm relative to its current information, the expected reward is the same as the greedy option that has not identified the best arm. However, with the Uniform instances, it is possible that the sub-optimal arm that is pulled has substantially lower expected reward relative to the greedy option. Thus, only the Uniform and Heavy Tail instances are relative reputation costly instances.
 } %%%%
 
