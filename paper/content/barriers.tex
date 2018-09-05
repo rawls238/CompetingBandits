@@ -26,10 +26,11 @@ incumbent is artificially reset upon the entry of the entrant {so that
 (called \emph{information erased experiment}), the information gained
 by the incumbent is erased upon the entry of the entrant in the sense
 that its posterior is reset to the initial prior. The results of the
-experiments are presented in Table~\ref{barrier_exp}.
+experiments are presented in Table~\ref{barrier_exp}, which lead to
+our Finding~\ref{barrier-find}.
 
 
-\begin{table*}[h]
+\begin{table*}[h*]
 \centering
 \begin{tabular}{|c|c|c|c||c|c|c|}
 \hline
@@ -103,7 +104,7 @@ $\DG$
 %\label{rep_erase}
 %\end{table}
 
-\begin{finding}
+\begin{finding}\label{barrier-find}
 \swedit{During the rounds in which the entrant is present, the incumbent
   with either data or reputational advantage alone gets a larger share
   than the share \gaedit{in the permanent duopoly, regardless of the algorithm she plays}.  When the incumbent plays $\TS$, the data advantage serves as a larger barrier to entry compared to reputation, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two
@@ -111,9 +112,9 @@ $\DG$
 \OMIT{\textit{Maintaining either the data or reputation advantage alone still allows the incumbent \gaedit{to retain a larger market share compared to the share they get under permanent duopoly}.\\ \indent When the incumbent plays $\TS$, the data advantage serves as a larger barrier to entry compared to reputation, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two barriers.}}
 \end{finding}
 
-\swcomment{for the first part of the finding, is it true for any algorithm played by the incumbent?}
+% \swcomment{for the first part of the finding, is it true for any algorithm played by the incumbent?}
 
-\gaedit{While the data and reputation advantages seem to serve as substitutes for \DEG and \DG, it is interesting that under \TS the data advantage is larger. The reason for this is that, when playing \TS, not only does the early entry allow the incumbent to gather more data than the entrant, but it allows it to gather data on actions \textit{that may be hard to gather data on in competition}. Doing purposeful exploration in competition may have immediate adverse reputational consequences because exploration sometimes involves picking bad arms. However, in the incumbency period the incumbent faces no immediate reputational consequences from exploration and so has data on a more diversely distributed set of actions but has time to recover lost reputation from selecting the bad arms. As a result, the data advantage is larger for \TS precisely because the advantage that data gives is not just about the quantity of data but also about its distribution across actions.
+\gaedit{While the data and reputation advantages seem to serve as substitutes for \DEG and \DG, it is interesting that under \TS the data advantage is larger. The reason for this is that, when playing \TS, not only does the early entry allow the incumbent to gather more data than the entrant, but it allows it to gather data on actions \textit{that may be hard to gather data on in competition}. In contrast, purposeful exploration in competition may have immediate adverse reputational consequences. However, in the incumbency period the incumbent faces no immediate reputational consequences from exploration and so has data on a more diversely distributed set of actions but has time to recover lost reputation from selecting the bad arms. As a result, the data advantage is larger for \TS precisely because the advantage that data gives is not just about the quantity of data but also about its distribution across actions.
 
 Why is it that data and reputation alone provide such large barriers to entry? Having more data allows the incumbent to select better actions which allows her to quickly get a high reputation compared to an entrant that both needs to learn and work on building up a reputation. Starting with a large reputation score gives the incumbent a cushion for doing exploration and learning without facing as stark reputational consequences. It is interesting that, for \DEG and \DG, these two effects seem to serve nearly as perfectly substitutes.
 }
