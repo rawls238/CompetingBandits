@@ -60,7 +60,7 @@ In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, an ins
 \item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution.%
     \footnote{This distribution has substantial ``tail probabilities".}
 \end{enumerate}
-We argue that these MAB instances are (somewhat) representative. Consider the ``gap" between the best and the second-best arm, an essential parameter in the literature on MAB. The ``gap" is fixed in Needle-in-Haystack, spread over a wide spectrum of values under the Uniform instance, and is spread but  focused on the large values under the Heavy-Tail instance. \asedit{We also ran smaller experiments with versions of these instances, and achieved similar qualitative results.}
+We argue that these MAB instances are (somewhat) representative. Consider the ``gap" between the best and the second-best arm, an essential parameter in the literature on MAB. The ``gap" is fixed in Needle-in-Haystack, spread over a wide spectrum of values under the Uniform instance, and is spread but  focused on the large values under the Heavy-Tail instance. We also ran smaller experiments with versions of these instances, and achieved similar qualitative results.
 
 \subsubsection{Terminology.}
 Following a standard game-theoretic terminology, algorithm Alg1 \emph{(weakly) dominates} algorithm Alg2 for a given firm if Alg1 provides a larger (or equal) market share than Alg2 at the end of the game. An algorithm is a (weakly) dominant strategy for the firm if it (weakly) dominates all other algorithms. This is for a particular MAB instance and a particular selection of the game parameters.
