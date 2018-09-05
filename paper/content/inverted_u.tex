@@ -2,11 +2,7 @@
 \begin{document}
 \section{Competition and Better MAB Algorithms}\label{section:5}
 
-Our main experiments are with the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from permanent monopoly to temporary monopoly to permanent duopoly, we find a stylized inverted-U relationship as in Figure~\ref{fig:inverted-U}. 
-
-More formally, we look for equilibria in the duopoly game, where each firm's choices are limited to \DG, \DEG and \TS. We do this for each "intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. 
-
-For cleaner results, we break ties towards less advanced algorithms (as they tend to have lower adoption costs \cite{MWT-WhitePaper-2016,DS-arxiv}). Then \DG is trivially the dominant strategy under permanent monopoly.
+Our main experiments are with the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from permanent monopoly to temporary monopoly to permanent duopoly, we find a stylized inverted-U relationship as in Figure~\ref{fig:inverted-U}. More formally, we look for equilibria in the duopoly game, where each firm's choices are limited to \DG, \DEG and \TS. We do this for each "intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. For cleaner results, we break ties towards less advanced algorithms (as they tend to have lower adoption costs \cite{MWT-WhitePaper-2016,DS-arxiv}). Note that \DG is trivially the dominant strategy under permanent monopoly.
 
 %(1) Permanent monopoly - indifferent between all algorithms but break indifference towards DG cause of deployment costs
 %(2) Temporary monopoly - TS is the dominant strategy for the incumbent
@@ -25,7 +21,7 @@ For temporary monopoly, we find that \TS dominates:
 For permanent duopoly, it is a crucial whether an MAB instance is exploration-disadvantaged:
 
 \begin{finding}\label{find:duopoly}
-\textit{Under permanent duopoly: 
+\textit{Under permanent duopoly:
 \begin{itemize}
 \item[(a)] (\DG,\DG) is the unique pure-strategy Nash equilibrium for exploration-disadvantaged MAB instances with a sufficiently small ``warm start".
 \item[(b)] This is not necessarily the case for MAB instances that are not exploration-disadvantaged. In particular, \TS is a weakly dominating strategy for Needle-in-Haystack.
@@ -100,7 +96,7 @@ Line 2 specifies the ``effective end of game" (\Eeog): the average and the media
 \label{sim_table}
 \end{table*}
 
-\subsubsection{Permanent Duopoly (Finding~\ref{find:duopoly}).} 
+\subsubsection{Permanent Duopoly (Finding~\ref{find:duopoly}).}
 We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for Heavy-Tail and Needle-in-Haystack instances in Table \ref{sim_table}  (see the first line in each cell), for a range of values of the warm start $T_0$.
 
 We find that $\DG$ is a weakly dominant strategy for the Heavy-tail instance (with a sufficiently small $T_0$). However, \TS is a weakly dominating strategy for the Needle-in-Haystack instance.
@@ -151,7 +147,7 @@ $\TS$ vs $\DG$
 % Thu Aug 16 13:13:00 2018
 } %%%%%%%
 
-\subsubsection{Temporary Monopoly (Finding~\ref{find:temp-monopoly}).} 
+\subsubsection{Temporary Monopoly (Finding~\ref{find:temp-monopoly}).}
 Recall that the incumbent firm enters the
 market and serves as a monopolist until the entrant firm enters at
 round $X$. \gaedit{For this section we focus on the warm start values and on the exploration-disadvantaged instances where we observed that, under permanent duopoly, $\DG$ was the weakly dominant strategy. Concretely, our presented results are for $T_0 = 20$.} \footnote{However, we report the results for the Needle In Haystack instances in the supplementary material. The results are unsurprising, where $\TS$ is the dominant
