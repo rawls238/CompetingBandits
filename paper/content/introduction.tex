@@ -20,8 +20,8 @@ We ask whether competition incentivizes adoption of ``better" algorithms for exp
       \draw[->] (0,-.5) -- (0,2) node[above] {Better algorithms};
       \draw[scale=0.6,domain=0.7:8.3,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{3.4 - 0.2 * (\x - 4.5)^2});
      \node[below] at (0.7, -0.15) {\footnotesize monopoly};
-     \node[below] at (3, -0.15) {\footnotesize early entry};
-     \node[below] at (5, 0) {\footnotesize duopoly \\ late entry};
+     \node[below] at (3, 0) {\footnotesize temporary \\ monopoly};
+     \node[below] at (5, -0.15) {\footnotesize duopoly};
  \end{tikzpicture}
  \caption{A stylized ``inverted-U relationship" between strength of competition and ``level of innovation".}
 \label{fig:inverted-U}
@@ -32,7 +32,7 @@ We ask whether competition incentivizes adoption of ``better" algorithms for exp
 
 Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of an ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This relationship -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better -- is a familiar theme in the economics literature, dating back to \cite{Schumpeter-42}.
 
-Our findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. Being first in the market gives firms free data to learn from (a ``data advantage") as well as \asedit{a more definite (and possibly better)} reputation compared to an entrant (a ``reputation advantage"). We investigate which of the two is a stronger barrier to entry. We find that both are strong barriers on their own: removing either one still gives the incumbent a substantially larger share of the market compared to the case where both are removed. Further, the data advantage tends to be a stronger barrier when the incumbent commits to a more advanced bandit algorithm. 
+Our findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. Being first in the market gives firms free data to learn from (a ``data advantage") as well as \asedit{a more definite (and possibly better)} reputation compared to an entrant (a ``reputation advantage"). We investigate which of the two is a stronger barrier to entry. We find that both are strong barriers on their own: removing either one still gives the incumbent a substantially larger share of the market compared to the case where both are removed. Further, the data advantage tends to be a stronger barrier when the incumbent commits to a more advanced bandit algorithm.
 
 \OMIT{This occurs because the lack of initial competition allows the incumbent to gather data on actions that may be harder to gather in competition (due to reputational consequences) but that are useful for learning and maximizing long-run reputation.}
 
@@ -48,7 +48,7 @@ Our findings on temporary monopoly shed light on the ``first-mover advantage" ph
 
 
 \subsubsection{Related work.}
-Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
+Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration. \asedit{First-mover advantage phenomenon is well-studied in economics, \eg see \cite{kerin1992first}.}
 
 Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, see \cite{Bubeck-survey12} for background. We consider i.i.d. rewards, a well-studied and well-understood MAB model \cite{bandits-ucb1}. We focus on a well-known distinction between ``greedy" (exploitation-only) algorithms, ``naive" algorithms that separate exploration and exploitation, and ``smart" algorithms that combine them. Switching from ``greedy" to ``naive" to ``smart" algorithms involves substantial adoption costs in infrastructure and personnel training \cite{MWT-WhitePaper-2016,DS-arxiv}.
 
