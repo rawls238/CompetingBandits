@@ -2,39 +2,13 @@
 \begin{document}
 
 \section{Data and Reputation as Barriers to Entry}\label{section:6}
-In the temporary monopoly setting, the incumbent firm enjoys a first
-mover advantage, which allows the firm to acquire data on potentially
-suboptimal actions without incurring an immediate reputational
-consequence, and to build up a high reputation before the entrant
-enters the market. Thus, the early entry gives the incumbent both a
-\textit{data} advantage and a \textit{reputational} advantage over the
-entrant. This provides a quantitative perspective on the classic
-``first mover advantage" \cite{kerin1992first} in the digital economy
-where data can serve as a barrier to entry in many markets.
-
-While the two advantages together serve as strong barriers to entry, a
-natural question to ask is whether either one of the advantages alone
-suffices as a strong barrier to entry. If both of them are barriers of
-entry, which of the two is the stronger?
-
-To answer these questions, we isolate the effect from each of the two
-advantages and run two additional experiments. In the first experiment
-(called \emph{reputation erased experiment}), the reputation of the
-incumbent is artificially reset upon the entry of the entrant {so that
-  the incumbent's reputation score is only based on the rewards
-  generated in the warm start period}. In the second experiment
-(called \emph{information erased experiment}), the information gained
-by the incumbent is erased upon the entry of the entrant in the sense
-that its posterior is reset to the initial prior. The results of the
-experiments are presented in Table~\ref{barrier_exp}, which lead to
-our Finding~\ref{barrier-find}.
 
 
 \begin{table*}[h]
 \centering
 \begin{tabular}{|c|c|c|c||c|c|c|}
 \hline
-  & \multicolumn{3}{c|}{Information erased}
+  & \multicolumn{3}{c||}{Information erased}
   & \multicolumn{3}{c|}{Reputation erased}\\
 \hline
 & $\TS$  & $\DEG$  & $\DG$
@@ -71,6 +45,33 @@ $\DG$
 \caption{Information-erased vs. reputation-erased experiment, on Heavy-Tail MAB instance. Each cell describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share for the rounds in which hit was present: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.}
 \label{barrier_exp}
 \end{table*}
+
+In the temporary monopoly setting, the incumbent firm enjoys a first
+mover advantage, which allows the firm to acquire data on potentially
+suboptimal actions without incurring an immediate reputational
+consequence, and to build up a high reputation before the entrant
+enters the market. Thus, the early entry gives the incumbent both a
+\textit{data} advantage and a \textit{reputational} advantage over the
+entrant. This provides a quantitative perspective on the classic
+``first mover advantage" \cite{kerin1992first} in the digital economy
+where data can serve as a barrier to entry in many markets.
+
+While the two advantages together serve as strong barriers to entry, a
+natural question to ask is whether either one of the advantages alone
+suffices as a strong barrier to entry. If both of them are barriers of
+entry, which of the two is the stronger?
+
+To answer these questions, we isolate the effect from each of the two
+advantages and run two additional experiments. In the first experiment
+(called \emph{reputation erased experiment}), the reputation of the
+incumbent is artificially reset upon the entry of the entrant {so that
+  the incumbent's reputation score is only based on the rewards
+  generated in the warm start period}. In the second experiment
+(called \emph{information erased experiment}), the information gained
+by the incumbent is erased upon the entry of the entrant in the sense
+that its posterior is reset to the initial prior. The results of the
+experiments are presented in Table~\ref{barrier_exp}, which lead to
+our Finding~\ref{barrier-find}.
 
 %\begin{table}[ht]
 %\centering
