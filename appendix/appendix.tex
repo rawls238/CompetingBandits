@@ -43,7 +43,7 @@ In this section we present the additional mean reputation graphs that were omitt
 \pagebreak
 \section{Reversal between Mean Reputation and Relative Reputation}
 
-In this section we present the results in isolation and in competition over the ``Heavy Tail" prior discussed in the text for $K = 3$. We demonstrate evidence that $DEG > DG$ according to the mean reputation metric but that $DG > DEG$ according to the relative reputation proportion statistic and in the competition game. As shown in the text, the same results also hold for $K = 10$ for the warm starts that we consider.
+In this section we present the results in isolation and in competition over the ``Heavy Tail" instance discussed in the text for $K = 3$. We demonstrate evidence that $DEG > DG$ according to the mean reputation metric but that $DG > DEG$ according to the relative reputation proportion statistic and in the competition game. As shown in the text, the same results also hold for $K = 10$ for the warm starts that we consider.
 
 \begin{center}
 \includegraphics[scale=0.5]{figures/mean_ht_3_arms} \\
@@ -116,9 +116,9 @@ TS vs DG & \makecell{\textbf{0.46} $\pm$0.03\\ eeog \\ avg: 230\\ med: 0} & \mak
 
 \section{Additional Temporary Monopoly Experiments}
 
-We present results for the temporary monopoly experiment across the family of instances that we consider for varying values of $X$. These results confirm the claim in the text that, for sufficiently large $X$, Thompson Sampling is preferred over all other algorithms for the incumbent. However, it also shows that, for smaller values of $X$ it is not necessarily the case that Thompson Sampling is the preferred algorithm. We provide many different parameterizations in order to check the robustness of the results. The results displayed in the table are the same contain the same information as those in the text and are the average over $N = 1000$ simulations.
+We present results for the temporary monopoly experiment across the family of instances that we consider for varying values of $X$. These results confirm the claim in the text that, for sufficiently large $X$, Thompson Sampling is preferred over all other algorithms for the incumbent. However, it also shows that, for smaller values of $X$ it is not necessarily the case that Thompson Sampling is the preferred algorithm. We provide many different parameterizations in order to check the robustness of the results. The results displayed contain more information than those in the original text. The tables displayed here include the market share of the entrant (on the first line), the point estimate of the variance of market shares on the second line, and the fraction of simulations that ended with ``extreme shares" (shorthand ES), where, in the simulation, one firm had $> 90\%$ of the market. The results presented here use the same instances and realization tables as those presented in the main text. 
 
-\subsection*{Heavy Tail Prior}
+\subsection*{Heavy Tail Instance}
 \begin{table}[H]
 \centering
 \caption{Temporary Monopoly Experiment Heavy Tail X = 50} 
@@ -186,7 +186,7 @@ TS & \makecell{\textbf{0.002} $\pm$0.003\\Var:0.002\\ES:100\%} & \makecell{\text
 \end{tabular}
 \end{table}
 
-\subsection*{Needle In Haystack Prior}
+\subsection*{Needle In Haystack Instance}
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Sat Aug 25 17:05:40 2018
@@ -265,7 +265,7 @@ TS & \makecell{\textbf{0.053} $\pm$0.01\\Var:0.04\\ES:95\%} & \makecell{\textbf{
 \end{table}
 
 
-\subsection*{Uniform Prior}
+\subsection*{Uniform Instance}
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Sat Aug 25 17:05:41 2018
