@@ -37,7 +37,7 @@ For concreteness, we fix one algorithm from each class. Our pilot experiments in
 
 \item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.\gaedit{\footnote{For our experiments, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.}}
 
-\item an adaptive-exploration algorithm called "Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
+\item an adaptive-exploration algorithm called ``Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
 \end{enumerate}
 
 For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
@@ -60,7 +60,7 @@ In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, an ins
 \item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution.%
     \footnote{This distribution has substantial ``tail probabilities".}
 \end{enumerate}
-\asedit{We argue that these MAB instances are (somewhat) representative. Consider the ``gap" between the best and the second-best arm, an essential parameter in the literature on MAB. The ``gap" is fixed in Needle-in-Haystack, spread over a wide spectrum of values under the Uniform instance, and is spread but  focused on the large values under the Heavy-Tail instance.}
+We argue that these MAB instances are (somewhat) representative. Consider the ``gap" between the best and the second-best arm, an essential parameter in the literature on MAB. The ``gap" is fixed in Needle-in-Haystack, spread over a wide spectrum of values under the Uniform instance, and is spread but  focused on the large values under the Heavy-Tail instance.
 
 \subsubsection{Terminology.}
 Following a standard game-theoretic terminology, algorithm Alg1 \emph{(weakly) dominates} algorithm Alg2 for a given firm if Alg1 provides a larger (or equal) market share than Alg2 at the end of the game. An algorithm is a (weakly) dominant strategy for the firm if it (weakly) dominates all other algorithms. This is for a particular MAB instance and a particular selection of the game parameters.
