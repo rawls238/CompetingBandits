@@ -51,7 +51,7 @@ Line 2 specifies the ``effective end of game" (\Eeog): the average and the media
 \label{sim_table}
 \end{table*}
 
-Our main experiments are with the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from permanent monopoly to ``early entry" to permanent duopoly to ``late entry", we find a stylized inverted-U relationship as in Figure~\ref{fig:inverted-U}. More formally, we look for equilibria in the duopoly game, where each firm's choices are limited to \DG, \DEG and \TS. We do this for each "intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. For cleaner results, we break ties towards less advanced algorithms (as they tend to have lower adoption costs \cite{MWT-WhitePaper-2016,DS-arxiv}). Note that \DG is trivially the dominant strategy under permanent monopoly.
+Our main experiments are with the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from permanent monopoly to ``early entry" to permanent duopoly to ``late entry", we find a stylized inverted-U relationship as in Figure~\ref{fig:inverted-U}. More formally, we look for equilibria in the duopoly game, where each firm's choices are limited to \DG, \DEG and \TS. We do this for each ``intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. For cleaner results, we break ties towards less advanced algorithms (as they tend to have lower adoption costs \cite{MWT-WhitePaper-2016,DS-arxiv}). Note that \DG is trivially the dominant strategy under permanent monopoly.
 
 %(1) Permanent monopoly - indifferent between all algorithms but break indifference towards DG cause of deployment costs
 %(2) Temporary monopoly - TS is the dominant strategy for the incumbent
@@ -68,7 +68,7 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
 \textit{Under permanent duopoly:
 \begin{itemize}
 \item[(a)] (\DG,\DG) is the unique pure-strategy Nash equilibrium for exploration-disadvantaged MAB instances with a sufficiently small ``warm start".
-\item[(b)] This is not necessarily the case for MAB instances that are not exploration-disadvantaged. In particular, \TS is a weakly dominating strategy for Needle-in-Haystack.
+\item[(b)] This is not necessarily the case for MAB instances that are not exploration-disadvantaged. In particular, \TS is a weakly dominant strategy for Needle-in-Haystack.
 \end{itemize}
 }
 \end{finding}
@@ -88,7 +88,7 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
 %market for the entire period, the firm can take the entire market
 %regardless of what algorithm it deploys. \swedit{Since we assume that exploration algorithms ($\DEG$ and $\TS$) would incur deployment cost and firms break indifferences towards easier to deploy algorithms}, the firm would choose to deploy $\DG$.
 
-We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for Heavy-Tail and Needle-in-Haystack instances in Table \ref{sim_table}  (see the first line in each cell), for a range of values of the warm start $T_0$. We find that $\DG$ is a weakly dominant strategy for the Heavy-tail instance, as long as $T_0$ is sufficiently small. However, \TS is a weakly dominating strategy for the Needle-in-Haystack instance. A similar table for the Uniform MAB instance is deferred to the appendix. We find that for a sufficiently small $T_0$, \DG yields more than half the market against \TS,  but achieves similar market share vs. \DG and \DEG. By our tie-breaking rule, (\DG,\DG) is the only pure-strategy equilibrium.
+We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for Heavy-Tail and Needle-in-Haystack instances in Table \ref{sim_table}  (see the first line in each cell), for a range of values of the warm start $T_0$. We find that $\DG$ is a weakly dominant strategy for the Heavy-tail instance, as long as $T_0$ is sufficiently small. However, \TS is a weakly dominant strategy for the Needle-in-Haystack instance. A similar table for the Uniform MAB instance is deferred to the appendix. We find that for a sufficiently small $T_0$, \DG yields more than half the market against \TS,  but achieves similar market share vs. \DG and \DEG. By our tie-breaking rule, (\DG,\DG) is the only pure-strategy equilibrium.
 
 \OMIT{This establishes our claim that $\DG$ is the incentivized algorithm.\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium}}
 
@@ -207,7 +207,7 @@ As a result, the incumbent is incentivized to commit to an algorithm that does e
 } %%%%%%%%
 
 \subsubsection{Death spiral effect.}
-Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customer to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game (\Eeog)} for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the permanent duopoly scanario, we specify the \Eeog values in Table \ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
+Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game (\Eeog)} for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the permanent duopoly scanario, we specify the \Eeog values in Table \ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
 
 \begin{finding}
 \textit{
