@@ -73,9 +73,9 @@ For each MAB instance we draw $N = 1000$ \MRVs independently from the correspond
 
 More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns which correspond to arms, and $T+T_{\max}$ rows, which correspond to rounds. Here $T_{\max}$ is the maximal duration of the ``warm start" in our experiments, \ie the maximal value of $X+T_0$. For each arm $a$, each value $W(\cdot,a)$ is drawn independently from Bernoulli distribution with expectation $\mu(a)$. Then in each experiment, the reward of this arm in round $t$ of the warm start is taken to be $W(t,a)$, and its reward in round $t$ of the game is $W(T_{\max}+t,a)$.
 
-We fix the sliding window size $M = 100$. We found that lower values induced too much random noise in the results, and increasing $M$ further did not make a qualitative difference. Unless otherwise noted, \asedit{we used $T = 2000$}.
+We fix the sliding window size $M = 100$. We found that lower values induced too much random noise in the results, and increasing $M$ further did not make a qualitative difference. Unless otherwise noted, we used $T = 2000$.
 
-The simulations are computationally intensive. An experiment on a particular MAB instance comprised multiple runs of the competition game: $N$ mean reward vectors times $9$ pairs of algorithms times three values for the warm start. We used a parallel implementation over a cluster of 12 \asedit{XX-Hz} CPU cores, with 8 GB RAM per core. With this implementation, each experiment took about \asedit{XX} hours.
+The simulations are computationally intensive. An experiment on a particular MAB instance comprised multiple runs of the competition game: $N$ mean reward vectors times $9$ pairs of algorithms times three values for the warm start. We used a parallel implementation over a cluster of 12 2200Hz CPU cores, with 8 GB RAM per core. With this implementation, each experiment took about 10.5 hours.
 
 While we experiments with various MAB instances and parameter settings, in the main paper we only report plots for selected, representative experiments. Additional plots can be found in the supplement. Unless noted otherwise, our findings are based on and consistent with all these plots.
 
