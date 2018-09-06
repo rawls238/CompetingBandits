@@ -12,7 +12,7 @@ From each firm's perspective, the interactions with agents follow the protocol o
 
 Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
 
-In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$. 
+In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
 
 
 
@@ -52,7 +52,7 @@ In a stylized formula:
 as stand-alone MAB algorithms.
 
 \subsubsection{MAB instances.}
-In all experiments, there are $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the \emph{\MRV} $(\mu(a):\; a\in A)$. Initially the \MRV is drawn from some distribution, termed \emph{MAB instance}. We consider three MAB instances:
+We consider instances with $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the \emph{\MRV} $(\mu(a):\; a\in A)$. Initially this vector is drawn from some distribution, termed \emph{MAB instance}. We consider three MAB instances:
 \begin{enumerate}
 \item \emph{Needle-In-Haystack}: one arm (the ``needle") is chosen uniformly at random. This arm has mean reward $.7$, and the remaining ones have mean reward $.5$.
 
