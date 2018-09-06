@@ -167,53 +167,6 @@ $\DG$
 \OMIT{
 In Table~\ref{tab:ht-incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the heavy tail instances.\footnote{The result for the Uniform instances is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$ and $\DG$ is only weakly dominant.} In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the instances we consider.}
 
-
-
-
-
-
-\begin{table*}[ht]
-\centering
-\begin{tabular}{|c|c|c|c||c|c|c|}
-\hline
-  & \multicolumn{3}{c||}{Reputation advantage}
-  & \multicolumn{3}{c|}{Data advantage}\\
-\hline
-& $\TS$  & $\DEG$  & $\DG$
-& $\TS$  & $\DEG$  & $\DG$
-\\\hline
-$\TS$
-    & \makecell{\textbf{0.021}$\pm$0.009}
-    & \makecell{\textbf{0.16}$\pm$0.02}
-    & \makecell{\textbf{0.21} $\pm$0.02}
-    %%
-    & \makecell{\textbf{0.0096}$\pm$0.006}
-    & \makecell{\textbf{0.11}$\pm$0.02}
-    & \makecell{\textbf{0.18}$\pm$0.02}
-    \\ \hline
-$\DEG$
-    & \makecell{\textbf{0.26}$\pm$0.03}
-    & \makecell{\textbf{0.3}$\pm$0.02}
-    & \makecell{\textbf{0.26}$\pm$0.02}
-    %%
-    & \makecell{\textbf{0.073}$\pm$0.01}
-    & \makecell{\textbf{0.29}$\pm$0.02}
-    & \makecell{\textbf{0.25}$\pm$0.02}
-    \\ \hline
-$\DG$
-    & \makecell{\textbf{0.34}$\pm$0.03}
-    & \makecell{\textbf{0.4}$\pm$0.03}
-    & \makecell{\textbf{0.33}$\pm$0.02}
-    %%
-    & \makecell{\textbf{0.15}$\pm$0.02}
-    & \makecell{\textbf{0.39}$\pm$0.03}
-    & \makecell{\textbf{0.33}$\pm$0.02}
-    \\\hline
-\end{tabular}
-\caption{Data advantage vs. reputation advantage experiment, on Heavy-Tail MAB instance. Each cell describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share for the rounds in which hit was present: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.}
-\label{barrier_exp}
-\end{table*}
-
 \subsubsection{Inverted-U relationship.}
 We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DG wins out for the trivial reason of tie-breaking. The highest levels are permanent duopoly and ``late entry" (temporary monopoly from the entrant's perspective). We see that \DG is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DG get stronger when the model transitions from permanent duopoly to ``late entry".%
 \footnote{For the Heavy-Tail instance, \DG goes from a weakly dominant startegy to a strictly dominant one. For the Uniform instance, \DG goes from a Nash equilibrium strategy to a weakly dominant one.}
