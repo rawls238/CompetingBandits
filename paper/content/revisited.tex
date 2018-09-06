@@ -3,17 +3,24 @@
 
 \section{Performance in Isolation, Revisited}\label{section:revisited}
 
-A natural question to ask is why we had to introduce the relative reputation proportion instead of simply using the mean to understand the results. For instance, the following would have been a natural conjecture:
+We saw in Section~\ref{sec:competition} that mean reputation trajectories do not suffice to explain the outcomes under competition. Let us provide more evidence and intuition for this.
+
+Mean reputation trajectories are so natural that one is tempted to conjecture that they determine the outcomes under competition. More specifically:
 \begin{conjecture}\label{conj:mean-trajectories}
-Given a sufficiently large $T_0$, if one algorithm's mean reputation trajectory lies above another (for instance, Figure  \ref{prelim_means}), then the first algorithm prevails in the competition game.
+If one algorithm's mean reputation trajectory lies above another, perhaps after some initial time interval (\eg as in Figure~\ref{prelim_means}), then the first algorithm prevails under competition, for a sufficiently large warm start $T_0$.
 \end{conjecture}
 
-However, we find a more nuanced picture.
+However, we find a more nuanced picture. For example, in Figure \ref{sim_table} we see that $\DG$ attains a larger market share than $\DEG$ even for large warm starts. We find that this also holds for $K = 3$ arms and longer time horizons, see the supplement for more details. We conclude:
+
 
 \begin{finding}
 \textit{
-Conjecture~\ref{conj:mean-trajectories} is false. Mean reputation trajectories do not suffice to explain the outcomes under competition. We observe in Figure \ref{sim_table} that $\DG$ attains a larger market share than $\DEG$ even for large warm starts.\footnote{In the appendix we show that this holds for $K = 3$ and longer time horizons than we consider here as well.}}
+Conjecture~\ref{conj:mean-trajectories} is false: mean reputation trajectories do not suffice to explain the outcomes under competition.}
 \end{finding}
+
+To see what could go wrong with Conjecture~\ref{conj:mean-trajectories}, consider how an algorithm's reputation score is distributed at a particular time. That is, consider the empirical distribution of this score over different \MRVs.%
+\footnote{Recall that each \MRV in our experimental setup comes with one specific realization table.} For concreteness, consider the needle-in-haystack instance at time $t=500$, plotted in Figure \ref{rep_dist_nih}. (The other MAB instances lead to a similar intuition.)
+
 
 \begin{figure}[ht]
 \includegraphics[scale=0.35]{figures/rep_distribution_nih}
@@ -24,19 +31,18 @@ Conjecture~\ref{conj:mean-trajectories} is false. Mean reputation trajectories d
 
 \begin{figure}[ht]
 \includegraphics[scale=0.35]{figures/ts_dg_rep_diff_nih}
-\caption{Distribution of reputation difference $\TS-\DG$ for  Needle-in-Haystack 
+\caption{Distribution of reputation difference $\TS-\DG$ for  Needle-in-Haystack
 % at $t = 500, 1000, 2000$ AS: this is redundant, and it saves a line :).
 (smoothed via a kernel density estimate)}
 \label{ts_dg_rep_diff_nih}
 %\caption*{\tiny{The plots contain a kernel density estimate of the difference in reputation between $\TS$ and $\DG$ across $t$}}
 \end{figure}
 
-To see what could go wrong, consider how an algorithm's reputation score is distributed at a particular time. That is, consider the empirical distribution of this score over different \MRVs.\swcomment{not sure what this means. over the randomness of \MRVs only? you mean marginal distribution?} For concreteness, we consider the needle-in-haystack instance at time $t=500$ (Figure \ref{rep_dist_nih}) since the intuition as to why the mean may be misleading is clearest on this instance (though the same result holds across the instances).
 
-We see that the ``naive" algorithms $\DG$ and $\DEG$ have a bi-modal reputation distribution, whereas $\TS$ does not. The reason is that \gaedit{for the Needle In Haystack instance}, $\DG$ either finds the best arm and sticks to it, or gets stuck on the bad arms. This leads to two cases: $\DG$ either does slightly better than $\TS$ or where $\TS$ does substantially better than $\DG$.
+We see that the ``naive" algorithms $\DG$ and $\DEG$ have a bi-modal reputation distribution, whereas $\TS$ does not. The reason is that for this MAB instance, $\DG$ either finds the best arm and sticks to it, or gets stuck on the bad arms. In the former case \DG does slightly better than $\TS$, and in the latter case it does substantially worse. However, the mean reputation trajectory may fail to capture this complexity since it simply takes average over different \MRVs. This may be inadequate for explaining the outcome of the duopoly game, given that the latter is determined by a simple comparison between the firm's reputation scores. 
 
-However, the mean reputation trajectory \swedit{may fail to capture} this complexity since it simply takes average over different realizations of \MRVs. This may be inadequate for explaining the outcome of the duopoly game, given that the latter is determined by a simple comparison between the firm's reputation scores. Further, consider the difference in reputation scores (\emph{reputation difference}) between \TS and \DG on a particular \MRV. Let's plot the empirical distribution of the reputation difference (over the \MRVs) at a particular time point. Figure~\ref{ts_dg_rep_diff_nih} shows such plots for several time points.
-We observe that the distribution is skewed to the right, precisely due to the fact that $\DG$ either does slightly better than $\TS$ or does substantially worse. This means that the mean is not a good measure of the central tendency, or typical value, of the reputation difference distribution and overstates how well an advanced exploration algorithm (that will eventually find the best arm) should do in competition compared to a naive algorithm that may never find the best arm.
+To further this intuition, consider the difference in reputation scores (\emph{reputation difference}) between \TS and \DG on a particular \MRV. Let's plot the empirical distribution of the reputation difference (over the \MRVs) at a particular time point. Figure~\ref{ts_dg_rep_diff_nih} shows such plots for several time points.
+We observe that the distribution is skewed to the right, precisely due to the fact that $\DG$ either does slightly better than $\TS$ or does substantially worse. Therefore, the mean is not a good measure of the central tendency, or typical value, of the reputation difference distribution. In particular, the mean reputation difference tends to overstate how well an advanced exploration algorithm (that will eventually find the best arm) should do in competition compared to a naive algorithm that may never find the best arm.
 
 
 \end{document}
