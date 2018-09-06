@@ -88,7 +88,33 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
 %market for the entire period, the firm can take the entire market
 %regardless of what algorithm it deploys. \swedit{Since we assume that exploration algorithms ($\DEG$ and $\TS$) would incur deployment cost and firms break indifferences towards easier to deploy algorithms}, the firm would choose to deploy $\DG$.
 
-We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for Heavy-Tail and Needle-in-Haystack instances in Table \ref{sim_table}  (see the first line in each cell), for a range of values of the warm start $T_0$. We find that $\DG$ is a weakly dominant strategy for the Heavy-tail instance, as long as $T_0$ is sufficiently small. However, \TS is a weakly dominant strategy for the Needle-in-Haystack instance. A similar table for the Uniform MAB instance is deferred to the appendix. We find that for a sufficiently small $T_0$, \DG yields more than half the market against \TS,  but achieves similar market share vs. \DG and \DEG. By our tie-breaking rule, (\DG,\DG) is the only pure-strategy equilibrium.
+We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for Heavy-Tail and Needle-in-Haystack instances in Table \ref{sim_table}  (see the first line in each cell), for a range of values of the warm start $T_0$. Table~\ref{tab:duopoly_unif} reports similarly on the Uniform instance. We find that $\DG$ is a weakly dominant strategy for the Heavy-tail and Uniform instances, as long as $T_0$ is sufficiently small. However, \TS is a weakly dominant strategy for the Needle-in-Haystack instance. We find that for a sufficiently small $T_0$, \DG yields more than half the market against \TS,  but achieves similar market share vs. \DG and \DEG. By our tie-breaking rule, (\DG,\DG) is the only pure-strategy equilibrium.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+  \hline
+  & \multicolumn{3}{c|}{Uniform} \\
+\hline
+   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\ \hline
+\TS vs \DG
+  & \makecell{\textbf{0.46} $\pm$0.03}
+    & \makecell{\textbf{0.52} $\pm$0.02}
+    & \makecell{\textbf{0.6} $\pm$0.02} \\ \hline
+\TS vs \DEG
+    & \makecell{\textbf{0.41} $\pm$0.03}
+    & \makecell{\textbf{0.51} $\pm$0.02}
+    & \makecell{\textbf{0.55} $\pm$0.02} \\ \hline
+\DG vs \DEG
+    & \makecell{\textbf{0.51} $\pm$0.03}
+    & \makecell{\textbf{0.48} $\pm$0.02}
+    & \makecell{\textbf{0.45} $\pm$0.02} \\\hline
+\end{tabular}
+\caption{{\bf Permanent duopoly}, for the Uniform MAB instance. Semantics are the same as in Table \ref{sim_table}.}
+\label{tab:duopoly_unif}
+\end{table}
+
 
 \OMIT{This establishes our claim that $\DG$ is the incentivized algorithm.\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium}}
 
@@ -215,7 +241,7 @@ Under permanent duopoly, \Eeog values tend to be much smaller than the time hori
 }
 \end{finding}
 
-\asedit{We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to help a better algorithm. Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.}
+We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
 \OMIT{ %%%
 Enter into a ``death spiral" where the winner keeps learning and improving from its customers thus increasing its reputation while the losing firm gets starved of customers and progressively falls farther and farther behind its competitors.
