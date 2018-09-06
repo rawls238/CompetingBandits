@@ -32,7 +32,7 @@ The mean reputation trajectory is probably the most natural way to represent an 
 \end{figure}
 
 This angle allows a more nuanced analysis of reputation costs vs. benefits under competition. Figure \ref{relative_rep_plots} (top) shows the relative reputation trajectory for $\TS$ vs $\DG$ for the Uniform instance. The relative reputation is less than $\tfrac12$ in the early rounds, meaning that $\DG$ has a higher reputation score in a majority of the simulations, and more than $\tfrac12$ later on. The reason is the exploration in \TS leads to worse decisions initially, but allows for better decisions later. The time period when relative reputation vs. \DG dips below $\tfrac12$ can be seen as an explanation for the competitive disadvantage of exploration. Such period also exists for the Heavy-tail MAB instance. However, it does not exist for the Needle-in-Haystack instance, see Figure \ref{relative_rep_plots} (bottom).%
-\footnote{We see two explanations for this: $\TS$ identifies the best arm faster  for the Uniform instance, and there are no ``very bad" arms which make exploration very expensive in the short term.}
+\footnote{We see two explanations for this: $\TS$ identifies the best arm faster for the Needle In Haystack instance, and there are no ``very bad" arms which make exploration very expensive in the short term.}
 
 
 \begin{finding}\label{find:period}
