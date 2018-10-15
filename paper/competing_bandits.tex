@@ -1,53 +1,5 @@
-\documentclass[letterpaper]{article}
-\usepackage{aaai}
-\usepackage{times}
-\usepackage{helvet}
-\usepackage{courier}
-\usepackage{url}
-\usepackage{graphicx}
-\frenchspacing
-% Add additional packages here. The following
-% packages may NOT be used  (this list
-% is not exhaustive:
-% authblk, caption, CJK, float, fullpage, geometry,
-%hyperref, layout, nameref, natbib, savetrees,
-%setspace, titlesec, tocbibind, ulem
-%
-%US Lettersize Paper Is Required
-\setlength{\pdfpagewidth}{8.5in}
-\setlength{\pdfpageheight}{11in}
-%
-%
-% PDFINFO
-% You are required to complete the following
-% for pass-through to the PDF.
-% No LaTeX commands of any kind may be
-% entered. The parentheses and spaces
-% are an integral part of the
-% pdfinfo script and must not be removed.
-%
-\pdfinfo{
-/Title  (Competing Bandits: The Perils of Exploration under Competition)
-/Author (...)
-/Keywords (Input your keywords in this optional area)
-}
-%
-%Section Numbers
-% Uncomment if you want to use section numbers
-% and change the 0 to a 1 or 2
- \setcounter{secnumdepth}{2} % section & subsection numbers
+\documentclass[sigconf, anonymous, review,natbib=false]{acmart}
 
-% Title and Author Information Must Immediately Follow
-% the pdfinfo within the preamble
-%
-
-
-
-
-
-
-%\usepackage[utf8]{inputenc} % allow utf-8 input -- cannot use with AAAI! A.S.
-%\usepackage{hyperref}       % hyperlinks
 \usepackage{tikz} % SW: Added for plots
 \usepackage{subfiles}
 \usepackage{url}            % simple URL typesetting
@@ -66,23 +18,11 @@
  \usepackage{multirow}
  \usepackage{graphicx}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+%\newtheorem{definition}{Definition}
 \newtheorem{finding}{Finding}
-\newtheorem{conjecture}{Conjecture}
+%\newtheorem{conjecture}{Conjecture}
 \newtheorem{puzzle}{Puzzle}
 \captionsetup{font=footnotesize}
-
-
-% The \author macro works with any number of authors. There are two
-% commands used to separate the names and addresses of multiple
-% authors: \And and \AND.
-%
-% Using \And between authors leaves it to LaTeX to determine where to
-% break the lines. Using \AND forces a line break at that point. So,
-% if LaTeX puts 3 of 4 authors names on the first line, and the last
-% on the second line, try using \AND instead of \And before the third
-% author name.
-
 
 % Alex' macro
 \usepackage{xspace}
@@ -115,22 +55,51 @@
 \setlength{\tabcolsep}{8pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.5} % Default value: 1
 
+%drt24 hacks
+% Letter paper
+\setlength{\paperheight}{11in}
+\setlength{\paperwidth}{8.5in}
+
+% Hack to try to make acmart work with biblatex: https://tex.stackexchange.com/questions/37076/is-it-possible-to-load-biblatex-with-a-class-that-has-already-loaded-natbib
+\let\citename\relax
+%\RequirePackage[abbreviate=true, dateabbrev=true, isbn=true, doi=true, urldate=comp, url=true, maxbibnames=9, backref=false, backend=biber, style=ACM-Reference-Format, language=american]{biblatex}
+
+
+
+
+
+
+
+\usepackage{booktabs} % For formal tables
+
+
+% Copyright
+%\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+% DOI
+\acmDOI{10.475/123_4}
+
+% ISBN
+\acmISBN{123-4567-24-567/08/06}
+
+%Conference
+\acmConference[WWW'19]{ACM WWW conference}{May 2019}{San Francisco, CA 2019}
+\acmYear{2019}
+\copyrightyear{2019}
+
+\acmPrice{15.00}
+
+
 \begin{document}
-
-%\title{Learning and Reputation under Monopoly and Duopoly: \\A Competing Bandits Approach}
-
-%\title{Competing Bandits: Exploration and Competition under Duopoly}
-
-\title{Competing Bandits: The Perils of Exploration under Competition}
-
-%\author{Guy Aridor\textsuperscript{1}, Kevin Liu\textsuperscript{2}, Aleksandrs Slivkins\textsuperscript{3},
-%Zhiwei Steven Wu\textsuperscript{4} \\
-%{\textsuperscript{1}Columbia University, Department of Economics}\\
-%{\textsuperscript{2}Columbia University, Department of Computer Science}\\
-%{\textsuperscript{3}Microsoft Research, New York, NY}\\
-%{\textsuperscript{4}University of Minnesota - Twin Cities, Department of Computer Science}
-%}
-\maketitle
+\title{Competing Bandits: \\ The Perils of Exploration under Competition}
 
 
 \begin{abstract}
@@ -140,22 +109,43 @@ often engage in \emph{exploration}: making potentially suboptimal decisions in o
 We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms. Our findings shed light on the ``first-mover advantage" in the digital economy.
 \end{abstract}
 
+%
+% The code below should be generated by the tool at
+% http://dl.acm.org/ccs.cfm
+% Please copy and paste the code instead of the example below.
+%
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010257.10010282.10010284</concept_id>
+<concept_desc>Computing methodologies~Online learning settings</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010257.10010258.10010261.10010272</concept_id>
+<concept_desc>Computing methodologies~Sequential decision making</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010405.10010455.10010460</concept_id>
+<concept_desc>Applied computing~Economics</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
 
-\OMIT{ %%% Guy's original abstract
-\begin{abstract}
-We empirically study the interplay between \textit{exploration} and \textit{competition} - how platforms that learn from interactions with users tradeoff between making potentially suboptimal choices in order to acquire new information and the reputational consequences of this exploration which potentially has adverse competitive effects. Our model considers competition for myopic users between two firms deploying multi-armed bandit algorithms that face the same underlying multi-armed bandit instance. The users select between the firms according to a reputation score, which is a function of the rewards past users have experienced from this firm.
+\ccsdesc[500]{Computing methodologies~Online learning settings}
+\ccsdesc[300]{Computing methodologies~Sequential decision making}
+\ccsdesc[500]{Applied computing~Economics}
 
-We ask whether better algorithms are incentivized under varying degrees of competition. The environments we consider are a monopoly, a duopoly with one firm serving as an early entrant (a temporary monopoly), and a duopoly. We show that, under certain conditions, monopoly and duopoly do not incentivize the adoption of better learning algorithms due to the reputational costs of exploration, but that a temporary monopoly may incentivize the adoption of better learning algorithms. Additionally, we interpret our results as providing an alternative intuition behind the classic first-mover advantage which gives the incumbent firm both a data advantage and a reputational advantange. Finally, we ask whether in this setting the data advantage or the reputational advantage of the early entrant serves as stronger barriers to entry.
-\end{abstract}
-} %%%%%%%
+\keywords{Bandits, Competition}
 
 
+\maketitle
 
 \subfile{content/Introduction}
 
 \subfile{content/model}
-
-%\subfile{content/sim_details}
 
 \subfile{content/perf_in_iso}
 
@@ -165,6 +155,8 @@ We ask whether better algorithms are incentivized under varying degrees of compe
 
 \subfile{content/revisited}
 
+\bibliographystyle{acm}
 \bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
-\bibliographystyle{aaai}
+
+
 \end{document}

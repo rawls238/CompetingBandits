@@ -1,0 +1,173 @@
+\documentclass[letterpaper]{article}
+\usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{url}
+\usepackage{graphicx}
+\frenchspacing
+% Add additional packages here. The following
+% packages may NOT be used  (this list
+% is not exhaustive:
+% authblk, caption, CJK, float, fullpage, geometry,
+%hyperref, layout, nameref, natbib, savetrees,
+%setspace, titlesec, tocbibind, ulem
+%
+%US Lettersize Paper Is Required
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+%
+%
+% PDFINFO
+% You are required to complete the following
+% for pass-through to the PDF.
+% No LaTeX commands of any kind may be
+% entered. The parentheses and spaces
+% are an integral part of the
+% pdfinfo script and must not be removed.
+%
+\pdfinfo{
+/Title  (Competing Bandits: The Perils of Exploration under Competition)
+/Author (...)
+/Keywords (Input your keywords in this optional area)
+}
+%
+%Section Numbers
+% Uncomment if you want to use section numbers
+% and change the 0 to a 1 or 2
+ \setcounter{secnumdepth}{2} % section & subsection numbers
+
+% Title and Author Information Must Immediately Follow
+% the pdfinfo within the preamble
+%
+
+
+
+
+
+\usepackage[title]{appendix}
+%\usepackage[utf8]{inputenc} % allow utf-8 input -- cannot use with AAAI! A.S.
+%\usepackage{hyperref}       % hyperlinks
+\usepackage{tikz} % SW: Added for plots
+\usepackage{subfiles}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{amsmath,amssymb,amsfonts}
+%\usepackage{natbib} % cannot use with AAAI! A.S.
+
+\usepackage{amsthm} % The amsthm package provides extended theorem environments
+\usepackage{float}
+\usepackage{sgame, tikz} % Game theory packages
+\usepackage{caption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{makecell}
+ \usepackage{multirow}
+ \usepackage{graphicx}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{finding}{Finding}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{puzzle}{Puzzle}
+\captionsetup{font=footnotesize}
+
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+
+% Alex' macro
+\usepackage{xspace}
+\newcommand{\OMIT}[1]{}
+\newcommand{\xhdr}[1]{\vspace{1mm} \noindent{\bf #1}}
+\newcommand{\ie}{{\em i.e.,~\xspace}}
+\newcommand{\eg}{{\em e.g.,~\xspace}}
+
+\newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
+\newcommand{\TS}{\term{TS}}
+\newcommand{\DEG}{\term{DEG}}
+\newcommand{\DG}{\term{DG}}
+\newcommand{\Beta}{\term{Beta}} % for Beta distribution
+\newcommand{\Eeog}{\term{EoG}} % shorthand for "effective end of game"
+
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
+\newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
+
+
+
+% a very useful package for edits and comments, from David Kempe (USC)
+\usepackage{color-edits}
+%\usepackage[suppress]{color-edits}  % use this to suppress the package
+\addauthor{as}{red}    % as for Alex
+\addauthor{ga}{blue}  % ga for Guy
+\addauthor{sw}{orange} % sw for Steven
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+\setlength{\tabcolsep}{8pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+
+\begin{document}
+
+%\title{Learning and Reputation under Monopoly and Duopoly: \\A Competing Bandits Approach}
+
+%\title{Competing Bandits: Exploration and Competition under Duopoly}
+
+\title{Competing Bandits: The Perils of Exploration under Competition}
+
+\author{Guy Aridor\textsuperscript{1}, Kevin Liu\textsuperscript{2}, Aleksandrs Slivkins\textsuperscript{3},
+Zhiwei Steven Wu\textsuperscript{4} \\
+{\textsuperscript{1}Columbia University, Department of Economics}\\
+{\textsuperscript{2}Columbia University, Department of Computer Science}\\
+{\textsuperscript{3}Microsoft Research, New York, NY}\\
+{\textsuperscript{4}University of Minnesota - Twin Cities, Department of Computer Science}
+}
+\maketitle
+
+
+\begin{abstract}
+We empirically study the interplay between \textit{exploration} and \textit{competition}. Systems that learn from interactions with users
+often engage in \emph{exploration}: making potentially suboptimal decisions in order to acquire new information for future decisions. However, exploration may hurt system's reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral" when decreasing market share leaves the system with less users to learn from, which degrades system's performance relative to competition and further decreases the market share.
+
+We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms. Our findings shed light on the ``first-mover advantage" in the digital economy.
+\end{abstract}
+
+
+\OMIT{ %%% Guy's original abstract
+\begin{abstract}
+We empirically study the interplay between \textit{exploration} and \textit{competition} - how platforms that learn from interactions with users tradeoff between making potentially suboptimal choices in order to acquire new information and the reputational consequences of this exploration which potentially has adverse competitive effects. Our model considers competition for myopic users between two firms deploying multi-armed bandit algorithms that face the same underlying multi-armed bandit instance. The users select between the firms according to a reputation score, which is a function of the rewards past users have experienced from this firm.
+
+We ask whether better algorithms are incentivized under varying degrees of competition. The environments we consider are a monopoly, a duopoly with one firm serving as an early entrant (a temporary monopoly), and a duopoly. We show that, under certain conditions, monopoly and duopoly do not incentivize the adoption of better learning algorithms due to the reputational costs of exploration, but that a temporary monopoly may incentivize the adoption of better learning algorithms. Additionally, we interpret our results as providing an alternative intuition behind the classic first-mover advantage which gives the incumbent firm both a data advantage and a reputational advantange. Finally, we ask whether in this setting the data advantage or the reputational advantage of the early entrant serves as stronger barriers to entry.
+\end{abstract}
+} %%%%%%%
+
+
+
+\subfile{content/Introduction}
+
+\subfile{content/model}
+
+%\subfile{content/sim_details}
+
+\subfile{content/perf_in_iso}
+
+\subfile{content/inverted_u}
+
+\subfile{content/barriers}
+
+\subfile{content/revisited}
+
+\bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
+\bibliographystyle{aaai}
+
+\newpage
+\subfile{content/appendix_for_one_version}
+\end{document}

@@ -156,6 +156,50 @@ $\DG$
 \caption{{\bf Temporary monopoly}, with $X=200$ (and $T_0=20$), for the Heavy-Tail MAB instance. Each cell describes the duopoly game between the entrant's algorithm (the row) and the incumbent's algorithm (the column). The cell specifies the entrant's market share (fraction of rounds in which it was chosen) for the rounds in which he was present. We give the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.}
 \label{tab:ht-incum}
 \end{table}
+\OMIT{
+\begin{table}[h]
+\centering
+\caption{Heavy Tail}
+\begin{tabular}{|c|c|c|c|}
+\hline
+   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
+$\TS$
+    & \makecell{\textbf{0.50, 0.50}}
+    & \makecell{\textbf{0.3, 0.7}}
+    & \makecell{\textbf{0.29, 0.71}} \\\hline
+$\DEG$
+    & \makecell{\textbf{0.7, 0.3}}
+    & \makecell{\textbf{0.50, 0.50}}
+    & \makecell{\textbf{0.38, 0.62}} \\\hline
+$\DG$
+    & \makecell{\textbf{0.71, 0.29}}
+    & \makecell{\textbf{0.62, 0.38}}
+    & \makecell{\textbf{0.50, 0.50}} \\\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Needle In Haystack}
+\begin{tabular}{|c|c|c|c|}
+\hline
+   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
+$\TS$
+    & \makecell{\textbf{0.50, 0.50}}
+    & \makecell{\textbf{0.57, 0.43}}
+    & \makecell{\textbf{0.64, 0.36}} \\\hline
+$\DEG$
+    & \makecell{\textbf{0.43, 0.57}}
+    & \makecell{\textbf{0.50, 0.50}}
+    & \makecell{\textbf{0.54, 0.46}} \\\hline
+$\DG$
+    & \makecell{\textbf{0.36, 0.64}}
+    & \makecell{\textbf{0.43, 0.57}}
+    & \makecell{\textbf{0.50, 0.50}} \\\hline
+\end{tabular}
+\end{table}
+}
+
 
 \DG is a weakly dominant strategy for the entrant, for Heavy-Tail instance in Table~\ref{tab:ht-incum} and the Uniform instance, but not for the Needle-in-Haystack instance. We attribute this finding to exploration-disadvantaged property of these two MAB instance, for the same reasons as discussed above.
 
@@ -163,9 +207,6 @@ $\DG$
 \textit{Under temporary monopoly, \DG is a weakly dominant strategy for the entrant for exploration-disadvantaged MAB instances.
 }
 \end{finding}
-
-\OMIT{
-In Table~\ref{tab:ht-incum} we can see that, for $X = 200$, $\TS$ is a dominant strategy for the incumbent and that $\DG$ is the dominant strategy for the entrant on the heavy tail instances.\footnote{The result for the Uniform instances is the same, though it takes a higher $X$ to induce the incumbent to play $\TS$ and $\DG$ is only weakly dominant.} In the supplementary material we report the same experiment for different values of $X$ and show that our main result that, for sufficiently large $X$, $\TS$ is the dominant strategy for the incumbent is robust across the instances we consider.}
 
 \subsubsection{Inverted-U relationship.}
 We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DG wins out for the trivial reason of tie-breaking. The highest levels are permanent duopoly and ``late entry" (temporary monopoly from the entrant's perspective). We see that \DG is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DG get stronger when the model transitions from permanent duopoly to ``late entry".%
@@ -178,13 +219,6 @@ Finally, the middle level of competition, ``early entry" (temporary monopoly for
 
 Our intuition for why ``early entry" creates more incentives for exploration is as follows. During the temporary monopoly period, reputation costs of exploration vanish. Instead, the firm wants to improve its performance as much as possible by the time competition starts. Essentially, the firm only faces a classical explore-exploit tradeoff, and is incentivized to choose algorithms that are best at optimizing this tradeoff.
 
-
-\OMIT{ %%%%%%%%%
-Why do we observe that $\TS$ is the dominant strategy for the incumbent whereas in the permanent duopoly experiment we saw that, under the same parameters, $\DG$ was the incentivized algorithm? The intuition for this is that competition in the duopoly forces the firms to worry about their reputation which dissuades them from committing to algorithms that involve pure exploration in the early rounds. One can view allowing one firm to temporarily be a monopolist as temporarily relaxing the ``incentive" component of exploration, exploitation, and incentives so that the incumbent firm only faces the classic tradeoff between exploration and exploitation. The incumbent only needs to worry about her reputation after $X$ periods when the entrant comes into the market and again needs to worry about incentivizing agents to select them over their competition.
-
-As a result, the incumbent is incentivized to commit to an algorithm that does exploration in the early rounds since she no longer suffers the same immediate relative reputational cost that she would suffer under competition as long as the $X$ is sufficiently large that she can begin to recover the reputational costs of exploration. Thus, counterintuitively, by having one firm be a monopoly and dominate the market, we can incentivize them to play $\TS$.
-} %%%%%%%%
-
 \subsubsection{Death spiral effect.}
 Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game (\Eeog)} for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the permanent duopoly scanario, we specify the \Eeog values in Table \ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
 
@@ -195,63 +229,6 @@ Under permanent duopoly, \Eeog values tend to be much smaller than the time hori
 \end{finding}
 
 We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
-
-\OMIT{ %%%
-Enter into a ``death spiral" where the winner keeps learning and improving from its customers thus increasing its reputation while the losing firm gets starved of customers and progressively falls farther and farther behind its competitors.
-What happens after the first agent? Looking at the EEOG values we note that, even though the game continues until $t=2000$, the game effectively ends much earlier than that. This seems to imply that when attempting to understand the performance of different algorithms in competition it is important to look at their performance for relatively small samples instead of asymptotic performance. This is due to the fact that the losing firm may enter into a ``death spiral" where the winner keeps learning and improving from its customers thus increasing its reputation while the losing firm gets starved of customers and progressively falls farther and farther behind its competitors. As a result, even though if $\TS$ could get sufficiently many agents it would eventually have a higher reputation than $\DG$, since it starts the game by losing agents to $\DG$ due to its lowered reputation from exploration in the warm start it ends up doing worse in the competition game.
-} %%%%%
-
-\OMIT{ %%%%%%
-\begin{table}[ht]
-\centering
-\caption{Duopoly experiment for needle in haystack instances}
-\begin{tabular}{|c|c|c|c|}
-  \hline
- & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
-  \hline
-$\TS$ vs $\DG$
-& \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 200 (27)}
-& \makecell{\textbf{0.6} $\pm$0.03\\ \Eeog 370 (0}
-& \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 580 (122)} \\
-\hline
-  $\TS$ vs $\DEG$
-  & \makecell{\textbf{0.57} $\pm$0.03\\ \Eeog 150 (14}
-  & \makecell{\textbf{0.52} $\pm$0.03\\ \Eeog 460 (79)}
-  & \makecell{\textbf{0.56} $\pm$0.02\\ \Eeog 740 (628)} \\
-  \hline
-  $\DG$ vs $\DEG$
-  & \makecell{\textbf{0.46} $\pm$0.03\\ \Eeog 340 (129)}
-  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 650 (408)}
-  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 690 (467)} \\
-   \hline
-\end{tabular}
-\label{sim_nih}
-\caption*{{The first line in each cell contains the average market share received by the firm playing Alg 1 (and the market share of Alg 2 is 1 - Alg 1 Market Share) as well as a 95\% confidence band. For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. The next line contain the average and median effective end of game for this set of simulations.}}
-\end{table}
-% latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Thu Aug 16 13:13:00 2018
-} %%%%%%%
-
-
-
-
-\OMIT{ %%%%%%%
-% latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Wed Aug 15 19:03:20 2018
-\begin{table}[ht]
-\centering
-\caption{Temporary Monopoly Heavy Tail X = 200}
-\begin{tabular}{cc|c|c|c|}
-  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
-  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
-            & $\TS$ & \makecell{\textbf{0.003} \\$\pm$0.003} & \makecell{\textbf{0.083} \\ $\pm$0.02} & \makecell{\textbf{0.17} \\$\pm$0.02} \\ \cline{3-5}
-Entrant  & $\DEG$ & \makecell{\textbf{0.045} \\$\pm$0.01} & \makecell{\textbf{0.25} \\$\pm$0.02} & \makecell{\textbf{0.23} \\$\pm$0.02} \\\cline{3-5}
-            & $\DG$ & \makecell{\textbf{0.12} \\ $\pm$0.02} & \makecell{\textbf{0.36} \\$\pm$0.03} & \makecell{\textbf{0.3} \\$\pm$0.02} \\\cline{3-5}
-\end{tabular}
-\label{ht_incum}
-\caption*{{The table contains the average market share for the entrant as well as 95\% confidence intervals. Note that smaller values in the table are better for the incumbent. Market shares are calculated as the fraction of users selecting a particular firm \textit{after} the entrant has already entered (i.e. the free rounds to the incumbent do not count towards the share)}}
-\end{table}
-} %%%%%%%
 
 \end{document}
 %%% Local Variables:
