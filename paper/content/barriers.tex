@@ -1,47 +1,16 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\section{Data and Reputation as Barriers to Entry}\label{section:6}
+\section{Data as a Barrier to Entry}\label{section:6}
 
-Under temporary monopoly, the incumbent can explore without incurring immediate reputational costs, and build up a high reputation before the entrant appears. Thus, the early entry gives the incumbent both a \textit{data} advantage and a \textit{reputational} advantage over the entrant. While both advantages create a strong barrier to entry, we investigate whether either one is a strong barrier alone, and which one is stronger. Our findings provide a quantitative insight into the classic ``first mover advantage" phenomenon in the digital economy.
+\gaedit{Even though welfare is highest in the temporary monopoly case there are other reasons one may worry about a single firm having a substantial market share. In this section we explore what drives the substantial market share of the temporary monopolist and discuss how this relates to thinking about data as a barrier to entry.}
+
+Under temporary monopoly, the incumbent can explore without incurring immediate reputational costs, and build up a high reputation before the entrant appears. Thus, the early entry gives the incumbent both a \textit{data} advantage and a \textit{reputational} advantage over the entrant. \gaedit{First, our findings provide a quantitative insight into the role of the classic ``first mover advantage" phenomenon in the digital economy. Second, our findings provide a viewpoint in terms of thinking about the role that data can play as a competitive advantage.}
 
 For a more succinct terminology, recall that the incumbent enjoys an extended warm start of $X+T_0$ rounds. Call the first $X$ of these rounds the \emph{monopoly period} (and the rest is the proper ``warm start"). The rounds when both firms are competing for customers are called \emph{competition period.}
 
 We run two additional experiments to isolate the effects of the two
 advantages mentioned above. The \emph{data-advantage experiment} focuses on the data advantage by, essentially, erasing the reputation advantage. Namely, the data from the monopoly period is not used in the computation of the incumbent's reputation score. Likewise, the \emph{reputation-advantage experiment} erases the data advantage and focuses on the reputation advantage: namely, the incumbent's algorithm `forgets' the data gathered during the monopoly period.
-
-
-%\begin{table}[ht]
-%\centering
-%\begin{tabular}{cc|c|c|c|}
-%  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
-%  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
-%            & $\TS$ & \makecell{\textbf{0.021} \\$\pm$0.009}& 		\makecell{\textbf{0.16} \\$\pm$0.02} &
-%            \makecell{\textbf{0.21} \\ $\pm$0.02} \\ \cline{3-5}
-%Entrant  & $\DEG$ & \makecell{\textbf{0.26} \\$\pm$0.03} & \makecell{\textbf{0.3} \\$\pm$0.02} &
-%\makecell{\textbf{0.26} \\ $\pm$0.02} \\ \cline{3-5}
-%            & $\DG$ & \makecell{\textbf{0.34} \\ $\pm$0.03} & \makecell{\textbf{0.4} \\$\pm$0.03} &
-%            \makecell{\textbf{0.33} \\$\pm$0.02} \\\cline{3-5}
-%\end{tabular}
-%\caption{Information Erased Experiment Heavy Tail}
-%\label{info_erase}
-%\end{table}
-%
-%\begin{table}[ht]
-%\centering
-%\begin{tabular}{cc|c|c|c|}
-%  & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Incumbent} \\
-%  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\TS$}  & \multicolumn{1}{c}{$\DEG$}  & \multicolumn{1}{c}{$\DG$} \\\cline{3-5}
-%            & $\TS$ & \makecell{\textbf{0.0096} \\$\pm$0.006}& 		\makecell{\textbf{0.11} \\$\pm$0.02} &
-%            \makecell{\textbf{0.18} \\$\pm$0.02} \\ \cline{3-5}
-%Entrant  & $\DEG$ & \makecell{\textbf{0.073} \\ $\pm$0.01} & \makecell{\textbf{0.29} \\ $\pm$0.02} &
-%\makecell{\textbf{0.25} \\$\pm$0.02} \\ \cline{3-5}
-%            & $\DG$ &\makecell{\textbf{0.15} \\$\pm$0.02} & \makecell{\textbf{0.39} \\$\pm$0.03} &
-%           \makecell{\textbf{0.33} \\ $\pm$0.02} \\\cline{3-5}
-%\end{tabular}
-%\caption{Reputation Erased Experiment Heavy Tail}
-%\label{rep_erase}
-%\end{table}
 
 We find that either data or reputational advantage alone gives a substantial boost to the incumbent, compared to permanent duopoly. The results for the Heavy-Tail instance are presented in Table~\ref{barrier_exp}, in the same structure as Table~\ref{tab:ht-incum}. For the other two instances, the results are qualitatively similar.
 
@@ -87,60 +56,18 @@ $\DG$
 \label{barrier_exp}
 \end{table*}
 
-
-
 We can quantitatively define the data (resp., reputation) advantage as the incumbent's market share in the competition period in the data-advantage (resp., reputation advantage) experiment, minus the said share under permanent duopoly, for the same pair of algorithms and the same problem instance. In this language, our findings are as follows.
 
 
 \begin{finding}\label{barrier-find}
-\textit{
-(a) Data advantage and reputation advantage alone are substantially large, across all algorithms and all MAB instances. (b) The data advantage is larger than the reputation advantage when the incumbent chooses \TS. (c) The two advantages are similar in magnitude when the incumbent chooses \DEG or \DG.
+\textit{\\
+(a) Data advantage and reputation advantage alone are substantially large, across all algorithms and all MAB instances. \\(b) The data advantage is larger than the reputation advantage when the incumbent chooses \TS. \\(c) The two advantages are similar in magnitude when the incumbent chooses \DEG or \DG.
 }
 \end{finding}
-\OMIT{ %%%%%
-\begin{finding}\label{barrier-find}
-The incumbent with either data or reputational advantage alone gets a substantially larger share of agents in the competition period, compared to the said share under permanent duopoly. This holds across all algorithms and all MAB instances.  When the incumbent chooses $\TS$, the data advantage serves as a larger barrier to entry compared to the reputation advantage, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two barriers.
-\OMIT{\textit{Maintaining either the data or reputation advantage alone still allows the incumbent \gaedit{to retain a larger market share compared to the share they get under permanent duopoly}.\\ \indent When the incumbent plays $\TS$, the data advantage serves as a larger barrier to entry compared to reputation, but when the incumbent plays $\DEG$ or $\DG$ there is no substantial difference between the two barriers.}}
-\end{finding}
-} %%%%%
-% \swcomment{for the first part of the finding, is it true for any algorithm played by the incumbent?}
 
+Our intuition for Finding~\ref{barrier-find}(b) is as follows. Suppose the incumbent switches from \DG to \TS. This switch allows the incumbent to explore actions more efficiently -- collect better data in the same number of rounds -- and therefore should benefit the data advantage. However, the same switch increases the reputation cost of exploration in the short run, which could weaken the reputation advantage.
 
-
-Our intuition for Finding~\ref{barrier-find}(b) is as follows. Suppose the incumbent switches from \DG to \TS. This switch allows the incumbent to explore actions more efficiently -- collect better data in the same number of rounds -- and therefore should benefit the data advantage. However, the same switch increases the reputation cost of exploration in the short run, which could weaken the reputation advantage. One take-away is that the data advantage is not just about data quantity but also data quality.
-
-
-\OMIT{ %%%%%
-\textit{that may be very costly to explore in competition}.
-In contrast, purposeful exploration in \TS may damage reputation in the short run. in competition may have immediate adverse reputational consequences. However, in the incumbency period the incumbent faces no immediate reputational consequences from exploration and so has data on a more diversely distributed set of actions but has time to recover lost reputation from selecting the bad arms. As a result, the data advantage is larger for \TS precisely because the advantage that data gives is not just about the quantity of data but also about its distribution across actions.
-} %%%%%%
-
-\OMIT{ %%%%%
-Why is it that data and reputation alone provide such large barriers to entry? Having more data allows the incumbent to select better actions which allows her to quickly get a high reputation compared to an entrant that both needs to learn and work on building up a reputation. Starting with a large reputation score gives the incumbent a cushion for doing exploration and learning without facing as stark reputational consequences. It is interesting that, for \DEG and \DG, these two effects seem to serve nearly as perfectly substitutes.
-} %%%%%%
-
-\OMIT{ %%%%%
-\gadelete{
-The reason \gadelete{for the finding} \gaedit{that we see that the data advantage is greater
-under $\TS$} is that the early entry allows the incumbent to do
-exploration without immediate reputational consequence in the early
-rounds and so, even when reputation is erased, the incumbent has
-already acquired sufficient information that simply exploiting that
-information allows her to quickly recover her
-reputation. \swcomment{which part are you explaining?} However, while
-the reputational advantage gives the incumbent some cushion for doing
-exploration the incumbent is still vulnerable to getting unlucky while
-doing exploration and suffering the reputational consequences. Under all of the incumbent algorithms,
-the incumbent obtains a data advantage by the mere fact that it is around in the market and gets data from consumers. However, we see that the data advantage is stronger under \TS since \TS acquires data that is hard to acquire under competition.
-We only observe this under $\TS$ since
-\TS not only acquiresThis
-only happens under $\TS$ since $\TS$, by construction, is more
-intelligent about the data that it acquires compared to $\DEG$ and
-$\DG$.\swcomment{more intelligent about the data means?}
-}
-} %%%%%%%
-
-\OMIT{Though the setup is purely experimental, it is nonetheless interesting to look at if the same strategies remain best responses in this setting compared to the setting where both data and reputation are retained. We find that the best responses remain the same for the Heavy Tail instance, but for the Uniform instance they change where $\TS$ is weakly dominant for the incumbent under the reputation erased treatment but not under the information erased treatment.}
+\gaedit{How does this help us in thinking about data as a barrier to entry? The result that the data advantage is stronger under \TS than \DEG and \DG gives evidence that data quality, and not just quantity, matters in thinking about the competitive advantage of data. In particular, in the incumbency period \TS gathers data that may be hard for the entrant to gather during competition due to its potential reputational consequences (i.e. engaging in exploration), but which are needed in order to learn. If the entrant had some way of acquiring this data without incurring reputational consequences then the data advantage would be substantially weaker. This insight is what differentiates our results from the static viewpoint of \cite{varian2018artificial, bajari2018impact}. While it remains true that, for a given action, increased data on that action has diminishing returns to scale, competitive pressures may make it harder for smaller firms to be able to engage in the exploration necessary to accumulate sufficient data on actions to learn if they are good or bad. Otherwise, they may be more likely to fall into the death-spiral effect discussed earlier. This effect only shows itself when thinking about the issue from the perspective of competition dynamics and endogenous data acquisition.} 
 
 \end{document}
 %%% Local Variables:

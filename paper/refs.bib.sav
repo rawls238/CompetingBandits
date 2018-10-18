@@ -38,12 +38,6 @@
   organization = {ACM},
 }
 
-@Unpublished{slivkins2017bandits,
-  author = {Aleksandrs Slivkins},
-  title  = {An Introduction to multi-armed Bandits},
-  year   = {2017},
-}
-
 @Article{bubeck2012regret,
   author    = {Bubeck, S{\'e}bastien and Cesa-Bianchi, Nicolo and others},
   title     = {Regret analysis of stochastic and nonstochastic multi-armed bandit problems},
@@ -102,13 +96,6 @@
   author    = {Tirole, Jean},
 }
 
-@Book{schumpeter2010capitalism,
-  title     = {Capitalism, socialism and democracy},
-  publisher = {Routledge},
-  year      = {2010},
-  author    = {Schumpeter, Joseph A},
-}
-
 @InProceedings{agrawal2012analysis,
   author    = {Agrawal, Shipra and Goyal, Navin},
   title     = {Analysis of thompson sampling for the multi-armed bandit problem},
@@ -133,6 +120,27 @@
   year      = {1992},
   pages     = {33--52},
   publisher = {JSTOR},
+}
+
+@TechReport{bajari2018impact,
+  author      = {Bajari, Patrick and Chernozhukov, Victor and Horta{\c{c}}su, Ali and Suzuki, Junichi},
+  title       = {The impact of big data on firm performance: An empirical investigation},
+  institution = {National Bureau of Economic Research},
+  year        = {2018},
+}
+
+@InCollection{varian2018artificial,
+  author    = {Varian, Hal},
+  title     = {Artificial intelligence, economics, and industrial organization},
+  booktitle = {The Economics of Artificial Intelligence: An Agenda},
+  publisher = {University of Chicago Press},
+  year      = {2018},
+}
+
+@Article{lambrecht2015can,
+  author = {Lambrecht, Anja and Tucker, Catherine E},
+  title  = {Can Big Data protect a firm from competition?},
+  year   = {2015},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

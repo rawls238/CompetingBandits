@@ -1,6 +1,6 @@
 library(dplyr)
 
-dat_1 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/longer_ws.csv")
+dat_1 <- read.csv("/Volumes/Mac/final_bandit_results/results/preliminary_raw_results/longer_ws.csv")
 dat_1$Algorithm<- sapply(dat_1$Algorithm, concise_alg_rep)
 #dat_2 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
 
@@ -49,12 +49,12 @@ cat("Losing dat", nrow(losing_dat), "Market share", mean(losing_dat$Market.Share
 dist <- "Needle In Haystack"
 ws_time <- 20
 iso_dat <- filter(dat_1, Distribution == dist)
-iso_dat_t <- filter(iso_dat, t == 500)
+iso_dat_t <- filter(iso_dat, t == 1000)
 ggplot(iso_dat_t, aes(Realized.Reputation, colour=Algorithm)) +
   geom_density() +
-  ggtitle("Reputation Distribution, Needle In Haystack") +
-  theme_bw(base_size = 16) +
-  xlab("Reputation") + 
+  ggtitle("Quality Distribution, Needle In Haystack, t=1000") +
+  theme_bw(base_size = 12) +
+  xlab("Quality") + 
   theme(plot.title = element_text(hjust = 0.5))
 
 iso_deg <- filter(iso_dat, t %in% t_vals & Algorithm == "ThompsonSampling") 

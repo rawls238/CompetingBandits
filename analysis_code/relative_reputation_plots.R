@@ -3,7 +3,7 @@ library(ggplot2)
 library(reshape2)
 library(pBrackets)
 
-#dat <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/preliminary_raw_results/longer_ws.csv")
+dat <- read.csv("/Volumes/Mac/final_bandit_results/results/preliminary_raw_results/longer_ws.csv")
 
 
 bracketsGrob <- function(...){
@@ -15,7 +15,7 @@ bracketsGrob <- function(...){
   }, e)
 }
 
-b1 <- bracketsGrob(0.34, 0.15, 0, 0.15, h=0.1, lwd=2, col="red")
+b1 <- bracketsGrob(0.18, 0.15, 0, 0.15, h=0.1, lwd=2, col="red")
 b2 <- bracketsGrob(1, 0.15, 0.35, 0.15, h=0.1,  lwd=2, col="red")
 concise_alg_rep <- function(alg) {
   if (alg == "ThompsonSampling") {
@@ -31,7 +31,7 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   alg_1 <- filter(dist_dat, Algorithm == alg1)
   alg_2 <- filter(dist_dat, Algorithm == alg2)
   n_vals <- unique(dist_dat$n)
-  t_vals <- seq(10, 1500, 10)
+  t_vals <- seq(10, 1000, 10)
   df <- as.data.frame(matrix(nrow=length(t_vals), ncol=3))
   colnames(df) <- c("t", "relative_rep")
   df$t <- t_vals
@@ -49,17 +49,17 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   }
   df$relative_rep <- counts
   df$se <- ses
-  plot_title <- paste("Relative Reputation -", dist)
+  plot_title <- paste("Relative Quality -", dist)
   q <- ggplot(df, aes(x=t, y=relative_rep)) + geom_line() + geom_point() +
     geom_errorbar(aes(ymin=relative_rep-1.96*se, ymax=relative_rep+1.96*se), width=.2) +
     ggtitle(plot_title) + xlab("time") + 
-    ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(reputation)")) +
+    ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(quality)")) +
     annotation_custom(b1) +
-    annotation_custom(b2) +
-    ylim(c(0.2, 0.7)) +
-    annotate("text", x = 225, y = 0.25, label = "Relative Reputation Cost") +
-    annotate("text", x = 1000, y = 0.25, label = "Relative Reputation Benefit") +
-    theme_bw(base_size = 16) +  
+    #annotation_custom(b2) +
+    ylim(c(0.15, 0.9)) +
+    #annotate("text", x = 225, y = 0.19, label = "Exploration Disadvantage") +
+    #annotate("text", x = 1000, y = 0.25, label = "Relative Reputation Benefit") +
+    theme_bw(base_size = 12) +  
     theme(plot.title = element_text(hjust = 0.5))
   print(q)
 }
@@ -86,28 +86,28 @@ print_mean_graphs <- function (dist, alg1, alg2, alg3, minComplexity) {
   df$mean_rep <- as.numeric(df$mean_rep)
   df$ci <- as.numeric(df$ci)
 
-  plot_title <- paste("Mean Reputation -", dist)
+  plot_title <- paste("Mean Quality -", dist)
   q <- ggplot(data=df, aes(x=t, y=mean_rep, colour=alg)) + geom_line() +
     geom_errorbar(aes(ymin=mean_rep-ci, ymax=mean_rep+ci), width=.2) +
     ggtitle(plot_title) + xlab("time") +
-    ylab("Mean Reputation") +
-    theme_bw(base_size = 16) +
+    ylab("Mean Quality") +
+    theme_bw(base_size = 12) +
     theme(plot.title = element_text(hjust = 0.5))
   
   print(q)
 }
 
 dists <- unique(dat$Distribution)
-dists <- c("Needle In Haystack")
+dists <- c("Heavy Tail")
 for (dist in dists) {
   #print_relative_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", 0)
   print_relative_graphs(dist, "ThompsonSampling", "DynamicGreedy", 0)
   #print_relative_graphs(dist, "DynamicEpsilonGreedy", "DynamicGreedy", 0)
 }
 # print mean plots
-for (dist in dists) {
+#for (dist in dists) {
   print_mean_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0)
-}
+#}
 
 tmp_ts <- function(n) {
   return(filter(ts, n == UQ(n)))
