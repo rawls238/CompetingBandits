@@ -2,6 +2,7 @@
 
 \usepackage{tikz} % SW: Added for plots
 \usepackage{subfiles}
+\usepackage[toc,page]{appendix}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
@@ -103,10 +104,9 @@
 
 
 \begin{abstract}
-We empirically study the interplay between \textit{exploration} and \textit{competition}. Systems that learn from interactions with users
-often engage in \emph{exploration}: making potentially suboptimal decisions in order to acquire new information for future decisions. However, exploration may hurt system's reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral" when decreasing market share leaves the system with less users to learn from, which degrades system's performance relative to competition and further decreases the market share.
+We empirically study the interplay between \textit{exploration} and \textit{competition}. Systems that learn from interactions with users often engage in \emph{exploration}: making potentially suboptimal decisions in order to acquire new information for future decisions. However, exploration may hurt system's reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral" when decreasing market share leaves the system with less users to learn from, which degrades system's performance relative to competition and further decreases the market share.
 
-We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms. Our findings shed light on the ``first-mover advantage" in the digital economy.
+We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore \gaedit{and leads to low consumer welfare}, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms \gaedit{and lead to higher consumer welfare. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets. We show that a data advantage may serve as a significant barrier to entry when exploration has significant reputational consequences for entrants.}
 \end{abstract}
 
 %
@@ -156,6 +156,8 @@ We ask whether better exploration algorithms are incentivized under competition.
 \subfile{content/revisited}
 
 \subfile{content/conclusion}
+
+\subfile{content/appendix_for_one_version}
 
 \bibliographystyle{acm}
 \bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}

@@ -10,16 +10,16 @@ Each interaction between a firm and an agent proceeds as follows. There is a set
 
 From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown.
 
-Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
+Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. \gaedit{The warm start serves to vary the initial information the firm has before beginning to compete for users as well as to initialize the agents' perception of the firms.} Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
 
-In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
+In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
 
 
 
 \subsubsection{Agents.}
-\gaedit{For simplicity we suppose that firms compete for agents on a single dimension, quality, that is summarized via the reward experienced by the consumer\footnote{One can think that there are two quality types - a reward of 1 is a high type and a reward of 0 is a low type}}. Agents are myopic and non-strategic: they choose among the firms so as to maximize their expected reward \gaedit{(i.e. select the firm with the highest quality)}, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
+\gaedit{For simplicity we suppose that firms compete for agents on a single dimension, quality, that is summarized via the rewards experienced by past consumers.\footnote{One can think that there are two quality types - a reward of 1 is a high type and a reward of 0 is a low type}} Agents are myopic and non-strategic: they choose among the firms so as to maximize their expected reward \gaedit{(i.e. select the firm with the highest quality)}, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
 
-Concretely, each firm has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm\gaedit{\footnote{One can think of this as similar to ratings aggregations on many online platforms such as Yelp, Tripadvisor, etc.}}.
+Concretely, each firm has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.\gaedit{\footnote{One can think of this as similar to ratings aggregations on many online platforms such as Yelp, Tripadvisor, etc.}}
 
 \subsubsection{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated:
 
@@ -30,7 +30,7 @@ Concretely, each firm has a \emph{reputation score}, and each agent's choice is 
 \item \emph{Adaptive exploration}: algorithms that combine exploration and exploitation, and sway the exploration choices towards more promising alternatives.
 \end{enumerate}
 
-For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen. \gaedit{We make this restriction since we are mainly interested in if there is a qualitative differences between what we know is good in isolation and what is incentivized in competition.} For technical reasons, we consider Bayesian versions initialized with a ``fake" prior (\ie not based on actual knowledge). We consider:
+For concreteness, we fix one algorithm from each class. Our pilot experiments indicate that the results do not change substantially if other algorithms are chosen. \gaedit{We make this restriction since we are mainly interested in qualitative differences between standard ``good" multi-armed bandit algorithms and what algorithms are incentivized in competition.} For technical reasons, we consider Bayesian versions initialized with a ``fake" prior (\ie not based on actual knowledge). We consider:
 
 \begin{enumerate}
 \item a greedy algorithm that chooses an arm with largest posterior mean reward. We call it "Dynamic Greedy" (because the chosen arm may change over time), \DG in short.
