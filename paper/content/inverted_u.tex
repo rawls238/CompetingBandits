@@ -61,7 +61,7 @@ Our main experiments are with the duopoly game defined in Section~\ref{sec:model
 %   (c) Under Uniform, DG "beats" TS, but DEG "beats" TS by more than DG and DEG vs DG leads to ~50% market share (it's slightly in favor of DG but 50/50 is within the confidence band). If we break indifference towards DG cause of deployment costs, then we have that the unique PSNE is (DG, DG). If we don't add the indifference breaking, then we have four PSNE, (DG, DEG), (DEG, DG), (DG, DG), (DEG, DEG)
 
 
-\subsubsection{Permanent duopoly.}
+\xhdr{Permanent duopoly.}
 The basic scenario is when both firms are competing from round $1$. A crucial distinction is whether an MAB instance is exploration-disadvantaged:
 
 \begin{finding}\label{find:duopoly}
@@ -125,7 +125,7 @@ We attribute the prevalence of \DG on exploration-disadvantaged MAB instances to
 The reason we see that $\DG$ is incentivized under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds puts it in a disadvantage in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the exploration-disadvantaged instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
 }
 
-\subsubsection{Temporary Monopoly.}
+\xhdr{Temporary Monopoly.}
 We turn our attention to the temporary monopoly scenario. Recall that the incumbent firm enters the market and serves as a monopolist until the entrant firm enters at round $X$. We make $X$ large enough, but still much smaller than the time horizon $T$. We find that the incumbent is incentivized to choose \TS, in a strong sense:
 
 \begin{finding}\label{find:temp-monopoly}
@@ -208,7 +208,7 @@ $\DG$
 }
 \end{finding}
 
-\subsubsection{Inverted-U relationship.}
+\xhdr{Inverted-U relationship.}
 We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DG wins out for the trivial reason of tie-breaking. The highest levels are permanent duopoly and ``late entrant". We see that \DG is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DG get stronger when the model transitions from permanent duopoly to ``late entrant".%
 \footnote{For the Heavy-Tail instance, \DG goes from a weakly dominant startegy to a strictly dominant one. For the Uniform instance, \DG goes from a Nash equilibrium strategy to a weakly dominant one.}
 Finally, the middle level of competition, ``incumbent" in the temporary monopoly creates strong incentives for \TS. In stylized form, this relationship is captured in Figure~\ref{fig:inverted-U}.
@@ -219,7 +219,7 @@ Finally, the middle level of competition, ``incumbent" in the temporary monopoly
 
 Our intuition for why incumbency creates more incentives for exploration is as follows. During the temporary monopoly period, reputation costs of exploration vanish. Instead, the firm wants to improve its performance as much as possible by the time competition starts. Essentially, the firm only faces a classical explore-exploit tradeoff, and is incentivized to choose algorithms that are best at optimizing this tradeoff.
 
-\subsubsection{Death spiral effect.}
+\xhdr{Death spiral effect.}
 Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the permanent duopoly scenario, we specify the \Eeog values in Table \ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
 
 \begin{finding}
@@ -231,7 +231,7 @@ Under permanent duopoly, \Eeog values tend to be much smaller than the time hori
 We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
 \gaedit{
-\subsubsection{Welfare}
+\xhdr{Welfare}
 
 \swedit{We also study the effects the competition has on the consumer
   welfare---the cumulative rewards received by the users over time.}
