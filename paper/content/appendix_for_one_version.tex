@@ -1,12 +1,16 @@
 \documentclass[../competing_bandits_with_appendix.tex]{subfiles}
-\begin{document} 
+\begin{document}
 
-\begin{appendices}
+%\begin{appendix}
+\appendix
 
-In this supplement, we provide plots and tables for our experiments, which were omitted from the main text due to page constraints. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
+\section{Appendix}
 
-\section{Temporary Monopoly}
+We provide plots and tables for our experiments, which were omitted from the main text due to page constraints. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
 
+%\section{Temporary Monopoly}
+
+\xhdr{Temporary Monopoly.}
 We present additional experiments on temporary monopoly from Section 4, across various MAB instances and various values of the incumbent advantage parameter $X$.
 
 Each experiment is presented as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between the entrant's algorithm (the row) and the incumbent's algorithm (the column). The cell specifies the entrant's market share (fraction of rounds in which it was chosen) for the rounds in which he was present. We give the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.
@@ -82,9 +86,10 @@ $\DG$
 \caption{Temporary Monopoly:  Uniform, $X= 500$}
 \end{table}
 
-\section{Reputation vs. Data Advantage}
+%\section{Reputation vs. Data Advantage}
 
-This section presents all experiments on data vs. reputation advantage (Section 5).
+\xhdr{Reputation vs. Data Advantage}
+We present all experiments on data vs. reputation advantage (Section 5).
 
 Each experiment is presented as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share for the rounds in which hit was present: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.
 
@@ -175,8 +180,8 @@ $\DG$
 \end{table}
 
 
-\section{Mean Reputation vs. Relative Reputation}
-
+%\section{Mean Reputation vs. Relative Reputation}
+\xhdr{Mean Reputation vs. Relative Reputation.}
 We present the experiments omitted from Section 6. Namely, experiments on the Heavy-Tail MAB instance with $K=3$ arms, both for ``performance in isolation" and the permanent duopoly game. We find that $\DEG > \DG$ according to the mean reputation trajectory but that $\DG > \DEG$ according to the relative reputation trajectory \emph{and} in the competition game. As discussed in Section 6, the same results also hold for $K = 10$ for the warm starts that we consider.
 
 The result of the permanent duopoly experiment for this instance is shown in Table \ref{ht_k3}.
@@ -190,7 +195,7 @@ Finally, the relative reputation trajectory of \DEG vs. \DG:
 \includegraphics[scale=0.35]{appendix_figures/rel_rep_ht_3_arms}
 \end{center}
 
-\end{appendices}
+%\end{appendices}
 
 
 \end{document}
