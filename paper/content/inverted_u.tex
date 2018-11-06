@@ -230,9 +230,10 @@ Under permanent duopoly, \Eeog values tend to be much smaller than the time hori
 
 We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
+\gaedit{
+\xhdr{Welfare}
 
-\xhdr{Welfare.}
-We also study the effects of the competition on the consumer welfare---the total reward received by the users over time.
+\swedit{We also study the effects the competition has on the consumer welfare---the cumulative rewards received by the users over time.}
 
 \begin{figure}
 \includegraphics[scale=0.3]{figures/unif_eq_welfare}
@@ -241,25 +242,27 @@ We also study the effects of the competition on the consumer welfare---the total
 \label{eq_regret}
 \end{figure}
 
-\begin{finding}
-\textit{ \\ (a) Consumer welfare is highest under temporary monopoly. \\
-(b) Increasing the number of firms in the market playing \DG weakly decreases consumer welfare.
-}
-\end{finding}
-
-\asedit{Rather than the welfare directly, we find it more illuminating to consider} \emph{market regret}: the difference between the cumulative mean rewards achieved by taking the best action over all rounds and the cumulative mean rewards received by the agents. (Hence smaller regret means higher welfare.)
+\swedit{For our purpose, it will be clearer to look at \emph{market
+    regret}: the difference between the cumulative mean rewards
+  achieved by taking the best action over all rounds and the
+  cumulative mean rewards received by the agents. (Hence smaller
+  regret means higher welfare.)}
 
 
 Figure \ref{eq_regret} displays the \swedit{market regret (average
   over multiple runs)} under different levels of competitions,
 assuming both firms playing their equilibrium strategies. Consumers are \textit{better off} in the temporary monopoly case than in
 the duopoly case. However, this was expected from the fact that the incumbent is incentivized to play \TS. The welfare in the temporary monopoly case is close to the welfare to having a single firm playing
-\TS.
+\TS. \gaedit{We also observe that monopoly and duopoly achieve similar welfare, with monopoly being marginally better than duopoly.}
 
-\swedit{We also observe that monopoly and duopoly achieve similar
-  welfare, with monopoly being marginally better than duopoly. This is
-  surprising since one might conjecture that the welfare should
-  increase with the number of firms playing \DG since more $\DG$ runs
+\begin{finding}
+\textit{ In equilibrium, consumer welfare is highest under temporary monopoly. Monopoly and duopoly achieve similar welfare with monopoly leading to marginally better welfare than duopoly.
+}
+\end{finding}
+
+
+
+\gaedit{The result that monopoly leads to marginally better welfare than duopoly is surprising since, in equilibrium, all firms play \DG in both settings. One might conjecture that the welfare should increase with the number of firms playing \DG since more \DG runs
   should result in faster concentration on playing the better arms. In
   particular, more firms playing \DG should result in faster
   discovery of a better arm, and the firm with such discovery would be
@@ -271,6 +274,9 @@ the duopoly case. However, this was expected from the fact that the incumbent is
 \label{many_firm_welfare}
 \end{figure}
 
+\begin{finding}
+\textit{When all firms in the market deploy \DG, welfare is weakly decreasing as the number of firms in the market decreases.}
+\end{finding}
 \swedit{To study this phenomenon further, we go beyond the two-firm
   setting and simulate the game an increasing number of firms playing
   \DG.} Figure \ref{many_firm_welfare} reports the average welfare
@@ -285,7 +291,7 @@ selection is punished even more harshly as we increase the number of
 firms. This further strengthens the intuition from our previous
 result, which is that learning may be hard under competition since
 exploration and mistakes are punished harshly but are necessary for
-learning.
+learning.}
 
 
 \end{document}
