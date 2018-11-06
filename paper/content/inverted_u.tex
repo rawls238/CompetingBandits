@@ -230,11 +230,9 @@ Under permanent duopoly, \Eeog values tend to be much smaller than the time hori
 
 We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
-\gaedit{
-\xhdr{Welfare}
 
-\swedit{We also study the effects the competition has on the consumer
-  welfare---the cumulative rewards received by the users over time.}
+\xhdr{Welfare.}
+We also study the effects of the competition on the consumer welfare---the total reward received by the users over time.
 
 \begin{figure}
 \includegraphics[scale=0.3]{figures/unif_eq_welfare}
@@ -249,11 +247,7 @@ We also see that the \Eeog values tend to increase as the warm start $T_0$ incre
 }
 \end{finding}
 
-\swedit{For our purpose, it will be clearer to look at \emph{market
-    regret}: the difference between the cumulative mean rewards
-  achieved by taking the best action over all rounds and the
-  cumulative mean rewards received by the agents. (Hence smaller
-  regret means higher welfare.)}
+\asedit{Rather than the welfare directly, we find it more illuminating to consider} \emph{market regret}: the difference between the cumulative mean rewards achieved by taking the best action over all rounds and the cumulative mean rewards received by the agents. (Hence smaller regret means higher welfare.)
 
 
 Figure \ref{eq_regret} displays the \swedit{market regret (average
@@ -267,7 +261,7 @@ the duopoly case. However, this was expected from the fact that the incumbent is
   surprising since one might conjecture that the welfare should
   increase with the number of firms playing \DG since more $\DG$ runs
   should result in faster concentration on playing the better arms. In
-  particular,, more firms playing \DG should result in faster
+  particular, more firms playing \DG should result in faster
   discovery of a better arm, and the firm with such discovery would be
   able to attract more consumers and increase market welfare.}
 \begin{figure}
@@ -291,7 +285,7 @@ selection is punished even more harshly as we increase the number of
 firms. This further strengthens the intuition from our previous
 result, which is that learning may be hard under competition since
 exploration and mistakes are punished harshly but are necessary for
-learning.}
+learning.
 
 
 \end{document}
