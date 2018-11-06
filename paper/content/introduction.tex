@@ -7,7 +7,7 @@ Many modern online platforms simultaneously compete for users as well as learn f
 
 Platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. While deploying ``better" learning algorithms for exploration would improve performance, this is not necessarily beneficial under competition, even putting aside the deployment/maintenance costs. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term. This would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
 
-\gaedit{We ask whether algorithms that are traditionally considered ``better" in the standard multi-armed bandit problem are incentivized to be deployed under competition.} We investigate this issue via extensive numerical experiments in a stylized duopoly model. In our model, two firms compete for users and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firm's objective is to maximize its \gaedit{expected} market share (the fraction of users choosing this firm).
+\gaedit{We ask whether algorithms that are traditionally considered ``better" in the literature on multi-armed bandits are incentivized to be deployed under competition.} We investigate this issue via extensive numerical experiments in a stylized duopoly model. In our model, two firms compete for users and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firm's objective is to maximize its \gaedit{expected} market share (the fraction of users choosing this firm).
 
 \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4.0cm]
 \tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
@@ -33,10 +33,10 @@ We consider a \emph{permanent duopoly} in which both firms start at the same tim
 
 Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of an ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This relationship -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better -- is a familiar theme in the economics literature, dating back to \cite{Schumpeter-42}. \swedit{However, the ``inverted-U relationship'' is driven by different aspects in our model than the ones in the existing literature in economics. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, as opposed to the R\&D costs (which is the more standard cause in prior work)}.
 
-\gaedit{The findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. Being first in the market in the digital economy gives firms free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage"). 
+\gaedit{The findings on temporary monopoly shed light on the ``first-mover advantage" phenomenon in the digital economy. Being first in the market in the digital economy gives firms free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage").
 
-\swedit{Beyond the welfare implications, we also investigate the barrier to entry that follows from the incumbent's data advantage.  We run additional experiments that attempt to isolate the impact of the data advantage and reputation advantage. We find that the data advantage from the incumbent's ``small head start'' can lead to a significant incumbency advantage, especially when the incumbent commits to a more advanced bandit algorithm. Our results show that even a small degree of data asymmetry can be amplified to be a larger market advantage through competition dynamics. This is in contrast to the data advantage in a static environment such as discussed in \cite{varian2018artificial,bajari2018impact}, in which a small amount of additional data can only provide limited improvement in the predictive accuracy. 
-Our results shed lights on the importance of considering competition dynamics when reasoning about the anti-trust question of whether data can become a significant barrier to entry in an industry. 
+\swedit{Beyond the welfare implications, we also investigate the barrier to entry that follows from the incumbent's data advantage.  We run additional experiments that attempt to isolate the impact of the data advantage and reputation advantage. We find that the data advantage from the incumbent's ``small head start'' can lead to a significant incumbency advantage, especially when the incumbent commits to a more advanced bandit algorithm. Our results show that even a small degree of data asymmetry can be amplified to be a larger market advantage through competition dynamics. This is in contrast to the data advantage in a static environment such as discussed in \cite{varian2018artificial,bajari2018impact}, in which a small amount of additional data can only provide limited improvement in the predictive accuracy.
+Our results shed lights on the importance of considering competition dynamics when reasoning about the anti-trust question of whether data can become a significant barrier to entry in an industry.
 % in a competitive environment the relative differences in the data
 % possessed by the firms may lead to a large competitive benefit due
 % to the feedback loops discussed previously. In our model this effect
@@ -52,10 +52,9 @@ Our results shed lights on the importance of considering competition dynamics wh
 We also investigate how algorithms' performance ``in isolation" (without competition) is predictive of the outcomes under competition. In particular, we find that mean reputation -- arguably, the most natural performance measure ``in isolation" -- is sometimes not a good predictor. We suggest a more refined performance measure, and use it to explain (and frame) some of the competition outcomes.
 
 
-\subsubsection{Related work.}
-Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
+\subsection{Related work}
 
-Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, see \cite{Bubeck-survey12} for background. We consider i.i.d. rewards, a well-studied and well-understood MAB model \cite{bandits-ucb1}. We focus on a well-known distinction between ``greedy" (exploitation-only) algorithms, ``naive" algorithms that separate exploration and exploitation, and ``smart" algorithms that combine them. Switching from ``greedy" to ``naive" to ``smart" algorithms involves substantial adoption costs in infrastructure and personnel training \cite{MWT-WhitePaper-2016,DS-arxiv}.
+\xhdr{Machine learning.} Multi-armed bandits (MAB) is a tractable abstraction for the tradeoff between exploration and \emph{exploitation} (making good near-term decisions based on available information). MAB problems have been studied for many decades, see \cite{Bubeck-survey12} for background. We consider i.i.d. rewards, a well-studied and well-understood MAB model \cite{bandits-ucb1}. We focus on a well-known distinction between ``greedy" (exploitation-only) algorithms, ``naive" algorithms that separate exploration and exploitation, and ``smart" algorithms that combine them. Switching from ``greedy" to ``naive" to ``smart" algorithms involves substantial adoption costs in infrastructure and personnel training \cite{MWT-WhitePaper-2016,DS-arxiv}.
 
 The study of competition vs. exploration has been initiated in \cite{CompetingBandits-itcs16}. Their model differs from ours in two key respects. First, users do not see any signal about firms' past performance, and instead choose between firms according to the Bayesian-expected reward. Second, they vary the strength of competition using assumptions about (ir)rational consumer behavior, whereas we use early entry. Their results are purely theoretical; their model is amenable to proofs but not to numerical experiments. Their high-level conclusion is an inverted-U relationship between competition and innovation that is similar to ours.
 
@@ -67,21 +66,31 @@ online ad auctions, \eg
     \cite{MechMAB-ec09,DevanurK09,NSV08,Transform-ec10-jacm,Amin-auctions-nips13},
 and human computation
     \cite{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
+
 Our setting is also closely related to the ``dueling algorithms" framework \cite{DuelingAlgs-stoc11}, but this framework considers offline / full feedback scenarios whereas we focus on online machine learning problems.
-\swedit{There is also a line of work on ``dueling bandits" (e.g., \cite{Yue-dueling-icml09, Yue-dueling12}) that also studies a form of competition with MAB problems. However, their framework is fundamentally different from ours in that they study learning from setting up ``duels'' between pairs of arms, and we study how learning algorithms compete with each other for data.
-}
 
-The study of whether data can give a significant \swdelete{competitive} advantage
-has been discussed theoretically in \cite{varian2018artificial,
+\asedit{In ``dueling bandits" (e.g., \cite{Yue-dueling-icml09, Yue-dueling12}), an algorithm sets up a ``duel" between a pair of arms in each round, and only learns which arm has ``won". While this setting features a form of competition inside an MAB problem, it is very different from ours.}
+
+\xhdr{Economics.}
+Our work is related to a longstanding economics literature on competition vs. innovation, \eg \cite{Schumpeter-42,barro2004economic,Aghion-QJE05}. While this literature focuses on R\&D costs of innovation, ``reputational costs" seem new and specific to exploration.
+
+
+\asedit{Whether data gives competitive advantage
+has been studied theoretically in \cite{varian2018artificial,
   lambrecht2015can} and empirically in
-\cite{bajari2018impact}. \swedit{While they argue that small amounts
-  of additional data do not provide significant improvement in
-  training a more predictive model, this set of results focus on learning in isolation, which overlooks certain aspects in a competition.
-\swdelete{
-These studies consider the effect of additional data in terms of helping towards solving a machine learning problem in isolation and argue that it does not play a large role.} We ask how additional data helps while firms simultaneously solve a machine learning problem and compete for consumers. In our setting, the competition dynamics from our model lead to different conclusions about the competitive advantage that a data advantage can give a firm. Additionally, the first-mover advantage has been well-studied in other settings in economics and marketing \cite{kerin1992first}. }
+\cite{bajari2018impact}. 
+While these papers find that small amounts
+  of additional data do not provide significant improvement,
+ % in training a more predictive model, 
+  they focus on learning in isolation.
+  %, which overlooks certain aspects in a competition.
+%\swdelete{These studies consider the effect of additional data in terms of helping towards solving a machine learning problem in isolation and argue that it does not play a large role.} 
+We ask how additional data helps when firms simultaneously solve a machine learning problem and compete for consumers. Due to the competition dynamics in our model, we find that even a small amount of additional data tends to help a lot.}
+
+The first-mover advantage has been well-studied in other settings in economics and marketing, see survey \cite{kerin1992first}.
 
 
-\end{document} 
+\end{document}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../competing_bandits"
