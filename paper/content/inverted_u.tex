@@ -233,7 +233,7 @@ We also see that the \Eeog values tend to increase as the warm start $T_0$ incre
 
 \xhdr{Welfare.}
 \asedit{We study the effects of competition on consumer welfare: the total reward collected by the users over time. Rather than welfare directly, we find it more lucid to consider
-\emph{market regret}: 
+\emph{market regret}:
 \[ \textstyle T\, \max_a \mu(a) - \sum_{t\in [T]} \mu(a_t), \]
 where $a_t$ is the arm chosen by agent $t$. This is a standard performance measure in the literature on multi-armed bandits. Note that smaller regret means higher welfare.}
 
@@ -245,26 +245,27 @@ where $a_t$ is the arm chosen by agent $t$. This is a standard performance measu
 \label{eq_regret}
 \end{figure}
 
-\asedit{We assume that both firms play their respective equilibrium strategies for the corresponding competition level} \gaedit{for $T_0 = 20$. As discussed previously, these are: (1) \DG in the monopoly, (2) \DG for both firms in duopoly from Finding \ref{find:duopoly}, (3) \TS for the incumbent (Finding \ref{find:temp-monopoly}) and \DG for the entrant in temporary monopoly (Finding \ref{find:temp-monopoly-entrant}).}
+\asedit{We assume that both firms play their respective equilibrium strategies for the corresponding competition level. As discussed previously, these are: 
+\begin{itemize}
+\item \DG in the monopoly, 
+\item \DG for both firms in duopoly (Finding \ref{find:duopoly}),
+\item \TS for the incumbent (Finding \ref{find:temp-monopoly}) and \DG for the entrant in temporary monopoly (Finding \ref{find:temp-monopoly-entrant}).
+\end{itemize}
+} %%%%%%%
 
-Figure \ref{eq_regret} displays the \swedit{market regret (average
-  over multiple runs)} under different levels of competition.
+Figure \ref{eq_regret} displays the market regret (averaged
+  over multiple runs) under different levels of competition.
 Consumers are \textit{better off} in the temporary monopoly case than in
-the duopoly case. However, this was expected from the fact that the incumbent is incentivized to play \TS. The welfare in the temporary monopoly case is close to the welfare to having a single firm playing
-\TS. \gaedit{We also observe that monopoly and duopoly achieve similar welfare, with monopoly being marginally better than duopoly.}
+the duopoly case. \asedit{Recall that under temporary monopoly, the incumbent is incentivized to play \TS. Moreover, we find that the welfare is close to that of having a single firm for all agents and running \TS. We also observe that monopoly and duopoly achieve similar welfare.}
+%with monopoly being marginally better than duopoly.
 
-\begin{finding}
-\textit{ In equilibrium, consumer welfare is highest under temporary monopoly. Monopoly and duopoly achieve similar welfare with monopoly leading to marginally better welfare than duopoly.
+\begin{finding}\label{find:welfare}
+\textit{In equilibrium, consumer welfare is (a) highest under temporary monopoly, (b) similar for monopoly and duopoly.
+%monopoly being marginally better leading to marginally better welfare than duopoly.
 }
 \end{finding}
 
-
-
-\gaedit{The result that monopoly leads to marginally better welfare than duopoly is surprising since, in equilibrium, all firms play \DG in both settings. One might conjecture that the welfare should increase with the number of firms playing \DG since more \DG runs
-  should result in faster concentration on playing the better arms. In
-  particular, more firms playing \DG should result in faster
-  discovery of a better arm, and the firm with such discovery would be
-  able to attract more consumers and increase market welfare.}
+\asedit{Finding~\ref{find:welfare}(b) is interesting because, in equilibrium, both firms play \DG in both settings, and one might conjecture that the welfare should increase with the number of firms playing \DG. Indeed, one run of \DG may get stuck on a bad arm. However, two firms independently playing \DG are less likely to get stuck simultaneously. If one firm gets stuck and the other does not, then the latter should attract most agents, leading to improved welfare.}
 \begin{figure}
 \includegraphics[scale=0.3]{figures/eeog_vs_num_ht}
 \includegraphics[scale=0.3]{figures/ht_many_firm_welfare}\\
@@ -272,15 +273,15 @@ the duopoly case. However, this was expected from the fact that the incumbent is
 \label{many_firm_welfare}
 \end{figure}
 
+To study this phenomenon further, we go beyond the duopoly setting to more than two firms playing \DG (and starting at the same time). Figure \ref{many_firm_welfare} reports the average welfare
+across these simulations. Welfare not only does not get better, \textit{but is weakly worse} as we increase the number of firms. 
+
 \begin{finding}
-\textit{When all firms in the market deploy \DG, welfare is weakly decreasing as the number of firms in the market decreases.}
+\textit{When all firms deploy \DG, and start at the same time, welfare is weakly decreasing as the number of firms decreases.}
 \end{finding}
-\swedit{To study this phenomenon further, we go beyond the two-firm
-  setting and simulate the game an increasing number of firms playing
-  \DG.} Figure \ref{many_firm_welfare} reports the average welfare
-across these simulations. Welfare not only does not get better,
-\textit{but is weakly worse} as we increase the number of
-firms. Correspondingly, we track the average \Eeog in each of the
+
+
+We track the average \Eeog in each of the
 simulations and notice that it is \textit{increasing} as the number of
 firms increases. As we increase the number of firms, a single
 individual firm gets fewer consumers for learning as consumers switch
