@@ -21,7 +21,7 @@ In some of our experiments, one firm is the ``incumbent" who enters the market b
 \OMIT{\footnote{One can think that there are two quality types - a reward of 1 is a high type and a reward of 0 is a low type}}}
 Agents are myopic and non-strategic: they \asedit{would like} to choose among the firms so as to maximize their expected reward \gaedit{(i.e. select the firm with the highest quality)}, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
 
-Concretely, each of the two firms has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. \asedit{This is similar to ratings aggregators on many online platforms such as Yelp, Tripadvisor, etc.).}
+Concretely, each of the two firms has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. \asedit{This is similar to ratings aggregators on many online platforms such as Yelp, Tripadvisor, etc.}
 
 \xhdr{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated:
 
