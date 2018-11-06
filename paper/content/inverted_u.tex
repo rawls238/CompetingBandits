@@ -230,10 +230,13 @@ Under permanent duopoly, \Eeog values tend to be much smaller than the time hori
 
 We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
-\gaedit{
-\xhdr{Welfare}
 
-\swedit{We also study the effects the competition has on the consumer welfare---the cumulative rewards received by the users over time.}
+\xhdr{Welfare.}
+\asedit{We study the effects of competition on consumer welfare: the total reward collected by the users over time. Rather than welfare directly, we find it more lucid to consider
+\emph{market regret}: 
+\[ \textstyle T\, \max_a \mu(a) - \sum_{t\in [T]} \mu(a_t), \]
+where $a_t$ is the arm chosen by agent $t$. This is a standard performance measure in the literature on multi-armed bandits. Note that smaller regret means higher welfare.}
+
 
 \begin{figure}
 \includegraphics[scale=0.3]{figures/unif_eq_welfare}
@@ -242,16 +245,12 @@ We also see that the \Eeog values tend to increase as the warm start $T_0$ incre
 \label{eq_regret}
 \end{figure}
 
-\swedit{For our purpose, it will be clearer to look at \emph{market
-    regret}: the difference between the cumulative mean rewards
-  achieved by taking the best action over all rounds and the
-  cumulative mean rewards received by the agents. (Hence smaller
-  regret means higher welfare.)}
-
+\asedit{We assume that both firms play their respective equilibrium strategies for the corresponding competition level. As discussed previously, these are:}
+\ascomment{Guy, pls fill in, and refer to the corresponding findings.}
 
 Figure \ref{eq_regret} displays the \swedit{market regret (average
-  over multiple runs)} under different levels of competitions,
-assuming both firms playing their equilibrium strategies. Consumers are \textit{better off} in the temporary monopoly case than in
+  over multiple runs)} under different levels of competition.
+Consumers are \textit{better off} in the temporary monopoly case than in
 the duopoly case. However, this was expected from the fact that the incumbent is incentivized to play \TS. The welfare in the temporary monopoly case is close to the welfare to having a single firm playing
 \TS. \gaedit{We also observe that monopoly and duopoly achieve similar welfare, with monopoly being marginally better than duopoly.}
 
@@ -291,7 +290,7 @@ selection is punished even more harshly as we increase the number of
 firms. This further strengthens the intuition from our previous
 result, which is that learning may be hard under competition since
 exploration and mistakes are punished harshly but are necessary for
-learning.}
+learning.
 
 
 \end{document}
