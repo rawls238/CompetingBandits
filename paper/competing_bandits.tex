@@ -59,16 +59,10 @@
 
 %drt24 hacks
 % Letter paper
-\setlength{\paperheight}{11in}
-\setlength{\paperwidth}{8.5in}
 
 % Hack to try to make acmart work with biblatex: https://tex.stackexchange.com/questions/37076/is-it-possible-to-load-biblatex-with-a-class-that-has-already-loaded-natbib
 \let\citename\relax
 %\RequirePackage[abbreviate=true, dateabbrev=true, isbn=true, doi=true, urldate=comp, url=true, maxbibnames=9, backref=false, backend=biber, style=ACM-Reference-Format, language=american]{biblatex}
-
-
-
-
 
 
 
@@ -84,20 +78,6 @@
 %\setcopyright{usgovmixed}
 %\setcopyright{cagov}
 %\setcopyright{cagovmixed}
-
-
-% DOI
-\acmDOI{10.475/123_4}
-
-% ISBN
-\acmISBN{123-4567-24-567/08/06}
-
-%Conference
-\acmConference[WWW'19]{ACM WWW conference}{May 2019}{San Francisco, CA 2019}
-\acmYear{2019}
-\copyrightyear{2019}
-
-\acmPrice{15.00}
 
 
 \begin{document}
@@ -116,35 +96,10 @@ We ask whether better exploration algorithms are incentivized under competition.
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below.
 %
-\begin{CCSXML}
-<ccs2012>
-<concept>
-<concept_id>10010147.10010257.10010282.10010284</concept_id>
-<concept_desc>Computing methodologies~Online learning settings</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-<concept>
-<concept_id>10010147.10010257.10010258.10010261.10010272</concept_id>
-<concept_desc>Computing methodologies~Sequential decision making</concept_desc>
-<concept_significance>300</concept_significance>
-</concept>
-<concept>
-<concept_id>10010405.10010455.10010460</concept_id>
-<concept_desc>Applied computing~Economics</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-</ccs2012>
-\end{CCSXML}
-
-\ccsdesc[500]{Computing methodologies~Online learning settings}
-\ccsdesc[300]{Computing methodologies~Sequential decision making}
-\ccsdesc[500]{Applied computing~Economics}
 
 \keywords{Multi-armed bandits,Exploration,Competition,Competition vs Innovation}
 
-
 \maketitle
-
 \subfile{content/introduction}
 
 \subfile{content/model}
