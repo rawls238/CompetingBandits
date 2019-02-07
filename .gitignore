@@ -1,4 +1,4 @@
-*.pdf
+paper/*.pdf
 results/
 *.pyc
 .Rhistory
