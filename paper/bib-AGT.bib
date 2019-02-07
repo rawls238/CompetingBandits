@@ -1,4 +1,64 @@
 
+%%%% LEARNING IN GAMES
+
+@inproceedings{Rakhlin-colt13,
+  author    = {Alexander Rakhlin and
+               Karthik Sridharan},
+  title     = {Online Learning with Predictable Sequences},
+  booktitle = proc # "26th" # COLT,
+  pages     = {993--1019},
+  year      = {2013}
+}
+
+@inproceedings{Syrgkanis-nips15,
+  author    = {Vasilis Syrgkanis and
+               Alekh Agarwal and
+               Haipeng Luo and
+               Robert E. Schapire},
+  title     = {Fast Convergence of Regularized Learning in Games},
+  booktitle =  proc # "28th" # NIPS,
+  pages     = {2989--2997},
+  year      = {2015}
+}
+
+@inproceedings{Christiano11MaxFlow,
+ author = {Christiano, Paul and Kelner, Jonathan A. and Madry, Aleksander and Spielman, Daniel A. and Teng, Shang-Hua},
+ title = {Electrical Flows, Laplacian Systems, and Faster Approximation of Maximum Flow in Undirected Graphs},
+ booktitle = proc # "43rd" # STOC,
+ year = {2011},
+ pages = {273--282},
+ numpages = {10},
+ publisher = {ACM},
+}
+
+@article{dwork2014algorithmic,
+  title={The algorithmic foundations of differential privacy},
+  author={Dwork, Cynthia and Roth, Aaron and others},
+  journal={Foundations and Trends{\textregistered} in Theoretical Computer Science},
+  volume={9},
+  number={3--4},
+  pages={211--407},
+  year={2014},
+  publisher={Now Publishers, Inc.}
+}
+
+@article{wang2018acceleration,
+  title={Acceleration through Optimistic No-Regret Dynamics},
+  author={Wang, Jun-Kun and Abernethy, Jacob},
+  journal={arXiv preprint arXiv:1807.10455},
+  year={2018}
+}
+
+@inproceedings{abernethy2017frank,
+  title={On Frank-Wolfe and Equilibrium Computation},
+  author={Abernethy, Jacob D and Wang, Jun-Kun},
+  booktitle=NIPS,
+  pages={6584--6593},
+  year={2017}
+}
+
+
+
 %%%%%% DYNAMIC MECHANISMS
 
 @incollection{DynAuctions-survey11,
@@ -317,6 +377,29 @@
 }
 
 %%%%%%%%%% DYNAMIC PRICING and BwK %%%%%%%%%%%%%%
+
+@inproceedings{MultiScaleMAB-ec17,
+  author    = {S{\'{e}}bastien Bubeck and
+               Nikhil R. Devanur and
+               Zhiyi Huang and
+               Rad Niazadeh},
+  title     = {Online Auctions and Multi-scale Online Learning},
+  booktitle = ACMEC,
+  pages     = {497--514},
+  year      = {2017}
+}
+
+@article{combes2015bandits,
+  title={Bandits with budgets: Regret lower bounds and optimal algorithms},
+  author={Combes, Richard and Jiang, Chong and Srikant, Rayadurgam},
+  journal={ACM SIGMETRICS Performance Evaluation Review},
+  volume={43},
+  number={1},
+  pages={245--257},
+  year={2015},
+  publisher={ACM}
+}
+
 
 @article{Roths74,
     author="Michael Rothschild",
@@ -790,6 +873,30 @@
 
 %%%%%%%%%%%%%%%%%%%%%% BIC exploration %%%%%%%%%%%
 
+@inproceedings{KKMPRVW17,
+  author    = {Sampath Kannan and
+               Michael J. Kearns and
+               Jamie Morgenstern and
+               Mallesh M. Pai and
+               Aaron Roth and
+               Rakesh V. Vohra and
+               Zhiwei Steven Wu},
+  title     = {Fairness Incentives for Myopic Agents},
+  booktitle = ACMEC,
+  pages     = {369--386},
+  year      = {2017}
+}
+
+@inproceedings{Kempe-colt18,
+  author    = {Bangrui Chen and
+               Peter I. Frazier and
+               David Kempe},
+  title     = {Incentivizing Exploration by Heterogeneous Users},
+  booktitle = proc # COLT,
+  pages     = {798--818},
+  year      = {2018},
+}
+
 @inproceedings{Sven-aistats18,
   author    = {Sven Schmit and Carlos Riquelme},
   title     = {Human Interaction with Recommendation Systems},
@@ -802,8 +909,10 @@
     author = {Kostas Bimpikis and Yiangos Papanastasiou and Nicos Savva},
     title = {Crowdsourcing Exploration},
     journal = {Management Science},
+    volume = {64},
+    issue = {4},
     year = {2018},
-    note = "Forthcoming. Published online as \emph{Articles in Advance} in April 2017."
+    pages = {1477-1973}
 }
 
 @misc{Horner-survey16,
@@ -829,6 +938,16 @@
   title     = {Economic Recommendation Systems},
   booktitle = proc # "16th" # EC,
   year      = {2016}
+}
+
+@inproceedings{Kempe-wine15,
+  author    = {Li Han and
+               David Kempe and
+               Ruixin Qiang},
+  title     = {Incentivizing Exploration with Heterogeneous Value of Money},
+  booktitle = proc # "11th" # WINEconf,
+  pages     = {370--383},
+  year      = {2015}
 }
 
 
@@ -1008,6 +1127,25 @@ year = {2013},
   year      = {2016},
 }
 
+@inproceedings{Liang-ec18,
+  author    = {Annie Liang and
+               Xiaosheng Mu and
+               Vasilis Syrgkanis},
+  title     = {Optimal and Myopic Information Acquisition},
+  booktitle = ACMEC,
+  pages     = {45--46},
+  year      = {2018}
+}
+
+@inproceedings{Annie-ec18-traps,
+  author    = {Annie Liang and
+               Xiaosheng Mu},
+  title     = {Overabundant Information and Learning Traps},
+  booktitle = ACMEC,
+  pages     = {71--72},
+  year      = {2018}
+}
+
 %%%%%%%%%%%%% SECRETARY PROBLEMS %%%%%%%%%%
 
 @article{Dynkin-secretary63,
@@ -1152,6 +1290,7 @@ year = {2013},
  pages = {1--7},
  }
 
+%%%%%%%%% ADWORDS AND ONLINE MATCHING
 
 @article{MSVV07,
  author = {Aranyak Mehta and Amin Saberi and Umesh Vazirani and Vijay Vazirani},
@@ -1163,6 +1302,129 @@ year = {2013},
  issn = {0004-5411},
  pages = {22},
  }
+
+@inproceedings{karp1990optimal,
+  author={Karp, Richard M and Vazirani, Umesh V and Vazirani, Vijay V},
+  title={An optimal algorithm for on-line bipartite matching},
+ booktitle=STOC,
+  pages={352--358},
+  year={1990},
+  organization={ACM}
+}
+
+@inproceedings{devanur2013randomized,
+  title={Randomized primal-dual analysis of ranking for online bipartite matching},
+  author={Devanur, Nikhil R and Jain, Kamal and Kleinberg, Robert D},
+  booktitle=SODA,
+  pages={101--107},
+  year={2013},
+  organization={Society for Industrial and Applied Mathematics}
+}
+
+@article{OnlineMatchingBook,
+title	= {Online Matching and Ad Allocation},
+author	= {Aranyak Mehta},
+year	= {2013},
+journal	= {Foundations and Trends in Theoretical Computer Science},
+pages	= {265-368},
+volume	= {8 (4)}
+}
+
+@inproceedings{Karande11Unknown,
+title	= {Online bipartite matching with unknown distributions},
+author	= {Chinmay Karande and Aranyak Mehta and Pushkar Tripathi},
+year	= {2011},
+booktitle	= STOC
+}
+
+@inproceedings{vertexWeighted11,
+title	= {Online Vertex-Weighted Bipartite Matching and Single-bid Budgeted Allocations},
+author	= {Gagan Aggarwal and Gagan Goel and Chinmay Karande and Aranyak Mehta},
+year	= {2011},
+booktitle	= SODA
+}
+
+@inproceedings{Feldman09IID,
+title	= {Online Stochastic Matching: Beating 1-1/e},
+author	= {Jon Feldman and Aranyak Mehta and Vahab Mirrokni and S. Muthukrishnan},
+year	= {2009},
+booktitle	= FOCS
+}
+
+@inproceedings{Goel08Budgetted,
+title	= {Online budgeted matching in random input models with applications to Adwords},
+author	= {Gagan Goel and Aranyak Mehta},
+year	= {2008},
+booktitle	= SODA,
+pages	= {982--991},
+}
+
+
+%%%%%%% Packing Programs %%%%%%%
+
+@article{BuchbinderNaor09,
+ author = {Buchbinder, Niv and Naor, Joseph (Seffi)},
+ title = {Online Primal-Dual Algorithms for Covering and Packing},
+ journal = {Math. Oper. Res.},
+ volume = {34},
+ number = {2},
+ month = may,
+ year = {2009},
+ pages = {270--286},
+}
+
+@article{buchbinder2009design,
+  title={The design of competitive online algorithms via a primal--dual approach},
+  author={Buchbinder, Niv and Naor, Joseph Seffi},
+  journal={Foundations and Trends{\textregistered} in Theoretical Computer Science},
+  volume={3},
+  number={2--3},
+  pages={93--263},
+  year={2009},
+  publisher={Now Publishers, Inc.}
+}
+
+@article{agrawal2014dynamic,
+  title={A dynamic near-optimal algorithm for online linear programming},
+  author={Agrawal, Shipra and Wang, Zizhuo and Ye, Yinyu},
+  journal={Operations Research},
+  volume={62},
+  number={4},
+  pages={876--890},
+  year={2014},
+  publisher={INFORMS}
+}
+
+@inproceedings{kesselheim2014primal,
+  title={Primal beats dual on online packing {LP}s in the random-order model},
+  author={Kesselheim, Thomas and T{\"o}nnis, Andreas and Radke, Klaus and V{\"o}cking, Berthold},
+  booktitle=STOC,
+  pages={303--312},
+  year={2014},
+  organization={ACM}
+}
+
+@article{alon2006general,
+  title={A general approach to online network optimization problems},
+  author={Alon, Noga and Awerbuch, Baruch and Azar, Yossi and Buchbinder, Niv and Naor, Joseph Seffi},
+  journal={ACM Transactions on Algorithms (TALG)},
+  volume={2},
+  number={4},
+  pages={640--660},
+  year={2006},
+  publisher={ACM}
+}
+
+@inproceedings{Azar:2013:OMP:2627817.2627823,
+ author = {Azar, Yossi and Bhaskar, Umang and Fleischer, Lisa and Panigrahi, Debmalya},
+ title = {Online Mixed Packing and Covering},
+ booktitle = SODA,
+ year = {2013},
+ pages = {85--100},
+ numpages = {16},
+ publisher = {Society for Industrial and Applied Mathematics},
+}
+
 
 %%%% MISC AMD %%%%%%%%
 
@@ -1533,3 +1795,67 @@ author = "Alejandro M. Manelli and Daniel R. Vincent",
   pages     = {473--483},
   year      = {2015}
 }
+
+%%%%%%%%%% Repeated Lagrangian Games %%%%%%%%%%%%%
+@inproceedings{rogers2015inducing,
+  title={Inducing approximately optimal flow using truthful mediators},
+  author={Rogers, Ryan and Roth, Aaron and Ullman, Jonathan and Wu, Zhiwei Steven},
+  booktitle=proc # "16th" # EC,
+  pages={471--488},
+  year={2015},
+}
+
+@inproceedings{hsu2016jointly,
+  title={Jointly private convex programming},
+  author={Hsu, Justin and Huang, Zhiyi and Roth, Aaron and Wu, Zhiwei Steven},
+  booktitle= proc # "27th" # SODA,
+  pages={580--599},
+  year={2016},
+}
+
+@inproceedings{roth2016watch,
+  title={Watch and learn: Optimizing from revealed preferences feedback},
+  author={Roth, Aaron and Ullman, Jonathan and Wu, Zhiwei Steven},
+  booktitle= proc # "48th" # STOC,
+  pages={949--962},
+  year={2016},
+}
+
+@InProceedings{pmlr-v80-kearns18a,
+  title = 	 {Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness},
+  author = 	 {Kearns, Michael and Neel, Seth and Roth, Aaron and Wu, Zhiwei Steven},
+  booktitle = proc # "35th" # ICML,
+  pages = 	 {2564--2572},
+  year = 	 {2018}
+}
+
+@article{agarwal2018reductions,
+  title={A reductions approach to fair classification},
+  author={Agarwal, Alekh and Beygelzimer, Alina and Dud{\'\i}k, Miroslav and Langford, John and Wallach, Hanna},
+  journal={Fairness, Accountability, and Transparency in Machine Learning (FATML)},
+  year={2017}
+}
+
+@inproceedings{roth2017multidimensional,
+  title={Multidimensional dynamic pricing for welfare maximization},
+  author={Roth, Aaron and Slivkins, Aleksandrs and Ullman, Jonathan and Wu, Zhiwei Steven},
+  booktitle= proc # "18th" # EC,
+  pages={519--536},
+  year={2017},
+}
+
+%%%%%%%%%%% New BwK %%%%%%%%%%%%%
+@article{rivera2018online,
+  title={Online Saddle Point Problem with Applications to Constrained Online Convex Optimization},
+  author={Rivera, Adrian and Wang, He and Xu, Huan},
+  journal={arXiv preprint arXiv:1806.08301},
+  year={2018}
+}
+
+@article{rangi2018unifying,
+  title={Unifying the stochastic and the adversarial Bandits with Knapsack},
+  author={Rangi, Anshuka and Franceschetti, Massimo and Tran-Thanh, Long},
+  journal={arXiv preprint arXiv:1811.12253},
+  year={2018}
+}
+

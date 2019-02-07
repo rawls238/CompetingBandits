@@ -1,10 +1,11 @@
-@String{ WEBPATH 	=  "{http://research.microsoft.com/en-us/people/slivkins}" }
+@String{ WEBPATH 	=  "{\texttt{http://research.microsoft.com/en-us/people/slivkins}}" }
 
 @misc{slivkins-MABbook,
     author = "Aleksandrs Slivkins",
     title= "Introduction to multi-armed bandits",
-    year = "2017",
-    note = "A book draft, available at " # WEBPATH
+    year = "2018",
+    note = "A book draft, available at " # WEBPATH #
+    ". To be published with \emph{Foundations and Trends in Machine Learning}."
 }
 
 
@@ -255,7 +256,7 @@
    author =  "Robert Kleinberg and Aleksandrs Slivkins and Eli Upfal",
    title = 	"Bandits and Experts in Metric Spaces",
    journal = JACM,
-   year 	= "2018",
+   year 	= "2019",
    note     = "To appear. Merged and revised version of conference papers
     in {\em ACM STOC 2008} and {\em ACM-SIAM SODA 2010}.
     Also available at {\tt http://arxiv.org/abs/1312.1277}"
@@ -365,18 +366,37 @@
 
 @misc{MWT-project,
    author = {Alekh Agarwal and Sarah Bird and  Markus Cozowicz
-    and  Miro Dudik and  John Langford  and  Lihong Li  and  Luong Hoang and Sid Sen
-         and Robert Schapire  and Aleksandrs Slivkins},
+    and Miro Dudik and Luong Hoang and John Langford and Lihong Li and Siddhartha Sen
+         and Aleksandrs Slivkins},
    title   = {Multi-World Testing},
    note	= "{\tt http://research.microsoft.com/en-US/projects/mwt/}",
    year = "{2013-present}"
 }
 
+@misc{ds-portal,
+title = "{Custom Decision Service}",
+key = "{Custom Decision Service}",
+note = {A Cognitive Service on Microsoft Azure.},
+howpublished = {\url{http://aka.ms/mwt}}
+}
+
+@inproceedings{Harvesting-hotnets17,
+  author    = {Mathias L{\'{e}}cuyer and
+               Joshua Lockerman and
+               Lamont Nelson and
+               Siddhartha Sen and
+               Amit Sharma and
+               Aleksandrs Slivkins},
+  title     = {Harvesting Randomness to Optimize Distributed Systems},
+  booktitle = proc # "16th" # HOTNETS,
+  pages     = {178--184},
+  year      = {2017}
+}
 
 @misc{MWT-WhitePaper-2016,
 title = {Multiworld Testing: A System for Experimentation, Learning, And Decision-Making},
 key = {Multi-World Testing},
-author = {Alekh Agarwal and Sarah Bird and Markus Cozowicz and Miro Dudik and John Langford and Lihong Li and Luong Hoang and Dan Melamed and Siddhartha Sen and Robert Schapire and Alex Slivkins},
+author = {Alekh Agarwal and Sarah Bird and Markus Cozowicz and Miro Dudik and Luong Hoang and John Langford and Lihong Li and Dan Melamed and Gal Oshri and Siddhartha Sen and Aleksandrs Slivkins},
 note    = {A white paper, available at \url{https://github.com/Microsoft/mwt-ds/raw/master/images/MWT-WhitePaper.pdf}},
 year = {2016}
 }
@@ -399,7 +419,90 @@ year = {2016}
   year      = {2017}
 }
 
+@misc{Sayer-18,
+    author = {Mathias L{\'{e}}cuyer and
+        Mihir Nanavati and
+        Junchen Jiang and
+        Azadeh Mobasher and
+        Alexandra Savelieva and
+        Siddhartha Sen and
+        Amit Sharma and
+        Aleksandrs Slivkins},
+    title = {SAYER : Counterfactual Evaluation of Systems},
+    year = {2018},
+    note = {Working paper.}
+}
 
+%%%%%%%% DYNAMIC PRICING AND BwK
+
+@Misc{AdsWithBudgets-arxiv13,
+  author    = {Aleksandrs Slivkins},
+  title		= {Dynamic Ad Allocation: Bandits with Budgets},
+  howpublished = "A technical report on {\tt arxiv.org/abs/1306.0155}",
+  month     = "June",
+  year =         "2013"
+}
+
+@inproceedings{cBwK-colt14,
+  author =       "Ashwinkumar Badanidiyuru and John Langford and Aleksandrs Slivkins",
+  title =        "Resourceful Contextual Bandits",
+  booktitle 	= proc # "27th" # COLT,
+  year = "2014"
+}
+
+@Misc{BwK-full,
+  author =       "Ashwinkumar Badanidiyuru and Robert Kleinberg and Aleksandrs Slivkins",
+  title =        "Bandits with Knapsacks",
+  howpublished = "A technical report on {\tt arxiv.org}.",
+  month     = "May",
+  year =         "2013",
+}
+
+
+@article{BwK-focs13,
+  author =       "Ashwinkumar Badanidiyuru and Robert Kleinberg and Aleksandrs Slivkins",
+  title =        "Bandits with Knapsacks",
+  journal   = JACM,
+  volume    = {65},
+  number    = {3},
+  year      = {2018},
+  note = "Preliminary version in {\em FOCS 2013}."
+}
+
+
+@misc{DynPricing-tutorial-ec15,
+    author = {Aleksandrs Slivkins and Assaf Zeevi},
+    title = {Dynamic Pricing with Model Uncertainty},
+    year = {2015},
+    note = {Tutorial at \emph{ACM EC 2015}. Slides can be found at
+        {\tt http://slivkins.com/work/EC15-tutorial-merged.pdf}.}
+}
+
+@inproceedings{Karthik-aistats18,
+  author    = {Karthik Abinav Sankararaman and Aleksandrs Slivkins},
+  title     = {Combinatorial Semi-Bandits with Knapsacks},
+  booktitle = proc # AISTATS,
+  pages     = {1760--1770},
+  year      = {2018}
+}
+
+@misc{AdvBwK-subm,
+  author    = {Nicole Immorlica and Karthik Abinav Sankararaman and Robert Schapire and Aleksandrs Slivkins},
+  title     = {Adversarial Bandits with Knapsacks},
+  year      = {2018},
+  note      = {Working paper, under submission to \emph{STOC 2019}.
+               Available at {\tt https://arxiv.org/abs/1811.11881}.}
+}
+
+@inproceedings{StevenDP-ec17,
+  author    = {Aaron Roth and
+               Aleksandrs Slivkins and
+               Jonathan Ullman and
+               Zhiwei Steven Wu},
+  title     = {Multidimensional Dynamic Pricing for Welfare Maximization},
+  booktitle = ACMEC,
+  year      = {2017}
+}
 %%%%%%% AMD %%%%%%%%%%%%%%
 
 @article{MechMAB-ec09,
@@ -459,25 +562,6 @@ year = {2016}
   note      = {Special issue for \emph{13th ACM EC}, 2012.}
 }
 
-@Misc{BwK-full,
-  author =       "Ashwinkumar Badanidiyuru and Robert Kleinberg and Aleksandrs Slivkins",
-  title =        "Bandits with Knapsacks",
-  howpublished = "A technical report on {\tt arxiv.org}.",
-  month     = "May",
-  year =         "2013",
-}
-
-
-@article{BwK-focs13,
-  author =       "Ashwinkumar Badanidiyuru and Robert Kleinberg and Aleksandrs Slivkins",
-  title =        "Bandits with Knapsacks",
-  journal   = JACM,
-  volume    = {65},
-  number    = {3},
-  year      = {2018},
-  note = "Preliminary version in {\em FOCS 2013}."
-}
-
 @inproceedings{BKS2-ec13,
   author    = {Moshe Babaioff and Robert Kleinberg and Aleksandrs Slivkins},
   title     = {Multi-parameter mechanisms with implicit payment computation},
@@ -493,22 +577,6 @@ year = {2016}
   month     = "February",
   year =         "2013"
 }
-
-@Misc{AdsWithBudgets-arxiv13,
-  author    = {Aleksandrs Slivkins},
-  title		= {Dynamic Ad Allocation: Bandits with Budgets},
-  howpublished = "A technical report on {\tt arxiv.org/abs/1306.0155}",
-  month     = "June",
-  year =         "2013"
-}
-
-@inproceedings{cBwK-colt14,
-  author =       "Ashwinkumar Badanidiyuru and John Langford and Aleksandrs Slivkins",
-  title =        "Resourceful Contextual Bandits",
-  booktitle 	= proc # "27th" # COLT,
-  year = "2014"
-}
-
 
 @inproceedings{ICexploration-ec15,
   author    = {Yishay Mansour and
@@ -536,7 +604,8 @@ year = {2016}
                Vasilis Syrgkanis},
   title     = {Bayesian Incentive-Compatible Bandit Exploration},
   howpublished = {Working paper},
-  note      = "Available at {\tt https://arxiv.org/abs/1502.04147}. Preliminary version in \emph{ACM EC 2015}",
+  note      = "Available at {\tt https://arxiv.org/abs/1502.04147}.
+  Preliminary version in \emph{ACM EC 2015}. To be published in \emph{Operations Research}.",
   year      = {2018}
 }
 
@@ -548,18 +617,11 @@ year = {2016}
                Steven Wu},
   title     = {Bayesian Exploration: Incentivizing Exploration in Bayesian Games},
   howpublished = {Working paper},
-  note      = "Available at {\tt https://arxiv.org/abs/1602.07570}. Preliminary version in \emph{ACM EC 2016}",
+  note      = "Available at {\tt https://arxiv.org/abs/1602.07570}.
+  Preliminary version in \emph{ACM EC 2016}",
   year      = {2018}
 }
 
-
-@misc{DynPricing-tutorial-ec15,
-    author = {Aleksandrs Slivkins and Assaf Zeevi},
-    title = {Dynamic Pricing with Model Uncertainty},
-    year = {2015},
-    note = {Tutorial at \emph{ACM EC 2015}. Slides can be found at
-        {\tt http://slivkins.com/work/EC15-tutorial-merged.pdf}.}
-}
 
 @misc{IncentivizingExploration-tutorial-ec17,
     author = {Robert D. Kleinberg and Aleksandrs Slivkins},
@@ -569,7 +631,18 @@ year = {2016}
     Tutorial description can be found at {\tt http://slivkins.com/work/ec17-tutorial-description.pdf}.}
 }
 
-@inproceedings{CompetingBandits-itcs16,
+
+@article{Slivkins-xroads17,
+  author    = {Aleksandrs Slivkins},
+  title     = {Incentivizing exploration via information asymmetry},
+  journal   = {{ACM} Crossroads},
+  volume    = {24},
+  number    = {1},
+  pages     = {38--41},
+  year      = {2017}
+}
+
+@inproceedings{CompetingBandits-itcs18,
   author    = {Yishay Mansour and
                Aleksandrs Slivkins and
                Steven Wu},
@@ -578,7 +651,40 @@ year = {2016}
   year      = {2018}
 }
 
+@inproceedings{externalities-colt18,
+  author    = {Manish Raghavan and
+               Aleksandrs Slivkins and
+               Jennifer Wortman Vaughan and
+               Zhiwei Steven Wu},
+  title     = {The Externalities of Exploration and How Data Diversity Helps Exploitation},
+  booktitle = proc # COLT,
+  pages     = {1724--1738},
+  year      = {2018}
+}
 
+
+@misc{Jieming-multitypes18,
+  author    = {Nicole Immorlica and Jieming Mao and Aleksandrs Slivkins and Steven Wu},
+  title     = {Bayesian Exploration with Heterogenous Agents},
+  year      = {2018},
+  note      = {Working paper, under submission}
+}
+
+@misc{Jieming-unbiased18,
+  author    = {Nicole Immorlica and Jieming Mao and Aleksandrs Slivkins and Steven Wu},
+  title     = {Incentivizing Exploration with Unbiased History},
+  year      = {2018},
+  note      = {Under submission, available at {\tt https://arxiv.org/abs/1811.06026}}
+}
+
+@misc{CompetingBandits-Guy-18,
+  author    = {Guy Aridor and
+               Aleksandrs Slivkins and
+               Steven Wu},
+  title     = {Competing Bandits:The Perils of Exploration under Competition},
+  year      = {2018},
+  note      = {Working paper, under submission.}
+}
 
 
 %%%%%%%%%%% CROWDSOURCING
