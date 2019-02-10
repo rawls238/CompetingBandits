@@ -1,0 +1,80 @@
+\documentclass[../competing_bandits.tex]{subfiles}
+\begin{document}
+
+\section{Non-Greedy Choice}\label{section:non_greedy}
+
+In this section we consider an extension of our base model where the agents' choice model is no longer greedy. We study a small deviation from greedy where the agent's choice rule is now that the agent selects between the firms uniformly with probability $0 < \epsilon < 1$ and takes the greedy choice with probability $1 - \epsilon$. A variant of this choice model is also studied as the HardMaxWithRandom choice model in \cite{mansour2018competing}.
+
+In Section \ref{sec:competition} we saw that in the permanent duopoly case it was possible for exploration to lead to a death spiral which eventually starved the firm of agents. However, giving one firm a small head start or enough free agents via the warm start incentivized it to play \TS since it could recover the reputation costs it incurred from early exploration. An interpretation of the non-greedy choice model is that instead of concentrating the free agents as coming in the beginning of the game instead they are dispersed throughout the game.
+
+\footnotesize
+\begin{table*}[t]
+\centering
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Heavy-Tail (Non-Greedy)}
+  & \multicolumn{3}{c|}{Heavy-Tail (Greedy)}\\
+  \hline
+  & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG 
+ & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG  \\
+  \hline
+$t = 2000$
+ & \makecell{ \textbf{0.43} $\pm$ 0.02 \\Var: 0.15 } 
+  & \makecell{ \textbf{0.44} $\pm$ 0.02 \\Var: 0.15 } 
+  & \makecell{ \textbf{0.6} $\pm$ 0.02 \\Var: 0.1 }
+  %%
+ &  \makecell{ \textbf{0.29} $\pm$ 0.03 \\Var: 0.2 } 
+  & \makecell{ \textbf{0.28} $\pm$ 0.03 \\Var: 0.19 } 
+  & \makecell{ \textbf{0.63} $\pm$ 0.03 \\Var: 0.18 }
+    \\
+\hline
+  $t = 5000$ 
+   & \makecell{ \textbf{0.66} $\pm$ 0.01 \\Var: 0.056 } 
+  & \makecell{ \textbf{0.59} $\pm$ 0.02 \\Var: 0.092 } 
+  & \makecell{ \textbf{0.56} $\pm$ 0.02 \\Var: 0.098 } 
+  %%
+ & \makecell{ \textbf{0.29} $\pm$ 0.03 \\Var: 0.2 } 
+ & \makecell{ \textbf{0.29} $\pm$ 0.03 \\Var: 0.2 } 
+ & \makecell{ \textbf{0.62} $\pm$ 0.03 \\Var: 0.19 }
+ \\ 
+  \hline
+  $t = 10000$
+  & \makecell{ \textbf{0.76} $\pm$ 0.01 \\Var: 0.026 } 
+ & \makecell{ \textbf{0.67} $\pm$ 0.02 \\Var: 0.067 } 
+ & \makecell{ \textbf{0.52} $\pm$ 0.02 \\Var: 0.11 }
+ %%
+  & \makecell{ \textbf{0.3} $\pm$ 0.03 \\Var: 0.21 } 
+  & \makecell{ \textbf{0.3} $\pm$ 0.03 \\Var: 0.2 } 
+  & \makecell{ \textbf{0.6} $\pm$ 0.03 \\Var: 0.2 }
+  %%
+  \\
+   \hline
+\end{tabular}
+\normalsize
+\caption{Performance Comparison between Greedy and Non-Greedy Choice on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+%For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
+Line 2 specifies the variance of the market shares across the simulations. The results reported here are with $\epsilon = 0.1$ in the Non-Greedy choice model and $T_0 = 20$.}
+\label{tab:non_greedy_table}
+\end{table*}
+
+\normalsize
+
+
+\begin{finding}\label{find:non_greedy_choice}
+\textit{Under the non-greedy choice model, \TS is incentivized for sufficiently large $T$}
+\end{finding}
+
+
+Table \ref{tab:non_greedy_table} shows the average market shares under the Greedy vs Non-Greedy choice model. As $t$ gets sufficiently large, \TS becomes incentivized for the Non-Greedy choice model whereas, as expected, it does not for the Greedy choice model. These results hold across all problem instances.\footnote{The results here are pulled using different \MRV and realizations than the results pulled previously (due to the larger $T$). However, they are drawn from the same prior instances and so qualitatively are the same but the quantitative results are not directly comparable to those from the previous section.} The intuition for this is simple. The existence of the random agents ensures that no algorithm ever gets completely starved of agents. As a result, with sufficiently large $T$, the algorithms with better asymptotic performance in isolation according to relative reputation will win since they will eventually get enough random agents to achieve a higher reputation than the other algorithms.
+
+While we report the results for $\epsilon = 0.1$ the results qualitatively should not depend on the parameterization of $\epsilon$. The $\epsilon$ parameter determines the rate at which a firm will get agents for free, which should primarily affect how quickly the algorithm converges to its asymptotic performance. As a result, we expect that the value of $T$ where Finding \ref{find:non_greedy_choice} holds is decreasing in $\epsilon$.
+
+Finding \ref{find:non_greedy_choice} implies that we can re-interpret the inverted-U findings from before in terms of the number of agents that a firm receives without having to worry about incentives. In the extreme when the firm gets all agents for free as in the monopoly case then it is incentivized to play \DG. When it only gets some of the agents for free, either via a large warm start, a temporary monopoly, or non-greedy consumer choice, then \TS is incentivized. However, if the number of free agents gets small enough then \DG is incentivized as in the permanent duopoly analysis from before.
+
+Table \ref{tab:non_greedy_table} also shows that another difference between the Greedy and Non-Greedy choice model is that the Non-Greedy choice model leads to lower variance in market shares across simulations.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../competing_bandits"
+%%% End: 
