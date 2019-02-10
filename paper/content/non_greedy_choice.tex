@@ -18,7 +18,7 @@ In Section \ref{sec:competition} we saw that in the permanent duopoly case it wa
   & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG 
  & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG  \\
   \hline
-$t = 2000$
+$T = 2000$
  & \makecell{ \textbf{0.43} $\pm$ 0.02 \\Var: 0.15 } 
   & \makecell{ \textbf{0.44} $\pm$ 0.02 \\Var: 0.15 } 
   & \makecell{ \textbf{0.6} $\pm$ 0.02 \\Var: 0.1 }
@@ -28,7 +28,7 @@ $t = 2000$
   & \makecell{ \textbf{0.63} $\pm$ 0.03 \\Var: 0.18 }
     \\
 \hline
-  $t = 5000$ 
+  $T= 5000$ 
    & \makecell{ \textbf{0.66} $\pm$ 0.01 \\Var: 0.056 } 
   & \makecell{ \textbf{0.59} $\pm$ 0.02 \\Var: 0.092 } 
   & \makecell{ \textbf{0.56} $\pm$ 0.02 \\Var: 0.098 } 
@@ -38,7 +38,7 @@ $t = 2000$
  & \makecell{ \textbf{0.62} $\pm$ 0.03 \\Var: 0.19 }
  \\ 
   \hline
-  $t = 10000$
+  $T = 10000$
   & \makecell{ \textbf{0.76} $\pm$ 0.01 \\Var: 0.026 } 
  & \makecell{ \textbf{0.67} $\pm$ 0.02 \\Var: 0.067 } 
  & \makecell{ \textbf{0.52} $\pm$ 0.02 \\Var: 0.11 }
@@ -61,11 +61,11 @@ Line 2 specifies the variance of the market shares across the simulations. The r
 
 
 \begin{finding}\label{find:non_greedy_choice}
-\textit{Under the non-greedy choice model, \TS is incentivized for sufficiently large $T$}
+\textit{Under the non-greedy choice model, \TS is weakly dominant as long as $T$ is sufficiently large}
 \end{finding}
 
 
-Table \ref{tab:non_greedy_table} shows the average market shares under the Greedy vs Non-Greedy choice model. As $t$ gets sufficiently large, \TS becomes incentivized for the Non-Greedy choice model whereas, as expected, it does not for the Greedy choice model. These results hold across all problem instances.\footnote{The results here are pulled using different \MRV and realizations than the results pulled previously (due to the larger $T$). However, they are drawn from the same prior instances and so qualitatively are the same but the quantitative results are not directly comparable to those from the previous section.} The intuition for this is simple. The existence of the random agents ensures that no algorithm ever gets completely starved of agents. As a result, with sufficiently large $T$, the algorithms with better asymptotic performance in isolation according to relative reputation will win since they will eventually get enough random agents to achieve a higher reputation than the other algorithms.
+Table \ref{tab:non_greedy_table} shows the average market shares under the Greedy vs Non-Greedy choice model. As $T$ gets sufficiently large, \TS becomes weakly dominant for the Non-Greedy choice model whereas, as expected, it does not for the Greedy choice model. These results hold across all problem instances.\footnote{The results here are pulled using different \MRV and realizations than the results pulled previously (due to the larger $T$). However, they are drawn from the same prior instances and so qualitatively are the same but the quantitative results are not directly comparable to those from the previous section.} The intuition for this is simple. The existence of the random agents ensures that no algorithm ever gets completely starved of agents. As a result, with sufficiently large $T$, the algorithms with better asymptotic performance in isolation according to relative reputation will win since they will eventually get enough random agents to achieve a higher reputation than the other algorithms.
 
 While we report the results for $\epsilon = 0.1$ the results qualitatively should not depend on the parameterization of $\epsilon$. The $\epsilon$ parameter determines the rate at which a firm will get agents for free, which should primarily affect how quickly the algorithm converges to its asymptotic performance. As a result, we expect that the value of $T$ where Finding \ref{find:non_greedy_choice} holds is decreasing in $\epsilon$.
 
