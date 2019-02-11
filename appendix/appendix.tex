@@ -1,5 +1,4 @@
 \documentclass[11pt,letterpaper]{article}
-\usepackage{../paper/aaai}
 \usepackage{times}
 \usepackage{helvet}
 \usepackage{courier}
@@ -14,8 +13,6 @@
 %setspace, titlesec, tocbibind, ulem
 %
 %US Lettersize Paper Is Required
-\setlength{\pdfpagewidth}{8.5in}
-\setlength{\pdfpageheight}{11in}
 %
 %
 % PDFINFO
@@ -124,42 +121,12 @@ More concretely, we use this option in $\texttt{ggplot}$:
 In all plots, the shaded area represents 95\% confidence interval.
 
 \begin{center}
-\includegraphics[scale=0.35]{figures/uniform_mean} \\
-\includegraphics[scale=0.35]{figures/ht_mean} \\
-\includegraphics[scale=0.35]{figures/mean_inst_reward_ht} \\
-\includegraphics[scale=0.35]{figures/mean_inst_reward_nih} \\
-\includegraphics[scale=0.35]{figures/mean_inst_reward_uniform}
+\includegraphics[scale=0.25]{figures/uniform_mean}
+\includegraphics[scale=0.25]{figures/ht_mean}
+\includegraphics[scale=0.25]{figures/mean_inst_reward_ht}
+\includegraphics[scale=0.25]{figures/mean_inst_reward_nih}
+\includegraphics[scale=0.25]{figures/mean_inst_reward_uniform}
 \end{center}
-
-\section{Permanent Duopoly}
-
-We present a missing detail for the permanent duopoly experiments from Section 4. Namely, we present full results for the Uniform instance: not only the market shares but also the \Eeog values. The results can be seen in Table \ref{duopoly_unif}. They are in the same format as those in the main text.
-
-\begin{table*}[t]
-\centering
-\begin{tabular}{|c|c|c|c|}
-  \hline
-  & \multicolumn{3}{c|}{Uniform} \\
-\hline
-   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\ \hline
-\TS vs \DG
-  & \makecell{\textbf{0.46} $\pm$0.03\\ \Eeog 230 (0)}
-    & \makecell{\textbf{0.52} $\pm$0.02\\ \Eeog 754 (800)}
-    & \makecell{\textbf{0.6} $\pm$0.02\\ \Eeog 910 (906.5)} \\ \hline
-\TS vs \DEG
-    & \makecell{\textbf{0.41} $\pm$0.03 \\ \Eeog 180 (0)}
-    & \makecell{\textbf{0.51} $\pm$0.02 \\ \Eeog 910 (734)}
-    & \makecell{\textbf{0.55} $\pm$0.02 \\ \Eeog 970 (987)} \\ \hline
-\DG vs \DEG
-    & \makecell{\textbf{0.51} $\pm$0.03 \\ \Eeog 470 (57.5)}
-    & \makecell{\textbf{0.48} $\pm$0.02 \\ \Eeog 1000 (1088)}
-    & \makecell{\textbf{0.45} $\pm$0.02 \\ \Eeog 1000 (1142)} \\\hline
-\end{tabular}
-\caption{{\bf Permanent duopoly}, for the Uniform MAB instance. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
-Line 2 specifies the ``effective end of game" (\Eeog): the average and the median (in brackets). The time horizon is $T=2000$.}
-
-\label{duopoly_unif}
-\end{table*}
 
 \section{Temporary Monopoly}
 
@@ -700,10 +667,10 @@ $\DG$
 \caption{Reputation Advantage: Uniform, $X=500$}
 \end{table}
 
-\section{Additional Non-Greedy Choice Results}
+\section{Non-Greedy Choice Results}
 
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
   \hline
@@ -719,7 +686,7 @@ $10000$ & \makecell{ 0.44 $\pm$ 0.03 \\Var: 0.23 } & \makecell{ 0.48 $\pm$ 0.03 
 \caption{Uniform (Greedy)} 
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
   \hline
@@ -734,7 +701,7 @@ $10000$ & \makecell{ 0.54 $\pm$ 0.01 \\Var: 0.055 } & \makecell{ 0.6 $\pm$ 0.02 
 \caption{Uniform (Non-Greedy Choice)}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
   \hline
@@ -749,7 +716,7 @@ $10000$ & \makecell{ 0.54 $\pm$ 0.01 \\Var: 0.055 } & \makecell{ 0.6 $\pm$ 0.02 
 \caption{Needle In Haystack (Non-Greedy Choice)} 
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
   \hline
