@@ -10,7 +10,7 @@ Each interaction between a firm and an agent proceeds as follows. There is a set
 
 From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown.
 
-Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. \asedit{The warm ensures that each firm has a meaningful reputation when competition starts.} Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
+Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. \asedit{The warm start ensures that each firm has a meaningful reputation when competition starts.} Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
 
 In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
 
