@@ -13,11 +13,23 @@ In this paper, we ask how the interplay of exploration and competition affects p
 
 \xhdr{Our model.} We consider two firms that compete for users and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firm's objective is to maximize its market share (the fraction of users choosing this firm).
 
+
+
+We consider a \emph{permanent duopoly} in which both firms start at the same time, as well as \emph{temporary monopoly}: a duopoly with a first-mover. Accordingly, the intensity of competition in the model varies from ``permanent monopoly" (just one firm) to ``incumbent" (the first-mover in temporary monopoly) to permanent duopoly to ``entrant" (late-arriver in temporary monopoly).
+
+We focus on three classes of bandit algorithms, ranging from more primitive to more sophisticated: \emph{greedy algorithms} that do not explicitly explore, algorithms that separate exploration and exploitation, and algorithms that combine the two. We know from prior work that in the absence of competition,  ``better" algorithms are better in the long run, but could be worse initially.
+
+
+\xhdr{Main findings.}
+We find that in the permanent duopoly, competition incentivizes firms to choose the ``greedy algorithm", and even more so if the firm is a late arriver in a market. This algorithm also prevails under monopoly, simply because it tends to be easier to deploy. Whereas the incumbent in the temporary monopoly is incentivized to deploy a more advanced exploration algorithm that performs better in the long run. As a result, we find that consumer welfare is highest under temporary monopoly and that even increasing the number of firms in the market past a duopoly makes consumers weakly worse off.
+
+Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This relationship -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better -- is a familiar theme in the economics literature, dating back to \cite{Schumpeter-42}. However, the ``inverted-U relationship'' is driven by different aspects in our model than the ones in the existing literature in economics. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, as opposed to the R\&D costs (which is the more standard cause in prior work).
+
 \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4.0cm]
 \tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
 \tikzstyle{below} = [align=center]
 
-\begin{figure}
+\begin{figure}[t]
 \begin{center}
 \begin{tikzpicture}
       \draw[->] (-.5,0) -- (7,0) node[right] {};
@@ -32,17 +44,6 @@ In this paper, we ask how the interplay of exploration and competition affects p
 \label{fig:inverted-U}
 \end{center}
 \end{figure}
-
-
-We consider a \emph{permanent duopoly} in which both firms start at the same time, as well as \emph{temporary monopoly}: a duopoly with a first-mover. Accordingly, the intensity of competition in the model varies from ``permanent monopoly" (just one firm) to ``incumbent" (the first-mover in temporary monopoly) to permanent duopoly to ``entrant" (late-arriver in temporary monopoly).
-
-We focus on three classes of bandit algorithms, ranging from more primitive to more sophisticated: \emph{greedy algorithms} that do not explicitly explore, algorithms that separate exploration and exploitation, and algorithms that combine the two. We know from prior work that in the absence of competition,  ``better" algorithms are better in the long run, but could be worse initially.
-
-
-\xhdr{Main findings.}
-We find that in the permanent duopoly, competition incentivizes firms to choose the ``greedy algorithm", and even more so if the firm is a late arriver in a market. This algorithm also prevails under monopoly, simply because it tends to be easier to deploy. Whereas the incumbent in the temporary monopoly is incentivized to deploy a more advanced exploration algorithm that performs better in the long run. As a result, we find that consumer welfare is highest under temporary monopoly and that even increasing the number of firms in the market past a duopoly makes consumers weakly worse off.
-
-Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This relationship -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better -- is a familiar theme in the economics literature, dating back to \cite{Schumpeter-42}. However, the ``inverted-U relationship'' is driven by different aspects in our model than the ones in the existing literature in economics. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, as opposed to the R\&D costs (which is the more standard cause in prior work).
 
 \xhdr{Additional findings.}
 We investigate the ``first-mover advantage" phenomenon in more detail. Being first in the market gives free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage"). We run additional experiments so as to isolate these two effects. We find that the data advantage alone can lead to a significant advantage under competition. In fact, even a small ``head start'' can get amplified into a large incumbency advantage under competition. This effect is most pronounced when the incumbent commits to a more advanced bandit algorithm. These findings suggest that competition dynamics are pertinent to the anti-trust considerations of data as a barrier to entry.
