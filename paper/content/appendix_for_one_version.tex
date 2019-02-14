@@ -583,64 +583,6 @@ $\DG$
 \vspace{-6mm}
 \end{table}
 
-\section{Non-deterministic Choice Models}
-
-We present the experiments omitted from Section \ref{sec:non_greedy}. These represent the results of the \HMR choice model on the Uniform and Needle-In-Haystack instances.
-
-Each experiment as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between Alg1 vs Alg2 that is played for $T$ rounds. The cell specifies the resulting market share for Alg1, where the first line specifies the average (in bold) and the 95\% confidence interval and the second line specifies the empirical variance of the market shares across simulations.
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-  \hline
- $T$ & \TS vs \DEG & \TS vs \DG & \DG vs \DEG   \\
- \hline
- $2000$
- & \makecell{ \textbf{0.42} $\pm$ 0.02 \\Var: 0.13 }
- & \makecell{ \textbf{0.45} $\pm$ 0.02 \\Var: 0.13 }
- & \makecell{ \textbf{0.49} $\pm$ 0.02 \\Var: 0.093 } \\
- \hline
- $5000$
- & \makecell{ \textbf{0.48} $\pm$ 0.02 \\Var: 0.089 }
- & \makecell{ \textbf{0.53} $\pm$ 0.02 \\Var: 0.098 }
- & \makecell{ \textbf{0.46} $\pm$ 0.02 \\Var: 0.072 } \\
-  \hline
-$10000$
-& \makecell{ \textbf{0.54} $\pm$ 0.01 \\Var: 0.055 }
-& \makecell{  \textbf{0.6} $\pm$ 0.02 \\Var: 0.073 }
-& \makecell{  \textbf{0.44} $\pm$ 0.02 \\Var: 0.064 } \\
-\hline
-\end{tabular}
-\caption{Uniform (\HMR)}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-  \hline
- $T$ & \TS vs \DEG & \TS vs \DG & \DG vs \DEG \\
-  \hline
-  $2000$
-  & \makecell{  \textbf{0.55} $\pm$ 0.02 \\Var: 0.15 }
-  & \makecell{  \textbf{0.61} $\pm$ 0.02 \\Var: 0.13 }
-  & \makecell{  \textbf{0.46} $\pm$ 0.02 \\Var: 0.12 }  \\
-   \hline
-   $5000$
-   & \makecell{  \textbf{0.56} $\pm$ 0.02 \\Var: 0.13 }
-   & \makecell{  \textbf{0.63} $\pm$ 0.02 \\Var: 0.12 }
-   & \makecell{  \textbf{0.43} $\pm$ 0.02 \\Var: 0.11 } \\
-   \hline
-   $10000$
-   & \makecell{ \textbf{0.58} $\pm$ 0.02 \\Var: 0.083 }
-   & \makecell{ \textbf{0.65} $\pm$ 0.02 \\Var: 0.096 }
-   & \makecell{ \textbf{0.4} $\pm$ 0.02 \\Var: 0.1 }  \\ \hline
-\end{tabular}
-\caption{Needle In Haystack (\HMR)}
-\vspace{-6mm}
-\end{table}
-
 
 \section{Mean Reputation vs. Relative Reputation}
 
