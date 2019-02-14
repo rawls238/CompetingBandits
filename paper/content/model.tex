@@ -61,7 +61,7 @@ We consider instances with $K=10$ arms. Since we focus on 0-1 rewards, an instan
 \item \emph{Needle-In-Haystack}: one arm (the ``needle") is chosen uniformly at random. This arm has mean reward $.7$, and the remaining ones have mean reward $.5$.
 
 \item \emph{Uniform instance}: the mean reward of each arm is drawn independently and uniformly from $[\nicefrac{1}{4}, \nicefrac{3}{4}]$.
-\item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution (which is known to have substantial ``tail probabilities").
+\item \emph{Heavy-Tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution (which is known to have substantial ``tail probabilities").
 \end{enumerate}
 We argue that these MAB instances are (somewhat) representative. Consider the ``gap" between the best and the second-best arm, an essential parameter in the literature on MAB. The ``gap" is fixed in Needle-in-Haystack, spread over a wide spectrum of values under the Uniform instance, and is spread but  focused on the large values under the Heavy-Tail instance. We also ran smaller experiments with versions of these instances, and achieved similar qualitative results.
 
