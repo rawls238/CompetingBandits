@@ -74,6 +74,9 @@ The present paper provides a more nuanced and ``non-asymptotic" perspective. In 
 
 To elucidate the interplay of competition and exploration, our model is stylized in several important  respects, some of which we discuss below. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores", which further simplified to average performance over a time window.  On the machine learning side, our setup is geared to distinguish between ``simple" vs. ``better" vs. ``smart" bandit algorithms; we are not interested in state-of-art algorithms for very realistic bandit settings.
 
+Even with a stylized model, numerical investigation is quite challenging. An ``atomic experiment" is a competition game between a given pair of bandit algorithms, in a given competition model, on a given instance of a multi-armed bandit problem.%
+\footnote{Each such experiment is run many times to reduce variance.}
+Accordingly, we have a three-dimensional space of atomic experiments one needs to run and interpret: \{pairs of algorithms\} x \{competition models\} x \{bandit instances\}, and we are looking for findings that are consistent across this entire space. It is essential to keep each of the three dimensions small yet representative. In particular, we need to capture a huge variety of bandit instances with only a few representative examples. Further, one needs succinct and informative summarization of results within one atomic experiment and across multiple experiments (\eg see Table~\ref{sim_table}).
 
 \subsection{Related work}
 
