@@ -3,7 +3,7 @@
 
 \section{Non-deterministic Choice Models}\label{sec:non_greedy}
 
-Let us consider an extension in which the agents' choice is no longer deterministic. Recall that in our main model agents deterministically choose the firm with the higher reputation score; call this choice rule \emph{HardMax} (\HM). Now, we introduce some randomness: each agent selects between the firms uniformly with probability $\eps\in (0,1)$, and takes the firm with the higher reputation score with the remaining probability; call this choice rule \emph{HardMax with randomness} (\HMR). 
+Let us consider an extension in which the agents' choice is no longer deterministic. Recall that in our main model agents deterministically choose the firm with the higher reputation score; call this choice rule \emph{HardMax} (\HM). Now, we introduce some randomness: each agent selects between the firms uniformly with probability $\eps\in (0,1)$, and takes the firm with the higher reputation score with the remaining probability; call this choice rule \emph{HardMax with randomness} (\HMR).
 
 One can view \HMR as a version of ``warm start", where a firm receives some customers without competition, but these customers are dispersed throughout the game. The expected duration of this ``dispersed warm start" is $\eps T$. If this quantity is large enough, we expect better algorithms to reach their long-term performance and prevail in competition. We confirm this intuition; we also find that this effect is negligible for smaller (but still relevant) values of $\eps$ or $T$.
 
@@ -21,7 +21,7 @@ instead they are dispersed throughout the game.}
 \centering
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
-  & \multicolumn{3}{c||}{Heavy-Tail (\HMR)}
+  & \multicolumn{3}{c||}{Heavy-Tail (\HMR with $\eps=.1$)}
   & \multicolumn{3}{c|}{Heavy-Tail (\HM)}\\
   \hline
   & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG
@@ -60,9 +60,9 @@ $T = 2000$
    \hline
 \end{tabular}
 \normalsize
-\caption{Performance Comparison between \HM and \HMR Choice on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+\caption{\HM and \HMR choice models on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
 %For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
-Line 2 specifies the variance of the market shares across the simulations. The results reported here are with $\eps = 0.1$ in the \HMR choice rule and $T_0 = 20$.}
+Line 2 specifies the variance of the market shares across the simulations. The results reported here are with $T_0 = 20$.}
 \label{tab:non_greedy_table}
 \end{table*}
 
@@ -70,7 +70,7 @@ Line 2 specifies the variance of the market shares across the simulations. The r
 
 
 \begin{finding}\label{find:non_greedy_choice}
-\textit{\TS is weakly dominant under the \HMR~ choice rule, if and only if $\eps T$ is sufficiently large.}
+\textit{\TS is weakly dominant under the \HMR~ choice rule, if and only if $\eps T$ is sufficiently large. \asedit{\HMR leads to lower variance in market shares, compared to \HM.}}
 \end{finding}
 
 
@@ -79,7 +79,7 @@ Table \ref{tab:non_greedy_table} shows the average market shares under
 the \HM~ vs \HMR~ choice rule. In contrast to the \HM~ model,
   \TS becomes weakly dominant under the \HMR model, as $T$ gets
   sufficiently large. These findings hold across all problem
-instances. Table \ref{tab:additional_results} presents the results of the \HMR choice model for the Uniform and Needle-In-Haystack problem instances.
+instances, see Table \ref{tab:additional_results} (with the same semantics as in Table \ref{tab:non_greedy_table}).
 
 \OMIT{\footnote{The results here are pulled using different \MRV
   and realizations than the results pulled previously (due to the
@@ -87,7 +87,7 @@ instances. Table \ref{tab:additional_results} presents the results of the \HMR c
   and so qualitatively are the same but the quantitative results are
   not directly comparable to those from the previous
   section.\swcomment{not sure we need this}}}
-  
+
 \normalsize
 \OMIT{The intuition for why \TS
 should become the dominant strategy eventually is simple. The
@@ -96,7 +96,6 @@ chosen at least $\Omega(\eps t)$ times at every time step $t$. As
 a result, each algorithm should eventually converge to its asymptotic
 performance in isolation.}
 
-However, it takes a significant amount of randomness and a relatively large time horizon for this effect to take place. Even with $T = 10000$ and $\eps = 0.1$ we see that \DEG still outperforms \DG on the Heavy-Tail MAB instance as well as that \TS only starts to become weakly dominant at $T = 10000$ for the Uniform MAB instance. Table \ref{tab:non_greedy_table} also shows that another difference between the two choice rules is that \HMR leads to lower variance in market shares across simulations compared to \HM.
 
 \OMIT{Finding \ref{find:non_greedy_choice} implies that we can re-interpret the inverted-U findings from before in terms of the number of agents that a firm receives without having to worry about incentives. In the extreme when the firm gets all agents for free as in the monopoly case then it is incentivized to play \DG. When it only gets some of the agents for free, either via a large warm start, a temporary monopoly, or non-deterministic choice, then \TS is incentivized. However, if the number of free agents gets small enough then \DG is incentivized as in the permanent duopoly analysis from before.\swcomment{I don't understand this paragraph; I think it's too vague. Perhaps remove?}}
 
@@ -105,8 +104,8 @@ However, it takes a significant amount of randomness and a relatively large time
 \centering
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
-  & \multicolumn{3}{c||}{Uniform (\HMR)}
-  & \multicolumn{3}{c|}{Needle-In-Haystack (\HMR)}\\
+  & \multicolumn{3}{c||}{Uniform (\HMR  with $\eps=.1$)}
+  & \multicolumn{3}{c|}{Needle-In-Haystack (\HMR  with $\eps=.1$)}\\
   \hline
   & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG
  & \TS vs \DG & \TS vs \DEG  & \DG vs \DEG  \\
@@ -138,16 +137,21 @@ $T = 2000$
  %%
   & \makecell{ \textbf{0.58} $\pm$ 0.02 \\Var: 0.083 }
   & \makecell{ \textbf{0.65} $\pm$ 0.02 \\Var: 0.096 }
-  & \makecell{ \textbf{0.4} $\pm$ 0.02 \\Var: 0.1 } 
+  & \makecell{ \textbf{0.4} $\pm$ 0.02 \\Var: 0.1 }
   %%
   \\
    \hline
 \end{tabular}
-\caption{ \HMR Choice Results for Uniform and Needle-In-Haystack MAB instances. Semantics  and parameters are the same as in Table \ref{tab:non_greedy_table}}
+\caption{\HMR choice model for Uniform and Needle-In-Haystack MAB instances.}
+%Same semantics as in Table \ref{tab:non_greedy_table}.
 \label{tab:additional_results}
 \end{table*}
-
 \normalsize
+
+However, it takes a significant amount of randomness and a relatively large time horizon for this effect to take place. Even with $T = 10000$ and $\eps = 0.1$ we see that \DEG still outperforms \DG on the Heavy-Tail MAB instance as well as that \TS only starts to become weakly dominant at $T = 10000$ for the Uniform MAB instance. 
+
+\OMIT{Table \ref{tab:non_greedy_table} also shows that another difference between the two choice rules is that \HMR leads to lower variance in market shares across simulations compared to \HM.}
+
 
 \end{document}
 %%% Local Variables:
