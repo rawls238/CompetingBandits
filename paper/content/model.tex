@@ -10,18 +10,20 @@ Each interaction between a firm and an agent proceeds as follows. There is a set
 
 From each firm's perspective, the interactions with agents follow the protocol of the multi-armed bandit problem (MAB). We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown.
 
-Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. \gaedit{The warm start serves to vary the initial information the firm has before beginning to compete for users as well as to initialize the agents' perception of the firms.} Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
+Before the game starts, each firm commits to an MAB algorithm, and uses this algorithm to choose its actions. Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. \asedit{The warm ensures that each firm has a meaningful reputation when competition starts.} Each firm's objective is to maximize its market share: the fraction of users who chose this firm.
 
 In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
 
 
 
 \xhdr{Agents.}
-\gaedit{For simplicity we suppose that firms compete for agents on a single dimension, quality, that is summarized via the rewards experienced by past consumers.
-\OMIT{\footnote{One can think that there are two quality types - a reward of 1 is a high type and a reward of 0 is a low type}}}
+\asedit{Firms compete on a single dimension, quality of service, as expressed by agents' rewards.}
+\OMIT{\footnote{One can think that there are two quality types - a reward of 1 is a high type and a reward of 0 is a low type}}
 Agents are myopic and non-strategic: they \asedit{would like} to choose among the firms so as to maximize their expected reward \gaedit{(i.e. select the firm with the highest quality)}, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
 
-Concretely, each of the two firms has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. \asedit{This is similar to ratings aggregators on many online platforms such as Yelp, Tripadvisor, etc.}
+Concretely, each of the two firms has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. 
+
+%\asedit{This is similar to ratings aggregators on many online platforms such as Yelp, Tripadvisor, etc.}
 
 \xhdr{MAB algorithms.} We consider three classes of algorithms, ranging from more primitive to more sophisticated:
 
@@ -79,8 +81,8 @@ We fix the sliding window size $M = 100$. We found that lower values induced too
 
 The simulations are computationally intensive. An experiment on a particular MAB instance comprised multiple runs of the competition game: $N$ mean reward vectors times $9$ pairs of algorithms times three values for the warm start. We used a parallel implementation over a cluster of 12 2.2 GHz CPU cores, with 8 GB RAM per core. Each experiment took about $10$ hours.
 
-\asedit{\xhdr{Consistency.}}
-While we experiment with various MAB instances and parameter settings, in the main paper we only report plots for selected, representative experiments. Additional plots will be published in the full version. Unless noted otherwise, our findings are based on and consistent with all these plots.
+\xhdr{Consistency.}
+While we experiment with various MAB instances and parameter settings, we only report on selected, representative experiments in the body of the paper. Additional plots and tables are provided in the appendix. Unless noted otherwise, our findings are based on and consistent with all these experiments.
 
 
 \end{document}
