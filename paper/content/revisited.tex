@@ -24,23 +24,23 @@ To see what could go wrong with Conjecture~\ref{conj:mean-trajectories}, conside
 
 \begin{figure}[ht]
 \includegraphics[scale=0.35]{figures/rep_distribution_nih}
-\caption{Distribution of reputation scores for Needle-in-Haystack at $t=500$ (smoothed using a kernel density estimate)}
+\caption{Reputation scores for Needle-in-Haystack at $t=500$ (smoothed using a kernel density estimate)}
 \label{rep_dist_nih}
 %\caption*{\tiny{The plots contain a kernel density estimate of the reputation distribution at $t = 500$}}
 \end{figure}
 
 
-We see that the ``naive" algorithms $\DG$ and $\DEG$ have a bi-modal reputation distribution, whereas $\TS$ does not. The reason is that for this MAB instance, $\DG$ either finds the best arm and sticks to it, or gets stuck on the bad arms. In the former case \DG does slightly better than $\TS$, and in the latter case it does substantially worse. However, the mean reputation trajectory may fail to capture this complexity since it simply takes average over different \MRVs. This may be inadequate for explaining the outcome of the duopoly game, given that the latter is determined by a simple comparison between the firm's reputation scores. 
+We see that the ``naive" algorithms $\DG$ and $\DEG$ have a bi-modal reputation distribution, whereas $\TS$ does not. The reason is that for this MAB instance, $\DG$ either finds the best arm and sticks to it, or gets stuck on the bad arms. In the former case \DG does slightly better than $\TS$, and in the latter case it does substantially worse. However, the mean reputation trajectory may fail to capture this complexity since it simply takes average over different \MRVs. This may be inadequate for explaining the outcome of the duopoly game, given that the latter is determined by a simple comparison between the firm's reputation scores.
 
-To further this intuition, consider the difference in reputation scores (\emph{reputation difference}) between \TS and \DG on a particular \MRV. Let's plot the empirical distribution of the reputation difference (over the \MRVs) at a particular time point. Figure~\ref{ts_dg_rep_diff_nih} shows such plots for several time points. We observe that the distribution is skewed to the right, precisely due to the fact that $\DG$ either does slightly better than $\TS$ or does substantially worse. Therefore, the mean is not a good measure of the central tendency, or typical value, of this distribution. 
+To further this intuition, consider the difference in reputation scores (\emph{reputation difference}) between \TS and \DG on a particular \MRV. Let's plot the empirical distribution of the reputation difference (over the \MRVs) at a particular time point. Figure~\ref{ts_dg_rep_diff_nih} shows such plots for several time points. We observe that the distribution is skewed to the right, precisely due to the fact that $\DG$ either does slightly better than $\TS$ or does substantially worse. Therefore, the mean is not a good measure of the central tendency, or typical value, of this distribution.
 
 \OMIT{In particular, the mean reputation difference tends to overstate how well an advanced exploration algorithm (that will eventually find the best arm) should do in competition compared to a naive algorithm that may never find the best arm.}
 
 \begin{figure}[ht]
 \includegraphics[scale=0.35]{figures/ts_dg_rep_diff_nih}
-\caption{Distribution of reputation difference $\TS-\DG$ for  Needle-in-Haystack
+\caption{Reputation difference $\TS-\DG$ for  Needle-in-Haystack
 % at $t = 500, 1000, 2000$ AS: this is redundant, and it saves a line :).
-(smoothed via a kernel density estimate)}
+(smoothed using a kernel density estimate)}
 \label{ts_dg_rep_diff_nih}
 %\caption*{\tiny{The plots contain a kernel density estimate of the difference in reputation between $\TS$ and $\DG$ across $t$}}
 \end{figure}
