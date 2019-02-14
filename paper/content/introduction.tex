@@ -21,9 +21,20 @@ We focus on three classes of bandit algorithms, ranging from more primitive to m
 
 
 \xhdr{Main findings.}
-We find that in the permanent duopoly, competition incentivizes firms to choose the ``greedy algorithm", and even more so if the firm is a late arriver in a market. This algorithm also prevails under monopoly, simply because it tends to be easier to deploy. Whereas the incumbent in the temporary monopoly is incentivized to deploy a more advanced exploration algorithm that performs better in the long run. As a result, we find that consumer welfare is highest under temporary monopoly and that even increasing the number of firms in the market past a duopoly makes consumers weakly worse off.
+We find that in the permanent duopoly, competition incentivizes firms to choose the ``greedy algorithm", and even more so if the firm is a late arriver in a market. This algorithm also prevails under monopoly, simply because it tends to be easier to deploy. Whereas the incumbent in the temporary monopoly is incentivized to deploy a more advanced exploration algorithm that performs better in the long run. As a result, we find that consumer welfare is highest under temporary monopoly and that even increasing the number of firms in the market past a duopoly makes consumers weakly worse off.\swcomment{why ``even''?}
 
-Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This relationship -- too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better -- is a familiar theme in the economics literature, dating back to \cite{Schumpeter-42}. However, the ``inverted-U relationship'' is driven by different aspects in our model than the ones in the existing literature in economics. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, as opposed to the R\&D costs (which is the more standard cause in prior work).
+Interpreting the adoption of better algorithms as ``innovation", our
+findings can be framed in terms of the ``inverted-U relationship"
+between competition and innovation (see Figure~\ref{fig:inverted-U}),
+\swedit{a well-established concept in the economics literature, dating
+  back to \cite{Schumpeter-42}.} \swedit{In this relationship, too
+  little or too much competition is bad for innovation, but
+  intermediate levels of competition tend to be better.} However, the
+``inverted-U relationship'' is driven by different aspects in our
+model than the ones in the existing literature in economics. In our
+case, the barriers for innovations arise entirely from the
+reputational consequences of exploration in competition, as opposed to
+the R\&D costs (which is the more standard cause in prior work).
 
 \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4.0cm]
 \tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
@@ -47,7 +58,7 @@ Interpreting the adoption of better algorithms as ``innovation", our findings ca
 
 \xhdr{Additional findings.}
 We investigate the ``first-mover advantage" phenomenon in more detail. Being first in the market gives free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage"). We run additional experiments so as to isolate these two effects. We find that the data advantage alone can lead to a significant advantage under competition. In fact, even a small ``head start'' can get amplified into a large incumbency advantage under competition. This effect is most pronounced when the incumbent commits to a more advanced bandit algorithm. These findings suggest that competition dynamics are pertinent to the anti-trust considerations of data as a barrier to entry.
-
+\swcomment{should we say ``reputation advantage'' alone does not give much advantage?}
 \OMIT{ %%%%%%
 \swedit{Beyond the welfare implications, we also investigate the barrier to entry that follows from the incumbent's data advantage.  We run additional experiments that attempt to isolate the impact of the data advantage and reputation advantage. We find that the data advantage from the incumbent's ``small head start'' can lead to a significant incumbency advantage, especially when the incumbent commits to a more advanced bandit algorithm. Our results show that even a small degree of data asymmetry can be amplified to be a larger market advantage through competition dynamics. \gadelete{This is in contrast to the data advantage in a static environment such as discussed in \cite{varian2018artificial,bajari2018impact}, in which a small amount of additional data can only provide limited improvement in the predictive accuracy.} The effect is stronger when the incumbent commits to a more advanced bandit algorithm due to
 }} %%%%%%
