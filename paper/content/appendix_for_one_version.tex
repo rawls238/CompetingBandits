@@ -588,37 +588,12 @@ $\DG$
 \vspace{-6mm}
 \end{table}
 
-\section{Non-Greedy Choice Model}
+\section{Non-deterministic Choice Models}
 
-We present the experiments omitted from Section \ref{sec:non_greedy}. These represent the results of the Non-Greedy choice model on the Uniform and Needle-In-Haystack instances. 
+We present the experiments omitted from Section \ref{sec:non_greedy}. These represent the results of the HardMaxWithRandom choice model on the Uniform and Needle-In-Haystack instances. 
 
 Each experiment as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between Alg1 vs Alg2 that is played for $T$ rounds. The cell specifies the resulting market share for Alg1, where the first line specifies the average (in bold) and the 95\% confidence interval and the second line specifies the empirical variance of the market shares across simulations.
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-  \hline
-$T$ & \TS vs \DEG & \TS vs \DG & \DG vs \DEG  \\ 
-  \hline
-$2000$ 
-& \makecell{ \textbf{0.41} $\pm$ 0.03 \\Var: 0.22 } 
-& \makecell{  \textbf{0.43} $\pm$ 0.03 \\Var: 0.22 } 
-& \makecell{  \textbf{0.52} $\pm$ 0.03 \\Var: 0.19 }  \\ 
-\hline
- $5000$ 
- & \makecell{  \textbf{0.43} $\pm$ 0.03 \\Var: 0.23 } 
- & \makecell{  \textbf{0.46} $\pm$ 0.03 \\Var: 0.23 } 
- & \makecell{ \textbf{ 0.49}$\pm$ 0.03 \\Var: 0.19 } \\ 
- \hline
-$10000$ 
-& \makecell{  \textbf{0.44} $\pm$ 0.03 \\Var: 0.23 } 
-& \makecell{  \textbf{0.48} $\pm$ 0.03 \\Var: 0.23 } 
-& \makecell{  \textbf{0.46} $\pm$ 0.03 \\Var: 0.19 }  \\ 
-   \hline
-\end{tabular}
-\caption{Uniform (Greedy)}
-\vspace{-6mm}
-\end{table}
 
 \begin{table}[H]
 \centering
@@ -642,7 +617,7 @@ $10000$
 & \makecell{  \textbf{0.44} $\pm$ 0.02 \\Var: 0.064 } \\ 
 \hline
 \end{tabular}
-\caption{Uniform (Non-Greedy Choice)}
+\caption{Uniform (HardMaxWithRandom)}
 \vspace{-6mm}
 \end{table}
 
@@ -667,33 +642,7 @@ $10000$
    & \makecell{ \textbf{0.65} $\pm$ 0.02 \\Var: 0.096 } 
    & \makecell{ \textbf{0.4} $\pm$ 0.02 \\Var: 0.1 }  \\ \hline
 \end{tabular}
-\caption{Needle In Haystack (Non-Greedy Choice)} 
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-  \hline
-$T$ & \TS vs \DEG & \TS vs \DG & \DG vs \DEG  \\ 
-  \hline
-$2000$ 
-& \makecell{ \textbf{0.58} $\pm$ 0.03 \\Var: 0.22 } 
-& \makecell{ \textbf{0.65} $\pm$ 0.03 \\Var: 0.19 } 
-& \makecell{ \textbf{0.45} $\pm$ 0.03 \\Var: 0.19 } \\ 
-   \hline
-   $5000$ 
-   & \makecell{ \textbf{0.59} $\pm$ 0.03 \\Var: 0.23 }
-   & \makecell{ \textbf{0.69} $\pm$ 0.03 \\Var: 0.19 }
-   & \makecell{ \textbf{0.43} $\pm$ 0.03 \\Var: 0.21 } \\ 
-   \hline 
-   $10000$ 
-   & \makecell{ \textbf{0.6} $\pm$ 0.03 \\Var: 0.23 } 
-   & \makecell{ \textbf{0.7} $\pm$ 0.03 \\Var: 0.19 } 
-   & \makecell{ \textbf{0.41} $\pm$ 0.03 \\Var: 0.21 }  \\ 
-   \hline
-\end{tabular}
-\caption{Needle In Haystack (Greedy)}
+\caption{Needle In Haystack (HardMaxWithRandom)} 
 \vspace{-6mm}
 \end{table}
 
