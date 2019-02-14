@@ -1,4 +1,4 @@
-\documentclass[format=acmsmall, review=false]{acmart}
+\documentclass[format=acmsmall, review=true]{acmart}
 
 \usepackage{acm-ec-19}
 \usepackage{tikz} % SW: Added for plots
@@ -49,7 +49,7 @@
 \newcommand{\HM}{\term{HM}}
 % a very useful package for edits and comments, from David Kempe (USC)
 %\usepackage{color-edits}
-\usepackage{color-edits}  % use this to suppress the package
+\usepackage[suppress]{color-edits}  % use this to suppress the package
 \addauthor{as}{red}    % as for Alex
 \addauthor{ga}{blue}  % ga for Guy
 \addauthor{sw}{orange} % sw for Steven
@@ -84,7 +84,7 @@
 \title[Competing Bandits: The Perils of Exploration under Competition]
 {Competing Bandits: \\ The Perils of Exploration under Competition}
 
-
+\author{Submission 316}
 
 \begin{abstract}
   We empirically study the interplay between \textit{exploration} and
@@ -94,7 +94,7 @@
   decisions. However, when multiple systems are competing for
     the same market of users, exploration may hurt a system's
     reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral", when the short-term reputation cost decreases
-    the number of users for the system to learn from, which degrades
+    the number of users for the system to learn from, which degrades the
     system's performance relative to competition and further decreases
     the market share.
 
