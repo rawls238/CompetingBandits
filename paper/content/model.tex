@@ -21,7 +21,7 @@ In some of our experiments, one firm is the ``incumbent" who enters the market b
 \OMIT{\footnote{One can think that there are two quality types - a reward of 1 is a high type and a reward of 0 is a low type}}
 Agents are myopic and non-strategic: they \asedit{would like} to choose among the firms so as to maximize their expected reward \gaedit{(i.e. select the firm with the highest quality)}, without attempting to influence the firms' learning algorithms or rewards of the future users. Agents are not well-informed: they only receive a rough signal about each firm's performance before they choose a firm, and no other information.
 
-Concretely, each of the two firms has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. 
+Concretely, each of the two firms has a \emph{reputation score}, and each agent's choice is driven by these two numbers. We posit a version of rational behavior: each agent chooses a firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
 
 %\asedit{This is similar to ratings aggregators on many online platforms such as Yelp, Tripadvisor, etc.}
 
@@ -39,7 +39,7 @@ Concretely, each of the two firms has a \emph{reputation score}, and each agent'
 \begin{enumerate}
 \item a greedy algorithm that chooses an arm with largest posterior mean reward. We call it "Dynamic Greedy" (because the chosen arm may change over time), \DG in short.
 
-\item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.\gaedit{\footnote{For our experiments, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.}}
+\item an exploration-separated algorithm that in each round, \emph{explores} with probability $\eps$: chooses an arm independently and uniformly at random, and with the remaining probability \emph{exploits} according to \DG. We call it ``dynamic epsilon-greedy", \DEG in short.\gaedit{\footnote{Throughout, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.}}
 
 \item an adaptive-exploration algorithm called ``Thompson Sampling" (\TS). In each round, this algorithm updates the posterior distribution for the mean reward of each arm $a$, draws an independent sample $s_a$ from this distribution, and chooses an arm with the largest $s_a$.
 \end{enumerate}
@@ -60,9 +60,8 @@ We consider instances with $K=10$ arms. Since we focus on 0-1 rewards, an instan
 \begin{enumerate}
 \item \emph{Needle-In-Haystack}: one arm (the ``needle") is chosen uniformly at random. This arm has mean reward $.7$, and the remaining ones have mean reward $.5$.
 
-\item \emph{Uniform instance}: the mean reward of each arm is drawn independently and uniformly from $[0.25, 0.75]$.
-\item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution.%
-    \footnote{This distribution has substantial ``tail probabilities".}
+\item \emph{Uniform instance}: the mean reward of each arm is drawn independently and uniformly from $[\nicefrac{1}{4}, \nicefrac{3}{4}]$.
+\item \emph{Heavy-tail instance}: the mean reward of each arm is drawn independently from $\Beta(.6,.6)$ distribution (which is known to have substantial ``tail probabilities").
 \end{enumerate}
 We argue that these MAB instances are (somewhat) representative. Consider the ``gap" between the best and the second-best arm, an essential parameter in the literature on MAB. The ``gap" is fixed in Needle-in-Haystack, spread over a wide spectrum of values under the Uniform instance, and is spread but  focused on the large values under the Heavy-Tail instance. We also ran smaller experiments with versions of these instances, and achieved similar qualitative results.
 
