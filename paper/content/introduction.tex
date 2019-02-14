@@ -7,7 +7,7 @@ Many modern online platforms simultaneously compete for users as well as learn f
 
 \OMIT{\gaedit{Bing experimenting with a ranking algorithm that ends up with a poor user experience could lead to negative short-run consequences in consumers' perceived quality of Bing and lead to more consumers choosing Google over Bing. However, this experimentation can help Bing eventually find a better ranking algorithm that would lead to positive long-run consequences in consumers' perceived quality of Bing and lead to more consumers choosing Bing over Google.}}
 
-Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for making decisions under uncertainty and trading off exploration and exploitation (making good near-term decisions). While deploying ``better" learning algorithms for exploration would improve performance, this is not necessarily beneficial under competition, even putting aside the deployment/maintenance costs. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term. This would leave the learning algorithms with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth.
+Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for making decisions under uncertainty and trading off exploration and exploitation (making good near-term decisions). While deploying ``better" learning algorithms for exploration would improve performance, this is not necessarily beneficial under competition, even putting aside the deployment/maintenance costs. In particular, excessive experimentation may hurt platform's reputation and decrease market share in the near term. This would leave the learning algorithm with less users to learn from, which may further degrade platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth. \asedit{Taken to the extreme, such dynamics may create a ``death spiral" effect when the vast majority of customers eventually switch to the competitors.}
 
 In this paper, we ask how the interplay of exploration and competition affects platforms' incentives. While some bandit algorithms are traditionally considered ``better" than others in the literature, {\bf\em does competition incentivize the adoption of the better algorithms}? How is this affected by the intensity of competition? We investigate these issues via extensive numerical experiments in a stylized duopoly model.
 
@@ -21,15 +21,18 @@ We focus on three classes of bandit algorithms, ranging from more primitive to m
 
 
 \xhdr{Main findings.}
-We find that in the permanent duopoly, competition incentivizes firms to choose the ``greedy algorithm", and even more so if the firm is a late arriver in a market. This algorithm also prevails under monopoly, simply because it tends to be easier to deploy. Whereas the incumbent in the temporary monopoly is incentivized to deploy a more advanced exploration algorithm that performs better in the long run. As a result, we find that consumer welfare is highest under temporary monopoly and that even increasing the number of firms in the market past a duopoly makes consumers weakly worse off.\swcomment{why ``even''?}
+We find that in the permanent duopoly, competition incentivizes firms to choose the ``greedy algorithm", and even more so if the firm is a late arriver in a market. This algorithm also prevails under monopoly, simply because it tends to be easier to deploy. Whereas the incumbent in the temporary monopoly is incentivized to deploy a more advanced exploration algorithm. As a result, consumer welfare is highest under temporary monopoly. \asedit{We find strong evidence of the ``death spiral" effect mentioned earlier; this effect is strongest under permanent duopoly.}
+
+%and that even increasing the number of firms in the market past a duopoly makes consumers weakly worse off.\swcomment{why ``even''?}
+
 
 Interpreting the adoption of better algorithms as ``innovation", our
 findings can be framed in terms of the ``inverted-U relationship"
-between competition and innovation (see Figure~\ref{fig:inverted-U}),
-\swedit{a well-established concept in the economics literature, dating
-  back to \cite{Schumpeter-42}.} \swedit{In this relationship, too
+between competition and innovation (see Figure~\ref{fig:inverted-U}).
+This is a well-established concept in the economics literature, dating
+  back to \cite{Schumpeter-42}, whereby too
   little or too much competition is bad for innovation, but
-  intermediate levels of competition tend to be better.} However, the
+  intermediate levels of competition tend to be better. However, the
 ``inverted-U relationship'' is driven by different aspects in our
 model than the ones in the existing literature in economics. In our
 case, the barriers for innovations arise entirely from the
@@ -57,8 +60,11 @@ the R\&D costs (which is the more standard cause in prior work).
 \end{figure}
 
 \xhdr{Additional findings.}
-We investigate the ``first-mover advantage" phenomenon in more detail. Being first in the market gives free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage"). We run additional experiments so as to isolate these two effects. We find that the data advantage alone can lead to a significant advantage under competition. In fact, even a small ``head start'' can get amplified into a large incumbency advantage under competition. This effect is most pronounced when the incumbent commits to a more advanced bandit algorithm. These findings suggest that competition dynamics are pertinent to the anti-trust considerations of data as a barrier to entry.
-\swcomment{should we say ``reputation advantage'' alone does not give much advantage?}
+We investigate the ``first-mover advantage" phenomenon in more detail. Being first in the market gives free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage"). We run additional experiments so as to isolate and compare these two effects. We find that either effects alone leads to a significant advantage under competition. The data advantage is larger than reputation advantage when the incumbent commits to a more advanced bandit algorithm.
+
+\asedit{Data advantage is significant from the anti-trust perspective, as a possible barrier to entry. We find that even a small amount ``data advantage" gets amplified under competition, causing a large difference in eventual market shares. This observation runs contrary to prior work  \cite{varian2018artificial,lambrecht2015can,bajari2018impact}, which studied learning without competition, and found that small amounts of additional data do not provide significant improvement in eventual outcomes. We conclude that competition dynamics -- that firms compete as they learn over time -- are pertinent to these anti-trust considerations.}
+
+
 \OMIT{ %%%%%%
 \swedit{Beyond the welfare implications, we also investigate the barrier to entry that follows from the incumbent's data advantage.  We run additional experiments that attempt to isolate the impact of the data advantage and reputation advantage. We find that the data advantage from the incumbent's ``small head start'' can lead to a significant incumbency advantage, especially when the incumbent commits to a more advanced bandit algorithm. Our results show that even a small degree of data asymmetry can be amplified to be a larger market advantage through competition dynamics. \gadelete{This is in contrast to the data advantage in a static environment such as discussed in \cite{varian2018artificial,bajari2018impact}, in which a small amount of additional data can only provide limited improvement in the predictive accuracy.} The effect is stronger when the incumbent commits to a more advanced bandit algorithm due to
 }} %%%%%%
