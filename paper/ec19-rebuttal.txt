@@ -47,13 +47,13 @@ Re monopoly [Review3]: No findings here, just assumption: monopolist chooses
 Dynamic Greedy (DG) because it is easier to deploy in practice (page 2). Implicitly, users have no "outside option": the service provided is an improvement over not having it. This is plausible with free ad-supported platforms such as Yelp or Google. Pricing-for-quality modifies firms' utilities in all scenarios, not just under monopoly. Also a valid model, worth investigating.
 
 
-[Review3] Re changing competitiveness: "channels" from literature (Lerner Index [3] or Herfindahl-Hirschman Index) just aren't applicable,  we and [MSW] invent channels that are (more details don't fit here). 
+[Review3] Re changing competitiveness: "channels" from literature (Lerner Index [3] or Herfindahl-Hirschman Index) just aren't applicable in our setting, whereas we and [MSW] identify channels that are. (More details don't fit here). 
 
 
 [Review3] Lower "memory size"  induces noise that we cannot easily characterize. Such noise is also unrealistic, as reputation signals usually average over many datapoints. We remove "noise" in main experiments (but study it in Section7).
 
 
-[Review1] Agreed, "adaptive strategies" (ex: DG then TS) are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
+[Review1] Agreed, "dynamic strategies" (ex: DG then TS) are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
 
  
  
