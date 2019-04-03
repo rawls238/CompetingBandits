@@ -4,7 +4,7 @@ Apologies for brevity! We'll discuss all issues in revision.
 
 Several important differences compared to [MSW] [26], as discussed on page3: 
 
-In [MSW], users don't observe anything about firms' actual performance, and instead choose based on complicated Bayesian reasoning. We consider a much more realistic model with "reputation signals". This model is amenable to numerical simulations (whereas simulating the priors in [MSW] is computationally very difficult). Moreover, we can separate data vs. reputational advantage (Section5).
+In [MSW], users don't observe anything about firms' actual performance, and instead choose based on complicated Bayesian reasoning. We consider a much more realistic model with "reputation signals". This model is amenable to numerical simulations (whereas simulating the posteriors in [MSW] is computationally very difficult). Moreover, we can separate data vs. reputational advantage (Section5).
 
 [MSW] changes "competitiveness" via behavioral model ("HardMax" -> "HardMaxWithRandomness" -> "SoftMax"). We focus on different "channel": early -> simultaneous -> late entry (and investigate the "first-mover advantage").
 
@@ -18,7 +18,7 @@ Thus, theorems from [MSW] have no direct bearing on our simulations.
 
 Re lack of proofs:
 
-We believe theorems wouldn't not add much value. Indeed, we are in realm of  "asymptotic" theorems about stylized Economic models, which provide some "hard" intuition but no direct bearing on the world. But [MSW] already has an elaborate set of such results, with similar high-level conclusions. So, we'd need to go beyond the first-order conclusions to add value. 
+We believe theorems wouldn't add much value. Indeed, we are in realm of  "asymptotic" theorems about stylized Economic models, which provide some "hard" intuition but no direct bearing on the world. But [MSW] already has an elaborate set of such results, with similar high-level conclusions. So, we'd need to go beyond the first-order conclusions to add value. 
 
 While amenable to simulations, our model appears difficult to analyze:
 
@@ -34,7 +34,7 @@ We proved *something*: if incumbent starts so early that it has permanent "first
 
 Re significance:
 
-General adage, we don't know which intuitions/effects are significant until we test. In particular, our intuitions are all about mean reputations, which is sometimes wrong thing to track (Sections 3,6). Also, some effects matter only after very long time (ex: Finding 11). 
+General adage, we don't know which intuitions/effects are significant until we test. In particular, much of our intuitions are about mean reputations, which is sometimes wrong thing to track (Sections 3,6). Also, some effects matter only after very long time (see Finding 11). 
 
 Welfare implications are at least somewhat surprising.
 
@@ -50,10 +50,10 @@ Dynamic Greedy (DG) because it is easier to deploy in practice (page 2). Implici
 [Review3] Re changing competitiveness: "channels" from literature (Lerner Index [3] or Herfindahl-Hirschman Index) just aren't applicable,  we and [MSW] invent channels that are (more details don't fit here). 
 
 
-[Review3] Lower "memory size"  induces noise which we cannot easily characterize. Such noise is also unrealistic, as reputation signals usually average over many datapoints. We remove "noise" in main experiments (but study it in Section7).
+[Review3] Lower "memory size"  induces noise that we cannot easily characterize. Such noise is also unrealistic, as reputation signals usually average over many datapoints. We remove "noise" in main experiments (but study it in Section7).
 
 
-[Review1] Agreed, "adaptive strategies" (ex: DG then TS) are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
+[Review1] Agreed, "adaptive strategies" are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
 
  
  
