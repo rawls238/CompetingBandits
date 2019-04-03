@@ -53,7 +53,7 @@ Dynamic Greedy (DG) because it is easier to deploy in practice (page 2). Implici
 [Review3] Lower "memory size"  induces noise that we cannot easily characterize. Such noise is also unrealistic, as reputation signals usually average over many datapoints. We remove "noise" in main experiments (but study it in Section7).
 
 
-[Review1] Agreed, "adaptive strategies" are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
+[Review1] Agreed, "adaptive strategies" (ex: DG then TS) are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
 
  
  
