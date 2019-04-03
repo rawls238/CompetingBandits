@@ -1,0 +1,59 @@
+
+Apologies for brevity! We'll discuss all issues in revision.
+
+
+Several important differences compared to [MSW] [26], as discussed on page3: 
+
+In [MSW], users don't observe anything about firms' actual performance, and instead choose based on complicated Bayesian reasoning. We consider a much more realistic model with "reputation signals". This model is amenable to numerical simulations (whereas simulating the priors in [MSW] is computationally very difficult). Moreover, we can separate data vs. reputational advantage (Section5).
+
+[MSW] changes "competitiveness" via behavioral model ("HardMax" -> "HardMaxWithRandomness" -> "SoftMax"). We focus on different "channel": early -> simultaneous -> late entry (and investigate the "first-mover advantage").
+
+[MSW] is theory-only, with strong but "asymptotic" results ("after sufficiently many rounds"). Our findings are more quantitative: whether effects are sufficiently strong in realistic time.
+
+(Finding11 is a good example: as we emphasize right after, the effect is not observed until fairly large T. Put differently, no effect when/if such T is unrealistic, even though this effect is predicted by [MSW].) 
+
+Thus, theorems from [MSW] have no direct bearing on our simulations. 
+
+
+
+Re lack of proofs:
+
+We believe theorems wouldn't not add much value. Indeed, we are in realm of  "asymptotic" theorems about stylized Economic models, which provide some "hard" intuition but no direct bearing on the world. But [MSW] already has an elaborate set of such results, with similar high-level conclusions. So, we'd need to go beyond the first-order conclusions to add value. 
+
+While amenable to simulations, our model appears difficult to analyze:
+
+    - intricate feedback loop (performance -> reputations -> users -> performance), 
+
+    - mean reputation, most connected to our intuition, is sometimes bad predictor in competition (Sections 3,6), 
+    
+    - mathematical tools from regret-minimization only produce "asymptotic" results.
+
+We proved *something*: if incumbent starts so early that it has permanent "first-order stochastic dominance" over entrant as standalone algorithm, then it has some advantage under competition. This result is quite weak, yet not easy to prove, and we didn't see much added value. Perhaps we should have included it, just to illustrate the difficulty of analysis.
+
+
+
+Re significance:
+
+General adage, we don't know which intuitions/effects are significant until we test. In particular, our intuitions are all about mean reputations, which is sometimes wrong thing to track (Sections 3,6). Also, some effects matter only after very long time (ex: Finding 11). 
+
+Welfare implications are at least somewhat surprising.
+
+We didn't have much/any intuition about "data advantage" vs. "reputational advantage"
+
+
+
+
+Re monopoly [Review3]: No findings here, just assumption: monopolist chooses
+Dynamic Greedy (DG) because it is easier to deploy in practice (page 2). Implicitly, users have no "outside option": the service provided is an improvement over not having it. This is plausible with free ad-supported platforms such as Yelp or Google. Pricing-for-quality modifies firms' utilities in all scenarios, not just under monopoly. Also a valid model, worth investigating.
+
+
+[Review3] Re changing competitiveness: "channels" from literature (Lerner Index [3] or Herfindahl-Hirschman Index) just aren't applicable,  we and [MSW] invent channels that are (more details don't fit here). 
+
+
+[Review3] Lower "memory size"  induces noise which we cannot easily characterize. Such noise is also unrealistic, as reputation signals usually average over many datapoints. We remove "noise" in main experiments (but study it in Section7).
+
+
+[Review1] Agreed, "adaptive strategies" (ex: DG then TS) are interesting! However, "fixed strategies" are arguably more realistic: detecting competition, committing to new algorithms, and adapting/deploying them takes very long time in practice (background: https://arxiv.org/abs/1606.03966). Much larger strategy space, obviously. We did some pilot experiments, where we found that changing the algorithm did not matter.
+
+ 
+ 
