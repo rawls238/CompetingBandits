@@ -17,7 +17,7 @@ concentrating the free agents as arriving in the beginning of the game
 instead they are dispersed throughout the game.}
 
 \begin{finding}\label{find:non_greedy_choice}
-\textit{\TS is weakly dominant under the \HMR~ choice rule, if and only if $\eps T$ is sufficiently large. \asedit{\HMR leads to lower variance in market shares, compared to \HM.}}
+\textit{\TS is weakly dominant under the \HMR~ choice rule, if and only if $\eps T$ is sufficiently large. \HMR leads to lower variance in market shares, compared to \HM.}
 \end{finding}
 
 
@@ -148,7 +148,7 @@ performance in isolation.}
 
 \OMIT{Finding \ref{find:non_greedy_choice} implies that we can re-interpret the inverted-U findings from before in terms of the number of agents that a firm receives without having to worry about incentives. In the extreme when the firm gets all agents for free as in the monopoly case then it is incentivized to play \DG. When it only gets some of the agents for free, either via a large warm start, a temporary monopoly, or non-deterministic choice, then \TS is incentivized. However, if the number of free agents gets small enough then \DG is incentivized as in the permanent duopoly analysis from before.\swcomment{I don't understand this paragraph; I think it's too vague. Perhaps remove?}}
 
-However, it takes a significant amount of randomness and a relatively large time horizon for this effect to take place. Even with $T = 10000$ and $\eps = 0.1$ we see that \DEG still outperforms \DG on the Heavy-Tail MAB instance as well as that \TS only starts to become weakly dominant at $T = 10000$ for the Uniform MAB instance. 
+However, it takes a significant amount of randomness and a relatively large time horizon for this effect to take place. Even with $T = 10000$ and $\eps = 0.1$ we see that \DEG still outperforms \DG on the Heavy-Tail MAB instance as well as that \TS only starts to become weakly dominant at $T = 10000$ for the Uniform MAB instance.
 
 \OMIT{Table \ref{tab:non_greedy_table} also shows that another difference between the two choice rules is that \HMR leads to lower variance in market shares across simulations compared to \HM.}
 

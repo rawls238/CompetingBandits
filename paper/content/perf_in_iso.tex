@@ -20,7 +20,7 @@ for a sufficiently long time horizon. For each algorithm and each MAB instance, 
 \label{prelim_means}
 \end{figure}
 
-\asedit{We also use Figure~\ref{prelim_means} to choose a reasonable time-horizon for the subsequent experiments, as $T=2000$. The idea is, we want $T$ to be large enough so that algorithms performance starts to plateau, but small enough such that algorithms are still learning.}
+We also use Figure~\ref{prelim_means} to choose a reasonable time-horizon for the subsequent experiments, as $T=2000$. The idea is, we want $T$ to be large enough so that algorithms performance starts to plateau, but small enough such that algorithms are still learning.
 
 The mean reputation trajectory is probably the most natural way to represent an algorithm's performance on a given MAB instance. However, we found that the outcomes of the competition game are better explained with a different ``performance-in-isolation" statistic that is more directly connected to the game. Consider the  performance of two algorithms, Alg1 and Alg2, ``in isolation" on a particular MAB instance. The \emph{relative reputation} of Alg1 (vs. Alg2) at a given time $t$ is the fraction of \MRVs /realization tables for which Alg1 has a higher reputation score than Alg2. The intuition is that agent's selection in our model depends only on the comparison between the reputation scores.
 
