@@ -1,0 +1,47 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage{fullpage,times}
+
+\usepackage[round]{natbib}
+
+% a very useful package for edits and comments, from David Kempe (USC)
+\usepackage{color-edits}
+%\usepackage[suppress]{color-edits}  % use this to suppress the package
+%\addauthor{ab}{green}   % ab for Ashwin
+%\addauthor{bk}{magenta} % bk for Bobby
+\addauthor{as}{red}      % as for Alex
+%\addauthor{mb}{blue}    % mb for Moshe
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+
+\begin{document}
+%\vspace{-30mm}
+
+\section*{Submission: Competing Bandits: The perils of Competition\\
+{\large (by Guy Aridor, Aleksandrs Slivkins and Zhiwei Steven Wu)}\\
+{\large Workshop: Learning in the Presence of Strategic Behavior}
+}
+
+We empirically study the interplay between \textit{exploration} and
+  \textit{competition}. Systems that learn from interactions with
+  users often engage in \emph{exploration}: making potentially
+  suboptimal decisions in order to acquire new information for future
+  decisions. However, when multiple systems are competing for
+    the same market of users, exploration may hurt a system's
+    reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral", when the short-term reputation cost decreases
+    the number of users for the system to learn from, which degrades the
+    system's performance relative to competition and further decreases
+    the market share.
+
+We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore and leads to low consumer welfare, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms and lead to higher consumer welfare. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets.
+
+\vspace{2mm}
+
+This paper continues the literature on ``exploration and incentives", which in turn belongs to the area of ``learning in the presence of strategic behavior". It is an experimental counterpart to \citet{CompetingBandits-itcs18}, which has initiated the study of ``exploration and competition" and obtained obtained a number of theoretical results with ``asymptotic" flavor. While they considered a similar duopoly model and arrived at similar high-level conclusions, their details and assumptions are substantially different from ours for the sake analytical tractability, and their theorems have no direct bearing on our simulations. In comparison, we provide a more nuanced and ``non-asymptotic" perspective, looking for substantial effects within relevant time scales. We plan a merged journal submission to a venue in economics or operations research.
+
+\begin{small}
+\bibliographystyle{plainnat}
+\bibliography{bib-abbrv,bib-slivkins}
+\end{small}
+
+
+\end{document}
