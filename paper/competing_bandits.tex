@@ -1,4 +1,4 @@
-\documentclass[format=acmsmall, review=true]{acmart}
+\documentclass[format=acmsmall, review=false]{acmart}
 
 \usepackage{acm-ec-19}
 \usepackage{tikz} % SW: Added for plots
@@ -81,10 +81,21 @@
 
 
 \begin{document}
-\title[Competing Bandits: The Perils of Exploration under Competition]
-{Competing Bandits: \\ The Perils of Exploration under Competition}
+\title[The Perils of Exploration under Competition: A Computational Modeling Approach]
+{The Perils of Exploration under Competition: \\ A Computational Modeling Approach}
 
-\author{Submission 316}
+
+ \author{Guy Aridor}
+ \affiliation{ \institution{Columbia University}}
+ \author{Kevin Liu}
+ \affiliation{\institution{Columbia University}}
+ \author{Aleksandrs Slivkins}
+ \affiliation{\institution{Microsoft Research, New York City}}
+ \author{Zhiwei Steven Wu}
+ \affiliation{\institution{University of Minnesota - Twin Cities}}
+ 
+ \authorsaddresses{%
+  Authors' addresses: Guy Aridor, Columbia University, New York, NY, g.aridor@columbia.edu; Kevin Liu, Columbia University, New York, NY, kevin.liu@columbia.edu; Aleksandrs Slivkins, Microsoft Research, New York, NY, slivkins@microsoft.com; Zhiwei Steven Wu, University of Minnesota - Twin Cities, Minneapolis, MN, zsw@umn.edu}
 
 \begin{abstract}
   We empirically study the interplay between \textit{exploration} and
@@ -109,10 +120,6 @@ We ask whether better exploration algorithms are incentivized under competition.
 \maketitle
 \keywords{Multi-armed bandits,Exploration,Competition,Competition vs Innovation}
 
-
-
-\newpage
-
 \subfile{content/introduction}
 
 \subfile{content/model}
@@ -133,8 +140,6 @@ We ask whether better exploration algorithms are incentivized under competition.
 \bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
 
 \subfile{content/appendix_for_one_version}
-
-
 
 \end{document}
 %%% Local Variables:
