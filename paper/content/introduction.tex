@@ -15,7 +15,7 @@ In this paper, we ask how the interplay of exploration and competition affects p
 
 We consider a \emph{permanent duopoly} in which both firms start at the same time, as well as \emph{temporary monopoly}: a duopoly with a first-mover. Accordingly, the intensity of competition in the model varies from ``permanent monopoly" (just one firm) to ``incumbent" (the first-mover in temporary monopoly) to permanent duopoly to ``entrant" (late-arriver in temporary monopoly).%
 \footnote{\asedit{We consider the ``permanent monopoly" scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses
-the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}}\footnote{\gaedit{The most common measures of market ``competitiveness" such as the Lerner Index or the Herfindahl-Hirschman Index of a market rely on ex-post observable attributes of a market such as prices or market shares \cite{tirole1988theory}. However, since we have no prices and market shares are an endogenous element of our model, we simply define ``competitiveness" in terms of the number of firms and timing of entry into the market.}}
+the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}}
 
 We focus on three classes of bandit algorithms, ranging from more primitive to more sophisticated: \emph{greedy algorithms} that do not explicitly explore, algorithms that separate exploration and exploitation, and algorithms that combine the two. We know from prior work that in the absence of competition,  ``better" algorithms are better in the long run, but could be worse initially.
 
@@ -66,7 +66,7 @@ more refined performance measure, and use it to explain some of the competition 
 
 
 We also consider an alternative choice rule with explicit noise/randomness: a small fraction of users choose a firm uniformly at random.%
-\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}} We confirm the theoretical intuition that better algorithms prevail if the \gaedit{expected number of ``random" users is sufficiently large.}\gadelete{parameter -- essentially, the expected number ``random users" --is sufficiently large.} However, we find that this effect is negligible for some smaller but still ``relevant" parameter values.
+\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}} We confirm the theoretical intuition that better algorithms prevail if the expected number of ``random" users is sufficiently large. However, we find that this effect is negligible for some smaller but still ``relevant" parameter values.
 
 \subsection{Discussion}
 
@@ -82,13 +82,13 @@ Even with a stylized model, numerical investigation is quite challenging. An ``a
 Accordingly, we have a three-dimensional space of atomic experiments one needs to run and interpret: \{pairs of algorithms\} x \{competition models\} x \{bandit instances\}, and we are looking for findings that are consistent across this entire space. It is essential to keep each of the three dimensions small yet representative. In particular, we need to capture a huge variety of bandit instances with only a few representative examples. Further, one needs succinct and informative summarization of results within one atomic experiment and across multiple experiments (\eg see Table~\ref{sim_table}).
 
 
-\asedit{While amenable to simulations, our model appears difficult to analyze. This is for several reasons:
+While amenable to simulations, our model appears difficult to analyze. This is for several reasons:
 %
 intricate feedback loop from performance to reputations to users to performance;
 %
-mean reputation, most connected to our intuition, is sometimes \gaedit{a} bad predictor in competition (see Sections~\ref{sec:isolation} and~\ref{sec:revisited});
+mean reputation, most connected to our intuition, is sometimes a bad predictor in competition (see Sections~\ref{sec:isolation} and~\ref{sec:revisited});
 %
-mathematical tools from regret-minimization would only produce ``asymptotic" results, which do not seem to suffice. We believe that resolving first-order theoretical questions would not add much value to this paper, because of \cite{CompetingBandits-itcs18}.\gadelete{We are in \gaedit{the} realm of ``asymptotic" theorems about stylized economic models, which provide some mathematical intuition but no direct bearing on the world. But \cite{CompetingBandits-itcs18} already has an elaborate set of such results, with similar high-level conclusions. So, one would need to go beyond the first-order conclusions to add value.}}
+mathematical tools from regret-minimization would only produce ``asymptotic" results, which do not seem to suffice. Further, we believe that resolving first-order theoretical questions about our model would not add much value to this paper. \asedit{Indeed, we are in the realm of stylized economic models that provide mathematical intuition about the world, and \cite{CompetingBandits-itcs18} already has an elaborate analysis with similar high-level conclusions.}
 
 
 
@@ -133,6 +133,8 @@ While these papers find that small amounts
   %, which overlooks certain aspects in a competition.
 %\swdelete{These studies consider the effect of additional data in terms of helping towards solving a machine learning problem in isolation and argue that it does not play a large role.}
 The first-mover advantage has been well-studied in other settings in economics and marketing, see survey \cite{kerin1992first}.
+
+\asedit{The most common measures of market ``competitiveness" such as the Lerner Index or the Herfindahl-Hirschman Index of a market rely on ex-post observable attributes of a market such as prices or market shares \cite{tirole1988theory}. However, neither is applicable to our setting: in our model, there are no prices, and market shares are endogenous.}
 
 
 \end{document}
