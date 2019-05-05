@@ -96,17 +96,29 @@
  \authorsaddresses{%
   Authors' addresses: Guy Aridor, Columbia University, New York, NY, g.aridor@columbia.edu; Kevin Liu, Columbia University, New York, NY, kevin.liu@columbia.edu; Aleksandrs Slivkins, Microsoft Research, New York, NY, slivkins@microsoft.com; Zhiwei Steven Wu, University of Minnesota - Twin Cities, Minneapolis, MN, zsw@umn.edu}
 
-  \begin{CCSXML}
+ \begin{CCSXML}
 <ccs2012>
 <concept>
 <concept_id>10010405.10010455.10010460</concept_id>
 <concept_desc>Applied computing~Economics</concept_desc>
 <concept_significance>500</concept_significance>
 </concept>
+<concept>
+<concept_id>10010147.10010257.10010258.10010261.10010272</concept_id>
+<concept_desc>Computing methodologies~Sequential decision making</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010257.10010282.10010284</concept_id>
+<concept_desc>Computing methodologies~Online learning settings</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
 </ccs2012>
 \end{CCSXML}
 
 \ccsdesc[500]{Applied computing~Economics}
+\ccsdesc[300]{Computing methodologies~Sequential decision making}
+\ccsdesc[300]{Computing methodologies~Online learning settings}
 
 \fancyhead{}
 %
@@ -114,7 +126,7 @@
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below.
 %
-\keywords{Multi-armed bandits;Exploration;Competition;Competition vs Innovation}
+\keywords{Multi-armed bandits; Exploration;Competition vs. Innovation}
 \maketitle
 
 
@@ -129,7 +141,7 @@ We empirically study the interplay between \textit{exploration} and
     system's performance relative to competition and further decreases
     the market share.
 
-We ask whether better exploration algorithms are incentivized under competition.  We run extensive numerical experiments in a stylized duopoly model, where two firms compete for users and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firm's objective is to maximize its market share (the fraction of users choosing this firm). We consider a \emph{permanent duopoly} in which both firms start at the same time, as well as \emph{temporary monopoly}: a duopoly with a first-mover. We focus on three classes of bandit algorithms, ranging from more primitive to more sophisticated: \emph{greedy algorithms} that do not explicitly explore, algorithms that separate exploration and exploitation, and algorithms that combine the two. We know from prior work that in the absence of competition,  ``better" algorithms are typcially better in the long run, but could be worse initially.
+We ask whether better exploration algorithms are incentivized under competition.  We run extensive numerical experiments in a stylized duopoly model, where two firms compete for users and simultaneously learn from them. Each firm commits to a multi-armed bandit algorithm, and \emph{explores} according to this algorithm. Users select between the two firms based on the current reputation score: rewards from the firm's algorithm, averaged over a recent time window. Each firm's objective is to maximize its market share (the fraction of users choosing this firm). We consider a \emph{permanent duopoly} in which both firms start at the same time, as well as \emph{temporary monopoly}: a duopoly with a first-mover. We focus on three classes of bandit algorithms, ranging from more primitive to more sophisticated: \emph{greedy algorithms} that do not explicitly explore, algorithms that separate exploration and exploitation, and algorithms that combine the two. In the absence of competition,  ``better" algorithms are are typically better in the long run, but could be worse initially.
 
 
 \tikzstyle{level 1}=[level distance=2.0cm, sibling distance=4.0cm]
@@ -157,14 +169,16 @@ We find that in the permanent duopoly, competition incentivizes firms to choose 
 the temporary monopoly is incentivized to deploy a more advanced exploration algorithm. As a result, consumer welfare is highest under temporary monopoly. We find strong evidence of the ``death spiral" effect mentioned earlier; it is strongest under permanent duopoly.
 
 
-Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This is a well-established concept in the economics literature, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. However, the ``inverted-U relationship'' is driven by different aspects in our model than the ones in the existing literature in economics:  the barriers for innovations arise due to the reputational consequences of exploration rather than the R\&D costs.
+Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the ``inverted-U relationship" between competition and innovation (see Figure~\ref{fig:inverted-U}). This is a well-established concept in the economics literature,
+%, dating back to \cite{Schumpeter-42}, 
+whereby too little or too much competition is bad for innovation, but the middle range tends to be better. However, the ``inverted-U relationship'' is driven by different aspects in our model compared to the literature in economics:  the barriers for innovations arise due to the reputational consequences of exploration rather than the R\&D costs.
 
 
 \xhdr{Additional findings.}
 We investigate the ``first-mover advantage" phenomenon in more detail. Being first in the market gives free data to learn from (a ``data advantage") as well as a more definite, and possibly better reputation compared to an entrant (a ``reputation advantage"). We run additional experiments so as to isolate and compare these two effects. We find that either effect alone leads to a significant advantage under competition. The data advantage is larger than reputation advantage when the incumbent commits to a more advanced bandit algorithm.
 
-Data advantage is significant from the anti-trust perspective, as a possible barrier to entry. We find that even a small amount ``data advantage" gets amplified under competition, causing a large difference in eventual market shares. This observation runs contrary to prior work,  %\cite{varian2018artificial,lambrecht2015can,bajari2018impact},
-which studied learning without competition, and found that small amounts of additional data do not provide significant improvement in eventual outcomes. We conclude that competition dynamics -- that firms compete as they learn over time -- are pertinent to these anti-trust considerations.
+Data advantage is significant from the anti-trust perspective, as a possible barrier to entry. We find that even a small ``data advantage" gets amplified under competition, causing a large difference in eventual market shares. This observation runs contrary to prior work,  %\cite{varian2018artificial,lambrecht2015can,bajari2018impact},
+which studied learning \emph{without} competition, and found that small amounts of additional data do not provide significant improvement. We conclude that competition dynamics -- that firms compete as they learn over time -- are pertinent to these anti-trust considerations.
 
 We also investigate how algorithms' performance ``in isolation" (without competition) is predictive of the outcomes under competition. We find that mean reputation -- arguably, the most natural performance measure ``in isolation" -- is sometimes not a good predictor. We suggest a
 more refined performance measure, and use it to explain some of the competition outcomes.
@@ -174,9 +188,7 @@ We also consider an alternative choice rule with explicit noise/randomness: a sm
 
 
 \xhdr{Discussion.}
-Our paper is an experimental counterpart to \cite{CompetingBandits-itcs18}, which considered a similar duopoly model and obtained a number of theoretical results with ``asymptotic" flavor. For analytical tractability, \cite{CompetingBandits-itcs18} makes a somewhat unrealistic simplification that users do not observe any signals about firms' ongoing performance. The strength of competition is varied using assumptions about (ir)rational user behavior. For these reasons, the theorems from \cite{CompetingBandits-itcs18} have no direct bearing on our simulations. However, their high-level conclusion \gadelete{in} is an inverted-U relationship similar to ours.
-
-The present paper provides a more nuanced and ``non-asymptotic" perspective. The reputation-based choice model accounts for competition in a more direct way, allows to separate reputation vs. data advantage, and makes our model amenable to numerical simulations (unlike the model in \cite{CompetingBandits-itcs18}).
+Our paper is an experimental counterpart to a theoretical paper \cite{CompetingBandits-itcs18}, which considered a similar duopoly model under a somewhat unrealistic simplification that users do not observe any signals about firms' ongoing performance. The strength of competition is varied using assumptions about (ir)rational user behavior. While the theorems from \cite{CompetingBandits-itcs18} have no direct bearing on our simulations, their high-level conclusion is an inverted-U relationship similar to ours. The present paper provides a more nuanced and ``non-asymptotic" perspective. The reputation-based choice model accounts for competition in a more direct way, allows to separate reputation vs. data advantage, and makes our model amenable to numerical simulations (unlike the model in \cite{CompetingBandits-itcs18}).
 
 \bibliographystyle{acm}
 \bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
