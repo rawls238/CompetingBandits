@@ -1,0 +1,68 @@
+% LaTeX package 'mysetup' by Alex Slivkins
+
+\usepackage{amsthm} % must be loaded **after** amsmath
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{reduction}[theorem]{Reduction}
+\newtheorem{invariant}[theorem]{Invariant}
+\newtheorem{extension}[theorem]{Extension}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{claim*}{Claim}
+
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{property*}{Property}
+
+%%%%%%%%%%% proofs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{note}[1]
+	{\begin{trivlist}
+		\item[\hskip \labelsep {\em #1}]}
+	{\end{trivlist}}
+
+
+
+%\newenvironment{proofof}[1]
+%	{\begin{proof}[{\bf Proof of #1:}]}
+%	{\end{proof}}
+
+
+\newcommand{\pfof}[2]{
+	\begin{proofof}{#1}
+		#2
+	\end{proofof}
+}
+
+\newenvironment{myproof}
+	{\begin{proof}}
+	{\end{proof}}
+
+\newcommand{\sketch}[1]{
+	\begin{proof}[Proof Sketch.]
+		#1
+	\end{proof}
+}
+	
+\newcommand{\sketchof}[2]{
+	\begin{proof}[{\bf Proof Sketch of #1:}]
+		#2
+	\end{proof}
+}

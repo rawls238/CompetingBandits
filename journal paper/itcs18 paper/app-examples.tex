@@ -1,0 +1,488 @@
+
+\newcommand{\ExplorExploit}{\term{ExplorExploit}}
+\newcommand{\PhasedExplorExploit}{\term{PhasedExplorExploit}}
+\newcommand{\RandomDynGreedy}{\term{RandomDynGreedy}}
+\newcommand{\SuccesiveElimination}{\term{SuccesiveElimination}}
+\newcommand{\SuccesiveEliminationReset}{\term{SuccesiveEliminationReset}}
+
+This appendix provides some pertinent background on multi-armed
+bandits (\emph{MAB}). We discuss \BIR and monotonicity of several MAB algorithms, touching upon: \DynGreedy and \StaticGreedy (Section~\ref{sec:MAB-greedy}), ``naive" MAB algorithms that separate exploration and exploitation (Section~\ref{sec:MAB-naive}), and ``smart" MAB algorithms that combine exploration and exploitation (Section~\ref{sec:MAB-smart}).
+
+As we do throughout the paper, we focus on MAB with i.i.d. rewards and a Bayesian prior; we call it \emph{Bayesian MAB} for brevity.
+
+
+% For a given mean reward vector $\mu$, the $n$-th step instantaneous regret is
+%\begin{align}
+%\regret(n\mid\mu) &:= \max_{a\in A} \mu_a - \rew(n\mid\mu),\\
+%\regretWC(n)    &:=  \sup_{\text{mean reward vectors $\mu$}} \; \BIR(n\mid \mu).
+%\end{align}
+
+
+\subsection{\DynGreedy and \StaticGreedy}
+\label{sec:MAB-greedy}
+
+We provide an example when \DynGreedy and \StaticGreedy have
+constant \BIR, and prove monotonicity of \DynGreedy. For the
+example, it suffices to consider \emph{deterministic rewards} (for
+each action $a$, the realized reward is always equal to the mean
+$\mu_a$) and \emph{independent priors} (according to the prior
+$\priorMu$, random variables $\mu_1 \LDOTS \mu_K$ are mutually
+independent) each of {\em full support}.
+
+%\ascomment{This lemma is just one example. Can we argue that constant \BIR is typical/reasonable?}
+%
+%
+%\begin{lemma}
+%There is a problem instance of Bayesian MAB such that \StaticGreedy
+%and \DynGreedy have (at least) a constant \BIR for all steps. The
+%problem instance has two actions, independent priors, and
+%deterministic rewards.
+%\end{lemma}
+%
+%\begin{proof}
+%To specify the problem instance, it remains to specify the marginal
+%distributions mean rewards $\mu_1$ and $\mu_2$ according to the
+%prior. We posit that $\mu_1$ is uniform on the interval $[0, 1]$,
+%and $\mu_2$ is uniform on the interval $[\tfrac13,1]$.
+%
+%Note that
+%    $\OPT := \E[\max_{a\in A} \mu_a] =(1/3)(2/3)+(2/3)(7/9)=20/27$.
+%%\ascomment{The numbers seem wrong, given the below?}
+%This holds since with
+%probability $1/3$ we have $\mu_1\leq 1/3$ in which case clearly the
+%better arm is 2 with $\E[\mu_2]=2/3$ and with probability $2/3$ we
+%have both $\mu_1,\mu_2\in[1/3,1]$ and distributed uniformly each.
+%
+%\StaticGreedy always recommends action $2$. Since
+%$\E[\mu_2]=\tfrac23$, \BIR is $2/27$ in all rounds.
+%
+%\DynGreedy recommends the first agent action $2$. If $\mu_2 > 2/3$
+%For all the following agents it recommends action $2$. Otherwise, it
+%recommends agent $2$ action $1$ and for all the following agents it
+%recommends the better action. The expectation for agents $t\geq 3$
+%is $(1/2)(5/6)+(1/2)((1/2)(1/2)+(1/2)(5/9))=49/72$ and has
+%instantaneous regret $13/216$.
+%\end{proof}
+
+The following claim is immediate from the definition of the CDF
+function
+\begin{claim}
+Assume independent priors. Let $F_i$ be the CDF of the mean reward
+$\mu_i$ of action $a_i\in A$. Then, for any numbers
+$z_2>z_1>\E[\mu_2]$ we have
+    $\Pr[\text{$\mu_1\leq z_1$ and $\mu_2\geq z_2$}] = F_1(z_1)(1-F_2(z_2)) $.
+\end{claim}
+
+%\begin{lemma}
+%Let $\priorMu$ be the prior of the means, and assume that it is
+%independent for each action, where for arm $i$ it has a mean $
+%\E[\mu_i]$ and CDF $F_i$. Then, for any $\E[\mu_2] < z_1<z_2$ we
+%have that with probability $F_1(z_1)(1-F_2(z_2))$ that both
+%$\mu_1\leq z_1$ and $z_2\leq \mu_2$.
+%\end{lemma}
+
+%\begin{corollary}
+%Any problem instance of Bayesian MAB for two actions and independent
+%priors which are full support and deterministic rewards, with
+%constant probability \DynGreedy has a constant \BIR for all steps.
+%\end{corollary}
+
+
+We can now draw an immediate corollary of the above claim
+
+\begin{corollary}
+Consider any problem instance of Bayesian MAB with two actions and independent
+priors which are full support. Then:
+\begin{OneLiners}
+\item[(a)] With constant probability, \StaticGreedy  has a constant \BIR for all steps.
+\item[(b)] Assuming deterministic rewards, with
+constant probability \DynGreedy has a constant \BIR for all steps.
+\end{OneLiners}
+\end{corollary}
+
+\begin{remark}
+A similar result holds for  rewards which are distributed as
+Bernoulli random variables. In this case we consider accumulative
+reward of an action as a random walk, and use a high probability
+variation of the law of iterated logarithms. (Details omitted.)
+\end{remark}
+
+
+Next, we show that \DynGreedy is monotone.
+
+\begin{lemma}\label{dgmono}
+\DynGreedy is monotone, in the sense that $\rew(n)$ is non-decreasing.
+Further, $\rew(n)$ is strictly increasing for every time step $n$ with $\Pr[a_n\neq a_{n+1}]>0$.
+\end{lemma}
+
+\begin{proof}
+We prove by induction on $n$ that $\rew(n)\leq \rew(n+1)$ for
+\DynGreedy. Let $a_n$ be the random variable recommended at time
+$t$, then $\E[\mu_{a_n}| \mI_n ]=\rew(n)$. We can rewrite this as:
+\[
+\rew(n)=\E_{\mI_n}[\E_{r_n}[\mu_{a_n}|r_n,\mI_n]] =
+\E_{\mI_{n+1}}[\mu_{a_n}|\mI_{n+1}]
+\]
+since $\mI_{n+1}=(\mI_n,r_n)$. At time $n+1$ \DynGreedy will select
+an action $a_{n+1}$ such that:
+\[
+\rew(n+1)=\E[\mu_{a_{n+1}}|\mI_{n+1}]\geq \E[\mu_{a_n}
+|\mI_n]=\rew(n)
+\]
+%
+%Now after executing action $a_n$ and observing its reward $r_n$
+%there are two possibilities. If $a_n$ is still the best action, then
+%its expected reward given the information at time $n$ has not
+%changed. On the other hand, if $a_n$ is not the best action anymore,
+%then it implies that we recommend a better action. In such a case,
+%we increase the expected reward. \ymcomment{need to make this
+%formal}
+which proves the monotonicity. In cases that $\Pr[a_n\neq
+a_{n+1}]>0]$ we have a strict inequality, since with some
+probability we select a better action then the realization of $a_n$.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{``Naive" MAB algorithms that separate exploration and exploitation}
+\label{sec:MAB-naive}
+
+
+%\ascomment{Nicer to have $\BIR(n)\leq n^{-1/3}$.
+%Explore-then-exploit does not have that! So, let's use phases of
+%exponentially increasing duration.}
+
+MAB algorithm \ExplorExploit$(m)$ initially explores each action
+with $m$ agents and for the remaining $T-|A|m$ agents recommends the
+action with the highest observed average. In the explore phase it
+assigns a random permutation of the $mK$ recommendations.
+
+\begin{lemma}
+%Assume that rewards in the range $[0,1]$.
+The \ExplorExploit$(T^{2/3}\log |A|/\delta)$ algorithm has, with
+probability $1-\delta$, for any  $n\geq |A|T^{2/3}$ we have
+\BIR$(n)=O(T^{-1/3})$. In addition, \ExplorExploit$(m)$ is monotone.
+\end{lemma}
+
+\begin{proof}
+In the explore phase we we approximate for each action $a\in A$, the
+value of $\mu_a$ by $\hat{\mu}_a$. Using the standard Chernoff
+bounds we have that with probability $1-\delta$, for every action
+$a\in A$ we have $|\mu_a -\hat{\mu}_a| \leq T^{-1/3}$.
+
+Let $a^* = \arg\max_a \mu_a$ and $a^{ee}$ the action that
+\ExplorExploit selects in the explore phase after the first
+$|A|T^{2/3}$ agents. Since $\hat{\mu}_{a^*} \leq
+\hat{\mu}_{a^{ee}}$, this implies that $\mu_{a^*} -
+\mu_{a^{ee}}=O(T^{-1/3})$.
+
+To show that \ExplorExploit$(m)$ is monotone, we need to show only
+that $\rew(mK) \leq \rew(mK+1)$. This follows since for any $t< mK$
+we have $\rew(t)=\rew(t+1)$, since the recommended action is
+uniformly distributed for each time $t$. Also, for any $t\geq mK+1$
+we have $\rew(t)=\rew(t+1)$ since we are recommending the same
+exploration action. The proof that $\rew(mK) \leq \rew(mK+1)$ is the
+same as for \DynGreedy in Lemma~\ref{dgmono}.
+\end{proof}
+
+We can also have a a phased version which we call
+\PhasedExplorExploit$(m_t)$, where time is partition in to phases.
+In phase $t$ we have $m_t$ agents and a random subset of $K$ explore
+the actions (each action explored by a single agent) and the other
+agents exploit. (This implies that we need that $m_t\geq K$ for all
+$t$. We also assume that $m_t$ is monotone in $t$.)
+
+\begin{lemma}
+Consider the case that $K=2$ and the rewards of the actions are
+Bernoulli r.v. with parameter $\mu_i$ and $\Delta=\mu_1-\mu_2$.
+Algorithm \PhasedExplorExploit$(m_t)$ is monotone and for $m_t =
+\sqrt{t}$ it has $\BIR(n)=O(n^{-1/3}+e^{-O(\Delta^2 n^{2/3})}))$. 
+\end{lemma}
+
+\begin{proof}
+We first show that it is monotone. Recall that $\mu_1>\mu_2$. Let
+$S_i=\sum_{j=1}^t r_{i,j}$ be the sum of the rewards of action $i$
+up to phase $t$. We need to show that $\Pr[S_1>S_2]+ (1/2)
+\Pr[S_1=S_2]$ is monotonically increasing in $t$. Consider the
+random variable $Z=S_1-S_2$. At each phase it increases by $+1$ with
+probability $\mu_1(1-\mu_2)$, decreases by $-1$ with probability
+$(1-\mu_1)\mu_2$ and otherwise does not change.
+
+Consider the values of $Z$ up to phase $t$. We really care only
+about the probability that is shifted from positive to negative and
+vice versa.
+
+First, consider the probability that $Z=0$. We can partition it to
+$S_1=S_2=r$ events, and let $p(r,r)$ be the probability of this
+event. For each such event, we have $p(r,r)\mu_1$ moved to $Z=+1$
+and $p(r,r)\mu_2$ moved to $Z=-1$. Since $\mu_1>\mu_2$ we have that
+$p(r,r)\mu_1\geq p(r,r)\mu_2$ (note that $p(r,r)$ might be zero, so
+we do not have a strict inequality).
+
+Second, consider the probability that $Z=+1$ or $Z=-1$. We can
+partition it to $S_1=r+1;S_2=r$ and $S_1=r;S_2=r+1$ events, and let
+$p(r+1,r)$ and $p(r,r+1)$ be the probabilities of those events.
+%
+It is not hard to see that $p(r+1,r)\mu_2=p(r,r+1)\mu_1$.
+%
+This implies that the probability mass moved from $Z=+1$ to $Z=0$ is
+identical to that moved from $Z=-1$ to $Z=0$.
+
+We have showed that $\Pr[S_1>S_2]+ (1/2) \Pr[S_1=S_2]$ and therefore
+the expected valued of the exploit action is non-decreasing. Since
+we have that the size of the phases are increasing, the $\BIR$ is
+strictly increasing between phases and identical within each phase.
+
+We now analyze the $\BIR$ regret. Note that agent $n$ is in phase
+$O(n^{2/3})$ and the length of his phase is $O(n^{1/3})$. The $\BIR$
+has two parts. The first is due to the exploration, which is at most
+$O(n^{-1/3})$. The second is due to the probability that we exploit
+the wrong action. This happens with probability $\Pr[S_1<S_2]+ (1/2)
+\Pr[S_1=S_2]$ which we can bound using a Chernoff bound by
+$e^{-O(\Delta^2n^{2/3})}$, since we explored each action
+$O(n^{2/3})$ times.
+\end{proof}
+
+\begin{remark}
+Actually we have a tradeoff depending on the parameter $m_t$ between
+the regret due to exploration and exploitation. (Note that the
+monotonicity is always guarantee assuming $m_t$ is monotone.) If we
+can set that $m_t = 2^t$ then at time $n$ we have $2/ n$ probability
+of an exploit action. For the explore action we are in phase $\log
+n$ so the probability of a sub-optimal explore action is
+$n^{-O(\Delta^{-2})}$. This should give us
+$\BIR(n)=O(n^{-O(\Delta^{-2})})$.
+\end{remark}
+
+
+%MAB algorithm \RandomDynGreedy$(q_t)$for agent $t$ with probability
+%$q_t$ selects a random action from $A$ and with probability $1-q_t$
+%recommends the best action according to the current posterior
+%(similar to \DynGreedy).
+%\begin{lemma}
+%%Assume that rewards in the range $[0,1]$.
+%The algorithm \RandomDynGreedy$(q_t)$, where $q_t=t^{-1/3}$, has,
+%with probability $1-\delta$, \BIR$(n)=O(K^{1/2}n^{-1/3}\log
+%(K/\delta))$.
+%\end{lemma}
+%
+%\begin{proof}
+%At time $n$ we have that with probability $1-\delta/(2K)$, each
+%action $a\in A$ was selected at least $n_a=\Theta(n^{2/3}/K)$ times.
+%%
+%This implies that with probability $1-\delta/(2K)$, for each $a$ we
+%have $|\hat{\mu}_a-\mu_a|\leq K^{1/2}n^{-1/3}\log((2K)/\delta)$.
+%%
+%Therefore, the \BIR is $O(K^{1/2}n^{-1/3}\log((K)/\delta))$
+%\end{proof}
+
+%\ascomment{Add: can we modify Phased Explore-then-exploit to make it
+%monotone? Perhaps choose exploration rounds u.a.r. within the
+%phase?}
+
+%
+%\begin{lemma}
+%\ExplorExploit$(m)$ is monotone
+%\end{lemma}
+%
+%\begin{proof}
+%We need to consider only time $m'=|A|m+1$. For any $n<m'$, we
+%clearly have $\rew(n)=\rew(1)$.
+%
+%Consider two actions $a_1,a_2\in A$, such that $\mu_{a_1} \geq
+%\mu_{a_2}$. We claim that the probability that $a_1$ is selected at
+%time $m$ to be the exploit action is larger than the probability
+%that $a_2$ is selected. This follows since $\hat{\mu}_{a_1}$
+%stochastically dominates $\hat{\mu}_{a_2}$, which implies that for
+%any threshold $\theta$ we have $\Pr[\hat{\mu}_{a_1}\geq\theta]\geq
+%\Pr[\hat{\mu}_{a_2}\geq\theta]$.
+%
+%After the elimination we consider the expected reward of the
+%selected action $\sum_{i\in A} \mu_i q_i$, where $q_i$ is the
+%probability that action $i$ was selected for the exploit phase. We
+%have that $q_i \geq q_{i+1}$, from the stochastic dominance.
+%
+%The sum $\sum_{i\in A} \mu_i q_i$ with $q_i \geq q_{i+1}$ and
+%$\sum_i q_i=1$ is minimized by setting $q_i=1/|A|$. (We can see that
+%if there are $q_i\neq 1/|A|$, then there are two $q_{i}> q_{i+1}$,
+%and one can see that setting both to $(q_{i}+ q_{i+1})/2$ decreases
+%the value.) Therefore we have that the $\rew(m')\geq\rew(m'-1)$.
+%\end{proof}
+
+
+\subsection{``Smart" MAB algorithms that combine exploration and exploitation}
+\label{sec:MAB-smart}
+
+
+%MAB algorithm \SuccesiveElimination holds a set of action
+%$A_s\subset A$ which are called {\em surviving actions} and for
+%agent $t$ selects a random action from $A_s$. Let $n_{i,t}$ be the
+%number of times action $i$ has been selected up to time $t$, and
+%$\hat{\mu}_{i,t}$ be the average of the rewards of action $i$ up to
+%time $t$ and $\hat{\mu}^*=\max_i \hat{\mu}_{i,t}$. We eliminate
+%action $i$ at time $t$, i.e., delete it from $A_s$, if
+%$\hat{\mu}_t^*-\hat{\mu}_{i,t} > \log(T/\delta)/\sqrt{n/K}$.
+%
+%\begin{lemma}
+%Assume that the prior is independent and if $\mu_i\geq \mu_j$ then
+%$r_i$ stochastically dominates $r_j$.
+%%
+%The algorithm \SuccesiveElimination, has, with probability
+%$1-\delta$, \BIR$(n)=O(\log(T/\delta)/\sqrt{n/K})$.
+%\end{lemma}
+
+%\begin{proof}
+%Let the best action be $a^*=\arg\max_a \mu_a$. With probability
+%$1-\delta$ at any time $n$ we have that for any action $i\in A_s$
+%that $|\hat{\mu}_i -\mu_i|\leq \log(T/\delta)/\sqrt{n/K}$, and
+%$a^*\in A_s$. This implies that any action $a$ such
+%$\mu_{a^*}-\mu_{a}> 3\log(T/\delta)/\sqrt{n/K}$ is eliminated.
+%Therefore, any action in $A_s$ has \BIR$(n)$ of at most
+%$O(\log(T/\delta)/\sqrt{n/K})$. \ymcomment{should we get the
+%constant right?}
+%\end{proof}
+
+
+
+
+%\ascomment{Add: Successive Elimination is monotone (or a simple
+%modification thereof).}
+%
+%\begin{lemma}
+%\SuccesiveElimination is monotone
+%\end{lemma}
+%
+%\begin{proof}
+%We will first show that for any two actions $a_1,a_2\in A$ that if
+%$\mu_{a_1} \geq \mu_{a_2}$ then at any time $t$ we have that the
+%probability that $a_1$ is eliminated is smaller than the probability
+%that $a_2$ is eliminated, i.e., $\Pr[a_1 \not\in A_{s,t+1}| a_1\in
+%A_{s,t} ]\geq \Pr[ a_2 \not\in A_{s,t+1}| a_2\in A_{s,t}]$.
+%
+%We first show that given this statement, the lemma holds and
+%\SuccesiveElimination is monotone. Consider $\rew(t)$ versus
+%$\rew(t+1)$. If the elimination probabilities would have been
+%identical then we would have $\rew(t)=\rew(t+1)$. Consider the top
+%two actions, and consider the elimination process in two phases,
+%firs we eliminate both with the same probability, and hence the
+%reward is unchanged, and then we eliminate only the second, which
+%implies that we increase the the reward. The claim about the
+%elimination probabilities rules out the case that the elimination
+%probability of the best action is higher than then of the the second
+%best. Therefore, overall the reward can only increase.
+%
+%
+%We now need to prove the claim. Since $\mu_{a_1}\geq \mu_{a_2}$ and
+%they use the same parametric family $\psi_a(\cdot)$ then
+%$\hat{\mu}_{a_1}$ stochastically dominates $\hat{\mu}_{a_2}$. We
+%actually need to show that $\hat{\mu}_{a_1}$ stochastically
+%dominates $\hat{\mu}_{a_2}$ given that $a_1,a_2\in A_{s,t}$. If this
+%holds, then the claim about the elimination would be immediate,
+%since for any threshold $\theta$ we have $\Pr[\hat{\mu}_{a_1,t} <
+%\theta |a_1\in A_{s,t}] \leq \Pr[\hat{\mu}_{a_2,t} < \theta |a_2\in
+%A_{s,t}] $. By setting $\theta=\hat{\mu}^*-
+%\log(T/\delta)/\sqrt{n/K}$ we derive the lemma.
+%
+%We now need to prove the claim. We first show that
+%$\E[\hat{\mu}_{a_1}-\hat{\mu}_{a_2} | a_1,a_2\in A_s]\geq 0$ which
+%is equivalent to $\E[\hat{\mu}_{a_1}-\hat{\mu}_{a_2} |
+%\hat{\mu}_{a_1},\hat{\mu}_{a_2}\geq \hat{\mu}^*-\theta]\geq 0$ where
+%$\theta$ is the threshold used in \SuccesiveElimination. Since
+%action $a_1$ has a high expectation than $a_2$ it holds (at least
+%for Bernoulli r.v.).
+%
+%
+%[[OLD]]
+%
+% Clearly, for any actions $a\in A$ we have that $\Pr[a \in
+%A_s]$ decreases with time. In addition, we have that with
+%probability $1-\delta$ for every time $t$ we have $a^*\in A_s$.
+%
+%If $\mu_{a_1} \geq \mu_{a_2}$ then at any time $t$ we have
+%$\Pr[a_1\in A_s]\geq \Pr[a_2\in A_s]$.
+%
+%
+%We probably need to show that if $\mu_{a_1} \geq \mu_{a_2}$ then at
+%any time $t$ we have that the probability that $a_1$ is eliminated
+%is smaller than the probability that $a_2$ is eliminated, i.e.,
+%$\Pr[a_1\in A_{s,t}, a_1 \not\in A_{s,t+1}]\geq \Pr[a_2\in A_s, a_2
+%\not\in A_{s,t+1}]$.
+%\end{proof}
+
+
+
+
+%\ymcomment{Here is a simple modification of Successive-Elimination}
+
+
+
+MAB algorithm \SuccesiveEliminationReset works as follows. It keeps
+a set of surviving actions $A_s\subseteq A$, where initially
+$A_s=A$. The agents are partition into phases, where each phase is a
+random permutation of the non-eliminated actions.
+% Initially, we select actions at random. Let $n_{i,t}$
+%be the number of times action $i$ has been selected up to time $t$,
+Let $\hat{\mu}_{i,t}$ be the average of the rewards of action $i$ up
+to phase $t$ and $\hat{\mu}^*=\max_i \hat{\mu}_{i,t}$. We eliminate
+action $i$ at the end of phase $t$, i.e., delete it from $A_s$, if
+$\hat{\mu}_t^*-\hat{\mu}_{i,t} > \log(T/\delta)/\sqrt{t}$.
+%So far identical to \SuccesiveElimination, the difference is how we
+%continue after elimination.
+In \SuccesiveEliminationReset we simply reset the algorithm with
+$A=A_s-A_{e,t}$, where $A_{e,t}$ is the set of eliminated actions
+after phase $t$. Namely, we restart $\hat{\mu}_{i,t}$ and ignore the
+old rewards before the elimination.
+
+\begin{lemma}
+%
+The algorithm \SuccesiveEliminationReset, has, with probability
+$1-\delta$, \BIR$(n)=O(\log(T/\delta)/\sqrt{n/K})$.
+\end{lemma}
+
+\begin{proof}
+Let the best action be $a^*=\arg\max_a \mu_a$. With probability
+$1-\delta$ at any time $n$ we have that for any action $i\in A_s$
+that $|\hat{\mu}_i -\mu_i|\leq \log(T/\delta)/\sqrt{n/K}$, and
+$a^*\in A_s$. This implies that any action $a$ such
+$\mu_{a^*}-\mu_{a}> 3\log(T/\delta)/\sqrt{n/K}$ is eliminated.
+Therefore, any action in $A_s$ has \BIR$(n)$ of at most
+$6\log(T/\delta)/\sqrt{n/K}$.
+\end{proof}
+
+\begin{lemma}
+Assume that if $\mu_i\geq \mu_j$ then the rewards $r_i$
+stochastically dominates the rewards $r_j$.
+%
+Then, \SuccesiveEliminationReset is monotone
+\end{lemma}
+
+\begin{proof}
+Consider the first time $T$ an action is eliminated, and let
+$T=\tau$ be a realized value of $T$. Then, clearly for $n<\tau$ we
+have $\rew(n)=\rew(1)$ .
+
+Consider two actions $a_1,a_2\in A$, such that $\mu_{a_1} \geq
+\mu_{a_2}$. At time $T=\tau$, the probability that  $a_1$ is
+eliminated is smaller than the probability that $a_2$ is eliminated.
+This follows since $\hat{\mu}_{a_1}$ stochastically dominates
+$\hat{\mu}_{a_2}$, which implies that for any threshold $\theta$ we
+have $\Pr[\hat{\mu}_{a_1}\geq\theta]\geq
+\Pr[\hat{\mu}_{a_2}\geq\theta]$.
+
+After the elimination we consider the expected reward of the
+eliminated action $\sum_{i\in A} \mu_i q_i$, where $q_i$ is the
+probability that action $i$ was eliminated in time $T=\tau$. We have
+that $q_i \leq q_{i+1}$, from the probabilities of elimination.
+
+The sum $\sum_{i\in A} \mu_i q_i$ with $q_i \leq q_{i+1}$ and
+$\sum_i q_i=1$ is maximized by setting $q_i=1/|A|$. (We can see that
+if there are $q_i\neq 1/|A|$, then there are two $q_{i}< q_{i+1}$,
+and one can see that setting both to $(q_{i}+ q_{i+1})/2$ increases
+the value.) Therefore we have that the $\rew(\tau)\geq\rew(\tau-1)$.
+
+Now we can continue by induction. For the induction, we can show the
+property for {\em any} remaining set of at most $k-1$ actions. The
+main issue is that \SuccesiveEliminationReset restarts from scratch,
+so we can use induction.
+\end{proof}

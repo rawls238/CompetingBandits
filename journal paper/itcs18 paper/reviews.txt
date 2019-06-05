@@ -1,0 +1,40 @@
+----------------------- REVIEW 1 ---------------------
+PAPER: 145
+TITLE: Competing bandits: learning under competition
+AUTHORS: Yishay Mansour, Aleksandrs Slivkins and Zhiwei Steven Wu
+
+
+----------- Overall evaluation -----------
+This paper discusses the interplay of exploration and competition for two competing principals. In most studies about multi-armed bandits there is only one principle, and his tasks are exploration and exploitation, so as to maximize his own reward. When there are two competing principles facing the same multi-armed bandit, a new task for a principle is to attract more users (i.e., to increase his market share), and the principles give all the reward to the users. This paper formalizes the problem by considering three different rationality models of the users/agents.
+
+In the first model, the users are rational in the classic sense and always choose the principle whose MAB algorithm leads to a higher expected reward. As shown by the paper, in this case the principles must use the dynamic greedy algorithm, which does not purposely explore. In the second model, the users choose the higher expected reward with probability 1-epsilon, and choose randomly (or choose the lower one) with probability epsilon. In this case, the authors show that the "better" (properly defined in the paper) algorithm will attract all users after sufficient amount of agents have arrived. In the third model, the probability for the users to choose the first algorithm is a smooth function on the reward difference of the two algorithms, but the probabilities are at least epsilon and at most 1-epsilon. The function is symmetric for the two algorithms. In this case, after sufficiently many agents, the better algorithm with attract each user with probability more than 1/2.
+
+The main take-home message of the paper is that there is an "Inverted-U" relationship between more rational users and better MAB algorithms used by the principles. When the users are completely irrational and choose arbitrarily, of course there is no need for the principles to use better algorithms. When the users are completely rational as considered by this paper, the principles actually cannot use better algorithms: roughly speaking, although such an algorithm has better regrets, it will not attract any user in the long run when competing with the dynamic greedy algorithm. When the users have some form of bounded rationality as formulated above, a principle should use a better MAB algorithms than his competitor.
+
+The problem considered by this paper is innovative, and makes a lot of sense when there are multiple competing principles. They have identified simple but meaningful rationality models for the users, to demonstrate the Inverted-U relationship, and the main message is very interesting. In sum, this paper is conceptually strong, and may attract others to work on the problem of competing principles. The technical part of the paper is not difficult, but non-trivial. The paper is well written, and readers who are not familiar with multi-armed bandits would also be able to get the main ideas and insights.
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 145
+TITLE: Competing bandits: learning under competition
+AUTHORS: Yishay Mansour, Aleksandrs Slivkins and Zhiwei Steven Wu
+
+
+----------- Overall evaluation -----------
+Multi-armed bandits meets dueling algorithms: two competitors select recommendation algorithms, and strategic users choose between the competitors to maximize their (myopic) expected gain. Intuitively, this biases the algorithms to be more greedy, favoring short-term gains (exploitation) over long-term learning (which requires exploration). In fact when the users are completely rational, the only way for a competitor to get a non-zero market share is by being completely greedy. The main theme of the paper is that when one relaxes users' rationality, by admitting models where they have some probability of choosing the recommendation algorithm that is a priori inferior, this improves the quality of equilibrium outcomes. In equilibrium, algorithms' "Bayesian instantaneous regret" must tend to zero at the asymptotically optimal rate.
+
+I think this is a very nice paper: an interesting new model, with the intuitions and take-away messages very nicely explained. The results are, broadly speaking, in accord with what one would expect on intuitive grounds, but obtaining the results requires careful modeling and substantial technical work.
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 145
+TITLE: Competing bandits: learning under competition
+AUTHORS: Yishay Mansour, Aleksandrs Slivkins and Zhiwei Steven Wu
+
+
+----------- Overall evaluation -----------
+The paper gives a new model and some basic results to study MAB problems when there is a competition between firms for users, and the firms using (or are considering) MAB algorithms to make recommendations to the users. The propsoed model and results illustrates the tradeoff between exploration and competition.
+
+I like this paper a lot. There are several new innovative ideas. Firstly, I think the problem is very important, losing customers to competitors is a primary concern for the firms who may want to consider using exploration for a better long term performance. So, there is a need for quantifying the impact of exploration on this important metric. But, it is highly nontrivial to come up with a model that is anlalyzable and interesting. This paper proposes a very interesting formulation in my opinion, as well as insightful results. I see hardmax vs hardmax&random vs. softmax to be a range of customer loyalty/brand loyalty that would not make customers leave just based on small differences in immediate expected reward.
+
+As is with any such new model, there are many design choices that can be questioned. Myopic customers is one such choice. Inherently, exploration is required for long term reward maximization, so it is bound to conflict with short term myopic customers. It will also be interesting to think about incentivizations to balance exploration, and other influences like "social" that may make customer stay and give more leeway to the firm for exploration.

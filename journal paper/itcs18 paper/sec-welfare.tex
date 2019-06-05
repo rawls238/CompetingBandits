@@ -1,0 +1,84 @@
+\asedit{We frame our contributions in terms of the relationship between \competitiveness and \rationality on one side, and adoption of better algorithms on the other. Recall that both \competitiveness (of the game between the two principals) and \rationality (of the agents) are controlled by the response function $\respF$.}
+
+\OMIT{ %%%%%%
+We frame our contributions in terms of the relationship between \competition and \innovation, \ie between the extent to which the game between the two principals is competitive, and the degree of innovation --- adoption of better that these models incentivize. \Competition is controlled via the response function $\respF$, and \innovation refers to the quality of the technology (MAB algorithms) adopted by the principals. The \competition vs. \innovation relationship is well-studied in the economics literature, and is commonly known to often follow an inverted-U shape, as in \reffig{fig:inverted-U} (see Section~\ref{sec:related-work} for citations). \Competition in our models is closely correlated with \rationality: the extent to which agents make rational decisions, and indeed \rationality is what $\respF$ controls directly.
+} %%%%%%%%
+
+\xhdr{Main story.}
+Our main story concerns the restricted competition game between the two principals where one allowed algorithm \alg is ``better" than the others. \asedit{We track whether and when \alg is chosen in an equilibrium.} We vary \competitiveness/\rationality by changing the response function from \HardMax (full rationality, very competitive environment) to \HardMaxRandom to  \SoftMaxRandom (less rationality and competition). Our conclusions are as follows:
+\begin{OneLiners}
+\item Under \HardMax, no innovation: \DynGreedy is chosen over \alg.
+\item Under \HardMaxRandom, some innovation:  \alg is chosen as long as it BIR-dominates.
+\item Under \SoftMaxRandom, more innovation: \alg is chosen as long as it weakly-BIR-dominates.%
+\footnote{This is a weaker condition, the better algorithm is chosen in a broader range of scenarios.}
+\end{OneLiners}
+These conclusions follow, respectively, from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax}. Further, \asedit{we consider the uniform choice between the principals. It corresponds to the least amount of rationality and competition, and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
+\footnote{On the other hand, if principals' utility is somewhat aligned with agents' welfare, as in \eqref{eq:general-utility}, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a very generic and well-known effect regarding economies of scale.}
+Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=1]
+      \draw[->] (-.5,0) -- (9.5,0) node[above] 
+        {\qquad\qquad Competitiveness/Rationality};
+      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithm in equilibrium};
+      \draw[scale=0.8,domain=0.5:9.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{3.5 - 0.15*(\x - 5)^2});
+     \node[below] at (1, 0) {\footnotesize \Uniform};
+     \node[below] at (3.9, 0) {\footnotesize \SoftMaxRandom};
+     \node[below] at (6, 0) {\footnotesize \HardMaxRandom};
+     \node[below] at (8, 0) {\footnotesize \HardMax};
+      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
+ \end{tikzpicture}
+
+\caption{The stylized inverted-U relationship in the ``main story".}
+\label{fig:inverted-U2}
+\end{center}
+\end{figure}
+
+
+\xhdr{Secondary story.}
+Let us zoom in on the symmetric  \HardMaxRandom model. \asedit{Competitiveness and rationality within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which goes smoothly between the two extremes of \HardMax ($\eps_0=0$) and the uniform choice ($\eps_0=\tfrac12$). Smaller $\eps_0$ corresponds to increased rationality and increased competitiveness.} For clarity, we assume that principal's utility is the number of agents.
+
+We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. \asedit{We are interested in the marginal utility of this switch. Then:}
+
+\begin{itemize}
+\item $\eps_0 = 0$ (\HardMax):~~~~ the marginal utility can be negative if \alg is \DynGreedy.
+
+\item $\eps_0$ near $0$:~~~~ only a small marginal utility can be guaranteed, as it may take a long time for $\alg'$ to ``catch up" with \alg, and hence less time to reap the benefits.
+
+\item ``medium-range" $\eps_0$:~~~~ large marginal utility, as $\alg'$ learns fast and gets most agents.
+
+\item $\eps_0$ near $\tfrac12$:~~~~ small marginal utility, as principal 1 gets most agents for free no matter what.
+\end{itemize}
+The familiar inverted-U shape is depicted in Figure~\ref{fig:inverted-U3}.
+
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=1]
+      \draw[->] (-.5,0) -- (9.5,0) node[above]  {$\eps_0$};
+      \draw[->] (0,-.5) -- (0,3) node[above] {marginal utility};
+      \draw[scale=0.8,domain=0.5:9.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{3.5 - 0.15*(\x - 5)^2});
+     \node[below] at (.6, 0) {\footnotesize \Uniform};
+     \node[above] at (.5, 0) {\footnotesize 0};
+     % \node[below] at (3.9, 0) {\footnotesize \SoftMaxRandom};
+     % \node[below] at (6, 0) {\footnotesize \HardMaxRandom};
+     \node[below] at (7.5,0) {\footnotesize \HardMax};
+     \node[above] at (7.5, 0) {\footnotesize 1/2};
+      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
+ \end{tikzpicture}
+
+\caption{The stylized inverted-U relationship from the ``secondary story"}
+\label{fig:inverted-U3}
+\end{center}
+\end{figure}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
