@@ -1,0 +1,252 @@
+
+In this section, we will consider the version in which
+the agents are fully rational, in the sense that their response function is \HardMax. We show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates.
+
+To make this more precise, let us say that two MAB algorithms \emph{deviate} at (local) step $n$ if there is an action $a\in A$ and \asedit{a set of step-$n$ histories of positive probability such that any history $h$ in this set} is feasible for both algorithms, and under this history the two algorithms choose action $a$ with different probability.
+
+\iffalse
+\begin{definition}
+  Suppose that an algorithm $\pi$ is not dynamic greedy. Then
+  {\em the first exploration} for $\pi$ is the first time step where
+  there is a non-zero probability that the recommended action has a
+  lower expectation than exploitation option.\sw{define...}
+\end{definition}
+\fi
+
+
+\begin{theorem}\label{thm:DG-dominance}
+Assume \HardMax response function with fair tie-breaking. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
+\end{theorem}
+
+\begin{corollary}\label{cor:DG-dominance}
+The competition game between principals has a unique Nash equilibirium: both principals choose \DynGreedy.
+\end{corollary}
+
+
+\begin{remark}
+This corollary holds under a more general model which allows time-discounting: namely, the utility of each principal $i$ in each global round $t$ is $U_{i,t}(r_t)$ if this principal is chosen, and $0$ otherwise, where $U_{i,t}(\cdot)$ is an arbitrary non-decreasing function with $U_{i,t}(0)>0$.
+\end{remark}
+
+\subsection{Proof of Theorem~\ref{thm:DG-dominance}}
+
+The proof starts with two auxiliary lemmas: that deviating from \DynGreedy implies a strictly smaller Bayesian-expected reward, and that \HardMax implies a ``sudden-death" property: if one agent chooses principal $1$ with certainty, then so do all subsequent agents do. \asedit{We re-use both lemmas in later sections, so we state them in sufficient generality.}
+
+
+\begin{lemma}\label{lm:DG-rew}
+\asedit{Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then $\rew_1(n_0)>\rew_2(n_0)$. This holds for any response function $\respF$.}
+\end{lemma}
+
+\asedit{Lemma~\ref{lm:DG-rew} does not rely on any particular shape of the response function because it only considers the performance of each algorithm without competition.}
+
+\begin{proof}[Proof of Lemma~\ref{lm:DG-rew}]
+Since the two algorithms coincide on the first $n_0-1$ steps, it follows by symmetry that histories $H_{1,n_0}$ and $H_{2,n_0}$ have the same distribution. We use a \emph{coupling argument}: w.l.o.g., we assume the two histories coincide,
+    $H_{1,n_0} = H_{2,n_0} = H$.
+
+At local step $n_0$, \DynGreedy chooses an action $a_{1,n_0} = a_{1,n_0}(H)$
+which maximizes the posterior mean reward given history $H$: for any realized history $h\in \support(H)$ and any action $a\in A$
+\begin{align}\label{eq:lm:DG-rew-1}
+ \PMR(a_{1,n_0} \mid H = h) \geq \PMR(a \mid H=h).
+\end{align}
+
+\ascomment{Rewrote the rest of the proof to account for positive-prob set of histories.}
+
+By assumption \eqref{eq:assn-distinct}, it follows that 
+\begin{align}\label{eq:lm:DG-rew-2}
+ \PMR(a_{1,n_0} \mid H = h) > \PMR(a \mid H=h)
+ \quad \text{for any $h\in \support(H)$ and $a\neq a_{1,n_0}(h)$.}
+\end{align}
+
+Since the two algorithms deviate at step $n_0$, there is a set $S\subset \support(H)$ of step-$n_0$ histories such that $\Pr[S]>0$ and any history $h\in S$ satisfies
+    $\Pr[a_{2,n_0}\neq a_{1,n_0} \mid H=h]>0$.
+Combining this with \eqref{eq:lm:DG-rew-2}, we deduce that 
+\begin{align}\label{eq:lm:DG-rew-3}
+ \PMR(a_{1,n_0} \mid H = h) > \E\left[ \mu_{a_{2,n_0}}\mid H=h \right]
+ \quad\text{for each history $h\in S$}.
+\end{align}
+Using \eqref{eq:lm:DG-rew-1} and \eqref{eq:lm:DG-rew-3} and integrating over realized histories $h$, we obtain
+    $\rew_1(n_0) > \rew_2(n_0)$.
+\end{proof}
+
+
+\begin{lemma}\label{lm:DG-sudden}
+\asedit{Consider \HardMax response function with $\respF(0)\geq\tfrac12$.} 
+Suppose \alg[1] is monotone, and $\PMR_1(t_0)>\PMR_2(t_0)$ for some global round $t_0$. Then $\PMR_1(t)>\PMR_2(t)$ for all subsequent rounds $t$.
+\end{lemma}
+
+\begin{proof}
+Let us use induction on round $t\geq t_0$, with the base case $t=t_0$. Let $\mN=\mN_{1,t_0}$ be the agents' posterior distribution for $n_{1,t_0}$, the number of global rounds before $t_0$ in which principal $1$ is chosen. By induction, all agents from $t_0$ to $t-1$ chose principal $1$, so $\PMR_2(t_0)= \PMR_2(t)$. Therefore,
+\[ \PMR_1(t)
+    = \Ex{n\sim \mN}{\rew_1(n+1+t-t_0)}
+    \geq \Ex{n\sim \mN}{\rew_1(n+1)}
+    =\PMR_1(t_0) > \PMR_2(t_0)= \PMR_2(t), \]
+where the first inequality holds because \alg[1] is monotone, and the second one is the base case.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:DG-dominance}]
+Since the two algorithms coincide on the first $n_0-1$ steps, it follows by symmetry that $\rew_1(n) = \rew_2(n)$ for any $n< n_0$.
+By Lemma~\ref{lm:DG-rew},
+    $\rew_1(n_0) > \rew_2(n_0)$.
+
+Recall that $n_i(t)$ is the number of global rounds $s<t$ in which principal $i$ is chosen, and $\posteriorN{i}{t}$ is the agents' posterior distribution for this quantity. By symmetry, each agent $t<n_0$ chooses a principal uniformly at random. It follows that
+    $\posteriorN{1}{n_0} = \posteriorN{2}{n_0}$
+(denote both distributions by $\mN$ for brevity), and $\mN(n_0-1)>0$.
+Therefore:
+\begin{align}
+\PMR_1(n_0)
+  &= \Ex{n\sim \mN} {\rew_1(n+ 1)}
+   = \sum_{n = 0}^{n_0-1} \mN(n) \cdot{\rew_1(n + 1)} \nonumber \\
+  & > \mN(n_0-1)\cdot {\rew_2(n_0)} + \sum_{n = 0}^{n_0-2}  \mN(n)\cdot{\rew_2(n + 1)}
+    \nonumber \\
+  &= \Ex{n\sim \mN}{\rew_2(n + 1)} = \PMR_2(n_0) \label{eq:pf:thm:DG-dominance}
+\end{align}
+So, agent $n_0$ chooses principal $1$. By Lemma~\ref{lm:DG-sudden} \asedit{(noting that \DynGreedy is monotone)}, all subsequent agents choose principal $1$, too.
+\end{proof}
+
+
+%\begin{theorem}
+%  Suppose that the agents break ties uniformly at random, that is
+%  $q=1/2$, then both principals playing \DynGreedy is the unique
+%  equilibrium.
+%\end{theorem}
+%
+%\begin{proof}
+%  Suppose that both principals play dynamic greedy. The result
+%  of Theorem~\ref{thm:DG-dominance} shows that there is no beneficial deviation
+%  for both principals, so this forms a pure strategy equilibrium.
+%
+%  Now we will show that no other strategy profile can form equilibrium
+%  in this game.  Suppose that both principals play some mixed
+%  strategies that places non-zero probability on algorithms other than
+%  dynamic greedy. We know one of the principals $p_j$ is getting no
+%  more than $T/2$ agents in expectation. If $p_j$ switch to playing
+%  only dynamic greedy, he can get strictly more than $T/2$ agents
+%  by Theorem~\ref{thm:DG-dominance}. Thus, such a strategy profile will not form
+%  an equilibrium.  Finally, suppose that $p_1$ plays dynamic greedy
+%  and $p_2$ plays algorithms other than dynamic greedy with non-zero
+%  probability. By Theorem~\ref{thm:DG-dominance}, we know that $p_2$ gets less
+%  than $T/2$ agents in expectation. This means switching to dynamic
+%  greedy will strictly improve the expected utility to $T/2$, so such
+%  strategy profile cannot form an equilibrium either.
+%\end{proof}
+
+
+\subsection{\HardMax with biased tie-breaking}
+\label{sec:HardMax-biased}
+
+The \HardMax model is very sensitive to the tie-breaking rule. For starters, if ties are  broken deterministically in favor of principal $1$, then principal 1 can get all agents no matter what the other principal does, simply by using \StaticGreedy.
+
+\begin{theorem}\label{thm:HardMax-hardTies}
+Assume \HardMax response function with $\respF(0)=1$ (ties are always broken in favor of principal $1$). If \alg[1] is \StaticGreedy, then all agents choose principal $1$.
+\end{theorem}
+
+\begin{proof}
+Agent $1$ chooses principal $1$ because of the tie-breaking rule. Since \StaticGreedy is trivially monotone, all the subsequent agents choose principal $1$ by an induction argument similar to the one in the proof of Lemma~\ref{lm:DG-sudden}.
+\end{proof}
+
+A more challenging scenario is when the tie-breaking is biased in favor of principal 1, but not deterministically so: $\respF(0)>\tfrac12$. Then this principal also has a ``winning strategy" no matter what the other principal does. Specifically, principal 1 can get all but the first few agents, under a mild technical assumption that \DynGreedy deviates from \StaticGreedy. Principal 1 can use \DynGreedy, or any other monotone MAB algorithm that coincides with \DynGreedy in the first few steps.
+
+%We can generalize the theorem top the case of $q >1/2$ if the
+%principal $p_1$ can guarantee better than the a priori best action to
+%all the agents following the second.
+
+
+\begin{theorem}\label{thm:HardMax-biased}
+Assume \HardMax response function with $\respF(0)>\tfrac12$ (\ie tie-breaking is biased in favor of principal $1$). Assume the prior $\mP$ is such that \DynGreedy deviates from \StaticGreedy starting from some step $n_0$. Suppose that principal $1$ runs a monotone MAB algorithm that coincides with \DynGreedy in the first $n_0$ steps. Then all agents $t\geq n_0$ choose principal $1$.
+\end{theorem}
+
+
+\begin{proof}
+The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
+
+Because of the biased tie-breaking, for each global round $t$ we have:
+\begin{align}\label{eq:thm:HardMax-biased-PMRtoPr}
+\text{if $\PMR_1(t)\geq \PMR_2(t)$ then $\Pr[i_t=1]>\tfrac12$.}
+\end{align}
+Recall that $i_t$ is the principal chosen in global round $t$.
+
+Let $m_0$ be the first step when \alg[2] deviates from \DynGreedy, or \DynGreedy deviates from \StaticGreedy, whichever comes sooner. \asedit{Then \alg[2], \DynGreedy and \StaticGreedy coincide on the first $m_0-1$ steps. Moreover, $m_0\leq n_0$ (since \DynGreedy deviates from \StaticGreedy at step $n_0$), so \alg[1] coincides with \DynGreedy on the first $m_0$ steps.
+
+So, $\rew_1(n)=\rew_2(n)$ for each step $n<m_0$, because \alg[1] and \alg[2] coincide on the first $m_0-1$ steps. Moreover, if \alg[2] deviates from \DynGreedy at step $m_0$ then
+    $\rew_1(m_0) > \rew_2(m_0)$ 
+by Lemma~\ref{lm:DG-rew}; else, we trivially have
+    $\rew_1(m_0) = \rew_2(m_0)$.} To summarize:
+\begin{align}\label{eq:thm:HardMax-biased-rew}
+    \rew_1(n)\geq\rew_2(n)\quad \text{for all steps $n\leq m_0$}.
+\end{align}
+
+We claim that $\Pr[i_t=1]>\tfrac12$ for all global rounds $t\leq m_0$. We prove this claim using induction on $t$. The base case $t=1$ holds by \eqref{eq:thm:HardMax-biased-PMRtoPr} and the fact that in step 1, \DynGreedy chooses the arm with the highest prior mean reward. For the induction step, we assume that $\Pr[i_t=1]>\tfrac12$ for all global rounds $t<t_0$, for some $t_0\leq  m_0$. It follows that distribution $\posteriorN{1}{t_0}$ stochastically dominates distribution $\posteriorN{2}{t_0}$.%
+\footnote{For random variables $X,Y$ on \R, we say that $X$ \emph{stochastically dominates} $Y$ if $\Pr[X\geq x] \geq \Pr[Y\geq x]$ for any $x\in \R$.}
+Observe that
+\begin{align}\label{eq:thm:HardMax-biased-PMR-aux}
+\PMR_1(t_0)
+  = \Ex{n\sim \posteriorN{1}{t_0}} {\rew_1(n+1)}
+  \geq \Ex{n\sim \posteriorN{2}{t_0}} {\rew_2(n+1)}
+  = \PMR_2(t_0).
+\end{align}
+So the induction step follows by \eqref{eq:thm:HardMax-biased-PMRtoPr}. Claim proved.
+
+Now let us focus on global round $m_0$, and denote $\mN_i = \posteriorN{i}{m_0}$.  By the above claim,
+\begin{align}\label{eq:thm:HardMax-biased-mN}
+\text{$\mN_1$ stochastically dominates $\mN_2$, and moreover
+    $\mN_i(m_0-1)>\mN_i(m_0-1)$.}
+\end{align}
+
+By definition of $m_0$, either (i) \alg[2] deviates from \DynGreedy starting from local step $m_0$, which implies $\rew_1(m_0)> \rew_2(m_0)$ by Lemma~\ref{lm:DG-rew}, or (ii) \DynGreedy deviates from \StaticGreedy starting from local step $m_0$, which implies $\rew_1(m_0)>\rew_1(m_0-1)$ by Lemma~\ref{dgmono}. In both cases, using \eqref{eq:thm:HardMax-biased-rew} and \eqref{eq:thm:HardMax-biased-mN}, it follows that the inequality in \eqref{eq:thm:HardMax-biased-PMR-aux} is strict for $t_0=m_0$.
+
+Therefore, agent $m_0$ chooses principal $1$, and by Lemma~\ref{lm:DG-sudden} so do all subsequent agents.
+\end{proof}
+
+
+% OLD PROOF (assuming alg1 coincides with DG on first two rounds, etc.
+% We consider two cases, depending on the arm $a_{2,1}$ that principal $2$ chooses in the same step. The interesting case is $a_{2,1}=1$.
+%Then agent $1$ selects principal $1$ with probability $q:=\respF(0)>\tfrac12$. Therefore, agent $2$ forms the following posterior mean rewards:
+%\begin{align*}
+%  \PMR_1(2) &= (1-q)\cdot \E[\mu_1] + q\cdot \rew_1(2)
+%    \EqComment{for principal 1}\\
+%  \PMR_2(2) &= q\cdot \E[\mu_1] + (1-q)\cdot \rew_2(2)
+%    \EqComment{for principal 2}.
+%\end{align*}
+%We know that
+%    $\rew_1(2) > \E[\mu_1]$
+%(\DynGreedy is strictly monotone in the first $2$ rounds)
+%from Lemma~\ref{dgmono}, and
+%    $\rew_1(2) \geq \rew_2(2)$
+%by Lemma~\ref{lm:DG-rew}. It follows that
+%    $\PMR_1(2)>\PMR_2(2)$,
+%and consequently agent $2$ chooses principal $1$. The subsequent agents choose principal $1$ by Lemma~\ref{lm:DG-sudden}.
+%
+%The remaining case is $a_{2,1}\neq 1$: principal $p_2$ does not recommend arm $1$ in the first step. Since all other arms have a strictly lower prior mean reward, agent $1$ chooses principal $1$. The subsequent agents choose principal $1$ by Lemma~\ref{lm:DG-sudden}.
+
+
+
+% \begin{lemma}
+%   Let $\mu^2_{DG}$ the expected reward of action of \DynGreedy
+%   in the second step. Then $\mu^2_{DG} > \mu_1$.
+% \end{lemma}
+
+% \begin{proof}
+%   \sw{todo. This requires an assumption that the second arm has
+%     non-zero probability of beating the first one.}
+% \end{proof}
+
+
+
+% Steven's proof for a more general version with alg1 = BIC algo
+%Agent $1$ chooses principal $1$ because of the tie-breaking rule,
+%  Since principal $p_1$ in the first step recommends arm 1, the agent
+%  selects principal $p_1$ (due to the tie breaking rule).  Agent $2$
+%  knows that agent $1$ selected $p_1$. Because of BIC, she knows $p_1$
+%  will offer reward no lower than $p_2$ in expectation.  By induction,
+%  all the agents select principal $p_1$.
+
+
+
+%\sw{We also have an observation saying if one principal starts with a
+%  better dynamic greedy will just dominate the game. It could do some
+%  amount of exploration while having better Bayesian per-round regret
+%  than the other principal. This means the other principal will never
+%  have any agents arriving for learning.}
+
+%%% Local Variables:
+%%% TeX-master: "main.tex"
+%%% End: 

@@ -1,0 +1,247 @@
+This section is devoted to the \SoftMaxRandom model. We recover a positive result under the assumptions from Theorem~\ref{thm:random-clean} (albeit with a weaker conclusion), and then proceed to a much more challenging result under weaker assumptions. We start with a formal definition:
+
+\begin{definition}\label{def:SoftMax}
+A response function $\respF$ is \SoftMaxRandom if the following conditions hold:
+\begin{OneLiners}
+\item  $\respF(\cdot)$ is bounded away from $0$ and $1$:
+    $\respF(\cdot)\in [\eps,1-\eps]$ for some $\eps\in (0,\tfrac12)$,
+\item  the response function
+ $\respF(\cdot)$ is ``smooth" around $0$:
+ \begin{align}\label{eq:SoftMax-smooth}
+ \exists\, \text{constants $\delta_0,c_0,c'_0>0$}
+    \qquad \forall x\in [-\delta_0,\delta_0] \qquad
+    c_0 \leq \respF'(x) \leq c'_0.
+ \end{align}
+\item fair tie-breaking: $\respF(0)=\tfrac12$.
+\end{OneLiners}
+\end{definition}
+
+\begin{remark}
+\asedit{This definition is fruitful when parameters $c_0$ and $c_0'$ are close to $\tfrac12$. Throughout, we assume that \alg[1] is better than \alg[2], and obtain results parameterized by $c_0$. By symmetry, one could assume that \alg[2] is better than \alg[1], and obtain similar results parameterized by $c_0'$.}
+\end{remark}
+
+Our first result is a version of Theorem~\ref{thm:random-clean}, with the same assumptions about the algorithms and essentially the same proof. The conclusion is much weaker: we can only guarantee that each agent $t\geq n_0$ chooses principal 1 with probability slightly larger than $\tfrac12$. This is essentially unavoidable in a typical case when both algorithms satisfy $\BIR(n)\to 0$, by Definition~\ref{def:SoftMax}.
+
+\begin{theorem}\label{thm:SoftMax-weak}
+  Assume \SoftMaxRandom response function. Suppose \alg[1] has better
+  \BIR in the sense of \eqref{eq:random-better-weaker}, and \alg[2]
+  satisfies the condition \eqref{eq:random-assn}. Then each agent
+  $t\geq n_0$ chooses principal $1$ with probability
+\begin{align}\label{eq:thm:SoftMax-weak}
+     \Pr[i_t = 1]\geq \tfrac12 +  \tfrac{c_0}{4}\; \BIR_2(t).
+\end{align}
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+We follow the steps in the proof of Theorem~\ref{thm:random-clean} to derive \begin{align*}
+\PMR_1(t) - \PMR_2(t)
+    &\geq \BIR_2(t)/2 -q,
+    \quad \text{where $q = \exp(-\eps_0 t/12)$.}
+\end{align*}
+This is at least $\BIR_2(t)/4$ by \eqref{eq:random-assn}. Then \eqref{eq:thm:SoftMax-weak} follows by the smoothness condition \eqref{eq:SoftMax-smooth}.
+\end{proof}
+
+\newcommand{\BReg}{\term{BReg}}
+
+We recover a version of Corollary~\ref{cor:random}, if each principal's utility is the number of users (rather than the more general model in \eqref{eq:general-utility}). We also need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
+\begin{align}\label{eq:SoftMax-BReg}
+\BReg(n) := n\cdot \E_{\mu\sim\priorMu}
+    \left[ \max_{a\in A} \mu_a\right] - \sum_{n=1}^n \rew(n')
+    = \sum_{n'=1}^n \BIR(n').
+\end{align}
+
+\begin{corollary}\label{cor:SoftMax}
+Assume that the response function is \SoftMaxRandom, and each principal's  utility is the number of users.
+%
+%Suppose principals can only choose algorithms from $\mA\cup \{\alg\}$, where $\mA\cup \{\alg\}$ is a finite set of monotone MAB algorithms such that each algorithm in $\mA$ satisfies \eqref{eq:random-assn} and $\BReg(n)\to \infty$, and is ``dominated" by \alg in the sense of \eqref{eq:random-better-messy}.
+%
+Consider the restricted competition game with special algorithm \alg, and assume that all other allowed algorithms satisfy $\BReg(n)\to \infty$. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium: both principals choose \alg.
+\end{corollary}
+
+Further, we prove a much more challenging result in which the
+condition \eqref{eq:random-better-weaker} is replaced with a much
+weaker ``BIR-dominance'' condition. For clarity, we will again assume
+that both algorithms are well-defined for an infinite time
+horizon. The \emph{weak BIR dominance} condition says there exist
+constants $\beta_0, \alpha_0\in (0, 1/2)$ and $n_0$ such that
+ \begin{align}\label{eq:SoftMax-better}
+   (\forall n\geq n_0) \quad
+   \frac{\BIR_1((1-\beta_0)\, n)}{\BIR_2(n)} <1-\alpha_0.
+ \end{align}
+% for some $n_0(T)\in \polylog(T)$ and constants
+% $\beta_0,\alpha_0\in (0, 1/2)$,
+% \begin{align}\label{eq:SoftMax-better}
+% (\forall n\geq n_0(T)) \quad
+% \frac{\BIR_1((1-\beta_0)\, n\mid T)}{\BIR_2(n\mid T)} <1-\alpha_0.
+% \end{align}
+ If this holds, we say that \alg[1] \emph{weakly BIR-dominates}
+ \alg[2]. Note that the condition \eqref{eq:random-better-messy}
+ involves sufficiently small multiplicative factors (resp., $\eps_0/2$
+ and $\tfrac12$), the new condition replaces them with factors that
+ can be arbitrarily close to $1$.
+
+ We make a mild assumption on \alg[1] that its $\BIR_1(n)$ tends to
+ 0. Formally, for any $\eps > 0$, there exists some $n(\eps)$ such
+ that
+ \begin{align}\label{eq:so-mild}
+   (\forall n\geq n(\eps)) \qquad \BIR_1(n) \leq \eps.
+ \end{align}
+ We also require a slightly stronger version of the technical
+ assumption~\eqref{eq:random-assn}:%  for any $\eps > 0$, there exists
+ % $n(\eps)$ such that for
+for some $n_0$,
+\begin{align}\label{eq:SoftMax-assn-strong}
+ % (\forall n\geq n(\eps)) \qquad
+ %  \BIR_2(n) > e^{-\eps n}. %used to be 4exp( -\eps n/6)
+(\forall n\geq n_0) \qquad 
+\BIR_2(n) \geq \frac{4}{\alpha_0} \exp \left( \frac{-\min\{\eps_0, 1/8\} n}{12}\right)
+\end{align}
+
+
+
+
+\begin{theorem}\label{thm:SoftMax-strong}
+  Assume the \SoftMaxRandom response function. Suppose \alg[1]
+  weakly-BIR-dominates \alg[2], \alg[1] satisfies \eqref{eq:so-mild},
+  and \alg[2] satisfies \eqref{eq:SoftMax-assn-strong}. Then there
+  exists some $t_0$ such that each agent $t\geq t_0$ chooses principal
+  $1$ with probability
+\begin{align}\label{eq:thm:SoftMax-strong}
+     \Pr[i_t = 1]\geq \tfrac12 +  \tfrac{c_0\alpha_0}{4}\; \BIR_2(t).
+\end{align}
+\end{theorem}
+
+
+
+
+The main idea behind our proof is that even though \alg[1] may have a
+slower rate of learning in the beginning, it will gradually catch up
+and surpass \alg[2]. We will describe this process in two phases. In
+the first phase, \alg[1] receives a random agent with probability at
+least $\respF(-1) = \eps_0$ in each round. Since $\BIR_1$ tends to 0,
+the difference in \BIR{s} between the two algorithms is also
+diminishing. Due to the \SoftMaxRandom response function, \alg[1]
+attracts each agent with probability at least $1/2 - O(\beta_0)$ after
+a sufficient number of rounds. Then the game enters the second phase:
+both algorithms receive agents at a rate close to $\tfrac12$, and the
+fractions of agents received by both algorithms --- $n_1(t)/t$ and
+$n_2(t)/t$ --- also converge to $\tfrac12$. At the end of the second
+phase and in each global round afterwards, the counts $n_1(t)$ and
+$n_2(t)$ satisfy the weak BIR-dominance condition, in the sense that
+they both are larger than $n_0$ and $n_1(t)\geq (1-\beta_0)\; n_2(t)$.
+At this point, \alg[1] actually has smaller $\BIR$, which reflected in the {\PMR}s eventually. Accordingly, from then on \alg[1]
+attracts agents at a rate slightly larger than $\tfrac12$. We prove
+that the ``bump'' over $\tfrac12$ is at least on the order of
+$\BIR_2(t)$.
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:SoftMax-strong}]
+  Let $\beta_1 = \min\{c_0'\delta_0, \beta_0/20\}$ with $\delta_0$
+  defined in~\eqref{eq:SoftMax-smooth}.  Recall each agent chooses
+  \alg[1] with probability at least $\respF(-1)= \eps_0$.  By
+  condition \eqref{eq:so-mild} and \eqref{eq:SoftMax-assn-strong},
+  there exists some sufficiently large $T_1$ such that for any
+  $t\geq T_1$, $\BIR_1(\eps_0 T_1/2) \leq \beta_1/c_0'$ and
+  $\BIR_2(t) > e^{-\eps_0 t/12}$. Moreover, for any $t\geq T_1$, we
+  know $\E[n_1(t+1)] \geq \eps_0\,t $, and by the Chernoff Bounds
+  (Theorem~\ref{thm:chernoff}), we have $n_1(t+1) \geq \eps_0 t/2$
+  holds with probability at least $1 - q_1(t)$ with
+  $q_1(t) = \exp(-\eps_0 t/12) < \BIR_2(t)$. It follows that for any $t\geq T_1$,
+\begin{align*}
+  \PMR_2(t) - \PMR_1(t) &= \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}{\BIR_1(m_1+ 1) - \BIR_2(m_2+1)} \\
+                        &\leq q_1(t)  + \Ex{m_1\sim \posteriorN{1}{t}}{\BIR_1(m_1+ 1)\mid m_1 \geq \eps_0 t/2 - 1 } - \BIR_2(t)\\
+                        &\leq \BIR_1(\eps_0 T_1/2) \leq \beta_1/c_0'
+\end{align*}
+% where the second inequality follows from~\eqref{eq:random-assn}.
+Since the response function $\respF$ is $c_0'$-Lipschitz in the
+neighborhood of $[-\delta_0, \delta_0]$, each agent after round $T_1$
+will choose \alg[1] with probability at least
+\[
+  p_t \geq \frac{1}{2} - c_0'\left(\PMR_2(t) - \PMR_1(t)\right) \geq
+  \frac{1}{2} - \beta_1.
+\]
+
+Next, we will show that there exists a sufficiently large $T_2$ such
+that for any $t\geq T_1 + T_2$, with high probability
+$n_1(t) > \max\{n_0, (1 - \beta_0)n_2(t)\}$, where $n_0$ is defined
+in~\eqref{eq:SoftMax-better}. %  Let us first lower bound the number of
+% agents received by \alg[1] after some number of rounds $t = T_1 + T'$
+% for any $T' \geq T_1$. 
+Fix any $t \geq T_1 + T_2$. 
+Since each agent chooses \alg[1] with probability at least
+$1/2 - \beta_1$, by Chernoff Bounds (Theorem~\ref{thm:chernoff}) we
+have with probability at least $1 - q_2(t)$ that the number of agents
+that choose \alg[1] is at least $\beta_0(1/2 - \beta_1)t/5$, where the
+function
+$$
+q_2(x) = \exp\left( \frac{-(1/2 - \beta_1)(1 - \beta_0/5)^2x}{3} \right).
+$$
+Note that the number of agents received by \alg[2] is at most
+$T_1 + (1/2 + \beta_1)t + (1/2 - \beta_1)(1 - \beta_0/5)t$.
+
+Then as long as
+% $T_2 \geq \max\left\{\frac{3T_1}{(1 - \beta_0)}, 8 n_0\right\}$, we
+% can guarantee that for any $t \geq T_1 + T_2$,
+% $n_1(t) > n_2(t) (1 - \beta_0)$ and $n_1(t) > n_0$ with probability at
+% least $1 - q_2(t)$.
+$T_2 \geq \frac{5T_1}{\beta_0}$, we can guarantee that
+$n_1(t) > n_2(t) (1 - \beta_0)$ and $n_1(t) > n_0$ with probability at
+least $1 - q_2(t)$ for any $t \geq T_1 + T_2$.
+% for any $t\geq T_1 + T_2$, as long as $T_2 \geq .$ Moreover, to
+% guarantee that , we will just need $T_2 \geq$.  Finally, we will
+% argue that in each round $t \geq T_1 + T_2$, we recover the
+% guarantee in \eqref{eq:thm:SoftMax-strong}.
+% % \[
+% %   \Pr[i_t = 1] \geq \frac{1}{2} + \frac{c_0\alpha_0\BIR_2(t)}{4}.
+% % \]
+Note that the weak BIR-dominance condition
+in~\eqref{eq:SoftMax-better} implies that for any $t\geq T_1 + T_2$
+with probability at least $1 - q_2(t)$,
+\[
+  \BIR_1(n_1(t)) < (1- \alpha_0)\BIR_2(n_2(t)).
+\]
+It follows that for any $t\geq T_1 + T_2$,
+\begin{align*}
+  \PMR_1(t) - \PMR_2(t) &= \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}{\BIR_2(m_2+ 1) - \BIR_1(m_1+1)} \\
+                        &\geq (1 - q_2(t))\alpha_0 \BIR_2(t) - q_2(t)\\
+                        &\geq \alpha_0 \BIR_2(t)/4
+\end{align*}
+where the last inequality holds as long as
+$q_2(t) \leq \alpha_0\BIR_2(t)/4$, and is implied by the condition
+in~\eqref{eq:SoftMax-assn-strong} as long as $T_2$ is sufficiently
+large. Hence, by the definition of our \SoftMaxRandom response
+function and assumption in~\eqref{eq:SoftMax-smooth}, we have
+\[
+  \Pr[i_t = 1] \geq \frac{1}{2} + \frac{c_0\alpha_0\BIR_2(t)}{4}. \qedhere
+\]
+\end{proof}
+
+
+
+Similar to the condition \eqref{eq:random-better-weaker}, we can also
+generalize the weak BIR-dominance condition \eqref{eq:SoftMax-better}
+to handle the dependence on $T$: there exist some $T_0$, a function
+$n_0(T)\in \polylog(T)$, and constants $\beta_0,\alpha_0\in (0, 1/2)$, such that 
+\begin{align}\label{eq:SoftMax-better-weaker}
+(\forall T\geq T_0,  n\geq n_0(T)) \quad
+\frac{\BIR_1((1-\beta_0)\, n\mid T)}{\BIR_2(n\mid T)} <1-\alpha_0.
+\end{align}
+
+We also provide a version of Theorem~\ref{thm:SoftMax-weak} under this
+more general weak BIR-dominance condition; its proof is very similar
+and is omitted. The following is just a direct consequence of
+Theorem~\ref{thm:SoftMax-weak} with this general condition.\sw{added}
+
+
+
+\begin{corollary}\label{cor:SoftMax-strong}
+Assume that the response function is \SoftMaxRandom, and each principal's  utility is the number of users. Consider the restricted competition game in which the special algorithm \alg weakly-BIR-dominates the other allowed algorithms, and the latter satisfy $\BReg(n)\to \infty$. Then, for any sufficiently large time horizon $T$, there is a unique Nash equilibrium: both principals choose \alg.
+\end{corollary}
+
+
+%If both $\BIR_1()$ and $\BIR_2()$ are of the form $\tilde{\Theta}(n^{-\gamma})$, $\gamma>0$, then the old condition requires $\BIR_1(\cdot)$ to be better by constant multiplicative factor $C$, with $C$ sufficiently large, whereas the new condition allows any $C>1$.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

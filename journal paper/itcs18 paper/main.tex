@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+
+\usepackage{slivkins-setup,slivkins-theorems}
+
+\usepackage{url,fullpage}
+
+\usepackage{kpfonts}
+\usepackage[round]{natbib}
+
+%\documentclass[format=acmsmall, review=false]{acmart}
+%\usepackage{acm-ec-17}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{tikz} % SW: Added for plots
+
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+% a very useful package for edits and comments, from David Kempe (USC)
+%\usepackage{color-edits}
+\usepackage[suppress]{color-edits}  % use this to suppress the package
+\addauthor{as}{red}      % as for Alex
+\addauthor{ym}{cyan}    % ym for Yishay
+\addauthor{sw}{blue}   % sw for Steven
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+\newcommand{\sw}[1]{\swcomment{#1}} % for compatibility with Steven's macro
+
+
+\DeclareMathOperator*{\Expectation}{\mathbb{E}}
+\newcommand{\Ex}[2]{\Expectation_{#1}\left[#2\right]}
+
+
+% notation
+%%% advanced notation
+\newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
+\newcommand{\OPT}{\term{OPT}}
+\newcommand{\rew}{\term{rew}}  % Bayesian-expected reward after n local rounds
+\newcommand{\PMR}{\term{PMR}} % posterior mean reward
+\newcommand{\support}{\term{support}}
+
+\newcommand{\BIR}{\term{BIR}} % Bayesian Instantaneous Regret
+\newcommand{\regret}{R^{\term{inst}}} % regret
+\newcommand{\regretWC}{\regret_{\term{wc}}} % regret
+
+% response function
+\newcommand{\respF}{f_{\term{resp}}}
+\newcommand{\respEps}{\eps_\term{resp}}
+
+\newcommand{\HardMax}{\term{HardMax}}
+\newcommand{\HardMaxRandom}{\term{HardMax\&Random}}
+\newcommand{\SoftMaxRandom}{\term{SoftMax}}
+\newcommand{\Uniform}{\term{Uniform}}
+\newcommand{\Random}{\term{Random}}
+
+\newcommand{\StaticGreedy}{\term{StaticGreedy}}
+\newcommand{\DynGreedy}{\term{DynamicGreedy}}
+\newcommand{\DynamicGreedy}{\term{DynamicGreedy}}
+
+\newcommand{\termSub}[2]{\ensuremath{\mathtt{#1}_{#2}}\xspace}
+\newcommand{\alg}[1][]{\termSub{alg}{#1}}
+%\newcommand{\prin}[1][]{\termSub{prin}{#1}}  % principal
+\newcommand{\agent}[1][]{\termSub{agent}{#1}}
+
+% priors and posteriors
+\newcommand{\prior}{\ensuremath{\mP}\xspace}
+\newcommand{\priorMu}{\ensuremath{\prior_\mathtt{mean}}\xspace}
+\newcommand{\posteriorN}[2]{\mN_{#1,#2}}  % \posteriorN{principal}{round}
+
+% rationality / innovation / competition
+\newcommand{\termTXT}[1]{{\em {#1}}\xspace}
+
+\newcommand{\rationality}{\termTXT{rationality}}
+\newcommand{\Rationality}{\termTXT{Rationality}}
+\newcommand{\innovation}{\termTXT{innovation}}
+\newcommand{\Innovation}{\termTXT{Innovation}}
+\newcommand{\competition}{\termTXT{competition}}
+\newcommand{\Competition}{\termTXT{Competition}}
+\newcommand{\competitiveness}{\termTXT{competitiveness}}
+\newcommand{\exploration}{\termTXT{exploration}}
+\newcommand{\Exploration}{\termTXT{Exploration}}
+
+\title{Competing bandits: learning under competition%
+\footnote{This research has been done while Y. Mansour was co-affiliated with Microsoft Research, and while Z.S. Wu was a graduate student at University of Pennsylvania.}}
+
+\author{Yishay Mansour%
+~\thanks{Tel Aviv University.
+Email: {\tt  mansour@tau.ac.il}.}
+\and
+Aleksandrs Slivkins%
+~\thanks{Microsoft Research, New York, NY, USA.
+Email: {\tt slivkins@microsoft.com}.} \and
+Zhiwei Steven Wu%
+~\thanks{Microsoft Research, New York, NY, USA.
+Email: {\tt zhiww@microsoft.com}.}
+}
+
+\date{September 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:intro}
+\input{sec-intro}
+
+\section{Related work}
+\label{sec:related-work}
+\input{sec-related-work}
+
+
+\section{Our model and preliminaries}
+\label{sec:model}
+\input{sec-model}
+
+\section{Full rationality (HardMax)}
+\label{sec:rational}
+\input{sec-rational}
+
+\section{Relaxed rationality: HardMax \& Random}
+\label{sec:random}
+\input{sec-random}
+
+\section{SoftMax response function}
+\label{sec:soft}
+\input{sec-soft}
+
+\section{Economic implications}
+\label{sec:welfare}
+\input{sec-welfare}
+
+\section*{Acknowledgements}
+The authors would like to thank Glen Weyl for discussions of related work in economics.
+
+% Bibliography
+\bibliographystyle{plainnat}
+\begin{small}
+\bibliography{bib-abbrv,bib-AGT,bib-bandits,bib-slivkins,bib-random,bib-ML}
+\end{small}
+
+\appendix
+
+\section{Background on multi-armed bandits}
+\label{app:examples}
+\input{app-examples}
+
+\section{Non-degeneracy via a random perturbation}
+\label{app:perturb}
+\input{app-perturb}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main.tex"
+%%% End:

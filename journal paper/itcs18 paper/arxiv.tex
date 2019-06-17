@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{tikz} % SW: Added for plots
+
+\usepackage{fullpage}
+\usepackage{kpfonts}
+ \usepackage{url}
+
+% call this *before* "algorithm2e"
+\usepackage[round]{natbib}
+
+
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+
+\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{natbib}
+%\usepackage{cleveref}
+\usepackage{slivkins-setup}
+
+\definecolor{DarkGreen}{rgb}{0.1,0.5,0.1}
+\definecolor{DarkRed}{rgb}{0.5,0.1,0.1}
+\definecolor{DarkBlue}{rgb}{0.1,0.1,0.5}
+\usepackage[]{hyperref}
+\hypersetup{
+    unicode=false,          % non-Latin characters in Acrobat's bookmarks
+    pdftoolbar=true,        % show Acrobat toolbar?
+    pdfmenubar=true,        % show Acrobat menu?
+    pdffitwindow=false,      % page fit to window when opened
+    pdftitle={},    % title
+    pdfauthor={}
+    pdfsubject={},   % subject of the document
+    pdfnewwindow=true,      % links in new window
+    pdfkeywords={keywords}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=DarkRed,          % color of internal links
+    citecolor=DarkGreen,        % color of links to bibliography
+    filecolor=DarkRed,      % color of file links
+    urlcolor=DarkBlue,          % color of external links
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{claim}[theorem]{Claim}
+% \theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+
+
+
+% a very useful package for edits and comments, from David Kempe (USC)
+\usepackage{color-edits}
+%\usepackage[suppress]{color-edits}  % use this to suppress the package
+\addauthor{as}{red}      % as for Alex
+\addauthor{ym}{blue}    % ym for Yishay
+\addauthor{sw}{cyan}   % sw for Steven
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+\newcommand{\sw}[1]{\swcomment{#1}} % for compatibility with Steven's macro
+
+
+\DeclareMathOperator*{\Expectation}{\mathbb{E}}
+\newcommand{\Ex}[2]{\Expectation_{#1}\left[#2\right]}
+
+
+% notation
+%%% advanced notation
+\newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
+\newcommand{\OPT}{\term{OPT}}
+\newcommand{\rew}{\term{rew}}  % Bayesian-expected reward after n local rounds
+\newcommand{\PMR}{\term{PMR}} % posterior mean reward
+\newcommand{\support}{\term{support}}
+
+\newcommand{\BIR}{\term{BIR}} % Bayesian Instantaneous Regret
+\newcommand{\regret}{R^{\term{inst}}} % regret
+\newcommand{\regretWC}{\regret_{\term{wc}}} % regret
+
+% response function
+\newcommand{\respF}{f_{\term{resp}}}
+\newcommand{\respEps}{\eps_\term{resp}}
+
+\newcommand{\HardMax}{\term{HardMax}}
+\newcommand{\HardMaxRandom}{\term{HardMax\&Random}}
+\newcommand{\SoftMaxRandom}{\term{SoftMax}}
+\newcommand{\Uniform}{\term{Uniform}}
+\newcommand{\Random}{\term{Random}}
+
+\newcommand{\StaticGreedy}{\term{StaticGreedy}}
+\newcommand{\DynGreedy}{\term{DynamicGreedy}}
+\newcommand{\DynamicGreedy}{\term{DynamicGreedy}}
+
+\newcommand{\termSub}[2]{\ensuremath{\mathtt{#1}_{#2}}\xspace}
+\newcommand{\alg}[1][]{\termSub{alg}{#1}}
+%\newcommand{\prin}[1][]{\termSub{prin}{#1}}  % principal
+\newcommand{\agent}[1][]{\termSub{agent}{#1}}
+
+% priors and posteriors
+\newcommand{\prior}{\ensuremath{\mP}\xspace}
+\newcommand{\priorMu}{\ensuremath{\prior_\mathtt{mean}}\xspace}
+\newcommand{\posteriorN}[2]{\mN_{#1,#2}}  % \posteriorN{principal}{round}
+
+% rationality / innovation / competition
+\newcommand{\termTXT}[1]{{\em {#1}}\xspace}
+
+\newcommand{\rationality}{\termTXT{rationality}}
+\newcommand{\Rationality}{\termTXT{Rationality}}
+\newcommand{\innovation}{\termTXT{innovation}}
+\newcommand{\Innovation}{\termTXT{Innovation}}
+\newcommand{\competition}{\termTXT{competition}}
+\newcommand{\Competition}{\termTXT{Competition}}
+\newcommand{\exploration}{\termTXT{exploration}}
+\newcommand{\Exploration}{\termTXT{Exploration}}
+
+\begin{document}
+\title{Competing Bandits: Learning under Competition}
+
+
+\author{Yishay Mansour\thanks{Tel Aviv University. Email: mansour@tau.ac.il}
+ \and Aleksandrs Slivkins\thanks{Microsoft Research-New York City. Email: slivkins@microsoft.com}
+ \and Zhiwei Steven Wu\thanks{University of Pennsylvania. Email: wuzhiwei@cis.upenn.edu} }
+
+\date{February 2017}
+
+
+\maketitle
+
+% abstract must come before \maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:intro}
+\input{sec-intro}
+
+\section{Related work}
+\label{sec:related-work}
+\input{sec-related-work}
+
+
+\section{Basic model and preliminaries}
+\label{sec:model}
+\input{sec-model}
+
+\section{Full rationality (HardMax)}
+\label{sec:rational}
+\input{sec-rational}
+
+\section{Relaxed rationality: HardMax \& Random}
+\label{sec:random}
+\input{sec-random}
+
+\section{SoftMax response function}
+\label{sec:soft}
+\input{sec-soft}
+
+\section{Economic implications}
+\label{sec:welfare}
+\input{sec-welfare}
+
+\paragraph{Acknowledgment}{ The authors would like to thank Glen Weyl
+  for discussions of related work in economics.  }
+
+
+% Bibliography
+% \bibliographystyle{ACM-Reference-Format}
+ \bibliographystyle{plainnat}
+\bibliography{bib-abbrv-short,bib-AGT,bib-bandits,bib-slivkins,bib-random,bib-ML}
+
+\appendix
+
+\section{Background on multi-armed bandits}
+\label{app:examples}
+\input{app-examples}
+
+
+
+
+
+
+\end{document} 
