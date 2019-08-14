@@ -41,8 +41,6 @@ We follow the steps in the proof of Theorem~\ref{thm:random-clean} to derive \be
 This is at least $\BIR_2(t)/4$ by \eqref{eq:random-assn}. Then \eqref{eq:thm:SoftMax-weak} follows by the smoothness condition \eqref{eq:SoftMax-smooth}.
 \end{proof}
 
-\newcommand{\BReg}{\term{BReg}}
-
 We recover a version of Corollary~\ref{cor:random}, if each principal's utility is the number of users (rather than the more general model in \eqref{eq:general-utility}). We also need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
 \begin{align}\label{eq:SoftMax-BReg}
 \BReg(n) := n\cdot \E_{\mu\sim\priorMu}
@@ -230,7 +228,7 @@ $n_0(T)\in \polylog(T)$, and constants $\beta_0,\alpha_0\in (0, 1/2)$, such that
 We also provide a version of Theorem~\ref{thm:SoftMax-weak} under this
 more general weak BIR-dominance condition; its proof is very similar
 and is omitted. The following is just a direct consequence of
-Theorem~\ref{thm:SoftMax-weak} with this general condition.\sw{added}
+Theorem~\ref{thm:SoftMax-weak} with this general condition
 
 
 

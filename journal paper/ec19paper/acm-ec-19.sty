@@ -1,0 +1,27 @@
+
+%\setcopyright{none}
+%\acmConference{EC '19}{June 24--28, 2019}{Phoenix, AZ, USA}
+%\acmYear{2019}
+%\copyrightyear{2019}
+%%\acmISBN{978-1-4503-4527-9/17/06}
+%%\acmDOI{http://dx.doi.org/10.1145/3033274.3033277}
+%\acmPrice{}
+\startPage{1}
+\settopmatter{printacmref=false, printccs=false, printfolios=false}
+\fancypagestyle{firstpagestyle}{% needed to override acmart
+	\renewcommand{\headrulewidth}{0pt}%
+	\fancyhf{}%
+}
+\fancypagestyle{acmec}{% the header and footer styles for every other page
+	\renewcommand{\headrulewidth}{0pt}%
+	\fancyhf{}%
+	\fancyhead[C]{\footnotesize{\mbox{\shortauthors}}}
+	\fancyhead[R]{\thepage}%
+}
+\pagestyle{acmec}
+%\thispagestyle{standardpagestyle}
+\renewcommand{\footnotetextcopyrightpermission}[1]{\thankses}%}
+
+% \setcitestyle{authoryear}
+\setcitestyle{acmnumeric}
+\let\citet\citep

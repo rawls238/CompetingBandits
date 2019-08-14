@@ -1,0 +1,81 @@
+\documentclass[../competing_bandits_with_appendix.tex]{subfiles}
+\begin{document}
+
+\section{Data as a Barrier to Entry}\label{sec:barriers}
+
+\OMIT{
+\gaedit{Even though welfare is highest in the temporary monopoly case there are other reasons one may worry about a single firm having a substantial market share. In this section we explore what drives the substantial market share of the temporary monopolist and discuss how this relates to thinking about data as a barrier to entry.}\swcomment{maybe articulate the ``other'' reasons?}
+}
+
+%We explore what factors drive the large market share for the incumbent in the temporary monopoly model.
+
+Under temporary monopoly, the incumbent can explore without incurring immediate reputational costs, and build up a high reputation before the entrant appears. Thus, the early entry gives the incumbent both a \textit{data} advantage and a \textit{reputational} advantage over the entrant. We explore which of the two factors is more significant.  Our findings provide a quantitative insight into the role of the classic ``first mover advantage" phenomenon in the digital economy.
+
+%Second, our findings provide a viewpoint in terms of thinking about the role that data can play as a competitive advantage.
+
+For a more succinct terminology, recall that the incumbent enjoys an extended warm start of $X+T_0$ rounds. Call the first $X$ of these rounds the \emph{monopoly period} (and the rest is the proper ``warm start"). The rounds when both firms are competing for customers are called \emph{competition period.}
+
+We run two additional experiments to isolate the effects of the two
+advantages mentioned above. The \emph{data-advantage experiment} focuses on the data advantage by, essentially, erasing the reputation advantage. Namely, the data from the monopoly period is not used in the computation of the incumbent's reputation score. Likewise, the \emph{reputation-advantage experiment} erases the data advantage and focuses on the reputation advantage: namely, the incumbent's algorithm `forgets' the data gathered during the monopoly period.
+
+We find that either data or reputational advantage alone gives a substantial boost to the incumbent, compared to permanent duopoly. The results for the Heavy-Tail instance are presented in Table~\ref{barrier_exp}, in the same structure as Table~\ref{tab:ht-incum}. For the other two instances, the results are qualitatively similar.
+
+\begin{table*}[h]
+\centering
+\begin{tabular}{|c|c|c|c||c|c|c|}
+\hline
+  & \multicolumn{3}{c||}{Reputation advantage (only)}
+  & \multicolumn{3}{c|}{Data advantage (only)}\\
+\hline
+& $\TS$  & $\DEG$  & $\DG$
+& $\TS$  & $\DEG$  & $\DG$
+\\\hline
+$\TS$
+    & \makecell{\textbf{0.021}$\pm$0.009}
+    & \makecell{\textbf{0.16}$\pm$0.02}
+    & \makecell{\textbf{0.21} $\pm$0.02}
+    %%
+    & \makecell{\textbf{0.0096}$\pm$0.006}
+    & \makecell{\textbf{0.11}$\pm$0.02}
+    & \makecell{\textbf{0.18}$\pm$0.02}
+    \\ \hline
+$\DEG$
+    & \makecell{\textbf{0.26}$\pm$0.03}
+    & \makecell{\textbf{0.3}$\pm$0.02}
+    & \makecell{\textbf{0.26}$\pm$0.02}
+    %%
+    & \makecell{\textbf{0.073}$\pm$0.01}
+    & \makecell{\textbf{0.29}$\pm$0.02}
+    & \makecell{\textbf{0.25}$\pm$0.02}
+    \\ \hline
+$\DG$
+    & \makecell{\textbf{0.34}$\pm$0.03}
+    & \makecell{\textbf{0.4}$\pm$0.03}
+    & \makecell{\textbf{0.33}$\pm$0.02}
+    %%
+    & \makecell{\textbf{0.15}$\pm$0.02}
+    & \makecell{\textbf{0.39}$\pm$0.03}
+    & \makecell{\textbf{0.33}$\pm$0.02}
+    \\\hline
+\end{tabular}
+\caption{Data advantage vs. reputation advantage experiment, on Heavy-Tail MAB instance. Each cell describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share for the rounds in which hit was present: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.}
+\label{barrier_exp}
+\end{table*}
+
+We can quantitatively define the data (resp., reputation) advantage as the incumbent's market share in the competition period in the data-advantage (resp., reputation advantage) experiment, minus the said share under permanent duopoly, for the same pair of algorithms and the same problem instance. In this language, our findings are as follows.
+
+
+\begin{finding}\label{barrier-find}
+\textit{\\
+(a) Data advantage and reputation advantage alone are substantially large, across all algorithms and all MAB instances. \\(b) The data advantage is larger than the reputation advantage when the incumbent chooses \TS. \\(c) The two advantages are similar in magnitude when the incumbent chooses \DEG or \DG.
+}
+\end{finding}
+
+Our intuition for Finding~\ref{barrier-find}(b) is as follows. Suppose the incumbent switches from \DG to \TS. This switch allows the incumbent to explore actions more efficiently -- collect better data in the same number of rounds -- and therefore should benefit the data advantage. However, the same switch increases the reputation cost of exploration in the short run, which could weaken the reputation advantage.
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../competing_bandits"
+%%% End: 

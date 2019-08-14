@@ -1,0 +1,151 @@
+\documentclass[format=acmsmall, review=false]{acmart}
+
+\usepackage{acm-ec-19}
+\usepackage{tikz} % SW: Added for plots
+\usepackage{subfiles}
+\usepackage[toc,page]{appendix}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{amsmath,amssymb,amsfonts}
+%\usepackage{natbib} % cannot use with AAAI! A.S.
+
+\usepackage{amsthm} % The amsthm package provides extended theorem environments
+\usepackage{float}
+\usepackage{sgame, tikz} % Game theory packages
+\usepackage{caption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{makecell}
+ \usepackage{multirow}
+ \usepackage{graphicx}
+\theoremstyle{definition}
+%\newtheorem{definition}{Definition}
+\newtheorem{finding}{Finding}
+%\newtheorem{conjecture}{Conjecture}
+\newtheorem{puzzle}{Puzzle}
+\captionsetup{font=footnotesize}
+
+% Alex' macro
+\usepackage{xspace}
+\newcommand{\OMIT}[1]{}
+\newcommand{\xhdr}[1]{\vspace{1mm} \noindent{\bf #1}}
+\newcommand{\ie}{{\em i.e.,~\xspace}}
+\newcommand{\eg}{{\em e.g.,~\xspace}}
+
+\newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
+\newcommand{\TS}{\term{TS}}
+\newcommand{\DEG}{\term{DEG}}
+\newcommand{\DG}{\term{DG}}
+\newcommand{\AD}{\term{AD}}
+\newcommand{\EGR}{\term{EGR}}
+\newcommand{\GR}{\term{GR}}
+\newcommand{\Beta}{\term{Beta}} % for Beta distribution
+\newcommand{\Eeog}{\term{EoG}} % shorthand for "effective end of game"
+
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
+\newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
+
+\newcommand{\HMR}{\term{HMR}}
+\newcommand{\HM}{\term{HM}}
+% a very useful package for edits and comments, from David Kempe (USC)
+\usepackage{color-edits}
+%\usepackage[suppress]{color-edits}  % use this to suppress the package
+\addauthor{as}{red}    % as for Alex
+\addauthor{ga}{blue}  % ga for Guy
+\addauthor{sw}{orange} % sw for Steven
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+\setlength{\tabcolsep}{8pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+
+%drt24 hacks
+% Letter paper
+
+% Hack to try to make acmart work with biblatex: https://tex.stackexchange.com/questions/37076/is-it-possible-to-load-biblatex-with-a-class-that-has-already-loaded-natbib
+\let\citename\relax
+%\RequirePackage[abbreviate=true, dateabbrev=true, isbn=true, doi=true, urldate=comp, url=true, maxbibnames=9, backref=false, backend=biber, style=ACM-Reference-Format, language=american]{biblatex}
+
+
+
+\usepackage{booktabs} % For formal tables
+
+
+% Copyright
+%\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+\begin{document}
+\title[The Perils of Exploration under Competition: A Computational Modeling Approach]
+{The Perils of Exploration under Competition: \\ A Computational Modeling Approach}
+
+
+ \author{Guy Aridor}
+ \affiliation{ \institution{Columbia University}}
+ \author{Kevin Liu}
+ \affiliation{\institution{Columbia University}}
+ \author{Aleksandrs Slivkins}
+ \affiliation{\institution{Microsoft Research, New York City}}
+ \author{Zhiwei Steven Wu}
+ \affiliation{\institution{University of Minnesota - Twin Cities}}
+ 
+ \authorsaddresses{%
+  Authors' addresses: Guy Aridor, Columbia University, New York, NY, g.aridor@columbia.edu; Kevin Liu, Columbia University, New York, NY, kevin.liu@columbia.edu; Aleksandrs Slivkins, Microsoft Research, New York, NY, slivkins@microsoft.com; Zhiwei Steven Wu, University of Minnesota - Twin Cities, Minneapolis, MN, zsw@umn.edu}
+
+\begin{abstract}
+  We empirically study the interplay between \textit{exploration} and
+  \textit{competition}. Systems that learn from interactions with
+  users often engage in \emph{exploration}: making potentially
+  suboptimal decisions in order to acquire new information for future
+  decisions. However, when multiple systems are competing for
+    the same market of users, exploration may hurt a system's
+    reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral", when the short-term reputation cost decreases
+    the number of users for the system to learn from, which degrades the
+    system's performance relative to competition and further decreases
+    the market share.
+
+We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore and leads to low consumer welfare, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms and lead to higher consumer welfare. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets.
+\end{abstract}
+
+%
+% The code below should be generated by the tool at
+% http://dl.acm.org/ccs.cfm
+% Please copy and paste the code instead of the example below.
+%
+\maketitle
+\keywords{Multi-armed bandits,Exploration,Competition,Competition vs Innovation}
+
+\subfile{content/introduction}
+
+\subfile{content/model}
+
+\subfile{content/perf_in_iso}
+
+\subfile{content/inverted_u}
+
+\subfile{content/barriers}
+
+\subfile{content/revisited}
+
+\subfile{content/non_greedy_choice}
+
+\subfile{content/conclusion}
+\newpage
+\bibliographystyle{acm}
+\bibliography{refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
+
+\subfile{content/appendix_for_one_version}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
