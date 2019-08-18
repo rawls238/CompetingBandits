@@ -55,6 +55,7 @@
 %%% advanced notation
 \newcommand{\OPT}{\term{OPT}}
 \newcommand{\rew}{\term{rew}}  % Bayesian-expected reward after n local rounds
+\newcommand{\REP}{\term{REP}} % posterior mean reward
 \newcommand{\PMR}{\term{PMR}} % posterior mean reward
 \newcommand{\support}{\term{support}}
 
@@ -133,8 +134,8 @@
 
 
 \begin{document}
-\title[Competing Bandits]
-{Competing Bandits}
+\title[Competing Bandits: \\ The Perils of Exploration under Competition]
+{Competing Bandits: \\ The Perils of Exploration under Competition}
 
 
  \author{Guy Aridor}
@@ -148,18 +149,7 @@
   Authors' addresses: Guy Aridor, Columbia University, New York, NY, g.aridor@columbia.edu; Aleksandrs Slivkins, Microsoft Research, New York, NY, slivkins@microsoft.com; Zhiwei Steven Wu, University of Minnesota - Twin Cities, Minneapolis, MN, zsw@umn.edu}
 
 \begin{abstract}
-  We empirically study the interplay between \textit{exploration} and
-  \textit{competition}. Systems that learn from interactions with
-  users often engage in \emph{exploration}: making potentially
-  suboptimal decisions in order to acquire new information for future
-  decisions. However, when multiple systems are competing for
-    the same market of users, exploration may hurt a system's
-    reputation in the near term, with adverse competitive effects. In particular, a system may enter a ``death spiral", when the short-term reputation cost decreases
-    the number of users for the system to learn from, which degrades the
-    system's performance relative to competition and further decreases
-    the market share.
-
-We ask whether better exploration algorithms are incentivized under competition. We run extensive numerical experiments in a stylized duopoly model in which two firms deploy multi-armed bandit algorithms and compete for myopic users.  We find that duopoly and monopoly tend to favor a primitive ``greedy algorithm" that does not explore and leads to low consumer welfare, whereas a temporary monopoly (a duopoly with an early entrant) may incentivize better bandit algorithms and lead to higher consumer welfare. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets.
+ Abstract goes here
 \end{abstract}
 
 %
@@ -173,7 +163,7 @@ We ask whether better exploration algorithms are incentivized under competition.
 
 \section{Introduction}
 \label{sec:intro}
-\subfile{itcs18paper/sec-intro}
+\subfile{content/sec-intro}
 
 \section{Related work}
 \label{sec:related-work}
@@ -181,7 +171,7 @@ We ask whether better exploration algorithms are incentivized under competition.
 
 \section{Our model and preliminaries}
 \label{sec:model}
-\subfile{itcs18paper/sec-model}
+\subfile{content/sec-model}
 
 \section{Full rationality (HardMax)}
 \label{sec:rational}
@@ -195,13 +185,9 @@ We ask whether better exploration algorithms are incentivized under competition.
 \label{sec:soft}
 \subfile{itcs18paper/sec-soft}
 
-\section{Economic implications}
-\label{sec:welfare}
-\subfile{itcs18paper/sec-welfare}
-
-\subfile{ec19paper/content/introduction}
-
-\subfile{ec19paper/content/model}
+%\section{Economic implications}
+%\label{sec:welfare}
+%\subfile{itcs18paper/sec-welfare}
 
 \subfile{ec19paper/content/perf_in_iso}
 
@@ -211,9 +197,7 @@ We ask whether better exploration algorithms are incentivized under competition.
 
 \subfile{ec19paper/content/revisited}
 
-\subfile{ec19paper/content/non_greedy_choice}
-
-\subfile{ec19paper/content/conclusion}
+%\subfile{ec19paper/content/non_greedy_choice}
 
 \newpage
 \bibliographystyle{acm}

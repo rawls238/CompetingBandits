@@ -9,17 +9,16 @@ mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from prior distribution $\
 Each principal commits to a learning algorithm for making recommendations. This algorithm follows a protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, the algorithm proceeds in time-steps:%
 \footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the local vs. local distinction when clear from the context.} each time it is called, it outputs a chosen action $a\in A$ and then inputs the reward for this action. The algorithm is called only in global rounds when the corresponding principal is chosen.
 
+\gaedit{
+The information structure is as follows. The prior $\prior$ is known to everyone. The mean rewards $\mu_a$ are not revealed to anybody and each principal is completely unaware of the rounds when the other is chosen. We consider two variants of our model with different information structures. In the first, each agent knows both principals' algorithms, and the global round when (s)he arrives, \emph{but not} the rewards of the previous agents. In the second, agents only make decisions based on th rewards of previous agents. Concretely, each of the two principals has a \emph{reputation score}, and each agent's choice is driven by these two numbers. The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
 
-The information structure is as follows. The prior $\prior$ is known to everyone. The mean rewards $\mu_a$ are not revealed to anybody. Each agent knows both principals' algorithms, and the global round when (s)he arrives, \emph{but not} the rewards of the previous agents. Each principal is completely unaware of the rounds when the other is chosen.
-
+}
 \xhdr{Some terminology.} The two principals are called ``Principal
 1" and ``Principal 2".
 %Principal $i\in \{1,2\}$ is also denoted \prin[i].
 The algorithm of principal $i\in \{1,2\}$ is called ``algorithm $i$" and denoted
 \alg[i]. The agent in global round $t$ is called ``agent $t$"; the
 chosen principal is denoted $i_t$.
-
-
 
 Throughout, $\E[\cdot]$ denotes expectation over all applicable randomness.
 
@@ -33,7 +32,15 @@ Now, going back to our game, fix global round $t$ and let $n_i(t)$ denote the nu
 \end{align*}
 
 \xhdr{Agents' response.}
-Each agent $t$ chooses principal $i_t$ as as follows: it chooses a distribution over the principals, and then draws independently from this distribution. Let $p_t$ be the probability of choosing principal $1$ according to this distribution. Below we specify $p_t$; we need to be careful so as to avoid a circular definition.
+
+Each agent $t$ chooses principal $i_t$ as follows: it chooses a distribution over the principals, and then draws independently from this distribution. Let $p_t$ be the probability of choosing principal $1$ according to this distribution. Below we specify $p_t$; we need to be careful so as to avoid a circular definition.
+
+\gaedit{
+
+The form of $p_t$ depends on the information structure that we consider.
+In the first, where the agents only know the global round and the principals' algorithms, it is defined as follows.
+
+}
 
 Let $\mI_t$ be the information available to agent $t$ before the
 round. Assume $\mI_t$ suffices to form posteriors for quantities
@@ -60,8 +67,14 @@ To make the model well-defined, it remains to argue that information $\mI_t$ is 
 
 Since all agents arrive with identical information (other than knowing which global round they arrive in), it follows that all agents have identical posteriors for $n_{i,t}$ (for a given principal $i$ and a given global round $t$). This posterior is denoted $\posteriorN{i}{t}$.
 
+\gaedit{
+In the second information structure we consider, at a given time $t$ each principal $i \in \{1, 2 \}$ has a reputation score denoted as $\REP_i (t)$. In this case we have that the agent's responses take an analogous form as in the first information structure:
+\begin{align}
+p_t = \respF\left(\; \REP_1(t) - \REP_2(t) \;\right).
+\end{align}
+}
 \xhdr{Response functions.}
-We use the response function $\respF$ to characterize the amount of rationality and competitiveness in our model. We assume that $\respF$ is monotonically non-decreasing, is larger than $\tfrac12$ on the interval $(0,1]$, and smaller than $\tfrac12$ on the interval $[-1,0)$. Beyond that, we consider three specific models, listed in the order of decreasing rationality and competitiveness (see \reffig{fig:response-functions}):
+We use the response function $\respF$ \gaedit{to characterize the decision rule of the agents in our model}. We assume that $\respF$ is monotonically non-decreasing, is larger than $\tfrac12$ on the interval $(0,1]$, and smaller than $\tfrac12$ on the interval $[-1,0)$. Beyond that, we consider three specific models (see \reffig{fig:response-functions}):
 
 \begin{figure}
 \begin{center}
@@ -114,10 +127,10 @@ We characterize the inherent quality of an MAB algorithm in terms of its \emph{B
 \end{align}
 where $\rew(n)$ is the Bayesian-expected reward of the algorithm for the $n$-th step, when the algorithm is run in isolation. We are primarily interested in how \BIR scales with $n$; we treat $K$, the number of arms, as a constant unless specified otherwise.
 
-We will emphasize several specific algorithms or classes thereof:
+We will emphasize several specific algorithms or classes thereof. In the second half of the paper we will :
 
 \begin{itemize}
-\item ``smart" MAB algorithms that combine exploration and exploitation, such as UCB1 \cite{bandits-ucb1} and Successive Elimination \cite{EvenDar-icml06}. These algorithms achieve
+\item ``smart" MAB algorithms that combine exploration and exploitation, such as UCB1 \cite{bandits-ucb1} and \gaedit{Thompson Sampling [citation for TS]}. These algorithms achieve
         $\BIR(n) \leq  \tilde{O}(n^{-1/2})$
     for all priors and all (or all but a very few) steps $n$. This bound is known to be tight for any fixed $n$.
     \footnote{This follows from the lower-bound analysis in \cite{bandits-exp3}.}
@@ -135,11 +148,12 @@ We will emphasize several specific algorithms or classes thereof:
 \item \StaticGreedy: always recommends the prior best action,\ie an action $a$ with the highest prior mean reward  $\E_{\mu\sim \priorMu}[\mu_a]$. This algorithm typically has constant \BIR.
 \end{itemize}
 
-We focus on MAB algorithms such that $\BIR(n)$ is non-increasing; we call such algorithms \emph{monotone}. While some reasonable MAB algorithms may occasionally violate monotonicity, they can usually be easily modified so that monotonicity violations either vanish altogether, or only occur at very specific rounds (so that agents are extremely unlikely to exploit them in practice).
+When we consider the analytical model, we focus on MAB algorithms such that $\BIR(n)$ is non-increasing; we call such algorithms \emph{monotone}. While some reasonable MAB algorithms may occasionally violate monotonicity, they can usually be easily modified so that monotonicity violations either vanish altogether, or only occur at very specific rounds (so that agents are extremely unlikely to exploit them in practice).
 
 More background and examples can be found in Appendix~\ref{app:examples}. In particular, we prove that \DynGreedy is monotone.
 
-
+\gaedit{When we move to the variant of the model where we consider numerical simulations, we will pick a representative algorithm from each class of algorithms discussed here as our main interest is in qualitative differences between the different classes. We will utilize Thompson Sampling (\TS) from the ``smart" MAB algorithms, $\eps$-greedy (\DEG)\footnote{Throughout, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.} from the ``naive" algorithms, and \DynGreedy (\DG). For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+}
 
 \xhdr{Competition game between principals.}
 Some of our results explicitly study the game between the two principals. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. Thus, choosing a pure strategy in this game corresponds to choosing an MAB algorithm (and, implicitly, announcing this algorithm to the agents).
@@ -192,6 +206,16 @@ Write
     $\PMR(a\mid E) = \E[\mu_a \mid E]$
 for posterior mean reward of action $a$ given event $E$.
 
+\gaedit{
+\xhdr{Varying Competition}
+
+In both variants of the model that we consider, we have several levers for varying the nature of competition. In the strictest version of the model, 
+
+In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{temporary monopoly}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
+
+}
+
+
 %\end{assumption}
 
 \subsection{Generalizations}
@@ -209,9 +233,6 @@ First, unless specified otherwise, our results allow a more general notion of pr
 \end{align}
 
 Second, our results carry over, with little or no modification of the proofs, to much more general versions of MAB, as long as it satisfies the i.i.d. property. In each round, an algorithm can see a \emph{context} before choosing an action (as in \emph{contextual bandits}) and/or additional feedback other than the reward after the reward is chosen (as in, \eg \emph{semi-bandits}), as long as the contexts are drawn from a fixed distribution, and the (reward, feedback) pair is drawn from a fixed distribution that depends only on the context and the chosen action. The Bayesian prior $\prior$ needs to be a more complicated object, to make sure that \PMR and \BIR are well-defined. Mean rewards may also have a known structure, such as Lipschitzness, convexity, or linearity; such structure can be incorporated via $\prior$. All these extensions have been studied extensively in the literature on MAB, and account for a substantial segment thereof; see \cite{Bubeck-survey12} for background and details.
-
-
-
 
 \subsection{Chernoff Bounds}
 
