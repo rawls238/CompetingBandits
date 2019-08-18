@@ -101,7 +101,7 @@
 \newcommand{\exploration}{\termTXT{exploration}}
 \newcommand{\Exploration}{\termTXT{Exploration}}
 % a very useful package for edits and comments, from David Kempe (USC)
-\usepackage{ec19paper/color-edits}
+\usepackage[suppress]{ec19paper/color-edits}
 %\usepackage[suppress]{color-edits}  % use this to suppress the package
 \addauthor{as}{red}    % as for Alex
 \addauthor{ga}{blue}  % ga for Guy
@@ -149,7 +149,9 @@
   Authors' addresses: Guy Aridor, Columbia University, New York, NY, g.aridor@columbia.edu; Aleksandrs Slivkins, Microsoft Research, New York, NY, slivkins@microsoft.com; Zhiwei Steven Wu, University of Minnesota - Twin Cities, Minneapolis, MN, zsw@umn.edu}
 
 \begin{abstract}
- Abstract goes here
+\gaedit{Most modern systems strive to learn from interactions with users, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration and competition}---how such systems balance the exploration for learning and the competition for users. Here the users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing systems.
+
+In our model, we consider competition between two multi-armed bandit algorithms faced with the same bandit instance. Users arrive one by one and choose among the two algorithms, so that each algorithm makes progress if and only if it is chosen. We ask whether and to what extent competition incentivizes the adoption of better bandit algorithms. We investigate this issue analytically for several models of user response, as we vary the degree of competitiveness in the model. We further investigate this issue using numerical simulation to understand the effect of the first-mover advantage in our model. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets and are closely related to the ``competition vs. innovation" relationship, a well-studied theme in economics.}
 \end{abstract}
 
 %
@@ -167,7 +169,7 @@
 
 \section{Related work}
 \label{sec:related-work}
-\subfile{itcs18paper/sec-related-work}
+\subfile{content/related_work}
 
 \section{Our model and preliminaries}
 \label{sec:model}
@@ -189,6 +191,10 @@
 %\label{sec:welfare}
 %\subfile{itcs18paper/sec-welfare}
 
+\gaedit{
+\subfile{content/sim_details}
+}
+
 \subfile{ec19paper/content/perf_in_iso}
 
 \subfile{ec19paper/content/inverted_u}
@@ -197,14 +203,27 @@
 
 \subfile{ec19paper/content/revisited}
 
+\gaedit{
+\subfile{content/conclusion}
+}
 %\subfile{ec19paper/content/non_greedy_choice}
 
 \newpage
 \bibliographystyle{acm}
 \bibliography{bib-ML,refs,bib-abbrv-short,bib-bandits,bib-AGT,bib-slivkins}
 
+\begin{appendices}
+
+\section{Background on multi-armed bandits}
+\label{app:examples}
+\subfile{itcs18paper/app-examples}
+
+\section{Non-degeneracy via a random perturbation}
+\label{app:perturb}
+\subfile{itcs18paper/app-perturb}
 \subfile{ec19paper/content/appendix_for_one_version}
 
+\end{appendices}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
