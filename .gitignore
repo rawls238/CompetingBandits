@@ -1,3 +1,4 @@
+journal_paper/*.pdf
 paper/*.pdf
 results/
 *.pyc
