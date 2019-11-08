@@ -1,28 +1,8 @@
-Learning from interactions with consumers is ubiquitous in modern customer-facing systems, from product recommendations to web search to content selection to fine-tuning user interfaces. These interactions are essential for the development of high-quality products, but, in order to learn what products are high quality, companies need to implement systems that engage in \emph{exploration}: deploying potentially suboptimal products in order to acquire new information to make more informed product decisions tomorrow.
+Learning from interactions with consumers is ubiquitous in modern customer-facing systems, from product recommendations to web search to content selection to fine-tuning user interfaces. These interactions are essential for the development of high quality products, but, in order to learn what products are high quality, firms need to implement systems that engage in \emph{exploration}: deploying potentially suboptimal products in order to acquire new information to make more informed product decisions tomorrow.
 
-In this paper, we initiate a study of the interplay between \exploration and \competition. While exploration may be beneficial for both firms and consumers in the long-run, it may lead to bad experiences for consumers today and result in subsequent consumers going to the firm's competitors tomorrow. In particular, a firm can only make progress on its learning problem if it is able to incentivize consumers to visit it over its competitors and excessive exploration may lead to low reputation which leads consumers to increasingly visit the firm's competitors. Consumers therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing firms.
+In this paper, we initiate a study of the interplay between \exploration and \competition. Competition induces firms to want to produce high quality goods, but they need to learn how to do so via exploration. However, while exploration may provide firms with the necessary information to allow them to produce high quality products in the long-run, it may lead to bad experiences for consumers today and adversely affect a firm's reputation. This may incentivize subsequent consumers to go to the firm's competitors tomorrow and leave the firm with a lower market share and less consumers to learn from. Consumers therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing firms.
 
-Given the prevalence of these technologies and the increased importance of data in the digital economy, our main high-level question is: {\bf does competition lead to the adoption of better exploration algorithms?}. This translates into a number of more concrete questions. While it is commonly assumed that ``better" technology always helps, is this so for our setting? Does increasing competition lead to higher consumer welfare? To what extent is there a ``data feedback loop" where one firm having more data leads to that firm attracting more users which leads to that firm having more data, etc.?
-
-We investigate these questions with a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We first look at a version of this model that allows us to make analytical characterizations of the optimal algorithms firms should deploy in equilibrium. In this variant of the model, which we denote as the \textit{expectation choice variant}, we suppose that consumers are well-informed about the firm's exploration strategies but do not observe any information about past user experiences with the firms. In this variant we analytically characterize the equilibrium exploration strategies as we vary the degree of randomness in consumer decisions. We then look at a second variant of the model that accounts for competition in a more direct way, which we denote as the \textit{reputation choice variant}, where we suppose that consumers \textit{only} consider the average of past user experiences with each of the firms. This variant allows us to utilize numerical simulations to consider a number of additional issues such as asymmetries in the timing of entry, increasing competition beyond two firms, and allowing us to isolate the role that informational advantages can play as a barrier to entry in markets where exploration and competition tensions arise.
-
-On a high level, our contributions can be framed in terms of the ``inverted-U relationship" between competition and the quality of adopted algorithms (see \reffig{fig:inverted-U}).
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-      \draw[->] (-.5,0) -- (3,0) node[right] {Competitiveness};
-      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
-      \draw[scale=0.6,domain=0.5:4.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - (\x - 2.5)^2});
-      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
- \end{tikzpicture}
-
-\caption{Inverted-U relationship between competitiveness and algorithms.}
-\label{fig:inverted-U}
-\end{center}
-\end{figure}
-
-
+Given the prevalence of these technologies and the increased importance of data in the digital economy, our main high-level question is: {\bf does competition lead to the adoption of better exploration algorithms?} This translates into a number of more concrete questions. While it is commonly assumed that ``better" technology always helps, is this so for our setting? Does increasing competition lead to higher consumer welfare? To what extent is there a ``data feedback loop" where one firm having more data leads to that firm attracting more users which leads to that firm having more data, etc.?
 
 % the extent to which the game between the two principals is competitive
 % degree of innovation that these models incentivize.
@@ -32,7 +12,7 @@ On a high level, our contributions can be framed in terms of the ``inverted-U re
 %\subsection{Our model}
 %\label{sec:intro-model}
 
-\xhdr{Our model.} We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the basic model is as follows:
+\xhdr{Our model.} We investigate these questions with a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the basic model is as follows:
 
 \begin{itemize}
 
@@ -40,9 +20,10 @@ On a high level, our contributions can be framed in terms of the ``inverted-U re
 
 \item Each principal faces a very basic and well-studied version of the multi-armed bandit problem: for each arriving agent, it chooses from a fixed set of actions  (a.k.a. \emph{arms}) and receives a reward drawn independently from a fixed distribution specific to this action.
 
-\item Principals simultaneously announce their learning algorithms before round $1$, and cannot change them afterwards. There is a common Bayesian prior on the rewards (but the realized reward distributions are not observed by the principals or the agents).  Each principal only observes agents that chose him. The information set for the agent differs between the two variants of the model. \begin{enumerate}
-\item In the expectation choice variant, agents do not receive any other information and choose between the principals using their knowledge of $t$ and the principals' algorithms
-\item In the reputation choice variant, agents have access to a reputation score for each principal, which is a sliding window average of the rewards experienced by previous agents that have visited this principal
+\item Principals simultaneously announce their learning algorithms before round $1$, and cannot change them afterwards. There is a common Bayesian prior on the rewards (but the realized reward distributions are not observed by the principals or the agents).  Each principal only observes agents that chose him. We consider two variants of the baseline model and the information set for the agent differs between the two:
+\begin{enumerate}
+\item In the \textit{expectation choice variant}, agents do not receive any other information and choose between the principals using their knowledge of $t$ and the principals' algorithms.
+\item In the \textit{reputation choice variant}, agents have access to a reputation score for each principal, which is a sliding window average of the rewards experienced by previous agents that have visited this principal.
 \end{enumerate}
 \end{itemize}
 
@@ -70,6 +51,20 @@ Data advantage is significant from an anti-trust perspective, as a possible barr
 
 \OMIT{All results extend to a much more general version of the multi-armed bandit problem in which the principal may observe additional feedback before and/or after each decision, as long as the feedback distribution does not change over time. In most results, principal's utility may depend on both the market share and agents' rewards.
 }
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+      \draw[->] (-.5,0) -- (3,0) node[right] {Competitiveness};
+      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
+      \draw[scale=0.6,domain=0.5:4.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - (\x - 2.5)^2});
+      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
+ \end{tikzpicture}
+
+\caption{Inverted-U relationship between competitiveness and algorithms.}
+\label{fig:inverted-U}
+\end{center}
+\end{figure}
 \xhdr{Economic interpretation.}
 The inverted-U relationship between the severity of competition among firms and the quality of technologies that they adopt is a familiar theme in the economics literature \citep[\eg][]{Aghion-QJE05,Vives-08}.%
 \footnote{The literature frames this relationship as one between ``competition" and ``innovation". In this context, ``innovation" refers to adoption of a better technology, at a substantial R\&D expense to a given firm. It is not salient whether similar ideas and/or technologies already exist outside the firm. It is worth noting that the adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms themselves are well-known in the research literature; see \citet{MWT-WhitePaper-2016} for an example of such R\&D effort.}

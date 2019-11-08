@@ -1,5 +1,3 @@
-
-
 \xhdr{Principals and agents.} There are two principals and $T$ agents. The game proceeds in rounds (we will sometimes refer to them as \emph{global rounds}). In each round $t\in [T]$, the following  interaction takes place. A new agent arrives and chooses one of the two principals. The principal chooses a recommendation: an action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds). The agent follows this recommendation, receives a reward $r_t\in [0,1]$, and reports it back to the principal.
 
 The rewards are i.i.d. with a common prior. More formally, for each action $a\in A$ there is a parametric family $\psi_a(\cdot)$ of
@@ -10,7 +8,7 @@ Each principal commits to a learning algorithm for making recommendations. This 
 \footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the local vs. local distinction when clear from the context.} each time it is called, it outputs a chosen action $a\in A$ and then inputs the reward for this action. The algorithm is called only in global rounds when the corresponding principal is chosen.
 
 \gaedit{
-The information structure is as follows. The prior $\prior$ is known to everyone. The mean rewards $\mu_a$ are not revealed to anybody and each principal is completely unaware of the rounds when the other is chosen. We consider two variants of our model with different information structures. In the first, the  \textit{expectation choice} model, each agent knows both principals' algorithms, and the global round when (s)he arrives, \emph{but not} the rewards of the previous agents. In the second, the \textit{reputation choice} model, agents only make decisions based on the rewards of previous agents. Concretely, each of the two principals has a \emph{reputation score}, and each agent's choice is driven by these two numbers. The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
+The information structure is as follows. The prior $\prior$ is known to everyone. The mean rewards $\mu_a$ are not revealed to anybody and each principal is completely unaware of the rounds when the other is chosen. We consider two variants of our model with different information structures. In the first, the  \textit{expectation choice} variant, each agent knows both principals' algorithms, and the global round when (s)he arrives, \emph{but not} the rewards of the previous agents. In the second, the \textit{reputation choice} variant, agents only make decisions based on the rewards of previous agents. Concretely, each of the two principals has a \emph{reputation score}, and each agent's choice is driven by these two numbers. The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
 
 }
 \xhdr{Some terminology.} The two principals are called ``Principal
@@ -67,7 +65,7 @@ To make the model well-defined, it remains to argue that information $\mI_t$ is 
 Since all agents arrive with identical information (other than knowing which global round they arrive in), it follows that all agents have identical posteriors for $n_{i,t}$ (for a given principal $i$ and a given global round $t$). This posterior is denoted $\posteriorN{i}{t}$.
 
 \gaedit{
-In the reputation choice model we consider, at a given time $t$ each principal $i \in \{1, 2 \}$ has a reputation score denoted as $\REP_i (t)$. In this case we have that the agent's responses take an analogous form as in the first case:
+In the reputation choice variant we consider, at a given time $t$ each principal $i \in \{1, 2 \}$ has a reputation score denoted as $\REP_i (t)$. In this case we have that the agent's responses take an analogous form as in the first case:
 \begin{align}
 p_t = \respF\left(\; \REP_1(t) - \REP_2(t) \;\right).
 \end{align}
