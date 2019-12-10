@@ -1,9 +1,9 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\section{Reputation Model Details}\label{sec:sim_details}
+\section{Reputation Variant Details}\label{sec:sim_details}
 
-In this section we move to the reputation choice model. Recall that in this variant of the model, instead of making choices between firms based on the Bayesian expected reward, each agent chooses the firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. We focus on numerical investigation of this model instead of analytical characterizations of equilibrium strategies.
+In this section we move to the reputation choice variant. Recall that in this variant of the model, instead of making choices between firms based on the Bayesian expected reward, each agent chooses the firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. We focus on numerical investigation of this model instead of analytical characterizations of equilibrium strategies.
 
 \xhdr{Key Model Differences}
 The timing of the model is the same as before where each firm commits to a MAB algorithm before the game starts and uses this algorithm to choose its actions. We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown. However, instead of starting from some prior, we suppose that each firm has a uniform, ``fake", prior and that the initial information set of the firm is given by a ``warm start". Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. The warm start ensures that each firm has a meaningful reputation and initial prior when competition starts..

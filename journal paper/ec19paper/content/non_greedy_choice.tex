@@ -3,7 +3,7 @@
 
 \section{Non-deterministic Choice Models}\label{sec:non_greedy}
 
-Let us consider an extension in which the agents' choice is no longer deterministic. Recall that in our main model agents deterministically choose the firm with the higher reputation score; call this choice rule \emph{HardMax} (\HM). Now, we introduce some randomness: each agent selects between the firms uniformly with probability $\eps\in (0,1)$, and takes the firm with the higher reputation score with the remaining probability; call this choice rule \emph{HardMax with randomness} (\HMR).
+Let us consider an extension in which the agents' choice is no longer deterministic. Recall that in the reputation choice variant agents deterministically choose the firm with the higher reputation score, which, as before, we denote as \emph{HardMax} (\HM). Now, we introduce some randomness: each agent selects between the firms uniformly with probability $\eps\in (0,1)$, and takes the firm with the higher reputation score with the remaining probability; as before, we denote this rule as \emph{HardMax with randomness} (\HMR).
 
 One can view \HMR as a version of ``warm start", where a firm receives some customers without competition, but these customers are dispersed throughout the game. The expected duration of this ``dispersed warm start" is $\eps T$. If this quantity is large enough, we expect better algorithms to reach their long-term performance and prevail in competition. We confirm this intuition; we also find that this effect is negligible for smaller (but still relevant) values of $\eps$ or $T$.
 

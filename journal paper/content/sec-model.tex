@@ -5,7 +5,7 @@ reward distributions, parameterized by the mean reward $\mu_a$. (The paradigmati
 mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from prior distribution $\priorMu$ before round $1$. Whenever a given action $a\in A$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards, denoted $\prior$.
 
 Each principal commits to a learning algorithm for making recommendations. This algorithm follows a protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, the algorithm proceeds in time-steps:%
-\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the local vs. local distinction when clear from the context.} each time it is called, it outputs a chosen action $a\in A$ and then inputs the reward for this action. The algorithm is called only in global rounds when the corresponding principal is chosen.
+\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs a chosen action $a\in A$ and then inputs the reward for this action. The algorithm is called only in global rounds when the corresponding principal is chosen.
 
 \gaedit{
 The information structure is as follows. The prior $\prior$ is known to everyone. The mean rewards $\mu_a$ are not revealed to anybody and each principal is completely unaware of the rounds when the other is chosen. We consider two variants of our model with different information structures. In the first, the  \textit{expectation choice} variant, each agent knows both principals' algorithms, and the global round when (s)he arrives, \emph{but not} the rewards of the previous agents. In the second, the \textit{reputation choice} variant, agents only make decisions based on the rewards of previous agents. Concretely, each of the two principals has a \emph{reputation score}, and each agent's choice is driven by these two numbers. The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
@@ -129,8 +129,7 @@ We will emphasize several specific algorithms or classes thereof:
 \begin{itemize}
 \item ``smart" MAB algorithms that combine exploration and exploitation, such as UCB1 \cite{bandits-ucb1} and \gaedit{Thompson Sampling \cite{russo2018tutorial}}. These algorithms achieve
         $\BIR(n) \leq  \tilde{O}(n^{-1/2})$
-    for all priors and all (or all but a very few) steps $n$. This bound is known to be tight for any fixed $n$.
-    \footnote{This follows from the lower-bound analysis in \cite{bandits-exp3}.}
+    for all priors and all (or all but a very few) steps $n$. This bound is known to be tight for any fixed $n$.\footnote{This follows from the lower-bound analysis in \cite{bandits-exp3}.}
 
 \item ``naive" MAB algorithms that separate exploration and exploitation, such as Explore-then-Exploit and $\eps$-Greedy. These algorithms have dedicated rounds in which they explore by choosing an action uniformly at random. When these rounds are known in advance, the algorithm suffers constant \BIR in such rounds. When the ``exploration rounds" are instead randomly chosen by the algorithm, one can usually guarantee an inverse-polynomial upper bound \BIR, but not as good as the one above: namely,
         $ \BIR(n) \leq \tilde{O}(n^{-1/3})$.
@@ -196,7 +195,7 @@ We provide two examples for which property \eqref{eq:assn-distinct} is `generic'
 Fix principal $i\in \{1,2\}$ and (local) step $n$. The arm chosen by algorithm \alg[i] at this step is denoted $a_{i,n}$, and the corresponding \BIR is denoted $\BIR_i(n)$. History of \alg[i] up to this step is denoted $H_{i,n}$.
 %The posterior distribution of agent $t$ for quantity $n_t(t)$ is denoted $\posteriorN{i}{t}$.
 
-Write
+We denote
     $\PMR(a\mid E) = \E[\mu_a \mid E]$
 for posterior mean reward of action $a$ given event $E$.
 
