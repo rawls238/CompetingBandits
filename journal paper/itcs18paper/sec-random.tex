@@ -112,7 +112,7 @@ for the first $n_0-1$ steps;
   given the current information collected by \alg[1].
 \end{enumerate}
 %The modified algorithm is called \emph{greedy deviation}, with probability parameter $p$.
-For a cleaner comparison between the two algorithms, the modified algorithm does not record rewards received in steps with the ``greedy choice". Parameter $p>0$ is the same for all steps.
+For a cleaner comparison between the two algorithms, the modified algorithm does not record rewards received in steps with the ``greedy choice". Parameter $p>0$ is the same for all steps. We state the main result and defer the detailed proof to the appendix.
 
 \begin{theorem}\label{thm:random-greedy}
 Assume symmetric \HardMaxRandom response function. Let $\eps_0 = \respF(-1)$ be the baseline probability. Suppose \alg[1] deviates from \DynGreedy starting from some step $n_0$. Let \alg[2] be the modified algorithm, as described above, with mixing parameter $p$ such that
@@ -162,41 +162,6 @@ Then for all $n\geq n_0$ and small enough $p>0$ it holds that:
 \end{align*}
 (In the above equations, all expectations are over $m$ distributed as in \eqref{eq:random-BIR}.)
 \end{remark}
-
-
-\begin{proof}[Proof of Theorem~\ref{thm:random-greedy}]
-  Let $\rew'_1(n)$ denote the Bayesian-expected reward of the ``greedy
-  choice'' after after $n-1$ steps of \alg[1]. Note that
-  $\rew_1(\cdot)$ and $\rew'_1(\cdot)$ are non-decreasing: the former
-  because \alg[1] is monotone and the latter because the ``greedy
-  choice'' is only improved with an increasing set of
-  observations. Therefore, the modified algorithm \alg[2] is monotone
-  by \eqref{eq:random-BIR}.
-
-  By definition of the ``greedy choice,'' $\rew_1(n)\leq \rew'_1(n)$
-  for all steps $n$. Moreover, by Lemma~\ref{lm:DG-rew},
-  \alg[1] has a strictly smaller $\rew(n_0)$ compared to \DynGreedy;
-  so, $\rew_1(n_0)<\rew_2(n_0)$.
-
-Let $\alg$ denote a copy of \alg[1] that is running ``inside" the modified algorithm \alg[2]. Let $m_2(t)$ be the number of global rounds before $t$ in which the agent chooses principal $2$ \emph{and} \alg is invoked; in other words, it is the number of agents seen by \alg before global round $t$. Let $\mM_{2,t}$ be the agents' posterior distribution for $m_2(t)$.
-
-We claim that in each global round $t\geq n_0$, distribution $\mM_{2,t}$ stochastically dominates distribution $\posteriorN{1}{t}$, and $\PMR_1(t)<\PMR_2(t)$. We use induction on $t$. The base case $t=n_0$ holds because $\mM_{2,t} = \posteriorN{1}{t}$ (because the two algorithms coincide on the first $n_0-1$ steps), and $\PMR_1(n_0)<\PMR_2(n_0)$ is proved as in \eqref{eq:pf:thm:DG-dominance}, using the fact that $\rew_1(n_0)<\rew_2(n_0)$.
-
-The induction step is proved as follows. The induction hypothesis for global round $t-1$ implies that agent $t-1$ is seen by \alg with probability $(1-\eps_0)(1-p)$, which is strictly larger than $\eps_0$, the probability with which this agent is seen by \alg[2]. Therefore, $\mM_{2,t}$ stochastically dominates $\posteriorN{1}{t}$.
-\begin{align}
-\PMR_1(t)
-  &= \Ex{n\sim \posteriorN{1}{t}} {\rew_1(n+1)} \nonumber \\
-  &\leq \Ex{m\sim \mM_{2,t}} {\rew_1(m+1)}
-    \label{eq:pf:thm:random-greedy-1}\\
-  &< \Ex{m\sim \mM_{2,t}} {(1-p)\cdot \rew_1(m+1) + p\cdot \rew'_1(m+1)}
-    \label{eq:pf:thm:random-greedy-2} \\
-  &= \PMR_2(t). \nonumber
-\end{align}
-Here inequality \eqref{eq:pf:thm:random-greedy-1} holds because $\rew_1(\cdot)$ is monotone and $\mM_{2,t}$ stochastically dominates $\posteriorN{1}{t}$, and inequality \eqref{eq:pf:thm:random-greedy-2} holds because $\rew_1(n_0)<\rew_2(n_0)$ and $\mM_{2,t}(n_0)>0$.%
-\footnote{If $\rew_1(\cdot)$ is strictly increasing, then inequality \eqref{eq:pf:thm:random-greedy-1} is strict, too; this is because $\mM_{2,t}(t-1)>\posteriorN{1}{t}(t-1)$.  }
-\end{proof}
-
-
 
 %%% Local Variables:
 %%% TeX-master: "main.tex"

@@ -1,3 +1,4 @@
+.DS_Store
 journal_paper/*.pdf
 paper/*.pdf
 results/

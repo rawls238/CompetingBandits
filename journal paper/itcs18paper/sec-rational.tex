@@ -143,7 +143,7 @@ Assume \HardMax response function with $\respF(0)=1$ (ties are always broken in 
 Agent $1$ chooses principal $1$ because of the tie-breaking rule. Since \StaticGreedy is trivially monotone, all the subsequent agents choose principal $1$ by an induction argument similar to the one in the proof of Lemma~\ref{lm:DG-sudden}.
 \end{proof}
 
-A more challenging scenario is when the tie-breaking is biased in favor of principal 1, but not deterministically so: $\respF(0)>\tfrac12$. Then this principal also has a ``winning strategy" no matter what the other principal does. Specifically, principal 1 can get all but the first few agents, under a mild technical assumption that \DynGreedy deviates from \StaticGreedy. Principal 1 can use \DynGreedy, or any other monotone MAB algorithm that coincides with \DynGreedy in the first few steps.
+A more challenging scenario is when the tie-breaking is biased in favor of principal 1, but not deterministically so: $\respF(0)>\tfrac12$. Then this principal also has a ``winning strategy" no matter what the other principal does. Specifically, principal 1 can get all but the first few agents, under a mild technical assumption that \DynGreedy deviates from \StaticGreedy. Principal 1 can use \DynGreedy, or any other monotone MAB algorithm that coincides with \DynGreedy in the first few steps. We state the result and defer the proof to the appendix.
 
 %We can generalize the theorem top the case of $q >1/2$ if the
 %principal $p_1$ can guarantee better than the a priori best action to
@@ -153,48 +153,6 @@ A more challenging scenario is when the tie-breaking is biased in favor of princ
 \begin{theorem}\label{thm:HardMax-biased}
 Assume \HardMax response function with $\respF(0)>\tfrac12$ (\ie tie-breaking is biased in favor of principal $1$). Assume the prior $\mP$ is such that \DynGreedy deviates from \StaticGreedy starting from some step $n_0$. Suppose that principal $1$ runs a monotone MAB algorithm that coincides with \DynGreedy in the first $n_0$ steps. Then all agents $t\geq n_0$ choose principal $1$.
 \end{theorem}
-
-
-\begin{proof}
-The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
-
-Because of the biased tie-breaking, for each global round $t$ we have:
-\begin{align}\label{eq:thm:HardMax-biased-PMRtoPr}
-\text{if $\PMR_1(t)\geq \PMR_2(t)$ then $\Pr[i_t=1]>\tfrac12$.}
-\end{align}
-Recall that $i_t$ is the principal chosen in global round $t$.
-
-Let $m_0$ be the first step when \alg[2] deviates from \DynGreedy, or \DynGreedy deviates from \StaticGreedy, whichever comes sooner. \asedit{Then \alg[2], \DynGreedy and \StaticGreedy coincide on the first $m_0-1$ steps. Moreover, $m_0\leq n_0$ (since \DynGreedy deviates from \StaticGreedy at step $n_0$), so \alg[1] coincides with \DynGreedy on the first $m_0$ steps.
-
-So, $\rew_1(n)=\rew_2(n)$ for each step $n<m_0$, because \alg[1] and \alg[2] coincide on the first $m_0-1$ steps. Moreover, if \alg[2] deviates from \DynGreedy at step $m_0$ then
-    $\rew_1(m_0) > \rew_2(m_0)$ 
-by Lemma~\ref{lm:DG-rew}; else, we trivially have
-    $\rew_1(m_0) = \rew_2(m_0)$.} To summarize:
-\begin{align}\label{eq:thm:HardMax-biased-rew}
-    \rew_1(n)\geq\rew_2(n)\quad \text{for all steps $n\leq m_0$}.
-\end{align}
-
-We claim that $\Pr[i_t=1]>\tfrac12$ for all global rounds $t\leq m_0$. We prove this claim using induction on $t$. The base case $t=1$ holds by \eqref{eq:thm:HardMax-biased-PMRtoPr} and the fact that in step 1, \DynGreedy chooses the arm with the highest prior mean reward. For the induction step, we assume that $\Pr[i_t=1]>\tfrac12$ for all global rounds $t<t_0$, for some $t_0\leq  m_0$. It follows that distribution $\posteriorN{1}{t_0}$ stochastically dominates distribution $\posteriorN{2}{t_0}$.%
-\footnote{For random variables $X,Y$ on \R, we say that $X$ \emph{stochastically dominates} $Y$ if $\Pr[X\geq x] \geq \Pr[Y\geq x]$ for any $x\in \R$.}
-Observe that
-\begin{align}\label{eq:thm:HardMax-biased-PMR-aux}
-\PMR_1(t_0)
-  = \Ex{n\sim \posteriorN{1}{t_0}} {\rew_1(n+1)}
-  \geq \Ex{n\sim \posteriorN{2}{t_0}} {\rew_2(n+1)}
-  = \PMR_2(t_0).
-\end{align}
-So the induction step follows by \eqref{eq:thm:HardMax-biased-PMRtoPr}. Claim proved.
-
-Now let us focus on global round $m_0$, and denote $\mN_i = \posteriorN{i}{m_0}$.  By the above claim,
-\begin{align}\label{eq:thm:HardMax-biased-mN}
-\text{$\mN_1$ stochastically dominates $\mN_2$, and moreover
-    $\mN_i(m_0-1)>\mN_i(m_0-1)$.}
-\end{align}
-
-By definition of $m_0$, either (i) \alg[2] deviates from \DynGreedy starting from local step $m_0$, which implies $\rew_1(m_0)> \rew_2(m_0)$ by Lemma~\ref{lm:DG-rew}, or (ii) \DynGreedy deviates from \StaticGreedy starting from local step $m_0$, which implies $\rew_1(m_0)>\rew_1(m_0-1)$ by Lemma~\ref{dgmono}. In both cases, using \eqref{eq:thm:HardMax-biased-rew} and \eqref{eq:thm:HardMax-biased-mN}, it follows that the inequality in \eqref{eq:thm:HardMax-biased-PMR-aux} is strict for $t_0=m_0$.
-
-Therefore, agent $m_0$ chooses principal $1$, and by Lemma~\ref{lm:DG-sudden} so do all subsequent agents.
-\end{proof}
 
 
 % OLD PROOF (assuming alg1 coincides with DG on first two rounds, etc.
