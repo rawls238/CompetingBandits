@@ -1,13 +1,217 @@
+%%%%%%%%%% BOOKS, SURVEYS, TUTORIALS %%%%%%%%%
 
-%%%% LEARNING IN GAMES
+@Misc{Rou08,
+  author         = "Tim Roughgarden",
+  title         = "{An algorithmic game theory primer}",
+  howpublished         = "IFIP International Conf. on Theoretical Computer Science (TCS). An invited survey.",
+  year                 = "2008",
+}
 
-@inproceedings{Rakhlin-colt13,
-  author    = {Alexander Rakhlin and
-               Karthik Sridharan},
-  title     = {Online Learning with Predictable Sequences},
-  booktitle = proc # "26th" # COLT,
-  pages     = {993--1019},
+@Book{NRTV07,
+  author =               {N. Nisan and T. Roughgarden and E. Tardos and V. Vazirani (eds.)},
+  title =                {Algorithmic Game Theory},
+  publisher =    {Cambridge University Press},
+  year =                 {2007},
+}
+
+@Book{LPSV07,
+  author =               {Sebastien Lahaie and David M. Pennock and Amin Saberi and Rakesh V. Vohra},
+  title =                {In N. Nisan, T. Roughgarden, E. Tardos, and V. Vazirani (eds.) Chapter 28, Sponsored search auctions},
+  publisher =    {Cambridge University Press.},
+  year =                 {2007},
+}
+
+@inproceedings{Aggarwal-Muthukrishnan-focs08-tutorial,
+        author         = {Gagan Aggarwal and S. Muthukrishnan},
+        title         = {Tutorial on Theory of Sponsored Search Auctions},
+        booktitle         = FOCS,
+        year         = {2008},
+}
+
+@incollection{DynAuctions-survey10,
+    author = {Dirk Bergemann and Maher Said},
+    title = {Dynamic Auctions: A Survey},
+    booktitle = {Wiley Encyclopedia of Operations Research and Management Science, Vol. 2},
+    publisher = {Wiley: New York},
+    year = {2011},
+    pages = {1511-1522}
+}
+
+@Misc{Hartline-book-draft,
+  author         = "Jason D. Hartline",
+  title         = "{Approximation in Economic Design}",
+  howpublished         = "Draft of a forthcoming book, available at {\tt http://jasonhartline.com/MDnA/}",
+  year                 = "2012",
+}
+
+@article{Boer-survey15,
+    author = {Arnoud V. Den Boer},
+    title = "{Dynamic pricing and learning: Historical origins, current research, and new directions}",
+    journal = "Surveys in Operations Research and Management Science",
+    volume = "20",
+    number = "1",
+    month = "June",
+    year = "2015"
+}
+
+@book{Tim-20lectures-2016,
+    author  = {Tim Roughgarden},
+    title = {Twenty Lectures on Algorithmic Game Theory},
+    publisher = {Cambridge University Press},
+    year = {2016}
+}
+
+%%%%%%%%%%%%% CLASSICS %%%%%%%%%%%%
+
+% coarse correlated equilibrium (CCE)
+@article{Moulin-78,
+    author = {Herve Moulin and Jean-Paul Vial},
+    title = {Strategically zero-sum games: the class of games whose completely mixed equilibria cannot be improved upon},
+    journal = {Intl. J. of Game Theory},
+    volume = {7},
+    number = {3},
+    pages = {201–221},
+    year = {1978}
+}
+
+% correlated equilibrium (CE)
+@article{Aumann-74,
+    author = {Robert J. Aumann},
+    title = {Subjectivity and correlation in randomized strategies},
+    journal = {J. of Mathematical Economics},
+    volume = {1},
+    pages = {67–96},
+    year = {1974}
+}
+
+@article {BS13,
+author = {Bergemann, Dirk and Morris, Stephen},
+title = {Robust Predictions in Games With Incomplete Information},
+journal = {Econometrica},
+volume = {81},
+number = {4},
+pages = {1251--1308},
+year = {2013},
+}
+
+@article{BergemannMorris-infoDesign16,
+author = {Bergemann, Dirk and Morris, Stephen},
+year = {2016},
+pages = {586-591},
+title = {Information Design, Bayesian Persuasion, and Bayes Correlated Equilibrium},
+volume = {106},
+number  = {5},
+journal = {American Economic Review}
+}
+
+@article{Myerson,
+   author         = {Roger B. Myerson},
+   title         = "{Optimal Auction Design}",
+   journal         = "Mathematics of Operations Research",
+   volume         = "6",
+   number        = "",
+   pages         = {58-73},
+   year         = {1981}
+}
+
+@inproceedings{ArcherTardos,
+  author    = {Aaron Archer and
+               {\'E}va Tardos},
+  title     = {Truthful Mechanisms for One-Parameter Agents},
+  booktitle = FOCS,
+  year      = {2001},
+  pages     = {482-491},
+}
+
+@article{NR01,
+  title={{Algorithmic Mechanism Design}},
+  author={Nisan, N. and Ronen, A.},
+  journal={Games and Economic Behavior},
+  volume={35},
+  number={1-2},
+  pages={166--196},
+  year={2001},
+}
+
+@Article{EOS07,
+  author={Benjamin Edelman and Michael Ostrovsky and Michael Schwarz},
+  title={Internet Advertising and the Generalized Second-Price Auction: Selling Billions of Dollars Worth of Keywords},
+  journal={American Economic Review},
+  year=2007,
+  volume={97},
+  number={1},
+  pages={242-259},
+  month={March},
+}
+
+@Article{Varian07,
+  author={Varian, Hal R.},
+  title={Position auctions},
+  journal={International Journal of Industrial Organization},
+  year=2007,
+  volume={25},
+  number={6},
+  pages={1163-1178},
+  month={December},
+}
+
+@Article{BK96,
+  author={Bulow, Jeremy and Klemperer, Paul},
+  title={Auctions versus Negotiations},
+  journal={American Economic Review},
+  year=1996,
+  volume={86},
+  number={1},
+  pages={180-94},
+  month={March},
+}
+
+
+
+%%%% (REPEATED) SMOOTH GAMES
+
+% "usual" convergence:
+%   TotalAnarchy-stoc08,Roughgarden-PoA-stoc09,Lykouris-soda16
+% Fast convergence:
+%    Syrgkanis-nips15,Foster-nips16, Haipeng-colt18 (the latter is from "bib-bandits.bib")
+
+
+@inproceedings{TotalAnarchy-stoc08,
+  author    = {Avrim Blum and
+               MohammadTaghi Hajiaghayi and
+               Katrina Ligett and
+               Aaron Roth},
+  title     = {Regret minimization and the price of total anarchy},
+  booktitle = proc # "40th" # STOC,
+  pages     = {373--382},
+  year      = {2008}
+}
+
+@inproceedings{Roughgarden-PoA-stoc09,
+  author    = {Tim Roughgarden},
+  title     = {Intrinsic robustness of the price of anarchy},
+  booktitle = proc # "41st" # STOC,
+  pages     = {513--522},
+  year      = {2009}
+}
+
+@inproceedings{Syrgkanis-stoc13,
+  author    = {Vasilis Syrgkanis and
+               {\'{E}}va Tardos},
+  title     = {Composable and efficient mechanisms},
+  booktitle = proc # "45th" # STOC,
+  pages     = {211--220},
   year      = {2013}
+}
+
+@inproceedings{Lykouris-soda16,
+  author    = {Thodoris Lykouris and
+               Vasilis Syrgkanis and
+               {\'{E}}va Tardos},
+  title     = {Learning and Efficiency in Games with Dynamic Population},
+  booktitle = proc # "27th" # SODA,
+  pages     = {120--129},
+  year      = {2016}
 }
 
 @inproceedings{Syrgkanis-nips15,
@@ -19,6 +223,52 @@
   booktitle =  proc # "28th" # NIPS,
   pages     = {2989--2997},
   year      = {2015}
+}
+
+@inproceedings{Foster-nips16,
+  author    = {Dylan J. Foster and
+               Zhiyuan Li and
+               Thodoris Lykouris and
+               Karthik Sridharan and
+               {\'{E}}va Tardos},
+  title     = {Learning in Games: Robustness of Fast Convergence},
+  booktitle = proc # "29th" # NIPS,
+  pages     = {4727--4735},
+  year      = {2016}
+}
+
+
+%%%% LEARNING IN REPEATED NON-SMOOTH GAMES
+
+
+@inproceedings{Rakhlin-colt13,
+  author    = {Alexander Rakhlin and
+               Karthik Sridharan},
+  title     = {Online Learning with Predictable Sequences},
+  booktitle = proc # "26th" # COLT,
+  pages     = {993--1019},
+  year      = {2013}
+}
+
+@inproceedings{Rakhlin-nips13,
+  author    = {Alexander Rakhlin and
+               Karthik Sridharan},
+  title     = {Optimization, Learning, and Games with Predictable Sequences},
+  booktitle = proc # "27th" # NIPS,
+  pages     = {3066--3074},
+  year      = {2013}
+}
+
+@article{Daskalakis-GEB15,
+  author    = {Constantinos Daskalakis and
+               Alan Deckelbaum and
+               Anthony Kim},
+  title     = {Near-optimal no-regret algorithms for zero-sum games},
+  journal   = {Games and Economic Behavior},
+  volume    = {92},
+  pages     = {327--348},
+  year      = {2015},
+  note      = {Preliminary version in \emph{ACM-SIAM SODA 2011}.}
 }
 
 @inproceedings{Christiano11MaxFlow,
@@ -42,11 +292,13 @@
   publisher={Now Publishers, Inc.}
 }
 
-@article{wang2018acceleration,
-  title={Acceleration through Optimistic No-Regret Dynamics},
-  author={Wang, Jun-Kun and Abernethy, Jacob},
-  journal={arXiv preprint arXiv:1807.10455},
-  year={2018}
+@inproceedings{wang2018acceleration,
+  author    = {Jun{-}Kun Wang and
+               Jacob D. Abernethy},
+  title     = {Acceleration through Optimistic No-Regret Dynamics},
+  booktitle = proc # "31st" # NIPS,
+  pages     = {3828--3838},
+  year      = {2018}
 }
 
 @inproceedings{abernethy2017frank,
@@ -57,6 +309,91 @@
   year={2017}
 }
 
+%%%%% topological convergence
+
+% positive results: Piliouras-stoc09, Daskalakis-iclr18
+% negative results: Piliouras-soda18,Piliouras-ec18,Piliouras-colt19
+
+@inproceedings{Piliouras-colt19,
+  author    = {Yun Kuen Cheung and
+               Georgios Piliouras},
+  title     = {Vortices Instead of Equilibria in MinMax Optimization: Chaos and Butterfly
+               Effects of Online Learning in Zero-Sum Games},
+  booktitle = COLT,
+  pages     = {807--834},
+  year      = {2019}
+}
+
+@inproceedings{Daskalakis-iclr18,
+  author    = {Constantinos Daskalakis and
+               Andrew Ilyas and
+               Vasilis Syrgkanis and
+               Haoyang Zeng},
+  title     = {Training GANs with Optimism},
+  booktitle = proc # "6th" # ICLR,
+  year      = {2018}
+}
+
+
+@inproceedings{Piliouras-ec18,
+  author    = {James P. Bailey and
+               Georgios Piliouras},
+  title     = {Multiplicative Weights Update in Zero-Sum Games},
+  booktitle =  ACMEC,
+  pages     = {321--338},
+  year      = {2018}
+}
+
+@inproceedings{Piliouras-soda18,
+  author    = {Panayotis Mertikopoulos and
+               Christos H. Papadimitriou and
+               Georgios Piliouras},
+  title     = {Cycles in Adversarial Regularized Learning},
+  booktitle = proc # "29th" # SODA,
+  pages     = {2703--2717},
+  year      = {2018}
+}
+
+@inproceedings{Piliouras-stoc09,
+  author    = {Robert Kleinberg and
+               Georgios Piliouras and
+               {\'{E}}va Tardos},
+  title     = {Multiplicative updates outperform generic no-regret learning in congestion
+               games: extended abstract},
+  booktitle = proc # "41st" # STOC,
+  pages     = {533--542},
+  year      = {2009}
+}
+
+% fictitious play
+
+% Brown-49,Robinson-51,Daskalakis-focs14
+
+@inproceedings{Daskalakis-focs14,
+  author    = {Constantinos Daskalakis and Qinxuan Pan},
+  title     = {A Counter-example to Karlin's Strong Conjecture for Fictitious Play},
+  booktitle = proc # "55th" # FOCS,
+  pages     = {11--20},
+  year      = {2014}
+}
+
+@article{Robinson-51,
+   author   = {Julia Robinson},
+   title    = {An iterative method of solving a game},
+   journal  = {Annals of Mathematics, Second Series},
+   year     = {1951},
+   volume   = {54},
+   number   = {2},
+   pages    = {296-301}
+}
+
+@techreport{Brown-49,
+    author = {George W. Brown},
+    title = {Some notes on computation of games solutions},
+    institution = {The Rand Corporation},
+    number = {P-78},
+    year = {1949}
+}
 
 
 %%%%%% DYNAMIC MECHANISMS
@@ -113,18 +450,24 @@
   note = {Preliminary versions have been available since 2006.}
 }
 
-@inproceedings{NSV08,
- author = {Hamid Nazerzadeh and Amin Saberi and Rakesh Vohra},
- title = {Dynamic cost-per-action mechanisms and applications to online advertising},
- booktitle = proc # "17th" # WWW,
- year = {2008},
- }
+@article{NSV08,
+  author    = {Hamid Nazerzadeh and
+               Amin Saberi and
+               Rakesh Vohra},
+  title     = {Dynamic Pay-Per-Action Mechanisms and Applications to Online Advertising},
+  journal   = {Operations Research},
+  volume    = {61},
+  number    = {1},
+  pages     = {98--111},
+  year      = {2013},
+  note  = {Preliminary version in \emph{WWW 2008}.}
+}
 
 @misc{Kakade-pivot11,
-   author   = {Sham M. Kakade and Ilan Lobel and Hamid Nazerzadeh},
-   title  = "{Optimal Dynamic Mechanism Design and the Virtual Pivot Mechanism}",
+   author         = {Sham M. Kakade and Ilan Lobel and Hamid Nazerzadeh},
+   title         = "{Optimal Dynamic Mechanism Design and the Virtual Pivot Mechanism}",
    howpublished = "SSRN Report, SSRN ID 1782211",
-   year   = {2011}
+   year         = {2011}
 }
 
 @article{Kakade-pivot-or13,
@@ -140,137 +483,55 @@
 }
 
 @Misc{Segal-dynamic11,
-  author  = "Alessandro Pavan and Ilya Segal and Juuso Toikka",
-  title   = "{Dynamic Mechanism Design: Revenue Equivalence, Profit Maximization, and Information Disclosure}",
-  howpublished  = "Working paper",
-  year    = "2011",
+  author         = "Alessandro Pavan and Ilya Segal and Juuso Toikka",
+  title         = "{Dynamic Mechanism Design: Revenue Equivalence, Profit Maximization, and Information Disclosure}",
+  howpublished         = "Working paper",
+  year                 = "2011",
 }
 
 %  pages = {179--188},
 
-%%%%%%%%%% BOOKS, SURVEYS, TUTORIALS %%%%%%%%%
 
-@Misc{Rou08,
-  author  = "Tim Roughgarden",
-  title   = "{An algorithmic game theory primer}",
-  howpublished  = "IFIP International Conf. on Theoretical Computer Science (TCS). An invited survey.",
-  year    = "2008",
+
+%%%%%%%%%%%%% MAB/OnlineML + Mechanisms %%%%%%%%%%%%%%%
+
+@inproceedings{Jieming-colt19,
+  author    = {Mark Braverman and
+               Jieming Mao and
+               Jon Schneider and
+               S. Matthew Weinberg},
+  title     = {Multi-armed Bandit Problems with Strategic Arms},
+  booktitle = COLT,
+  pages     = {383--416},
+  year      = {2019}
 }
 
-@Book{NRTV07,
-  author =               {N. Nisan and T. Roughgarden and E. Tardos and V. Vazirani (eds.)},
-  title =                {Algorithmic Game Theory},
-  publisher =    {Cambridge University Press},
-  year =                 {2007},
-}
-
-@Book{LPSV07,
-  author =               {Sebastien Lahaie and David M. Pennock and Amin Saberi and Rakesh V. Vohra},
-  title =                {In N. Nisan, T. Roughgarden, E. Tardos, and V. Vazirani (eds.) Chapter 28, Sponsored search auctions},
-  publisher =    {Cambridge University Press.},
-  year =                 {2007},
-}
-
-@inproceedings{Aggarwal-Muthukrishnan-focs08-tutorial,
-  author  = {Gagan Aggarwal and S. Muthukrishnan},
-  title   = {Tutorial on Theory of Sponsored Search Auctions},
-  booktitle   = FOCS,
-  year  = {2008},
-}
-
-@incollection{DynAuctions-survey10,
-    author = {Dirk Bergemann and Maher Said},
-    title = {Dynamic Auctions: A Survey},
-    booktitle = {Wiley Encyclopedia of Operations Research and Management Science, Vol. 2},
-    publisher = {Wiley: New York},
-    year = {2011},
-    pages = {1511-1522}
-}
-
-@Misc{Hartline-book-draft,
-  author  = "Jason D. Hartline",
-  title   = "{Approximation in Economic Design}",
-  howpublished  = "Draft of a forthcoming book, available at {\tt http://jasonhartline.com/MDnA/}",
-  year    = "2012",
-}
-
-@article{Boer-survey15,
-    author = {Arnoud V. Den Boer},
-    title = "{Dynamic pricing and learning: Historical origins, current research, and new directions}",
-    journal = "Surveys in Operations Research and Management Science",
-    volume = "20",
-    number = "1",
-    month = "June",
-    year = "2015"
-}
-
-%%%%%%%%%%%%% CLASSICS %%%%%%%%%%%%
-
-@article{Myerson,
-   author   = {Roger B. Myerson},
-   title  = "{Optimal Auction Design}",
-   journal  = "Mathematics of Operations Research",
-   volume   = "6",
-   number = "",
-   pages  = {58-73},
-   year   = {1981}
-}
-
-@inproceedings{ArcherTardos,
-  author    = {Aaron Archer and
-               {\'E}va Tardos},
-  title     = {Truthful Mechanisms for One-Parameter Agents},
-  booktitle = FOCS,
-  year      = {2001},
-  pages     = {482-491},
-}
-
-@article{NR01,
-  title={{Algorithmic Mechanism Design}},
-  author={Nisan, N. and Ronen, A.},
-  journal={Games and Economic Behavior},
-  volume={35},
-  number={1-2},
-  pages={166--196},
-  year={2001},
-}
-
-@Article{EOS07,
-  author={Benjamin Edelman and Michael Ostrovsky and Michael Schwarz},
-  title={Internet Advertising and the Generalized Second-Price Auction: Selling Billions of Dollars Worth of Keywords},
-  journal={American Economic Review},
-  year=2007,
-  volume={97},
-  number={1},
-  pages={242-259},
-  month={March},
-}
-
-@Article{Varian07,
-  author={Varian, Hal R.},
-  title={Position auctions},
-  journal={International Journal of Industrial Organization},
-  year=2007,
-  volume={25},
-  number={6},
-  pages={1163-1178},
-  month={December},
-}
-
-@Article{BK96,
-  author={Bulow, Jeremy and Klemperer, Paul},
-  title={Auctions versus Negotiations},
-  journal={American Economic Review},
-  year=1996,
-  volume={86},
-  number={1},
-  pages={180-94},
-  month={March},
+@inproceedings{OnlineLearningAuctions-focs17,
+  author    = {Miroslav Dud{\'{\i}}k and
+               Nika Haghtalab and
+               Haipeng Luo and
+               Robert E. Schapire and
+               Vasilis Syrgkanis and
+               Jennifer Wortman Vaughan},
+  title     = {Oracle-Efficient Online Learning and Auction Design},
+  booktitle = proc # "58th" # FOCS,
+  pages     = {528--539},
+  year      = {2017}
 }
 
 
-%%%%%%%%%%%%% MAB + Mechanisms %%%%%%%%%%%%%%%
 
+@inproceedings{Hoda-icml16,
+  author    = {Hoda Heidari and
+               Mohammad Mahdian and
+               Umar Syed and
+               Sergei Vassilvitskii and
+               Sadra Yazdanbod},
+  title     = {Pricing a Low-regret Seller},
+  booktitle = proc # "33rd" # ICML,
+  pages     = {2559--2567},
+  year      = {2016}
+}
 
 @inproceedings{Jieming-ec18,
   author    = {Mark Braverman and
@@ -326,21 +587,22 @@
   title     = {The Price of Truthfulness for Pay-Per-Click Auctions},
   booktitle = proc # "10th" # EC,
   pages     = {99-106},
-  year      = {2009}
+  year      = {2009},
+  publisher = ACMpub
 }
 
 @inproceedings{Gatti-ec12,
-   author =   "Nicola Gatti and Alessandro Lazaric and Francesco Trovo",
-   title =  "{A Truthful Learning Mechanism for Contextual Multi-Slot Sponsored Search Auctions with Externalities}",
-   booktitle  = proc # "13th" # EC,
-   year   = "2012"
+   author =         "Nicola Gatti and Alessandro Lazaric and Francesco Trovo",
+   title =         "{A Truthful Learning Mechanism for Contextual Multi-Slot Sponsored Search Auctions with Externalities}",
+   booktitle         = proc # "13th" # EC,
+   year         = "2012"
 }
 
 
 @misc{Segal-personal-10,
-   author =   "Ilya Segal",
+   author =         "Ilya Segal",
    howpublished = "Personal communication",
-   year   = "2010"
+   year         = "2010"
 }
 
 
@@ -355,17 +617,17 @@
 }
 
 @inproceedings{Jain-sagt11,
-  author  = "Navendu Jain and Ishai Menache and Joseph Naor and Jonathan Yaniv",
-  title   = "{A Truthful Mechanism for Value-Based Scheduling in Cloud Computing}",
+  author         = "Navendu Jain and Ishai Menache and Joseph Naor and Jonathan Yaniv",
+  title         = "{A Truthful Mechanism for Value-Based Scheduling in Cloud Computing}",
   booktitle = proc # "4th" # SAGT,
-  year    = "2011"
+  year                 = "2011"
 }
 
 @inproceedings{Huang-ExpMech12,
-  author  = "Zhiyi Huang and Sampath Kannan",
-  title   = "{Exponential mechanism for social welfare: private, truthful, and nearly optimal}",
+  author         = "Zhiyi Huang and Sampath Kannan",
+  title         = "{Exponential mechanism for social welfare: private, truthful, and nearly optimal}",
   booktitle = proc # "53rd" # FOCS,
-  year    = "2012"
+  year                 = "2012"
 }
 
 @inproceedings{McSherry-Talwar-focs07,
@@ -377,6 +639,24 @@
 }
 
 %%%%%%%%%% DYNAMIC PRICING and BwK %%%%%%%%%%%%%%
+
+@article{rivera2018online,
+  title={Online Saddle Point Problem with Applications to Constrained Online Convex Optimization},
+  author={Rivera, Adrian and Wang, He and Xu, Huan},
+  journal={arXiv preprint arXiv:1806.08301},
+  year={2018}
+}
+
+@inproceedings{rangi2018unifying,
+  author    = {Anshuka Rangi and
+               Massimo Franceschetti and
+               Long Tran{-}Thanh},
+  title     = {Unifying the Stochastic and the Adversarial Bandits with Knapsack},
+  booktitle = proc # "28th" #IJCAI,
+  pages     = {3311--3317},
+  year      = {2019},
+}
+
 
 @inproceedings{MultiScaleMAB-ec17,
   author    = {S{\'{e}}bastien Bubeck and
@@ -416,13 +696,14 @@
   title     = {The Value of Knowing a Demand Curve: Bounds on Regret for
                Online Posted-Price Auctions},
   booktitle = FOCS,
+  publisher = IEEEpub,
+  pages     = {594-605},
   year      = {2003},
 }
-%  pages     = {594-605},
 
 @InProceedings{BBDS11,
-  author =   {Moshe Babaioff and Liad Blumrosen and Shaddin Dughmi and Yaron Singer},
-  title =    {Posting Prices with Unknown Distributions},
+  author =          {Moshe Babaioff and Liad Blumrosen and Shaddin Dughmi and Yaron Singer},
+  title =          {Posting Prices with Unknown Distributions},
   booktitle= ITCS,
   year= 2011
 }
@@ -433,7 +714,7 @@
  title = {Dynamic Pricing Without Knowing the Demand Function: Risk Bounds and Near-Optimal Algorithms},
  journal = {Operations Research},
  volume = {57},
- issue = {6},
+ number = {6},
  year = {2009},
  pages = {1407--1420},
 }
@@ -443,7 +724,7 @@
  title = {On the minimax complexity of pricing in a changing environment},
  journal = {Operations Reseach},
  volume = {59},
- issue = {1},
+ number = {1},
  year = {2011},
  pages = {66--79},
 }
@@ -498,6 +779,7 @@
   title     = {Truthful incentives in crowdsourcing tasks using regret
                minimization mechanisms},
   booktitle = proc # "22nd" # WWW,
+  publisher = WWWpub,
   year      = {2013},
   pages     = {1167-1178},
 }
@@ -511,6 +793,17 @@
   number    = {6},
   year      = {2012},
   pages     = {1537-1550}
+}
+
+@article{Zeevi-assortment-13,
+  author    = {Denis Saur{\'{e}} and
+               Assaf Zeevi},
+  title     = {Optimal Dynamic Assortment Planning with Demand Learning},
+  journal   = {Manufacturing {\&} Service Operations Management},
+  volume    = {15},
+  number    = {3},
+  pages     = {387--404},
+  year      = {2013}
 }
 
 @inproceedings{vectorOutcomes-itcs14,
@@ -553,10 +846,10 @@
 }
 
 @phdthesis{TranThanh-thesis,
-   author   = {Long Tran-Thanh},
-   title  = {Budget-Limited Multi-Armed Bandits},
-   school   = {University of Southampton},
-   year   = 2012
+   author         = {Long Tran-Thanh},
+   title         = {Budget-Limited Multi-Armed Bandits},
+   school         = {University of Southampton},
+   year         = 2012
 }
 
 @inproceedings{TranThanh-aaai12,
@@ -722,6 +1015,8 @@
   year      = {2015}
 }
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%% competition and MAB algorithms %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -871,7 +1166,40 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%% BIC exploration %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Incentivized exploration %%%%%%%%%%%
+
+@article{FiduciaryBandits-arxiv19,
+  author    = {Gal Bahar and
+               Omer Ben{-}Porat and
+               Kevin Leyton{-}Brown and
+               Moshe Tennenholtz},
+  title     = {Fiduciary Bandits},
+  journal   = {CoRR},
+  volume    = {abs/1905.07043},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1905.07043},
+  archivePrefix = {arXiv},
+  eprint    = {1905.07043},
+}
+
+@inproceedings{Cohen-Mansour-ec19,
+  author    = {Lee Cohen and
+               Yishay Mansour},
+  title     = {Optimal Algorithm for Bayesian Incentive-Compatible Exploration},
+  booktitle = ACMEC,
+  pages     = {135--151},
+  year      = {2019}
+  }
+
+@inproceedings{Bahar-ec19,
+  author    = {Gal Bahar and
+               Rann Smorodinsky and
+               Moshe Tennenholtz},
+  title     = {Social Learning and the Innkeeper's Challenge},
+  booktitle = ACMEC,
+  pages     = {153--170},
+  year      = {2019}
+}
 
 @inproceedings{KKMPRVW17,
   author    = {Sampath Kannan and
@@ -901,6 +1229,7 @@
   author    = {Sven Schmit and Carlos Riquelme},
   title     = {Human Interaction with Recommendation Systems},
   booktitle = AISTATS,
+  publisher = PMLRpub,
   pages     = {862--870},
   year      = {2018}
 }
@@ -910,7 +1239,7 @@
     title = {Crowdsourcing Exploration},
     journal = {Management Science},
     volume = {64},
-    issue = {4},
+    number = {4},
     year = {2018},
     pages = {1477-1973}
 }
@@ -937,7 +1266,8 @@
                Moshe Tennenholtz},
   title     = {Economic Recommendation Systems},
   booktitle = proc # "16th" # EC,
-  year      = {2016}
+  year      = {2016},
+  publisher = ACMpub
 }
 
 @inproceedings{Kempe-wine15,
@@ -956,10 +1286,10 @@
     title = {Implementing the “Wisdom of the Crowd”},
     journal = {J. of Political Economy},
     volume = {122},
-    issue  = {5},
+    number  = {5},
     pages = {988--1012},
         year = {2014},
-    note = "Preliminary version in \emph{ACM EC 2014}."
+    note = "Preliminary version in \emph{ACM EC 2013}."
 }
 %    month = Oct,
 
@@ -969,81 +1299,88 @@
   title     = {Incentivizing exploration},
   booktitle = ACMEC,
   pages     = {5--22},
-  year      = {2014}
+  year      = {2014},
+  publisher = ACMpub,
 }
 
 @article{Che-13,
-title   = {Optimal design for social learning},
+title   = {Recommender Systems as Mechanisms for Social Learning},
 author  = {Yeon-Koo Che and Johannes H\"{o}rner},
 journal = "Quarterly Journal of Economics",
+volume  = {133},
+number  = {2},
+pages   = {871–925},
 year    = {2018},
-note    = "Forthcoming. First published draft: 2013."
+note    = "Working paper since 2013, titled
+'Optimal design for social learning'."
 }
 
 @article{Bolton-econometrica99,
-   author   = {Patrick Bolton and Christopher Harris},
-   title  = "{Strategic Experimentation}",
-   journal  = "Econometrica",
-   volume   = "67",
+   author         = {Patrick Bolton and Christopher Harris},
+   title         = "{Strategic Experimentation}",
+   journal         = "Econometrica",
+   volume         = "67",
    number   = "2",
-   pages  = {349--374},
-   year   = {1999}
+   pages         = {349--374},
+   year         = {1999}
 }
 
 @article{Keller-econometrica05,
-   author   = {Godfrey Keller and Sven Rady and Martin Cripps},
-   title  = "{Strategic Experimentation with Exponential Bandits}",
-   journal  = "Econometrica",
-   volume   = "73",
+   author         = {Godfrey Keller and Sven Rady and Martin Cripps},
+   title         = "{Strategic Experimentation with Exponential Bandits}",
+   journal         = "Econometrica",
+   volume         = "73",
    number   = "1",
-   pages  = {39--68},
-   year   = {2005}
+   pages         = {39--68},
+   year         = {2005}
 }
 
 @article{Kamenica-aer11,
-   author   = {Emir Kamenica and Matthew Gentzkow},
-   title  = "{Bayesian Persuasion}",
-   journal  = "American Economic Review",
-   volume   = "101",
+   author         = {Emir Kamenica and Matthew Gentzkow},
+   title         = "{Bayesian Persuasion}",
+   journal         = "American Economic Review",
+   volume         = "101",
    number   = "6",
-   pages  = {2590--2615},
-   year   = {2011}
+   pages         = {2590--2615},
+   year         = {2011}
 }
 
 @article{Rayo-jpe10,
-   author   = {Luis Rayo and Ilya Segal },
-   title  = "{Optimal Information Disclosure}",
-   journal  = "J. of Political Economy",
-   volume   = "118",
+   author         = {Luis Rayo and Ilya Segal },
+   title         = "{Optimal Information Disclosure}",
+   journal         = "J. of Political Economy",
+   volume         = "118",
    number   = "5",
-   pages  = {949--987},
-   year   = {2010}
+   pages         = {949--987},
+   year         = {2010}
 }
 
 @article{Manso-jf11,
-   author   = {Gustavo Manso},
-   title  = "{Motivating Innovation}",
-   journal  = "J. of Finance",
-   volume   = "66",
+   author         = {Gustavo Manso},
+   title         = "{Motivating Innovation}",
+   journal         = "J. of Finance",
+   volume         = "66",
    number   = "5",
-   pages  = {1823-–1860},
-   year   = {2011}
+   pages         = {1823-–1860},
+   year         = {2011}
 }
 
 @article{Ely-jpe15,
-   author   = {Jeff Ely and Alex Frankel and Emir Kamenica},
-   title  = "{Suspense and Surprise}",
-   journal  = "J. of Political Economy",
+   author         = {Jeff Ely and Alex Frankel and Emir Kamenica},
+   title         = "{Suspense and Surprise}",
+   journal         = "J. of Political Economy",
    note = "forthcoming",
    year = {2015}
 }
 
 @article{Horner-jpe15,
    author   = {Johannes H\"{o}rner and Andrzej Skrzypacz},
-   title  = "{Selling Information}",
+   title    = "{Selling Information}",
    journal  = "J. of Political Economy",
-   note = "forthcoming",
-   year   = {2015}
+   volume   = {124},
+   number   = {6},
+   pages    = {1515-1562},
+   year         = {2016}
 }
 
 
@@ -1054,28 +1391,11 @@ note    = "Forthcoming. First published draft: 2013."
   year      = {2016}
 }
 
-@article {BS13,
-author = {Bergemann, Dirk and Morris, Stephen},
-title = {Robust Predictions in Games With Incomplete Information},
-journal = {Econometrica},
-volume = {81},
-number = {4},
-pages = {1251--1308},
-year = {2013},
-}
-
-@misc{BergemannMorris-infoDesign16,
-    author = {Dirk Bergemann and Stephen Morris},
-    title  = {Information Design, Bayesian Persuasion and Bayes Correlated Equilibrium},
-    year    = {2016},
-    note    = {Working paper}
-}
-
 @misc{Taneva-infoDesign16,
     author = {Ina Taneva},
     title  = {Information Design},
     year    = {2016},
-    note    = {Working paper}
+    note    = {Working paper. Forthcoming in \emph{American Economic Journal: Macroeconomics}.}
 }
 
 @article{PriceOfMediation-DM14,
@@ -1117,14 +1437,15 @@ year = {2013},
     year = {2015}
 }
 
-@misc{Bobby-Glen-ec16,
+
+@inproceedings{Bobby-Glen-ec16,
   author    = {Robert D. Kleinberg and
                Bo Waggoner and
                E. Glen Weyl},
   title     = {Descending Price Optimally Coordinates Search},
-  howpublished = {Working paper},
-  note      = "Preliminary version in \emph{ACM EC 2016}.",
-  year      = {2016},
+  booktitle = proc # "17th" # ACMEC,
+  pages     = {23--24},
+  year      = {2016}
 }
 
 @inproceedings{Liang-ec18,
@@ -1146,24 +1467,25 @@ year = {2013},
   year      = {2018}
 }
 
+
 %%%%%%%%%%%%% SECRETARY PROBLEMS %%%%%%%%%%
 
 @article{Dynkin-secretary63,
-   author   = {Eugene B. Dynkin},
-   title  = "{The optimum choice of the instant for stopping a markov process}",
-   journal  = "Sov. Math. Dokl.",
-   volume   = "4",
-   year   = {1963}
+   author         = {Eugene B. Dynkin},
+   title         = "{The optimum choice of the instant for stopping a markov process}",
+   journal         = "Sov. Math. Dokl.",
+   volume         = "4",
+   year         = {1963}
 }
 
 @article{Freeman-survey83,
-   author   = {P.R. Freeman},
-   title  = "{The secretary problem and its extensions: a review.}",
-   journal  = "Intl. Statistics Review",
-   volume   = "51",
-   number = "2",
-   pages  = {189-206},
-   year   = {1983}
+   author         = {P.R. Freeman},
+   title         = "{The secretary problem and its extensions: a review.}",
+   journal         = "Intl. Statistics Review",
+   volume         = "51",
+   number        = "2",
+   pages         = {189-206},
+   year         = {1983}
 }
 
 @inproceedings{BabaioffIK07,
@@ -1322,41 +1644,41 @@ year = {2013},
 }
 
 @article{OnlineMatchingBook,
-title = {Online Matching and Ad Allocation},
-author  = {Aranyak Mehta},
-year  = {2013},
-journal = {Foundations and Trends in Theoretical Computer Science},
-pages = {265-368},
-volume  = {8 (4)}
+title        = {Online Matching and Ad Allocation},
+author        = {Aranyak Mehta},
+year        = {2013},
+journal        = {Foundations and Trends in Theoretical Computer Science},
+pages        = {265-368},
+volume        = {8 (4)}
 }
 
 @inproceedings{Karande11Unknown,
-title = {Online bipartite matching with unknown distributions},
-author  = {Chinmay Karande and Aranyak Mehta and Pushkar Tripathi},
-year  = {2011},
-booktitle = STOC
+title        = {Online bipartite matching with unknown distributions},
+author        = {Chinmay Karande and Aranyak Mehta and Pushkar Tripathi},
+year        = {2011},
+booktitle        = STOC
 }
 
 @inproceedings{vertexWeighted11,
-title = {Online Vertex-Weighted Bipartite Matching and Single-bid Budgeted Allocations},
-author  = {Gagan Aggarwal and Gagan Goel and Chinmay Karande and Aranyak Mehta},
-year  = {2011},
-booktitle = SODA
+title        = {Online Vertex-Weighted Bipartite Matching and Single-bid Budgeted Allocations},
+author        = {Gagan Aggarwal and Gagan Goel and Chinmay Karande and Aranyak Mehta},
+year        = {2011},
+booktitle        = SODA
 }
 
 @inproceedings{Feldman09IID,
-title = {Online Stochastic Matching: Beating 1-1/e},
-author  = {Jon Feldman and Aranyak Mehta and Vahab Mirrokni and S. Muthukrishnan},
-year  = {2009},
-booktitle = FOCS
+title        = {Online Stochastic Matching: Beating 1-1/e},
+author        = {Jon Feldman and Aranyak Mehta and Vahab Mirrokni and S. Muthukrishnan},
+year        = {2009},
+booktitle        = FOCS
 }
 
 @inproceedings{Goel08Budgetted,
-title = {Online budgeted matching in random input models with applications to Adwords},
-author  = {Gagan Goel and Aranyak Mehta},
-year  = {2008},
-booktitle = SODA,
-pages = {982--991},
+title        = {Online budgeted matching in random input models with applications to Adwords},
+author        = {Gagan Goel and Aranyak Mehta},
+year        = {2008},
+booktitle        = SODA,
+pages        = {982--991},
 }
 
 
@@ -1476,11 +1798,11 @@ note    = {Preliminary version in {ACM EC 2008}.}
 }
 
 @inproceedings{Ben-Or-Hassidim-08-The-Bayesian,
-   author =   "Michael Ben-Or and Avinatan Hassidim",
-   title =  "{The Bayesian Learner is Optimal for Noisy Binary Search (and Pretty Good for Quantum as Well)}",
-   booktitle  = FOCS,
-   pages  = {},
-   year   = "2008"
+   author =         "Michael Ben-Or and Avinatan Hassidim",
+   title =         "{The Bayesian Learner is Optimal for Noisy Binary Search (and Pretty Good for Quantum as Well)}",
+   booktitle         = FOCS,
+   pages         = {},
+   year         = "2008"
 }
 
 @inproceedings{DD09,
@@ -1510,23 +1832,23 @@ note    = {Preliminary version in {ACM EC 2008}.}
 
 
 @article{Balcan-jcss08,
-   author   = {Maria-Florina Balcan and Avrim Blum and Jason D. Hartline and Yishay Mansour},
-   title  = "{Reducing mechanism design to algorithm design via machine learning}",
-   journal  = JCSS,
-   volume   = "74",
-   number = "8",
-   pages  = {1245-1270},
-   year   = {2008},
+   author         = {Maria-Florina Balcan and Avrim Blum and Jason D. Hartline and Yishay Mansour},
+   title         = "{Reducing mechanism design to algorithm design via machine learning}",
+   journal         = JCSS,
+   volume         = "74",
+   number        = "8",
+   pages         = {1245-1270},
+   year         = {2008},
    note     = "{Preliminary version in \emph{IEEE FOCS 2005}.}"
 }
 
 @article{Meir-AI12,
-   author   = {Reshef Meir and Ariel D. Procaccia and Jeffrey S. Rosenschein},
-   title  = "{Algorithms for Strategyproof Classification}",
-   journal  = "Artificial Intelligence",
-   volume   = "186",
-   pages  = {123-156},
-   year   = {2012}
+   author         = {Reshef Meir and Ariel D. Procaccia and Jeffrey S. Rosenschein},
+   title         = "{Algorithms for Strategyproof Classification}",
+   journal         = "Artificial Intelligence",
+   volume         = "186",
+   pages         = {123-156},
+   year         = {2012}
 }
 
 
@@ -1822,11 +2144,11 @@ author = "Alejandro M. Manelli and Daniel R. Vincent",
 }
 
 @InProceedings{pmlr-v80-kearns18a,
-  title =    {Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness},
-  author =   {Kearns, Michael and Neel, Seth and Roth, Aaron and Wu, Zhiwei Steven},
+  title =          {Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness},
+  author =          {Kearns, Michael and Neel, Seth and Roth, Aaron and Wu, Zhiwei Steven},
   booktitle = proc # "35th" # ICML,
-  pages =    {2564--2572},
-  year =   {2018}
+  pages =          {2564--2572},
+  year =          {2018}
 }
 
 @article{agarwal2018reductions,
@@ -1844,17 +2166,26 @@ author = "Alejandro M. Manelli and Daniel R. Vincent",
   year={2017},
 }
 
-%%%%%%%%%%% New BwK %%%%%%%%%%%%%
-@article{rivera2018online,
-  title={Online Saddle Point Problem with Applications to Constrained Online Convex Optimization},
-  author={Rivera, Adrian and Wang, He and Xu, Huan},
-  journal={arXiv preprint arXiv:1806.08301},
-  year={2018}
-}
+%%%%%%%%% Regret minimization as behavioral model
+%%%%%%%
 
-@article{rangi2018unifying,
-  title={Unifying the stochastic and the adversarial Bandits with Knapsack},
-  author={Rangi, Anshuka and Franceschetti, Massimo and Tran-Thanh, Long},
-  journal={arXiv preprint arXiv:1811.12253},
-  year={2018}
+% Nekipelov-ec15,Noti-www17
+
+@inproceedings{Nekipelov-ec15,
+  author    = {Denis Nekipelov and
+               Vasilis Syrgkanis and
+               {\'{E}}va Tardos},
+  title     = {Econometrics for Learning Agents},
+  booktitle = proc # "16th" # EC,
+  pages     = {1--18},
+  year      = {2015}
+ }
+
+ @inproceedings{Noti-www17,
+  author    = {Noam Nisan and
+               Gali Noti},
+  title     = {An Experimental Evaluation of Regret-Based Econometrics},
+  booktitle = proc # "26th" # WWW,
+  pages     = {73--81},
+  year      = {2017}
 }

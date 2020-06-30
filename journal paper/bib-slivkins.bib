@@ -1,13 +1,27 @@
-@String{ WEBPATH  =  "{\texttt{http://research.microsoft.com/en-us/people/slivkins}}" }
+@String{ WEBPATH         =  "{\texttt{http://research.microsoft.com/en-us/people/slivkins}}" }
 
-@misc{slivkins-MABbook,
+@article{slivkins-MABbook,
     author = "Aleksandrs Slivkins",
-    title= "Introduction to multi-armed bandits",
-    year = "2018",
-    note = "A book draft, available at " # WEBPATH #
-    ". To be published with \emph{Foundations and Trends in Machine Learning}."
+    title= "Introduction to Multi-Armed Bandits",
+    journal = "Foundations and Trends$\circledR$ in Machine Learning",
+    volume = {12},
+    number = {1-2},
+    pages = {1-286},
+    month = nov,
+    year = "2019",
+    note = "Published with \emph{Now Publishers} (Boston, MA, USA). Also available at
+        {\tt https://arxiv.org/abs/1904.07272}."
 }
 
+@incollection{IncentivizedExploration-chapter,
+    author = {Robert Kleinberg and Aleksandrs Slivkins},
+    title = {Bayesian Persuasion and Incentivized Exploration},
+    booktitle = {Online and Matching-Based Market Design},
+    publisher = {Cambridge University Press},
+    editor = {Federico Echenique and Nicole Immorlica and Vijay Vazirani},
+    year = {2020},
+    note = {To appear}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -15,11 +29,11 @@
   author        = "Aleksandrs Slivkins and Jehoshua Bruck",
   title         = "Interleaving Schemes on Circulant Graphs",
   journal       = "Discrete Mathematics",
-  volume    = "309",
-  number    = "13",
-  pages     = "4384-4398",
-  month     = jul,
-  year      = "2009",
+  volume                = "309",
+  number                = "13",
+  pages                        = "4384-4398",
+  month                        = jul,
+  year                        = "2009",
   note          = "Preliminary versions have appeared as
     Caltech Parallel and Distributed Systems Group technical report ETR046 (2002) and ETR054 (2003)."
 }
@@ -34,20 +48,20 @@
   number    = "1",
   pages     = "146-157",
   month     = feb,
-  year    = "2010",
-  note    = "Preliminary version in \emph{11th European Symp. on Algorithms (ESA)}, 2003.",
+  year                = "2010",
+  note                = "Preliminary version in \emph{11th European Symp. on Algorithms (ESA)}, 2003.",
 }
 
 @article{Slivkins-soda04,
   author    = "Jon Kleinberg and Mark Sandler and Aleksandrs Slivkins",
   title     = "Network failure detection and graph connectivity",
-  journal   = SICOMP,
-  volume  = "38",
-  number  = "4",
+  journal         = SICOMP,
+  volume         = "38",
+  number        = "4",
   pages     = "1330-1346",
-  month   = aug,
+  month                = aug,
   year      = "2008",
-  note    = "Preliminary version in \emph{15th ACM-SIAM SODA}, 2004"
+  note                = "Preliminary version in \emph{15th ACM-SIAM SODA}, 2004"
 }
 
 @inproceedings{Slivkins-focs04-conf,
@@ -60,13 +74,13 @@
 
 @article{Slivkins-focs04,
   author    = "Jon Kleinberg and Aleksandrs Slivkins and Tom Wexler",
-  title     = "Triangulation and Embedding Using Small Sets of Beacons",
+  title            = "Triangulation and Embedding Using Small Sets of Beacons",
   journal   = "J. of the ACM",
   volume    = "56",
-  number  = "6",
+  number        = "6",
   month     = sep,
-  year      = "2009",
-  note    = {Subsumes conference papers in \emph{IEEE FOCS 2004} and \emph{ACM-SIAM SODA 2005}.}
+  year            = "2009",
+  note                = {Subsumes conference papers in \emph{IEEE FOCS 2004} and \emph{ACM-SIAM SODA 2005}.}
 }
 
 @InProceedings{Slivkins-soda05,
@@ -74,24 +88,24 @@
   booktitle = proc # "16th" # SODA,
   title     = "Distributed Approaches to Triangulation and Embedding",
   pages     = "640--649",
-  year      = "2005"
+  year             = "2005"
 }
 
 @article{Slivkins-podc05,
-   author   = {Aleksandrs Slivkins},
-   title  = "Distance estimation and object location via rings of neighbors",
-   journal  = "Distributed Computing",
-   volume   = "19",
-   number = "4",
-   pages  = {313-333},
-   month  = mar,
-   year   = {2007},
-   note   = {Special issue for {\em ACM PODC 2005}. Preliminary version has appeared in {\em ACM PODC 2005}.}
+   author         = {Aleksandrs Slivkins},
+   title         = "Distance estimation and object location via rings of neighbors",
+   journal         = "Distributed Computing",
+   volume         = "19",
+   number        = "4",
+   pages         = {313-333},
+   month        = mar,
+   year         = {2007},
+   note                = {Special issue for {\em ACM PODC 2005}. Preliminary version in {\em ACM PODC 2005}.}
 }
 
 @InProceedings{Slivkins-focs05,
   author    =  {Ittai Abraham and Yair Bartal and Hubert T-H. Chan and Kedar Dhamdhere
-    and Anupam Gupta and Jon Kleinberg and Ofer Neiman and Aleksandrs Slivkins},
+                 and Anupam Gupta and Jon Kleinberg and Ofer Neiman and Aleksandrs Slivkins},
   title     = "Metric Embeddings with Relaxed Guarantees",
   booktitle = proc # "46th" # FOCS,
   pages     = "83-100",
@@ -101,14 +115,14 @@
 @article{Slivkins-focs05-full,
   author    = {Hubert T-H. Chan and Kedar Dhamdhere and Anupam Gupta and Jon Kleinberg and Aleksandrs Slivkins},
   title     = "Metric Embeddings with Relaxed Guarantees",
-  journal   = SICOMP,
-  volume  = "38",
-  number  = "6",
-  pages   = {2303-2329},
-  month = mar,
-  year  = {2009},
-  note      = "The conference version has appeared in \emph{46th IEEE FOCS}, 2005.
-  It was merged with an independent effort by another research group."
+  journal         = SICOMP,
+  volume         = "38",
+  number        = "6",
+  pages         = {2303-2329},
+  month        = mar,
+  year         = {2009},
+  note            = "Preliminary version in \emph{46th IEEE FOCS 2005},
+  merged with an independent effort by another research group."
 }
 
 
@@ -116,7 +130,7 @@
   author    = "Matthew Andrews and Aleksandrs Slivkins",
   title     = "Oscillations with TCP-like Flow Control in Networks of Queues",
   booktitle = proc # "25th" # INFOCOM,
-  year      = "2006"
+  year             = "2006"
 }
 
 @InProceedings{Slivkins-podc07,
@@ -128,12 +142,12 @@
 }
 
 @phdthesis{Slivkins-thesis,
-   author   = "Aleksanrs Slivkins",
-   title  = "Embedding, Distance Estimation and Object Location in Networks",
-   school   = "Cornell University",
-   address  = "Ithaca, NY 14850",
-   year   = "2006",
-   month  = aug,
+   author         = "Aleksanrs Slivkins",
+   title         = "Embedding, Distance Estimation and Object Location in Networks",
+   school         = "Cornell University",
+   address         = "Ithaca, NY 14850",
+   year         = "2006",
+   month        = aug,
    note     = "Available online at " # WEBPATH
 }
 
@@ -142,8 +156,8 @@
   title     = "Meridian: A Lightweight Network Location Service without Virtual Coordinates",
   booktitle = proc # SIGCOMM,
   pages     = "85-96",
-  year      = "2005",
-  note      = "Full version is available at {\tt http://research.microsoft.com/en-us/um/people/slivkins/Meridian\_j.pdf}."
+  year             = "2005",
+  note      = "Full version is available at" # WEBPATH
 }
 
 @Misc{Meridian-web,
@@ -155,34 +169,35 @@
 
 @techreport{Cubit-dec08,
    author    = {Bernard Wong and Aleksandrs Slivkins and Emin G\"{u}n Sirer},
-   title  = "Approximate Matching for Peer-to-Peer Overlays with Cubit",
-   institution  = "Cornell University CIS",
-   number   = "{http://hdl.handle.net/1813/11651}",
+   title         = "Approximate Matching for Peer-to-Peer Overlays with Cubit",
+   institution         = "Cornell University CIS",
+   number         = "{http://hdl.handle.net/1813/11651}",
    month    = dec,
-   year   = {2008}
+   year         = {2008}
 }
 
 @inproceedings{SocialDistance-soda13,
-    author =  "Ittai Abraham and Shiri Chechik and David Kempe and Aleksandrs Slivkins",
-    title =   "Low-distortion Inference of Latent Similarities from a Multiplex Social Network",
+    author =         "Ittai Abraham and Shiri Chechik and David Kempe and Aleksandrs Slivkins",
+    title =         "Low-distortion Inference of Latent Similarities from a Multiplex Social Network",
     booktitle = proc # "24th" # SODA,
     year = {2013},
     note = "To appear in \emph{SIAM J. on Computing}."
 }
 
 @inproceedings{SocialDistance-soda13-conf,
-    author =  "Ittai Abraham and Shiri Chechik and David Kempe and Aleksandrs Slivkins",
-    title =   "Low-distortion Inference of Latent Similarities from a Multiplex Social Network",
+    author =         "Ittai Abraham and Shiri Chechik and David Kempe and Aleksandrs Slivkins",
+    title =         "Low-distortion Inference of Latent Similarities from a Multiplex Social Network",
     booktitle = proc # "24th" # SODA,
     year = {2013}
 }
 
 @article{SocialDistance-soda13-sicomp,
-    author =  "Ittai Abraham and Shiri Chechik and David Kempe and Aleksandrs Slivkins",
-    title =   "Low-distortion Inference of Latent Similarities from a Multiplex Social Network",
+    author =         "Ittai Abraham and Shiri Chechik and David Kempe and Aleksandrs Slivkins",
+    title =         "Low-distortion Inference of Latent Similarities from a Multiplex Social Network",
     journal = SICOMP,
-    volume  = "44",
-    issue  = "3",
+    volume    = {44},
+    number    = {3},
+    pages     = {617--668},
     year = {2015},
     note = "Expanded and revised version of the conference paper in {\em ACM-SIAM SODA 2013}."
 }
@@ -202,12 +217,18 @@
   year =         "2012",
 }
 
-@inproceedings{CulturalDynamics-ec13,
-  author =       "David Kempe and Jon Kleinberg and Sigal Oren and Aleksandrs Slivkins",
-  title =        "Selection and influence in cultural dynamics",
-  booktitle = proc # "14th" # EC,
-  year =         "2013",
-  note = "To appear in \emph{Network Science}."
+@article{CulturalDynamics-ec13,
+  author    = {David Kempe and
+               Jon M. Kleinberg and
+               Sigal Oren and
+               Aleksandrs Slivkins},
+  title     = {Selection and influence in cultural dynamics},
+  journal   = {Network Science},
+  volume    = {4},
+  number    = {1},
+  pages     = {1--27},
+  year      = {2016},
+  note      = {Preliminary version in \emph{ACM EC 2013}.}
 }
 
 @Misc{PrivateBailouts,
@@ -224,29 +245,28 @@
     year =         "2015"
 }
 
-
-%%%%%%%%%%%% MAB / ML %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% MAB/ML %%%%%%%%%%%%%%%%%%%%%%%%%
 
 @inproceedings{LipschitzMAB-stoc08,
    author =  "Robert Kleinberg and Aleksandrs Slivkins and Eli Upfal",
-   title =  "Multi-Armed Bandits in Metric Spaces",
-   booktitle  = proc # "40th" # STOC,
-   pages  = {681-690},
-   year   = "2008"
+   title =         "Multi-Armed Bandits in Metric Spaces",
+   booktitle         = proc # "40th" # STOC,
+   pages         = {681-690},
+   year         = "2008"
 }
 
 @misc{LipschitzMAB-arxiv,
    author =  "Robert Kleinberg and Aleksandrs Slivkins and Eli Upfal",
-   title =  "Multi-Armed Bandits in Metric Spaces",
-   year   = "2008",
+   title =         "Multi-Armed Bandits in Metric Spaces",
+   year         = "2008",
    month    = "Sept",
    howpublished     = "Technical report {\tt http://arxiv.org/abs/0809.4882}"
 }
 
 @misc{LipschitzMAB-merged-arxiv,
    author =  "Robert Kleinberg and Aleksandrs Slivkins and Eli Upfal",
-   title =  "Bandits and Experts in Metric Spaces",
-   year   = "2018",
+   title =         "Bandits and Experts in Metric Spaces",
+   year         = "2018",
    note     = "Merged and revised version of conference papers
     in {\em ACM STOC 2008} and {\em ACM-SIAM SODA 2010}",
    howpublished = "Working paper, published at {\tt http://arxiv.org/abs/1312.1277}"
@@ -254,45 +274,49 @@
 
 @article{LipschitzMAB-JACM,
    author =  "Robert Kleinberg and Aleksandrs Slivkins and Eli Upfal",
-   title =  "Bandits and Experts in Metric Spaces",
+   title =         "Bandits and Experts in Metric Spaces",
    journal = JACM,
-   year   = "2019",
-   note     = "To appear. Merged and revised version of conference papers
+   volume = "66",
+    number = "4",
+    pages     = {30:1--30:77},
+    month = may,
+   year      = "2019",
+   note     = "Merged and revised version of conference papers
     in {\em ACM STOC 2008} and {\em ACM-SIAM SODA 2010}.
     Also available at {\tt http://arxiv.org/abs/1312.1277}"
 }
 
 
 @inproceedings{DynamicMAB-colt08,
-   author =   "Aleksandrs Slivkins and Eli Upfal",
-   title =  "Adapting to a Changing Environment: the {Brownian} Restless Bandits",
-   booktitle  = proc # "21st" # COLT,
-   pages  = {343-354},
-   year   = "2008"
+   author =         "Aleksandrs Slivkins and Eli Upfal",
+   title =         "Adapting to a Changing Environment: the {Brownian} Restless Bandits",
+   booktitle         = proc # "21st" # COLT,
+   pages         = {343-354},
+   year         = "2008"
 }
 
 @inproceedings{DichotomyMAB-soda10,
-   author    = {Robert Kleinberg and Aleksandrs Slivkins},
-   title   = "Sharp Dichotomies for Regret Minimization in Metric Spaces",
+   author          = {Robert Kleinberg and Aleksandrs Slivkins},
+   title          = "Sharp Dichotomies for Regret Minimization in Metric Spaces",
    booktitle = proc # "21st" # SODA,
-   year    = "2010"
+   year          = "2010"
 }
 
 @inproceedings{shiftingMAB-nips09,
-   author =   "Umar Syed and Aleksandrs Slivkins and Nina Mishra",
-   title =  "Adapting to the Shifting Intent of Search Queries",
-   booktitle  = proc # "23rd" # NIPS,
-   year   = "2009"
+   author =         "Umar Syed and Aleksandrs Slivkins and Nina Mishra",
+   title =         "Adapting to the Shifting Intent of Search Queries",
+   booktitle         = proc # "23rd" # NIPS,
+   year         = "2009"
 }
 
 @article{ZoomingRBA-icml10,
-   author    = {Aleksandrs Slivkins and Filip Radlinski and Sreenivas Gollapudi},
-   title   = "Ranked bandits in metric spaces: Learning optimally diverse rankings over large document collections",
+   author          = {Aleksandrs Slivkins and Filip Radlinski and Sreenivas Gollapudi},
+   title          = "Ranked bandits in metric spaces: Learning optimally diverse rankings over large document collections",
    journal = JMLR,
    pages     = {399-436},
    volume    = 14,
    number    = "Feb",
-   year    = "2013",
+   year          = "2013",
    note = "Preliminary version in {\em 27th ICML}, 2010."
 }
 
@@ -309,21 +333,15 @@
  }
 
 @misc{contextualMAB-colt11-arxiv,
-  author  = "Aleksandrs Slivkins",
-  title   = "Contextual Bandits with Similarity Information",
-  year    = "2014",
+  author         = "Aleksandrs Slivkins",
+  title         = "Contextual Bandits with Similarity Information",
+  year                 = "2014",
   month     = "Jan",
   howpublished = "Technical report on {\tt http://arxiv.org/abs/0907.3986}"
 }
 
 
 
-@Misc{MonotoneMAB-colt11,
-  author  = "Aleksandrs Slivkins",
-  title   = "Monotone multi-armed bandit allocations",
-  howpublished  = "Open Problem Session at {\em COLT 2011} (Conf. on Learning Theory)",
-  year    = "2011",
-}
 
 @inproceedings{BestofBoth-colt12,
   author =       "S\'{e}bastien Bubeck and Aleksandrs Slivkins",
@@ -342,7 +360,7 @@
 @inproceedings{manager-colt14,
   author =       "Alekh Agarwal and Ashwinkumar Badanidiyuru and Miroslav Dudik and Robert Schapire and Aleksandrs Slivkins",
   title =        "Robust Multi-objective Learning with Mentor Feedback",
-  booktitle   = proc # "27th" # COLT,
+  booktitle         = proc # "27th" # COLT,
   year = "2014"
 }
 
@@ -360,25 +378,59 @@
                Aleksandrs Slivkins and
                Masrour Zoghi},
   title     = {Contextual Dueling Bandits},
-  booktitle   = proc # "28th" # COLT,
+  booktitle         = proc # "28th" # COLT,
   year      = {2015}
 }
+
+@inproceedings{SmoothedRegret-colt19,
+  author    = {Akshay Krishnamurthy and
+               John Langford and
+               Aleksandrs Slivkins and
+               Chicheng Zhang},
+  title     = {Contextual bandits with continuous actions: Smoothing, zooming, and
+               adapting},
+  booktitle = COLT,
+  year      = {2019},
+  note      = {Working paper, to appear at \emph{JMLR} (Journal of Machine Learning Research).
+    Available at {\tt https://arxiv.org/abs/1902.01520}.}
+}
+
+@misc{Chara-zooming-2019,
+  author    = {Chara Podimata and Aleksandrs Slivkins},
+  title     = {Adaptive Discretization for Adversarial Lipschitz Bandits},
+  note      = {Working paper},
+  year      = {2019}
+}
+
+
+@misc{EpisodicRLcorruptions-2019,
+  author    = {Thodoris Lykouris and Max Simchowitz and Aleksandrs Slivkins and Wen Sun},
+  title     = "{Corruption Robust Exploration in Episodic Reinforcement Learning}",
+  note      = {Working paper, available at {\tt https://arxiv.org/abs/1911.08689}.
+    Under submission to \emph{ACM STOC 2020}.},
+  year      = {2019}
+}
+
+
+%%%%%%%%% ML + systems %%%%%%%%%%%
 
 @misc{MWT-project,
    author = {Alekh Agarwal and Sarah Bird and  Markus Cozowicz
     and Miro Dudik and Luong Hoang and John Langford and Lihong Li and Siddhartha Sen
          and Aleksandrs Slivkins},
    title   = {Multi-World Testing},
-   note = "{\tt http://research.microsoft.com/en-US/projects/mwt/}",
-   year = "{2013-present}"
+   note        = "{\tt http://research.microsoft.com/en-US/projects/mwt/}",
+   year = "{2013-2017}"
 }
 
-@misc{ds-portal,
-title = "{Custom Decision Service}",
-key = "{Custom Decision Service}",
+@misc{personalizer,
+title = "{Personalizer: An AI service that delivers a personalized user experience}",
+key = "{Personalizer}",
 note = {A Cognitive Service on Microsoft Azure.},
-howpublished = {\url{http://aka.ms/mwt}}
+howpublished = {\url{https://azure.microsoft.com/en-us/services/cognitive-services/personalizer/}},
+year = "2019"
 }
+
 
 @inproceedings{Harvesting-hotnets17,
   author    = {Mathias L{\'{e}}cuyer and
@@ -433,11 +485,13 @@ year = {2016}
     note = {Working paper.}
 }
 
+
+
 %%%%%%%% DYNAMIC PRICING AND BwK
 
 @Misc{AdsWithBudgets-arxiv13,
   author    = {Aleksandrs Slivkins},
-  title   = {Dynamic Ad Allocation: Bandits with Budgets},
+  title                = {Dynamic Ad Allocation: Bandits with Budgets},
   howpublished = "A technical report on {\tt arxiv.org/abs/1306.0155}",
   month     = "June",
   year =         "2013"
@@ -446,7 +500,7 @@ year = {2016}
 @inproceedings{cBwK-colt14,
   author =       "Ashwinkumar Badanidiyuru and John Langford and Aleksandrs Slivkins",
   title =        "Resourceful Contextual Bandits",
-  booktitle   = proc # "27th" # COLT,
+  booktitle         = proc # "27th" # COLT,
   year = "2014"
 }
 
@@ -458,6 +512,12 @@ year = {2016}
   year =         "2013",
 }
 
+@inproceedings{BwK-focs13-conf,
+  author =       "Ashwinkumar Badanidiyuru and Robert Kleinberg and Aleksandrs Slivkins",
+  title =        "Bandits with Knapsacks",
+  booktitle = proc # "54th" # FOCS,
+  year      = {2013}
+}
 
 @article{BwK-focs13,
   author =       "Ashwinkumar Badanidiyuru and Robert Kleinberg and Aleksandrs Slivkins",
@@ -465,6 +525,7 @@ year = {2016}
   journal   = JACM,
   volume    = {65},
   number    = {3},
+  pages     = {13:1--13:55},
   year      = {2018},
   note = "Preliminary version in {\em FOCS 2013}."
 }
@@ -474,8 +535,19 @@ year = {2016}
     author = {Aleksandrs Slivkins and Assaf Zeevi},
     title = {Dynamic Pricing with Model Uncertainty},
     year = {2015},
-    note = {Tutorial at \emph{ACM EC 2015}. Slides can be found at
+    note = {Invited tutorial at \emph{ACM EC 2015}: 16th ACM Conf. on Economics and Computation.
+    Slides can be found at
         {\tt http://slivkins.com/work/EC15-tutorial-merged.pdf}.}
+}
+
+@inproceedings{StevenDP-ec17,
+  author    = {Aaron Roth and
+               Aleksandrs Slivkins and
+               Jonathan Ullman and
+               Zhiwei Steven Wu},
+  title     = {Multidimensional Dynamic Pricing for Welfare Maximization},
+  booktitle = ACMEC,
+  year      = {2017}
 }
 
 @inproceedings{Karthik-aistats18,
@@ -490,19 +562,25 @@ year = {2016}
   author    = {Nicole Immorlica and Karthik Abinav Sankararaman and Robert Schapire and Aleksandrs Slivkins},
   title     = {Adversarial Bandits with Knapsacks},
   year      = {2018},
-  note      = {Working paper, under submission to \emph{STOC 2019}.
-               Available at {\tt https://arxiv.org/abs/1811.11881}.}
+  note      = {Working paper. Available at {\tt https://arxiv.org/abs/1811.11881}.}
 }
 
-@inproceedings{StevenDP-ec17,
-  author    = {Aaron Roth and
-               Aleksandrs Slivkins and
-               Jonathan Ullman and
-               Zhiwei Steven Wu},
-  title     = {Multidimensional Dynamic Pricing for Welfare Maximization},
-  booktitle = ACMEC,
-  year      = {2017}
+@inproceedings{AdvBwK-focs19,
+  author    = {Nicole Immorlica and Karthik Abinav Sankararaman and Robert Schapire and Aleksandrs Slivkins},
+  title     = {Adversarial Bandits with Knapsacks},
+  booktitle = proc # "60th" # FOCS,
+  year      = {2019}
 }
+
+
+@misc{Karthik-BwK-advances-2019,
+  author    = {Karthik Abinav Sankararaman and Aleksandrs Slivkins},
+  title     = {Advances in Bandits with Knapsacks},
+  note      = {Working paper.},
+  year      = {2019}
+}
+
+
 %%%%%%% AMD %%%%%%%%%%%%%%
 
 @article{MechMAB-ec09,
@@ -519,7 +597,7 @@ year = {2016}
 
 @inproceedings{Transform-ec10,
   author    = {Moshe Babaioff and Robert Kleinberg and Aleksandrs Slivkins},
-  title   = {Truthful Mechanisms with Implicit Payment Computation},
+  title                = {Truthful Mechanisms with Implicit Payment Computation},
   booktitle = proc # "11th" # EC,
   pages     = {43-52},
   year      = 2010,
@@ -528,25 +606,33 @@ year = {2016}
 
 @inproceedings{Transform-ec10-conf,
   author    = {Moshe Babaioff and Robert Kleinberg and Aleksandrs Slivkins},
-  title   = {Truthful Mechanisms with Implicit Payment Computation},
+  title                = {Truthful Mechanisms with Implicit Payment Computation},
   booktitle = proc # "11th" # EC,
   pages     = {43-52},
   year      = 2010,
 }
 
 
-%  note   = {Best Paper Award.}
+%  note                = {Best Paper Award.}
 
 @article{Transform-ec10-jacm,
   author    = {Moshe Babaioff and Robert Kleinberg and Aleksandrs Slivkins},
-  title   = {Truthful Mechanisms with Implicit Payment Computation},
+  title                = {Truthful Mechanisms with Implicit Payment Computation},
   journal   = JACM,
   volume    = {62},
   number    = {2},
   pages     = {10},
   year      = {2015},
-  note    = {Subsumes the conference papers in \emph{ACM EC 2010} and \emph{ACM EC 2013}.}
+  note                = {Subsumes conference papers in \emph{ACM EC 2010} and \emph{ACM EC 2013}.}
 }
+
+@Misc{MonotoneMAB-colt11,
+  author         = "Aleksandrs Slivkins",
+  title         = "Monotone multi-armed bandit allocations",
+  howpublished         = "Open Problem Session at {\em COLT 2011} (Conf. on Learning Theory)",
+  year                 = "2011",
+}
+
 
 @article{DynPricing-ec12,
   author    = {Moshe Babaioff and
@@ -572,29 +658,33 @@ year = {2016}
 
 @Misc{BKS2-full,
   author    = {Moshe Babaioff and Robert Kleinberg and Aleksandrs Slivkins},
-  title   = {Multi-parameter Mechanisms with Implicit Payment Computation},
+  title                = {Multi-parameter Mechanisms with Implicit Payment Computation},
   howpublished = "A technical report on {\tt arxiv.org/abs/1302.4138}",
   month     = "February",
   year =         "2013"
 }
 
-@inproceedings{ICexploration-ec15,
+@article{ICexploration-ec15,
   author    = {Yishay Mansour and
                Aleksandrs Slivkins and
                Vasilis Syrgkanis},
   title     = {Bayesian Incentive-Compatible Bandit Exploration},
-  booktitle = proc # "15th" # ACMEC,
-  year      = {2015}
+  journal   = {Operations Research},
+  year      = {2020},
+  note      = {To appear; preliminary version in \emph{ACM EC 2015}.}
 }
 
-@inproceedings{ICexplorationGames-ec16,
+@misc{ICexplorationGames-ec16,
   author    = {Yishay Mansour and
                Aleksandrs Slivkins and
                Vasilis Syrgkanis and
                Steven Wu},
-  title     = {Bayesian Exploration: Incentivizing Exploration in Bayesian Games},
-  booktitle = proc # "16th" # ACMEC,
-  year      = {2016}
+  title     = {Bayesian Exploration: Incentivizing Exploration in {B}ayesian Games},
+  year      = {2016},
+  note      = {Working paper (2016-2018).
+    Avalable at {\tt https://arxiv.org/abs/1602.07570}.
+    Prelimiary version in \emph{ACM EC 2016}.
+    Revise and resubmit in \emph{Operations Research}.}
 }
 
 
@@ -627,8 +717,15 @@ year = {2016}
     author = {Robert D. Kleinberg and Aleksandrs Slivkins},
     title = {Incentivizing and Coordinating Exploration},
     year = {2017},
-    note = {Tutorial at \emph{ACM EC 2017}.
+    note = {Invited tutorial at \emph{ACM EC 2017}: 18th ACM Conf. on Economics and Computation.
     Tutorial description can be found at {\tt http://slivkins.com/work/ec17-tutorial-description.pdf}.}
+}
+
+@misc{IncentivizingExploration-tutorial-alt20,
+    author = {Robert D. Kleinberg and Aleksandrs Slivkins},
+    title = {Incentivizing and Coordinating Exploration},
+    year = {2020},
+    note = {Invited tutorial at \emph{ALT 2020}: The 30th Intl. Conf. on Algorithmic Learning Theory.}
 }
 
 
@@ -658,32 +755,102 @@ year = {2016}
                Zhiwei Steven Wu},
   title     = {The Externalities of Exploration and How Data Diversity Helps Exploitation},
   booktitle = proc # COLT,
+  publisher = PMLRpub,
   pages     = {1724--1738},
   year      = {2018}
 }
 
+@misc{Greedy-Manish-18,
+  author    = {Manish Raghavan and
+               Aleksandrs Slivkins and
+               Jennifer Wortman Vaughan and
+               Zhiwei Steven Wu},
+  title     = {Greedy Algorithm almost Dominates in Smoothed Contextual Bandits},
+  note      = {Working paper, under journal submission. Preliminary version in \emph{COLT 2018}.},
+  year = {2018}
+}
 
-@misc{Jieming-multitypes18,
+@inproceedings{Jieming-multitypes18,
   author    = {Nicole Immorlica and Jieming Mao and Aleksandrs Slivkins and Steven Wu},
   title     = {Bayesian Exploration with Heterogenous Agents},
-  year      = {2018},
-  note      = {Working paper, under submission}
+  booktitle = TheWebConf,
+  publisher = WWWpub,
+  pages     = {751--761},
+  year      = {2019}
+}
+
+@inproceedings{Jieming-multitypes-www19,
+  author    = {Nicole Immorlica and Jieming Mao and Aleksandrs Slivkins and Steven Wu},
+  title     = {Bayesian Exploration with Heterogenous Agents},
+  booktitle = TheWebConf,
+  year      = {2019}
 }
 
 @misc{Jieming-unbiased18,
   author    = {Nicole Immorlica and Jieming Mao and Aleksandrs Slivkins and Steven Wu},
-  title     = {Incentivizing Exploration with Unbiased History},
+  title     = {Incentivizing Exploration with Selective Data Disclosure},
   year      = {2018},
-  note      = {Under submission, available at {\tt https://arxiv.org/abs/1811.06026}}
+  note      = {Working paper, 2018-2020. Available at {\tt https://arxiv.org/abs/1811.06026}}
 }
 
 @misc{CompetingBandits-Guy-18,
   author    = {Guy Aridor and
                Aleksandrs Slivkins and
                Steven Wu},
-  title     = {Competing Bandits:The Perils of Exploration under Competition},
+  title     = {Competing Bandits: The Perils of Exploration under Competition},
   year      = {2018},
   note      = {Working paper, under submission.}
+}
+
+@inproceedings{CompetingBandits-ec19,
+  author    = {Guy Aridor and
+               Aleksandrs Slivkins and
+               Steven Wu},
+  title     = {The Perils of Exploration under Competition: A Computational Modeling Approach},
+  booktitle = proc # "20th" # ACMEC,
+  year      = {2019}
+}
+
+@misc{CompetingBandits-merged,
+  author    = {Guy Aridor and Yishay Mansour and
+               Aleksandrs Slivkins and
+               Steven Wu},
+  title     = {Competing Bandits: Learning under Competition.},
+  note      = {Working paper. Subsumes conference papers in \emph{ITCS 2018} and \emph{ACM EC 2019}.},
+  year      = {2019}
+}
+
+
+@misc{Selke-BE-2019,
+  author    = {Mark Sellke and
+               Aleksandrs Slivkins},
+  title     = {Advances in Incentivized Exploration.},
+  note      = {Working paper},
+  year      = {2019}
+}
+
+@misc{Selke-BE-2020,
+  author    = {Mark Sellke and Aleksandrs Slivkins},
+  title     = {Sample Complexity of Insentivized Exploration},
+  note      = {Working paper, available at \texttt{https://arxiv.org/abs/2002.00558}.},
+  year      = {2020}
+}
+
+
+@misc{Selke-greedy-2019,
+  author    = {Mark Sellke and
+               Aleksandrs Slivkins},
+  title     = {Uncoordinated social learning with bandit feedback: the greedy algorithm, revisited.},
+  note      = {Working paper},
+  year      = {2019}
+}
+
+@misc{Mahsa-SocialChoice-2019,
+  author    = {Maksa Derakshan and Akshay Krishnamurthy and David Pennock
+               and Aleksandrs Slivkins and Bo Waggoner},
+  title     = {Incentivized exploration for big decisions.},
+  note      = {Working paper},
+  year      = {2019}
 }
 
 
@@ -691,14 +858,14 @@ year = {2016}
 
 @misc{crowdsourcing-bandits-nips12,
    author = "Ittai Abraham and Omar Alonso and Vasilis Kandylas and Aleksandrs Slivkins",
-   title =  "Adaptive crowdsourcing algorithms for the bandit survey problem",
+   title =         "Adaptive crowdsourcing algorithms for the bandit survey problem",
    year  = "2012",
-   note = "To be submitted to \emph{NIPS 2012}."
+   note        = "To be submitted to \emph{NIPS 2012}."
 }
 
 @inproceedings{BanditSurveys-colt13,
    author = "Ittai Abraham and Omar Alonso and Vasilis Kandylas and Aleksandrs Slivkins",
-   title =  "Adaptive crowdsourcing algorithms for the bandit survey problem",
+   title =         "Adaptive crowdsourcing algorithms for the bandit survey problem",
    booktitle = proc  # "26th" # COLT,
    year  = "2013",
 }
@@ -706,23 +873,23 @@ year = {2016}
 @misc{StoppingRules-hcomp14,
    author = "Ittai Abraham and Omar Alonso and Vasilis Kandylas
         and Rajesh Patel and Steven Shelford and Aleksandrs Slivkins",
-   title =  "How Many Workers to Ask? Adaptive Exploration for Collecting High Quality Labels",
+   title =         "How Many Workers to Ask? Adaptive Exploration for Collecting High Quality Labels",
    year  = "2015",
-   note = "Under submission to" # HCOMP
+   note        = "Under submission to" # HCOMP
 }
 
 @misc{StoppingRules-2015,
    author = "Ittai Abraham and Omar Alonso and Vasilis Kandylas
         and Rajesh Patel and Steven Shelford and Aleksandrs Slivkins",
-   title =  "How Many Workers to Ask? Adaptive Exploration for Collecting High Quality Labels",
+   title =         "How Many Workers to Ask? Adaptive Exploration for Collecting High Quality Labels",
    year  = "2015",
-   note = "Working paper: \texttt{arxiv.org/abs/1411.0149}."
+   note        = "Working paper: \texttt{arxiv.org/abs/1411.0149}."
 }
 
 @inproceedings{StoppingRules-sigir16,
    author = "Ittai Abraham and Omar Alonso and Vasilis Kandylas
         and Rajesh Patel and Steven Shelford and Aleksandrs Slivkins",
-   title =  "How Many Workers to Ask? Adaptive Exploration for Collecting High Quality Labels",
+   title =         "How Many Workers to Ask? Adaptive Exploration for Collecting High Quality Labels",
    booktitle = proc # "39th" # SIGIR,
    year  = "2016"
 }
@@ -730,7 +897,7 @@ year = {2016}
 @inproceedings{GoldHITs-crowdscale13,
    author = "Ittai Abraham and Omar Alonso and Vasilis Kandylas
         and Rajesh Patel and Steven Shelford and Aleksandrs Slivkins and Hai Wu",
-   title =  "Crowdsourcing Gold-HIT Creation at Scale: Challenges and Adaptive Exploration Approaches",
+   title =         "Crowdsourcing Gold-HIT Creation at Scale: Challenges and Adaptive Exploration Approaches",
    booktitle = "{Workshop on Crowdsourcing at Scale (\emph{CrowdScale})}",
    year  = "2013"
 }
@@ -751,6 +918,7 @@ year = {2016}
     journal   = {SIGecom Exchanges},
     volume    = {12},
     number    = {2},
+    pages     = {4--23},
     year      = {2013},
     month = "December"
 }

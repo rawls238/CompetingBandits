@@ -1,8 +1,13 @@
 % proc # "" #
 
 
-%%%%%% greedy %%%%%%
+%%%%%% Greedy %%%%%%
 
+@misc{GreedyFails19,
+    author = {Mark Sellke},
+    note = {Personal communication},
+    year = {2019}
+}
 
 @inproceedings{kannan2018smoothed,
   title={A Smoothed Analysis of the Greedy Algorithm for the Linear Contextual Bandit Problem},
@@ -21,7 +26,7 @@
 
 @article{practicalCB-arxiv18,
   author    = {Alberto Bietti and Alekh Agarwal and John Langford},
-  title     = {Practical Evaluation and Optimization of Contextual Bandit Algorithms},
+  title     = {A Contextual Bandit Bake-off},
   year      = {2018},
   journal={CoRR arXiv:1802.04064},
 }
@@ -35,6 +40,24 @@
   pages     = {115--131},
   year      = {2014}
 }
+
+%%%%%%%%%% Linear CB %%%%%%%%%%%%%
+
+@inproceedings{Reyzin-aistats11-linear,
+   author =         "Wei Chu and Lihong Li and Lev Reyzin and Robert E. Schapire",
+   title =         "{Contextual Bandits with Linear Payoff Functions}",
+   booktitle         = proc # "14th" # AISTATS,
+   year         = "2011"
+}
+
+@inproceedings{Csaba-nips11,
+  author    = {Yasin Abbasi-Yadkori and D{\'a}vid P{\'a}l and Csaba Szepesv{\'a}ri},
+  title     = {Improved Algorithms for Linear Stochastic Bandits},
+  booktitle = proc # "25th" # NIPS,
+  year      = {2011},
+  pages     = {2312-2320}
+}
+
 
 %%%%%%%%%%%%
 
@@ -99,17 +122,10 @@ year = "2016"
 @article{Stoltz-colt05,
     author = "Nicolo Cesa-Bianchi and Yishay Mansour and Gilles Stoltz",
     title = "{Improved second-order bounds for prediction with expert advice}",
-    journal   = "Machine Learning",
-    volume  = "66",
-    pages   = {321-352},
-    year  = {2007}
-}
-
-@inproceedings{Seldin-ewrl16,
-    author ="Yevgeny Seldin and Gabor Lugosi",
-    title = "{A lower bound for multi-armed bandits with expert advice}",
-    booktitle = proc # "13th" # EWRL,
-    year = {2016}
+    journal         = "Machine Learning",
+    volume         = "66",
+    pages         = {321-352},
+    year         = {2007}
 }
 
 @inproceedings{Koolen-colt10,
@@ -121,15 +137,31 @@ year = "2016"
   year      = {2010}
 }
 
-% ------------- sleeping experts
+@inproceedings{Kale-colt14,
+  author    = {Satyen Kale},
+  title     = {Multiarmed Bandits With Limited Expert Advice},
+  booktitle = proc # "27th" # COLT,
+  pages     = {107--122},
+  year      = {2014}
+}
+
+@inproceedings{Seldin-ewrl16,
+    author ="Yevgeny Seldin and Gabor Lugosi",
+    title = "{A lower bound for multi-armed bandits with expert advice}",
+    booktitle = proc # "13th" # EWRL,
+    year = {2016}
+}
+
+% ------------- sleeping experts & bandits %%%%%%%%%%%%%
+
+%Freund-colt97,Blum-sleeping97,Blum-sleeping07
 
 @inproceedings{Freund-colt97,
   title={Using and combining predictors that specialize},
   author={Freund, Yoav and Schapire, Robert E and Singer, Yoram and Warmuth, Manfred K},
-  booktitle={Proceedings of the twenty-ninth annual ACM symposium on Theory of computing},
+  booktitle= proc # "29th" # STOC,
   pages={334--343},
-  year={1997},
-  organization={ACM}
+  year={1997}
 }
 
 @article{Blum-sleeping97,
@@ -141,18 +173,26 @@ year = "2016"
   year = {1997}
 }
 
-@article{Blum-sleeping07,
-  title = {From external to internal regret},
-  author = {Avrim Blum and Yishay Mansour},
-  journal = {JMLR},
-  volume = {8},
-  number = {13},
-  year = {2007},
-  pages = {1307--1324}
+@inproceedings{MortalMAB-nips08,
+  author    = {Deepayan Chakrabarti and
+               Ravi Kumar and
+               Filip Radlinski and
+               Eli Upfal},
+  title     = {Mortal Multi-Armed Bandits},
+  booktitle = proc # "22nd" # NIPS,
+  pages     = {273--280},
+  year      = {2008}
 }
 
+@inproceedings{sleeping-colt08,
+  author = {Robert Kleinberg and Alexandru Niculescu-Mizil and Yogeshwer Sharma},
+  title = {Regret bounds for sleeping experts and bandits},
+  booktitle         = proc # "21st" # COLT,
+  pages         = {425--436},
+  year         = "2008"
+}
 
-%%%%%%%%%% LINEAR & CONVEX BANDITS AND EXPERTS %%%%%%%%%%%%%%%%
+%%%%%%%%%% CONVEX/CONCAVE BANDITS AND EXPERTS %%%%%%%%%%%%%%%%
 
 @inproceedings{mahdavi2013stochastic,
   title={Stochastic convex optimization with multiple objectives},
@@ -230,13 +270,6 @@ year = "2016"
   year      = {2015},
 }
 
-@inproceedings{Shamir-colt15,
-  author    = {Ohad Shamir},
-  title     = {On the Complexity of Bandit Linear Optimization},
-  booktitle = proc # "28th" # COLT,
-  pages     = {1523--1551},
-  year      = {2015}
-}
 
 @inproceedings{Hazan-nips14,
   author    = {Elad Hazan and
@@ -245,6 +278,30 @@ year = "2016"
   booktitle = proc # "27th" # NIPS,
   pages     = {784--792},
   year      = {2014}
+}
+
+
+@inproceedings{FlaxmanKM-soda05,
+   author =         "Abraham Flaxman and Adam Kalai and H. Brendan McMahan",
+   title =         "{Online Convex Optimization in the Bandit Setting: Gradient Descent without a Gradient}",
+   booktitle         = proc # "16th" # SODA,
+   pages         = {385-394},
+   year         = "2005"
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% LINEAR BANDITS %%%%%%%%%%%
+
+%McMahan-colt04,Hayes-soda06,DaniHK-nips07,DaniHK-colt08,AbernethyHR-colt08,Bartlett-colt08
+
+%GeneralizedLinear-nips10,bubeck-colt12,Shamir-colt15
+
+@inproceedings{Shamir-colt15,
+  author    = {Ohad Shamir},
+  title     = {On the Complexity of Bandit Linear Optimization},
+  booktitle = proc # "28th" # COLT,
+  pages     = {1523--1551},
+  year      = {2015}
 }
 
 @inproceedings{bubeck-colt12,
@@ -257,13 +314,18 @@ year = "2016"
   year      = {2012}
 }
 
-@inproceedings{Csaba-nips11,
-  author    = {Yasin Abbasi-Yadkori and D{\'a}vid P{\'a}l and Csaba Szepesv{\'a}ri},
-  title     = {Improved Algorithms for Linear Stochastic Bandits},
-  booktitle = proc # "25th" # NIPS,
-  year      = {2011},
-  pages     = {2312-2320}
+
+@inproceedings{GeneralizedLinear-nips10,
+  author    = {Sarah Filippi and
+               Olivier Capp{\'{e}} and
+               Aur{\'{e}}lien Garivier and
+               Csaba Szepesv{\'{a}}ri},
+  title     = {Parametric Bandits: The Generalized Linear Case},
+  booktitle = proc # "24th" # NIPS,
+  pages     = {586--594},
+  year      = {2010},
 }
+
 
 @article{Paat-mor10,
   author    = {Paat Rusmevichientong and
@@ -286,89 +348,77 @@ year = "2016"
                Ambuj Tewari},
   title     = {High-Probability Regret Bounds for Bandit Online Linear
                Optimization},
-  booktitle = COLT,
-  year      = {2008},
-  pages     = {335-342},
-  ee        = {http://colt2008.cs.helsinki.fi/papers/30-Bartlett.pdf},
-  bibsource = {DBLP, http://dblp.uni-trier.de}
+  booktitle = proc # "21th" # COLT,
+  year      = {2008}
 }
 
 % linear
 @inproceedings{AbernethyHR-colt08,
-   author =   "Jacob Abernethy and Elad Hazan and Alexander Rakhlin",
-   title =  "{Competing in the Dark: An Efficient Algorithm for Bandit Linear Optimization}",
-   booktitle  = proc # "21th" # COLT,
-   pages  = {263-274},
-   year   = "2008"
+   author =         "Jacob Abernethy and Elad Hazan and Alexander Rakhlin",
+   title =         "{Competing in the Dark: An Efficient Algorithm for Bandit Linear Optimization}",
+   booktitle         = proc # "21th" # COLT,
+   pages         = {263-274},
+   year         = "2008"
 }
 
 % linear
 @inproceedings{DaniHK-nips07,
-   author   =   "Varsha Dani and Thomas P. Hayes and Sham Kakade",
-   title  =   "{The Price of Bandit Information for Online Optimization}",
+   author   =         "Varsha Dani and Thomas P. Hayes and Sham Kakade",
+   title         =         "{The Price of Bandit Information for Online Optimization}",
    booktitle = proc # "20th" # NIPS,
-   year   = "2007"
+   year         = "2007"
 }
 
 @inproceedings{DaniHK-colt08,
-   author   =   "Varsha Dani and Thomas P. Hayes and Sham Kakade",
-   title  =   "{Stochastic Linear Optimization under Bandit Feedback}",
-   booktitle  = proc # "21th" # COLT,
-   year   = "2008",
+   author   =         "Varsha Dani and Thomas P. Hayes and Sham Kakade",
+   title         =         "{Stochastic Linear Optimization under Bandit Feedback}",
+   booktitle         = proc # "21th" # COLT,
+   year         = "2008",
    pages        = {355-366}
 }
 
 
 % linear
 @inproceedings{Hayes-soda06,
-   author =   "Varsha Dani and Thomas P. Hayes",
-   title =  "{Robbing the bandit: less regret in online geometric optimization against an adaptive adversary}",
-   booktitle  = proc # "17th" # SODA,
-   pages  = {937-943},
-   year   = "2006"
+   author =         "Varsha Dani and Thomas P. Hayes",
+   title =         "{Robbing the bandit: less regret in online geometric optimization against an adaptive adversary}",
+   booktitle         = proc # "17th" # SODA,
+   pages         = {937-943},
+   year         = "2006"
 }
 
 
-@inproceedings{FlaxmanKM-soda05,
-   author =   "Abraham Flaxman and Adam Kalai and H. Brendan McMahan",
-   title =  "{Online Convex Optimization in the Bandit Setting: Gradient Descent without a Gradient}",
-   booktitle  = proc # "16th" # SODA,
-   pages  = {385-394},
-   year   = "2005"
-}
+
 
 % linear
 @inproceedings{McMahan-colt04,
-   author =   "H. Brendan McMahan and Avrim Blum",
-   title =  "{Online Geometric Optimization in the Bandit Setting Against an Adaptive Adversary}",
-   booktitle  = proc # "17th" # COLT,
-   pages  = {109-123},
-   year   = "2004"
+   author =         "H. Brendan McMahan and Avrim Blum",
+   title =         "{Online Geometric Optimization in the Bandit Setting Against an Adaptive Adversary}",
+   booktitle         = proc # "17th" # COLT,
+   pages         = {109-123},
+   year         = "2004"
 }
 
 @article{Cope/06,
     author="Eric Cope",
     title="Regret and Convergence Bounds for Immediate-Reward Reinforcement Learning with Continuous Action Spaces",
     journal = "IEEE Trans. on Automatic Control",
-   volume   = "54",
-   number = "6",
-   pages  = {1243--1253},
-   year   = {2009},
+   volume         = "54",
+   number        = "6",
+   pages         = {1243--1253},
+   year         = {2009},
    note="A manuscript from 2004."
 }
 
+%%% best-of-both, adversarial corruptions
 
-
-%%%%%% data-dependent regret bounds for adversarial bandits %%%%%%
-
-@article{Hazan-soda09,
-   author = "Elad Hazan and Satyen Kale",
-   title =  "{Better algorithms for benign bandits}",
-   journal   = {Journal of Machine Learning Research},
-   volume    = {12},
-   pages     = {1287--1311},
-   year      = {2011},
-   note     = {Preliminary version published in \emph{ACM-SIAM SODA 2009}.}
+@inproceedings{Auer-colt16,
+  author    = {Peter Auer and
+               Chao{-}Kai Chiang},
+  title     = {An algorithm with nearly optimal pseudo-regret for both stochastic
+               and adversarial bandits},
+  booktitle = proc # "29th" # COLT,
+  year      = {2016}
 }
 
 @inproceedings{Seldin-colt17,
@@ -380,20 +430,76 @@ year = "2016"
   year      = {2017}
 }
 
-@inproceedings{Auer-colt16,
-  author    = {Peter Auer and
-               Chao{-}Kai Chiang},
-  title     = {An algorithm with nearly optimal pseudo-regret for both stochastic
-               and adversarial bandits},
-  booktitle = proc # "29th" # COLT,
-  year      = {2016}
-}
 
 @inproceedings{Thodoris-stoc18,
   author    = {Thodoris Lykouris and Vahab Mirrokni and Renato Paes-Leme},
   title     = {Stochastic bandits robust to adversarial corruptions},
   booktitle = proc # "50th" # STOC,
   year      = {2018}
+}
+
+@inproceedings{Haipeng-BoB019,
+  author    = {Julian Zimmert and
+               Haipeng Luo and
+               Chen{-}Yu Wei},
+  title     = {Beating Stochastic and Adversarial Semi-bandits Optimally and Simultaneously},
+  booktitle = proc # "36th" # ICML,
+  pages     = {7683--7692},
+  year      = {2019}
+}
+
+@inproceedings{Seldin-aistats19,
+  author    = {Julian Zimmert and
+               Yevgeny Seldin},
+  title     = {An Optimal Algorithm for Stochastic and Adversarial Bandits},
+  booktitle = AISTATS,
+  year      = {2019}
+}
+
+@inproceedings{Gupta-colt19,
+  author    = {Anupam Gupta and
+               Tomer Koren and
+               Kunal Talwar},
+  title     = {Better Algorithms for Stochastic Bandits with Adversarial Corruptions},
+  booktitle = COLT,
+  pages     = {1562--1578},
+  year      = {2019}
+}
+
+%%%%%% data-dependent regret bounds for adversarial bandits %%%%%%
+
+@article{Hazan-soda09,
+   author = "Elad Hazan and Satyen Kale",
+   title =         "{Better algorithms for benign bandits}",
+   journal   = {Journal of Machine Learning Research},
+   volume    = {12},
+   pages     = {1287--1311},
+   year      = {2011},
+   note     = {Preliminary version published in \emph{ACM-SIAM SODA 2009}.}
+}
+
+@article{ChasingGhosts-sicomp17,
+  author    = {Uriel Feige and
+               Tomer Koren and
+               Moshe Tennenholtz},
+  title     = {Chasing Ghosts: Competing with Stateful Policies},
+  journal   = SICOMP,
+  volume    = {46},
+  number    = {1},
+  pages     = {190--223},
+  year      = {2017},
+  note  = {Preliminary version in \emph{IEEE FOCS 2014}.}
+}
+
+@inproceedings{Corral-colt17,
+  author    = {Alekh Agarwal and
+               Haipeng Luo and
+               Behnam Neyshabur and
+               Robert E. Schapire},
+  title     = {Corralling a Band of Bandit Algorithms},
+  booktitle = proc # "30th" # COLT,
+  pages     = {12--38},
+  year      = {2017}
 }
 
 @inproceedings{Haipeng-colt18,
@@ -410,26 +516,36 @@ year = "2016"
   year      = {2018}
 }
 
+@inproceedings{BubeckHaipeng-pathlegth-2019,
+  author    = {S{\'{e}}bastien Bubeck and
+               Yuanzhi Li and
+               Haipeng Luo and
+               Chen{-}Yu Wei},
+  title     = {Improved Path-length Regret Bounds for Bandits},
+  booktitle = COLT,
+  year      = {2019}
+}
+
 %%%%%%%% CONTEXTUAL BANDITS %%%%%%%%%%%%
 
 @article{Woodroofe79,
-   author   = {Michael Woodroofe},
-   title  = "{A one-armed bandit problem with a concomitant variable}",
-   journal  = "J. Amer. Statist. Assoc.",
-   volume   = "74",
-   number = "368",
-   pagesX   = {799�-806},
-   year   = {1979}
+   author         = {Michael Woodroofe},
+   title         = "{A one-armed bandit problem with a concomitant variable}",
+   journal         = "J. Amer. Statist. Assoc.",
+   volume         = "74",
+   number        = "368",
+   pagesX         = {799-806},
+   year         = {1979}
 } % "bandits with covariates"
 
 @article{Wang-sideMAB05,
    author = "Chih-Chun Wang and Sanjeev R. Kulkarni and H. Vincent Poor",
-   title =  "{Bandit problems with side observations}",
-   journal  = "IEEE Trans. on Automatic Control",
-   volume   = "50",
-   number = "3",
-   pages  = {338�355},
-   year   = {2005}
+   title =         "{Bandit problems with side observations}",
+   journal         = "IEEE Trans. on Automatic Control",
+   volume         = "50",
+   number        = "3",
+   pages         = {338-355},
+   year         = {2005}
 } % "bandits with covariates"
 
 @inproceedings{Gyorgy-ijcai07,
@@ -445,60 +561,52 @@ year = "2016"
 
 
 @inproceedings{Zeevi-colt10,
-   author =   "Philippe Rigollet and Assaf Zeevi",
-   title =  "{Nonparametric Bandits with Covariates}",
-   booktitle  = proc # "23rd" # COLT,
-   pages  = {54-66},
-   year   = "2010"
+   author =         "Philippe Rigollet and Assaf Zeevi",
+   title =         "{Nonparametric Bandits with Covariates}",
+   booktitle         = proc # "23rd" # COLT,
+   pages         = {54-66},
+   year         = "2010"
 } % "bandits with covariates"
 
 @inproceedings{Hazan-colt07,
-   author =   "Elad Hazan and Nimrod Megiddo",
-   title =  "{Online Learning with Prior Information}",
-   booktitle  = proc # "20th" # COLT ,
-   pages  = {499-513},
-   year   = "2007"
+   author =         "Elad Hazan and Nimrod Megiddo",
+   title =         "{Online Learning with Prior Information}",
+   booktitle         = proc # "20th" # COLT ,
+   pages         = {499-513},
+   year         = "2007"
 }
 
 @inproceedings{Langford-nips07,
-   author =   "John Langford and Tong Zhang",
-   title =  "{The Epoch-Greedy Algorithm for Contextual Multi-armed Bandits}",
-   booktitle  = proc # "21st" # NIPS,
-   year   = "2007"
+   author =         "John Langford and Tong Zhang",
+   title =         "{The Epoch-Greedy Algorithm for Contextual Multi-armed Bandits}",
+   booktitle         = proc # "21st" # NIPS,
+   year         = "2007"
 }
 
 @inproceedings{McMahan-colt09,
-   author =   "H. Brendan McMahan and Matthew Streeter",
-   title =  "{Tighter Bounds for Multi-Armed Bandits with Expert Advice}",
-   booktitle  = proc # "22nd" # COLT,
-   year   = "2009"
+   author =         "H. Brendan McMahan and Matthew Streeter",
+   title =         "{Tighter Bounds for Multi-Armed Bandits with Expert Advice}",
+   booktitle         = proc # "22nd" # COLT,
+   year         = "2009"
 }
 
 @inproceedings{Lazaric-colt09,
-   author =   "Alessandro Lazaric and R\'{e}mi Munos",
-   title =  "{Hybrid Stochastic-Adversarial On-line Learning}",
-   booktitle  = proc # "22nd" # COLT,
-   year   = "2009"
+   author =         "Alessandro Lazaric and R\'{e}mi Munos",
+   title =         "{Hybrid Stochastic-Adversarial On-line Learning}",
+   booktitle         = proc # "22nd" # COLT,
+   year         = "2009"
 }
 
 @inproceedings{Mannor-icml09,
-   author =   "Jia Yuan Yu and Shie Mannor",
-   title =  "{Piecewise-stationary bandit problems with side observations}",
-   booktitle  = proc # "26th" # ICML,
-   year   = "2009"
+   author =         "Jia Yuan Yu and Shie Mannor",
+   title =         "{Piecewise-stationary bandit problems with side observations}",
+   booktitle         = proc # "26th" # ICML,
+   year         = "2009"
 }
-
-@inproceedings{Reyzin-aistats11-linear,
-   author =   "Wei Chu and Lihong Li and Lev Reyzin and Robert E. Schapire",
-   title =  "{Contextual Bandits with Linear Payoff Functions}",
-   booktitle  = proc # "14th" # AISTATS,
-   year   = "2011"
-}
-
 
 @inproceedings{policy_elim,
  title = {Efficient Optimal Leanring for Contextual Bandits},
- author = {Miroslav Dud{\'{\i}}ik and Daniel Hsu and Satyen Kale and Nikos Karampatziakis and John Langford and Lev Reyzin and Tong Zhang},
+ author = {Miroslav Dud{\'{\i}}k and Daniel Hsu and Satyen Kale and Nikos Karampatziakis and John Langford and Lev Reyzin and Tong Zhang},
  BOOKTITLE    = proc # "27th" # UAI,
  year = {2011},
 }
@@ -558,15 +666,6 @@ year = "2016"
   year={2016}
 }
 
-@misc{Adith-PolicyEval-2016,
-  author    = {Adith Swaminathan and Akshay Krishnamurthy and
-               Alekh Agarwal and Miroslav Dud{\'{\i}}k
-               and John Langford and Damien Jose and Imed Zitouni},
-  title     = {Off-policy Evaluation for Slate Recommendation},
-  howpublished  = {arXiv:1605.04812},
-  year      = {2016}
-}
-
 @article{SyrgkanisCB-2016,
   author    = {Vasilis Syrgkanis and
                Akshay Krishnamurthy and
@@ -605,6 +704,18 @@ year = "2016"
 }
 
 
+@inproceedings{RegressionOraclesCB-icml18,
+  author    = {Dylan J. Foster and
+               Alekh Agarwal and
+               Miroslav Dud{\'{\i}}k and
+               Haipeng Luo and
+               Robert E. Schapire},
+  title     = {Practical Contextual Bandits with Regression Oracles},
+  booktitle = proc # "35th" # ICML,
+  pages     = {1534--1543},
+  year      = {2018}
+}
+
 %%%%%%%% VW and learning reductions %%%%%%
 
 @article{LearningReductions-ieee16,
@@ -624,19 +735,19 @@ year = "2016"
 %%%%%%%%% POLICY EVALUATION %%%%%%%%%%%
 
 @inproceedings{Langford-wsdm11,
-   author =   "Lihong Li and Wei Chu and John Langford and Xuanhui Wang",
-   title =  "{Unbiased offline evaluation of contextual-bandit-based news article recommendation algorithms}",
-   booktitle  = proc # "4th" # WSDM,
-   pagesX   = {297--306},
-   year   = "2011"
+   author =         "Lihong Li and Wei Chu and John Langford and Xuanhui Wang",
+   title =         "{Unbiased offline evaluation of contextual-bandit-based news article recommendation algorithms}",
+   booktitle         = proc # "4th" # WSDM,
+   pagesX         = {297--306},
+   year         = "2011"
 } % experimental
 
 @inproceedings{Langford-www10,
-   author =   "Lihong Li and Wei Chu and John Langford and Robert E. Schapire",
-   title =  "{A contextual-bandit approach to personalized news article recommendation}",
-   booktitle  = proc # "19th" # WWW,
-   pagesX   = {661--670},
-   year   = "2010"
+   author =         "Lihong Li and Wei Chu and John Langford and Robert E. Schapire",
+   title =         "{A contextual-bandit approach to personalized news article recommendation}",
+   booktitle         = proc # "19th" # WWW,
+   pagesX         = {661--670},
+   year         = "2010"
 } % experimental
 
 @inproceedings{DR11,
@@ -673,33 +784,78 @@ year = "2016"
   year      = {2015}
 }
 
-@inproceedings{DR-StatScience14,
+@article{DR-StatScience14,
   author    = {Miroslav Dud{\'{\i}}k and
                Dumitru Erhan and
                John Langford and
                Lihong Li},
   title     = {Doubly Robust Policy Evaluation and Optimization},
-  booktitle = {Statistical Science},
+  journal = {Statistical Science},
   volume    = {29},
   number    = {4},
   pages     = {1097--1104},
   year      = {2014}
 }
 
+@article{Adith-jmlr15,
+  author    = {Adith Swaminathan and
+               Thorsten Joachims},
+  title     = {Batch learning from logged bandit feedback through counterfactual
+               risk minimization},
+  journal   = JMLR,
+  volume    = {16},
+  pages     = {1731--1755},
+  year      = {2015}
+}
+
+@misc{Adith-PolicyEval-2016,
+  author    = {Adith Swaminathan and Akshay Krishnamurthy and
+               Alekh Agarwal and Miroslav Dud{\'{\i}}k
+               and John Langford and Damien Jose and Imed Zitouni},
+  title     = {Off-policy Evaluation for Slate Recommendation},
+  howpublished  = {arXiv:1605.04812},
+  year      = {2016}
+}
+
+@inproceedings{Adith-PolicyEval-nips17,
+  author    = {Adith Swaminathan and
+               Akshay Krishnamurthy and
+               Alekh Agarwal and
+               Miroslav Dud{\'{\i}}k and
+               John Langford and
+               Damien Jose and
+               Imed Zitouni},
+  title     = {Off-policy evaluation for slate recommendation},
+  booktitle = proc # "30th" # NIPS,
+  pages     = {3635--3645},
+  year      = {2017}
+}
+
+
 
 %%%%%%%%%%% GAMES WITH BANDITS/EXPERTS %%%%%%%%%%%%
 
 @inproceedings{KakadeKL/07,
-   author =   "Sham M. Kakade and Adam T. Kalai and Katrina Ligett",
-   title =  "{Playing Games with Approximation Algorithms}",
-   booktitle  = proc # "39th" # STOC,
-   pages  = {},
-   year   = "2007"
+   author =         "Sham M. Kakade and Adam T. Kalai and Katrina Ligett",
+   title =         "{Playing Games with Approximation Algorithms}",
+   booktitle         = proc # "39th" # STOC,
+   pages         = {},
+   year         = "2007"
 }
 
 
 
 %%%%%%%%% BOOKS, SURVEYS, THESIS, LECTURE NOTES %%%%%%%%%%%%%%%
+
+@book{LS19bandit-book,
+     Author = {Lattimore, Tor and Szepesv\'{a}ri, Csaba},
+     Publisher = {Cambridge University Press},
+     Title = {Bandit Algorithms},
+     Year = {2020},
+     address      = "Cambridge, UK",
+     note   = {Versions available at {\tt https://banditalgs.com/} since 2018.}
+}
+
 
 @article{TS-survey-FTML18,
   author    = {Daniel Russo and
@@ -712,7 +868,9 @@ year = "2016"
   volume    = {11},
   number    = {1},
   pages     = {1--96},
-  year      = {2018}
+  year      = {2018},
+  note = "Published with \emph{Now Publishers} (Boston, MA, USA).
+    Also available at {\tt https://arxiv.org/abs/1707.02038}."
 }
 
 @misc{Counterfactual-turorial-sigir16,
@@ -731,19 +889,22 @@ year = "2016"
   number={1},
   pages={1-117},
   year={2016},
-  publisher={Now Publishers Inc.}
+  note = "Published with \emph{Now Publishers} (Boston, MA, USA)"
 }
 
 @article{Hazan-OCO-book,
-   author   = {Elad Hazan},
-   title  = "{Introduction to Online Convex Optimization}",
+   author         = {Elad Hazan},
+   title         = "{Introduction to Online Convex Optimization}",
   journal={Foundations and Trends{\textregistered} in Optimization},
   volume={2},
   number={3-4},
   pages={157-325},
   year={2015},
-  publisher={Now Publishers Inc.}
+  note = "Published with \emph{Now Publishers} (Boston, MA, USA).
+    Also available at {https://arxiv.org/abs/1909.05207}."
 }
+
+
 
 @article{AroraHK,
   author    = {Sanjeev Arora and
@@ -755,82 +916,84 @@ year = "2016"
   volume    = {8},
   number    = {1},
   year      = {2012},
-  pages     = {121-164},
-  ee        = {http://dx.doi.org/10.4086/toc.2012.v008a006},
-  bibsource = {DBLP, http://dblp.uni-trier.de}
+  pages     = {121-164}
 }
 
 @book{Berry-book,
-   author   = {Donald Berry and Bert Fristedt},
-   title  = "{Bandit problems: sequential allocation of experiments}",
-   publisher  = "Chapman\&Hall",
-   address  = "",
-   year   = {1985},
-   volume = "",
-   series = "",
-   editor   = ""
+   author         = {Donald A. Berry and Bert Fristedt},
+   title         = "{Bandit problems: sequential allocation of experiments}",
+   publisher         = "Springer",
+   address      = "Heidelberg, Germany",
+   year         = {1985}
 }
 
 @book{Gittins-book,
-   author   = {J. C. Gittins},
-   title  = "{Multi-Armed Bandit Allocation Indices}",
-   publisher  = "John Wiley \& Sons",
-   address  = "",
-   year   = {1989},
+   author         = {John C. Gittins},
+   title         = "{Multi-Armed Bandit Allocation Indices}",
+   publisher         = "John Wiley \& Sons",
+   address         = "Hoboken, NJ, USA",
+   year         = {1989},
 }
 
 @book{Gittins-book11,
-   author   = {John Gittins and Kevin Glazebrook and Richard Weber},
-   title  = "{Multi-Armed Bandit Allocation Indices}",
-   publisher  = "John Wiley \& Sons",
-   year   = {2011},
+   author         = {John Gittins and Kevin Glazebrook and Richard Weber},
+   title         = "{Multi-Armed Bandit Allocation Indices}",
+   publisher         = "John Wiley \& Sons",
+   address         = "Hoboken, NJ, USA",
+   edition      = "2nd",
+   year         = {2011},
+    note    = {The first edition, single-authored by John Gittins, has been published in 1989.}
 }
 
 @book{CoverThomas,
-   author   = {Thomas M. Cover and Joy A. Thomas},
-   title  = "{Elements of Information Theory}",
-   publisher  = "John Wiley \& Sons",
-   address  = "New York",
-   year   = {1991},
+   author         = {Thomas M. Cover and Joy A. Thomas},
+   title         = "{Elements of Information Theory}",
+   publisher         = "John Wiley \& Sons",
+   address         = "New York, NY, USA",
+   year         = {1991}
 }
 
 @book{CesaBL-book,
-   author   = {Nicol\`o Cesa-Bianchi and G\'abor Lugosi},
-   title  = "{Prediction, learning, and games}",
-   publisher  = "Cambridge Univ. Press",
-   year   = {2006},
+   author         = {Nicol\`o Cesa-Bianchi and G\'abor Lugosi},
+   title         = "{Prediction, learning, and games}",
+   publisher         = "Cambridge University Press",
+   address      = "Cambridge, UK",
+   year         = {2006}
 }
 
 @incollection{Sundaram-survey03,
-  author  = "Rangarajan K. Sundaram",
-  title   = "{Generalized Bandit Problems}",
-  booktitle   = "Social Choice and Strategic Decisions:
-  Essays in Honor of Jeffrey S. Banks (Studies in Choice and Welfare)",
-  editor  = "David Austen-Smith and John Duggan",
-  publisher   = "Springer",
-  pages   = {131-162},
-  year    = {2005},
-  note    = "First appeared as {\em Working Paper, Stern School of Business}, 2003"
+  author         = "Rangarajan K. Sundaram",
+  title         = "{Generalized Bandit Problems}",
+  booktitle         = "Social Choice and Strategic Decisions:
+        Essays in Honor of Jeffrey S. Banks (Studies in Choice and Welfare)",
+  editor         = "David Austen-Smith and John Duggan",
+  publisher         = "Springer",
+  pages         = {131-162},
+  year                 = {2005},
+  note                = "First appeared as {\em Working Paper, Stern School of Business}, 2003"
 }
 
 @incollection{Bergemann-survey06,
-   author   = {Dirk Bergemann and Juuso V\"{a}lim\"{a}ki},
-   title  = "{Bandit Problems}",
-   booktitle  = "{The New Palgrave Dictionary of Economics, 2nd ed.}",
-   editor   = "Steven Durlauf and Larry Blume",
-   publisher  = "Macmillan Press",
-   year   = {2006}
+   author         = {Dirk Bergemann and Juuso V\"{a}lim\"{a}ki},
+   title         = "{Bandit Problems}",
+   booktitle         = "{The New Palgrave Dictionary of Economics, 2nd ed.}",
+   editor         = "Steven Durlauf and Larry Blume",
+   publisher         = "Macmillan Press",
+   year         = {2006}
 }
 
 @article{Bubeck-survey12,
-   author   = {S\'{e}bastien Bubeck and Nicolo Cesa-Bianchi},
-   title  = "{Regret Analysis of Stochastic and Nonstochastic Multi-armed Bandit Problems}",
-   journal  = "Foundations and Trends in Machine Learning",
-   year   = {2012},
+   author         = {S\'{e}bastien Bubeck and Nicolo Cesa-Bianchi},
+   title         = "{Regret Analysis of Stochastic and Nonstochastic Multi-armed Bandit Problems}",
+   journal         = "Foundations and Trends in Machine Learning",
+   year         = {2012},
    volume   = "5",
-   number   = "1"
+   number   = "1",
+   pages    = "1-122",
+   note = "Published with \emph{Now Publishers} (Boston, MA, USA).
+    Also available at {\tt https://arxiv.org/abs/1204.5721}."
 }
-%   pages    = "1-122"
+
 
 @article{Bubeck-convex-book15,
   author    = {S{\'{e}}bastien Bubeck},
@@ -840,6 +1003,8 @@ year = "2016"
   number    = {3-4},
   pages     = {231--357},
   year      = {2015},
+  note = "Published with \emph{Now Publishers} (Boston, MA, USA). Also available at
+        {\tt https://arxiv.org/abs/1405.4980}."
 }
 
 @incollection{Mahajan-survey08,
@@ -855,51 +1020,51 @@ year = "2016"
 
 
 @phdthesis{Bubeck-thesis,
-   author   = {S\'{e}bastien Bubeck},
-   title  = "{Bandits Games and Clustering Foundations}",
-   school   = "Univ. Lille 1",
-   year   = "2010"
+   author         = {S\'{e}bastien Bubeck},
+   title         = "{Bandits Games and Clustering Foundations}",
+   school         = "Univ. Lille 1",
+   year         = "2010"
 }
 
 @phdthesis{Bobby-thesis,
-   author   = {Robert Kleinberg},
-   title  = "{Online Decision Problems with Large Strategy Sets}",
-   school   = "MIT",
-   year   = "2005"
+   author         = {Robert Kleinberg},
+   title         = "{Online Decision Problems with Large Strategy Sets}",
+   school         = "MIT",
+   year         = "2005"
 }
 
 @Misc{Bobby-class07,
-  author  = "Robert Kleinberg",
-  title   = "{\emph{CS683: Learning, Games, and Electronic Markets}, a class at Cornell University}",
-  howpublished  = "Lecture notes, available at {\tt http://www.cs.cornell.edu/courses/cs683/2007sp/}",
-  year    = "2007",
+  author         = "Robert Kleinberg",
+  title         = "{\emph{CS683: Learning, Games, and Electronic Markets}, a class at Cornell University}",
+  howpublished         = "Lecture notes, available at {\tt http://www.cs.cornell.edu/courses/cs683/2007sp/}",
+  year                 = "2007",
   month = "Spring"
 }
 
 % deprecated entry!
 @Misc{Bobby-LN,
-  author  = "Robert Kleinberg",
-  title   = "{Lecture notes: \emph{CS683: Learning, Games, and Electronic Markets} (week 9)}",
-  howpublished  = "",
-  year    = "Spring 2007",
+  author         = "Robert Kleinberg",
+  title         = "{Lecture notes: \emph{CS683: Learning, Games, and Electronic Markets} (week 9)}",
+  howpublished         = "",
+  year                 = "Spring 2007",
   note ="Available at {\tt http://www.cs.cornell.edu/courses/cs683/2007sp/lecnotes/week9.pdf}"
 }
 
 % deprecated entry!
 @Misc{Bobby-CS683-week9,
-  author  = "Robert Kleinberg",
-  title   = "{Lecture notes: \emph{CS683: Learning, Games, and Electronic Markets} (week 9)}",
-  howpublished  = "",
-  year    = "2007",
+  author         = "Robert Kleinberg",
+  title         = "{Lecture notes: \emph{CS683: Learning, Games, and Electronic Markets} (week 9)}",
+  howpublished         = "",
+  year                 = "2007",
   note ="Available at {\tt http://www.cs.cornell.edu/courses/cs683/2007sp/lecnotes/week9.pdf}"
 }
 
 % deprecated entry!
 @misc{Robert-Kleinberg-Lecture-8,
-  author  = {Robert Kleinberg},
-  title   = {Lecture notes: \emph{CS683: Learning, Games, and Electronic Markets} (week 8)},
-  note  = {Available at {\tt http://www.cs.cornell.edu/courses/cs683/2007sp/lecnotes/week8.pdf}},
-  year  = {Spring 2007}
+        author         = {Robert Kleinberg},
+        title         = {Lecture notes: \emph{CS683: Learning, Games, and Electronic Markets} (week 8)},
+        note         = {Available at {\tt http://www.cs.cornell.edu/courses/cs683/2007sp/lecnotes/week8.pdf}},
+        year         = {Spring 2007}
 }
 
 @article{Munos-trends14,
@@ -913,54 +1078,44 @@ year = "2016"
   year      = {2014},
 }
 
-@book{LS19bandit-book,
-  title = {Bandit Algorithms},
-  author = {Lattimore, Tor and Szepesv\'{a}ri, Csaba},
-  year = {2019},
-  publisher = {Cambridge University Press (preprint)},
-}
-
 
 %%%%%%%%%%% CLASSIC PAPERS ON BANDITS AND EXPERTS %%%%%%%%%
 
 @article{Robbins1952,
-   author   = {Herbert Robbins},
-   title  = "{Some Aspects of the Sequential Design of Experiments}",
-   journal  = "Bull. Amer. Math. Soc.",
-   volume   = "58",
-   number = "",
-   pages  = {527-535},
-   year   = {1952}
+   author         = {Herbert Robbins},
+   title         = "{Some Aspects of the Sequential Design of Experiments}",
+   journal         = "Bull. Amer. Math. Soc.",
+   volume         = "58",
+   pages         = {527-535},
+   year         = {1952}
 }
 
 @article{Gittins-index-79,
-   author   = {J. C. Gittins},
-   title  = "{Bandit processes and dynamic allocation indices (with discussion)}",
-   journal  = "J. Roy. Statist. Soc. Ser. B",
-   volume   = "41",
-   number = "",
-   pages  = {148-177},
-   year   = {1979}
+   author         = {J. C. Gittins},
+   title         = "{Bandit processes and dynamic allocation indices (with discussion)}",
+   journal         = "J. Roy. Statist. Soc. Ser. B",
+   volume         = "41",
+   pages         = {148-177},
+   year         = {1979}
 }
 
 @incollection{Gittins-index,
-   author   = {J. C. Gittins and D. M. Jones},
-   title  = "{A dynamic allocation index for the sequential design of experiments}",
-   booktitle  = "Progress in Statistics",
-   editor   = "J. Gani et al.",
-   publisher  = "North-Holland",
-   address  = "",
-   pages  = {241-266},
-   year   = {1974}
+   author         = {J. C. Gittins and D. M. Jones},
+   title         = "{A dynamic allocation index for the sequential design of experiments}",
+   booktitle         = "Progress in Statistics",
+   editor         = "J. Gani et al.",
+   publisher         = "North-Holland",
+   pages         = {241-266},
+   year         = {1974}
 }
 
 @article{Lai-Robbins-85,
-   author   = {Tze Leung Lai and Herbert Robbins},
-   title  = "{Asymptotically efficient Adaptive Allocation Rules}",
-   journal  = "Advances in Applied Mathematics",
-   volume   = "6",
-   pages  = {4-22},
-   year   = {1985}
+   author         = {Tze Leung Lai and Herbert Robbins},
+   title         = "{Asymptotically efficient Adaptive Allocation Rules}",
+   journal         = "Advances in Applied Mathematics",
+   volume         = "6",
+   pages         = {4-22},
+   year         = {1985}
 }
 
 @article{bandits-ucb1,
@@ -984,7 +1139,7 @@ year = "2016"
   number    = {1},
   year      = {2002},
   pages     = {48-77},
-  note      = {Preliminary version in {\em 36th IEEE FOCS}, 1995}
+  note            = {Preliminary version in {\em 36th IEEE FOCS}, 1995}
 }
 
 @article{experts-jacm97,
@@ -1004,27 +1159,27 @@ year = "2016"
 % Also: Tsitsiklis-bandits-04
 
 @article{Kulkarni00,
-   author   = {Sanjeev R. Kulkarni and Gabor Lugosi},
-   title  = "{Finite-Time Lower Bounds for the Two-Armed Bandit Problem}",
-   journal  = "IEEE Trans. on Automatic Control",
-   volume   = "45",
-   number = "4",
-   pages  = {711-714},
-   year   = {2000}
+   author         = {Sanjeev R. Kulkarni and Gabor Lugosi},
+   title         = "{Finite-Time Lower Bounds for the Two-Armed Bandit Problem}",
+   journal         = "IEEE Trans. on Automatic Control",
+   volume         = "45",
+   number        = "4",
+   pages         = {711-714},
+   year         = {2000}
 }
 
 @inproceedings{Garivier-colt11,
-   author =   "Aur\'{e}lien Garivier and Olivier Capp\'{e}",
-   title =  "{The KL-UCB Algorithm for Bounded Stochastic Bandits and Beyond}",
-   booktitle  = proc # "24th" #COLT,
-   year   = "2011"
+   author =         "Aur\'{e}lien Garivier and Olivier Capp\'{e}",
+   title =         "{The KL-UCB Algorithm for Bounded Stochastic Bandits and Beyond}",
+   booktitle         = proc # "24th" #COLT,
+   year         = "2011"
 }
 
 @inproceedings{Maillard-colt11,
-   author =   "Odalric-Ambrym Maillard and R\'{e}mi Munos",
-   title =  "{Adaptive Bandits: Towards the best history-dependent strategy}",
-   booktitle  = proc # "24th" #COLT,
-   year   = "2011"
+   author =         "Odalric-Ambrym Maillard and R\'{e}mi Munos",
+   title =         "{Adaptive Bandits: Towards the best history-dependent strategy}",
+   booktitle         = proc # "24th" #COLT,
+   year         = "2011"
 }
 
 @inproceedings{Maillard-colt11-KL,
@@ -1054,12 +1209,12 @@ year = "2016"
 }
 
 @ARTICLE{Audibert-TCS09,
-  AUTHOR       = {J.-Y. Audibert and R. Munos and Cs. Szepesv\'ari},
-  TITLE        = {Exploration-exploitation Trade-off using Variance Estimates in Multi-Armed Bandits},
-  JOURNAL      = {Theoretical Computer Science},
-  YEAR         = {2009},
-  VOLUME       = {410},
-  PAGES        = {1876--1902},
+        AUTHOR       = {J.-Y. Audibert and R. Munos and Cs. Szepesv\'ari},
+        TITLE        = {Exploration-exploitation Trade-off using Variance Estimates in Multi-Armed Bandits},
+        JOURNAL      = {Theoretical Computer Science},
+        YEAR         = {2009},
+        VOLUME       = {410},
+        PAGES        = {1876--1902},
 }
 
 
@@ -1075,42 +1230,42 @@ year = "2016"
 
 
 @inproceedings{PandeyOlston-nips06,
-   author =   "Sandeep Pandey and Christopher Olston",
-   title =  "{Handling Advertisements of Unknown Quality in Search Advertising}",
-   booktitle  = proc # "20th" # NIPS,
-   pages  = {1065-1072},
-   year   = "2006"
+   author =         "Sandeep Pandey and Christopher Olston",
+   title =         "{Handling Advertisements of Unknown Quality in Search Advertising}",
+   booktitle         = proc # "20th" # NIPS,
+   pages         = {1065-1072},
+   year         = "2006"
 } % per-arm budgets
 
 
 % COUNTABLY MANY ARMS
 
 @article{sundaram-bandits-92,
-   author   = {Jeffrey Banks and Rangarajan Sundaram},
-   title  = "{Denumerable-armed bandits}",
-   journal  = "Econometrica",
-   volume   = "60",
-   number = "5",
-   pages  = {1071-1096},
-   year   = {1992}
+   author         = {Jeffrey Banks and Rangarajan Sundaram},
+   title         = "{Denumerable-armed bandits}",
+   journal         = "Econometrica",
+   volume         = "60",
+   number        = "5",
+   pages         = {1071-1096},
+   year         = {1992}
 }
 
 @article{Berry-bandits-97,
-   author   = {Donald A. Berry and Robert W. Chen and Alan Zame and David C. Heath and Larry A. Shepp. },
-   title  = "{Bandit problems with infinitely many arms}",
-   journal  = "Annals of Statistics",
-   volume   = "25",
-   number = "5",
-   pages  = {2103-2116},
-   year   = {1997}
+   author         = {Donald A. Berry and Robert W. Chen and Alan Zame and David C. Heath and Larry A. Shepp. },
+   title         = "{Bandit problems with infinitely many arms}",
+   journal         = "Annals of Statistics",
+   volume         = "25",
+   number        = "5",
+   pages         = {2103-2116},
+   year         = {1997}
 }
 
 @inproceedings{Munos-nips08,
-   author =   "Yizao Wang and Jean-Yves Audibert and R\'{e}mi Munos",
-   title =  "{Algorithms for Infinitely Many-Armed Bandits}",
-   booktitle  = NIPS,
-   pages  = {1729-1736},
-   year   = "2008"
+   author =         "Yizao Wang and Jean-Yves Audibert and R\'{e}mi Munos",
+   title =         "{Algorithms for Infinitely Many-Armed Bandits}",
+   booktitle         = NIPS,
+   pages         = {1729-1736},
+   year         = "2008"
 }
 
 
@@ -1119,30 +1274,31 @@ year = "2016"
 % e.g.~\cite{agrawal-bandits-95,Bobby-nips04,AuerOS/07,LipschitzMAB-stoc08,xbandits-nips08}.
 
 @article{agrawal-bandits-95,
-   author   = {Rajeev Agrawal},
-   title  = "{The continuum-armed bandit problem}",
-   journal  = "SIAM J. Control and Optimization",
-   volume   = "33",
-   number = "6",
-   pages  = {1926-1951},
-   year   = {1995}
+   author         = {Rajeev Agrawal},
+   title         = "{The continuum-armed bandit problem}",
+   journal         = "SIAM J. Control and Optimization",
+   volume         = "33",
+   number        = "6",
+   pages         = {1926-1951},
+   year         = {1995}
 }
 
 @inproceedings{AuerOS/07,
-   author =   "Peter Auer and Ronald Ortner and Csaba Szepesv\'ari",
-   title =  "{Improved Rates for the Stochastic Continuum-Armed Bandit Problem}",
-   booktitle  = proc # "20th" # COLT,
-   pages  = {454-468},
-   year   = "2007",
+   author =         "Peter Auer and Ronald Ortner and Csaba Szepesv\'ari",
+   title =         "{Improved Rates for the Stochastic Continuum-Armed Bandit Problem}",
+   booktitle         = proc # "20th" # COLT,
+   pages         = {454-468},
+   year         = "2007",
 }
 
 @article{xbandits-nips08,
-   author =   "S\'{e}bastien Bubeck and R\'{e}mi Munos and Gilles Stoltz and Csaba Szepesvari",
-   title =  "{Online Optimization in X-Armed Bandits}",
-   journal  = JMLR,
-   volume   = "12",
-   pages  = {1587--1627},
-   year     = "2011"
+   author =         "S\'{e}bastien Bubeck and R\'{e}mi Munos and Gilles Stoltz and Csaba Szepesvari",
+   title =         "{Online Optimization in X-Armed Bandits}",
+   journal         = JMLR,
+   volume         = "12",
+   pages         = {1587--1627},
+   year     = "2011",
+   note = "Preliminary version in \emph{NIPS 2008}."
 }
 
 @inproceedings{xbandits-nips08-conf,
@@ -1158,25 +1314,25 @@ year = "2016"
 
 
 @inproceedings{Pal-Bandits-aistats10,
-   author =   "Tyler Lu and D\'{a}vid P\'{a}l and Martin P\'{a}l",
-   title =  "{Showing Relevant Ads via Lipschitz Context Multi-Armed Bandits}",
-   booktitle  = proc # "14th" # AISTATS,
-   year   = "2010"
+   author =         "Tyler Lu and D\'{a}vid P\'{a}l and Martin P\'{a}l",
+   title =         "{Showing Relevant Ads via Lipschitz Context Multi-Armed Bandits}",
+   booktitle         = proc # "14th" # AISTATS,
+   year         = "2010"
 }
 
 @inproceedings{Bubeck-colt10,
    author = "S\'{e}bastien Bubeck and R\'{e}mi Munos",
-   title =  "{Open Loop Optimistic Planning}",
+   title =         "{Open Loop Optimistic Planning}",
    booktitle = proc # "23rd" # COLT,
-   pages  = {477-489},
-   year   = "2010"}
+   pages         = {477-489},
+   year         = "2010"}
 
 @inproceedings{Munos-ecml10,
-   author =   "Odalric-Ambrym Maillard and R\'{e}mi Munos",
-   title =  "{Online Learning in Adversarial Lipschitz Environments}",
-   booktitle  = ECMLPKDD,
-   pages  = {305-320},
-   year   = "2010"
+   author =         "Odalric-Ambrym Maillard and R\'{e}mi Munos",
+   title =         "{Online Learning in Adversarial Lipschitz Environments}",
+   booktitle         = ECMLPKDD,
+   pages         = {305-320},
+   year         = "2010"
 }
 
 @inproceedings{Munos-nips11,
@@ -1296,11 +1452,11 @@ year = "2016"
 %%%%%%%% GAUSSIAN BANDITS %%%%%%%%%
 
 @inproceedings{GPbandits-icml10,
-   author =   "Niranjan Srinivas and Andreas Krause and Sham Kakade and Matthias Seeger",
-   title =  "{Gaussian Process Optimization in the Bandit Setting: No Regret and Experimental Design}",
-   booktitle  = proc # "27th" # ICML,
-   pages  = {1015-1022},
-   year   = "2010"
+   author =         "Niranjan Srinivas and Andreas Krause and Sham Kakade and Matthias Seeger",
+   title =         "{Gaussian Process Optimization in the Bandit Setting: No Regret and Experimental Design}",
+   booktitle         = proc # "27th" # ICML,
+   pages         = {1015-1022},
+   year         = "2010"
 }
 
 @inproceedings{GPbandits-nips11,
@@ -1322,26 +1478,26 @@ year = "2016"
 %%%%%%%%%%%% BANDITS ON TREES/ TAXONOMIES %%%%%%%%%%%%
 
 @inproceedings{Kocsis-ecml06,
-   author =   "Levente Kocsis and Csaba Szepesvari",
-   title =  "{Bandit Based Monte-Carlo Planning}",
-   booktitle  = proc # "17th" # ECML,
-   pages  = {282-293},
-   year   = "2006"
+   author =         "Levente Kocsis and Csaba Szepesvari",
+   title =         "{Bandit Based Monte-Carlo Planning}",
+   booktitle         = proc # "17th" # ECML,
+   pages         = {282-293},
+   year         = "2006"
 }
 
 @inproceedings{Munos-uai07,
-   author =   "R\'{e}mi Munos and Pierre-Arnaud Coquelin",
-   title =  "{Bandit algorithms for tree search}",
-   booktitle  = proc # "23rd" # UAI,
-   pages  = {},
-   year   = "2007"
+   author =         "R\'{e}mi Munos and Pierre-Arnaud Coquelin",
+   title =         "{Bandit algorithms for tree search}",
+   booktitle         = proc # "23rd" # UAI,
+   pages         = {},
+   year         = "2007"
 }
 
 @inproceedings{yahoo-bandits07,
-  author  = "Sandeep Pandey and Deepak Agarwal and Deepayan Chakrabarti and Vanja Josifovski",
-  title   = "{Bandits for Taxonomies: A Model-based Approach}",
-  booktitle   = proc # SDM,
-  year    = "2007",
+  author         = "Sandeep Pandey and Deepak Agarwal and Deepayan Chakrabarti and Vanja Josifovski",
+  title         = "{Bandits for Taxonomies: A Model-based Approach}",
+  booktitle         = proc # SDM,
+  year                 = "2007",
 }
 
 @inproceedings{yahoo-bandits-icml07,
@@ -1353,53 +1509,53 @@ year = "2016"
 
 @inproceedings{Broder-sigir07,
    author = "Andrei Broder and Marcus Fontoura and Vanja Josifovski and Lance Riedel",
-   title =  "{A semantic approach to contextual advertising}",
-   booktitle  = proc # "30th" # SIGIR,
-   pages  = {559-566},
-   year   = "2007"
+   title =         "{A semantic approach to contextual advertising}",
+   booktitle         = proc # "30th" # SIGIR,
+   pages         = {559-566},
+   year         = "2007"
 } % not bandits, just ad taxonomies
 
 
 @inproceedings{Bennett-www10,
-   author =   "Paul N. Bennett, Krysta Marie Svore, Susan T. Dumais",
-   title =  "{Classification-enhanced ranking}",
-   booktitle  = proc # "19th" # WWW,
-   pages  = {111-120},
-   year   = "2010"
+   author =         "Paul N. Bennett, Krysta Marie Svore, Susan T. Dumais",
+   title =         "{Classification-enhanced ranking}",
+   booktitle         = proc # "19th" # WWW,
+   pages         = {111-120},
+   year         = "2010"
 } % not bandits, just taxonomies for search
 
 
 % GO: \cite{Gelly-tr06,gelly-icml07,gelly-aaai08}
 
 @inproceedings{gelly-aaai08,
-   author =   "Sylvain Gelly and David Silver",
-   title =  "{Achieving master level play in 9x9 computer go}",
-   booktitle  = proc # "23rd" # AAAI,
-   year   = "2008"
+   author =         "Sylvain Gelly and David Silver",
+   title =         "{Achieving master level play in 9x9 computer go}",
+   booktitle         = proc # "23rd" # AAAI,
+   year         = "2008"
 } % using UCT
 
 @inproceedings{Gelly-icml07,
-   author =   "Sylvain Gelly and David Silver",
-   title =  "{Combining online and offline knowledge in UCT}",
-   booktitle  = proc # "24th" # ICML,
-   year   = "2007"
+   author =         "Sylvain Gelly and David Silver",
+   title =         "{Combining online and offline knowledge in UCT}",
+   booktitle         = proc # "24th" # ICML,
+   year         = "2007"
 }
 
 @techreport{Gelly-tr06,
-   author   = {Sylvain Gelly and Yizao Wang and R\'{e}mi Munos and Olivier Teytaud},
-   title  = "{Modification of UCT with patterns in Monte-Carlo go}",
-   institution  = "INRIA",
-   number   = "RR-6062",
-   year   = {2006}
+   author         = {Sylvain Gelly and Yizao Wang and R\'{e}mi Munos and Olivier Teytaud},
+   title         = "{Modification of UCT with patterns in Monte-Carlo go}",
+   institution         = "INRIA",
+   number         = "RR-6062",
+   year         = {2006}
 }
 
 
 @techreport{AdamBull-13,
-   author   = {Adam D. Bull},
-   title  = "{Adaptive-treed bandits}",
-   institution  = "{\tt arxiv.org}",
-   number   = "1302.2489",
-   year   = {2013}
+   author         = {Adam D. Bull},
+   title         = "{Adaptive-treed bandits}",
+   institution         = "{\tt arxiv.org}",
+   number         = "1302.2489",
+   year         = {2013}
 }
 
 
@@ -1407,10 +1563,10 @@ year = "2016"
 
 @inproceedings{RBA-icml08,
    author = "Filip Radlinski and Robert Kleinberg and Thorsten Joachims",
-   title =  "{Learning diverse rankings with multi-armed bandits}",
-   booktitle  = proc # "25th" # ICML,
-   pages  = {784-791},
-   year   = "2008"
+   title =         "{Learning diverse rankings with multi-armed bandits}",
+   booktitle         = proc # "25th" # ICML,
+   pages         = {784-791},
+   year         = "2008"
 }
 
 @inproceedings{Streeter08,
@@ -1429,38 +1585,76 @@ year = "2016"
 }
 
 @inproceedings{Uchiya-alt10,
-   author =   "Taishi Uchiya and Atsuyoshi Nakamura and Mineichi Kudo",
-   title =  "{Algorithms for Adversarial Bandit Problems with Multiple Plays}",
-   booktitle  = proc # "21st" # ALT,
-   pages  = {375-389},
-   year   = "2010"
+   author =         "Taishi Uchiya and Atsuyoshi Nakamura and Mineichi Kudo",
+   title =         "{Algorithms for Adversarial Bandit Problems with Multiple Plays}",
+   booktitle         = proc # "21st" # ALT,
+   pages         = {375-389},
+   year         = "2010"
 }
 
 @inproceedings{Kale-slate-nips10,
-   author =   "Satyen Kale and Lev Reyzin and Robert E. Schapire",
-   title =  "{Non-Stochastic Bandit Slate Problems}",
-   booktitle  = proc # "24th" # NIPS,
-   pages  = {1054-1062},
-   year   = "2010"
+   author =         "Satyen Kale and Lev Reyzin and Robert E. Schapire",
+   title =         "{Non-Stochastic Bandit Slate Problems}",
+   booktitle         = proc # "24th" # NIPS,
+   pages         = {1054-1062},
+   year         = "2010"
 }
 
+@article{Cesa-BianchiL12,
+  author    = {Nicol{\`{o}} Cesa{-}Bianchi and
+               G{\'{a}}bor Lugosi},
+  title     = {Combinatorial bandits},
+  journal   = {J. Comput. Syst. Sci.},
+  volume    = {78},
+  number    = {5},
+  pages     = {1404--1422},
+  year      = {2012},
+  note  = {Preliminary version in \emph{COLT 2009}.}
+}
+
+@inproceedings{CascadingBandits-uai16,
+  author    = {Shi Zong and
+               Hao Ni and
+               Kenny Sung and
+               Nan Rosemary Ke and
+               Zheng Wen and
+               Branislav Kveton},
+  title     = {Cascading Bandits for Large-Scale Recommendation Problems},
+  booktitle = proc # "32nd" # UAI,
+  year      = {2016}
+}
+
+@inproceedings{CascadingBandits-icml15,
+  author    = {Branislav Kveton and
+               Csaba Szepesv{\'{a}}ri and
+               Zheng Wen and
+               Azin Ashkan},
+  title     = {Cascading Bandits: Learning to Rank in the Cascade Model},
+  booktitle = proc # "32nd" # ICML,
+  pages     = {767--776},
+  year      = {2015}
+}
+
+@inproceedings{CascadingBandits-nips15,
+  author    = {Branislav Kveton and
+               Zheng Wen and
+               Azin Ashkan and
+               Csaba Szepesv{\'{a}}ri},
+  title     = {Combinatorial Cascading Bandits},
+  booktitle = proc # "28th" # NIPS,
+  pages     = {1450--1458},
+  year      = {2015}
+}
 
 % ========= Bobby Kleinberg
 
-@inproceedings{sleeping-colt08,
-  author = {Robert Kleinberg and Alexandru Niculescu-Mizil and Yogeshwer Sharma},
-  title = {Regret bounds for sleeping experts and bandits},
-  booktitle   = proc # "21st" # COLT,
-  pages   = {425--436},
-  year  = "2008"
-}
 
 @inproceedings{Bobby-Karp,
-   author   = {Richard Karp and Robert Kleinberg},
-   title  = "{Noisy binary search and its applications}",
+   author         = {Richard Karp and Robert Kleinberg},
+   title         = "{Noisy binary search and its applications}",
     booktitle = proc # "18th" # SODA,
-   pages  = {881-890},
-   year   = {2007}
+   pages         = {881-890},
+   year         = {2007}
 }
 
 
@@ -1506,107 +1700,118 @@ year = "2016"
   note = "Preliminary version in \emph{36th ACM STOC}, 2004."
 }
 
+@inproceedings{Bobby-infocom05,
+  author    = {Baruch Awerbuch and
+               David Holmer and
+               Herbert Rubens and
+               Robert D. Kleinberg},
+  title     = {Provably competitive adaptive routing},
+  booktitle = proc # "24th" # INFOCOM,
+  pages     = {631--641},
+  year      = {2005}
+}
+
 
 % +++++++ multi-armed bandits and routing
 
 @inproceedings{Heidari-bandits-routing-ifip07,
-   author   = {F. Heidari and S. Mannor and L.G. Mason},
-   title  = "{Reinforcement learning-based load shared sequential routing}",
-   booktitle  = proc # "IFIP Networking",
-   pages  = {},
-   year   = {2007}
+   author         = {F. Heidari and S. Mannor and L.G. Mason},
+   title         = "{Reinforcement learning-based load shared sequential routing}",
+   booktitle         = proc # "IFIP Networking",
+   pages         = {},
+   year         = {2007}
 }
 
 %%%%%%%%%%%%%%% Guha & Munagala %%%%%%%%%%%%%
 
 @article{GuhaMunagala-pods06,
-   author   = {Ashish Goel and Sudipta Guha and Kamesh Munagala},
-   title  = "{How to probe for an extreme value}",
-   journal  = TALG,
-   volume   = "7",
-   number = "1",
-   year   = {2010},
+   author         = {Ashish Goel and Sudipta Guha and Kamesh Munagala},
+   title         = "{How to probe for an extreme value}",
+   journal         = TALG,
+   volume         = "7",
+   number        = "1",
+   year         = {2010},
    note = "{Preliminary version in \emph{24th ACM PODS 2006} under the title
    ''Asking the right questions: Model-driven optimization using probes"}"
 }
 
 @inproceedings{GuhaMunagala-soda07,
-  author  = "Sudipta Guha and Kamesh Munagala",
-  title   = "{Model-driven optimization using adaptive probes}",
+  author         = "Sudipta Guha and Kamesh Munagala",
+  title         = "{Model-driven optimization using adaptive probes}",
   booktitle = proc # "18th" # SODA,
-  pages   = {308-317},
+  pages                = {308-317},
   year      = "2007"
 }
 
 @inproceedings{GuhaMunagala-focs07,
-  author  = "Sudipta Guha and Kamesh Munagala",
-  title   = "{Approximation algorithms for partial-information based stochastic control with Markovian rewards.}",
+  author         = "Sudipta Guha and Kamesh Munagala",
+  title         = "{Approximation algorithms for partial-information based stochastic control with Markovian rewards.}",
   booktitle = proc # "48th" # FOCS,
-  pages   = {483-493},
+  pages                = {483-493},
   year       = "2007"
 }
 
 @inproceedings{GuhaMunagala-stoc07,
-  author  = "Sudipta Guha and Kamesh Munagala",
-  title   = "{Approximation algorithms for budgeted learning problems}",
+  author         = "Sudipta Guha and Kamesh Munagala",
+  title         = "{Approximation algorithms for budgeted learning problems}",
   booktitle = proc # "39th" # STOC,
-  pages   = {104-113},
+  pages                = {104-113},
   year      = "2007"
 }
 
 @inproceedings{GuhaMunagala-icalp09,
-  author  = "Sudipta Guha and Kamesh Munagala",
-  title   = "{Multi-armed Bandits with Metric Switching Costs}",
+  author         = "Sudipta Guha and Kamesh Munagala",
+  title         = "{Multi-armed Bandits with Metric Switching Costs}",
   booktitle = proc # "36th" # ICALP,
-  pages   = {496-507},
+  pages                = {496-507},
   year      = "2007"
 }
 
 % for compatibility with Bobby
 @inproceedings{GuhaM-stoc07,
-  author  = "Sudipta Guha and Kamesh Munagala",
-  title   = "{Approximation algorithms for budgeted learning problems}",
+  author         = "Sudipta Guha and Kamesh Munagala",
+  title         = "{Approximation algorithms for budgeted learning problems}",
   booktitle = proc # "39th" # STOC,
-  pages   = {104-113},
+  pages                = {104-113},
   year      = "2007"
 }
 
 @inproceedings{GuhaM-icalp09,
-  author  = "Sudipta Guha and Kamesh Munagala",
-  title   = "{Multi-armed Bandits with Metric Switching Costs}",
+  author         = "Sudipta Guha and Kamesh Munagala",
+  title         = "{Multi-armed Bandits with Metric Switching Costs}",
   booktitle = proc # "36th" # ICALP,
-  pages   = {496-507},
+  pages                = {496-507},
   year      = "2007"
 }
 
 
 @inproceedings{GuhaMunagala-soda09,
- author   = "Sudipta Guha and Kamesh Munagala and Peng Shi",
-  title   = "{Approximation algorithms for restless bandit problems.}",
+ author         = "Sudipta Guha and Kamesh Munagala and Peng Shi",
+  title         = "{Approximation algorithms for restless bandit problems.}",
   booktitle = proc # "20th" # SODA,
-  pages   = {28-37},
+  pages                = {28-37},
   year      = "2009"
 }
 
 @misc{GuhaMunagala-jacm10,
-  author  = "Sudipta Guha and Kamesh Munagala and Peng Shi",
-  title   = "{Approximation algorithms for restless bandit problems.}",
-   journal  = JACM,
-   volume   = "58",
-   number = "1",
-   year   = {2010},
-   note   = "Combined final version of papers in \emph{IEEE FOCS 2007} and \emph{ACM-SIAM SODA 2009}."
+  author         = "Sudipta Guha and Kamesh Munagala and Peng Shi",
+  title         = "{Approximation algorithms for restless bandit problems.}",
+   journal         = JACM,
+   volume         = "58",
+   number        = "1",
+   year         = {2010},
+   note                = "Combined final version of papers in \emph{IEEE FOCS 2007} and \emph{ACM-SIAM SODA 2009}."
 }
 
 % for backward compatibility
 @misc{GuhaMunagala-arxiv09,
-  author  = "Sudipta Guha and Kamesh Munagala and Peng Shi",
-  title   = "{Approximation algorithms for restless bandit problems.}",
-   journal  = JACM,
-   volume   = "58",
-   number = "1",
-   year   = {2010},
-   note   = "Combined final version of papers in \emph{IEEE FOCS 2007} and \emph{ACM-SIAM SODA 2009}."
+  author         = "Sudipta Guha and Kamesh Munagala and Peng Shi",
+  title         = "{Approximation algorithms for restless bandit problems.}",
+   journal         = JACM,
+   volume         = "58",
+   number        = "1",
+   year         = {2010},
+   note                = "Combined final version of papers in \emph{IEEE FOCS 2007} and \emph{ACM-SIAM SODA 2009}."
 }
 
 %%%%%%%%% BUDGETED MAB %%%%%%%%%%%%%%%
@@ -1616,21 +1821,20 @@ year = "2016"
 % EvenDar-colt02,Tsitsiklis-bandits-04,Madani-colt04,GuhaMunagala-pods06,Bubeck-alt09,GuhaMunagala-stoc07,Null-soda09
 
 @inproceedings{EvenDar-colt02,
-   author =   "Eyal Even-Dar and Shie Mannor and Yishay Mansour",
-   title =  "{PAC bounds for multi-armed bandit and Markov decision processes}",
-   booktitle  = proc # "15th" # COLT,
-   pages  = {255-270},
-   year   = "2002"
+   author =         "Eyal Even-Dar and Shie Mannor and Yishay Mansour",
+   title =         "{PAC bounds for multi-armed bandit and Markov decision processes}",
+   booktitle         = proc # "15th" # COLT,
+   pages         = {255-270},
+   year         = "2002"
 }
 
 @article{Tsitsiklis-bandits-04,
-   author   = {Shie Mannor and John N. Tsitsiklis},
-   title  = "{The sample complexity of exploration in the multi-armed bandit problem}",
-   journal  = JMLR,
-   volume   = "5",
-   number = "",
-   pages  = {623-648},
-   year   = {2004}
+   author         = {Shie Mannor and John N. Tsitsiklis},
+   title         = "{The sample complexity of exploration in the multi-armed bandit problem}",
+   journal         = JMLR,
+   volume         = "5",
+   pages         = {623-648},
+   year         = {2004}
 }
 
 @article{EvenDar-icml06,
@@ -1645,35 +1849,35 @@ year = "2016"
 }
 
 @inproceedings{Madani-colt04,
-   author =   "Daniel J. Lizotte and Omid Madani and Russell Greiner",
-   title =  "{The budgeted multi-armed bandit problem}",
-   booktitle  = proc # "17th" # COLT,
-   pages  = {643-645},
-   year   = "2004",
+   author =         "Daniel J. Lizotte and Omid Madani and Russell Greiner",
+   title =         "{The budgeted multi-armed bandit problem}",
+   booktitle         = proc # "17th" # COLT,
+   pages         = {643-645},
+   year         = "2004",
    note = "Open problems session."
 }
 
 @inproceedings{Null-soda09,
-   author =   "Ashish Goel and Sanjeev Khanna and Brad Null",
-   title =  "{The Ratio Index for Budgeted Learning, with Applications}",
-   booktitle  = proc # "20th" # SODA,
+   author =         "Ashish Goel and Sanjeev Khanna and Brad Null",
+   title =         "{The Ratio Index for Budgeted Learning, with Applications}",
+   booktitle         = proc # "20th" # SODA,
    pages    = "18-27",
-   year   = "2009"
+   year         = "2009"
 }
 
 % For compatibility with Bobby
 @inproceedings{GoelKN-soda09,
-   author =   "Ashish Goel and Sanjeev Khanna and Brad Null",
-   title =  "{The Ratio Index for Budgeted Learning, with Applications}",
-   booktitle  = proc # "20th" # SODA,
+   author =         "Ashish Goel and Sanjeev Khanna and Brad Null",
+   title =         "{The Ratio Index for Budgeted Learning, with Applications}",
+   booktitle         = proc # "20th" # SODA,
    pages    = "18-27",
-   year   = "2009"
+   year         = "2009"
 }
 
 
 @article{Bubeck-alt09,
    author = "S\'{e}bastien Bubeck and R\'{e}mi Munos and Gilles Stoltz",
-   title =  "{Pure Exploration in Multi-Armed Bandit Problems}",
+   title =         "{Pure Exploration in Multi-Armed Bandit Problems}",
    journal   = {Theoretical Computer Science},
    volume    = {412},
    number    = {19},
@@ -1785,46 +1989,46 @@ year = "2016"
 }
 
 @article{Aghion91,
-   author   = {Philippe Aghion and Partik Bolton and Christopher Harris and Bruno Jullien},
-   title  = "{Optimal Learning by Experimentation}",
-   journal  = "Review of Economic Studies",
-   volume   = "58",
-   number = "4",
-   pages  = {621-654},
-   year   = {1991}
+   author         = {Philippe Aghion and Partik Bolton and Christopher Harris and Bruno Jullien},
+   title         = "{Optimal Learning by Experimentation}",
+   journal         = "Review of Economic Studies",
+   volume         = "58",
+   number        = "4",
+   pages         = {621-654},
+   year         = {1991}
 }
 
 % ================== stochastic optimization ========
 
 
 @incollection{Spall99,
-   author   = {James C. Spall},
-   title  = "{Stochastic Optimization: Stochastic Approximation and Simulated Annealing}",
-   booktitle  = "Encyclopedia of Electrical and Electronics Engineering, vol. 20",
-   editor   = "J.G. Webster",
-   publisher  = "Wiley",
-   address  = "Ney York",
-   pages  = {529-542},
-   year   = {1999}
+   author         = {James C. Spall},
+   title         = "{Stochastic Optimization: Stochastic Approximation and Simulated Annealing}",
+   booktitle         = "Encyclopedia of Electrical and Electronics Engineering, vol. 20",
+   editor         = "J.G. Webster",
+   publisher         = "Wiley",
+   address         = "Ney York",
+   pages         = {529-542},
+   year         = {1999}
 }
 
 @article{Spall98,
-   author   = {James C. Spall},
-   title  = "{An Overview of the Simultaneous Perturbation Method for Efficient Optimization}",
-   journal  = "Johns Hopkins APL Technical Digest",
-   volume   = "19",
-   pages  = {482-492},
-   year   = {1998}
+   author         = {James C. Spall},
+   title         = "{An Overview of the Simultaneous Perturbation Method for Efficient Optimization}",
+   journal         = "Johns Hopkins APL Technical Digest",
+   volume         = "19",
+   pages         = {482-492},
+   year         = {1998}
 }
 
 @article{Spall97,
-   author   = {James C. Spall},
-   title  = "{A One-Measurement Form of Simultaneous Perturbation Stochastic  Approximation}",
-   journal  = "Automatica",
-   volume   = "33",
-   number = "1",
-   pages  = {109-112},
-   year   = {1997}
+   author         = {James C. Spall},
+   title         = "{A One-Measurement Form of Simultaneous Perturbation Stochastic  Approximation}",
+   journal         = "Automatica",
+   volume         = "33",
+   number        = "1",
+   pages         = {109-112},
+   year         = {1997}
 }
 
 % ====== Thompson Sampling ===========
@@ -1832,61 +2036,61 @@ year = "2016"
 %Thompson-1933,Thompson-Bing-icml10,Thompson-Scott10,Thompson-nips11,Thompson-analysis-arxiv11,
 
 @article{Thompson-1933,
-   author   = {William R. Thompson},
-   title  = "{On the likelihood that one unknown probability exceeds another in view of the evidence of two samples.}",
-   journal  = "Biometrika",
-   volume   = "25",
-   number = "3-4",
-   pages  = {285--294},
-   year   = {1933}
+   author         = {William R. Thompson},
+   title         = "{On the likelihood that one unknown probability exceeds another in view of the evidence of two samples.}",
+   journal         = "Biometrika",
+   volume         = "25",
+   number        = "3-4",
+   pages         = {285--294},
+   year         = {1933}
 }
 
 @inproceedings{Thompson-nips11,
-   author =   "Olivier Chapelle and Lihong Li",
-   title =  "{An Empirical Evaluation of Thompson Sampling}",
-   booktitle  = proc # "25th" # NIPS,
-   year   = "2011"
+   author =         "Olivier Chapelle and Lihong Li",
+   title =         "{An Empirical Evaluation of Thompson Sampling}",
+   booktitle         = proc # "25th" # NIPS,
+   year         = "2011"
 }
 
 @inproceedings{Thompson-analysis-arxiv11,
-  author  = "Shipra Agrawal and Navin Goyal",
-  title   = "{Analysis of Thompson Sampling for the multi-armed bandit problem}",
-   booktitle  = proc # "25nd" # COLT,
-   year   = "2012"
+  author         = "Shipra Agrawal and Navin Goyal",
+  title         = "{Analysis of Thompson Sampling for the multi-armed bandit problem}",
+   booktitle         = proc # "25nd" # COLT,
+   year         = "2012"
 }
 
 @inproceedings{Shipra-colt12,
-  author  = "Shipra Agrawal and Navin Goyal",
-  title   = "{Analysis of Thompson Sampling for the multi-armed bandit problem}",
-   booktitle  = proc # "25nd" # COLT,
-   year   = "2012"
+  author         = "Shipra Agrawal and Navin Goyal",
+  title         = "{Analysis of Thompson Sampling for the multi-armed bandit problem}",
+   booktitle         = proc # "25nd" # COLT,
+   year         = "2012"
 }
 
 @article{Thompson-Scott10,
-   author   = {Steven L.Scott},
-   title  = "{A modern bayesian look at the multi-armed bandit}",
-   journal  = "Applied Stochastic Models in Business and Industry",
-   volume   = "26",
-   pages  = {639�658},
-   year   = {2010}
+   author         = {Steven L.Scott},
+   title         = "{A modern bayesian look at the multi-armed bandit}",
+   journal         = "Applied Stochastic Models in Business and Industry",
+   volume         = "26",
+   pages         = {639�658},
+   year         = {2010}
 }
 
 @inproceedings{Thompson-Bing-icml10,
-   author =   "Thore Graepel and Joaquin Quinonero Candela and Thomas Borchert and Ralf Herbrich.",
-   title =  "{Web-scale Bayesian click-through rate prediction for sponsored search advertising in Microsoft�s Bing search engine.}",
-   booktitle  = proc # "27th" # ICML,
-   pages  = {13-20},
-   year   = "2010"
+   author =         "Thore Graepel and Joaquin Quinonero Candela and Thomas Borchert and Ralf Herbrich.",
+   title =         "{Web-scale Bayesian click-through rate prediction for sponsored search advertising in Microsoft�s Bing search engine.}",
+   booktitle         = proc # "27th" # ICML,
+   pages         = {13-20},
+   year         = "2010"
 }
 
 @article{Granmo-2010,
-   author   = {Ole-Christoffer Granmo.},
-   title  = "{Solving two-armed bernoulli bandit problems using a bayesian learning automaton.}",
-   journal  = "Intl. J. of Intelligent Computing and Cybernetics",
-   volume   = "3",
-   number = "2",
-   pages  = {207-234},
-   year   = {2010}
+   author         = {Ole-Christoffer Granmo.},
+   title         = "{Solving two-armed bernoulli bandit problems using a bayesian learning automaton.}",
+   journal         = "Intl. J. of Intelligent Computing and Cybernetics",
+   volume         = "3",
+   number        = "2",
+   pages         = {207-234},
+   year         = {2010}
 }
 
 
@@ -1922,24 +2126,43 @@ year = "2016"
   author    = {Daniel Russo and
                Benjamin Van Roy},
   title     = {Learning to Optimize via Posterior Sampling},
-  journal   = {Math. Oper. Res.},
+  journal   = {Mathematics of Operations Research},
   volume    = {39},
   number    = {4},
   pages     = {1221--1243},
   year      = {2014}
 }
 
+@article{Russo-JMLR-16,
+  author    = {Daniel Russo and
+               Benjamin Van Roy},
+  title     = {An Information-Theoretic Analysis of Thompson Sampling},
+  journal   = JMLR,
+  volume    = {17},
+  pages     = {68:1--68:30},
+  year      = {2016}
+}
+
+@inproceedings{TorTS-nips19,
+  author    = {Julian Zimmert and
+               Tor Lattimore},
+  title     = {Connections Between Mirror Descent, Thompson Sampling and the Information
+               Ratio},
+  booktitle   = proc # "33rd" #NeurIPS,
+  year      = {2019}
+}
 
 
-%%%%%%% PARTIAL MONITORING
+%%%%%%% PARTIAL MONITORING, AVAILABILITY OF FEEDBACK %%%%%%%%%%%%
 
 @article{Bubeck-colt09,
-   author   = {J.Y. Audibert and S. Bubeck},
-   title  = "{Regret Bounds and Minimax Policies under Partial Monitoring}",
-   journal  = JMLR,
+   author         = {J.Y. Audibert and S. Bubeck},
+   title         = "{Regret Bounds and Minimax Policies under Partial Monitoring}",
+   journal         = JMLR,
    volume   = "11",
    pages    = "2785--2836",
-   year = {2010}
+   year = {2010},
+   note = {Preliminary version in \emph{COLT 2009}.}
 }
 
 @article{Bartok-MathOR14,
@@ -1990,7 +2213,17 @@ year = "2016"
   year      = {2015}
 }
 
+@inproceedings{Dekel-nips14,
+  author    = {Ofer Dekel and
+               Elad Hazan and
+               Tomer Koren},
+  title     = {The Blinded Bandit: Learning with Adaptive Feedback},
+  booktitle = proc # "27th" # NIPS,
+  pages     = {1610--1618},
+  year      = {2014}
+}
 
+%%%%%%%%%% COMBINATORIAL SEMI-BANDITS %%%%%%%%%%%
 %combinatorial semi-bandits: Gyorgy-jmlr07,Kale-nips10,Audibert-colt11,Wen-icml15
 
 @article{Gyorgy-jmlr07,
@@ -2025,6 +2258,28 @@ year = "2016"
   year      = {2011},
 }
 
+@inproceedings{Chen-icml13,
+  author    = {Wei Chen and
+               Yajun Wang and
+               Yang Yuan},
+  title     = {Combinatorial Multi-Armed Bandit: General Framework and Applications},
+  booktitle = proc # "20th" # ICML,
+  pages     = {151--159},
+  year      = {2013}
+}
+
+@inproceedings{MatroidBandits-uai14,
+  author    = {Branislav Kveton and
+               Zheng Wen and
+               Azin Ashkan and
+               Hoda Eydgahi and
+               Brian Eriksson},
+  title     = {Matroid Bandits: Fast Combinatorial Optimization with Learning},
+  booktitle = proc # "13th" # UAI,
+  pages     = {420--429},
+  year      = {2014}
+}
+
 @inproceedings{Wen-icml15,
   author    = {Zheng Wen and
                Branislav Kveton and
@@ -2035,27 +2290,37 @@ year = "2016"
   year      = {2015}
 }
 
-% =========  MISC CS WORK ON K-ARMED BANDITS & EXPERTS  =============
-
-@inproceedings{PolicyRegret-icml12,
-  author    = {Ofer Dekel and
-               Ambuj Tewari and
-               Raman Arora},
-  title     = {Online Bandit Learning against an Adaptive Adversary: from Regret
-               to Policy Regret},
-  booktitle = proc # "29th" # ICML,
-  year      = {2012}
+@inproceedings{Kveton-aistats15,
+  author    = {Branislav Kveton and
+               Zheng Wen and
+               Azin Ashkan and
+               Csaba Szepesv{\'{a}}ri},
+  title     = {Tight Regret Bounds for Stochastic Combinatorial Semi-Bandits},
+  booktitle = proc # "18th" # AISTATS,
+  year      = {2015}
 }
 
+@inproceedings{matroidBandit-uai14,
+        author = {Kveton, Branislav and Wen, Zheng and Ashkan, Azin and Eydgahi, Hoda and Eriksson, Brian},
+    title = {Matroid Bandits: Fast Combinatorial Optimization with Learning.},
+    booktitle = UAI,
+        editor = {Zhang, Nevin L. and Tian, Jin},
+    pages = {420-429},
+        year = {2014}
+}
+
+
+
+% =========  MISC CS WORK ON K-ARMED BANDITS & EXPERTS  =============
+
 @article{Auer-focs00,
-   author   = {Peter Auer},
-   title  = "{Using confidence bounds for exploitation-exploration trade-offs}",
-   journal  = JMLR,
-   volume   = "3",
-   number = "",
-   pages  = {397-422},
-   year   = {2002},
-   note   = {Preliminary version in {\em 41st IEEE FOCS}, 2000}
+   author         = {Peter Auer},
+   title         = "{Using confidence bounds for exploitation-exploration trade-offs}",
+   journal         = JMLR,
+   volume         = "3",
+   pages         = {397-422},
+   year         = {2002},
+   note                = {Preliminary version in {\em 41st IEEE FOCS}, 2000}
 }
 
 
@@ -2072,10 +2337,10 @@ year = "2016"
 }
 
 @misc{Hayes-bandits-tr06,
-   author   = {Varsha Dani and Thomas P. Hayes},
-   title  = "{How to beat the adaptive multi-armed bandit}",
+   author         = {Varsha Dani and Thomas P. Hayes},
+   title         = "{How to beat the adaptive multi-armed bandit}",
    howpublished = "Technical report. Available from arXiv at {\tt http://arxiv.org/cs.DS/0602053}",
-   year   = {2006}
+   year         = {2006}
 }
 
 @article{vovk98,
@@ -2146,6 +2411,25 @@ year = "2016"
  year=1997,
  pages="119--139"
 }
+
+@article{freund1999adaptive,
+  title={Adaptive game playing using multiplicative weights},
+  author={Freund, Yoav and Schapire, Robert E},
+  journal={Games and Economic Behavior},
+  volume={29},
+  number={1-2},
+  pages={79--103},
+  year={1999}
+}
+
+@inproceedings{freund1996game,
+  title={Game theory, on-line prediction and boosting},
+  author={Freund, Yoav and Schapire, Robert E},
+  booktitle= proc # "9th" # COLT,
+  pages={325--332},
+  year={1996}
+}
+
 
 @article{AgarwalFHKR-nips11,
   author    = {Alekh Agarwal and
@@ -2271,6 +2555,22 @@ year = "2016"
   pages = {29--38}
 }
 
+@article{DevanurJSW-jacm19,
+  author    = {Nikhil R. Devanur and
+               Kamal Jain and
+               Balasubramanian Sivan and
+               Christopher A. Wilkens},
+  title     = {Near Optimal Online Algorithms and Fast Approximation Algorithms for
+               Resource Allocation Problems},
+  journal   = {J. {ACM}},
+  volume    = {66},
+  number    = {1},
+  pages     = {7:1--7:41},
+  year      = {2019},
+  note      = {Preliminary version in \emph{ACM EC 2011}.}
+}
+
+
 @inproceedings{FeldmanHKMS-esa10,
   author    = {Jon Feldman and
                Monika Henzinger and
@@ -2364,4 +2664,422 @@ year = "2016"
 }
 
 
-%%%%%%%
+%%%%%%% bandits for systems
+
+@inproceedings{Schapira-nsdi15,
+  author    = {Mo Dong and
+               Qingxi Li and
+               Doron Zarchy and
+               Philip Brighten Godfrey and
+               Michael Schapira},
+  title     = {{PCC:} Re-architecting Congestion Control for Consistent High Performance},
+  booktitle = proc # "12th" # NSDI,
+  pages     = {395--408},
+  year      = {2015}
+}
+
+@inproceedings{Shapira-nsdi18,
+  author    = {Mo Dong and
+               Tong Meng and
+               Doron Zarchy and
+               Engin Arslan and
+               Yossi Gilad and
+               Brighten Godfrey and
+               Michael Schapira},
+  title     = {{PCC} Vivace: Online-Learning Congestion Control},
+  booktitle = proc # "15th" # NSDI,
+  pages     = {343--356},
+  year      = {2018}
+}
+
+@inproceedings{Junchen-sigcomm16,
+  author    = {Junchen Jiang and
+               Rajdeep Das and
+               Ganesh Ananthanarayanan and
+               Philip A. Chou and
+               Venkat N. Padmanabhan and
+               Vyas Sekar and
+               Esbjorn Dominique and
+               Marcin Goliszewski and
+               Dalibor Kukoleca and
+               Renat Vafin and
+               Hui Zhang},
+  title     = {Via: Improving Internet Telephony Call Quality Using Predictive Relay
+               Selection},
+  booktitle = SIGCOMM,
+  pages     = {286--299},
+  year      = {2016}
+}
+
+@inproceedings{Junchen-nsdi17,
+  author    = {Junchen Jiang and
+               Shijie Sun and
+               Vyas Sekar and
+               Hui Zhang},
+  title     = {Pytheas: Enabling Data-Driven Quality of Experience Optimization Using
+               Group-Based Exploration-Exploitation},
+  booktitle = proc # "14th" # NSDI,
+  pages     = {393--406},
+  year      = {2017}
+}
+
+%%%%%%% bandits for recommendation systems
+
+@inproceedings{CF-bandits-sigir16,
+  author    = {Shuai Li and
+               Alexandros Karatzoglou and
+               Claudio Gentile},
+  title     = {Collaborative Filtering Bandits},
+  booktitle = proc # "16th" # SIGIR,
+  pages     = {539--548},
+  year      = {2016}
+}
+
+@inproceedings{Bresler-CF-nips14,
+  author    = {Guy Bresler and
+               George H. Chen and
+               Devavrat Shah},
+  title     = {A Latent Source Model for Online Collaborative Filtering},
+  booktitle = proc # "27th" # NIPS,
+  pages     = {3347--3355},
+  year      = {2014},
+}
+
+@inproceedings{Bresler-CF-sigmetrics16,
+  author    = {Guy Bresler and
+               Devavrat Shah and
+               Luis Filipe Voloch},
+  title     = {Collaborative Filtering with Low Regret},
+  booktitle = SIGMETRICS,
+  pages     = {207--220},
+  year      = {2016}
+}
+
+%%%%%%%% COGNITIVE RADIO NETWORKS %%%%%%%
+
+% initial: MultiPlayerMAB-Poor08,MultiPlayerMAB-Liu10,MultiPlayerMAB-Anima11
+% MultiPlayerMAB-Mannor14,MultiPlayerMAB-Shamir-icml16,MultiPlayerMAB-Perchet-18
+% MultiPlayerMAB-Sellke-19
+
+@inproceedings{MultiPlayerMAB-Poor08,
+  author    = {Lifeng Lai and Hai Jiang and H. Vincent Poor},
+  title     = {Medium access in cognitive radio networks: A competitive multi-armed bandit framework},
+  booktitle = {42nd Asilomar Conference on Signals, Systems and Computers},
+  year      = {2008}
+}
+
+@inproceedings{CRN-signals09,
+    author = {W. Jouini and D. Ernst and C. Moy and J. Palicot},
+    title = {Multi-armed bandit based policies for cognitive radio’s decision making issues},
+    booktitle = {3rd IEEE Intl. Conf. on Signals, Circuits and Systems (SCS)},
+    pages = {1–6},
+    year = {2010}
+}
+
+@article{MultiPlayerMAB-Liu10,
+  author    = {Keqin Liu and
+               Qing Zhao},
+  title     = {Distributed learning in multi-armed bandit with multiple players},
+  journal   = {{IEEE} Trans. Signal Processing},
+  volume    = {58},
+  number    = {11},
+  pages     = {5667--5681},
+  year      = {2010}
+}
+
+@article{MultiPlayerMAB-Anima11,
+  author    = {Animashree Anandkumar and
+               Nithin Michael and
+               Ao Kevin Tang and
+               Ananthram Swami},
+  title     = {Distributed Algorithms for Learning and Cognitive Medium Access with
+               Logarithmic Regret},
+  journal   = {{IEEE} Journal on Selected Areas in Communications},
+  volume    = {29},
+  number    = {4},
+  pages     = {731--745},
+  year      = {2011}
+}
+
+@article{Gai-TN12,
+  author    = {Yi Gai and
+               Bhaskar Krishnamachari and
+               Rahul Jain},
+  title     = {Combinatorial Network Optimization With Unknown Variables: Multi-Armed
+               Bandits With Linear Rewards and Individual Observations},
+  journal   = {{IEEE/ACM} Transactions on Networking},
+  volume    = {20},
+  number    = {5},
+  pages     = {1466--1478},
+  year      = {2012}
+}
+
+@inproceedings{MultiPlayerMAB-Mannor14,
+  author    = {Orly Avner and
+               Shie Mannor},
+  title     = {Concurrent Bandits and Cognitive Radio Networks},
+  booktitle = ECMLPKDD,
+  pages     = {66--81},
+  year      = {2014}
+}
+
+@inproceedings{MultiPlayerMAB-Shamir-icml16,
+  author    = {Jonathan Rosenski and
+               Ohad Shamir and
+               Liran Szlak},
+  title     = {Multi-Player Bandits - a Musical Chairs Approach},
+  booktitle = proc # "33nd" # ICML,
+  pages     = {155--163},
+  year      = {2016}
+}
+
+@article{MultiPlayerMAB-Perchet-18,
+  author    = {Etienne Boursier and
+               Vianney Perchet},
+  title     = {{SIC-MMAB:} Synchronisation Involves Communication in Multiplayer
+               Multi-Armed Bandits},
+  journal   = {CoRR},
+  volume    = {abs/1809.08151},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1809.08151},
+  archivePrefix = {arXiv}
+}
+
+@article{MultiPlayerMAB-Sellke-19,
+  author    = {S{\'{e}}bastien Bubeck and
+               Yuanzhi Li and
+               Yuval Peres and
+               Mark Sellke},
+  title     = {Non-Stochastic Multi-Player Multi-Armed Bandits: Optimal Rate With
+               Collision Information, Sublinear Without},
+  journal   = {CoRR},
+  volume    = {abs/1904.12233},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1904.12233},
+  archivePrefix = {arXiv},
+  eprint    = {1904.12233}
+}
+
+
+%%%%%%%%%%%%% INTERNAL/SWAP/POLICY REGRET %%%%%%%%%%%
+
+% internal regret:
+% HartMasCollel-econometrica00,
+% FosterVohra-GEB97,FosterVohra-Bionetrika98,FosterVohra-GEB99
+% Cesa-BianchiL-ml03
+
+% internal regret, incl. sublinear regret for MAB
+@article{HartMasCollel-econometrica00,
+  author = {Sergiu Hart and Andreu Mas-Colell},
+  title = {A simple adaptive procedure leading to correlated equilibrium},
+  journal = {Econometrica},
+  volume = {68},
+  pages = {1127–1150},
+  year = {2000},
+}
+
+
+@article{FosterVohra-GEB97,
+    author = {Dean Foster and Rakesh Vohra},
+    title = {Calibrated learning and correlated equilibrium},
+    journal = {Games and Economic Behavior},
+    volume = {21},
+    pages = {40-55},
+    year = {1997}
+}
+
+@article{FosterVohra-Bionetrika98,
+    author = {Dean Foster and Rakesh Vohra},
+    title = {Asymptotic calibration},
+    journal = {Biometrika},
+    volume = {85},
+    pages = {379-390},
+    year = {1998}
+}
+
+% introduced "internal regret"
+@article{FosterVohra-GEB99,
+    author = {Dean Foster and Rakesh Vohra},
+    title = {Regret in the on-line decision problem},
+    journal = {Games and Economic Behavior},
+    volume = {29},
+    pages = {7-36},
+    year = {1999}
+}
+
+% internal regret
+@article{Cesa-BianchiL-ml03,
+  author    = {Nicol{\`{o}} Cesa{-}Bianchi and
+               G{\'{a}}bor Lugosi},
+  title     = {Potential-Based Algorithms in On-Line Prediction and Game Theory},
+  journal   = {Machine Learning},
+  volume    = {51},
+  number    = {3},
+  pages     = {239--261},
+  year      = {2003}
+}
+
+% introduced: wide-range regret
+@article{Lehrer-GEB03,
+    author = {E. Lehrer},
+    title = {A wide range no-regret theorem},
+    journal = {Games and Economic Behavior},
+    volume = {42},
+    pages = {101–115},
+    year = {2003}
+}
+
+% introduced: swap regret, internal/swap regret for MAB.
+% external regret -> swap regret
+@article{BlumMansour-jmlr07,
+  title = {From external to internal regret},
+  author = {Avrim Blum and Yishay Mansour},
+  journal = JMLR,
+  volume = {8},
+  number = {13},
+  pages = {1307--1324},
+  year = {2007},
+  note = {Preliminary version in \emph{COLT 2005}.}
+}
+
+% external regret -> internal regret
+@article{Stoltz-ML05,
+  author    = {Gilles Stoltz and
+               G{\'{a}}bor Lugosi},
+  title     = {Internal Regret in On-Line Portfolio Selection},
+  journal   = {Machine Learning},
+  volume    = {59},
+  number    = {1-2},
+  pages     = {125--159},
+  year      = {2005},
+  note      = {Preliminary version in \emph{COLT 2003}.}
+}
+
+% external vs. internal regret
+@article{Stoltz-GEB07,
+  author    = {Gilles Stoltz and
+               G{\'{a}}bor Lugosi},
+  title     = {Learning correlated equilibria in games with compact sets of strategies},
+  journal   = {Games and Economic Behavior},
+  volume    = {59},
+  number    = {1},
+  pages     = {187--208},
+  year      = {2007}
+}
+
+@phdthesis{Stoltz-thesis,
+    author    = {Gilles Stoltz},
+    title = {Incomplete Information and Internal Regret in Prediction of Individual Sequences},
+    school = {University Paris XI, ORSAY},
+    year = {2005}
+}
+
+% external vs internal regret for MAB
+@article{Stoltz-MathOR06,
+  author    = {Nicol{\`{o}} Cesa{-}Bianchi and
+               G{\'{a}}bor Lugosi and
+               Gilles Stoltz},
+  title     = {Regret Minimization Under Partial Monitoring},
+  journal   = {Mathematics of Operations Research},
+  volume    = {31},
+  number    = {3},
+  pages     = {562--580},
+  year      = {2006}
+}
+
+% first result:
+% policy regret memory-bounded adaptive adversaries (full feedback)
+@article{Merhav-IT02,
+  author    = {Neri Merhav and Erik Ordentlich and Gadiel Seroussi and Marcelo J. Weinberger},
+  title     = {On Sequential strategies for loss functions with memory},
+  journal   = {IEEE Trans. on Information Theory},
+  volume    = {48},
+  number    = {7},
+  pages     = {1947–1958},
+  year      = {2002}
+}
+
+% first result:
+% policy regret memory-bounded adaptive adversaries (bandit feedback)
+@inproceedings{PolicyRegret-icml12,
+  author    = {Ofer Dekel and
+               Ambuj Tewari and
+               Raman Arora},
+  title     = {Online Bandit Learning against an Adaptive Adversary: from Regret
+               to Policy Regret},
+  booktitle = proc # "29th" # ICML,
+  year      = {2012}
+}
+
+%%%%%%%%%%%%% DYNAMIC REGRET %%%%%%%%%
+
+@inproceedings{Garivier-alt11,
+  author    = {Aur{\'{e}}lien Garivier and
+               Eric Moulines},
+  title     = {On Upper-Confidence Bound Policies for Switching Bandit Problems},
+  booktitle = proc # "22nd" # ALT,
+  pages     = {174--188},
+  year      = {2011}
+}
+
+
+@inproceedings{Gur-nips14,
+  author    = {Yonatan Gur and
+               Assaf J. Zeevi and
+               Omar Besbes},
+  title     = {Stochastic Multi-Armed-Bandit Problem with Non-stationary Rewards},
+  booktitle = proc # "27th" # NIPS,
+  pages     = {199--207},
+  year      = {2014}
+}
+@inproceedings{Auer-switchingMAB-19,
+    author = {Peter Auer and Pratik Gajane and Ronald Ortner},
+    title = {Adaptively tracking the best arm with an unknown number of distribution changes},
+    booktitle = COLT,
+    year = {2019}
+}
+
+@inproceedings{Haipeng-dynamicRegret-colt18,
+  author    = {Haipeng Luo and
+               Chen{-}Yu Wei and
+               Alekh Agarwal and
+               John Langford},
+  title     = {Efficient Contextual Bandits in Non-stationary Worlds},
+  booktitle = COLT,
+  pages     = {1739--1776},
+  year      = {2018}
+}
+
+@inproceedings{Haipeng-dynamicRegret-19,
+  author    = {Yifang Chen and
+               Chung{-}Wei Lee and
+               Haipeng Luo and
+               Chen{-}Yu Wei},
+  title     = {A New Algorithm for Non-stationary Contextual Bandits: Efficient,
+               Optimal, and Parameter-free},
+  booktitle   = COLT,
+  year      = {2019}
+}
+
+%%%%%%%%%% FOLLOW THE LEADER %%%%%%%%%%
+
+@article{Hannan-1957,
+    author  = {James Hannan},
+    title   = {Approximation to Bayes risk in repeated play},
+    journal = {Contributions to the Theory of Games},
+    volume  = {3},
+    pages   = {97–139},
+    year    = {1957}
+}
+
+@article{FTPL-05,
+  author    = {Adam Tauman Kalai and
+               Santosh Vempala},
+  title     = {Efficient algorithms for online decision problems},
+  journal   = {J. of Computer and Systems Sciences},
+  volume    = {71},
+  number    = {3},
+  pages     = {291--307},
+  year      = {2005},
+  note = {Preliminary version in \emph{COLT 2003}.}
+}
