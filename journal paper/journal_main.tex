@@ -132,24 +132,25 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 %\begin{titlepage}
 
 \title{Competing Bandits: 
-\\ The Perils of Exploration under Competition
+The Perils of Exploration under Competition%
 \thanks{This is a merge of two conference papers,
 \citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19}, 
 with a unified presentation.}}
 % \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
 
-\author{Guy Aridor
+\author{Guy Aridor%
 \footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu} 
 \and
 %\rule{0.2in}{0pt}
-Yishay Mansour
+Yishay Mansour%
 \footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com;} 
 \and
 %\rule{0.2in}{0pt}   
-Aleksandrs Slivkins\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com} 
+Aleksandrs Slivkins%
+\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com} 
 \and
 %\rule{0.2in}{0pt}   
-Zhiwei Steven Wu
+Zhiwei Steven Wu%
 \footnote{University of Minnesota - Twin Cities, Department of Computer Science. Email: zsw@umn.edu.\newline
 The research has been done when Z.S. Wu has been an intern and a postdoc at Microsoft Research NYC.
 }}
@@ -226,10 +227,12 @@ We consider competition between two firms facing the same multi-armed bandit ins
 }
 
 
-\newpage
+\clearpage
+%\addcontentsline{toc}{section}{References}
 \bibliographystyle{plainnat}
 \bibliography{bib-abbrv,bib-ML,refs,bib-bandits,bib-AGT,bib-slivkins, bib-random}
 
+\clearpage
 \begin{appendices}
 
 In the appendix, we provide background on multi-armed bandits as well as several discussions and proofs omitted from the main text. Furthermore, we provide plots and tables for our experiments, which were omitted from the main text. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
