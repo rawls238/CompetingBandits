@@ -1,11 +1,15 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
-\usepackage{amssymb,amsmath,amsfonts,
-float,geometry,ulem,graphicx,caption,color,
-setspace,sectsty,comment,footmisc,caption,natbib,
-pdflscape,subcaption,array,hyperref, subfiles,adjustbox,threeparttable
+\usepackage{ulem,color,
+setspace,sectsty,comment,footmisc,caption,
+pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 }
-\usepackage{tikz} % SW: Added for plots
+
+\usepackage{fullpage}
+%\usepackage{geometry}
+%\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+
+
 \usepackage{subfiles}
 \usepackage{libertine}
 \usepackage[toc,page]{appendix}
@@ -13,17 +17,20 @@ pdflscape,subcaption,array,hyperref, subfiles,adjustbox,threeparttable
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{natbib} % cannot use with AAAI! A.S.
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[round]{natbib} % cannot use with AAAI! A.S.
 
-\usepackage{amsthm} % The amsthm package provides extended theorem environments
 \usepackage{float}
 \usepackage{sgame, tikz} % Game theory packages
 \usepackage{algorithm,algpseudocode}
 \usepackage{makecell}
  \usepackage{multirow}
  \usepackage{graphicx}
-\theoremstyle{definition}
+ 
+\usepackage{booktabs} % For formal tables
+
+
+%\theoremstyle{definition}
 %\newtheorem{definition}{Definition}
 \newtheorem{finding}{Finding}
 %\newtheorem{conjecture}{Conjecture}
@@ -114,31 +121,39 @@ pdflscape,subcaption,array,hyperref, subfiles,adjustbox,threeparttable
 \addauthor{ga}{blue}  % ga for Guy
 \addauthor{sw}{orange} % sw for Steven
 % e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+
 \setlength{\tabcolsep}{8pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.5} % Default value: 1
 
-%drt24 hacks
-% Letter paper
 
-% Hack to try to make acmart work with biblatex: https://tex.stackexchange.com/questions/37076/is-it-possible-to-load-biblatex-with-a-class-that-has-already-loaded-natbib
-\let\citename\relax
-%\RequirePackage[abbreviate=true, dateabbrev=true, isbn=true, doi=true, urldate=comp, url=true, maxbibnames=9, backref=false, backend=biber, style=ACM-Reference-Format, language=american]{biblatex}
-
-\normalem
-\raggedbottom
-% \usepackage[hidelinks]{hyperref}
-\onehalfspacing
-
-\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
-
-\usepackage{booktabs} % For formal tables
 
 \begin{document}
 
-\begin{titlepage}
-\title{Competing Bandits: \\ The Perils of Exploration under Competition\thanks{This paper is a merged version of \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
-\author{Guy Aridor\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu} \rule{0.2in}{0pt} Yishay Mansour\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com;} \rule{0.2in}{0pt}   Aleksandrs Slivkins\footnote{Microsoft Research - New York City. Email: slivkins@microsoft.com} \rule{0.2in}{0pt}   Zhiwei Steven Wu\footnote{University of Minnesota - Twin Cities, Department of Computer Science. Email: zsw@umn.edu.}}
-\date{\today}
+%\begin{titlepage}
+
+\title{Competing Bandits: 
+\\ The Perils of Exploration under Competition
+\thanks{This is a merge of two conference papers,
+\citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19}, 
+with a unified presentation.}}
+% \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
+
+\author{Guy Aridor
+\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu} 
+\and
+%\rule{0.2in}{0pt}
+Yishay Mansour
+\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com;} 
+\and
+%\rule{0.2in}{0pt}   
+Aleksandrs Slivkins\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com} 
+\and
+%\rule{0.2in}{0pt}   
+Zhiwei Steven Wu
+\footnote{University of Minnesota - Twin Cities, Department of Computer Science. Email: zsw@umn.edu.\newline
+The research has been done when Z.S. Wu has been an intern and a postdoc at Microsoft Research NYC.
+}}
+\date{First version: July 2020}
 \maketitle
 \begin{abstract}
 Most modern firms strive to learn from interactions with consumers, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration} and \emph{competition}—how such firms balance the exploration for learning and the competition for consumers. Here consumers play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing firms.
@@ -149,14 +164,15 @@ We consider competition between two firms facing the same multi-armed bandit ins
 
 \bigskip
 \end{abstract}
-\setcounter{page}{0}
-\thispagestyle{empty}
-\end{titlepage}
-\pagebreak \newpage
+%\setcounter{page}{0}
+%\thispagestyle{empty}
+%\end{titlepage}
 
-
-
+\newpage
+\begin{small}
 \tableofcontents
+\end{small}
+\newpage
 
 %
 % The code below should be generated by the tool at
@@ -211,7 +227,7 @@ We consider competition between two firms facing the same multi-armed bandit ins
 
 
 \newpage
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{bib-abbrv,bib-ML,refs,bib-bandits,bib-AGT,bib-slivkins, bib-random}
 
 \begin{appendices}
