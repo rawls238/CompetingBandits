@@ -1,6 +1,10 @@
-\documentclass[format=acmsmall, review=false]{acmart}
+\documentclass[12pt]{article}
 
-\usepackage{ec19paper/acm-ec-19}
+\usepackage{amssymb,amsmath,amsfonts,
+float,geometry,ulem,graphicx,caption,color,
+setspace,sectsty,comment,footmisc,caption,natbib,
+pdflscape,subcaption,array,hyperref, subfiles,adjustbox,threeparttable
+}
 \usepackage{tikz} % SW: Added for plots
 \usepackage{subfiles}
 \usepackage[toc,page]{appendix}
@@ -9,12 +13,11 @@
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 \usepackage{amsmath,amssymb,amsfonts}
-%\usepackage{natbib} % cannot use with AAAI! A.S.
+\usepackage{natbib} % cannot use with AAAI! A.S.
 
 \usepackage{amsthm} % The amsthm package provides extended theorem environments
 \usepackage{float}
 \usepackage{sgame, tikz} % Game theory packages
-\usepackage{caption}
 \usepackage{algorithm,algpseudocode}
 \usepackage{makecell}
  \usepackage{multirow}
@@ -120,58 +123,45 @@
 \let\citename\relax
 %\RequirePackage[abbreviate=true, dateabbrev=true, isbn=true, doi=true, urldate=comp, url=true, maxbibnames=9, backref=false, backend=biber, style=ACM-Reference-Format, language=american]{biblatex}
 
+\normalem
+\raggedbottom
+% \usepackage[hidelinks]{hyperref}
+\onehalfspacing
 
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
 
 \usepackage{booktabs} % For formal tables
 
-
-% Copyright
-%\setcopyright{none}
-%\setcopyright{acmcopyright}
-%\setcopyright{acmlicensed}
-\setcopyright{rightsretained}
-%\setcopyright{usgov}
-%\setcopyright{usgovmixed}
-%\setcopyright{cagov}
-%\setcopyright{cagovmixed}
-
-
 \begin{document}
-\title[Competing Bandits: \\ The Perils of Exploration under Competition]
-{Competing Bandits: \\ The Perils of Exploration under Competition}
 
-
- \author{Guy Aridor}
- \affiliation{ \institution{Columbia University}}
- \author{Yishay Mansour}
- \affiliation{\institution{Tel Aviv University and Google}}
- \author{Aleksandrs Slivkins}
- \affiliation{\institution{Microsoft Research New York City}}
- \author{Zhiwei Steven Wu}
- \affiliation{\institution{University of Minnesota - Twin Cities}}
-
- \authorsaddresses{%
-  Authors' addresses:
-  Guy Aridor, Columbia University, New York, NY, USA. g.aridor@columbia.edu;
-  Yishay Mansour, Tel Aviv University, Tel Aviv, Israel. mansour.yishay@gmail.com;
-  Aleksandrs Slivkins, Microsoft Research, New York, NY, USA. slivkins@microsoft.com;
-  Zhiwei Steven Wu, University of Minnesota - Twin Cities, Minneapolis, MN, USA. zsw@umn.edu}
-
+\begin{titlepage}
+\title{Competing Bandits: \\ The Perils of Exploration under Competition\thanks{This paper is a merged version of \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
+\author{Guy Aridor\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu} \rule{0.2in}{0pt} Yishay Mansour\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com;} \rule{0.2in}{0pt}   Aleksandrs Slivkins\footnote{Microsoft Research - New York City. Email: slivkins@microsoft.com} \rule{0.2in}{0pt}   Zhiwei Steven Wu\footnote{University of Minnesota - Twin Cities, Department of Computer Science. Email: zsw@umn.edu.}}
+\date{\today}
+\maketitle
 \begin{abstract}
 Most modern firms strive to learn from interactions with consumers, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration} and \emph{competition}—how such firms balance the exploration for learning and the competition for consumers. Here consumers play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing firms.
 
-In our model, we consider competition between two firms facing the same multi-armed bandit instance who simultaneously choose a bandit algorithm. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance if and only if it is chosen. We study to what extent competition leads to welfare increases for consumers and what algorithms firms adopt under competition. We find that stark competition induces firms to commit to a ``greedy" algorithm that leads to low consumer welfare. However, we find that in order to incentivize ``better" exploration strategies a firm needs to have some ``free" consumers that visit them without having to be incentivized to do so. We investigate this effect via noise in consumer decision-making and asymmetries in timing of entry of firms into the market. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets and are closely related to the ``competition vs. innovation" relationship, a well-studied theme in economics.
+We consider competition between two firms facing the same multi-armed bandit instance who simultaneously choose a bandit algorithm. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance if and only if it is chosen. We study to what extent competition leads to welfare increases for consumers and what algorithms firms adopt under competition. We find that stark competition induces firms to commit to a ``greedy" algorithm that leads to low consumer welfare. However, we find that weakening that lead to higher consumer welfare. competition by providing firms with some ``free" consumers incentivizes better exploration strategies. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets and are closely related to the ``competition vs. innovation" relationship, a well-studied theme in economics.
+
+\vspace{0.2in}
+
+\bigskip
 \end{abstract}
+\setcounter{page}{0}
+\thispagestyle{empty}
+\end{titlepage}
+\pagebreak \newpage
+
+
+
+\tableofcontents
 
 %
 % The code below should be generated by the tool at
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below.
 %
-\maketitle
-\keywords{Multi-armed bandits,Exploration,Competition,Competition vs Innovation}
-
-
 \section{Introduction}
 \label{sec:intro}
 \subfile{content/sec-intro}
@@ -220,7 +210,7 @@ In our model, we consider competition between two firms facing the same multi-ar
 
 
 \newpage
-\bibliographystyle{acm}
+\bibliographystyle{plain}
 \bibliography{bib-abbrv,bib-ML,refs,bib-bandits,bib-AGT,bib-slivkins, bib-random}
 
 \begin{appendices}
