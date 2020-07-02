@@ -1,17 +1,28 @@
 
-Learning from interactions with users is ubiquitous in modern customer-facing systems, from product recommendations to web search to content selection to fine-tuning user interfaces. Many systems purposefully implement \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information.
-Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty. 
+Learning from interactions with users is ubiquitous in modern customer-facing platforms, from product recommendations to web search to content selection to fine-tuning user interfaces. Many platforms purposefully implement \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information.
+Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a well-known framework for exploration and making decisions under uncertainty.
 
 
 %~\cite{KohaviAB-2015,KohaviLSH09}
 
-In this paper, we initiate a study of the interplay between \exploration and \competition. Systems that engage in exploration typically need to compete against one another; most importantly, they compete for users. This creates a tension:
-%between \exploration and \competition. 
+In this paper, we initiate a study of the interplay between \exploration and \competition. Platforms that engage in exploration typically need to compete against one another; most importantly, they compete for users. This creates a tension:
+%between \exploration and \competition.
 while exploration may be essential for improving the service tomorrow, it may degrade quality and make users leave \emph{today}, in which case there will be less users to learn from. This may further degrade the platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may create a ``death spiral" effect when the vast majority of customers eventually switch to competitors. Users therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing systems.
 
-\ascomment{stopped here.}
+The main high-level question that we focus on in this paper is: 
+\begin{align*}
+\textbf{How does competition incentivize the adoption of better exploration algorithms?}
+\end{align*}
 
-The main high-level question that we focus on in this paper is whether competition between systems incentives the adoption of better exploration algorithms. This translates into a number of more concrete questions. While it is commonly assumed that ``better" technology always helps, is this so for our setting? Does increasing competition lead to higher consumer welfare? To what extent is there a ``data feedback loop" where one firm having more data leads to that firm attracting more users which leads to that firm having more data, etc.?\footnote{This is a fundamental question which is part of a larger policy discussion around whether data can serve as an indirect network effect and lead to similar ``market tipping" results as is standard in the literature on competition in markets with network effects (see \cite{jullien2019economics} for a policy oriented discussion of this).}
+\noindent This translates into a number of more concrete questions. While it is commonly assumed that better technology always helps, is this so under competition? Does increased competition lead to higher consumer welfare? How significant are ``data feedback loops", where one firm having more data leads to that firm attracting more users, which leads to that firm having more data, and so forth?%
+\footnote{This question is part of a larger policy discussion on whether data serves as an indirect ``network effect" \citep[\eg see][]{jullien2019economics}. In particular, can data lead to ``market tipping", as in the literature on competition with network effects.}
+Finding formalizations that admit meaningful answers is a major part of the overall challenge.
+ 
+
+To answer these questions, we study complex interactions between platforms' learning dynamics and users' self-interested behavior. The choice of a particular technology (exploration algorithm) is no longer an abstract, static choice with a predetermined outcome for the platform. Instead, we model the algorithms explicitly, and investigate how they play out in competition over an extended period of time.
+
+
+%\footnote{This is a fundamental question which is part of a larger policy discussion around whether data can serve as an indirect network effect and lead to similar ``market tipping" results as is standard in the literature on competition in markets with network effects (see \cite{jullien2019economics} for a policy oriented discussion of this).}
 
 % the extent to which the game between the two principals is competitive
 % degree of innovation that these models incentivize.
@@ -21,22 +32,49 @@ The main high-level question that we focus on in this paper is whether competiti
 %\subsection{Our model}
 %\label{sec:intro-model}
 
-\xhdr{Our model.} We investigate these questions with a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the basic model is as follows:
+\subsection{Our model}
+\label{sec:intro-model}
+ 
+%We investigate these questions with 
+\xhdr{Competition game.} We consider a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the basic model is as follows:
 
 \begin{itemize}
 
 \item A new agent arrives in each round $t=1,2, \ldots$, and chooses among the two principals. The principal chooses an action (\eg a list of web search results to show to the agent), the user experiences this action, and reports a reward. All agents have the same ``decision rule" for choosing among the principals given the available information.
 
-\item Each principal faces a very basic and well-studied version of the multi-armed bandit problem: for each arriving agent, it chooses from a fixed set of actions  (a.k.a. \emph{arms}) and receives a reward drawn independently from a fixed distribution specific to this action.
+\item Each principal faces a basic and well-studied version of the multi-armed bandit problem: for each arriving agent, it chooses from a fixed set of actions  (a.k.a. \emph{arms}) and receives a reward drawn independently from a fixed distribution specific to this action. The reward distributions are initially unknown (but can be estimated over time from the data).
 
-\item Principals simultaneously announce their learning algorithms before round $1$, and cannot change them afterwards. There is a common Bayesian prior on the rewards (but the realized reward distributions are not observed by the principals or the agents).  Each principal only observes agents that chose him. We consider two variants of the baseline model and the information set for the agent differs between the two:
-\begin{enumerate}
-\item In the \textit{expectation choice variant}, agents do not receive any other information and choose between the principals using their knowledge of $t$ and the principals' algorithms.
-\item In the \textit{reputation choice variant}, agents have access to a reputation score for each principal, which is a sliding window average of the rewards experienced by previous agents that have visited this principal.
-\end{enumerate}
+\item Principals simultaneously announce their bandit algorithms before round $1$, and cannot change them afterwards.
+    Each principal only observes agents that chose this principal.
+    
+\item Agents do not directly observe other agents' rewards, but may have access to each platforms' reputation score (more on this in    Section~\ref{sec:intro-discussion}).
+\end{itemize}
+    
+\xhdr{Technology: multi-armed bandit algorithms.}
+While some bandit algorithms are better than others, these comparisons are rather subtle. Indeed, some algorithms may be better for some problem instances and/or time intervals, and worse for some others.
+
+We distinguish three classes of bandit algorithms, based on 
+the prevalent intuition in the area. The distinction concerns the way in which they resolve the fundamental tradeoff between  exploration and \emph{exploitation} (making optimal decisions using the available data). Going from more primitive to more sophisticated:
+
+\begin{itemize}
+\item \emph{Greedy algorithms} that strive to maximize the reward for the next round given the available information. Thus, they always ``exploit" and never explicitly ``explore".
+
+
+\item \emph{Exploration-separating algorithms}
+ that separate exploration and exploitation: each round is dedicated to one and completely ignores the other.
+     
+\item \emph{Adaptive exploration} algorithms that combine exploration and exploitation, and sway the exploration choices towards more promising alternatives.
 \end{itemize}
 
-\xhdr{Main Findings.}
+\noindent We are mainly interested in qualitative differences between the three classes. For numerical simulations, we pick one representative algorithm from each class. For theoretical results, we allow arbitrary algorithms and focus on asymptotic differences in the algorithms' performance.
+
+\ascomment{stopped here.}
+
+
+
+\subsection{Our Results}
+\label{sec:intro-results}
+
 We find that competition induces firms to commit to a greedy (myopic) algorithm in equilibrium that does no purposeful exploration. This leads to low consumer welfare since the greedy algorithm is known to be dramatically bad in many important cases of multi-armed bandits. The primary mechanism that generates this stark result is that consumers need to be incentivized to select a firm over its competitors, leading a firm that engages in exploration to be starved of consumers before it makes enough progress on its learning problem. In order to incentivize ``better" exploration strategies in equilibrium, the key intuition is that the firm needs to have some ``free" consumers that visit them without the firm having to incentivize them to do so. This allows the firm to eventually overcome the initial losses in consumer perception from exploration. We explore two economic mechanisms that can generate such an effect.
 
 The first is the presence of users who randomly choose between the firms which gives each firm a constant stream of ``free" users and thus ensures it never gets fully starved. We find that, even when there is a small fraction of such consumers, better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase.\footnote{While the precise notion of ``sufficiently better algorithm" is rather subtle, we note that commonly known ``smart" bandit algorithms typically defeat the commonly known ``naive" ones, and the latter typically defeat the greedy algorithm. However, there is a substantial caveat: one can defeat any algorithm by interleaving it with the greedy algorithm. This has two undesirable corollaries: a better algorithm may sometimes lose, and a pure Nash equilibrium typically does not exist.} However, while this holds asymptotically, our numerical experiments show that this requires either unreasonably large time scales or a large fraction of such users.
@@ -55,6 +93,9 @@ The second is that if one firm has a first-mover advantage then this firm gets f
 \OMIT{All results extend to a much more general version of the multi-armed bandit problem in which the principal may observe additional feedback before and/or after each decision, as long as the feedback distribution does not change over time. In most results, principal's utility may depend on both the market share and agents' rewards.
 }
 
+\subsection{Discussion}
+\label{sec:intro-discussion}
+
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}
@@ -68,6 +109,8 @@ The second is that if one firm has a first-mover advantage then this firm gets f
 \label{fig:inverted-U}
 \end{center}
 \end{figure}
+
+
 \xhdr{Economic interpretation.} Our model speaks to two distinct strands of the economics literature.
 
 The first is the literature that studies the relationship between competition and innovation where, in our context,  the choice between different algorithms is interpreted as firms determining whether to invest in a ``better" technology as the degree of competition varies.\footnote{The choice of algorithms has a clear analogue to ``innovation" in our context as the literature on multi-armed bandits has identified distinct ``classes" of algorithms according to asymptotic regret bounds. Thus, choosing algorithms in ``better" classes corresponds with innovation on the part of the firm in our interpretation of the model. It is not salient whether similar ideas and/or technologies already exist outside the firm. It is worth noting that the adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms themselves are well-known in the research literature; see \citet{MWT-WhitePaper-2016} for an example of such R\&D effort.} A classic result in this literature is that there is an inverted-U relationship between the severity of competition among firms and the quality of technologies that they adopt is a familiar theme in the economics literature \citep[\eg][]{Aghion-QJE05,Vives-08}.
@@ -78,7 +121,18 @@ Interestingly, the economic mechanism in our model for incentivizing firms to en
 
 The second is the nascent literature which studies the economics of data and how data can serve as a barrier to entry in the digital economy \cite{de2020data, hagiu2020data}. Our model directly speaks to this literature as we endogenize data-driven network effects by explicitly considering a model where firms are simultaneously solving a machine learning problem while competing against each other for users. The results of our model point to the fact that competition dynamics -- that firms compete as they learn over time and that this competition endogenously determines the data observed by firms -- are pertinent to understanding whether or not data can serve as a barrier to entry. Indeed, our results are similar to the market tipping results in the literature on indirect network effects and show a channel through which differences in data ownership can result in market tipping. However, it is important to note that the channel through which this arises in our model is not simply from differences in the quantity of data possessed by the firms, but also from the quality of the data.
 
-\xhdr{Discussion}
+\xhdr{Model variants.}
+We consider two model variants, which determine agents' decision rule and their information sets: 
+\ascomment{copied-and-pasted, will edit later.}
+
+\begin{description}
+\item[\TheoryModel] 
+There is a common Bayesian prior on the reward distributions.
+Agents do not receive any other information and choose between the principals using their knowledge of $t$ and the principals' algorithms.
+\item[\ExptsModel] agents have access to a reputation score for each principal, which is a sliding window average of the rewards experienced by previous agents that have visited this principal.
+\end{description}
+
+
 We consider two separate variants of the model in order to provide a more thorough investigation of the tension between exploration and competition. The expectation choice model is tractable enough to allow us to obtain theoretical results with ``asymptotic" flavor. However, for the sake of analytical tractability, we make the unrealistic simplification that users do not observe any signals about firms' ongoing performance and it is difficult to analyze important economic mechanisms such as asymmetries in the timing of entry.
 
 The reputation choice model relaxes this simplification and accounts for competition in a more direct way as well as allows us to explore other relevant economic mechanisms in understanding the tension between exploration and competition. However, it now becomes considerably harder to analyze analytically. This is for several reasons: intricate feedback loop from performance to reputations to users to performance;
