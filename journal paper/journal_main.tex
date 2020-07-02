@@ -26,7 +26,7 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 \usepackage{makecell}
  \usepackage{multirow}
  \usepackage{graphicx}
- 
+
 \usepackage{booktabs} % For formal tables
 
 
@@ -39,6 +39,11 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 
 
 \usepackage{slivkins-setup,slivkins-theorems}
+
+% model variants
+\newcommand{\TheoryModel}{Bayesian-choice}
+\newcommand{\ExptsModel}{Reputation-choice}
+
 
 % Commands from EC 19 paper
 \newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
@@ -131,25 +136,25 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 
 %\begin{titlepage}
 
-\title{Competing Bandits:\\ 
+\title{Competing Bandits:\\
 The Perils of Exploration under Competition%
 \thanks{This is a merged and final version of two conference papers,
-\citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19}, 
+\citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19},
 with a unified and streamlined presentation.}}
 % \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
 
 \author{Guy Aridor%
-\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu} 
+\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu}
 \and
 %\rule{0.2in}{0pt}
 Yishay Mansour%
-\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com;} 
+\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com;}
 \and
-%\rule{0.2in}{0pt}   
+%\rule{0.2in}{0pt}
 Aleksandrs Slivkins%
-\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com} 
+\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com}
 \and
-%\rule{0.2in}{0pt}   
+%\rule{0.2in}{0pt}
 Zhiwei Steven Wu%
 \footnote{University of Minnesota - Twin Cities, Department of Computer Science. Email: zsw@umn.edu.\newline
 The research has been done when Z.S. Wu has been an intern and a postdoc at Microsoft Research NYC.
@@ -184,7 +189,7 @@ We consider competition between two firms facing the same multi-armed bandit ins
 \label{sec:intro}
 \subfile{content/sec-intro}
 
-\section{Related work}
+\subsection{Related work}
 \label{sec:related-work}
 \subfile{content/related_work}
 
@@ -228,7 +233,7 @@ We consider competition between two firms facing the same multi-armed bandit ins
 
 
 \clearpage
-%\addcontentsline{toc}{section}{References}
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{plainnat}
 \bibliography{bib-abbrv,bib-ML,refs,bib-bandits,bib-AGT,bib-slivkins, bib-random}
 
