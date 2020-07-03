@@ -19,7 +19,7 @@ The main high-level question that we focus on in this paper is:
 Finding formalizations that admit meaningful answers is a major part of the overall challenge.
  
 
-To answer these questions, we study complex interactions between platforms' learning dynamics and users' self-interested behavior. The choice of a particular technology (exploration algorithm) is no longer an abstract, static choice with a predetermined outcome for the platform. Instead, we model the algorithms explicitly, and investigate how they play out in competition over an extended period of time.
+To answer these questions, we study complex interactions between platforms' learning dynamics and users' self-interested behavior. The choice of a particular technology (exploration algorithm) is no longer an abstract, static choice with a predetermined outcome for the platform. Instead, we model the algorithms explicitly, and investigate how they play out in competition over an extended period of time. 
 
 
 %\footnote{This is a fundamental question which is part of a larger policy discussion around whether data can serve as an indirect network effect and lead to similar ``market tipping" results as is standard in the literature on competition in markets with network effects (see \cite{jullien2019economics} for a policy oriented discussion of this).}
@@ -36,7 +36,7 @@ To answer these questions, we study complex interactions between platforms' lear
 \label{sec:intro-model}
  
 %We investigate these questions with 
-\xhdr{Competition game.} We consider a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the basic model is as follows:
+\xhdr{Competition game.} We consider a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the key features of our model are as follows:
 
 \begin{itemize}
 
@@ -54,28 +54,33 @@ To answer these questions, we study complex interactions between platforms' lear
 While some bandit algorithms are better than others, these comparisons are rather subtle. Indeed, some algorithms may be better for some problem instances and/or time intervals, and worse for some others.
 
 We distinguish three classes of bandit algorithms, based on 
-the prevalent intuition in the area. The distinction concerns the way in which they resolve the fundamental tradeoff between  exploration and \emph{exploitation} (making optimal decisions using the available data). Going from more primitive to more sophisticated:
+the prevalent intuition in the area. The distinction concerns the way in which they resolve the fundamental tradeoff between  exploration and \emph{exploitation} (making optimal myopic decisions using the available data). Going from more primitive to more sophisticated, these three classes are as follows:
 
 \begin{itemize}
-\item \emph{Greedy algorithms} that strive to maximize the reward for the next round given the available information. Thus, they always ``exploit" and never explicitly ``explore".
+\item \emph{Greedy algorithms} that strive to maximize the reward for the next round given the available information. Thus, they always ``exploit" and never explicitly ``explore". 
 
 
 \item \emph{Exploration-separating algorithms}
- that separate exploration and exploitation: each round is dedicated to one and completely ignores the other.
+ that separate exploration and exploitation: essentially, each round is dedicated to one and completely ignores the other.
      
-\item \emph{Adaptive exploration} algorithms that combine exploration and exploitation, and sway the exploration choices towards more promising alternatives.
+\item \emph{Adaptive-exploration} algorithms that combine exploration and exploitation, and gradually sway the exploration choices towards more promising alternatives.
 \end{itemize}
 
-\noindent We are mainly interested in qualitative differences between the three classes. For numerical simulations, we pick one representative algorithm from each class. For theoretical results, we allow arbitrary algorithms and focus on asymptotic differences in the algorithms' performance.
+\noindent Greedy algorithms are terrible for a wide variety of problem instances, precisely because they never explore. Adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances. Exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances, and fail to improve for the ``easy" ones.
+
 
 \ascomment{stopped here.}
-
 
 
 \subsection{Our Results}
 \label{sec:intro-results}
 
-We find that competition induces firms to commit to a greedy (myopic) algorithm in equilibrium that does no purposeful exploration. This leads to low consumer welfare since the greedy algorithm is known to be dramatically bad in many important cases of multi-armed bandits. The primary mechanism that generates this stark result is that consumers need to be incentivized to select a firm over its competitors, leading a firm that engages in exploration to be starved of consumers before it makes enough progress on its learning problem. In order to incentivize ``better" exploration strategies in equilibrium, the key intuition is that the firm needs to have some ``free" consumers that visit them without the firm having to incentivize them to do so. This allows the firm to eventually overcome the initial losses in consumer perception from exploration. We explore two economic mechanisms that can generate such an effect.
+We offer a mix of theoretical results and numerical simulations. We are mainly interested in qualitative differences between the three classes of algorithms in Section~\ref{sec:intro-model}. For numerical simulations, we pick one representative algorithm from each class. For theoretical results, we allow arbitrary algorithms and focus on asymptotic differences in the algorithms' performance.
+
+\xhdr{Main results.}
+We start with a basic version in which the principals are symmetric (\ie do not have an inherent advantage over one another) and the agents are utility-maximizers. We find that competition induces firms to choose the greedy algorithm.
+
+commit to a greedy (myopic) algorithm in equilibrium that does no purposeful exploration. This leads to low consumer welfare since the greedy algorithm is known to be dramatically bad in many important cases of multi-armed bandits. The primary mechanism that generates this stark result is that consumers need to be incentivized to select a firm over its competitors, leading a firm that engages in exploration to be starved of consumers before it makes enough progress on its learning problem. In order to incentivize ``better" exploration strategies in equilibrium, the key intuition is that the firm needs to have some ``free" consumers that visit them without the firm having to incentivize them to do so. This allows the firm to eventually overcome the initial losses in consumer perception from exploration. We explore two economic mechanisms that can generate such an effect.
 
 The first is the presence of users who randomly choose between the firms which gives each firm a constant stream of ``free" users and thus ensures it never gets fully starved. We find that, even when there is a small fraction of such consumers, better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase.\footnote{While the precise notion of ``sufficiently better algorithm" is rather subtle, we note that commonly known ``smart" bandit algorithms typically defeat the commonly known ``naive" ones, and the latter typically defeat the greedy algorithm. However, there is a substantial caveat: one can defeat any algorithm by interleaving it with the greedy algorithm. This has two undesirable corollaries: a better algorithm may sometimes lose, and a pure Nash equilibrium typically does not exist.} However, while this holds asymptotically, our numerical experiments show that this requires either unreasonably large time scales or a large fraction of such users.
 
