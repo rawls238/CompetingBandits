@@ -29,279 +29,239 @@ Each experiment is presented as a table with the same semantics as in the main t
 
 \OMIT{These results confirm the claim in the text that, for sufficiently large $X$, $\TS$ is preferred over all other algorithms for the incumbent. However, it also shows that, for smaller values of $X$ it is not necessarily the case that $\TS$ is the preferred algorithm. We provide many different parameterizations in order to check the robustness of the results. The interpretation of the tables is the same as those in the main text. The results presented here use the same instances and realization tables as those presented in the main text.}
 
-\subsection*{Heavy-Tail MAB Instance}
-
+\
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.054} $\pm$0.01}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{$X = 50$}
+  & \multicolumn{3}{c|}{$X = 200$} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+ & \makecell{\textbf{0.054} $\pm$0.01}
     & \makecell{\textbf{0.16} $\pm$0.02}
-    & \makecell{\textbf{0.18} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.33} $\pm$0.03}
-    & \makecell{\textbf{0.31} $\pm$0.02}
-    & \makecell{\textbf{0.26} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.39} $\pm$0.03}
-    & \makecell{\textbf{0.41} $\pm$0.03}
-    & \makecell{\textbf{0.33} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{Temporary Monopoly:  Heavy Tail, $X= 50$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.003} $\pm$0.003}
+    & \makecell{\textbf{0.18} $\pm$0.02}
+    %%
+     & \makecell{\textbf{0.003} $\pm$0.003}
     & \makecell{\textbf{0.083} $\pm$0.02}
     & \makecell{\textbf{0.17} $\pm$0.02} \\\hline
-$\DEG$
+    $\DEG$
+    & \makecell{\textbf{0.33} $\pm$0.03}
+    & \makecell{\textbf{0.31} $\pm$0.02}
+    & \makecell{\textbf{0.26} $\pm$0.02}
+    %%
     & \makecell{\textbf{0.045} $\pm$0.01}
     & \makecell{\textbf{0.25} $\pm$0.02}
     & \makecell{\textbf{0.23} $\pm$0.02} \\\hline
-$\DG$
+    $\DG$
+    & \makecell{\textbf{0.39} $\pm$0.03}
+    & \makecell{\textbf{0.41} $\pm$0.03}
+    & \makecell{\textbf{0.33} $\pm$0.02} 
+    %%
     & \makecell{\textbf{0.12} $\pm$0.02}
     & \makecell{\textbf{0.36} $\pm$0.03}
     & \makecell{\textbf{0.3} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{Temporary Monopoly:  Heavy Tail, $X= 200$}
-\vspace{-6mm}
+\caption{Heavy-Tail MAB Instance}
 \end{table}
 
+
+\scalebox{1.0}{\parbox{\linewidth}{%
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.0017} $\pm$0.002}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{$X = 300$}
+  & \multicolumn{3}{c|}{$X = 500$} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+ & \makecell{\textbf{0.0017} $\pm$0.002}
     & \makecell{\textbf{0.059} $\pm$0.01}
-    & \makecell{\textbf{0.16} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.029} $\pm$0.007}
-    & \makecell{\textbf{0.23} $\pm$0.02}
-    & \makecell{\textbf{0.23} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.097} $\pm$0.02}
-    & \makecell{\textbf{0.34} $\pm$0.03}
-    & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{Temporary Monopoly:  Heavy Tail, $X= 300$}
-\vspace{-6mm}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.002} $\pm$0.003}
+    & \makecell{\textbf{0.16} $\pm$0.02}
+    %%
+       & \makecell{\textbf{0.002} $\pm$0.003}
     & \makecell{\textbf{0.043} $\pm$0.01}
     & \makecell{\textbf{0.16} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.03} $\pm$0.007}
+    $\DEG$
+        & \makecell{\textbf{0.029} $\pm$0.007}
+    & \makecell{\textbf{0.23} $\pm$0.02}
+    & \makecell{\textbf{0.23} $\pm$0.02}
+    %%
+     & \makecell{\textbf{0.03} $\pm$0.007}
     & \makecell{\textbf{0.21} $\pm$0.02}
     & \makecell{\textbf{0.24} $\pm$0.02} \\\hline
-$\DG$
+    $\DG$
+    & \makecell{\textbf{0.097} $\pm$0.02}
+    & \makecell{\textbf{0.34} $\pm$0.03}
+    & \makecell{\textbf{0.29} $\pm$0.02} 
+    %%
     & \makecell{\textbf{0.091} $\pm$0.01}
     & \makecell{\textbf{0.32} $\pm$0.03}
-    & \makecell{\textbf{0.3} $\pm$0.02} \\\hline
+    & \makecell{\textbf{0.3} $\pm$0.02}\\\hline
 \end{tabular}
-\caption{Temporary Monopoly:  Heavy Tail, $X= 500$}
-\vspace{-6mm}
+\caption{Heavy-Tail MAB Instance}
 \end{table}
+}}
 
-
-\subsection*{Needle-In-Haystack MAB Instance}
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.34} $\pm$0.03}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{$X = 50$}
+  & \multicolumn{3}{c|}{$X = 200$} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+ & \makecell{\textbf{0.34} $\pm$0.03}
     & \makecell{\textbf{0.4} $\pm$0.03}
-    & \makecell{\textbf{0.48} $\pm$0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.22} $\pm$0.02}
-    & \makecell{\textbf{0.34} $\pm$0.03}
-    & \makecell{\textbf{0.42} $\pm$0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{0.18} $\pm$0.02}
-    & \makecell{\textbf{0.28} $\pm$0.02}
-    & \makecell{\textbf{0.37} $\pm$0.03} \\\hline
-\end{tabular}
-\caption{Temporary Monopoly:  Needle-in-Haystack, $X= 50$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.17} $\pm$0.02}
+    & \makecell{\textbf{0.48} $\pm$0.03}
+    %%
+      & \makecell{\textbf{0.17} $\pm$0.02}
     & \makecell{\textbf{0.31} $\pm$0.03}
     & \makecell{\textbf{0.41} $\pm$0.03} \\\hline
-$\DEG$
+    $\DEG$
+    & \makecell{\textbf{0.22} $\pm$0.02}
+    & \makecell{\textbf{0.34} $\pm$0.03}
+    & \makecell{\textbf{0.42} $\pm$0.03}
+    %%
     & \makecell{\textbf{0.13} $\pm$0.02}
     & \makecell{\textbf{0.26} $\pm$0.02}
     & \makecell{\textbf{0.36} $\pm$0.03} \\\hline
-$\DG$
+    $\DG$
+     & \makecell{\textbf{0.18} $\pm$0.02}
+    & \makecell{\textbf{0.28} $\pm$0.02}
+    & \makecell{\textbf{0.37} $\pm$0.03}
+    %%
     & \makecell{\textbf{0.093} $\pm$0.02}
     & \makecell{\textbf{0.23} $\pm$0.02}
     & \makecell{\textbf{0.33} $\pm$0.03} \\\hline
 \end{tabular}
-\caption{Temporary Monopoly:  Needle-in-Haystack, $X= 200$}
-\vspace{-6mm}
+\caption{Needle In Haystack MAB Instance}
 \end{table}
 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.1} $\pm$0.02}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{$X = 300$}
+  & \multicolumn{3}{c|}{$X = 500$} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+  & \makecell{\textbf{0.1} $\pm$0.02}
     & \makecell{\textbf{0.28} $\pm$0.03}
-    & \makecell{\textbf{0.39} $\pm$0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.089} $\pm$0.02}
-    & \makecell{\textbf{0.23} $\pm$0.02}
-    & \makecell{\textbf{0.36} $\pm$0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{0.05} $\pm$0.01}
-    & \makecell{\textbf{0.21} $\pm$0.02}
-    & \makecell{\textbf{0.33} $\pm$0.03} \\\hline
-\end{tabular}
-\caption{Temporary Monopoly:  Needle-in-Haystack, $X= 300$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.053} $\pm$0.01}
+    & \makecell{\textbf{0.39} $\pm$0.03}
+    %%
+      & \makecell{\textbf{0.053} $\pm$0.01}
     & \makecell{\textbf{0.23} $\pm$0.02}
     & \makecell{\textbf{0.37} $\pm$0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.051} $\pm$0.01}
+    $\DEG$
+         & \makecell{\textbf{0.089} $\pm$0.02}
+    & \makecell{\textbf{0.23} $\pm$0.02}
+    & \makecell{\textbf{0.36} $\pm$0.03}
+    %%
+      & \makecell{\textbf{0.051} $\pm$0.01}
     & \makecell{\textbf{0.2} $\pm$0.02}
     & \makecell{\textbf{0.33} $\pm$0.03} \\\hline
-$\DG$
+    $\DG$
+     & \makecell{\textbf{0.05} $\pm$0.01}
+    & \makecell{\textbf{0.21} $\pm$0.02}
+    & \makecell{\textbf{0.33} $\pm$0.03}
+    %%
     & \makecell{\textbf{0.031} $\pm$0.009}
     & \makecell{\textbf{0.18} $\pm$0.02}
     & \makecell{\textbf{0.31} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{Temporary Monopoly:  Needle-in-Haystack, $X= 500$}
-\vspace{-6mm}
+\caption{Needle In Haystack MAB Instance}
 \end{table}
-
-
-\subsection*{Uniform MAB Instance}
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.27} $\pm$0.03}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{$X = 50$}
+  & \multicolumn{3}{c|}{$X = 200$} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+  & \makecell{\textbf{0.27} $\pm$0.03}
     & \makecell{\textbf{0.21} $\pm$0.02}
-    & \makecell{\textbf{0.26} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.39} $\pm$0.03}
-    & \makecell{\textbf{0.3} $\pm$0.03}
-    & \makecell{\textbf{0.34} $\pm$0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{0.39} $\pm$0.03}
-    & \makecell{\textbf{0.31} $\pm$0.02}
-    & \makecell{\textbf{0.33} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{Temporary Monopoly:  Uniform, $X= 50$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.12} $\pm$0.02}
+    & \makecell{\textbf{0.26} $\pm$0.02} 
+    %%
+   & \makecell{\textbf{0.12} $\pm$0.02}
     & \makecell{\textbf{0.16} $\pm$0.02}
     & \makecell{\textbf{0.2} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.25} $\pm$0.02}
+    $\DEG$
+     & \makecell{\textbf{0.39} $\pm$0.03}
+    & \makecell{\textbf{0.3} $\pm$0.03}
+    & \makecell{\textbf{0.34} $\pm$0.03}
+    %%
+     & \makecell{\textbf{0.25} $\pm$0.02}
     & \makecell{\textbf{0.24} $\pm$0.02}
     & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
-$\DG$
+    $\DG$
+     & \makecell{\textbf{0.39} $\pm$0.03}
+    & \makecell{\textbf{0.31} $\pm$0.02}
+    & \makecell{\textbf{0.33} $\pm$0.02}
+    %%
     & \makecell{\textbf{0.23} $\pm$0.02}
     & \makecell{\textbf{0.24} $\pm$0.02}
     & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{Temporary Monopoly:  Uniform, $X= 200$}
-\vspace{-6mm}
+\caption{Uniform MAB Instance}
 \end{table}
+
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.094} $\pm$0.02}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{$X = 300$}
+  & \multicolumn{3}{c|}{$X = 500$} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+  & \makecell{\textbf{0.094} $\pm$0.02}
     & \makecell{\textbf{0.15} $\pm$0.02}
-    & \makecell{\textbf{0.2} $\pm$0.02} \\\hline
-$\DEG$
     & \makecell{\textbf{0.2} $\pm$0.02}
-    & \makecell{\textbf{0.23} $\pm$0.02}
-    & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.21} $\pm$0.02}
-    & \makecell{\textbf{0.23} $\pm$0.02}
-    & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{Temporary Monopoly:  Uniform, $X= 300$}
-\vspace{-6mm}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.061} $\pm$0.01}
+    %%
+     & \makecell{\textbf{0.061} $\pm$0.01}
     & \makecell{\textbf{0.12} $\pm$0.02}
     & \makecell{\textbf{0.2} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.17} $\pm$0.02}
+    $\DEG$
+      & \makecell{\textbf{0.2} $\pm$0.02}
+    & \makecell{\textbf{0.23} $\pm$0.02}
+    & \makecell{\textbf{0.29} $\pm$0.02}
+    %%
+     & \makecell{\textbf{0.17} $\pm$0.02}
     & \makecell{\textbf{0.21} $\pm$0.02}
     & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.18} $\pm$0.02}
+    $\DG$
+  & \makecell{\textbf{0.21} $\pm$0.02}
+    & \makecell{\textbf{0.23} $\pm$0.02}
+    & \makecell{\textbf{0.29} $\pm$0.02}
+    %%
+  & \makecell{\textbf{0.18} $\pm$0.02}
     & \makecell{\textbf{0.22} $\pm$0.02}
     & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{Temporary Monopoly:  Uniform, $X= 500$}
-\vspace{-6mm}
+\caption{Uniform MAB Instance}
 \end{table}
 
 \section{Reputation vs. Data Advantage}
@@ -310,279 +270,238 @@ This section presents all experiments on data vs. reputation advantage (Section 
 
 Each experiment is presented as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share for the rounds in which hit was present: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{ 0.0096 } $\pm$ 0.006}
-    & \makecell{\textbf{ 0.11 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.18 } $\pm$ 0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{ 0.073 } $\pm$ 0.01}
-    & \makecell{\textbf{ 0.29 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.25 } $\pm$ 0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{ 0.15 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.39 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.33 } $\pm$ 0.02} \\\hline
-\end{tabular}
-\caption{Data Advantage: Heavy Tail, $X = 200$}
-\vspace{-6mm}
-\end{table}
+
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{ 0.021 } $\pm$ 0.009}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Data Advantage}
+  & \multicolumn{3}{c|}{Reputation Advantage} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+   & \makecell{\textbf{ 0.0096 } $\pm$ 0.006}
+    & \makecell{\textbf{ 0.11 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.18 } $\pm$ 0.02}
+    %%
+       & \makecell{\textbf{ 0.021 } $\pm$ 0.009}
     & \makecell{\textbf{ 0.16 } $\pm$ 0.02}
     & \makecell{\textbf{ 0.21 } $\pm$ 0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{ 0.26 } $\pm$ 0.03}
+    $\DEG$
+     & \makecell{\textbf{ 0.073 } $\pm$ 0.01}
+    & \makecell{\textbf{ 0.29 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.25 } $\pm$ 0.02}
+    %%
+     & \makecell{\textbf{ 0.26 } $\pm$ 0.03}
     & \makecell{\textbf{ 0.3 } $\pm$ 0.02}
     & \makecell{\textbf{ 0.26 } $\pm$ 0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{ 0.34 } $\pm$ 0.03}
+    $\DG$
+   & \makecell{\textbf{ 0.15 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.39 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.33 } $\pm$ 0.02}
+    %%
+   & \makecell{\textbf{ 0.34 } $\pm$ 0.03}
     & \makecell{\textbf{ 0.4 } $\pm$ 0.03 }
     & \makecell{\textbf{ 0.33 } $\pm$ 0.02} \\\hline
 \end{tabular}
-\caption{Reputation Advantage: Heavy Tail, $X=200$}
-\vspace{-6mm}
+\caption{Heavy Tail MAB Instance, $X = 200$}
 \end{table}
 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{ 0.25 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.36 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.45 } $\pm$ 0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{ 0.21 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.32 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.41 } $\pm$ 0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{ 0.18 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.29 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.4 } $\pm$ 0.03} \\\hline
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Data Advantage}
+  & \multicolumn{3}{c|}{Reputation Advantage} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+      & \makecell{\textbf{0.0017} $\pm$0.002}
+    & \makecell{\textbf{0.06} $\pm$0.01}
+    & \makecell{\textbf{0.18} $\pm$0.02}
+    %%
+    & \makecell{\textbf{0.022} $\pm$0.009}
+    & \makecell{\textbf{0.13} $\pm$0.02}
+    & \makecell{\textbf{0.21} $\pm$0.02} \\\hline
+    $\DEG$
+      & \makecell{\textbf{0.04} $\pm$0.009}
+    & \makecell{\textbf{0.24} $\pm$0.02}
+    & \makecell{\textbf{0.25} $\pm$0.02} 
+    %%
+  & \makecell{\textbf{0.26} $\pm$0.03}
+    & \makecell{\textbf{0.29} $\pm$0.02}
+    & \makecell{\textbf{0.28} $\pm$0.02} \\\hline
+    $\DG$
+   & \makecell{\textbf{0.12} $\pm$0.02}
+    & \makecell{\textbf{0.35} $\pm$0.03}
+    & \makecell{\textbf{0.33} $\pm$0.02}
+    %%
+   & \makecell{\textbf{0.33} $\pm$0.03}
+    & \makecell{\textbf{0.39} $\pm$0.03}
+    & \makecell{\textbf{0.34} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{Data Advantage: Needle-in-Haystack, $X=200$}
-\vspace{-6mm}
+\caption{Heavy Tail MAB Instance, $X = 500$}
 \end{table}
-
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{ 0.35 } $\pm$ 0.03}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Data Advantage}
+  & \multicolumn{3}{c|}{Reputation Advantage} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+   & \makecell{\textbf{ 0.25 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.36 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.45 } $\pm$ 0.03}
+    %%
+     & \makecell{\textbf{ 0.35 } $\pm$ 0.03}
     & \makecell{\textbf{ 0.43 } $\pm$ 0.03}
     & \makecell{\textbf{ 0.52 } $\pm$ 0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{ 0.26 } $\pm$ 0.03 }
+    $\DEG$
+    & \makecell{\textbf{ 0.21 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.32 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.41 } $\pm$ 0.03}
+    %%
+     & \makecell{\textbf{ 0.26 } $\pm$ 0.03 }
     & \makecell{\textbf{ 0.36 } $\pm$ 0.03}
     & \makecell{\textbf{ 0.43 } $\pm$ 0.03} \\\hline
-$\DG$
+    $\DG$
+   & \makecell{\textbf{ 0.18 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.29 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.4 } $\pm$ 0.03}
+    %%
     & \makecell{\textbf{ 0.19 } $\pm$ 0.02}
     & \makecell{\textbf{ 0.3 } $\pm$ 0.02}
     & \makecell{\textbf{ 0.36 } $\pm$ 0.02} \\\hline
 \end{tabular}
-\caption{Reputation Advantage: Needle-in-Haystack, $X=200$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{ 0.27 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.23 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.27 } $\pm$ 0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{ 0.4 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.3 } $\pm$ 0.02 }
-    & \makecell{\textbf{ 0.32 } $\pm$ 0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{ 0.36 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.29 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.3 } $\pm$ 0.02} \\\hline
-\end{tabular}
-\caption{Reputation Advantage: Uniform, $X=200$}
-\vspace{-6mm}
+\caption{Needle-in-Haystack MAB Instance, $X=200$}
 \end{table}
 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{ 0.2 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.22 } $\pm$ 0.02}
-    & \makecell{\textbf{ 0.27 } $\pm$ 0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{ 0.33 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.32 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.35 } $\pm$ 0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{ 0.32 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.31 } $\pm$ 0.03}
-    & \makecell{\textbf{ 0.35 } $\pm$ 0.03} \\\hline
-\end{tabular}
-\caption{Data Advantage: Uniform, $X=200$}
-\vspace{-6mm}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.0017} $\pm$0.002}
-    & \makecell{\textbf{0.06} $\pm$0.01}
-    & \makecell{\textbf{0.18} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.04} $\pm$0.009}
-    & \makecell{\textbf{0.24} $\pm$0.02}
-    & \makecell{\textbf{0.25} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.12} $\pm$0.02}
-    & \makecell{\textbf{0.35} $\pm$0.03}
-    & \makecell{\textbf{0.33} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{Data Advantage: Heavy-Tail, $X=500$}
-\vspace{-6mm}
-\end{table}
-
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.022} $\pm$0.009}
-    & \makecell{\textbf{0.13} $\pm$0.02}
-    & \makecell{\textbf{0.21} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.26} $\pm$0.03}
-    & \makecell{\textbf{0.29} $\pm$0.02}
-    & \makecell{\textbf{0.28} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.33} $\pm$0.03}
-    & \makecell{\textbf{0.39} $\pm$0.03}
-    & \makecell{\textbf{0.34} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{Reputation Advantage: Heavy-Tail, $X=500$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.098} $\pm$0.02}
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Data Advantage}
+  & \multicolumn{3}{c|}{Reputation Advantage} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+  & \makecell{\textbf{0.098} $\pm$0.02}
     & \makecell{\textbf{0.27} $\pm$0.03}
-    & \makecell{\textbf{0.41} $\pm$0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.093} $\pm$0.02}
-    & \makecell{\textbf{0.24} $\pm$0.02}
-    & \makecell{\textbf{0.38} $\pm$0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{0.064} $\pm$0.01}
-    & \makecell{\textbf{0.22} $\pm$0.02}
-    & \makecell{\textbf{0.37} $\pm$0.03} \\\hline
-\end{tabular}
-\caption{Data Advantage: Needle-in-Haystack, $X=500$}
-\vspace{-6mm}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.29} $\pm$0.03}
+    & \makecell{\textbf{0.41} $\pm$0.03}
+    %%
+     & \makecell{\textbf{0.29} $\pm$0.03}
     & \makecell{\textbf{0.44} $\pm$0.03}
     & \makecell{\textbf{0.52} $\pm$0.03} \\\hline
-$\DEG$
+    $\DEG$
+      & \makecell{\textbf{0.093} $\pm$0.02}
+    & \makecell{\textbf{0.24} $\pm$0.02}
+    & \makecell{\textbf{0.38} $\pm$0.03}
+    %%
     & \makecell{\textbf{0.19} $\pm$0.02}
     & \makecell{\textbf{0.35} $\pm$0.03}
     & \makecell{\textbf{0.42} $\pm$0.03} \\\hline
-$\DG$
+    $\DG$
+    & \makecell{\textbf{0.064} $\pm$0.01}
+    & \makecell{\textbf{0.22} $\pm$0.02}
+    & \makecell{\textbf{0.37} $\pm$0.03}
+    %%
     & \makecell{\textbf{0.15} $\pm$0.02}
     & \makecell{\textbf{0.27} $\pm$0.02}
     & \makecell{\textbf{0.35} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{Reputation Advantage: Needle-in-Haystack, $X=500$}
-\vspace{-6mm}
+\caption{Needle-in-Haystack MAB Instance, $X=500$}
 \end{table}
-
 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
-    & \makecell{\textbf{0.14} $\pm$0.02}
-    & \makecell{\textbf{0.18} $\pm$0.02}
-    & \makecell{\textbf{0.26} $\pm$0.03} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.26} $\pm$0.02}
-    & \makecell{\textbf{0.26} $\pm$0.02}
-    & \makecell{\textbf{0.34} $\pm$0.03} \\\hline
-$\DG$
-    & \makecell{\textbf{0.25} $\pm$0.02}
-    & \makecell{\textbf{0.27} $\pm$0.02}
-    & \makecell{\textbf{0.34} $\pm$0.03} \\\hline
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Data Advantage}
+  & \multicolumn{3}{c|}{Reputation Advantage} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+  & \makecell{\textbf{ 0.2 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.22 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.27 } $\pm$ 0.03}
+    %%
+   & \makecell{\textbf{ 0.36 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.29 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.3 } $\pm$ 0.02} \\\hline
+    $\DEG$
+    & \makecell{\textbf{ 0.33 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.32 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.35 } $\pm$ 0.03}
+    %%
+     & \makecell{\textbf{ 0.4 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.3 } $\pm$ 0.02 }
+    & \makecell{\textbf{ 0.32 } $\pm$ 0.02} \\\hline
+    $\DG$
+    & \makecell{\textbf{ 0.32 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.31 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.35 } $\pm$ 0.03}
+    %%
+     & \makecell{\textbf{ 0.36 } $\pm$ 0.03}
+    & \makecell{\textbf{ 0.29 } $\pm$ 0.02}
+    & \makecell{\textbf{ 0.3 } $\pm$ 0.02} \\\hline
 \end{tabular}
-\caption{Data Advantage: Uniform, $X=500$}
-\vspace{-6mm}
+\caption{Uniform MAB Instance, $X = 200$}
 \end{table}
-
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-   & $\TS$  & $\DEG$  & $\DG$ \\ \hline
-$\TS$
+\begin{tabular}{|c|c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Data Advantage}
+  & \multicolumn{3}{c|}{Reputation Advantage} \\
+    \hline
+  & $\TS$  & $\DEG$  & $\DG$
+  & $\TS$  & $\DEG$  & $\DG$ \\
+  \hline
+  $\TS$
+ & \makecell{\textbf{0.14} $\pm$0.02}
+    & \makecell{\textbf{0.18} $\pm$0.02}
+    & \makecell{\textbf{0.26} $\pm$0.03}
+    %%
     & \makecell{\textbf{0.24} $\pm$0.02}
     & \makecell{\textbf{0.2} $\pm$0.02}
-    & \makecell{\textbf{0.26} $\pm$0.02} \\\hline
-$\DEG$
-    & \makecell{\textbf{0.37} $\pm$0.03}
+    & \makecell{\textbf{0.26} $\pm$0.02}\\\hline
+    $\DEG$
+  & \makecell{\textbf{0.26} $\pm$0.02}
+    & \makecell{\textbf{0.26} $\pm$0.02}
+    & \makecell{\textbf{0.34} $\pm$0.03}
+    %%
+   & \makecell{\textbf{0.37} $\pm$0.03}
     & \makecell{\textbf{0.29} $\pm$0.02}
     & \makecell{\textbf{0.31} $\pm$0.02} \\\hline
-$\DG$
-    & \makecell{\textbf{0.35} $\pm$0.03}
+    $\DG$
+    & \makecell{\textbf{0.25} $\pm$0.02}
     & \makecell{\textbf{0.27} $\pm$0.02}
-    & \makecell{\textbf{0.3} $\pm$0.02} \\\hline
+    & \makecell{\textbf{0.34} $\pm$0.03}
+    %%
+     & \makecell{\textbf{0.35} $\pm$0.03}
+    & \makecell{\textbf{0.27} $\pm$0.02}
+    & \makecell{\textbf{0.3} $\pm$0.02}  \\\hline
 \end{tabular}
-\caption{Reputation Advantage: Uniform, $X=500$}
-\vspace{-6mm}
+\caption{Uniform MAB Instance, $X = 500$}
 \end{table}
-
 
 \section{Mean Reputation vs. Relative Reputation}
 
