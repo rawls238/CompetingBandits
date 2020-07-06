@@ -44,7 +44,7 @@ To answer these questions, we study complex interactions between platforms' lear
 
 \item Each principal faces a basic and well-studied version of the multi-armed bandit problem: for each arriving agent, it chooses from a fixed set of actions  (a.k.a. \emph{arms}) and receives a reward drawn independently from a fixed distribution specific to this action. The reward distributions are initially unknown (but can be estimated over time from the data).
 
-\item Principals simultaneously announce their bandit algorithms before round $1$, and cannot change them afterwards.  Each principal's objective is to maximize its market share (the fraction of users choosing this principal). Each principal only observes agents that chose this principal. 
+\item Principals simultaneously announce their bandit algorithms before round $1$, and cannot change them afterwards.  Each principal's objective is to maximize its market share (the fraction of users choosing this principal). Each principal only observes agents that chose this principal.
 %, but may have access to each platforms' reputation score (more on this in    Section~\ref{sec:intro-discussion}).
 \end{itemize}
 
@@ -78,10 +78,10 @@ In isolation, \ie in the absence of competition, these classes are fairly well-u
 We offer a mix of theoretical results and numerical simulations. We are mainly interested in qualitative differences between the three classes of algorithms in Section~\ref{sec:intro-model}. For numerical simulations, we pick one representative algorithm from each class. For theoretical results, we allow arbitrary algorithms and focus on asymptotic differences in the algorithms' performance.
 
 \xhdr{Theoretical results.}
-%We endow agents with Bayesian rationality, a common modeling approach for a theoretical investigation. 
-We consider a basic Bayesian model. We posit that agents have a common Bayesian prior on reward distributions, and know the principals' algorithms. For simplicity, agents do not receive any information about the previous agents' choices and rewards. Each agent knows the round (s)he arrives in, computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose. We refer to this variant as \emTheoryModel.
+%We endow agents with Bayesian rationality, a common modeling approach for a theoretical investigation.
+We consider a basic Bayesian model. We posit that agents have a common Bayesian prior on reward distributions, and know the principals' algorithms. For simplicity, agents do not receive any information about the previous agents' choices and rewards. Each agent knows the round (s)he arrives in, computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose. We refer to this variant as the \emph{\TheoryModel}.
 
-Our results depend crucially on the agents' decision rule. 
+Our results depend crucially on the agents' decision rule.
 \begin{itemize}
 
 \item The most obvious decision rule maximizes the Bayesian-expected reward; we refer to it as \HardMax. We find that \HardMax is not conducive to adopting better algorithms: each principal's dominant strategy is to choose the greedy algorithm. Further, we show that \HardMax is very sensitive to tie-breaking: if the tie-breaking is probabilistically biased in favor of one principal, then this principal has a simple ``winning strategy" no matter what the other principal does.
@@ -120,15 +120,15 @@ We identify the inverted-U relationship driven by the rationality/competitivenes
 These inverted-U relationships are driven by different aspects in our model than the ones in the existing literature in economics. The latter focuses on the tradeoff between the R\&D costs and the benefits that the improved technology provides in the competition. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
 
 \xhdr{Numerical simulations.}
-We consider a basic frequentist model. We posit that the agents observe some performance signals, and the agents base their decisions on the performance signals alone, without invoking any prior knowledge or beliefs. The performance signals are abstracted and aggregated as a scalar \emph{reputation score} for each principal, modeled as a sliding window average of its rewards. Thus, agents' decision rule depends only on the two reputation scores. We refer to this variant as \emExptsModel.%
+We consider a basic frequentist model. We posit that the agents observe signals about the principals' past performance, and base their decisions on these signals alone, without invoking any prior knowledge or beliefs. The performance signals are abstracted and aggregated as a scalar \emph{reputation score} for each principal, modeled as a sliding window average of its rewards. Thus, agents' decision rule depends only on the two reputation scores. We refer to this variant as the \emph{\ExptsModel}.%
 %\footnote{In comparison, the theoretical results focus on another extreme, with Bayesian rationality and no performance signals.}
 
 We refine and expand the theoretical results in several ways.
 
 \begin{itemize}
 \item We compare \HardMax and \HardMaxRandom decision rules. We find that the greedy algorithm often wins under \HardMax, with a strong evidence of the ``death spiral" effect mentioned earlier. As predicted by the theory, better algorithms prevail if the expected number of ``random" users is sufficiently large. However, this effect is negligible for smaller parameter values.
-    
-%\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}} 
+
+%\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}}
 
 \item We investigate the first-mover advantage as a different channel to vary the intensity of competition: from the first-mover to simultaneous arrival to late-arriver. (We focus on the \HardMax decision rule.) We find that the first-mover is incentivized to choose a more advanced exploration algorithm, whereas the late-arriver is often incentivized to choose the ``greedy algorithm" (more so than under simultaneous arrival). Consumer welfare is higher under early/late arrival than under simultaneous entry. We frame these results in terms inverted-U relationships.
 
@@ -147,13 +147,13 @@ We refine and expand the theoretical results in several ways.
 
 
 \xhdr{Economic interpretation: anti-trust perspective.}
-Data advantage is significant as a possible barrier to entry in the digital economy 
-\citep[\eg][]{jullien2019economics,de2020data, hagiu2020data}. 
+Data advantage is significant as a possible barrier to entry in the digital economy
+\citep[\eg][]{jullien2019economics,de2020data, hagiu2020data}.
 Our model directly speaks to this literature as we endogenize data-driven network effects by explicitly considering the dynamics of learning under competition. Our results are similar to those on ``market tipping" because of indirect network effects \ascomment{some citations??}, and show channels through which differences in data ownership can result in market tipping. We observe two important differences compared to prior work:
- 
+
 \begin{itemize}
 \item What matters is not just the quantity of data but its quality: how informative it is for the learning problem at hand. Data collected by better bandit algorithms tends to be more informative.
-    
+
     \ascomment{Guy: cite prior work that only talks about data quantity? Are we really the first paper on anti-trust that talks about data quality? Seems like a big claim, we better be right on this. }
 
 \item The ``amplification effect" of the data advantage runs contrary to prior work on learning without competition \citep{varian2018artificial,lambrecht2015can,bajari2018impact}, which found that small amounts of additional data do not provide significant improvement in eventual outcomes.
@@ -162,6 +162,42 @@ Our model directly speaks to this literature as we endogenize data-driven networ
 \noindent We conclude that competition dynamics are pertinent for this discussion.
 
 \ascomment{We could, in principle, move both "Econ interpretation" xhdrs to a separate subsection. But the current order of presentation seems better to me: we can explain the inverted-U right after "theory", before we put a whole bunch of simulation results on the stack. And the anti-trust stuff goes nicely right after the numerical results, without a big subsection break.}
+
+\subsection{Further discussion}
+\label{sec:discussion}
+
+\xhdr{Significance.}
+Our theory takes a basic Bayesian approach, a standard perspective in economic theory, and discovers several strong asymptotic results. The numerical simulations provide a more nuanced and ``non-asymptotic" perspective. In essence, we look for substantial effects within relevant time scales. (In fact, we start our investigation by determining what time scales are relevant in the context of our model.)
+
+\ascomment{The next para makes a point that seems important (to me). Is this point clear?}
+
+Our study has a dual purpose: (i) shed light on real-world implications of some typical scenarios, and (ii) investigate the space of models for describing the real world. As an example to clarify the latter point, consider the \HardMax model with simultaneous entry. It is is not necessarily the most realistic model, but arguably the most natural one to study \emph{a priori}. However, our results elucidate the need for more refined models with ``free exploration" (\eg via random agents or early entry).
+
+\xhdr{Assumptions.}
+Our models are stylized in several important  respects, some of which we discuss below. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Agents are myopic: they do not worry about how their actions impact their future utility. \footnote{In particular, agents do not attempt to learn over time, to second-guess or game future agents, or to manipulate the principals' learning algorithms. This is arguably typical in practice, in part because one agent's influence tends to be relatively small.}  Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores", and further simplified to average performance over a time window. On the machine learning side, our setup is geared to distinguish between ``simple" vs. ``better" vs. ``smart" bandit algorithms; we are not interested in state-of-art algorithms for very realistic bandit settings.
+
+
+
+We consider two extremes: a simple Bayesian model with full Bayesian rationality and no performance signals, and a simple frequentist model with reputation scores and no prior knowledge or beliefs. For the theoretical results, the ``no-performance-signals" assumption makes agents' behavior independent of a particular realization of the prior. Therefore, we summarize each learning algorithm via its Bayesian-expected rewards, not worrying about its detailed performance on particular realizations of the prior. Such summarization is essential for formulating lucid and general analytic results, let alone proving them. It is unclear how to incorporate performance signals in a theoretically tractable model. For the numerical results, the \ExptsModel accounts for competition in a more direct way, allows to separate reputation vs. data advantage, and makes our model amenable to numerical simulations. Indeed, simulating the intricate interplay of learning dynamics and Bayesian priors appears computationally intractable.
+
+\xhdr{Challenges.}
+Much of the challenge in the theoretical results, both conceptual and technical, was in setting up the model and the theorems. Apart from zeroing in on the \TheoryModel, it was crucial to interpret the results and intuitions from the literature on multi-armed bandits so as to formulate meaningful and productive assumptions on bandit algorithms and Bayesian priors.
+
+The numerical investigation is quite challenging even with a stylized model such as ours. An ``atomic experiment" is a competition game between a given pair of bandit algorithms, in a given competition model, on a given instance of a multi-armed bandit problem (and each such experiment is run many times to reduce variance).
+Accordingly, we have a three-dimensional space of atomic experiments one needs to run and interpret: \{pairs of algorithms\} x \{competition models\} x \{bandit instances\}, and we are looking for findings that are consistent across this entire space. It is essential to keep each of the three dimensions small yet representative. In particular, we need to capture a huge variety of bandit instances with only a few representative examples. Further, we need a succinct and informative summarization of results within one atomic experiment and across multiple experiments (\eg see Table~\ref{sim_table}).
+
+
+While amenable to simulations, the \ExptsModel appears difficult to analyze. This is for several reasons:
+%
+(i) intricate feedback loop from performance to reputations to users to performance;
+%
+(ii) mean reputation, most connected to our intuition, is sometimes a bad predictor in competition (see Sections~\ref{sec:isolation} and~\ref{sec:revisited}); and
+%
+(iii)
+mathematical tools from regret-minimization would only produce ``asymptotic" results, which do not seem to suffice. Given the theoretical results on the \TheoryModel, and the fact that we are in the realm of stylized economic models that provide mathematical intuition about the world, we believe that resolving first-order theoretical questions about the \ExptsModel would not add much value to this paper.
+
+
+\ascomment{Intro ends here.}
 
 
 \newpage
