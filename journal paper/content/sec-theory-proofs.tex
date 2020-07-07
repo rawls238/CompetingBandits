@@ -1,8 +1,88 @@
-\ascomment{This file is now obsolete!}
 
-\subsection{Proof of Theorem~\ref{thm:HardMax-hardTies}}
+
+\subsubsection{Main result on \HardMax: Proof of Theorem~\ref{thm:DG-dominance}}
+\label{sec:proofs-HM-main}
+
+The proof starts with two auxiliary lemmas: that deviating from \DynGreedy implies a strictly smaller Bayesian-expected reward, and that \HardMax implies a ``sudden-death" property: if one agent chooses principal $1$ with certainty, then so do all subsequent agents do. {We re-use both lemmas in later sections, so we state them in sufficient generality.}
+
+
+\begin{lemma}\label{lm:DG-rew}
+{Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then $\rew_1(n_0)>\rew_2(n_0)$. This holds for any response function $\respF$.}
+\end{lemma}
+
+{Lemma~\ref{lm:DG-rew} does not rely on any particular shape of the response function because it only considers the performance of each algorithm without competition.}
+
+\begin{proof}[Proof of Lemma~\ref{lm:DG-rew}]
+Since the two algorithms coincide on the first $n_0-1$ steps, it follows by symmetry that histories $H_{1,n_0}$ and $H_{2,n_0}$ have the same distribution. We use a \emph{coupling argument}: w.l.o.g., we assume the two histories coincide,
+    $H_{1,n_0} = H_{2,n_0} = H$.
+
+At local step $n_0$, \DynGreedy chooses an action $a_{1,n_0} = a_{1,n_0}(H)$
+which maximizes the posterior mean reward given history $H$: for any realized history $h\in \support(H)$ and any action $a\in A$
+\begin{align}\label{eq:lm:DG-rew-1}
+ \PMR(a_{1,n_0} \mid H = h) \geq \PMR(a \mid H=h).
+\end{align}
+
+By assumption \eqref{eq:assn-distinct}, it follows that
+\begin{align}\label{eq:lm:DG-rew-2}
+ \PMR(a_{1,n_0} \mid H = h) > \PMR(a \mid H=h)
+ \quad \text{for any $h\in \support(H)$ and $a\neq a_{1,n_0}(h)$.}
+\end{align}
+
+Since the two algorithms deviate at step $n_0$, there is a set $S\subset \support(H)$ of step-$n_0$ histories such that $\Pr[S]>0$ and any history $h\in S$ satisfies
+    $\Pr[a_{2,n_0}\neq a_{1,n_0} \mid H=h]>0$.
+Combining this with \eqref{eq:lm:DG-rew-2}, we deduce that
+\begin{align}\label{eq:lm:DG-rew-3}
+ \PMR(a_{1,n_0} \mid H = h) > \E\left[ \mu_{a_{2,n_0}}\mid H=h \right]
+ \quad\text{for each history $h\in S$}.
+\end{align}
+Using \eqref{eq:lm:DG-rew-1} and \eqref{eq:lm:DG-rew-3} and integrating over realized histories $h$, we obtain
+    $\rew_1(n_0) > \rew_2(n_0)$.
+\end{proof}
+
+
+\begin{lemma}\label{lm:DG-sudden}
+{Consider \HardMax response function with $\respF(0)\geq\tfrac12$.}
+Suppose \alg[1] is monotone, and $\PMR_1(t_0)>\PMR_2(t_0)$ for some global round $t_0$. Then $\PMR_1(t)>\PMR_2(t)$ for all subsequent rounds $t$.
+\end{lemma}
 
 \begin{proof}
+Let us use induction on round $t\geq t_0$, with the base case $t=t_0$. Let $\mN=\mN_{1,t_0}$ be the agents' posterior distribution for $n_{1,t_0}$, the number of global rounds before $t_0$ in which principal $1$ is chosen. By induction, all agents from $t_0$ to $t-1$ chose principal $1$, so $\PMR_2(t_0)= \PMR_2(t)$. Therefore,
+\[ \PMR_1(t)
+    = \Ex{n\sim \mN}{\rew_1(n+1+t-t_0)}
+    \geq \Ex{n\sim \mN}{\rew_1(n+1)}
+    =\PMR_1(t_0) > \PMR_2(t_0)= \PMR_2(t), \]
+where the first inequality holds because \alg[1] is monotone, and the second one is the base case.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:DG-dominance}]
+Since the two algorithms coincide on the first $n_0-1$ steps, it follows by symmetry that $\rew_1(n) = \rew_2(n)$ for any $n< n_0$.
+By Lemma~\ref{lm:DG-rew},
+    $\rew_1(n_0) > \rew_2(n_0)$.
+
+Recall that $n_i(t)$ is the number of global rounds $s<t$ in which principal $i$ is chosen, and $\posteriorN{i}{t}$ is the agents' posterior distribution for this quantity. By symmetry, each agent $t<n_0$ chooses a principal uniformly at random. It follows that
+    $\posteriorN{1}{n_0} = \posteriorN{2}{n_0}$
+(denote both distributions by $\mN$ for brevity), and $\mN(n_0-1)>0$.
+Therefore:
+\begin{align}
+\PMR_1(n_0)
+  &= \Ex{n\sim \mN} {\rew_1(n+ 1)}
+   = \sum_{n = 0}^{n_0-1} \mN(n) \cdot{\rew_1(n + 1)} \nonumber \\
+  & > \mN(n_0-1)\cdot {\rew_2(n_0)} + \sum_{n = 0}^{n_0-2}  \mN(n)\cdot{\rew_2(n + 1)}
+    \nonumber \\
+  &= \Ex{n\sim \mN}{\rew_2(n + 1)} = \PMR_2(n_0) \label{eq:pf:thm:DG-dominance}
+\end{align}
+So, agent $n_0$ chooses principal $1$. By Lemma~\ref{lm:DG-sudden} {(noting that \DynGreedy is monotone)}, all subsequent agents choose principal $1$, too.
+\end{proof}
+
+%%%%%%%%%%%%
+\subsubsection{\HardMax with biased tie-breaking}
+\label{sec:proofs-HM-main}
+
+\begin{proof}[Proof of Theorem~\ref{thm:HardMax-hardTies}]
+Agent $1$ chooses principal $1$ because of the tie-breaking rule. Since \StaticGreedy is trivially monotone, all the subsequent agents choose principal $1$ by an induction argument similar to the one in the proof of Lemma~\ref{lm:DG-sudden}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:HardMax-biased}]
 The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
 
 Because of the biased tie-breaking, for each global round $t$ we have:
@@ -11,7 +91,7 @@ Because of the biased tie-breaking, for each global round $t$ we have:
 \end{align}
 Recall that $i_t$ is the principal chosen in global round $t$.
 
-Let $m_0$ be the first step when \alg[2] deviates from \DynGreedy, or \DynGreedy deviates from \StaticGreedy, whichever comes sooner. \asedit{Then \alg[2], \DynGreedy and \StaticGreedy coincide on the first $m_0-1$ steps. Moreover, $m_0\leq n_0$ (since \DynGreedy deviates from \StaticGreedy at step $n_0$), so \alg[1] coincides with \DynGreedy on the first $m_0$ steps.
+Let $m_0$ be the first step when \alg[2] deviates from \DynGreedy, or \DynGreedy deviates from \StaticGreedy, whichever comes sooner. {Then \alg[2], \DynGreedy and \StaticGreedy coincide on the first $m_0-1$ steps. Moreover, $m_0\leq n_0$ (since \DynGreedy deviates from \StaticGreedy at step $n_0$), so \alg[1] coincides with \DynGreedy on the first $m_0$ steps.
 
 So, $\rew_1(n)=\rew_2(n)$ for each step $n<m_0$, because \alg[1] and \alg[2] coincide on the first $m_0-1$ steps. Moreover, if \alg[2] deviates from \DynGreedy at step $m_0$ then
     $\rew_1(m_0) > \rew_2(m_0)$
@@ -44,8 +124,48 @@ Therefore, agent $m_0$ chooses principal $1$, and by Lemma~\ref{lm:DG-sudden} so
 \end{proof}
 
 
-\subsection{Proof of Theorem~\ref{thm:random-greedy}}
-\begin{proof}
+%%%%%%%%%%%%
+\subsubsection{The main result for \HardMaxRandom: 
+Proof of Theorem~\ref{thm:random-clean}}
+\label{sec:proofs-HMR-main}
+
+Consider global round $t\geq n_0$. Recall that each agent chooses principal $1$ with probability at least
+    $\respF(-1)>0$.
+
+Then
+    $\E[n_1(t+1)] \geq 2\eps_0\,t $.
+By Chernoff Bounds (Theorem~\ref{thm:chernoff}), we have that
+    $n_1(t+1)\geq \eps_0 t$
+holds with probability at least $1-q$,
+where $q = \exp(-\eps_0 t/12)$.
+
+We need to prove that
+    $\PMR_1(t) - \PMR_2(t)>0$.
+For any $m_1$ and $m_2$, consider the quantity
+\[ \Delta(m_1,m_2) := \BIR_2(m_2+1) - \BIR_1(m_1+1).\]
+Whenever $m_1 \geq \eps_0 t/2 -1$ and $m_2<t$, it holds that
+\begin{align*}
+\Delta(m_1,m_2) \geq \Delta(\eps_0 t / 2, t)
+    \geq \BIR_2(t)/2.
+\end{align*}
+The above inequalities follow, resp., from algorithms' monotonicity and \eqref{eq:random-better-weaker}. Now,
+\begin{align*}
+\PMR_1(t) - \PMR_2(t)
+    &= \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}{\Delta(m_1,m_2)} \\
+    &\geq -q
+        + \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}
+            {\Delta(m_1,m_2)\mid m_1 \geq \eps_0 t/2-1} \\
+    &\geq \BIR_2(t)/2-q \\
+    &> \BIR_2(t)/4 > 0  \EqComment{by \eqref{eq:random-assn}}. \qedhere
+\end{align*}
+
+%%%%%%%%%%%%
+\subsubsection{For \HardMaxRandom, a little greedy goes a long way
+(Proof of Theorem~\ref{thm:random-greedy})}
+\label{sec:proofs-HMR-main}
+
+
+%\begin{proof}[Proof of Theorem~\ref{thm:random-greedy}]
   Let $\rew'_1(n)$ denote the Bayesian-expected reward of the ``greedy
   choice'' after after $n-1$ steps of \alg[1]. Note that
   $\rew_1(\cdot)$ and $\rew'_1(\cdot)$ are non-decreasing: the former
@@ -75,14 +195,43 @@ The induction step is proved as follows. The induction hypothesis for global rou
 \end{align}
 Here inequality \eqref{eq:pf:thm:random-greedy-1} holds because $\rew_1(\cdot)$ is monotone and $\mM_{2,t}$ stochastically dominates $\posteriorN{1}{t}$, and inequality \eqref{eq:pf:thm:random-greedy-2} holds because $\rew_1(n_0)<\rew_2(n_0)$ and $\mM_{2,t}(n_0)>0$.%
 \footnote{If $\rew_1(\cdot)$ is strictly increasing, then inequality \eqref{eq:pf:thm:random-greedy-1} is strict, too; this is because $\mM_{2,t}(t-1)>\posteriorN{1}{t}(t-1)$.  }
-\end{proof}
+%\end{proof}
 
-\subsection{Proof of Theorem~\ref{thm:SoftMax-strong}}
-\begin{proof}
+
+
+%%%%%%%%%%%%
+\subsubsection{\SoftMaxRandom: proof of Theorem~\ref{thm:SoftMax-strong}}
+\label{sec:proofs-SoftMax}
+
+\xhdr{Proof Sketch.}
+The main idea is that even though \alg[1] may have a
+slower rate of learning in the beginning, it will gradually catch up
+and surpass \alg[2]. We will describe this process in two phases. In
+the first phase, \alg[1] receives a random agent with probability at
+least $\respF(-1) = \eps_0$ in each round. Since $\BIR_1$ tends to 0,
+the difference in \BIR{s} between the two algorithms is also
+diminishing. Due to the \SoftMaxRandom response function, \alg[1]
+attracts each agent with probability at least $1/2 - O(\beta_0)$ after
+a sufficient number of rounds. Then the game enters the second phase:
+both algorithms receive agents at a rate close to $\tfrac12$, and the
+fractions of agents received by both algorithms --- $n_1(t)/t$ and
+$n_2(t)/t$ --- also converge to $\tfrac12$. At the end of the second
+phase and in each global round afterwards, the counts $n_1(t)$ and
+$n_2(t)$ satisfy the weak BIR-dominance condition, in the sense that
+they both are larger than $n_0$ and $n_1(t)\geq (1-\beta_0)\; n_2(t)$.
+At this point, \alg[1] actually has smaller $\BIR$, which reflected in the {\PMR}s eventually. Accordingly, from then on \alg[1]
+attracts agents at a rate slightly larger than $\tfrac12$. We prove
+that the ``bump'' over $\tfrac12$ is at least on the order of
+$\BIR_2(t)$.
+
+
+%\begin{proof}[Proof of Theorem~\ref{thm:SoftMax-strong}]
+\xhdr{Full proof.}
   Let $\beta_1 = \min\{c_0'\delta_0, \beta_0/20\}$ with $\delta_0$
   defined in~\eqref{eq:SoftMax-smooth}.  Recall each agent chooses
   \alg[1] with probability at least $\respF(-1)= \eps_0$.  By
-  condition \eqref{eq:so-mild} and \eqref{eq:SoftMax-assn-strong},
+By condition \eqref{eq:SoftMax-assn-strong} and the fact that
+$\BIR_1(n) \to 0$,
   there exists some sufficiently large $T_1$ such that for any
   $t\geq T_1$, $\BIR_1(\eps_0 T_1/2) \leq \beta_1/c_0'$ and
   $\BIR_2(t) > e^{-\eps_0 t/12}$. Moreover, for any $t\geq T_1$, we
@@ -157,10 +306,5 @@ function and assumption in~\eqref{eq:SoftMax-smooth}, we have
 \[
   \Pr[i_t = 1] \geq \frac{1}{2} + \frac{c_0\alpha_0\BIR_2(t)}{4}. \qedhere
 \]
-\end{proof}
+%\end{proof}
 
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "main.tex"
-%%% End:

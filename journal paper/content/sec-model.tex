@@ -153,7 +153,7 @@ Some of our results explicitly study the game between the two principals. We mod
 
 Principal's utility is primarily defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral, in the sense that they optimize their expected utility.
 
-\xhdr{Assumptions on the prior.} We make some technical assumptions for the sake of simplicity. First, each action $a$ has a positive probability of being the best action according to the prior:
+\xhdr{Assumptions on the prior.} We make some technical assumptions on the Bayesian prior. First, each action $a$ has a positive probability of being the best action according to the prior:
 \begin{align}\label{eq:assn-prob}
 \forall a\in A:\;\;\;  \Pr_{\mu\sim \priorMu}[\mu_a  > \mu_{a'}
 \;\forall a'\in A]
@@ -169,9 +169,9 @@ surely. That is, the history $h$ at any step of an MAB algorithm%
 \begin{align}\label{eq:assn-distinct}
     \E[\mu_a \mid h] \neq \E[\mu_{a'}\mid h] \quad \forall a,a'\in A,
 \end{align}
-\asedit{except at a set of histories of probability $0$}.  In
+except at a set of histories of probability $0$.  In
 particular, prior mean rewards of actions are pairwise distinct:
-$\E[\mu_a] \neq \E[\mu_a']$ for any $a,a'\in A$. 
+\[ \E[\mu_a] \neq \E[\mu_a'] \quad \text{for any $a,a'\in A$}. \]
 
 We provide two examples for which property \eqref{eq:assn-distinct} is `generic', in the sense that it can be enforced almost surely by a
   small random perturbation of the prior. Both examples focus on 0-1 rewards and priors $\priorMu$ that are independent across arms. The first example
@@ -189,6 +189,7 @@ We provide two examples for which property \eqref{eq:assn-distinct} is `generic'
   example assumes that mean rewards have a
   finite support, see Appendix~\ref{app:perturb} for details.
 
+
 \xhdr{Some more notation.} Without loss of generality, we label actions as $A=[K]$ and sort them according to their prior mean rewards, so that
     $ \E[\mu_1] > \E[\mu_2] > \ldots > \E[\mu_K]$.
 
@@ -200,22 +201,6 @@ We denote
 for posterior mean reward of action $a$ given event $E$.
 
 %\end{assumption}
-
-\subsection{Generalizations}
-\label{sec:model-extensions}
-
-Our results can be extended compared to the basic model described above.
-
-%First, the two principals may have different action sets, as long as
-%    $\E\left[ \max_{a\in A} \mu_a\right]$,
-%the Bayesian-expected reward of the best action, is the same for both principals.
-
-First, unless specified otherwise, our results allow a more general notion of principal's utility that can depend on both the market share and agents' rewards. Namely, principal $i$ collects $U_i(r_t)$ units of utility in each global round $t$ when she is chosen (and $0$ otherwise), where $U_i(\cdot)$ is some fixed non-decreasing function with $U_i(0)>0$. In a formula,
-\begin{align}\label{eq:general-utility}
-\textstyle U_i := \sum_{t=1}^T\; \indicator{i_t=i}\cdot U_i(r_r).
-\end{align}
-
-Second, our results carry over, with little or no modification of the proofs, to much more general versions of MAB, as long as it satisfies the i.i.d. property. In each round, an algorithm can see a \emph{context} before choosing an action (as in \emph{contextual bandits}) and/or additional feedback other than the reward after the reward is chosen (as in, \eg \emph{semi-bandits}), as long as the contexts are drawn from a fixed distribution, and the (reward, feedback) pair is drawn from a fixed distribution that depends only on the context and the chosen action. The Bayesian prior $\prior$ needs to be a more complicated object, to make sure that \PMR and \BIR are well-defined. Mean rewards may also have a known structure, such as Lipschitzness, convexity, or linearity; such structure can be incorporated via $\prior$. All these extensions have been studied extensively in the literature on MAB, and account for a substantial segment thereof; see \cite{Bubeck-survey12} for background and details.
 
 \subsection{Chernoff Bounds}
 
