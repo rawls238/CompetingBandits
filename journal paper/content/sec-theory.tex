@@ -142,8 +142,8 @@ for the first $n_0-1$ steps;
   choice": chooses an action with the largest posterior mean reward
   given the current information collected by \alg[1].
 
-\item The modified algorithm does not record rewards received in steps with the ``greedy choice".%
-    \footnote{This is probably not essential, but makes for a cleaner comparison between the two algorithms.}
+\item The modified algorithm does not record the ``greedy choice" steps in its data set.%
+    \footnote{In other words: in the subsequent rounds, as far as the modified algorithm is concerned, the ``greedy choice" steps have never happened. While it is usually more efficient to consider all available data, this simplification enables a cleaner comparison between the two algorithms. Also, it makes for  a cleaner setup: otherwise, just to make the modified algorithm well-defined, we'd need to assume that \alg[1] is a mapping from step-$n$ histories to actions, for each step $n$. This is usually OK -- most bandit algorithms have this shape anyway -- but it prohibits \alg[1] to correlate its internal randomness across steps.}
 
 \end{enumerate}
 %The modified algorithm is called \emph{greedy deviation}, with probability parameter $p$.
