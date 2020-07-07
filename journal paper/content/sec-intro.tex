@@ -148,21 +148,11 @@ We refine and expand the theoretical results in several ways.
 
 \ascomment{Guy: "anti-trust xhdr" synthesises several points from various places, pls see if I got it right.}
 
+\xhdr{Economic interpretation: data network effects.}
+\gaedit{Our model speaks to the ongoing debate of the role that data plays as a competitive advantage in the digital economy. One fundamental question in this debate is whether data serves as a network effect, whereby competition for the market is more important than competition in the market due to the winner-take-all nature of such markets \citep{farrell2007coordination, jullien2019economics}. We find a similar effect in our setting where slight asymmetries between the firms leads to a winner-take-all outcome. Indeed, we find that a small data advantage for one firm gets amplified under competition and leads to that firm taking the entire market.
 
-\xhdr{Economic interpretation: anti-trust perspective.}
-Data advantage is significant as a possible barrier to entry in the digital economy
-\citep[\eg][]{jullien2019economics,de2020data, hagiu2020data}.
-Our model directly speaks to this literature as we endogenize data-driven network effects by explicitly considering the dynamics of learning under competition. Our results are similar to those on ``market tipping" because of indirect network effects \ascomment{some citations??}, and show channels through which differences in data ownership can result in market tipping. We observe two important differences compared to prior work:
-
-\begin{itemize}
-\item What matters is not just the quantity of data but its quality: how informative it is for the learning problem at hand. Data collected by better bandit algorithms tends to be more informative.
-
-    \ascomment{Guy: cite prior work that only talks about data quantity? Are we really the first paper on anti-trust that talks about data quality? Seems like a big claim, we better be right on this. }
-
-\item The ``amplification effect" of the data advantage runs contrary to prior work on learning without competition \citep{varian2018artificial,lambrecht2015can,bajari2018impact}, which found that small amounts of additional data do not provide significant improvement in eventual outcomes.
-\end{itemize}
-
-\noindent We conclude that competition dynamics are pertinent for this discussion.
+A distinctive feature of our approach is that we explicitly model the learning problem of the firms and consider them as deploying algorithms for solving such problems. Our results highlight that understanding the performance of learning algorithms in isolation does not necessary translate to understanding their impact in competition, precisely due to the fact that competition leads to the endogenous generation of data observed by the firms. Thus, approaches such as \cite{bajari2018impact} that argue that the diminishing returns to scale and scope of data in isolation render such data feedback loops as non-existent ignore the differences induced by learning in isolation versus under competition. Furthermore, explicitly incorporating the interaction between learning technology and data creation allows us to speak on how data advantages are characterized and amplified not just by data quantity, but also the increased data quality gathered by better learning algorithms.
+}
 
 \ascomment{We could, in principle, move both "Econ interpretation" xhdrs to a separate subsection. But the current order of presentation seems better to me: we can explain the inverted-U right after "theory", before we put a whole bunch of simulation results on the stack. And the anti-trust stuff goes nicely right after the numerical results, without a big subsection break.}
 
