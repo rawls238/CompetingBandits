@@ -126,7 +126,11 @@ We consider a basic frequentist model. We posit that the agents observe signals 
 We refine and expand the theoretical results in several ways.
 
 \begin{itemize}
-\item We compare \HardMax and \HardMaxRandom decision rules. We find that the greedy algorithm often wins under \HardMax, with a strong evidence of the ``death spiral" effect mentioned earlier. As predicted by the theory, better algorithms prevail if the expected number of ``random" users is sufficiently large. However, this effect is negligible for smaller parameter values.
+\item We compare \HardMax and \HardMaxRandom decision rules. We find that the greedy algorithm often wins under \HardMax, with a strong evidence of the ``death spiral" effect mentioned earlier.%
+\footnote{The greedy algorithm wins often but not always, whereas it
+always wins under \TheoryModel. The reason for this discrepancy is that the greedy algorithm in the theoretical results is aware of the Bayesian prior.
+}
+ As predicted by the theory, better algorithms prevail if the expected number of ``random" users is sufficiently large. However, this effect is negligible for smaller parameter values.
 
 %\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}}
 
