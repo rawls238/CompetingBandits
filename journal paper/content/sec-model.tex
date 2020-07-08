@@ -1,22 +1,79 @@
-\xhdr{Principals and agents.} There are two principals and $T$ agents. The game proceeds in rounds (we will sometimes refer to them as \emph{global rounds}). In each round $t\in [T]$, the following  interaction takes place. A new agent arrives and chooses one of the two principals. The principal chooses a recommendation: an action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds). The agent follows this recommendation, receives a reward $r_t\in [0,1]$, and reports it back to the principal.
 
-The rewards are i.i.d. with a common prior. More formally, for each action $a\in A$ there is a parametric family $\psi_a(\cdot)$ of
+We define the basic model; some extensions thereof are specified in  Section~\ref{sec:theory-extensions}.
+
+\xhdr{Principals and agents.} There are two principals and $T$ agents,
+denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds). The agent experiences this action, receives a reward $r_t\in \{ 0,1\}$, and reports it back to the principal. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are initially not known to anybody. Each principal is completely unaware of the rounds when the other principal is chosen.
+
+Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and uses this algorithm throughout. The algorithm follows the protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, it proceeds in time-steps:%
+\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs an action from $A$, and inputs a reward for this action. \alg[i] is called only in global rounds when principal $i$ is chosen.
+
+\newcommand{\est}{\mathtt{est}}
+
+\xhdr{Agents' response.} Each agent $t$ forms a reward estimate $\est_i(t)$ for each principal $i$, as specified below, and chooses the principal based on these reward estimates. Specifically, principal $1$ is chosen with probability
+\begin{align}
+p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
+\end{align}
+where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents and known to everyone.
+
+We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. We consider three specific models (see \reffig{fig:response-functions}):
+
+\begin{figure}
+\begin{center}
+  \begin{tikzpicture}[scale=2.0]
+    \draw[->] (-1.1,0) -- (1.1,0) node[right]
+    {$\Delta_t := \est_1(t) - \est_2(t)$};
+    \draw[->] (0,-0.1) -- (0,1.1) node[above]
+        {$p_t = \text{prob. of choosing principal 1}$};
+    \draw[scale=1.0,domain=-1:0,smooth,variable=\q,blue, line width=0.50mm] plot ({\q},{0});
+    \draw[scale=1.0,domain=0:1,smooth,variable=\q,blue,line width=0.50mm] plot ({\q},{1});
+    \draw[scale=1.0,domain=-1:0,smooth,variable=\y,red]  plot ({\y},{0.1});
+    \draw[scale=1.0,domain=0:1,smooth,variable=\y,red]  plot ({\y},{0.9});
+    \draw[scale=1.0,domain=-1:1,smooth,variable=\y,cyan, line width=0.45mm, dash pattern=on 3pt off 2pt]  plot ({\y},{1/(1 + 1/(9^\y))});
+    % \node[above, blue] at (0.5, 0.5) {\footnotesize $2 q (1 - q)$};
+     \node[left] at (0, 0.5) {\footnotesize $1/2$};
+     \node[left] at (0, 1) {\footnotesize $1$};
+     \node[below left] at (0, 0) {\footnotesize $0$};
+     \node[below ] at (1, 0) {\footnotesize $1$};
+     \node[below ] at (-1, 0) {\footnotesize $-1$};
+  \end{tikzpicture}
+\end{center}
+\caption{The three models for $\respF$: \HardMax is thick blue, \HardMaxRandom is slim red, and \SoftMaxRandom is the dashed curve.}
+\label{fig:response-functions}
+\end{figure}
+
+\begin{itemize}
+\item \HardMax: $\respF$ equals $0$ on the interval $[-1,0)$ and $1$
+  on the interval $(0,1]$. In words, a \HardMax agent
+  deterministically chooses a principal with a higher reward estimate.
+
+\item \HardMaxRandom:
+    % $\respF$ equals $\eps$ on the interval $[-1,0)$ and $1-\eps'$ on the interval $(0,1]$, where $\eps,\eps'\in (0,\tfrac12)$ are some positive constants. In words, each agent is a \HardMax agent with probability $1-\eps-\eps'$, and with the remaining probability she makes a random choice.
+    $\respF$ equals $\eps_0$ on the interval $[-1,0)$ and $1-\eps_0$ on the interval $(0,1]$, for some constant $\eps_0\in (0,\tfrac12)$. In words, each agent is a \HardMax agent with probability $1-2\eps_0$, and makes a random choice otherwise.
+
+
+\item \SoftMaxRandom: $\respF(\cdot)$ is bounded away from $0$ and $1$, and ``smooth" around $0$ (see Section~\ref{sec:theory-SoftMax}).
+\end{itemize}
+% \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
+
+
+%We say that $\respF$ is \emph{symmetric} if $\respF(-x)+\respF(x)=1$ for any $x\in [0,1]$. This implies \emph{fair tie-breaking}: $\respF(0)=\tfrac12$.
+
+\xhdr{The \TheoryModel.}
+In this model variant, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$ before round $1$. Agents know the principals' algorithms. Their reward estimates are defined as Bayesian-expected rewards: for each agent $t$ and principal $i$,
+\[ \est_i(t) := \E\sbr{ r_t\mid i_t = i }.\]
+
+
+\ascomment{stopped here.}
+
+with a common prior. More formally, for each action $a\in A$ there is a parametric family $\psi_a(\cdot)$ of
 reward distributions, parameterized by the mean reward $\mu_a$. (The paradigmatic case is 0-1 rewards with a given expectation.) The
 mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from prior distribution $\priorMu$ before round $1$. Whenever a given action $a\in A$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards, denoted $\prior$.
 
-Each principal commits to a learning algorithm for making recommendations. This algorithm follows a protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, the algorithm proceeds in time-steps:%
-\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs a chosen action $a\in A$ and then inputs the reward for this action. The algorithm is called only in global rounds when the corresponding principal is chosen.
 
-\gaedit{
+
 The information structure is as follows. The prior $\prior$ is known to everyone. The mean rewards $\mu_a$ are not revealed to anybody and each principal is completely unaware of the rounds when the other is chosen. We consider two variants of our model with different information structures. In the first, the  \textit{expectation choice} variant, each agent knows both principals' algorithms, and the global round when (s)he arrives, \emph{but not} the rewards of the previous agents. In the second, the \textit{reputation choice} variant, agents only make decisions based on the rewards of previous agents. Concretely, each of the two principals has a \emph{reputation score}, and each agent's choice is driven by these two numbers. The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm.
 
-}
-\xhdr{Some terminology.} The two principals are called ``Principal
-1" and ``Principal 2".
-%Principal $i\in \{1,2\}$ is also denoted \prin[i].
-The algorithm of principal $i\in \{1,2\}$ is called ``algorithm $i$" and denoted
-\alg[i]. The agent in global round $t$ is called ``agent $t$"; the
-chosen principal is denoted $i_t$.
+
 
 Throughout, $\E[\cdot]$ denotes expectation over all applicable randomness.
 
@@ -70,51 +127,7 @@ In the reputation choice variant we consider, at a given time $t$ each principal
 p_t = \respF\left(\; \REP_1(t) - \REP_2(t) \;\right).
 \end{align}
 }
-\xhdr{Response functions.}
-We use the response function $\respF$ \gaedit{to characterize the decision rule of the agents in our model}. We assume that $\respF$ is monotonically non-decreasing, is larger than $\tfrac12$ on the interval $(0,1]$, and smaller than $\tfrac12$ on the interval $[-1,0)$. Beyond that, we consider three specific models (see \reffig{fig:response-functions}):
 
-\begin{figure}
-\begin{center}
-  \begin{tikzpicture}[scale=2.0]
-    \draw[->] (-1.1,0) -- (1.1,0) node[right] {$\Delta_t := \PMR_1(t) - \PMR_2(t)$};
-    \draw[->] (0,-0.1) -- (0,1.1) node[above]
-        {$p_t = \text{prob. of choosing principal 1}$};
-    \draw[scale=1.0,domain=-1:0,smooth,variable=\q,blue, line width=0.50mm] plot ({\q},{0});
-    \draw[scale=1.0,domain=0:1,smooth,variable=\q,blue,line width=0.50mm] plot ({\q},{1});
-    \draw[scale=1.0,domain=-1:0,smooth,variable=\y,red]  plot ({\y},{0.1});
-    \draw[scale=1.0,domain=0:1,smooth,variable=\y,red]  plot ({\y},{0.9});
-    \draw[scale=1.0,domain=-1:1,smooth,variable=\y,cyan, line width=0.45mm, dash pattern=on 3pt off 2pt]  plot ({\y},{1/(1 + 1/(9^\y))});
-    % \node[above, blue] at (0.5, 0.5) {\footnotesize $2 q (1 - q)$};
-     \node[left] at (0, 0.5) {\footnotesize $1/2$};
-     \node[left] at (0, 1) {\footnotesize $1$};
-     \node[below left] at (0, 0) {\footnotesize $0$};
-     \node[below ] at (1, 0) {\footnotesize $1$};
-     \node[below ] at (-1, 0) {\footnotesize $-1$};
-  \end{tikzpicture}
-\end{center}
-\caption{The three models for agents' response function: \HardMax is thick blue, \HardMaxRandom is slim red, and \SoftMaxRandom is the dashed curve.}
-\label{fig:response-functions}
-\end{figure}
-
-\begin{OneLiners}
-\item \HardMax: $\respF$ equals $0$ on the interval $[-1,0)$ and $1$
-  on the interval $(0,1]$. In other words, the agents will
-  deterministically choose the principal with the higher posterior
-  mean reward.
-
-\item \HardMaxRandom:
-    % $\respF$ equals $\eps$ on the interval $[-1,0)$ and $1-\eps'$ on the interval $(0,1]$, where $\eps,\eps'\in (0,\tfrac12)$ are some positive constants. In words, each agent is a \HardMax agent with probability $1-\eps-\eps'$, and with the remaining probability she makes a random choice.
-    $\respF$ equals $\eps_0$ on the interval $[-1,0)$ and $1-\eps_0$ on the interval $(0,1]$, where $\eps_0\in (0,\tfrac12)$ are some positive constants. In words, each agent is a \HardMax agent with probability $1-2\eps_0$, and with the remaining probability she makes a random choice.
-
-
-\item \SoftMaxRandom: $\respF(\cdot)$ lies in the interval $[\eps_0,1-\eps_0]$, $\eps_0>0$, and is ``smooth" around $0$ (in the sense defined precisely in Section~\ref{sec:soft}).
-\end{OneLiners}
-% \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
-
-We say that $\respF$ is \emph{symmetric} if $\respF(-x)+\respF(x)=1$
-for any $x\in [0,1]$. This implies \emph{fair tie-breaking}:
-$\respF(0)=\tfrac12$.% , and $\eps=\eps'$ in the
-% definitions above.
 
 \xhdr{MAB algorithms.}
 We characterize the inherent quality of an MAB algorithm in terms of its \emph{Bayesian Instantaneous Regret} (henceforth, \BIR), a standard notion from machine learning:
