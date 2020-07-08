@@ -1,6 +1,10 @@
 
 In this section, we present our theoretical results for the \TheoryModel. While we provide intuition and (some) proof sketches, the detailed proofs are deferred to Section~\ref{sec:theory-proofs}.
 
+\subsection{Preliminaries}
+\label{sec:theory-prelims}
+
+\ascomment{to be added / copied from the ITCS paper}
 
 \subsection{Full rationality: \HardMax}
 \label{sec:theory-HM}
@@ -437,7 +441,6 @@ The familiar inverted-U shape is depicted in Figure~\ref{fig:inverted-U3}.
 
 \ascomment{TODO: revise this subsection.}
 
-\ascomment{TODO: arbitrary reward distributions.}
 
 Our results can be extended compared to the basic model described above.
 
@@ -501,3 +504,7 @@ $n_0(T)\in \polylog(T)$, and constants $\beta_0,\alpha_0\in (0, 1/2)$, such that
 We also provide a version of Theorem~\ref{thm:SoftMax-weak} under this
 more general weak BIR-dominance condition; its proof is very similar
 and is omitted.
+
+
+\ascomment{TODO: arbitrary reward distributions.}
+For each action $a\in A$ there is a parametric family $\psi_a(\cdot)$ of reward distributions, parameterized by the mean reward $\mu_a$. (The paradigmatic case is 0-1 rewards with a given expectation.) Whenever a given action $a\in A$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards, denoted $\prior$.
