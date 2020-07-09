@@ -1,5 +1,5 @@
 \xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is a particularly elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied in Economics, Operations Research and Computer Science for many decades, \asedit{and are covered in many books and surveys. Particularly, see
-\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations of bandits, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory.} A discussion of industrial applications of MAB can be found in \citep{DS-arxiv} and \citep[Ch. 8]{slivkins-MABbook}.
+\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations of bandits, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory.} 
 
 The literature on MAB is vast and multi-threaded. The most related
 thread concerns regret-minimizing MAB formulations with IID rewards
@@ -9,6 +9,13 @@ algorithms such as UCB1
 \citep{EvenDar-icml06}, and ``naive'' exploration-separating algorithms, including explore-first and
 Epsilon-Greedy 
 \asedit{\citep[\eg see Ch. 1 in ][for discussion and literature review]{slivkins-MABbook}.}
+
+\asedit{The greedy algorithm is terrible on a wide variety of problem instances, in the sense that it fails to try the best arm and therefore suffers regret linear in the time horizon  
+\citep[see Chapter 11.2 in][]{slivkins-MABbook}. 
+On the other hand, a recent line of work \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18}
+finds that the greedy algorithm performs well (in theory), in a model of linear contextual bandits under substantial assumptions on smoothing or heterogeneity of the context vectors.}
+
+A discussion of industrial applications of MAB can be found in \citep{DS-arxiv} and \citep[Chapter 8]{slivkins-MABbook}. \asedit{In particular, switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training.}
 
 The three-way tradeoff between exploration, exploitation and incentives has been studied in several other settings:
 incentivizing exploration in a recommendation system
