@@ -2,7 +2,9 @@
 Let us define the basic model; our theoretical results admit some extensions, detailed in Section~\ref{sec:theory-extensions}.
 
 \xhdr{Principals and agents.} There are two principals and $T$ agents,
-denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds). The agent experiences this action, receives a reward $r_t\in \{ 0,1\}$, and reports it back to the principal. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are fixed over time, and initially not known to anybody. Each principal is completely unaware of the rounds when the other principal is chosen.
+denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds).%
+\footnote{Throughout, we use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
+ The agent experiences this action, receives a reward $r_t\in \{ 0,1\}$, and reports it back to the principal. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are fixed over time, and initially not known to anybody. Each principal is completely unaware of the rounds when the other principal is chosen.
 
 Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and uses this algorithm throughout. The algorithm follows the protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, it proceeds in time-steps:%
 \footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs an action from $A$, and inputs a reward for this action. \alg[i] is called only in global rounds when principal $i$ is chosen.
@@ -62,12 +64,12 @@ We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefr
 We consider two model variants, Bayesian and frequentist. The main difference between the two concerns the agents' reward estimates $\est_i(t)$.
 
 \begin{itemize}
-\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Agents know the principals' algorithms. Their reward estimates are defined as Bayesian-expected rewards:
-        $\est_i(t) := \E\sbr{ r_t\mid i_t = i }$
+\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Agents know the principals' algorithms. Their reward estimates are defined as posterior mean rewards:
+        $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i }$
     for each agent $t$ and principal $i$.
 
 \item In the \emph{\ExptsModel}, agents' reward estimate for a given principal is the average reward of the last $M$ agents that chose this principal (interpreted as a \emph{reputation score}). To make the reputation score meaningful initially, each principal enjoys a ``warm start": additional $T_0$ agents arrive before the game starts, and interact with the principal as described above.
-     
+
 \end{itemize}
 
 \xhdr{Competition game.}
