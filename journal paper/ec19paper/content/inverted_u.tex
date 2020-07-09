@@ -213,10 +213,31 @@ $\DG$
 }
 \end{finding}
 
+
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4.0cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+\tikzstyle{below} = [align=center]
+
+\begin{figure}[t]
+\begin{center}
+\begin{tikzpicture}
+      \draw[->] (-.5,0) -- (7,0) node[right] {};
+      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
+      \draw[scale=0.6,domain=0.7:9.8,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - 0.18 * (\x - 5.25)^2});
+     \node[below] at (0.7, -0.22) {\footnotesize monopoly};
+     \node[below] at (3, -0.2) {\footnotesize incumbent};
+     \node[below] at (4.5, -0.22) {\footnotesize duopoly};
+     \node[below] at (6, -0.2) {\footnotesize entrant};
+ \end{tikzpicture}
+ \caption{A stylized ``inverted-U relationship" between strength of competition and ``level of innovation".}
+\label{fig:inverted-U-expts}
+\end{center}
+\end{figure}
+
 \xhdr{Inverted-U relationship.}
 We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DG wins out for the trivial reason of tie-breaking. The highest levels are simultaneous entry duopoly and ``late entrant". We see that \DG is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DG get stronger when the model transitions from simultaneous entry duopoly to ``late entrant".%
 \footnote{For the Heavy-Tail instance, \DG goes from a weakly dominant strategy to a strictly dominant one. For the Uniform instance, \DG goes from a Nash equilibrium strategy to a weakly dominant one.}
-Finally, the middle level of competition, ``incumbent" in the temporary monopoly creates strong incentives for \TS. In stylized form, this relationship is captured in Figure~\ref{fig:inverted-U}.
+Finally, the middle level of competition, ``incumbent" in the temporary monopoly creates strong incentives for \TS. In stylized form, this relationship is captured in Figure~\ref{fig:inverted-U-expts}.
 
 % Transition Duopoly -> LateStart creates stronger incentives for DG.
 % In Heavy Tail, DG is strictly dominant (before it was only weakly).
