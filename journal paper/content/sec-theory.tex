@@ -4,15 +4,56 @@ In this section, we present our theoretical results for the \TheoryModel. While 
 \subsection{Preliminaries}
 \label{sec:theory-prelims}
 
-\ascomment{to be added / copied from the ITCS paper}
+\xhdr{Notation.} Let $\rew_i(n)$ denote the Bayesian-expected reward of principal $i$ at local step $n$. For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
+    \[ \PMR_i(t):=  \E\sbr{ r_t\mid i_t = i } 
+        = \E\sbr{ \rew_i(n_i(t)+1) }. \]
+
+\xhdr{Assumptions.} We make two mild assumptions on the prior. First, each arm $a$ can be the best:
+\begin{align}\label{eq:assn-prob}
+\forall a\in A:\;\;\;  
+\Pr_{\mu\sim \priorMu}\sbr{\mu_a  > \mu_{a'}
+\;\forall a'\in A}
+> 0.
+\end{align}
+
+\noindent Second, actions' posterior mean rewards are pairwise distinct given any feasible history $h$:%
+\footnote{The \emph{history} of an MAB algorithm at a given step
+  comprises the chosen actions and the observed rewards in all
+  previous steps. The history is \emph{feasible} if for each arm-reward pair $(a,r)$ in the history, $r$ is in the support of the reward distribution for $a$.}
+\begin{align}\label{eq:assn-distinct}
+    \E[\mu_a \mid h] \neq \E[\mu_{a'}\mid h] \quad \forall a,a'\in A.
+\end{align}
+In particular, \emph{prior} mean rewards of actions are pairwise distinct:
+$\E[\mu_a] \neq \E[\mu_a']$ for any $a,a'\in A$. 
+
+In Appendix~\ref{app:perturb}, we provide two examples for which property \eqref{eq:assn-distinct} is `generic', in the sense that it can be enforced almost surely by a small random perturbation of the prior. The two examples concern, resp., Beta priors and priors with a finite support, and focus on priors $\priorMu$ that are independent across arms.
+
+\xhdr{MAB algorithms.}
+We consider two (Bayesian) greedy algorithms. The first one, called  \DynGreedy, chooses an arm $a$ with the largest posterior mean reward $\E[\mu_a \mid \cdot ]$ given all information currently available to the algorithm. The second algorithm, called \StaticGreedy, chooses an arm $a$ with the largest prior mean reward $\E[\mu_a]$, and uses this arm in all rounds. In both algorithms, ties are broken arbitrarily.
+ 
+
+We characterize the inherent quality of an MAB algorithm in terms of its \emph{Bayesian Instantaneous Regret} (henceforth, \BIR), a standard notion from machine learning:
+\begin{align}
+\BIR(n) := \E_{\mu\sim\priorMu}
+    \left[ \max_{a\in A} \mu_a\right] - \rew(n),
+\end{align}
+where $\rew(n)$ is the Bayesian-expected reward of the algorithm for the $n$-th step, when the algorithm is run in isolation. We are primarily interested in how \BIR scales with $n$: typically, how fast \BIR decreases with $n$. We treat $K$, the number of arms, as a constant unless specified otherwise. Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
+
+Let us connect \BIR with the three classes of algorithms listed in Section~\ref{sec:intro-model}. \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $n$). \StaticGreedy typically has at least a constant \BIR, in the same sense. Exploration-separating algorithms can have
+    $\BIR(n) \sim n^{-1/3}$
+for all priors, whereas adaptive-exploration algorithms can have an even better rate
+    $\BIR(n) \sim n^{-1/3}$
+for all priors. Both rates are up to $\log(n)$ factors, and are the best possible \BIR rates that can be achieved for all priors. More details on this can be found in Appendix~\ref{app:examples}.
+
 
 \subsection{Full rationality: \HardMax}
 \label{sec:theory-HM}
 
 We posit fully rational agents, in the sense that their response function is \HardMax. We show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates. To make this more precise, let us say that two MAB algorithms \emph{deviate} at (local) step $n$ if
 \begin{align}
-\Pr\sbr{ \alg[1](n)\neq \alg[2](n)} >0.
+\Pr\sbr{ \alg[1](n)\neq \alg[2](n)} >0,
 \end{align}
+where $\alg[i](n)$ is the arm chosen by \alg[i] at local step $n$.
 
 \ascomment{Steven: we used to have a much more cumbersome definition (commented out), not sure why!}
 
@@ -172,15 +213,19 @@ Then each agent $t\geq n_0$ chooses principal $2$ with maximal possible probabil
 \end{corollary}
 
 
+\ascomment{This whole remark is supposed to add intuition, but it seems pretty hard to parse ... :(}
+
 \begin{remark}
 The modified algorithm performs exploration % ingests information
-at a slower rate. Let us argue how this may translate  into a larger \BIR compared to the original algorithm. Let  $\BIR'_1(n)$ be the \BIR of the ``greedy choice" after after $n-1$ steps of \alg[1]. Then
+at a slower rate. For the sake of intuition, let us argue how this may translate  into a larger \BIR compared to the original algorithm. Let  $\BIR'_1(n)$ be the \BIR of the ``greedy choice" after after $n-1$ steps of \alg[1]. Then
 \begin{align}\label{eq:random-BIR}
 \BIR_2(n)
     &= \Ex{m\sim (n_0-1)+\term{Binomial}(n-n_0+1,1-p)}{(1-p) \cdot \BIR_1(m) + p \cdot \BIR'_1(m)}.
 \end{align}
 In this expression, $m$ is the number of times \alg[1] is invoked in the first $n$ steps of the modified algorithm. Note that
     $\E[m] = n_0-1 + (n-n_0+1)(1-p) \geq (1-p)n$.
+
+\ascomment{Steven: why can't we take $c=1$ below??}
 
 Suppose $\BIR_1(n)= \beta n^{-\gamma}$ for some constants $\beta,\gamma>0$. Further, assume
     $\BIR'_1(n)\geq  c\; \BIR_1(n)$,
@@ -365,7 +410,7 @@ Our main story concerns the restricted competition game between the two principa
 \item Under \SoftMaxRandom, more innovation: \alg is chosen as long as it weakly-BIR-dominates.%
 \footnote{This is a weaker condition, the better algorithm is chosen in a broader range of scenarios.}
 \end{OneLiners}
-These conclusions follow, respectively, from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax}. Further, {we consider the uniform choice between the principals. It corresponds to the least amount of rationality and competition, and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
+These conclusions follow, respectively, from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax-strong}. Further, {we consider the uniform choice between the principals. It corresponds to the least amount of rationality and competition, and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
 \footnote{On the other hand, if principals' utility is somewhat aligned with agents' welfare, as in \eqref{eq:general-utility}, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a very generic and well-known effect regarding economies of scale.}
 Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 
@@ -436,48 +481,36 @@ The familiar inverted-U shape is depicted in Figure~\ref{fig:inverted-U3}.
 
 
 %%%%%%%%%%%%%
-\subsection{Generalizations}
+\subsection{Extensions}
 \label{sec:theory-extensions}
 
-\ascomment{TODO: revise this subsection.}
+Our theoretical results can be extended beyond the basic model in Section~\ref{sec:model}.
 
 
-Our results can be extended compared to the basic model described above.
-
-%First, the two principals may have different action sets, as long as
-%    $\E\left[ \max_{a\in A} \mu_a\right]$,
-%the Bayesian-expected reward of the best action, is the same for both principals.
-
-First, unless specified otherwise, our results allow a more general notion of principal's utility that can depend on both the market share and agents' rewards. Namely, principal $i$ collects $U_i(r_t)$ units of utility in each global round $t$ when she is chosen (and $0$ otherwise), where $U_i(\cdot)$ is some fixed non-decreasing function with $U_i(0)>0$. In a formula,
+\xhdr{Reward-dependent utility.}
+Except for Corollary~\ref{cor:SoftMax-strong}, our results allow a more general notion of principal's utility that can depend on both the market share and agents' rewards. Namely, principal $i$ collects $U_i(r_t)$ units of utility in each global round $t$ when she is chosen (and $0$ otherwise), where $U_i(\cdot)$ is some fixed non-decreasing function with $U_i(0)>0$. In a formula,
 \begin{align}\label{eq:general-utility}
 \textstyle U_i := \sum_{t=1}^T\; \indicator{i_t=i}\cdot U_i(r_r).
 \end{align}
 
-\ascomment{Edit in: this extension does not apply to Corollary~\ref{cor:SoftMax-strong}.}
-
-Second, our results carry over, with little or no modification of the proofs, to much more general versions of MAB, as long as it satisfies the i.i.d. property. In each round, an algorithm can see a \emph{context} before choosing an action (as in \emph{contextual bandits}) and/or additional feedback other than the reward after the reward is chosen (as in, \eg \emph{semi-bandits}), as long as the contexts are drawn from a fixed distribution, and the (reward, feedback) pair is drawn from a fixed distribution that depends only on the context and the chosen action. The Bayesian prior $\prior$ needs to be a more complicated object, to make sure that \PMR and \BIR are well-defined. Mean rewards may also have a known structure, such as Lipschitzness, convexity, or linearity; such structure can be incorporated via $\prior$. All these extensions have been studied extensively in the literature on MAB, and account for a substantial segment thereof; see \cite{Bubeck-survey12} for background and details.
-
+\xhdr{Time-discounted utility.}
 Corollary~\ref{cor:DG-dominance} holds under a more general model which allows time-discounting: namely, the utility of each principal $i$ in each global round $t$ is $U_{i,t}(r_t)$ if this principal is chosen, and $0$ otherwise, where $U_{i,t}(\cdot)$ is an arbitrary non-decreasing function with $U_{i,t}(0)>0$.
 
+\xhdr{Arbitrary reward distributions.}
+While Section~\ref{sec:model} posits Bernoulli rewards, we allow arbitrary reward distributions. Formally, for each arm $a\in A$ there is a parametric family $\psi_a(\cdot)$ of reward distributions, parameterized by the mean reward. Whenever arm $a$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards, denoted $\prior$.
+
+\xhdr{MAB extensions.} Our results carry over, with little or no modification of the proofs, to much more general versions of MAB, as long as it satisfies the i.i.d. property. In each round, an algorithm can see a \emph{context} before choosing an action (as in \emph{contextual bandits}) and/or additional feedback other than the reward after the reward is chosen (as in, \eg \emph{semi-bandits}), as long as the contexts are drawn from a fixed distribution, and the (reward, feedback) pair is drawn from a fixed distribution that depends only on the context and the chosen action. The Bayesian prior $\prior$ needs to be a more complicated object, to make sure that \PMR and \BIR are well-defined. Mean rewards may also have a known structure, such as Lipschitzness, convexity, or linearity; such structure can be incorporated via $\prior$. All these extensions have been studied extensively in the literature on MAB, and account for a substantial segment thereof. Background can be found in any of the recent books on MAB \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
 
 
-\xhdr{Dependence on the time horizon.}
-%\begin{remark}\label{rem:random-messy}
-  Many standard MAB algorithms in the literature are parameterized by
-  the time horizon $T$. Regret bounds for such algorithms usually
-  include a polylogarithmic dependence on $T$. In particular, a
-  typical upper bound for \BIR has the following form:
-  \OMIT{\footnote{We
-    provide upper bounds on \BIR for several standard MAB algorithms
-    to illustrate these dependencies in the appendix.}}
+\xhdr{\BIR can depend on $T$.}
+Many/most MAB algorithms are parameterized by the time horizon $T$, and their regret bounds usually include $\polylog(T)$. In particular,  a regret bound for \BIR is
 \begin{align}
     \BIR(n\mid T)\leq \polylog(T)\cdot n^{-\gamma}
     \quad \text{for some $\gamma\in(0,\tfrac12]$}.
 \end{align}
 Here we write $\BIR(n\mid T)$ to emphasize the dependence on $T$.
 
-Theorem~\ref{thm:random-clean} easily extends if condition \eqref{eq:random-better-weaker} is replaced with the following:
-there exists a number $T_0$ and a function $n_0(T)\in \polylog(T)$
+Accordingly, BIR-dominance can be redefined as follows: there exists a number $T_0$ and a function $n_0(T)\in \polylog(T)$
 such that
 \begin{align}\label{eq:random-better-messy}
 (\forall T\geq T_0,\; n\geq n_0(T)) \quad
@@ -492,19 +525,13 @@ such that
 %    $t\geq n_0(T)$ chooses principal $1$ with probability $\respF(1)$.
 %\end{theorem}
 
-Similar to the condition \eqref{eq:random-better-weaker}, we can also
-generalize the weak BIR-dominance condition \eqref{eq:SoftMax-better}
-to handle the dependence on $T$: there exist some $T_0$, a function
+
+Similarly, weak BIR-dominance can be redefined as follows: there exist some $T_0$, a function
 $n_0(T)\in \polylog(T)$, and constants $\beta_0,\alpha_0\in (0, 1/2)$, such that
 \begin{align}\label{eq:SoftMax-better-weaker}
 (\forall T\geq T_0,  n\geq n_0(T)) \quad
 \frac{\BIR_1((1-\beta_0)\, n\mid T)}{\BIR_2(n\mid T)} <1-\alpha_0.
 \end{align}
 
-We also provide a version of Theorem~\ref{thm:SoftMax-weak} under this
-more general weak BIR-dominance condition; its proof is very similar
-and is omitted.
+Theorem~\ref{thm:random-clean} and Theorem~\ref{thm:SoftMax-weak} extend to these generalized versions; the easy modifications are omitted.
 
-
-\ascomment{TODO: arbitrary reward distributions.}
-For each action $a\in A$ there is a parametric family $\psi_a(\cdot)$ of reward distributions, parameterized by the mean reward $\mu_a$. (The paradigmatic case is 0-1 rewards with a given expectation.) Whenever a given action $a\in A$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards, denoted $\prior$.
