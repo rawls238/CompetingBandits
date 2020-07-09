@@ -1,4 +1,35 @@
 
+\xhdr{Some notation.} Without loss of generality, we label actions as $A=[K]$ and sort them according to their prior mean rewards, so that
+    $ \E[\mu_1] > \E[\mu_2] > \ldots > \E[\mu_K]$.
+
+Fix principal $i\in \{1,2\}$ and (local) step $n$. The arm chosen by algorithm \alg[i] at this step is denoted $a_{i,n}$, and the corresponding \BIR is denoted $\BIR_i(n)$. History of \alg[i] up to this step is denoted $H_{i,n}$.
+
+Fix agent $t$. Recall that $n_i(t)$ denotes the number of global rounds before $t$ in which principal $i$ is chosen. Let $\posteriorN{i}{t}$ denote the distribution of $n_i(t)$.
+
+\ascomment{Steven: in the ITCS paper, we defined $\posteriorN{i}{t}$ as the posterior distribution given all info available to agent $t$. But this is the same thing, isn't it?}
+
+Write
+    $\PMR(a\mid E) = \E[\mu_a \mid E]$
+for posterior mean reward of action $a$ given event $E$.
+
+\xhdr{Chernoff Bounds.}
+We use an elementary concentration inequality known as {\em Chernoff Bounds}, in a formulation from~\cite{MitzUpfal-book05}.
+\begin{theorem}[Chernoff Bounds]
+\label{thm:chernoff}
+Consider $n$ i.i.d. random variables $X_1 \ldots X_n$ with values in $[0,1]$. Let
+    $X = \tfrac{1}{n} \sum_{i=1}^n X_i$ be their average, and let $\nu = \E[X]$. Then:
+\[ \min\left(\; \Pr[ X-\nu > \delta \nu ],\quad
+                \Pr[ \nu-X > \delta \nu ]
+    \; \right)
+    < e^{-\nu n \delta^2/3}
+    \quad \text{for any $\delta\in (0,1)$.}
+\]
+\end{theorem}
+
+
+
+
+
 
 \subsection{Main result on \HardMax: Proof of Theorem~\ref{thm:DG-dominance}}
 \label{sec:proofs-HM-main}
@@ -138,7 +169,7 @@ The above inequalities follow, resp., from algorithms' monotonicity and \eqref{e
         + \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}
             {\Delta(m_1,m_2)\mid m_1 \geq \eps_0 t/2-1} \\
     &\geq \BIR_2(t)/2-q \\
-    &> \BIR_2(t)/4 > 0  
+    &> \BIR_2(t)/4 > 0
     &\EqComment{by \refeq{eq:random-assn}}. \qedhere
 \end{align*}
 
