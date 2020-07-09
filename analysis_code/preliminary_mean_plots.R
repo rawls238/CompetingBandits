@@ -2,9 +2,10 @@ library("ggplot2")
 library("dplyr")
 library("reshape")
 
-WORKING_PATH <- "/Users/garidor/Desktop/bandits-rl-project"
+WORKING_PATH <- "/Users/guyaridor/Dropbox/Competing Bandits/Isolation Results"
+setwd(WORKING_PATH)
 
-dat <- read.csv(file=paste(WORKING_PATH, "/results/preliminary_raw_results/preliminary_unified_plots.csv", sep=""))
+dat <- read.csv(file=paste(WORKING_PATH, "Isolation Results/longer_ws.csv", sep=""))
 
 dat$Algorithm <- replace(as.character(dat$Algorithm), dat$Algorithm == "DynamicEpsilonGreedy", "DynamicEpsilonGreedy, 0.05")
 dat$Algorithm <- replace(as.character(dat$Algorithm), dat$Algorithm == "NonBayesianEpsilonGreedy", "NonBayesianEpsilonGreedy, 0.05")
@@ -20,7 +21,7 @@ filter_by_dist_and_plot <- function(dist) {
     #geom_path() # just plot the raw trajectory
     geom_smooth(method="loess") #+ smooths the trajectory 
     #geom_errorbar(aes(ymin=Instantaneous.Reward.Mean-1.96*Instantaneous.Reward.Std, ymax=Instantaneous.Reward.Mean+1.96*Instantaneous.Reward.Std))
-  ggsave(width=8, height=8, dpi=300, filename=paste(WORKING_PATH, "/results/preliminary_figures/", title, ".pdf", sep=""), plot=q)
+  ggsave(paste(FIGURES_DIR, "persistence_publisher_bz.pdf", sep=""), device="pdf", plot=g, width=8.14, height=7.6)
   
   return(d)
 }

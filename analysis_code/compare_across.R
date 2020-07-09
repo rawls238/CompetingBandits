@@ -1,6 +1,6 @@
 library(dplyr)
 
-dat_1 <- read.csv("/Volumes/Mac/final_bandit_results/results/preliminary_raw_results/longer_ws.csv")
+dat_1 <- read.csv("/Users/guyaridor/Dropbox/Competing Bandits/Isolation Results/longer_ws.csv", stringsAsFactors=F)
 dat_1$Algorithm<- sapply(dat_1$Algorithm, concise_alg_rep)
 #dat_2 <- read.csv("/Users/garidor/Desktop/CompetingBandits/results/tournament_raw_results/tournament_experiment_full_sim_with_realizations_raw.csv")
 
@@ -52,7 +52,7 @@ iso_dat <- filter(dat_1, Distribution == dist)
 iso_dat_t <- filter(iso_dat, t == 1000)
 ggplot(iso_dat_t, aes(Realized.Reputation, colour=Algorithm)) +
   geom_density() +
-  ggtitle("Quality Distribution, Needle In Haystack, t=1000") +
+  ggtitle("Reputation Distribution, Needle In Haystack, t=1000") +
   theme_bw(base_size = 12) +
   xlab("Quality") + 
   theme(plot.title = element_text(hjust = 0.5))
