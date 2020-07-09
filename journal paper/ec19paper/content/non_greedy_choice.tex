@@ -1,11 +1,11 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\subsection{Non-deterministic Choice Models}\label{sec:non_greedy}
+\subsection{Non-deterministic choice Model (HardMaxRandom)}\label{sec:non_greedy}
 
-Let us consider an extension in which the agents' choice is no longer deterministic. Recall that in the reputation choice variant agents deterministically choose the firm with the higher reputation score, which, as before, we denote as \emph{HardMax} (\HM). Now, we introduce some randomness: each agent selects between the firms uniformly with probability $\eps\in (0,1)$, and takes the firm with the higher reputation score with the remaining probability; as before, we denote this rule as \emph{HardMax with randomness} (\HMR).
+Let us consider an extension in which the agents' response function \eqref{eq:model-f} is no longer deterministic. We focus on \HardMaxRandom model, where each agent selects between the firms uniformly with probability $\eps\in (0,1)$, and takes the firm with the higher reputation score with the remaining probability.
 
-One can view \HMR as a version of ``warm start", where a firm receives some customers without competition, but these customers are dispersed throughout the game. The expected duration of this ``dispersed warm start" is $\eps T$. If this quantity is large enough, we expect better algorithms to reach their long-term performance and prevail in competition. We confirm this intuition; we also find that this effect is negligible for smaller (but still relevant) values of $\eps$ or $T$.
+One can view \HardMaxRandom as a version of ``warm start", where a firm receives some customers without competition, but these customers are dispersed throughout the game. The expected duration of this ``dispersed warm start" is $\eps T$. If this quantity is large enough, we expect better algorithms to reach their long-term performance and prevail in competition. We confirm this intuition; we also find that this effect is negligible for smaller (but still relevant) values of $\eps$ or $T$.
 
 \OMIT{In Section \ref{sec:competition} we show that in the permanent duopoly
 case exploration can lead to a death spiral which eventually starves
@@ -17,7 +17,7 @@ concentrating the free agents as arriving in the beginning of the game
 instead they are dispersed throughout the game.}
 
 \begin{finding}\label{find:non_greedy_choice}
-\textit{\TS is weakly dominant under the \HMR~ choice rule, if and only if $\eps T$ is sufficiently large. \HMR leads to lower variance in market shares, compared to \HM.}
+\textit{\TS is weakly dominant under \HardMaxRandom, if and only if $\eps T$ is sufficiently large. Moreover, \HardMaxRandom leads to lower variance in market share, compared to \HardMax.}
 \end{finding}
 
 
@@ -65,7 +65,7 @@ $T = 2000$
    \hline
 \end{tabular}
 \normalsize
-\caption{\HM and \HMR choice models on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+\caption{\HardMax (\HM) and \HardMaxRandom (\HMR) choice models on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
 %For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
 Line 2 specifies the variance of the market shares across the simulations. The results reported here are with $T_0 = 20$.}
 \label{tab:non_greedy_table}
@@ -116,7 +116,7 @@ $T = 2000$
   \\
    \hline
 \end{tabular}
-\caption{\HMR choice model for Uniform and Needle-In-Haystack MAB instances.}
+\caption{\HardMaxRandom (\HMR) choice model for Uniform and Needle-In-Haystack MAB instances.}
 %Same semantics as in Table \ref{tab:non_greedy_table}.
 \label{tab:additional_results}
 \end{table*}
@@ -125,8 +125,8 @@ $T = 2000$
 
 
 Table \ref{tab:non_greedy_table} shows the average market shares under
-the \HM~ vs \HMR~ choice rule. In contrast to the \HM~ model,
-  \TS becomes weakly dominant under the \HMR model, as $T$ gets
+\HardMax vs \HardMaxRandom. In contrast to what happens under \HardMax,
+  \TS becomes weakly dominant under \HardMaxRandom, as $T$ gets
   sufficiently large. These findings hold across all problem
 instances, see Table \ref{tab:additional_results} (with the same semantics as in Table \ref{tab:non_greedy_table}).
 

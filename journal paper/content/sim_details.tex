@@ -4,17 +4,20 @@
 
 In this section we move to the reputation choice variant. Recall that in this variant of the model, instead of making choices between firms based on the Bayesian expected reward, each agent chooses the firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. We focus on numerical investigation of this model instead of analytical characterizations of equilibrium strategies.
 
-\subsection{Preliminaries}
+\subsection{Experiment setup}
 \label{expts-prelims}
 
-\ascomment{To be revised.}
 
-\xhdr{Key Model Differences}
-The timing of the model is the same as before where each firm commits to a MAB algorithm before the game starts and uses this algorithm to choose its actions. We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown. However, instead of starting from some prior, we suppose that each firm has a uniform, ``fake", prior and that the initial information set of the firm is given by a ``warm start". Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. The warm start ensures that each firm has a meaningful reputation and initial prior when competition starts..
+%The timing of the model is the same as before where each firm commits to a MAB algorithm before the game starts and uses this algorithm to choose its actions. We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown. However, instead of starting from some prior, we suppose that each firm has a uniform, ``fake", prior and that the initial information set of the firm is given by a ``warm start". Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. The warm start ensures that each firm has a meaningful reputation and initial prior when competition starts..
 
-In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{first-mover advantage}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
+\xhdr{Agent model.} All experiments use \HardMax response function (without mentioning it), except Section~\ref{sec:non_greedy} where we use \HardMaxRandom agents.
 
-\xhdr{MAB algorithms.} We consider the same three classes of bandit algorithms discussed in Section ~\ref{sec:model}, but take a representative algorithm from each class and look for qualitative differences between the different classes. We will utilize Thompson Sampling (\TS) from the ``smart" MAB algorithms, $\eps$-greedy (\DEG)\footnote{Throughout, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.} from the ``naive" algorithms, and \DynGreedy (\DG). For ease of comparison, all three algorithms are parameterized with the same fake prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+\xhdr{First-movers.}
+Recall that in some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{first-mover advantage}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
+
+\xhdr{MAB algorithms.} We consider the same three classes of bandit algorithms discussed in Section~\ref{sec:intro-model}, but take a representative algorithm from each class and look for qualitative differences between the different classes. We will utilize Thompson Sampling (\TS) from the ``adaptive-exploration" MAB algorithms, the dynamic $\eps$-greedy (\DEG)\footnote{Throughout, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.} from the ``exploration-separating" algorithms, and the ``dynamic greedy" algorithm (\DG) as in Section~\ref{sec:theory-prelims}. For ease of comparison, all three algorithms are parameterized with the same ``fake" Bayesian prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+
+\ascomment{TODO: add a bit more detail -- \eg define \eps-greedy.}
 
 \xhdr{MAB instances.}
 We consider instances with $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the \emph{\MRV} $(\mu(a):\; a\in A)$. Initially this vector is drawn from some distribution, termed \emph{MAB instance}. We consider three MAB instances:
