@@ -1,6 +1,17 @@
-We show that Assumption~\eqref{eq:assn-distinct} holds almost surely under a small random perturbation of the prior. We focus on problem instances with 0-1 rewards, and assume that the prior $\priorMu$ is independent across arms and has a finite support.%
-\footnote{The assumption of 0-1 rewards is for clarity. Our results hold under a more general assumption that for each arm $a$, rewards can only take finitely many values, and each of these values is possible (with positive probability) for every possible value of the mean reward $\mu_a$.}
- Consider the probability vector in the prior for arm $a$:
+We provide two examples when Assumption~\eqref{eq:assn-distinct} holds almost surely under a small random perturbation of the prior. We focus on problem instances with Bernoulli rewards, and assume that the prior $\priorMu$ is independent across arms.
+
+% and has a finite support.%
+%\footnote{The assumption of 0-1 rewards is for clarity. Our results hold under a more general assumption that for each arm $a$, rewards can only take finitely many values, and each of these values is possible (with positive probability) for every possible value of the mean reward $\mu_a$.}
+
+
+\xhdr{Beta priors.} Suppose the mean reward $\mu_a$ for each arm $a$ is drawn from some Beta distribution $\text{Beta}(\alpha_a, \beta_a)$. Given any history $H$ that contains $h_a$ number of heads and $t_a$ number of tails from arm $a$, the posterior mean reward is
+    $\E[\mu_a \mid H] =  \frac{\alpha_a + h_a}{\alpha_a + h_a + \beta_a + t_a}$.
+Therefore, perturbing the
+    parameters $\alpha_a$ and $\beta_a$ independently with any
+    continuous noise will induce a prior with property
+    \eqref{eq:assn-distinct} with probability 1.  
+
+\xhdr{A prior with a finite support.} Consider the probability vector in the prior for arm $a$:
 \[ \vec{p}_a = \left(\; \Pr[\mu_a=\nu]:\; \nu\in \support(\mu_a)\; \right).\]
 We apply a small random perturbation independently to each such vector:
 \begin{align}\label{eq:app:perturb:noise}
