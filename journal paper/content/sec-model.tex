@@ -12,7 +12,7 @@ Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and
 \newcommand{\est}{\mathtt{EST}}
 
 \xhdr{Agents' response.} Each agent $t$ forms a reward estimate $\est_i(t)\in [0,1]$ for each principal $i$, and chooses the principal based on these reward estimates. Specifically, principal $1$ is chosen with probability
-\begin{align}
+\begin{align}\label{eq:model-f}
 p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
 \end{align}
 where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents and known to everyone.
