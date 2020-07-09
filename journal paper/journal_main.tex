@@ -161,9 +161,12 @@ The research has been done when Z.S. Wu has been an intern and a postdoc at Micr
 \date{First version: July 2020}
 \maketitle
 \begin{abstract}
-Most modern firms strive to learn from interactions with consumers, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration} and \emph{competition}—how such firms balance the exploration for learning and the competition for consumers. Here consumers play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing firms.
+Most online platforms strive to learn from interactions with consumers, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for consumers. Here consumers play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
 
-We consider competition between two firms facing the same multi-armed bandit instance who simultaneously choose a bandit algorithm. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance if and only if it is chosen. We study to what extent competition leads to welfare increases for consumers and what algorithms firms adopt under competition. We find that stark competition induces firms to commit to a ``greedy" algorithm that leads to low consumer welfare. However, we find that weakening competition by providing firms with some ``free" consumers incentivizes better exploration strategies and increases consumer welfare. Our findings shed light on the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets and are closely related to the ``competition vs. innovation" relationship, a well-studied theme in economics.
+We consider a stylized duopoly model in which two firms face the same instance of multi-armed bandits. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance only if it is chosen. We study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for consumers. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low consumer welfare. However, we find that weakening competition by providing firms with some ``free" consumers incentivizes better exploration strategies and increases consumer welfare.  We investigate two channels for weakening the competition: relaxing the rationality of consumers and giving one firm a first-mover advantage. We provide a mix of theoretical results and numerical simulations.
+
+Our findings are closely related to the ``competition vs. innovation" relationship, a well-studied theme in economics. They also elucidate the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets.
+
 
 \vspace{0.2in}
 
@@ -189,6 +192,7 @@ We consider competition between two firms facing the same multi-armed bandit ins
 \label{sec:intro}
 \subfile{content/sec-intro}
 
+\newpage
 \section{Related work}
 \label{sec:related-work}
 \subfile{content/related_work}
