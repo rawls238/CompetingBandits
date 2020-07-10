@@ -65,7 +65,7 @@ ggsave(paste("ht_many_firm_welfare.pdf", sep=""), device="pdf", plot=g, width=8.
 end_time <- ht_competition %>% filter(Time.Horizon == 2000)
 end_time <- end_time %>% group_by(NumFirms) %>% summarise(mean_eeog = mean(EEOG), sd_eeog = sd(EEOG), N=n())
 g <- ggplot(end_time, aes(x=as.numeric(NumFirms), y=mean_eeog)) + geom_point() + geom_line() + geom_errorbar(aes(ymin=mean_eeog - 1.96 * sd_eeog / N, ymax=mean_eeog + 1.96 * sd_eeog / N)) + 
-  xlab("Number of Firms") + ylab("Effective End of Game") + ggtitle("EEOG vs Number of Firms, Heavy Tail") + 
+  xlab("Number of Firms") + ylab("Effective End of Game") + ggtitle("EoG vs Number of Firms, Heavy Tail") + 
   theme_bw(base_size = 20) + theme(plot.title = element_text(hjust = 0.5))
 print(g)
 ggsave(paste("eeog_vs_num_firms_ht.pdf", sep=""), device="pdf", plot=g, width=8.14, height=7.6)
@@ -74,7 +74,7 @@ ggsave(paste("eeog_vs_num_firms_ht.pdf", sep=""), device="pdf", plot=g, width=8.
 end_time <- unif_competition %>% filter(Time.Horizon == 2000)
 end_time <- end_time %>% group_by(NumFirms) %>% summarise(mean_eeog = mean(EEOG), sd_eeog = sd(EEOG), N=n())
 g <- ggplot(end_time, aes(x=as.numeric(NumFirms), y=mean_eeog)) + geom_point() + geom_line() + geom_errorbar(aes(ymin=mean_eeog - 1.96 * sd_eeog / N, ymax=mean_eeog + 1.96 * sd_eeog / N)) + 
-  xlab("Number of Firms") + ylab("Effective End of Game") + ggtitle("EEOG vs Number of Firms, Uniform") + 
+  xlab("Number of Firms") + ylab("Effective End of Game") + ggtitle("EoG vs Number of Firms, Uniform") + 
   theme_bw(base_size = 20) + theme(plot.title = element_text(hjust = 0.5))
 print(g)
 ggsave(paste("eeog_vs_num_firms_unif.pdf", sep=""), device="pdf", plot=g, width=8.14, height=7.6)
