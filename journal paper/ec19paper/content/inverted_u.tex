@@ -47,7 +47,7 @@
    \hline
 \end{tabular}
 \normalsize
-\caption{{\bf Simultaneous Entry Duopoly}, for Heavy-Tail and Needle-in-Haystack instances. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+\caption{{\bf Simultaneous Entry}, for Heavy-Tail and Needle-in-Haystack instances. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
 %For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
 Line 2 specifies the ``effective end of game" (\Eeog): the average and the median (in brackets). The time horizon is $T=2000$.}
 \label{sim_table}
@@ -64,11 +64,11 @@ Our main experiments are with the duopoly game defined in Section~\ref{sec:model
 %   (c) Under Uniform, DG "beats" TS, but DEG "beats" TS by more than DG and DEG vs DG leads to ~50% market share (it's slightly in favor of DG but 50/50 is within the confidence band). If we break indifference towards DG cause of deployment costs, then we have that the unique PSNE is (DG, DG). If we don't add the indifference breaking, then we have four PSNE, (DG, DEG), (DEG, DG), (DG, DG), (DEG, DEG)
 
 
-\xhdr{Simultaneous entry duopoly.}
+\xhdr{Simultaneous entry.}
 The basic scenario is when both firms are competing from round $1$. A crucial distinction is whether an MAB instance is exploration-disadvantaged:
 
 \begin{finding}\label{find:duopoly}
-\textit{Under simultaneous entry duopoly:
+\textit{Under simultaneous entry:
 \begin{itemize}
 \item[(a)] (\DG,\DG) is the unique pure-strategy Nash equilibrium for exploration-disadvantaged MAB instances with a sufficiently small ``warm start".
 \item[(b)] This is not necessarily the case for MAB instances that are not exploration-disadvantaged. In particular, \TS is a weakly dominant strategy for Needle-in-Haystack.
@@ -114,25 +114,25 @@ We investigate the firms' market shares when they choose different algorithms (o
     & \makecell{\textbf{0.48} $\pm$0.02}
     & \makecell{\textbf{0.45} $\pm$0.02} \\\hline
 \end{tabular}
-\caption{{\bf Simultaneous entry duopoly}, for the Uniform MAB instance. Semantics are the same as in Table \ref{sim_table}.}
+\caption{{\bf Simultaneous entry}, for the Uniform MAB instance. Semantics are the same as in Table \ref{sim_table}.}
 \label{tab:duopoly_unif}
 \end{table}
 
 
 \OMIT{This establishes our claim that $\DG$ is the incentivized algorithm.\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium}}
 
-We attribute the prevalence of \DG on exploration-disadvantaged MAB instances to its prevalence on the initial ``exploration disadvantage period", as described in Section~\ref{sec:isolation}. Increasing the warm start length $T_0$ makes this period shorter: indeed, considering relative reputation trajectory in Figure~\ref{relative_rep_plots} (top), increasing $T_0$ effectively shifts the starting time point to the right. This is why it helps \DG if $T_0$ is small.
+We attribute the prevalence of \DG on exploration-disadvantaged MAB instances to its prevalence on the initial ``exploration disadvantage period", as described in Section~\ref{sec:isolation}. Increasing the warm start length $T_0$ makes this period shorter: indeed, considering the relative reputation trajectory in Figure~\ref{relative_rep_plots} (left), increasing $T_0$ effectively shifts the starting time point to the right. This is why it helps \DG if $T_0$ is small.
 
 
 \OMIT{
 The reason we see that $\DG$ is incentivized under the Heavy Tail and Uniform instances but that $\TS$ is weakly dominant under Needle In Haystack is precisely due to the fact that the purposeful exploration engaged by $\TS$ in the early rounds puts it in a disadvantage in the former case but not in the latter. Looking at the relative reputation plots in Figure \ref{relative_rep_plots}, we can interpret fixing a warm start $T_0$ as fixing the starting point on the relative reputation plots. The proportion of first rounds in the competition game that will go to a firm playing alg $A$ over a firm playing alg $B$ will correspond to the relative reputation proportion at time $T_0$. As a result, we see that for warm start $T_0 = 20$ on the exploration-disadvantaged instances, $\DG$ will win the first agent in a larger proportion of the simulations than $\TS$. However, on the Needle In Haystack instances, we see that $\TS$ wins a larger proportion of the first agents compared to $\DG$.
 }
 
-\xhdr{Temporary Monopoly.}
-We turn our attention to the temporary monopoly scenario. Recall that the incumbent firm enters the market and serves as a monopolist until the entrant firm enters at round $X$. We make $X$ large enough, but still much smaller than the time horizon $T$. We find that the incumbent is incentivized to choose \TS, in a strong sense:
+\xhdr{First-Mover.}
+We turn our attention to the first-mover scenario. Recall that the incumbent firm enters the market and serves as a monopolist until the entrant firm enters at round $X$. We make $X$ large enough, but still much smaller than the time horizon $T$. We find that the incumbent is incentivized to choose \TS, in a strong sense:
 
 \begin{finding}\label{find:temp-monopoly}
-\textit{Under temporary monopoly, \TS is the dominant strategy for the incumbent. This holds across all MAB instances, if $X$ is large enough.
+\textit{Underfirst-mover, \TS is the dominant strategy for the incumbent. This holds across all MAB instances, if $X$ is large enough.
 }
 \end{finding}
 
@@ -209,7 +209,7 @@ $\DG$
 \DG is a weakly dominant strategy for the entrant, for Heavy-Tail instance in Table~\ref{tab:ht-incum} and the Uniform instance, but not for the Needle-in-Haystack instance. We attribute this finding to exploration-disadvantaged property of these two MAB instance, for the same reasons as discussed above.
 
 \begin{finding}\label{find:temp-monopoly-entrant}
-\textit{Under temporary monopoly, \DG is a weakly dominant strategy for the entrant for exploration-disadvantaged MAB instances.
+\textit{Under first-mover, \DG is a weakly dominant strategy for the entrant for exploration-disadvantaged MAB instances.
 }
 \end{finding}
 
@@ -225,9 +225,9 @@ $\DG$
       \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
       \draw[scale=0.6,domain=0.7:9.8,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - 0.18 * (\x - 5.25)^2});
      \node[below] at (0.7, -0.22) {\footnotesize monopoly};
-     \node[below] at (3, -0.2) {\footnotesize incumbent};
-     \node[below] at (4.5, -0.22) {\footnotesize duopoly};
-     \node[below] at (6, -0.2) {\footnotesize entrant};
+     \node[below] at (2.8, -0.2) {\footnotesize incumbent};
+     \node[below] at (4.8, -0.22) {\footnotesize sim. entry};
+     \node[below] at (6.2, -0.2) {\footnotesize entrant};
  \end{tikzpicture}
  \caption{A stylized ``inverted-U relationship" between strength of competition and ``level of innovation".}
 \label{fig:inverted-U-expts}
@@ -235,10 +235,10 @@ $\DG$
 \end{figure}
 
 \xhdr{Inverted-U relationship.}
-We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DG wins out for the trivial reason of tie-breaking. The highest levels are simultaneous entry duopoly and ``late entrant". We see that \DG is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DG get stronger when the model transitions from simultaneous entry duopoly to ``late entrant".%
+We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DG wins out for the trivial reason of tie-breaking. The highest levels are simultaneous entry and ``late entrant". We see that \DG is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DG get stronger when the model transitions from simultaneous entry to ``late entrant".%
 \footnote{For the Heavy-Tail instance, \DG goes from a weakly dominant strategy to a strictly dominant one. For the Uniform instance, \DG goes from a Nash equilibrium strategy to a weakly dominant one.}
-Finally, the middle level of competition, ``incumbent" in the temporary monopoly creates strong incentives for \TS. In stylized form, this relationship is captured in Figure~\ref{fig:inverted-U-expts}.%
-\footnote{\asedit{We consider the ``permanent monopoly" scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses
+Finally, the middle level of competition, ``incumbent" in the first-mover regime creates strong incentives for \TS. In stylized form, this relationship is captured in Figure~\ref{fig:inverted-U-expts}.%
+\footnote{\asedit{We consider the monopoly scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses
 the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}}
 
 
@@ -246,14 +246,14 @@ the greedy algorithm, because it is easier to deploy in practice. Implicitly, us
 % In Heavy Tail, DG is strictly dominant (before it was only weakly).
 % In Uniform, DG is weakly dominant (before it was only PSNE).
 
-Our intuition for why incumbency creates more incentives for exploration is as follows. During the temporary monopoly period, reputation consequences of exploration vanish. Instead, the firm wants to improve its performance as much as possible by the time competition starts. Essentially, the firm only faces a classical explore-exploit trade-off, and is incentivized to choose algorithms that are best at optimizing this trade-off.
+Our intuition for why incumbency creates more incentives for exploration is as follows. \gaedit{During the period in which the incumbent is the only firm in the market}, reputation consequences of exploration vanish. Instead, the firm wants to improve its performance as much as possible by the time competition starts. Essentially, the firm only faces a classical explore-exploit trade-off, and is incentivized to choose algorithms that are best at optimizing this trade-off.
 
 \xhdr{Death spiral effect.}
-Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the simultaneous entry duopoly scenario, we specify the \Eeog values in Table \ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
+Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the simultaneous entry scenario, we specify the \Eeog values in Table \ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
 
 \begin{finding}
 \textit{
-Under simultaneous entry duopoly, \Eeog values tend to be much smaller than the time horizon $T$.
+Under simultaneous entry, \Eeog values tend to be much smaller than the time horizon $T$.
 }
 \end{finding}
 
@@ -278,18 +278,18 @@ where $a_t$ is the arm chosen by agent $t$. This is a standard performance measu
 We assume that both firms play their respective equilibrium strategies for the corresponding competition level. As discussed previously, these are:
 \begin{itemize}
 \item \DG in the monopoly,
-\item \DG for both firms in duopoly (Finding \ref{find:duopoly}),
-\item \TS for the incumbent (Finding \ref{find:temp-monopoly}) and \DG for the entrant in temporary monopoly (Finding \ref{find:temp-monopoly-entrant}).
+\item \DG for both firms in simultaneous entry (Finding \ref{find:duopoly}),
+\item \TS for the incumbent (Finding \ref{find:temp-monopoly}) and \DG for the entrant in first-mover (Finding \ref{find:temp-monopoly-entrant}).
 \end{itemize}
 
 Figure \ref{eq_regret} displays the market regret (averaged
   over multiple runs) under different levels of competition.
-Consumers are \textit{better off} in the temporary monopoly case than in
-the duopoly case. Recall that under temporary monopoly, the incumbent is incentivized to play \TS. Moreover, we find that the welfare is close to that of having a single firm for all agents and running \TS. We also observe that monopoly and duopoly achieve similar welfare.
+Consumers are \textit{better off} in the first-mover case than in
+the simultaneous entry case. Recall that under first-mover, the incumbent is incentivized to play \TS. Moreover, we find that the welfare is close to that of having a single firm for all agents and running \TS. We also observe that monopoly and simultaneous entry achieve similar welfare.
 %with monopoly being marginally better than duopoly.
 
 \begin{finding}\label{find:welfare}
-\textit{In equilibrium, consumer welfare is (a) highest under temporary monopoly, (b) similar for monopoly and duopoly.
+\textit{In equilibrium, consumer welfare is (a) highest under first-mover, (b) similar for monopoly and simultaneous entry.
 %monopoly being marginally better leading to marginally better welfare than duopoly.
 }
 \end{finding}
@@ -307,7 +307,7 @@ To study this phenomenon further, we go beyond the duopoly setting to more than 
 across these simulations. Welfare not only does not get better, \textit{but is weakly worse} as we increase the number of firms.
 
 \begin{finding}
-\textit{When all firms deploy \DG, and start at the same time, welfare is weakly decreasing as the number of firms \gaedit{increases}}
+\textit{When all firms deploy \DG, and start at the same time, welfare is weakly decreasing as the number of firms increases.}
 \end{finding}
 
 
