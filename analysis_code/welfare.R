@@ -11,7 +11,7 @@ sim_eq_welfare <- filter(simultaneous_welfare, ((Prior == "Heavy Tail" | Prior =
 free_obs_eq_welfare <- filter(free_obs_welfare, ((Prior == "Heavy Tail" | Prior == "Uniform") & (P1.Alg == "DynamicGreedy" & P2.Alg == "ThompsonSampling")))
 one_welfare <- combine(sim_eq_welfare, free_obs_eq_welfare)
 
-one_welfare <- one_welfare %>% mutate(label=ifelse(source == "free_obs_eq_welfare", "First-Mover", "Duopoly"))
+one_welfare <- one_welfare %>% mutate(label=ifelse(source == "free_obs_eq_welfare", "First-Mover", "Simultaneous Entry"))
 
 prelim <- prelim %>% mutate(Prior = Distribution, Warm.Start = 20, label = "Monopoly", Total.Regret = Cumulative.Regret)
 prelim <- prelim %>% mutate(Time.Horizon = t - 20)
@@ -24,7 +24,7 @@ unif_ts <- filter(prelim, Prior == "Uniform" & Algorithm == "ThompsonSampling")
 unif_ts <- unif_ts %>% mutate(label = "Thompson Sampling")
 
 ws_20_ht <- filter(one_welfare, Warm.Start == 20 & Prior == "Heavy Tail")
-ws_20_ht <- ws_20_ht %>% mutate(Total.Regret = ifelse(label == "Temporary Monopoly", Market.Regret + WS1.Regret + WS2.Regret + Incum.Regret, Market.Regret + WS1.Regret + WS2.Regret))
+ws_20_ht <- ws_20_ht %>% mutate(Total.Regret = ifelse(label == "First-Mover", Market.Regret + WS1.Regret + WS2.Regret + Incum.Regret, Market.Regret + WS1.Regret + WS2.Regret))
 ws_20_ht <- bind_rows(ws_20_ht, ht_greedy, ht_ts)
 ws_20_ht <- ws_20_ht %>% mutate(Regime = label)
 g <- ggplot(ws_20_ht, aes(x=Time.Horizon, y=Total.Regret)) + geom_smooth(aes(colour=Regime)) + 
@@ -35,7 +35,7 @@ ggsave(paste("welfare_ht.pdf", sep=""), device="pdf", plot=g, width=8.14, height
 
 
 ws_20_uniform <- filter(one_welfare, Warm.Start == 20 & Prior == "Uniform")
-ws_20_uniform <- ws_20_uniform %>% mutate(Total.Regret = ifelse(label == "Temporary Monopoly", Market.Regret + WS1.Regret + WS2.Regret +Incum.Regret, WS1.Regret + WS2.Regret + Market.Regret))
+ws_20_uniform <- ws_20_uniform %>% mutate(Total.Regret = ifelse(label == "First-Mover", Market.Regret + WS1.Regret + WS2.Regret +Incum.Regret, WS1.Regret + WS2.Regret + Market.Regret))
 ws_20_uniform <- bind_rows(ws_20_uniform, unif_greedy, unif_ts)
 ws_20_uniform <- ws_20_uniform %>% mutate(Regime = label)
 g <- ggplot(ws_20_uniform, aes(x=Time.Horizon, y=Total.Regret)) + geom_smooth(aes(colour=Regime)) +
