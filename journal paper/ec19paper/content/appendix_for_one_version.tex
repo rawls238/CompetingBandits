@@ -4,26 +4,30 @@
 \section{Supplementary experimental results}
 \label{app:expts}
 
-\subsection{Plots for ``Performance In Isolation"}
+\subsection{Additional Plots for ``Performance In Isolation"}
 
-We present additional plots for Section \ref{sec:isolation}. First, we provide mean reputation trajectories for Uniform and Heavy-Tail MAB instances. Second, we provide trajectories for instantaneous mean rewards, for all three MAB instances.%
-\footnote{These trajectories are smoothed via a non-parametric regression.
-More concretely, we use this option in $\texttt{ggplot}$:
-\url{https://ggplot2.tidyverse.org/reference/geom_smooth.html}.}
+We present additional plots for Section \ref{sec:isolation}. First, we provide mean reputation trajectories for the Heavy-Tail MAB instance. Second, we provide trajectories for the average of the instantaneous mean rewards, for all three MAB instances. This provides a better view into the direct performance of the algorithm at a given time $t$ as, unlike reputation, it does not aggregate performance across many previous time periods. We report the average of the instantaneous mean rewards instead of the average of the realized instantaneous rewards since these tend to be rather noisy across time. Thus, we report the average of the instantaneous mean rewards to have a better sense of the average performance of the algorithm at time $t$.
 In all plots, the shaded area represents 95\% confidence interval.
 
+\begin{figure}
 \begin{center}
 \includegraphics[scale=0.3]{ec19paper/appendix_figures/ht_mean}
+\caption{Omitted Mean Reputation Plots}
 \end{center}
+\end{figure}
+%
+\begin{figure}
 \begin{center}
 \includegraphics[scale=0.25]{ec19paper/appendix_figures/mean_inst_reward_ht}
 \includegraphics[scale=0.25]{ec19paper/appendix_figures/mean_inst_reward_nih}
 \includegraphics[scale=0.25]{ec19paper/appendix_figures/mean_inst_reward_uniform}
+\caption{Omitted Instantaneous Mean Reward Plots}
 \end{center}
+\end{figure}
 
-\subsection{Temporary Monopoly}
+\subsection{Additional Experiments for First-Mover Regime}
 
-We present additional experiments on temporary monopoly from Section \ref{sec:competition}, across various MAB instances and various values of the incumbent advantage parameter $X$.
+We present additional experiments on the first-mover regime from Section \ref{sec:competition}, across various MAB instances and various values of the incumbent advantage parameter $X$.
 
 Each experiment is presented as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between the entrant's algorithm (the row) and the incumbent's algorithm (the column). The cell specifies the entrant's market share (fraction of rounds in which it was chosen) for the rounds in which he was present. We give the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.
 
