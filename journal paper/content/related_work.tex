@@ -1,5 +1,5 @@
 \xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is a particularly elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied in Economics, Operations Research and Computer Science for many decades, \asedit{and are covered in many books and surveys. Particularly, see
-\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations of bandits, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory.} 
+\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations of bandits, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory.}
 
 The literature on MAB is vast and multi-threaded. The most related
 thread concerns regret-minimizing MAB formulations with IID rewards
@@ -7,11 +7,11 @@ thread concerns regret-minimizing MAB formulations with IID rewards
 algorithms such as UCB1
 \citep{bandits-ucb1}, Thompson Sampling \citep{TS-survey-FTML18}, and Successive Elimination
 \citep{EvenDar-icml06}, and ``naive'' exploration-separating algorithms, including explore-first and
-Epsilon-Greedy 
+Epsilon-Greedy
 \asedit{\citep[\eg see Ch. 1 in ][for discussion and literature review]{slivkins-MABbook}.}
 
-\asedit{The greedy algorithm is terrible on a wide variety of problem instances, in the sense that it fails to try the best arm and therefore suffers regret linear in the time horizon  
-\citep[see Chapter 11.2 in][]{slivkins-MABbook}. 
+\asedit{The greedy algorithm is terrible on a wide variety of problem instances, in the sense that it fails to try the best arm and therefore suffers regret linear in the time horizon
+\citep[see Chapter 11.2 in][]{slivkins-MABbook}.
 On the other hand, a recent line of work \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18}
 finds that the greedy algorithm performs well (in theory), in a model of linear contextual bandits under substantial assumptions on smoothing or heterogeneity of the context vectors.}
 
@@ -40,17 +40,20 @@ Our setting is closely related to the ``dueling algorithms" framework \citep{Due
 
 \gaedit{There is a literature that studies the interaction between learning-by-doing and competition \citep{fudenberg1983learning, dasgupta1988learning, cabral1994learning}. In these models, firms learn while competing against each other where a firm attracting more consumers reduces its per-unit production costs. However, our model focuses on firms learning product quality (as opposed to reducing production costs) and the impact that this learning has on attracting consumers.}
 
-A line of work on \emph{platform competition}, starting with \cite{Rysman09}, concerns competition between firms (\emph{platforms}) that improve as they attract more users (\emph{network effect}); see \citet{Weyl-White-14} for a recent survey. This literature is not concerned with \innovation, and typically models network effects exogenously, whereas in our model network effects are endogenous: they are created by MAB algorithms, an essential part of the model. 
+A line of work on \emph{platform competition}, starting with \cite{Rysman09}, concerns competition between firms (\emph{platforms}) that improve as they attract more users (\emph{network effect}); see \citet{Weyl-White-14} for a recent survey. This literature is not concerned with \innovation, and typically models network effects exogenously, whereas in our model network effects are endogenous: they are created by MAB algorithms, an essential part of the model.
 \gaedit{A nascent literature studies whether and when network effects manifest themselves in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typically models learning as a reduced-form function of past consumer history and focus on the role of prices.}
 %as opposed to the reputational consequences of learning.
 
 \cite{schmalensee1982product, bagwell1990informational} investigate how buyer uncertainty about product quality can serve as a barrier to entry for late arrivers. We observe a similar effect when we investigate the role that reputation can serve as a barrier to entry. However, in our model this effect is further strengthened by the fact that the firms have to learn while competing adding that the incumbent may not only have a reputational advantage, but additionally has a further advantage due to the data it acquires in the incumbency period. Thus, our model also highlights the role that data can serve as a barrier to entry in online markets which has similarly been noted in \cite{de2020data}. \gaedit{For an extensive overview of the other channels through which first-mover advantages can lead to a competitive advantage, see \cite{kerin1992first}.}
- 
 
-Finally, relaxed versions of rationality similar to ours are found in several notable lines of work. For example, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. The \SoftMaxRandom model is closely related to the literature on \emph{product differentiation}, starting from \cite{Hotelling-29}, see \cite{Perloff-Salop-85} for a notable later paper. There is a large literature on non-existence of equilibria due to small deviations   (which is related to the corresponding result for \HardMaxRandom), starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets. Notable recent papers \citep{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom. \gaedit{We utilize first-mover advantage and relaxed versions of rationality to model varying competition, instead of classic market ``competitiveness" measures such as the Lerner Index or the Herfindahl-Hirschman Index, since these measures rely on ex-post observable attributes of a market such as prices or market shares \cite{tirole1988theory}. However, neither is applicable to our setting: in our model, there are no prices, and market shares are endogenous.}
 
-\ascomment{Guy: In EC20 you cited \cite{kerin1992first} for a survey on first-mover advantage. Why not now? Likewise, you also had a para on Lerner Inder and such (last para in related work in EC20).}
-\gacomment{Good catch, I re-added them back in. I had removed \cite{kerin1992first} since I added more directly relevant papers to the first-mover advantages in our model.}
+Relaxed versions of rationality similar to ours are found in several notable lines of work. For example, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. The \SoftMaxRandom model is closely related to the literature on \emph{product differentiation}, starting from \cite{Hotelling-29}, see \cite{Perloff-Salop-85} for a notable later paper. There is a large literature on non-existence of equilibria due to small deviations   (which is related to the corresponding result for \HardMaxRandom), starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets. Notable recent papers \citep{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom.
+
+We use first-mover advantage and relaxed versions of rationality to model varying competition, instead of classic ``market competitiveness" measures such as the Lerner Index or the Herfindahl-Hirschman Index
+\citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous.
+
+\ascomment{Guy: slightly reworded the previous para.}
+
 
 % moved this thought to the intro.
 \OMIT{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
