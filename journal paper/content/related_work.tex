@@ -1,23 +1,26 @@
-\xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is a particularly elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied in Economics, Operations Research and Computer Science for many decades, \asedit{and are covered in many books and surveys. Particularly, see
-\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations of bandits, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory.}
+\xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is a particularly elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied in Economics, Operations Research and Computer Science for many decades, and are covered in many books and surveys. Particularly, see
+\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory.
 
 The literature on MAB is vast and multi-threaded. The most related
 thread concerns regret-minimizing MAB formulations with IID rewards
-\citep{Lai-Robbins-85,bandits-ucb1}. This thread includes ``smart" adaptive-exploration
-algorithms such as UCB1
-\citep{bandits-ucb1}, Thompson Sampling \citep{TS-survey-FTML18}, and Successive Elimination
-\citep{EvenDar-icml06}, and ``naive'' exploration-separating algorithms, including explore-first and
-Epsilon-Greedy
-\asedit{\citep[\eg see Ch. 1 in ][for discussion and literature review]{slivkins-MABbook}.}
+\citep{Lai-Robbins-85,bandits-ucb1}. This thread includes adaptive-exploration
+algorithms such as 
+Thompson Sampling \citep{Thompson-1933,TS-survey-FTML18},
+UCB1 \citep{bandits-ucb1}, 
+and Successive Elimination \citep{EvenDar-icml06}, 
+as well as more ``naive'', exploration-separating algorithms such as Explore-first and Epsilon-Greedy.
+%\citep[\eg see Ch. 1 in ][for discussion and literature review]{slivkins-MABbook}.
 
 \asedit{The greedy algorithm is terrible on a wide variety of problem instances, in the sense that it fails to try the best arm and therefore suffers regret linear in the time horizon
 \citep[see Chapter 11.2 in][]{slivkins-MABbook}.
 On the other hand, a recent line of work \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18}
 finds that the greedy algorithm performs well (in theory), in a model of linear contextual bandits under substantial assumptions on smoothing or heterogeneity of the context vectors.}
 
-A discussion of industrial applications of MAB can be found in \citep{DS-arxiv} and \citep[Chapter 8]{slivkins-MABbook}. \asedit{In particular, switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training.}
+A discussion of industrial applications of MAB can be found in \citep{DS-arxiv}. 
+%and \citep[Chapter 8]{slivkins-MABbook}. 
+\asedit{In particular, switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training.}
 
-The three-way tradeoff between exploration, exploitation and incentives has been studied in several other settings:
+The three-way tradeoff between exploration, exploitation and incentives has been studied in several settings other than ours:
 incentivizing exploration in a recommendation system
     \citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
 dynamic auctions
@@ -30,11 +33,11 @@ as well as human computation
     \cite[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
 \citet{Bolton-econometrica99,Keller-econometrica05,Johari-ec12} studied models with self-interested agents jointly performing exploration, with no principal to coordinate them.
 
-There is a superficial similarity (in name only) between this paper and the line of work on ``dueling bandits"
+There is a superficial similarity --- in name only --- between this paper and the line of work on ``dueling bandits"
     \citep[\eg][]{Yue-dueling12,Yue-dueling-icml09}.
 The latter is not about competing bandit algorithms, but rather about scenarios where in each round two arms are chosen to be presented to a user, and the algorithm only observes which arm has ``won the duel".
 
-Our setting is closely related to the ``dueling algorithms" framework \citep{DuelingAlgs-stoc11} which studies competition between two principals, each running an algorithm for the same problem. However, this work considers algorithms for offline / full input scenarios, whereas we focus on online machine learning and the explore-exploit-incentives tradeoff therein. Also, this work specifically assumes binary payoffs (\ie win or lose) for the principals. \gaedit{\citet{ben2017best, ben2019regression} similarly study competing learning algorithms, though they consider competition between offline learning algorithms, whereas our focus here is on online learning algorithms.}
+Our setting is closely related to the ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11}, which studies competition between two principals, each running an algorithm for the same problem. However, \citet{DuelingAlgs-stoc11} consider algorithms for offline / full input scenarios, \asedit{and posit binary (win/lose) payoffs for the principals. Similarly, \citet{ben2017best, ben2019regression} study competition between offline learning algorithms. Whereas we focus on bandit algorithms and competition for users.}
 
 \xhdr{Other related work in economics.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{Aghion-QJE05,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
 
