@@ -4,7 +4,10 @@
 \section{Supplementary experimental results}
 \label{app:expts}
 
-\subsection{Additional Plots for ``Performance In Isolation"}
+\asedit{In this appendix we provide full results for the experiments described in Section~\ref{sec:sim}.}
+
+\subsection{``Performance In Isolation" (Section~\ref{sec:isolation})}
+%\subsection{Additional plots for ``Performance In Isolation"}
 
 We present additional plots for Section \ref{sec:isolation}. First, we provide mean reputation trajectories for the Heavy-Tail MAB instance. Second, we provide trajectories for the average of the instantaneous mean rewards, for all three MAB instances. This provides a better view into the direct performance of the algorithm at a given time $t$ as, unlike reputation, it does not aggregate performance across many previous time periods. We report the average of the instantaneous mean rewards instead of the average of the realized instantaneous rewards since these tend to be rather noisy across time. Thus, we report the average of the instantaneous mean rewards to have a better sense of the average performance of the algorithm at time $t$.
 In all plots, the shaded area represents 95\% confidence interval.
@@ -25,9 +28,10 @@ In all plots, the shaded area represents 95\% confidence interval.
 \end{center}
 \end{figure}
 
-\subsection{Additional Experiments for First-Mover Regime}
+\subsection{First-mover regime (Section~\ref{sec:competition})}
+%\subsection{Additional Experiments for First-Mover Regime}
 
-We present additional experiments on the first-mover regime from Section \ref{sec:competition}, across various MAB instances and various values of the incumbent advantage parameter $X$.
+We present additional experiments on the first-mover regime from Section~\ref{sec:competition}, across various MAB instances and various values of the incumbent advantage parameter $X$.
 
 Each experiment is presented as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between the entrant's algorithm (the row) and the incumbent's algorithm (the column). The cell specifies the entrant's market share (fraction of rounds in which it was chosen) for the rounds in which he was present. We give the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.
 
@@ -268,9 +272,10 @@ Each experiment is presented as a table with the same semantics as in the main t
 \caption{Uniform MAB Instance}
 \end{table}
 
-\subsection{Reputation vs. Data Advantage}
+\subsection{Reputation Advantage vs. Data Advantage (Section \ref{sec:barriers})}
+%\subsection{Reputation vs. Data Advantage
 
-This section presents all experiments on data vs. reputation advantage (Section \ref{sec:barriers}).
+This section presents \asedit{full experimental results} on reputation advantage vs. data advantage.
 
 Each experiment is presented as a table with the same semantics as in the main text. Namely, each cell in the table describes the duopoly game between the entrant's algorithm (the {\bf row}) and the incumbent's algorithm (the {\bf column}). The cell specifies the entrant's market share for the rounds in which hit was present: the average (in bold) and the 95\% confidence interval. NB: smaller average is better for the incumbent.
 
