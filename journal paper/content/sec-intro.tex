@@ -70,6 +70,7 @@ the prevalent intuition in the area. The distinction concerns the way in which t
 
 In isolation, \ie in the absence of competition, these classes are fairly well-understood. Greedy algorithms are terrible for a wide variety of problem instances, precisely because they never explore. Exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances. Adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances. Generally,  ``better" algorithms are better in the long run, but could be worse initially.
 
+\asedit{While this material builds on a vast and active research area, we present sufficient background in Section~\ref{sec:related-classes}, so as to keep this paper accessible to non-specialists.}
 
 
 \subsection{Our Results}
@@ -153,7 +154,7 @@ We refine and expand the theoretical results in several ways.
 Our model speaks to the ongoing debate on the role that data plays in the digital economy. One fundamental question in this debate is whether data can serve a similar role as traditional ``network effects", \asedit{creating scenarios when only one firm can function in the market \citep{Rysman09, jullien2019economics}.}
 %whereby, when these effects are present, in many cases only one firm can function in the market, leading to competition \emph{for} the market being more important than competition \emph{in} the market \citep{Rysman09, jullien2019economics}.
 \asedit{The death spiral/amplification effects mentioned above have a similar flavor as network effects: a relatively small amount of exploration (resp., data advantage)  gets amplified under competition and causes the firm to be starved out of users (resp., take over most of the market).}
-%\gaedit{We further find that a small data advantage for one firm gets amplified under competition and leads to that firm taking the entire market, showing that data can provide a similar incumbency advantage as those provided by traditional network effects and can serve as a barrier to entry in online markets.} 
+%\gaedit{We further find that a small data advantage for one firm gets amplified under competition and leads to that firm taking the entire market, showing that data can provide a similar incumbency advantage as those provided by traditional network effects and can serve as a barrier to entry in online markets.}
 A distinctive feature of our approach is that we explicitly model the learning problem of the firms and consider them deploying algorithms for solving this problem.  Thus, we do not explicitly model the network effects, but they arise endogenously from our setup.
 
 Our results highlight that understanding the performance of learning algorithms in isolation does not necessarily translate to understanding their impact in competition, precisely due to the fact that competition leads to the endogenous generation of data observed by the firms. Approaches such as \citet{lambrecht2015can, bajari2018impact} argue that the diminishing returns to scale and scope of data in isolation mitigate such data feedback loops,
@@ -161,11 +162,9 @@ Our results highlight that understanding the performance of learning algorithms 
 but ignore the differences induced by learning in isolation versus under competition. Furthermore, explicitly incorporating the interaction between learning technology and data creation allows us to speak on how data advantages are characterized and amplified not only by data quantity, but also the increased data quality gathered by better learning algorithms.
 
 
-\ascomment{Guy: Previously you also cited \cite{varian2018artificial,lambrecht2015can} for the same thing as \citet{bajari2018impact}. Why not now? Also, previously you explicitly mentioned "barriers to entry" and "market tipping" and "anti-trust implications". Why not now? I don't really know any of this literature, so I defer to your judgement on this ...}
+\ascomment{Guy: citing \citet{varian2018artificial} might serve us, even if it is a more informal discussion. The existence of the policy discussion is worth mentioning, too (with citations).}
 
-\gacomment{I added back the \cite{lambrecht2015can} reference, but \cite{varian2018artificial} is a more informal discussion of these issues and not essential to include. However, even the \cite{lambrecht2015can} is relatively informal discussion of the same issues. Part of the problem that makes this tricky is that the literature on network effects is a well-developed and mature literature, but the question of whether data plays a similar role primarily started as more of a policy discussion, of which there's only starting to be some serious theoretical and empirical work on the issue.}
-
-\ascomment{We could, in principle, move both "Econ interpretation" xhdrs to a separate subsection. But the current order of presentation seems better to me: we can explain the inverted-U right after "theory", before we put a whole bunch of simulation results on the stack. And the anti-trust stuff goes nicely right after the numerical results, without a big subsection break.}
+\ascomment{"Econ interpretation" xhdrs fit incely in "our results", as opposed to a separate subsection. Because: we can explain the "inverted-U" stuff right after "theory", before we put the simulation results on the stack. And the "network effects" stuff goes nicely right after the numerical results, without a big subsection break.}
 
 
 
