@@ -81,14 +81,13 @@ Further work on refining these regret rates is not as relevant.
 
 Exploration-separating algorithms completely separate exploration and exploitation. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round $t$ with predetermined probability $\eps_t$, and exploits with the remaining probability. A formal definition is that each round is either selected exploration, in which case  the distribution over arms does not depend on data, or it is assigned to exploitation, in which case the data from this round is discarded. The $T^{2/3}$ lower bound on regret follows from a somewhat more general lower bound in \citet{MechMAB-ec09}.
 
+\xhdr{Advanced aspects.}
+Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training \citep{DS-arxiv}. Inserting exploration in a complex decision pipeline necessitates a substantial awareness of the technology and a certain change in a mindset, as well as an infrastructure to collect and analyze the data. Adaptive exploration requires the said infrastructure to propagate the data analysis back to the ``front-end" where the decisions are made, and do it on a sufficiently fast and regular cadence. Framing the problem in terms of the appropriate modeling assumptions and action features, and debugging the machine learning code, tend to be quite subtle, too.
+
+The greedy algorithm can perform well \emph{sometimes} in a more general model of \emph{contextual bandits}, where auxiliary payoff-relevant signals, a.k.a. contexts, are observed before each round. This phenomenon has been observed in practice
+\citep{practicalCB-arxiv18}, and in theory \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18} under (very) substantial assumptions. The prevalent intuition is that the diversity of contexts can --- under some conditions and to a limited extent --- substitute for explicit exploration.
 
 \ascomment{stopped here.}
-
-\xhdr{Advanced aspects.}
-Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training \citep{DS-arxiv}.
-
-A recent line of work \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18}
-finds that the greedy algorithm performs well (in theory), in a model of linear contextual bandits under substantial assumptions on smoothing or heterogeneity of the context vectors.
 
 %\xhdr{}
 
