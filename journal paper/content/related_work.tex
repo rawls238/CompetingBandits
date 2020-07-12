@@ -2,8 +2,6 @@
 \citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory. A discussion of industrial applications of MAB can be found in \citep{DS-arxiv}.
 
 
-
-
 The three-way tradeoff between exploration, exploitation and incentives has been studied in several settings other than ours:
 incentivizing exploration in a recommendation system
     \citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
@@ -46,49 +44,53 @@ We use first-mover advantage and relaxed versions of rationality to model varyin
 \OMIT{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 
 
-\subsection{Background: the three classes of algorithms [IN PROGRESS, don't read]}
+\subsection{Background for non-specialists: the three classes of algorithms [IN PROGRESS]}
 \label{sec:related-classes}
 
 We present sufficient background on the three classes of MAB algorithms listed in Section~\ref{sec:intro-model}: from adaptive-exploration to exploration-separating to greedy.
 
-We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. Algorithm's goal is to maximize the total reward. A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best fixed arm.%
+\xhdr{Fundamentals.}
+We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. Algorithm's goal is to maximize the total reward.
+
+A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm.%
 \footnote{In a formula, regret is
-    $\E\sbr{ T\cdot \max_{\text{arms $a$}}\mu_a -  \sum_{t\in[T]} r_t }$,
+    $T\cdot \max_{\text{arms $a$}}\mu_a 
+    -  \E\sbr{ \sum_{t\in[T]} r_t }$,
 where $\mu_a$ is the mean reward of arm $a$.}
-The primary concern is the asymptotic growth rate of regret as a function of $T$.
+Since regret is normalized by the best arm, it allows to compare algorithms across different problem instances. 
+The primary concern is the asymptotic growth rate of regret as a function of the time horizon $T$.
 
 The three classes of algorithms perform very differently in terms of regret. Adaptive-exploration algorithms achieve optimal regret rates:
     $\tildeO(\sqrt{KT})$
-for all problem instances, and an improved regret rate of 
+for all problem instances, and an improved regret rate of
     $O(\tfrac{K}{\Delta}\log T)$
 for problem instances with $\text{gap}\geq \Delta$
 \citep{Lai-Robbins-85,bandits-ucb1,bandits-exp3}.%
-\footnote{The \emph{gap} is the difference in mean reward between the best arm and the second-best arm. As usual in computer science, the $O(\cdot)$ and $\tildeO(\cdot)$ notation suppresses the constant and 
+\footnote{The \emph{gap} is the difference in mean reward between the best arm and the second-best arm. As usual in computer science, the $O(\cdot)$ and $\tildeO(\cdot)$ notation suppresses the constant and
 $\polylog(T)$ factors, respectively.}
 Exploration-separating algorithms can only achieve regret $\tildeO(T^{2/3})$ across all problem instances. Finally, the greedy algorithm is terrible on a wide variety of problem instances, in the sense that it fails to try the best arm and therefore suffers regret linear in $T$
 \citep[see Chapter 11.2 in][]{slivkins-MABbook}.
 
 
-The optimal regret rates are achieved by many adaptive-exploration  algorithms, of which the most known are 
+The optimal regret rates are achieved by many adaptive-exploration  algorithms, of which the most known are
 Thompson Sampling \citep{Thompson-1933,TS-survey-FTML18},%
 \footnote{While Thompson Sampling is the first and arguably best-known bandit algorithm, the corresponding regret bounds have been proved relatively recently \citep{Shipra-colt12,Kaufmann-alt12,Shipra-aistats13}.}
 UCB1 \citep{bandits-ucb1},
-and Successive Elimination \citep{EvenDar-icml06}. 
+and Successive Elimination \citep{EvenDar-icml06}.
 Further work on refining these regret rates is not as relevant.
 
 Exploration-separating algorithms completely separate exploration and exploitation. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round $t$ with predetermined probability $\eps_t$, and exploits with the remaining probability. A formal definition is that each round is either selected exploration, in which case  the distribution over arms does not depend on data, or it is assigned to exploitation, in which case the data from this round is discarded. The $T^{2/3}$ lower bound on regret follows from a somewhat more general lower bound in \citet{MechMAB-ec09}.
- 
+
 
 \ascomment{stopped here.}
 
+\xhdr{Advanced aspects.}
+Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training \citep{DS-arxiv}.
 
 A recent line of work \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18}
 finds that the greedy algorithm performs well (in theory), in a model of linear contextual bandits under substantial assumptions on smoothing or heterogeneity of the context vectors.
 
-
-
-Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training.
-
+%\xhdr{}
 
 %%% Local Variables:
 %%% TeX-master: "main.tex"
