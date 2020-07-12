@@ -76,11 +76,11 @@ UCB1 \citep{bandits-ucb1},
 and Successive Elimination \citep{EvenDar-icml06}. 
 Further work on refining these regret rates is not as relevant.
 
-Exploration-separating algorithms completely separate exploration and exploitation. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round $t$ with predetermined probability $\eps_t$, and exploits with the remaining probability. 
+Exploration-separating algorithms completely separate exploration and exploitation. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round $t$ with predetermined probability $\eps_t$, and exploits with the remaining probability. A formal definition is that each round is either selected exploration, in which case  the distribution over arms does not depend on data, or it is assigned to exploitation, in which case the data from this round is discarded. The $T^{2/3}$ lower bound on regret follows from a somewhat more general lower bound in \citet{MechMAB-ec09}.
+ 
 
 \ascomment{stopped here.}
 
-%A formal definition is that the distribution over arms in each round does not depend on rewards observed in the previous rounds.
 
 A recent line of work \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18}
 finds that the greedy algorithm performs well (in theory), in a model of linear contextual bandits under substantial assumptions on smoothing or heterogeneity of the context vectors.
