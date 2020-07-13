@@ -215,8 +215,9 @@ be the (frequentist) instantaneous regret of \alg[2]. Then by definition of the 
 \BIR_2(n)
     &= \E\sbr{ (1-p) \cdot \BIR_1(M_n) + p \cdot \BIRgr_1(M_n) }.
 \end{align}
-Now, monotonicity of \alg[2] follows from monotonicity of $\BIR_1(\cdot)$ and $\BIRgr_1(\cdot)$.
+Now, monotonicity of $\BIR_2$ follows from monotonicity of $\BIR_1(\cdot)$ and $\BIRgr_1(\cdot)$. The former is assumed, and the latter is the monotonicity-in-information property of the ``greedy step" (see \ascomment{pointer} for a precise formulation and proof).
 
+Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of monotone MAB algorithms. Consequently, if the principals are restricted to choosing monotone MAB algorithms, then non-greedy algorithms cannot be chosen in equilibrium.
 
 \begin{corollary}\label{cor:random-greedy}
 Posit a symmetric \HardMaxRandom response function. Suppose both principals can only choose from monotone MAB algorithms. Then for any time horizon $T$, the only possible \emph{pure} Nash equilibrium is one where both principals choose \DynGreedy. Moreover, no pure Nash equilibrium exists when some algorithm BIR-dominates \DynGreedy and $T$ is sufficiently large.
