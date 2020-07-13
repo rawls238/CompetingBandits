@@ -49,18 +49,13 @@ for all priors. Both rates are up to $\log(n)$ factors, and are the best possibl
 \subsection{Full rationality: \HardMax}
 \label{sec:theory-HM}
 
-We posit fully rational agents, in the sense that their response function is \HardMax. We show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates. To make this more precise, let us say that two MAB algorithms \emph{deviate} at (local) step $n$ if
-\begin{align}
-\Pr\sbr{ \alg[1](n)\neq \alg[2](n)} >0,
-\end{align}
-where $\alg[i](n)$ is the arm chosen by \alg[i] at local step $n$.
+We posit fully rational agents, in the sense that their response function is \HardMax. We show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates.
 
-\ascomment{TODO: we used to have a much more cumbersome definition (commented out), and we need it back! because, what if we have two copies of the same randomized algorithm, this eqn will hold!}
+To make this more precise, let us define what it means for MAB algorithms to deviate from each other.
 
-\ascomment{TODO: define "deviate starting from" as just "this is the first $n_0$ when the deviation happens.}
-
-%there is an action $a\in A$ and a set of step-$n$ histories of positive probability such that any history $h$ in this set is feasible for both algorithms, and under this history the two algorithms choose action $a$ with different probability.
-
+\begin{definition}
+Two MAB algorithms \emph{deviate} at (local) step $n$ if there is a set $H$ of histories over the previous local steps such that both algorithms lead to $H$ with positive probability, and choose different distributions over arms given any history $h\in H$. The two algorithms deviate \emph{starting from} step $n_0$ if $n=n_0$ is the smallest step when they deviate.
+\end{definition}
 
 \begin{theorem}\label{thm:DG-dominance}
 Assume \HardMax response function with fair tie-breaking. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
@@ -210,24 +205,30 @@ Then each agent $t\geq n_0$ chooses principal $2$ with maximal possible probabil
   equilibrium exists when some algorithm BIR-dominates \DynGreedy and the time horizon $T$ is sufficiently large.
 \end{corollary}
 
+\newcommand{\BIRgr}{\BIR^{\texttt{gr}}}
 
-\ascomment{This whole remark is supposed to add intuition, but it seems pretty hard to parse ... :(}
+For the sake of intuition, let us give a concrete example how the modified algorithm \alg[2] may have a larger \BIR compared to the original algorithm \alg[1], even though it performs exploration at a slower rate. Let $\BIRgr_1(n)$ be the \BIR of the ``greedy choice" after $n-1$ steps of \alg[1]. Assume 
+\begin{align}\label{eq:cor:random-greedy-ex-assumption}
+ \tfrac{1}{c}\; \BIRgr_1(n) \geq \BIR_1(n)= \beta\cdot n^{-\gamma}  
+ \qquad \text{for all local steps $n$},
+\end{align}
+for some absolute constants $\beta,\gamma>0$ and $c>1-\gamma$. We will derive
+\begin{align}\label{eq:cor:random-greedy-ex-conclusion}
+\BIR_2(n)
+    >\alpha\cdot \BIR_1(n),
+    \text{where} \quad
+    \alpha = \frac{1-p+pc}{1-p\gamma}>1.
+\end{align}
 
-\begin{remark}
-The modified algorithm performs exploration % ingests information
-at a slower rate. For the sake of intuition, let us argue how this may translate  into a larger \BIR compared to the original algorithm. Let  $\BIR'_1(n)$ be the \BIR of the ``greedy choice" after $n-1$ steps of \alg[1]. Then
+Indeed, by definition of the modified algorithm we have that
 \begin{align}\label{eq:random-BIR}
 \BIR_2(n)
-    &= \Ex{m\sim (n_0-1)+\term{Binomial}(n-n_0+1,1-p)}{(1-p) \cdot \BIR_1(m) + p \cdot \BIR'_1(m)}.
+    &= \Ex{m\sim (n_0-1)+\term{Binomial}(n-n_0+1,1-p)}{(1-p) \cdot \BIR_1(m) + p \cdot \BIRgr_1(m)}.
 \end{align}
 In this expression, $m$ is the number of times \alg[1] is invoked in the first $n$ steps of the modified algorithm. Note that
     $\E[m] = n_0-1 + (n-n_0+1)(1-p) \geq (1-p)n$.
 
 
-Suppose $\BIR_1(n)= \beta n^{-\gamma}$ for some constants $\beta,\gamma>0$. Further, assume
-    $\BIR'_1(n)\geq  c\; \BIR_1(n)$,
-for some $c>1-\gamma$.
-\ascomment{Steven,Alex: not clear why this holds ...}
 
 Then for all $n\geq n_0$ and small enough $p>0$ it holds that:
 \begin{align*}
@@ -241,12 +242,10 @@ Then for all $n\geq n_0$ and small enough $p>0$ it holds that:
     &> \BIR_1(n)\;\; (1-p\gamma)^{-1}
         &\qquad\text{(since $(1-p)^\gamma < 1-p\gamma$)}.\\
 \BIR_2(n)
-    &>\alpha\cdot \BIR_1(n),
-    &\text{where} \quad
-    \alpha = \tfrac{1-p+pc}{1-p\gamma}>1.
+    &>\alpha\cdot \BIR_1(n).
 \end{align*}
 (In the above equations, all expectations are over $m$ distributed as in \eqref{eq:random-BIR}.)
-\end{remark}
+
 
 %%%%%%%%%
 \subsection{\SoftMaxRandom response function}
