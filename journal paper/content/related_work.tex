@@ -1,4 +1,4 @@
-\xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades \asedit{by researchers from computer science, operations research, statistics and economics. The literature on MAB is extremely vast and multi-threaded. The most relevant thread studies a basic model of MAB with IID rewards and no auxiliary structure, see Section~\ref{sec:related-classes}. The basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.} This literature is covered in many books and surveys. Particularly, see
+\xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades \asedit{by researchers from computer science, operations research, statistics and economics. The literature on MAB is extremely vast and multi-threaded. The most relevant thread studies a basic model of MAB with IID rewards and no auxiliary structure, see Appendix~\ref{sec:related-classes}. The basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.} This literature is covered in many books and surveys. Particularly, see
 \citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory. A discussion of industrial applications of MAB can be found in \citep{DS-arxiv}.
 
 
@@ -37,59 +37,9 @@ Relaxed versions of rationality similar to ours are found in several notable lin
 We use first-mover advantage and relaxed versions of rationality to model varying competition, instead of classic ``market competitiveness" measures such as the Lerner Index or the Herfindahl-Hirschman Index
 \citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous.
 
-\ascomment{Guy: slightly reworded the previous para.}
-
-
 % moved this thought to the intro.
 \OMIT{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 
-
-\subsection{Background for non-specialists: the three classes of algorithms [IN PROGRESS]}
-\label{sec:related-classes}
-
-We present sufficient background on the three classes of MAB algorithms listed in Section~\ref{sec:intro-model}: from adaptive-exploration to exploration-separating to greedy.
-
-\xhdr{Fundamentals.}
-We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. Algorithm's goal is to maximize the total reward.
-
-A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm.%
-\footnote{In a formula, regret is
-    $T\cdot \max_{\text{arms $a$}}\mu_a 
-    -  \E\sbr{ \sum_{t\in[T]} r_t }$,
-where $\mu_a$ is the mean reward of arm $a$.}
-Since regret is normalized by the best arm, it allows to compare algorithms across different problem instances. 
-The primary concern is the asymptotic growth rate of regret as a function of the time horizon $T$.
-
-The three classes of algorithms perform very differently in terms of regret. Adaptive-exploration algorithms achieve optimal regret rates:
-    $\tildeO(\sqrt{KT})$
-for all problem instances, and an improved regret rate of
-    $O(\tfrac{K}{\Delta}\log T)$
-for problem instances with $\text{gap}\geq \Delta$
-\citep{Lai-Robbins-85,bandits-ucb1,bandits-exp3}.%
-\footnote{The \emph{gap} is the difference in mean reward between the best arm and the second-best arm. As usual in computer science, the $O(\cdot)$ and $\tildeO(\cdot)$ notation suppresses the constant and
-$\polylog(T)$ factors, respectively.}
-Exploration-separating algorithms can only achieve regret $\tildeO(T^{2/3})$ across all problem instances. Finally, the greedy algorithm is terrible on a wide variety of problem instances, in the sense that it fails to try the best arm and therefore suffers regret linear in $T$
-\citep[see Chapter 11.2 in][]{slivkins-MABbook}.
-
-
-The optimal regret rates are achieved by many adaptive-exploration  algorithms, of which the most known are
-Thompson Sampling \citep{Thompson-1933,TS-survey-FTML18},%
-\footnote{While Thompson Sampling is the first and arguably best-known bandit algorithm, the corresponding regret bounds have been proved relatively recently \citep{Shipra-colt12,Kaufmann-alt12,Shipra-aistats13}.}
-UCB1 \citep{bandits-ucb1},
-and Successive Elimination \citep{EvenDar-icml06}.
-Further work on refining these regret rates is not as relevant.
-
-Exploration-separating algorithms completely separate exploration and exploitation. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round $t$ with predetermined probability $\eps_t$, and exploits with the remaining probability. A formal definition is that each round is either selected exploration, in which case  the distribution over arms does not depend on data, or it is assigned to exploitation, in which case the data from this round is discarded. The $T^{2/3}$ lower bound on regret follows from a somewhat more general lower bound in \citet{MechMAB-ec09}.
-
-\xhdr{Advanced aspects.}
-Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training \citep{DS-arxiv}. Inserting exploration in a complex decision pipeline necessitates a substantial awareness of the technology and a certain change in a mindset, as well as an infrastructure to collect and analyze the data. Adaptive exploration requires the said infrastructure to propagate the data analysis back to the ``front-end" where the decisions are made, and do it on a sufficiently fast and regular cadence. Framing the problem in terms of the appropriate modeling assumptions and action features, and debugging the machine learning code, tend to be quite subtle, too.
-
-The greedy algorithm can perform well \emph{sometimes} in a more general model of \emph{contextual bandits}, where auxiliary payoff-relevant signals, a.k.a. contexts, are observed before each round. This phenomenon has been observed in practice
-\citep{practicalCB-arxiv18}, and in theory \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18} under (very) substantial assumptions. The prevalent intuition is that the diversity of contexts can --- under some conditions and to a limited extent --- substitute for explicit exploration.
-
-\ascomment{stopped here.}
-
-%\xhdr{}
 
 %%% Local Variables:
 %%% TeX-master: "main.tex"
