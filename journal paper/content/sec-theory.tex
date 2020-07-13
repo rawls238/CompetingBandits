@@ -4,7 +4,7 @@ In this section, we present our theoretical results for the \TheoryModel. While 
 \subsection{Preliminaries}
 \label{sec:theory-prelims}
 
-\xhdr{Notation.} Let $\rew_i(n)$ denote the Bayesian-expected reward of principal $i$ at local step $n$. For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
+\xhdr{Notation.} Let $\rew_i(n)$ denote the realized reward of principal $i$ at local step $n$. For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
     \[ \PMR_i(t):=  \E\sbr{ r_t\mid i_t = i }
         = \E\sbr{ \rew_i(n_i(t)+1) }. \]
 
@@ -33,11 +33,11 @@ We consider two (Bayesian) greedy algorithms. The first one, called  \DynGreedy,
 
 
 We characterize the inherent quality of an MAB algorithm in terms of its \emph{Bayesian Instantaneous Regret} (henceforth, \BIR), a standard notion from machine learning:
-\begin{align}
-\BIR(n) := \E_{\mu\sim\priorMu}
-    \left[ \max_{a\in A} \mu_a\right] - \rew(n),
+\begin{align}\label{eq:theory-BIR-defn}
+\BIR_i(n) := \E\sbr{ n\cdot \max_{a\in A} \mu_a - \rew_i(n)}.
 \end{align}
-where $\rew(n)$ is the Bayesian-expected reward of the algorithm for the $n$-th step, when the algorithm is run in isolation. We are primarily interested in how \BIR scales with $n$: typically, how fast \BIR decreases with $n$. We treat $K$, the number of arms, as a constant unless specified otherwise. Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
+We are primarily interested in how \BIR scales with $n$: typically, how fast \BIR decreases with $n$. We treat $K$, the number of arms, as a constant unless specified otherwise. 
+%Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
 
 Let us connect \BIR with the three classes of algorithms listed in Section~\ref{sec:intro-model}. \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $n$). \StaticGreedy typically has at least a constant \BIR, in the same sense. Exploration-separating algorithms can have
     $\BIR(n) \sim n^{-1/3}$
@@ -195,7 +195,7 @@ for the first $n_0-1$ steps;
 
 \noindent Note that the modified algorithm is another pure strategy in the competition game between the two principals, not a mixed strategy that randomizes between \alg and the greedy algorithm.
 
-We find that the greedy modification prevails in competition if the mixing parameter is small enough. 
+We find that the greedy modification prevails in competition if the mixing parameter is small enough.
 
 \begin{theorem}\label{thm:random-greedy}
 Consider a symmetric \HardMaxRandom response function $\respF$ with baseline probability $\eps_0 = \respF(-1)$. Suppose \alg[1] is monotone, and deviates from \DynGreedy starting from some step $n_0$. Let \alg[2] be the greedy modification of \alg[1] with mixing parameter $p>0$ such that
@@ -203,7 +203,20 @@ Consider a symmetric \HardMaxRandom response function $\respF$ with baseline pro
 Then each agent $t\geq n_0$ chooses principal $2$ with probability $1-\eps_0$ (which is the largest possible).
 \end{theorem}
 
-%It is easy to see that \alg[2] is monotone. Indeed, 
+\newcommand{\BIRgr}{\BIR^{\texttt{gr}}}
+
+
+Next, let us argue that \alg[2] is monotone. We spell out the proof for the sake of intuition. For each $n\in\N$, let $M_n$ be the number of times \alg[1] is invoked in the first $n$ steps of \alg[2], and let $\BIRgr_1(n)$ be the $\BIR$ of the ``greedy choice" after $n-1$ steps of \alg[1]. Let 
+    $\mathtt{reg}_2(n) = n\cdot \max_a \mu_a - \rew_2(n)$ 
+be the (frequentist) instantaneous regret of \alg[2]. Then by definition of the greedy modification it holds that 
+\begin{align}\label{eq:random-BIR}
+\E\sbr{ \mathtt{reg}_2(n) \mid M_n = m}
+    &= (1-p) \cdot \BIR_1(m) + p \cdot \BIRgr_1(m) .\\
+\BIR_2(n)
+    &= \E\sbr{ (1-p) \cdot \BIR_1(M_n) + p \cdot \BIRgr_1(M_n) }.
+\end{align}
+Now, monotonicity of \alg[2] follows from monotonicity of $\BIR_1(\cdot)$ and $\BIRgr_1(\cdot)$.
+
 
 \begin{corollary}\label{cor:random-greedy}
 Posit a symmetric \HardMaxRandom response function. Suppose both principals can only choose from monotone MAB algorithms. Then for any time horizon $T$, the only possible \emph{pure} Nash equilibrium is one where both principals choose \DynGreedy. Moreover, no pure Nash equilibrium exists when some algorithm BIR-dominates \DynGreedy and $T$ is sufficiently large.
@@ -211,7 +224,6 @@ Posit a symmetric \HardMaxRandom response function. Suppose both principals can 
 \footnote{That is, the strategy set of each principal consists of some (but not necessarily all) monotone MAB algorithms, and contains all greedy mixtures of all algorithms in this set.}
 \end{corollary}
 
-\newcommand{\BIRgr}{\BIR^{\texttt{gr}}}
 
 \ascomment{Steven: I revised this example to clarify what it is supposed to mean. But the conclusion can't be right: "greedy modification" can only improve the BIR at step $n_0$! Perhaps what we derive is that
 $\BIR_2(n)>\BIR_1(n)$ starting from $n=n_0+1$? }
@@ -219,7 +231,7 @@ $\BIR_2(n)>\BIR_1(n)$ starting from $n=n_0+1$? }
 For the sake of intuition, let us show how \alg[1] can be a better algorithm than its greedy modification, in the sense of having a strictly smaller \BIR.
 
 \begin{example}
-Consider \alg[1] and \alg[2] as in Theorem~\ref{thm:random-greedy}. 
+Consider \alg[1] and \alg[2] as in Theorem~\ref{thm:random-greedy}.
 Let $\BIRgr_1(n)$ be the \BIR of the ``greedy choice" after $n-1$ steps of \alg[1]. Assume, for some absolute constants $\beta,\gamma>0$ and $c>1-\gamma$, that
 \begin{align}\label{eq:cor:random-greedy-ex-assumption}
  \tfrac{1}{c}\; \BIRgr_1(n) \geq \BIR_1(n)= \beta\cdot n^{-\gamma}
@@ -375,8 +387,9 @@ $\BIR_2(t)$.
 As in the previous subsection, we can state a game-theoretic corollary for the \FiniteGame (as in Definition~\ref{def:restricted-competition}). We need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
 \begin{align}\label{eq:SoftMax-BReg}
 \BReg(n) := n\cdot \E_{\mu\sim\priorMu}
-    \left[ \max_{a\in A} \mu_a\right] - \sum_{n=1}^n \rew(n')
-    = \sum_{n'=1}^n \BIR(n').
+    \left[ \max_{a\in A} \mu_a\right] - 
+    \E\sbr{ \sum_{m=1}^n \rew(m)}
+    = \sum_{m=1}^n \BIR(m).
 \end{align}
 
 
