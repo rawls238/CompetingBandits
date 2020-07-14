@@ -36,7 +36,7 @@ We characterize the inherent quality of an MAB algorithm in terms of its \emph{B
 \begin{align}\label{eq:theory-BIR-defn}
 \BIR_i(n) := \E\sbr{ n\cdot \max_{a\in A} \mu_a - \rew_i(n)}.
 \end{align}
-We are primarily interested in how \BIR scales with $n$: typically, how fast \BIR decreases with $n$. We treat $K$, the number of arms, as a constant unless specified otherwise. 
+We are primarily interested in how \BIR scales with $n$: typically, how fast \BIR decreases with $n$. We treat $K$, the number of arms, as a constant unless specified otherwise.
 %Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
 
 Let us connect \BIR with the three classes of algorithms listed in Section~\ref{sec:intro-model}. \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $n$). \StaticGreedy typically has at least a constant \BIR, in the same sense. Exploration-separating algorithms can have
@@ -203,39 +203,59 @@ Consider a symmetric \HardMaxRandom response function $\respF$ with baseline pro
 Then each agent $t\geq n_0$ chooses principal $2$ with probability $1-\eps_0$ (which is the largest possible).
 \end{theorem}
 
-\newcommand{\BIRgr}{\BIR^{\texttt{gr}}}
+\newcommand{\gr}{\texttt{gr}}
+\newcommand{\BIRgr}{\BIR^{\gr}}
+\newcommand{\alggr}{\alg[\gr]}
 
 
-Next, let us argue that \alg[2] is monotone. We spell out the proof for the sake of intuition. For each $n\in\N$, let $M_n$ be the number of times \alg[1] is invoked in the first $n$ steps of \alg[2], and let $\BIRgr_1(n)$ be the $\BIR$ of the ``greedy choice" after $n-1$ steps of \alg[1]. Let 
-    $\mathtt{reg}_2(n) = n\cdot \max_a \mu_a - \rew_2(n)$ 
-be the (frequentist) instantaneous regret of \alg[2]. Then by definition of the greedy modification it holds that 
-\begin{align}\label{eq:random-BIR}
+Let us analyze the \BIR of the greedy modification (we will use it for what follows). Use \alg[1] and \alg[2] as in the theorem. For each $n\in\N$, let $M_n$ be the number of times \alg[1] is invoked in the first $n$ steps of \alg[2]. Let \alggr be a hypothetical algorithm which at each step $n$ outputs the ``Bayesian-greedy choice" based on the data collected by \alg[1] in the first $n-1$ steps. Let $\BIRgr(n)$ be the \BIR of this algorithm. Let
+    $\mathtt{reg}_2(n) = n\cdot \max_a \mu_a - \rew_2(n)$
+be the (frequentist) instantaneous regret of \alg[2]. Then 
+\begin{align}
 \E\sbr{ \mathtt{reg}_2(n) \mid M_n = m}
-    &= (1-p) \cdot \BIR_1(m) + p \cdot \BIRgr_1(m) .\\
+    &= (1-p) \cdot \BIR_1(m) + p \cdot \BIRgr(m). \nonumber \\
 \BIR_2(n)
-    &= \E\sbr{ (1-p) \cdot \BIR_1(M_n) + p \cdot \BIRgr_1(M_n) }.
+    &= \E\sbr{ (1-p) \cdot \BIR_1(M_n) + p \cdot \BIRgr(M_n) }.
+    \label{eq:BIR-modification}
 \end{align}
-Now, monotonicity of $\BIR_2$ follows from monotonicity of $\BIR_1(\cdot)$ and $\BIRgr_1(\cdot)$. The former is assumed, and the latter is the monotonicity-in-information property of the ``greedy step" (see \ascomment{pointer} for a precise formulation and proof).
+
+\ascomment{Steven: do you buy this example? }
+
+Let us show how \alg[1] can be a better algorithm than its greedy modification \alg[2]. We need to assume that \alg[1] is (much) better than the greedy step \alggr if the latter is computed on a fraction of the data. Formally, we posit a convex function $f(\cdot)$ and $m_0>0$ such that
+\[ \BIRgr(n) \geq f(n) 
+    \quad\text{and}\quad 
+    f\rbr{\E[M_n]} \geq 2\, \BIR_1(n) \quad \forall n\geq m_0 .  \]
+Then by \eqref{eq:BIR-modification} and Jensen's inequality, for each step $n\geq m_0$ we have
+\[\BIR_2(n) 
+    \geq  \E\sbr{ \BIRgr(M_n) }
+    \geq \E\sbr{ f(M_n) } 
+    \geq f\rbr{ \E[M_n] }
+    \geq 2\,\BIR_1(n). \]
+    
+Second, let us argue that \alg[2] is monotone. This follows from \eqref{eq:BIR-modification} since both \alg[1] and \alggr are monotone. The latter follows from a ``monotonicity-in-information" property of the ``greedy step": essentially, it can only get better with more information
+(see \ascomment{add a pointer}).
 
 Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of monotone MAB algorithms. Consequently, if the principals are restricted to choosing monotone MAB algorithms, then non-greedy algorithms cannot be chosen in equilibrium.
 
 \begin{corollary}\label{cor:random-greedy}
 Posit a symmetric \HardMaxRandom response function. Suppose both principals can only choose from monotone MAB algorithms. Then for any time horizon $T$, the only possible \emph{pure} Nash equilibrium is one where both principals choose \DynGreedy. Moreover, no pure Nash equilibrium exists when some algorithm BIR-dominates \DynGreedy and $T$ is sufficiently large.
-\asedit{These conclusions hold even if the principals' strategy sets are any collections of monotone MAB algorithms that are closed under greedy mixing.}%
-\footnote{That is, the strategy set of each principal consists of some (but not necessarily all) monotone MAB algorithms, and contains all greedy mixtures of all algorithms in this set.}
+\asedit{These conclusions hold even if each principal's strategy set is a subset of monotone MAB algorithms that is closed under the greedy modification.}%
+\footnote{That is, the strategy set of each principal consists of some (but not necessarily all) monotone MAB algorithms, and contains the greedy modification for each algorithms in this set and each mixing parameter $p$.}
 \end{corollary}
 
 
-\ascomment{Steven: I revised this example to clarify what it is supposed to mean. But the conclusion can't be right: "greedy modification" can only improve the BIR at step $n_0$! Perhaps what we derive is that
+
+\ascomment{Steven: OLD EXAMPLE. I revised it to clarify what it is supposed to mean. But my new example is better, isn't it?}
+
+\ascomment{The conclusion can't be right: "greedy modification" can only improve the BIR at step $n_0$! Perhaps what we derive is that
 $\BIR_2(n)>\BIR_1(n)$ starting from $n=n_0+1$? }
 
-For the sake of intuition, let us show how \alg[1] can be a better algorithm than its greedy modification, in the sense of having a strictly smaller \BIR.
 
 \begin{example}
 Consider \alg[1] and \alg[2] as in Theorem~\ref{thm:random-greedy}.
-Let $\BIRgr_1(n)$ be the \BIR of the ``greedy choice" after $n-1$ steps of \alg[1]. Assume, for some absolute constants $\beta,\gamma>0$ and $c>1-\gamma$, that
+Let $\BIRgr(n)$ be the \BIR of the ``greedy choice" after $n-1$ steps of \alg[1]. Assume, for some absolute constants $\beta,\gamma>0$ and $c>1-\gamma$, that
 \begin{align}\label{eq:cor:random-greedy-ex-assumption}
- \tfrac{1}{c}\; \BIRgr_1(n) \geq \BIR_1(n)= \beta\cdot n^{-\gamma}
+ \tfrac{1}{c}\; \BIRgr(n) \geq \BIR_1(n)= \beta\cdot n^{-\gamma}
  \qquad \text{for all local steps $n$}.
 \end{align}
 Then, for a sufficiently small $p>0$, we have $\BIR_2(n)>\BIR_1(n)$ for all local steps $n\geq n_0$.
@@ -245,7 +265,7 @@ Then, for a sufficiently small $p>0$, we have $\BIR_2(n)>\BIR_1(n)$ for all loca
 By definition of the modified algorithm we have that
 \begin{align}\label{eq:random-BIR}
 \BIR_2(n)
-    &= \Ex{m\sim (n_0-1)+\term{Binomial}(n-n_0+1,1-p)}{(1-p) \cdot \BIR_1(m) + p \cdot \BIRgr_1(m)}.
+    &= \Ex{m\sim (n_0-1)+\term{Binomial}(n-n_0+1,1-p)}{(1-p) \cdot \BIR_1(m) + p \cdot \BIRgr(m)}.
 \end{align}
 In this expression, $m$ is the number of times \alg[1] is invoked in the first $n$ steps of the modified algorithm. Note that
     $\E[m] = n_0-1 + (n-n_0+1)(1-p) \geq (1-p)n$.
@@ -388,7 +408,7 @@ $\BIR_2(t)$.
 As in the previous subsection, we can state a game-theoretic corollary for the \FiniteGame (as in Definition~\ref{def:restricted-competition}). We need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
 \begin{align}\label{eq:SoftMax-BReg}
 \BReg(n) := n\cdot \E_{\mu\sim\priorMu}
-    \left[ \max_{a\in A} \mu_a\right] - 
+    \left[ \max_{a\in A} \mu_a\right] -
     \E\sbr{ \sum_{m=1}^n \rew(m)}
     = \sum_{m=1}^n \BIR(m).
 \end{align}
