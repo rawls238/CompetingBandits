@@ -46,20 +46,23 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 
 % Commands from EC 19 paper
 \newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
-\newcommand{\TS}{\term{TS}}
-\newcommand{\DEG}{\term{DEG}}
-\newcommand{\DG}{\term{DG}}
-\newcommand{\AD}{\term{AD}}
-\newcommand{\EGR}{\term{EGR}}
-\newcommand{\GR}{\term{GR}}
+
+% shorthand for algorithms
+\newcommand{\TS}{\term{TS}}    % Thompson Sampling
+\newcommand{\DEG}{\term{BEG}}  % "Dynamic eps-greedy"
+\newcommand{\DG}{\term{BG}}    % "Dynamic Greedy"
+
+% shorthand for models
+\newcommand{\HMR}{\term{HMR}} % HardMaxRandom
+\newcommand{\HM}{\term{HM}}    % HardMax
+
+
+
 \newcommand{\Beta}{\term{Beta}} % for Beta distribution
 \newcommand{\Eeog}{\term{EoG}} % shorthand for "effective end of game"
 
 \newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
 \newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
-
-\newcommand{\HMR}{\term{HMR}}
-\newcommand{\HM}{\term{HM}}
 
 
 % commands from "theory"
@@ -91,9 +94,11 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 \newcommand{\Uniform}{\term{Uniform}}
 \newcommand{\Random}{\term{Random}}
 
+% algorithms
 \newcommand{\StaticGreedy}{\term{StaticGreedy}}
-\newcommand{\DynGreedy}{\term{DynamicGreedy}}
-\newcommand{\DynamicGreedy}{\term{DynamicGreedy}}
+\newcommand{\DynGreedy}{\term{BayesianGreedy}}
+\newcommand{\DynamicGreedy}{\DynGreedy}
+\newcommand{\Thompson}{\term{ThompsonSampling}}
 
 \newcommand{\termSub}[2]{\ensuremath{\mathtt{#1}_{#2}}\xspace}
 \newcommand{\alg}[1][]{\termSub{alg}{#1}}
