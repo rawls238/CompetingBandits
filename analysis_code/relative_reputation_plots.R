@@ -24,14 +24,14 @@ concise_alg_rep <- function(alg) {
   if (alg == "ThompsonSampling") {
     return("TS")
   } else if (alg == "DynamicEpsilonGreedy") {
-    return("DEG")
+    return("BEG")
   } else if (alg == "DynamicGreedy") {
-    return("DG")
+    return("BG")
   }
 }
 
 dat$alg<- sapply(dat$Algorithm, concise_alg_rep)
-print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
+print_relative_graphs <- function (dat, dist, alg1, alg2, minComplexity, withAnnotation) {
   dist_dat <- filter(dat, Distribution == dist & Realized.Complexity >= minComplexity)
   alg_1 <- filter(dist_dat, Algorithm == alg1)
   alg_2 <- filter(dist_dat, Algorithm == alg2)
@@ -55,21 +55,29 @@ print_relative_graphs <- function (dist, alg1, alg2, minComplexity) {
   df$relative_rep <- counts
   df$se <- ses
   plot_title <- paste("Relative Reputation -", dist)
-  q <- ggplot(df, aes(x=t, y=relative_rep)) + geom_line() + geom_point() +
-    geom_errorbar(aes(ymin=relative_rep-1.96*se, ymax=relative_rep+1.96*se), width=.2) +
-    ggtitle(plot_title) + xlab("time") + 
-    ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(reputation)")) +
-    #annotation_custom(b1) +
-    #annotation_custom(b2) +
-    #annotate("text", x = 275, y = 0.28, label = "Exploration Disadvantage Period", size=5) +
-    #annotate("text", x = 1000, y = 0.19, label = "Relative Reputation Benefit") +
-    theme_bw(base_size = 20) +  ylim(c(0.2, 0.7)) +
-    theme(plot.title = element_text(hjust = 0.5))
+  q <- NA
+  if (withAnnotation) {
+    q <- ggplot(df, aes(x=t, y=relative_rep)) + geom_line() + geom_point() +
+      geom_errorbar(aes(ymin=relative_rep-1.96*se, ymax=relative_rep+1.96*se), width=.2) +
+      ggtitle(plot_title) + xlab("time") + 
+      ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(reputation)")) +
+      annotation_custom(b1) +
+      annotate("text", x = 275, y = 0.28, label = "Exploration Disadvantage Period", size=5) +
+      theme_bw(base_size = 20) +  ylim(c(0.2, 0.7)) +
+      theme(plot.title = element_text(hjust = 0.5))
+  } else {
+    q <- ggplot(df, aes(x=t, y=relative_rep)) + geom_line() + geom_point() +
+      geom_errorbar(aes(ymin=relative_rep-1.96*se, ymax=relative_rep+1.96*se), width=.2) +
+      ggtitle(plot_title) + xlab("time") + 
+      ylab(paste(concise_alg_rep(alg1), " >= ", concise_alg_rep(alg2), "(reputation)")) +
+      theme_bw(base_size = 20) +  ylim(c(0.2, 0.7)) +
+      theme(plot.title = element_text(hjust = 0.5))
+  }
   ggsave(paste("relative_", dist, "_", alg1, "_", alg2, ".pdf", sep=""), device="pdf", plot=q, width=8.14, height=7.6)
   return(q)
 }
 
-print_mean_graphs <- function (dist, alg1, alg2, alg3, minComplexity, key) {
+print_mean_graphs <- function (dat, dist, alg1, alg2, alg3, minComplexity, key, key_name) {
   dist_dat <- filter(dat, Distribution == dist & Realized.Complexity >= minComplexity)
   alg_1 <- filter(dist_dat, Algorithm == alg1)
   alg_2 <- filter(dist_dat, Algorithm == alg2)
@@ -91,30 +99,30 @@ print_mean_graphs <- function (dist, alg1, alg2, alg3, minComplexity, key) {
   df$mean_rep <- as.numeric(df$mean_rep)
   df$ci <- as.numeric(df$ci)
   df$Algorithm <- df$alg
-  plot_title <- paste("Instantaneous Reward -", dist)
+  plot_title <- paste(key_name, dist, sep=" - ")
   g <- ggplot(data=df, aes(x=t, y=mean_rep, colour=Algorithm)) + geom_line(size=1) +
     geom_errorbar(aes(ymin=mean_rep-ci, ymax=mean_rep+ci), width=.2) +
     ggtitle(plot_title) + xlab("time") +
-    ylab("Mean Instantaneous Reward") +
+    ylab(paste("Mean", key_name)) +
     theme_bw(base_size = 20) + 
     theme(plot.title = element_text(hjust = 0.5), legend.position="bottom")
   
-  ggsave(paste("mean_reward_", dist, ".pdf", sep=""), device="pdf", plot=g, width=8.14, height=7.6)
+  ggsave(paste("mean_", key_name, "_", dist, ".pdf", sep=""), device="pdf", plot=g, width=8.14, height=7.6)
   return(g)
 }
 
 difference_over_time <- function(dat, dist, alg1, alg2) {
   dat <- filter(dat, Distribution == dist)
-  dat <- dat %>% mutate(Algorithm = alg)
   t_vals <- c(500,1000,2000)
   
-  iso_alg1 <- filter(dat, t %in% t_vals & Algorithm == alg1) 
+  iso_alg1 <- filter(dat, t %in% t_vals & Algorithm == alg1)
   iso_alg2 <- filter(dat, t %in% t_vals & Algorithm == alg2)
   iso_alg1$time <- as.factor(iso_alg1$t)
   iso_alg1$rep_diff <- iso_alg1$Realized.Reputation - iso_alg2$Realized.Reputation
+  iso_alg1$Time <- iso_alg1$time
   
-  title <- paste(alg1, "-", alg2, "Difference -", dist)
-  g <- ggplot(iso_alg1, aes(rep_diff)) + geom_density(aes(group=time, colour=time), size=1) + 
+  title <- paste(concise_alg_rep(alg1), "-", concise_alg_rep(alg2), "Difference -", dist)
+  g <- ggplot(iso_alg1, aes(rep_diff)) + geom_density(aes(group=Time, colour=Time), size=1) + 
     ggtitle(title) + 
     xlab("Reputation Difference") +
     theme_bw(base_size = 20) +
@@ -135,30 +143,25 @@ distribution_over_algorithms <- function(dat, dist, time) {
 }
 
 distribution_over_algorithms(dat, "Needle In Haystack", 500)
+difference_over_time(dat, "Needle In Haystack", "ThompsonSampling", "DynamicGreedy")
 dists <- unique(dat$Distribution)
-#dists <- c("Uniform")
-for (dist in dists) {
-  print_relative_graphs(dist, "ThompsonSampling", "DynamicEpsilonGreedy", 0)
-  print_relative_graphs(dist, "ThompsonSampling", "DynamicGreedy", 0)
-  print_relative_graphs(dist, "DynamicEpsilonGreedy", "DynamicGreedy", 0)
-}
-# print mean plots
-#dists <- c("Needle In Haystack", "Heavy Tail")
-p1 <- print_mean_graphs("Needle In Haystack", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Instantaneous.Mean.Reward.Mean")
-p2 <- print_mean_graphs("Heavy Tail", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Instantaneous.Mean.Reward.Mean")
-p3 <- print_mean_graphs("Uniform", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Instantaneous.Mean.Reward.Mean")
 
+# print relative reputation plots
+print_relative_graphs(dat, "Uniform", "ThompsonSampling", "DynamicGreedy", 0, T)
+print_relative_graphs(dat, "Needle In Haystack", "ThompsonSampling", "DynamicGreedy", 0, F)
 
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  return(legend)}
-tmp_ts <- function(n) {
-  return(filter(ts, n == UQ(n)))
-}
+# print instantaneous reward plots
+p1 <- print_mean_graphs(dat, "Needle In Haystack", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Instantaneous.Mean.Reward.Mean", "Mean Instantaneous Reward")
+p2 <- print_mean_graphs(dat, "Heavy Tail", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Instantaneous.Mean.Reward.Mean", "Mean Instantaneous Reward")
+p3 <- print_mean_graphs(dat, "Uniform", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Instantaneous.Mean.Reward.Mean", "Mean Instantaneous Reward")
 
-tmp_dg <- function(n) {
-  return(filter(dg, n == UQ(n)))
-}
+# print reputation plots
+p1 <- print_mean_graphs(dat, "Needle In Haystack", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Realized.Reputation", "Mean Reputation")
+p2 <- print_mean_graphs(dat, "Heavy Tail", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Realized.Reputation", "Mean Reputation")
+p3 <- print_mean_graphs(dat, "Uniform", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0, "Realized.Reputation", "Mean Reputation")
+
+dat <- read.csv("ht_3_arm_many_sim.csv",stringsAsFactors=F)
+dat$alg<- sapply(dat$Algorithm, concise_alg_rep)
+print_mean_graphs(dat, "Heavy Tail", "ThompsonSampling", "DynamicEpsilonGreedy", "DynamicGreedy", 0,  "Realized.Reputation", "Mean Reputation")
+print_relative_graphs(dat, "Heavy Tail", "DynamicEpsilonGreedy", "DynamicGreedy", 0, F)
 
