@@ -295,9 +295,7 @@ Then for all $n\geq n_0$ and small enough $p>0$ it holds that:
 \subsection{\SoftMaxRandom response function}
 \label{sec:theory-SoftMax}
 
-This subsection is devoted to the \SoftMaxRandom model. We derive a ``better algorithm wins" result under a much weaker version of BIR-dominance. This is the most technical result of the paper.
-
-We start with a formal definition of \SoftMaxRandom:
+For the \SoftMaxRandom model, we derive a ``better algorithm wins" result under a much weaker version of BIR-dominance. We start with a formal definition of \SoftMaxRandom:
 
 \begin{definition}\label{def:SoftMax}
 A response function $\respF$ is \SoftMaxRandom if the following conditions hold:
@@ -319,7 +317,7 @@ A response function $\respF$ is \SoftMaxRandom if the following conditions hold:
 This definition is fruitful when parameters $c_0$ and $c_0'$ are close to $\tfrac12$. Throughout, we assume that \alg[1] is better than \alg[2], and obtain results parameterized by $c_0$. By symmetry, one could assume that \alg[2] is better than \alg[1], and obtain similar results parameterized by $c_0'$.
 \end{remark}
 
-For the sake of intuition, let us derive a version of Theorem~\ref{thm:random-clean}, with the same assumptions about the algorithms and essentially the same proof. The conclusion is much weaker: we can only guarantee that each agent $t\geq n_0$ chooses principal 1 with probability slightly larger than $\tfrac12$. This is essentially unavoidable in a typical case when both algorithms satisfy $\BIR(n)\to 0$, by Definition~\ref{def:SoftMax}.
+For the sake of intuition, let us derive a version of Theorem~\ref{thm:random-clean}, with the same assumptions about the algorithms and essentially the same proof. The conclusion is much weaker, though: we can only guarantee that each agent $t\geq n_0$ chooses principal 1 with probability slightly larger than $\tfrac12$. This is essentially unavoidable in a typical case when both algorithms satisfy $\BIR(n)\to 0$, by Definition~\ref{def:SoftMax}.
 
 \begin{theorem}\label{thm:SoftMax-weak}
 Assume \SoftMaxRandom response function.  Suppose algorithms \alg[1], \alg[2] satisfy the assumptions in Theorem~\ref{thm:random-clean}. Then each agent
