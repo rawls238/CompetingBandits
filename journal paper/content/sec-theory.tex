@@ -434,11 +434,11 @@ Our main story concerns the \FiniteGame between the two principals where one all
 \footnote{This is a weaker condition, the better algorithm is chosen in a broader range of scenarios.}
 \end{OneLiners}
 These conclusions follow, respectively, from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax-strong}. Further, {we consider the uniform choice between the principals. It corresponds to the least amount of rationality and competition, and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
-\footnote{On the other hand, if principals' utility is somewhat aligned with agents' welfare, as in \eqref{eq:general-utility}, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a very generic and well-known effect regarding economies of scale.}
+\footnote{On the other hand, if principals' utility is aligned with agents' welfare, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a very generic and well-known effect regarding economies of scale.}
 Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 
 
-\begin{figure}
+\begin{figure}[t]
 \begin{center}
 \begin{tikzpicture}[scale=1]
       \draw[->] (-.5,0) -- (9.5,0) node[above]
@@ -457,13 +457,12 @@ Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 \end{center}
 \end{figure}
 
-
 \xhdr{Secondary story.}
 Let us zoom in on the symmetric  \HardMaxRandom model. {Competitiveness and rationality within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which goes smoothly between the two extremes of \HardMax ($\eps_0=0$) and the uniform choice ($\eps_0=\tfrac12$). Smaller $\eps_0$ corresponds to increased rationality and increased competitiveness.} For clarity, we assume that principal's utility is the number of agents.
 
 We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. {We are interested in the marginal utility of this switch. Then:}
 
-\begin{itemize}
+\begin{OneLiners}
 \item $\eps_0 = 0$ (\HardMax):~~~~ the marginal utility can be negative if \alg is \DynGreedy.
 
 \item $\eps_0$ near $0$:~~~~ only a small marginal utility can be guaranteed, as it may take a long time for $\alg'$ to ``catch up" with \alg, and hence less time to reap the benefits.
@@ -471,12 +470,10 @@ We consider the marginal utility of switching to a better algorithm. Suppose ini
 \item ``medium-range" $\eps_0$:~~~~ large marginal utility, as $\alg'$ learns fast and gets most agents.
 
 \item $\eps_0$ near $\tfrac12$:~~~~ small marginal utility, as principal 1 gets most agents for free no matter what.
-\end{itemize}
+\end{OneLiners}
 The familiar inverted-U shape is depicted in Figure~\ref{fig:inverted-U3}.
 
-
-
-\begin{figure}
+\begin{figure}[t]
 \begin{center}
 \begin{tikzpicture}[scale=1]
       \draw[->] (-.5,0) -- (9.5,0) node[above]  {$\eps_0$};
@@ -497,12 +494,6 @@ The familiar inverted-U shape is depicted in Figure~\ref{fig:inverted-U3}.
 \end{figure}
 
 
-
-
-
-
-
-
 %%%%%%%%%%%%%
 \subsection{Extensions}
 \label{sec:theory-extensions}
@@ -512,9 +503,10 @@ Our theoretical results can be extended beyond the basic model in Section~\ref{s
 
 \xhdr{Reward-dependent utility.}
 Except for Corollary~\ref{cor:SoftMax-strong}, our results allow a more general notion of principal's utility that can depend on both the market share and agents' rewards. Namely, principal $i$ collects $U_i(r_t)$ units of utility in each global round $t$ when she is chosen (and $0$ otherwise), where $U_i(\cdot)$ is some fixed non-decreasing function with $U_i(0)>0$. In a formula,
-\begin{align}\label{eq:general-utility}
-\textstyle U_i := \sum_{t=1}^T\; \indicator{i_t=i}\cdot U_i(r_r).
-\end{align}
+%\begin{align}\label{eq:general-utility}
+%\textstyle 
+$U_i := \sum_{t=1}^T\; \indicator{i_t=i}\cdot U_i(r_r)$.
+%\end{align}
 
 \xhdr{Time-discounted utility.}
 Corollary~\ref{cor:DG-dominance} holds under a more general model which allows time-discounting: namely, the utility of each principal $i$ in each global round $t$ is $U_{i,t}(r_t)$ if this principal is chosen, and $0$ otherwise, where $U_{i,t}(\cdot)$ is an arbitrary non-decreasing function with $U_{i,t}(0)>0$.
@@ -526,14 +518,12 @@ While Section~\ref{sec:model} posits Bernoulli rewards, we allow arbitrary rewar
 
 
 \xhdr{\BIR can depend on $T$.}
-Many/most MAB algorithms are parameterized by the time horizon $T$, and their regret bounds usually include $\polylog(T)$. In particular,  a regret bound for \BIR is
+Many MAB algorithms are parameterized by the time horizon $T$, and their regret bounds usually include $\polylog(T)$. In particular,  a typical regret bound for \BIR is
 \begin{align}
     \BIR(n\mid T)\leq \polylog(T)\cdot n^{-\gamma}
     \quad \text{for some $\gamma\in(0,\tfrac12]$}.
 \end{align}
-Here we write $\BIR(n\mid T)$ to emphasize the dependence on $T$.
-
-Accordingly, BIR-dominance can be redefined as follows: there exists a number $T_0$ and a function $n_0(T)\in \polylog(T)$
+Here we write $\BIR(n\mid T)$ to emphasize the dependence on $T$. Accordingly, BIR-dominance can be redefined as follows: there exists a number $T_0$ and a function $n_0(T)\in \polylog(T)$
 such that
 \begin{align}\label{eq:random-better-messy}
 (\forall T\geq T_0,\; n\geq n_0(T)) \quad
@@ -542,6 +532,10 @@ such that
 %If this holds, we say that \alg[1] \emph{BIR-dominates} \alg[2].
 %The proof of this extension is very similar and is omitted.
 
+\noindent Weak BIR-dominance can be redefined similarly.
+Theorem~\ref{thm:random-clean} and Theorem~\ref{thm:SoftMax-weak} extend to these generalized versions; the easy modifications are omitted.
+
+
 
 %\begin{theorem}\label{thm:random-messy}
 %Assume \HardMaxRandom response function, and algorithms that satisfy \eqref{eq:random-better-messy} and~\eqref{eq:random-assn}. Then each agent
@@ -549,12 +543,12 @@ such that
 %\end{theorem}
 
 
-Similarly, weak BIR-dominance can be redefined as follows: there exist some $T_0$, a function
-$n_0(T)\in \polylog(T)$, and constants $\beta_0,\alpha_0\in (0, 1/2)$, such that
-\begin{align}\label{eq:SoftMax-better-weaker}
-(\forall T\geq T_0,  n\geq n_0(T)) \quad
-\frac{\BIR_1((1-\beta_0)\, n\mid T)}{\BIR_2(n\mid T)} <1-\alpha_0.
-\end{align}
+%Similarly, weak BIR-dominance can be redefined as follows: there exist some $T_0$, a function
+%$n_0(T)\in \polylog(T)$, and constants $\beta_0,\alpha_0\in (0, 1/2)$, such that
+%\begin{align}\label{eq:SoftMax-better-weaker}
+%(\forall T\geq T_0,  n\geq n_0(T)) \quad
+%\frac{\BIR_1((1-\beta_0)\, n\mid T)}{\BIR_2(n\mid T)} <1-\alpha_0.
+%\end{align}
 
-Theorem~\ref{thm:random-clean} and Theorem~\ref{thm:SoftMax-weak} extend to these generalized versions; the easy modifications are omitted.
+%Theorem~\ref{thm:random-clean} and Theorem~\ref{thm:SoftMax-weak} extend to these generalized versions; the easy modifications are omitted.
 
