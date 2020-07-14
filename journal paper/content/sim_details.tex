@@ -1,7 +1,7 @@
 \documentclass[../competing_bandits.tex]{subfiles}
 \begin{document}
 
-\asedit{In this section we present our numerical simulations. As discussed in the Introduction, we focus on the \ExptsModel, whereby each agent chooses the firm with a maximal reputation score, modeled as a sliding window average of its rewards. Given the volume of experimental results, we (only) present the typical / representative ones in the body of the paper; the full results can be found in Appendix~\ref{app:expts}.}
+In this section we present our numerical simulations. As discussed in the Introduction, we focus on the \ExptsModel, whereby each agent chooses the firm with a maximal reputation score, modeled as a sliding window average of its rewards. While we experiment with various MAB instances and parameter settings, we only report on selected, representative experiments. Additional plots and tables are provided in Appendix~\ref{app:expts}. Unless noted otherwise, our findings are based on and consistent with all these experiments.
 
 %In this section we move to the reputation choice variant. Recall that in this variant of the model, instead of making choices between firms based on the Bayesian expected reward, each agent chooses the firm with a maximal reputation score (breaking ties uniformly). The reputation score is simply a sliding window average: an average reward of the last $M$ agents that chose this firm. We focus on numerical investigation of this model instead of analytical characterizations of equilibrium strategies.
 
@@ -11,15 +11,12 @@
 
 %The timing of the model is the same as before where each firm commits to a MAB algorithm before the game starts and uses this algorithm to choose its actions. We focus on i.i.d. Bernoulli rewards: the  reward of each arm $a$ is drawn from $\{0,1\}$ independently with expectation $\mu(a)$. The mean rewards $\mu(a)$ are the same for all rounds and both firms, but initially unknown. However, instead of starting from some prior, we suppose that each firm has a uniform, ``fake", prior and that the initial information set of the firm is given by a ``warm start". Each algorithm receives a ``warm start": additional $T_0$ agents that arrive before the game starts, and interact with the firm as described above. The warm start ensures that each firm has a meaningful reputation and initial prior when competition starts..
 
-\xhdr{Agent model.} All experiments use \HardMax response function (without mentioning it), except Section~\ref{sec:non_greedy} where we use \HardMaxRandom agents.
+\xhdr{Competition model.} All experiments use \HardMax response function (without mentioning it), except Section~\ref{sec:non_greedy} where we use \HardMaxRandom agents. In some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{first-mover advantage}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
 
-\xhdr{First-movers.}
-Recall that in some of our experiments, one firm is the ``incumbent" who enters the market before the other (``late entrant"), and therefore enjoys a \emph{first-mover advantage}. Formally, the incumbent enjoys additional $X$ rounds of the ``warm start". We treat $X$ as an exogenous element of the model, and study the consequences for a fixed $X$.
-
-\xhdr{MAB algorithms.} We consider the same three classes of bandit algorithms discussed in Section~\ref{sec:intro-model}, but take a representative algorithm from each class and look for qualitative differences between the different classes. \asedit{Our pilot experiments indicate that our findings do not change substantially if other representative algorithms are chosen.}
-
-\ascomment{TODO: revise!}
-We will utilize Thompson Sampling (\TS) from the ``adaptive-exploration" MAB algorithms, the dynamic $\eps$-greedy (\DEG)\footnote{Throughout, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.} from the ``exploration-separating" algorithms, and the ``dynamic greedy" algorithm (\DG) as in Section~\ref{sec:theory-prelims}. For ease of comparison, all three algorithms are parameterized with the same ``fake" Bayesian prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+\xhdr{MAB algorithms.} We consider the three classes of bandit algorithms discussed in Section~\ref{sec:intro-model}, and look for qualitative differences between them. We take a representative algorithm from each class. \asedit{Our pilot experiments indicate that our findings do not change substantially if other representative algorithms are chosen.}
+We use Thompson Sampling (\TS) from the ``adaptive-exploration" MAB algorithms, Bayesian Epsilon-Greeedy (\DEG) with exploration probability $\eps=5\%$ from the ``exploration-separating" algorithms,%
+\footnote{Our pilot experiments show that different $\eps$ did not qualitatively change the results.}  and \DynGreedy algorithm (\DG) as in Section~\ref{sec:theory-prelims}. For ease of comparison, all three algorithms are parameterized with the same ``fake" Bayesian prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
+Self-contained background can be found in Appendix~\ref{sec:related-classes}.
 
 \xhdr{MAB instances.}
 We consider instances with $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the \emph{\MRV} $(\mu(a):\; a\in A)$. Initially this vector is drawn from some distribution, termed \emph{MAB instance}. We consider three MAB instances:
@@ -36,18 +33,16 @@ For each MAB instance we draw $N = 1000$ \MRVs independently from the correspond
 
 More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns which correspond to arms, and $T+T_{\max}$ rows, which correspond to rounds. Here $T_{\max}$ is the maximal duration of the ``warm start" in our experiments, \ie the maximal value of $X+T_0$. For each arm $a$, each value $W(\cdot,a)$ is drawn independently from Bernoulli distribution with expectation $\mu(a)$. Then in each experiment, the reward of this arm in round $t$ of the warm start is taken to be $W(t,a)$, and its reward in round $t$ of the game is $W(T_{\max}+t,a)$.
 
-We fix the sliding window size $M = 100$. We found that lower values induced too much random noise in the results, and increasing $M$ further did not make a qualitative difference. Unless otherwise noted, we used $T = 2000$.
+For the reputation scores, we fix the sliding window size $M = 100$. We found that lower values induced too much random noise in the results, and increasing $M$ further did not make a qualitative difference. Unless otherwise noted, we used $T = 2000$.
 
 \xhdr{Terminology.}
 Following a standard game-theoretic terminology, algorithm Alg1 \emph{(weakly) dominates} algorithm Alg2 for a given firm if Alg1 provides a larger (or equal) market share than Alg2 at the end of the game. An algorithm is a (weakly) dominant strategy for the firm if it (weakly) dominates all other algorithms. This is for a particular MAB instance and a particular selection of the game parameters.
-
-\xhdr{Discussion}
-While we experiment with various MAB instances and parameter settings, we only report on selected, representative experiments in the body of the paper. Additional plots and tables are provided in the appendix. Unless noted otherwise, our findings are based on and consistent with all these experiments.
 
 \OMIT{Even with a stylized model, numerical investigation is quite challenging. An ``atomic experiment" is a competition game between a given pair of bandit algorithms, in a given competition model, on a given instance of a multi-armed bandit problem.%
 \footnote{Each such experiment is run many times to reduce variance.}
 Accordingly, we have a three-dimensional space of atomic experiments one needs to run and interpret: \{pairs of algorithms\} x \{competition models\} x \{bandit instances\}, and we are looking for findings that are consistent across this entire space. It is essential to keep each of the three dimensions small yet representative. In particular, we need to capture a huge variety of bandit instances with only a few representative examples. Further, one needs succinct and informative summarization of results within one atomic experiment and across multiple experiments (\eg see Table~\ref{sim_table}).}
 
+\xhdr{Running time.}
 The simulations are computationally intensive. An experiment on a particular MAB instance comprised multiple runs of the competition game: $N$ mean reward vectors times $9$ pairs of algorithms times three values for the warm start. We used a parallel implementation over a cluster of 12 2.2 GHz CPU cores, with 8 GB RAM per core. Each experiment took about $10$ hours.
 
 
