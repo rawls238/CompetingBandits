@@ -40,6 +40,13 @@ The greedy algorithm can perform well \emph{sometimes} in a more general model o
 
 \xhdr{Instantaneous regret.}
 
+Let us connect \BIR with the three classes of algorithms listed in Section~\ref{sec:intro-model}. \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $n$). \StaticGreedy typically has at least a constant \BIR, in the same sense. Exploration-separating algorithms can have
+    $\BIR(n) \sim n^{-1/3}$
+for all priors, whereas adaptive-exploration algorithms can have an even better rate
+    $\BIR(n) \sim n^{-1/3}$
+for all priors. Both rates are up to $\log(n)$ factors, and are the best possible \BIR rates that can be achieved for all priors. More details on this can be found in Appendix~\ref{app:examples}.
+
+
 
 \ascomment{stopped here.}
 
