@@ -207,6 +207,7 @@ Then each agent $t\geq n_0$ chooses principal $2$ with probability $1-\eps_0$ (w
 \newcommand{\BIRgr}{\BIR^{\gr}}
 \newcommand{\alggr}{\alg[\gr]}
 
+\ascomment{This whole blurb before the corollary is new.}
 
 Let us analyze the \BIR of the greedy modification (we will use it for what follows). Use \alg[1] and \alg[2] as in the theorem. For each $n\in\N$, let $M_n$ be the number of times \alg[1] is invoked in the first $n$ steps of \alg[2]. Let \alggr be a hypothetical algorithm which at each step $n$ outputs the ``Bayesian-greedy choice" based on the data collected by \alg[1] in the first $n-1$ steps. Let $\BIRgr(n)$ be the \BIR of this algorithm. Let
     $\mathtt{reg}_2(n) = n\cdot \max_a \mu_a - \rew_2(n)$
