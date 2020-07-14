@@ -5,7 +5,6 @@
 Fix principal $i\in \{1,2\}$ and (local) step $n$. The arm chosen by algorithm \alg[i] at this step is denoted $a_{i,n}$, and the corresponding \BIR is denoted $\BIR_i(n)$. History of \alg[i] up to this step is denoted $H_{i,n}$.
 
 Fix agent $t$. Recall that $n_i(t)$ denotes the number of global rounds before $t$ in which principal $i$ is chosen. Let $\posteriorN{i}{t}$ denote the distribution of $n_i(t)$.
-
 \ascomment{Steven: in the ITCS paper, we defined $\posteriorN{i}{t}$ as the posterior distribution given all info available to agent $t$. But this is the same thing, isn't it?}
 
 Write
@@ -53,7 +52,7 @@ By assumption \eqref{eq:assn-distinct}, it follows that
 
 Since the two algorithms deviate at step $n_0$, there is a set $S\subset \support(H)$ of step-$n_0$ histories such that $\Pr[S]>0$ and any history $h\in S$ satisfies
     $\Pr[a_{2,n_0}\neq a_{1,n_0} \mid H=h]>0$.
-Combining this with \eqref{eq:lm:DG-rew-2}, we deduce that
+Combining this with \eqref{eq:lm:DG-rew-2}, 
 \begin{align}\label{eq:lm:DG-rew-3}
  \PMR(a_{1,n_0} \mid H = h) > \E\left[ \mu_{a_{2,n_0}}\mid H=h \right]
  \quad\text{for each history $h\in S$}.
@@ -98,11 +97,11 @@ Proof of Theorem~\ref{thm:HardMax-biased}}
 
 The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
 
-Because of the biased tie-breaking, for each global round $t$ we have:
+Recall that $i_t$ is the principal chosen in a given global round $t$.
+Because of the biased tie-breaking, 
 \begin{align}\label{eq:thm:HardMax-biased-PMRtoPr}
 \text{if $\PMR_1(t)\geq \PMR_2(t)$ then $\Pr[i_t=1]>\tfrac12$.}
 \end{align}
-Recall that $i_t$ is the principal chosen in global round $t$.
 
 Let $m_0$ be the first step when \alg[2] deviates from \DynGreedy, or \DynGreedy deviates from \StaticGreedy, whichever comes sooner. {Then \alg[2], \DynGreedy and \StaticGreedy coincide on the first $m_0-1$ steps. Moreover, $m_0\leq n_0$ (since \DynGreedy deviates from \StaticGreedy at step $n_0$), so \alg[1] coincides with \DynGreedy on the first $m_0$ steps.
 
@@ -181,20 +180,21 @@ The above inequalities follow, resp., from algorithms' monotonicity and \eqref{e
 
 
 %\begin{proof}[Proof of Theorem~\ref{thm:random-greedy}]
-  Let $\rew'_1(n)$ denote the Bayesian-expected reward of the ``greedy
+  Let $\rewgr(n)$ denote the Bayesian-expected reward of the ``greedy
   choice'' after after $n-1$ steps of \alg[1]. Note that
-  $\rew_1(\cdot)$ and $\rew'_1(\cdot)$ are non-decreasing: the former
+  $\rew_1(\cdot)$ and $\rewgr(\cdot)$ are non-decreasing: the former
   because \alg[1] is monotone and the latter because the ``greedy
   choice'' is only improved with an increasing set of
-  observations. Therefore, the modified algorithm \alg[2] is monotone
-  by \eqref{eq:random-BIR}.
+  observations. \ascomment{insert a pointer} 
+Using \eqref{eq:BIR-modification}, we conclude that
+the greedy modification \alg[2] is monotone.
 
-  By definition of the ``greedy choice,'' $\rew_1(n)\leq \rew'_1(n)$
+  By definition of the ``greedy choice,'' $\rew_1(n)\leq \rewgr(n)$
   for all steps $n$. Moreover, by Lemma~\ref{lm:DG-rew},
   \alg[1] has a strictly smaller $\rew(n_0)$ compared to \DynGreedy;
   so, $\rew_1(n_0)<\rew_2(n_0)$.
 
-Let $\alg$ denote a copy of \alg[1] that is running ``inside" the modified algorithm \alg[2]. Let $m_2(t)$ be the number of global rounds before $t$ in which the agent chooses principal $2$ \emph{and} \alg is invoked; in other words, it is the number of agents seen by \alg before global round $t$. Let $\mM_{2,t}$ be the agents' posterior distribution for $m_2(t)$.
+Let $\alg$ denote a copy of \alg[1] that is running ``inside" \alg[2]. Let $m_2(t)$ be the number of global rounds before $t$ in which the agent chooses principal $2$ \emph{and} \alg is invoked; \ie it is the number of agents seen by \alg before global round $t$. Let $\mM_{2,t}$ be the agents' posterior distribution for $m_2(t)$.
 
 We claim that in each global round $t\geq n_0$, distribution $\mM_{2,t}$ stochastically dominates distribution $\posteriorN{1}{t}$, and $\PMR_1(t)<\PMR_2(t)$. We use induction on $t$. The base case $t=n_0$ holds because $\mM_{2,t} = \posteriorN{1}{t}$ (because the two algorithms coincide on the first $n_0-1$ steps), and $\PMR_1(n_0)<\PMR_2(n_0)$ is proved as in \eqref{eq:pf:thm:DG-dominance}, using the fact that $\rew_1(n_0)<\rew_2(n_0)$.
 
@@ -204,7 +204,7 @@ The induction step is proved as follows. The induction hypothesis for global rou
   &= \Ex{n\sim \posteriorN{1}{t}} {\rew_1(n+1)} \nonumber \\
   &\leq \Ex{m\sim \mM_{2,t}} {\rew_1(m+1)}
     \label{eq:pf:thm:random-greedy-1}\\
-  &< \Ex{m\sim \mM_{2,t}} {(1-p)\cdot \rew_1(m+1) + p\cdot \rew'_1(m+1)}
+  &< \Ex{m\sim \mM_{2,t}} {(1-p)\cdot \rew_1(m+1) + p\cdot \rewgr(m+1)}
     \label{eq:pf:thm:random-greedy-2} \\
   &= \PMR_2(t). \nonumber
 \end{align}
@@ -241,8 +241,8 @@ Since the response function $\respF$ is $c_0'$-Lipschitz in the
 neighborhood of $[-\delta_0, \delta_0]$, each agent after round $T_1$
 will choose \alg[1] with probability at least
 \[
-  p_t \geq \frac{1}{2} - c_0'\left(\PMR_2(t) - \PMR_1(t)\right) \geq
-  \frac{1}{2} - \beta_1.
+  p_t \geq \tfrac{1}{2} - c_0'\left(\PMR_2(t) - \PMR_1(t)\right) \geq
+  \tfrac{1}{2} - \beta_1.
 \]
 
 Next, we will show that there exists a sufficiently large $T_2$ such
@@ -255,10 +255,12 @@ Fix any $t \geq T_1 + T_2$.
 Since each agent chooses \alg[1] with probability at least
 $1/2 - \beta_1$, by Chernoff Bounds (Theorem~\ref{thm:chernoff}) we
 have with probability at least $1 - q_2(t)$ that the number of agents
-that choose \alg[1] is at least $\beta_0(1/2 - \beta_1)t/5$, where the
-function
+that choose \alg[1] is at least 
+    $\beta_0(\nicefrac{1}{2} - \beta_1)t/5$, 
+where %the function
 $$
-q_2(x) = \exp\left( \frac{-(1/2 - \beta_1)(1 - \beta_0/5)^2x}{3} \right).
+q_2(x) = \exp\rbr{ -\nicefrac{1}{3}\; 
+    (\nicefrac{1}{2} - \beta_1)(1 - \beta_0/5)^2x} .
 $$
 Note that the number of agents received by \alg[2] is at most
 $T_1 + (1/2 + \beta_1)t + (1/2 - \beta_1)(1 - \beta_0/5)t$.
@@ -280,23 +282,21 @@ least $1 - q_2(t)$ for any $t \geq T_1 + T_2$.
 % % \]
 Note that the weak BIR-dominance condition
 in~\eqref{eq:SoftMax-better} implies that for any $t\geq T_1 + T_2$
-with probability at least $1 - q_2(t)$,
-\[
-  \BIR_1(n_1(t)) < (1- \alpha_0)\BIR_2(n_2(t)).
-\]
+with probability at least $1 - q_2(t)$, we have 
+$ \BIR_1(n_1(t)) < (1- \alpha_0)\,\BIR_2(n_2(t))$.
+  
 It follows that for any $t\geq T_1 + T_2$,
 \begin{align*}
   \PMR_1(t) - \PMR_2(t) &= \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}{\BIR_2(m_2+ 1) - \BIR_1(m_1+1)} \\
-                        &\geq (1 - q_2(t))\alpha_0 \BIR_2(t) - q_2(t)\\
-                        &\geq \alpha_0 \BIR_2(t)/4
+                        &\geq (1 - q_2(t))\,\alpha_0\, \BIR_2(t) - q_2(t)
+                        \geq \alpha_0\, \BIR_2(t)/4,
 \end{align*}
 where the last inequality holds as long as
 $q_2(t) \leq \alpha_0\BIR_2(t)/4$, and is implied by the condition
 in~\eqref{eq:SoftMax-assn-strong} as long as $T_2$ is sufficiently
 large. Hence, by the definition of our \SoftMaxRandom response
 function and assumption in~\eqref{eq:SoftMax-smooth}, we have
-\[
-  \Pr[i_t = 1] \geq \frac{1}{2} + \frac{c_0\alpha_0\BIR_2(t)}{4}. \qedhere
-\]
+$  \Pr[i_t = 1] \geq \nicefrac{1}{2} + 
+    \nicefrac{1}{4}\; c_0\,\alpha_0\,\BIR_2(t)$.
 %\end{proof}
 
