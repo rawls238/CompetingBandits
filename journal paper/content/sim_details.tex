@@ -18,9 +18,8 @@ Recall that in some of our experiments, one firm is the ``incumbent" who enters 
 
 \xhdr{MAB algorithms.} We consider the same three classes of bandit algorithms discussed in Section~\ref{sec:intro-model}, but take a representative algorithm from each class and look for qualitative differences between the different classes. \asedit{Our pilot experiments indicate that our findings do not change substantially if other representative algorithms are chosen.}
 
+\ascomment{TODO: revise!}
 We will utilize Thompson Sampling (\TS) from the ``adaptive-exploration" MAB algorithms, the dynamic $\eps$-greedy (\DEG)\footnote{Throughout, we fix $\eps = 0.05$. Our pilot experiments showed that different $\eps$ did not qualitatively change the results.} from the ``exploration-separating" algorithms, and the ``dynamic greedy" algorithm (\DG) as in Section~\ref{sec:theory-prelims}. For ease of comparison, all three algorithms are parameterized with the same ``fake" Bayesian prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
-
-\ascomment{TODO: add a bit more detail -- \eg define \eps-greedy.}
 
 \xhdr{MAB instances.}
 We consider instances with $K=10$ arms. Since we focus on 0-1 rewards, an instance of the MAB problem is specified by the \emph{\MRV} $(\mu(a):\; a\in A)$. Initially this vector is drawn from some distribution, termed \emph{MAB instance}. We consider three MAB instances:
