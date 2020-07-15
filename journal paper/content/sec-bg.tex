@@ -44,7 +44,7 @@ Cumulative performance measures such as regret are not quite appropriate for our
 \end{align*}
 \noindent Note that Bayesian regret (\ie regret in expectation over the prior) is precisely
 \begin{align}\label{eq:bg-BReg}
-  \BReg(T):= 
+  \BReg(T):=
     \E_{\text{prior}}\sbr{ T\cdot \max_{\text{arms $a$}}\mu_a - \sum_{t=1}^T r_t }
     = \sum_{t=1}^T \BIR(t).
 \end{align}
@@ -52,24 +52,29 @@ We are primarily interested in how fast \BIR decreases with $t$.%
 \footnote{We treat $K$, the number of arms, as a constant in what follows.}
 
 
-The three classes of algorithms are well-separated in terms of \BIR, much like they are in terms of regret. 
-
+The three classes of algorithms are well-separated in terms of \BIR, much like they are in terms of regret. (The precise regret rates are listed below only to illustrate this point.)
 \begin{itemize}
-\item \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $t$). The reason and the proof are exactly the same as for regret. 
-    
+\item \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $t$). The reason and the proof are exactly the same as for regret.
+
 \item Exploration-separating algorithms can achieve
-    $\BIR(t) = \tildeO(t^{-1/3})$
-for all priors, \eg by using Epsilon-Greedy with exploration probability $\eps_t = t^{-1/3}$ in each round $t$. 
-The $t^{-1/3}$ rate is the best possible, in the sense that
+    $\BIR(t) = \tildeO\rbr{t^{-1/3}}$
+for all priors, \eg by using Epsilon-Greedy with exploration probability $\eps_t = t^{-1/3}$ in each round $t$.
+The $t^{-1/3}$ rate is the best possible in the worst case, in the following sense: 
+    $\BIR(t) = \tildeO\rbr{t^{-\gamma}}$ 
+for all $t$ and some $\gamma>0$,
+over all problem instances, then $\gamma\geq \nicefrac{1}{3}$. This is by \eqref{eq:bg-BReg} and the fact that $\BReg(T)\geq \Omega(T^{2/3})$ in the worst case. (The latter follows from the `frequentist" lower bound in \citet{MechMAB-ec09}.)
 
-\ascomment{stopped here.}
+\item Adaptive-exploration algorithms \emph{can} have an even better regret rate: $\BIR(t) = \tildeO\rbr{ t^{-1/2} } $, \eg this holds for Successive Elimination \citep{EvenDar-icml06}. Any optimal MAB algorithm such as Thompson Sampling and UCB1 enjoys this regret rate ``on average", because it satisfies 
+        $\BReg(T)\leq \tildeO(sqrt{T})$.
+    Put differently, if such algorithm satisfies 
+        $\BIR(t) = \tildeO\rbr{t^{-\gamma}}$
+    for all $t$ and some $\gamma>0$, then $\gamma \leq \nicefrac{1}{2}$.
+    That said, a uniform upper bound on $\BIR$ of Thompson Sampling or UCB1 is not known, to the best of our knowledge. 
 
-\item Adaptive-exploration algorithms can have an even better rate
-    $\BIR(n) \sim n^{-1/3}$
-for all priors. 
 \end{itemize}
 
-Both rates are up to $\log(n)$ factors, and are the best possible \BIR rates that can be achieved for all priors.
-\ascomment{stopped here.}
+This theoretical intuition is supported by plots in 
+Figure~\ref{relative_rep_plots} and Appendix~\ref{app:isol}.
+
 
 %\xhdr{}
