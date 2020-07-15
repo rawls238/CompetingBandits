@@ -1,14 +1,14 @@
 
 \newcommand{\ExplorExploit}{\term{ExplorExploit}}
 \newcommand{\PhasedExplorExploit}{\term{PhasedExplorExploit}}
-\newcommand{\RandomDynGreedy}{\term{RandomDynGreedy}}
-\newcommand{\SuccesiveElimination}{\term{SuccesiveElimination}}
+%\newcommand{\RandomDynGreedy}{\term{RandomDynGreedy}}
+%\newcommand{\SuccesiveElimination}{\term{SuccesiveElimination}}
 \newcommand{\SuccesiveEliminationReset}{\term{SuccesiveEliminationReset}}
 
-This appendix provides some pertinent background on multi-armed
-bandits (\emph{MAB}). We discuss \BIR and monotonicity of several MAB algorithms, touching upon: \DynGreedy and \StaticGreedy (Section~\ref{sec:MAB-greedy}), ``naive" MAB algorithms that separate exploration and exploitation (Section~\ref{sec:MAB-naive}), and ``smart" MAB algorithms that combine exploration and exploitation (Section~\ref{sec:MAB-smart}).
+\newcommand{\IReg}{R^{\term{inst}}} % instantaneous regret
 
-As we do throughout the paper, we focus on MAB with i.i.d. rewards and a Bayesian prior; we call it \emph{Bayesian MAB} for brevity.
+%This appendix provides some pertinent background on multi-armed
+%bandits (\emph{MAB}). We discuss \BIR and monotonicity of several MAB algorithms, touching upon: \DynGreedy and \StaticGreedy (Section~\ref{sec:MAB-greedy}), ``naive" MAB algorithms that separate exploration and exploitation (Section~\ref{sec:MAB-naive}), and ``smart" MAB algorithms that combine exploration and exploitation (Section~\ref{sec:MAB-smart}). As we do throughout the paper, we focus on MAB with i.i.d. rewards and a Bayesian prior; we call it \emph{Bayesian MAB} for brevity.
 
 
 % For a given mean reward vector $\mu$, the $n$-th step instantaneous regret is
@@ -17,103 +17,54 @@ As we do throughout the paper, we focus on MAB with i.i.d. rewards and a Bayesia
 %\regretWC(n)    &:=  \sup_{\text{mean reward vectors $\mu$}} \; \BIR(n\mid \mu).
 %\end{align}
 
+\ascomment{TODO: insert an intro para.}
 
-\subsection{\DynGreedy and \StaticGreedy}
+Throughout this section, we consider a standard MAB setting. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$. 
+
+Throughout, we let
+    $\rew(t) = \mu_{a_t}$
+denote the instantaneous mean reward of the algorithm.
+
+Instantaneous regret is denoted
+    $\IReg(t) := \max_{a\in A} \mu_a - \mu_{a_t}$,
+so that 
+    $\BIR(t) = \E[\IReg(t)]$.
+
+\subsection{Monotonicity-in-information for the greedy step}
 \label{sec:MAB-greedy}
 
-We provide an example when \DynGreedy and \StaticGreedy have
-constant \BIR, and prove monotonicity of \DynGreedy. For the
-example, it suffices to consider \emph{deterministic rewards} (for
-each action $a$, the realized reward is always equal to the mean
-$\mu_a$) and \emph{independent priors} (according to the prior
-$\priorMu$, random variables $\mu_1 \LDOTS \mu_K$ are mutually
-independent) each of {\em full support}.
+\ascomment{TODO: insert an intro sentence.}
 
-%\ascomment{This lemma is just one example. Can we argue that constant \BIR is typical/reasonable?}
-%
-%
-%\begin{lemma}
-%There is a problem instance of Bayesian MAB such that \StaticGreedy
-%and \DynGreedy have (at least) a constant \BIR for all steps. The
-%problem instance has two actions, independent priors, and
-%deterministic rewards.
-%\end{lemma}
-%
-%\begin{proof}
-%To specify the problem instance, it remains to specify the marginal
-%distributions mean rewards $\mu_1$ and $\mu_2$ according to the
-%prior. We posit that $\mu_1$ is uniform on the interval $[0, 1]$,
-%and $\mu_2$ is uniform on the interval $[\tfrac13,1]$.
-%
-%Note that
-%    $\OPT := \E[\max_{a\in A} \mu_a] =(1/3)(2/3)+(2/3)(7/9)=20/27$.
-%%\ascomment{The numbers seem wrong, given the below?}
-%This holds since with
-%probability $1/3$ we have $\mu_1\leq 1/3$ in which case clearly the
-%better arm is 2 with $\E[\mu_2]=2/3$ and with probability $2/3$ we
-%have both $\mu_1,\mu_2\in[1/3,1]$ and distributed uniformly each.
-%
-%\StaticGreedy always recommends action $2$. Since
-%$\E[\mu_2]=\tfrac23$, \BIR is $2/27$ in all rounds.
-%
-%\DynGreedy recommends the first agent action $2$. If $\mu_2 > 2/3$
-%For all the following agents it recommends action $2$. Otherwise, it
-%recommends agent $2$ action $1$ and for all the following agents it
-%recommends the better action. The expectation for agents $t\geq 3$
-%is $(1/2)(5/6)+(1/2)((1/2)(1/2)+(1/2)(5/9))=49/72$ and has
-%instantaneous regret $13/216$.
-%\end{proof}
+\ascomment{Steven: NB: we need monotonicity-in-info to argue about "a little greedy goes a long way".}
+ 
+The $n$-step history is the random sequence 
+    $H_n = \rbr{ (a_t,r_t):\, t\in[n]}$.
+Realizations of $H_n$ are called \emph{realized histories}. 
+Let $\mH_n$ be the set of all possible values of $H_n$. 
 
-The following claim is immediate from the definition of the CDF
-function
-\begin{claim}
-Assume independent priors. Let $F_i$ be the CDF of the mean reward
-$\mu_i$ of action $a_i\in A$. Then, for any numbers
-$z_2>z_1>\E[\mu_2]$ we have
-    $\Pr[\text{$\mu_1\leq z_1$ and $\mu_2\geq z_2$}] = F_1(z_1)(1-F_2(z_2)) $.
-\end{claim}
-
-%\begin{lemma}
-%Let $\priorMu$ be the prior of the means, and assume that it is
-%independent for each action, where for arm $i$ it has a mean $
-%\E[\mu_i]$ and CDF $F_i$. Then, for any $\E[\mu_2] < z_1<z_2$ we
-%have that with probability $F_1(z_1)(1-F_2(z_2))$ that both
-%$\mu_1\leq z_1$ and $z_2\leq \mu_2$.
-%\end{lemma}
-
-%\begin{corollary}
-%Any problem instance of Bayesian MAB for two actions and independent
-%priors which are full support and deterministic rewards, with
-%constant probability \DynGreedy has a constant \BIR for all steps.
-%\end{corollary}
-
-
-We can now draw an immediate corollary of the above claim
-
+The \emph{Bayesian-greedy step} given an $n$-step history $h\in \mH_n$ is defined as
+\[ \DG(h) := \argmax_{a\in A} \E\sbr{ \mu_a\mid H_n = h },
+\quad\text{ties broken uniformly}.\]
+ 
+\begin{lemma}\label{lm:MII}
+Let $h,h'$ be two realized histories such that $h$ is a prefix of $h'$. Then
+\[ \E\sbr{ \mu_{\DG(h)} } \leq \E\sbr{ \mu_{\DG(h')} }. \]
+\end{lemma}
 \begin{corollary}
-Consider any problem instance of Bayesian MAB with two actions and independent
-priors which are full support. Then:
-\begin{OneLiners}
-\item[(a)] With constant probability, \StaticGreedy  has a constant \BIR for all steps.
-\item[(b)] Assuming deterministic rewards, with
-constant probability \DynGreedy has a constant \BIR for all steps.
-\end{OneLiners}
+\DynGreedy is monotone.
 \end{corollary}
 
-\begin{remark}
-A similar result holds for  rewards which are distributed as
-Bernoulli random variables. In this case we consider accumulative
-reward of an action as a random walk, and use a high probability
-variation of the law of iterated logarithms. (Details omitted.)
-\end{remark}
+\ascomment{TODO: find a citation for Lemma~\ref{lm:MII}.}
 
+\ascomment{OLD TEXT:}
 
-Next, we show that \DynGreedy is monotone.
 
 \begin{lemma}\label{dgmono}
-\DynGreedy is monotone, in the sense that $\rew(n)$ is non-decreasing.
-Further, $\rew(n)$ is strictly increasing for every time step $n$ with $\Pr[a_n\neq a_{n+1}]>0$.
+\DynGreedy is monotone, in the sense that $\E[\rew(n)]$ is non-decreasing.
+\ascomment{Steven: do we ever need the second sentence here?}
+Further, $\E[\rew(n)]$ is strictly increasing for every time step $n$ with $\Pr[a_n\neq a_{n+1}]>0$.
 \end{lemma}
+
 
 \begin{proof}
 We prove by induction on $n$ that $\rew(n)\leq \rew(n+1)$ for
@@ -145,24 +96,40 @@ probability we select a better action then the realization of $a_n$.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{``Naive" MAB algorithms that separate exploration and exploitation}
-\label{sec:MAB-naive}
+\subsection{Monotone MAB algorithms}
+\label{app:MAB-monotone}
+
+\ascomment{Steven: NB: this is the point of this subsection...}
+This subsection argues that ``monotonicity" is a mild assumption in our context. To this end, we present versions of some standard MAB algorithms that are monotone and satisfy ``standard" regret bounds.
+
+
+\subsubsection{Monotone, exploration-separating MAB algorithms}
+\label{app:MAB-monotone-naive}
 
 
 %\ascomment{Nicer to have $\BIR(n)\leq n^{-1/3}$.
 %Explore-then-exploit does not have that! So, let's use phases of
 %exponentially increasing duration.}
 
-MAB algorithm \ExplorExploit$(m)$ initially explores each action
-with $m$ agents and for the remaining $T-|A|m$ agents recommends the
-action with the highest observed average. In the explore phase it
-assigns a random permutation of the $mK$ recommendations.
+We provide two exploration-separating algorithms that are monotone and achieve $\IReg(t)=\tildeO\rbr{t^{-1/3}}$. (As we saw in Appendix~\ref{sec:related-classes}, this is the ``right" regret rate for exploration-separating algorithms.)
+
+\ascomment{Steven: can't we prove that Epsilon-Greedy is monotone, too?}
+
+We start with a simple \emph{Explore-First} algorithm: 
 
 \begin{lemma}
-%Assume that rewards in the range $[0,1]$.
-The \ExplorExploit$(T^{2/3}\log |A|/\delta)$ algorithm has, with
-probability $1-\delta$, for any  $n\geq |A|T^{2/3}$ we have
-\BIR$(n)=O(T^{-1/3})$. In addition, \ExplorExploit$(m)$ is monotone.
+Consider an algorithm which initially explores each action $m$ times (where $m$ is a parameter), chooses an action  with the highest observed average reward, and uses it for the remaining steps. In the initial exploration phase, actions are randomly permuted. 
+\begin{itemize}
+\item[(a)] This algorithm is monotone, for every \MRV.
+\ascomment{Steven: right?}
+
+\item[(b)] Fix $\delta>0$ and 
+    $m = T^{2/3}\log(|A|/\delta)$.
+Then, with probability $1-\delta$, it holds that  
+    $\IReg(t)=\tildeO\rbr{T^{-1/3}}$
+for each step $n> m\,|A|$.
+\ascomment{Steven: can you derive a statement on regret, too?}
+\end{itemize}
 \end{lemma}
 
 \begin{proof}
@@ -186,22 +153,29 @@ exploration action. The proof that $\rew(mK) \leq \rew(mK+1)$ is the
 same as for \DynGreedy in Lemma~\ref{dgmono}.
 \end{proof}
 
-We can also have a a phased version which we call
-\PhasedExplorExploit$(m_t)$, where time is partition in to phases.
-In phase $t$ we have $m_t$ agents and a random subset of $K$ explore
-the actions (each action explored by a single agent) and the other
-agents exploit. (This implies that we need that $m_t\geq K$ for all
-$t$. We also assume that $m_t$ is monotone in $t$.)
+We consider a slightly more advanced version, called \PhasedExplorExploit, which enjoys a similar regret bound uniformly over all steps.
+
+The algorithm is defined as follows. The time is partition in to phases $i = 1,2, \ldots $ of $m_i\geq K$ rounds each, where $m_i$ is chosen in advance and increase with $i$. In each phase $i$, $K$ rounds are chosen at random for exploration, and are assigned randomly to one arm each. The remaining rounds are for exploitation. \ascomment{Steven: exploit how? Bayesian or frequentist? Do we use the data from the same phase?}
 
 \begin{lemma}
-Consider the case that $K=2$ and the rewards of the actions are
-Bernoulli r.v. with parameter $\mu_i$ and $\Delta=\mu_1-\mu_2$.
-Algorithm \PhasedExplorExploit$(m_t)$ is monotone and for $m_t =
-\sqrt{t}$ it has $\BIR(n)=O(n^{-1/3}+e^{-O(\Delta^2 n^{2/3})}))$. 
+Posit $K=2$ arms and Bernoulli rewards. 
+\begin{itemize}
+\item[(a)] Algorithm \PhasedExplorExploit is monotone, for every \MRV.
+    \ascomment{Steven: right?}
+
+\item[(b)] For phase durations $m_i =\sqrt{i}$, it has 
+    $\IReg(n)=O(n^{-1/3}+e^{-O(\Delta^2 n^{2/3})}))$,
+where $\Delta = |\mu_1-\mu_2|$.
+\ascomment{Steven: can you derive $O(T^{2/3})$ regret, too?}
+\end{itemize}
 \end{lemma}
 
 \begin{proof}
-We first show that it is monotone. Recall that $\mu_1>\mu_2$. Let
+We first show that it is monotone. Recall that $\mu_1>\mu_2$. 
+\ascomment{Steven: we only have it for prior means, \ie 
+$\E[\mu_1]>\E[\mu_2]$}
+
+Let
 $S_i=\sum_{j=1}^t r_{i,j}$ be the sum of the rewards of action $i$
 up to phase $t$. We need to show that $\Pr[S_1>S_2]+ (1/2)
 \Pr[S_1=S_2]$ is monotonically increasing in $t$. Consider the
@@ -311,10 +285,10 @@ $\BIR(n)=O(n^{-O(\Delta^{-2})})$.
 %\end{proof}
 
 
-\subsection{``Smart" MAB algorithms that combine exploration and exploitation}
-\label{sec:MAB-smart}
+\subsubsection{Monotone, adaptive-exploration MAB algorithms}
+\label{app:MAB-monotone-smart}
 
-
+We provide a simple modification of Successive Elimination algorithm from \citep{EvenDar-icml06} that is monotone and (still) enjoys the same bounds on regret and BIR. 
 %MAB algorithm \SuccesiveElimination holds a set of action
 %$A_s\subset A$ which are called {\em surviving actions} and for
 %agent $t$ selects a random action from $A_s$. Let $n_{i,t}$ be the
@@ -417,13 +391,13 @@ $\BIR(n)=O(n^{-O(\Delta^{-2})})$.
 
 
 
-MAB algorithm \SuccesiveEliminationReset works as follows. It keeps
-a set of surviving actions $A_s\subseteq A$, where initially
-$A_s=A$. The agents are partition into phases, where each phase is a
-random permutation of the non-eliminated actions.
-% Initially, we select actions at random. Let $n_{i,t}$
-%be the number of times action $i$ has been selected up to time $t$,
-Let $\hat{\mu}_{i,t}$ be the average of the rewards of action $i$ up
+The algorithm, called \SuccesiveEliminationReset, proceeds in phases. In each phase $j$, the algorithm is given a set of ``surviving" arms $A_j\subseteq A$, with $A_1=A$. The phase lasts $|A_j|$ rounds, randomly permuted across the arms in $A_j$ (so that each arm in $A_j$ is chosen exactly once). 
+
+\ascomment{Stopped here.}
+
+\ascomment{Steven: I don't understand the algorithm! It resets after each phase, right? But then, the history is just one sample per each arm? WTF?}
+
+Let $\hat{\mu}_{i,t}$ be the average reward of action $i$ up
 to phase $t$ and $\hat{\mu}^*=\max_i \hat{\mu}_{i,t}$. We eliminate
 action $i$ at the end of phase $t$, i.e., delete it from $A_s$, if
 $\hat{\mu}_t^*-\hat{\mu}_{i,t} > \log(T/\delta)/\sqrt{t}$.
@@ -435,12 +409,20 @@ after phase $t$. Namely, we restart $\hat{\mu}_{i,t}$ and ignore the
 old rewards before the elimination.
 
 \begin{lemma}
-%
-The algorithm \SuccesiveEliminationReset, has, with probability
-$1-\delta$, \BIR$(n)=O(\log(T/\delta)/\sqrt{n/K})$.
+Consider algorithm \SuccesiveEliminationReset.
+\begin{itemize}
+\item[(a)]
+With probability $1-\delta$, $\IReg(n)=O(\log(T/\delta)/\sqrt{n/K})$.
+
+\item[(b)]
+Assuming Bernoulli rewards, the algorithm is monotone.
+\ascomment{Steven: for each \MRV, or only in expectation?}
+\ascomment{Steven: can you derive optimal regret?}
+\end{itemize}
 \end{lemma}
 
 \begin{proof}
+\xhdr{Part (a).}
 Let the best action be $a^*=\arg\max_a \mu_a$. With probability
 $1-\delta$ at any time $n$ we have that for any action $i\in A_s$
 that $|\hat{\mu}_i -\mu_i|\leq \log(T/\delta)/\sqrt{n/K}$, and
@@ -448,16 +430,8 @@ $a^*\in A_s$. This implies that any action $a$ such
 $\mu_{a^*}-\mu_{a}> 3\log(T/\delta)/\sqrt{n/K}$ is eliminated.
 Therefore, any action in $A_s$ has \BIR$(n)$ of at most
 $6\log(T/\delta)/\sqrt{n/K}$.
-\end{proof}
 
-\begin{lemma}
-Assume that if $\mu_i\geq \mu_j$ then the rewards $r_i$
-stochastically dominates the rewards $r_j$.
-%
-Then, \SuccesiveEliminationReset is monotone
-\end{lemma}
-
-\begin{proof}
+\xhdr{Part (b).}
 Consider the first time $T$ an action is eliminated, and let
 $T=\tau$ be a realized value of $T$. Then, clearly for $n<\tau$ we
 have $\rew(n)=\rew(1)$ .
