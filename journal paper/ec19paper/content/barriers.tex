@@ -67,11 +67,11 @@ We can quantitatively define the data (resp., reputation) advantage as the incum
 
 \begin{finding}\label{barrier-find}
 \textit{\\
-(a) Data advantage and reputation advantage alone are large, across all algorithms and MAB instances. \\(b) The data advantage is larger than the reputation advantage when the incumbent chooses \TS. \\(c) The two advantages are similar in magnitude when the incumbent chooses \DEG or \DG.
+(a) Data advantage and reputation advantage alone are large, across all algorithms and MAB instances. \\(b) The data advantage is larger than the reputation advantage when the incumbent chooses \Thompson. \\(c) The two advantages are similar in magnitude when the incumbent chooses \DynamicEpsGreedy or \DynamicGreedy.
 }
 \end{finding}
 
-Our intuition for Finding~\ref{barrier-find}(b) is as follows. Suppose the incumbent switches from \DG to \TS. This switch allows the incumbent to explore actions more efficiently -- collect better data in the same number of rounds -- and therefore should benefit the data advantage. However, the same switch increases the reputation cost of exploration in the short run, which could weaken the reputation advantage.
+Our intuition for Finding~\ref{barrier-find}(b) is as follows. Suppose the incumbent switches from \DynamicGreedy to \Thompson. This switch allows the incumbent to explore actions more efficiently -- collect better data in the same number of rounds -- and therefore should benefit the data advantage. However, the same switch increases the reputation cost of exploration in the short run, which could weaken the reputation advantage.
 
 
 \end{document}
