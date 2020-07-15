@@ -1,17 +1,16 @@
-We present sufficient background on the three classes of MAB algorithms listed in Section~\ref{sec:intro-model}: from adaptive-exploration to exploration-separating to greedy.
+We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to non-specialists. We focus on the three classes of MAB algorithms listed in Section~\ref{sec:intro-model}: from adaptive-exploration to exploration-separating to greedy.
 
 \xhdr{Fundamentals.}
 We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. Algorithm's goal is to maximize the total reward.
 
-A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm.%
-\footnote{In a formula, regret is
+A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm. In a formula, regret is
     $T\cdot \max_{\text{arms $a$}}\mu_a
     -  \E\sbr{ \sum_{t\in[T]} r_t }$,
-where $\mu_a$ is the mean reward of arm $a$.}
-Since regret is normalized by the best arm, it allows to compare algorithms across different problem instances.
-The primary concern is the asymptotic growth rate of regret as a function of the time horizon $T$.
+where $\mu_a$ is the mean reward of arm $a$.
+Normalized by the best arm, regret allows to compare algorithms across different problem instances.
+The primary concern is the asymptotic growth rate of regret as a function of $T$.
 
-The three classes of algorithms perform very differently in terms of regret. Adaptive-exploration algorithms achieve optimal regret rates:
+The three classes of algorithms perform very differently in terms of regret: adaptive-exploration algorithms are by far the best, greedy algorithms are by far the worst, and exploration-separating ones are in the middle. The precise regret rates are not essential to this paper; we present them for illustration only. Adaptive-exploration algorithms achieve optimal regret rates:
     $\tildeO(\sqrt{KT})$
 for all problem instances, and an improved regret rate of
     $O(\tfrac{K}{\Delta}\log T)$
@@ -30,24 +29,47 @@ UCB1 \citep{bandits-ucb1},
 and Successive Elimination \citep{EvenDar-icml06}.
 Further work on refining these regret rates is not as relevant.
 
-Exploration-separating algorithms completely separate exploration and exploitation. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round $t$ with predetermined probability $\eps_t$, and exploits with the remaining probability. A formal definition is that each round is either selected exploration, in which case  the distribution over arms does not depend on data, or it is assigned to exploitation, in which case the data from this round is discarded. The $T^{2/3}$ lower bound on regret follows from a somewhat more general lower bound in \citet{MechMAB-ec09}.
+Exploration-separating algorithms completely separate exploration and exploitation. Each round is either selected for exploration, in which case  the distribution over arms does not depend on data, or it is assigned to exploitation, in which case the data from this round is discarded. The simplest approach, called \emph{Explore-First}, is to explore uniformly for a predetermined number of rounds, then choose one arm and ``exploit". A slightly more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round with a predetermined probability, and ``exploits" with the remaining probability. The $T^{2/3}$ lower bound on regret follows from a somewhat more general lower bound in \citet{MechMAB-ec09}.
 
-\xhdr{Advanced aspects.}
+\xhdr{Some advanced aspects.}
 Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration" algorithms involves substantial adoption costs in infrastructure and personnel training \citep{DS-arxiv}. Inserting exploration in a complex decision pipeline necessitates a substantial awareness of the technology and a certain change in a mindset, as well as an infrastructure to collect and analyze the data. Adaptive exploration requires the said infrastructure to propagate the data analysis back to the ``front-end" where the decisions are made, and do it on a sufficiently fast and regular cadence. Framing the problem in terms of the appropriate modeling assumptions and action features, and debugging the machine learning code, tend to be quite subtle, too.
 
 The greedy algorithm can perform well \emph{sometimes} in a more general model of \emph{contextual bandits}, where auxiliary payoff-relevant signals, a.k.a. contexts, are observed before each round. This phenomenon has been observed in practice
 \citep{practicalCB-arxiv18}, and in theory \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18} under (very) substantial assumptions. The prevalent intuition is that the diversity of contexts can --- under some conditions and to a limited extent --- substitute for explicit exploration.
 
 \xhdr{Instantaneous regret.}
+Cumulative performance measures such as regret are not quite appropriate for our setting, as we need to characterize interactions in particular rounds. Instead, our theoretical results focus on \emph{Bayesian instantaneous regret} (\BIR), as defined in Section~\ref{sec:theory-prelims}. Recall that we posit a Bayesian prior on the \MRVs. In the notation of this appendix, the \BIR is simply:
+\begin{align*}%\label{eq:bg-BIR-defn}
+\BIR(t) := \E_{\text{prior}}\sbr{ \max_{a\in A} \mu_a - r_t}.
+\end{align*}
+\noindent Note that Bayesian regret (\ie regret in expectation over the prior) is precisely
+\begin{align}\label{eq:bg-BReg}
+  \BReg(T):= 
+    \E_{\text{prior}}\sbr{ T\cdot \max_{\text{arms $a$}}\mu_a - \sum_{t=1}^T r_t }
+    = \sum_{t=1}^T \BIR(t).
+\end{align}
+We are primarily interested in how fast \BIR decreases with $t$.%
+\footnote{We treat $K$, the number of arms, as a constant in what follows.}
 
-Let us connect \BIR with the three classes of algorithms listed in Section~\ref{sec:intro-model}. \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $n$). \StaticGreedy typically has at least a constant \BIR, in the same sense. Exploration-separating algorithms can have
+
+The three classes of algorithms are well-separated in terms of \BIR, much like they are in terms of regret. 
+
+\begin{itemize}
+\item \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $t$). The reason and the proof are exactly the same as for regret. 
+    
+\item Exploration-separating algorithms can achieve
+    $\BIR(t) = \tildeO(t^{-1/3})$
+for all priors, \eg by using Epsilon-Greedy with exploration probability $\eps_t = t^{-1/3}$ in each round $t$. 
+The $t^{-1/3}$ rate is the best possible, in the sense that
+
+\ascomment{stopped here.}
+
+\item Adaptive-exploration algorithms can have an even better rate
     $\BIR(n) \sim n^{-1/3}$
-for all priors, whereas adaptive-exploration algorithms can have an even better rate
-    $\BIR(n) \sim n^{-1/3}$
-for all priors. Both rates are up to $\log(n)$ factors, and are the best possible \BIR rates that can be achieved for all priors. More details on this can be found in Appendix~\ref{app:examples}.
+for all priors. 
+\end{itemize}
 
-
-
+Both rates are up to $\log(n)$ factors, and are the best possible \BIR rates that can be achieved for all priors.
 \ascomment{stopped here.}
 
 %\xhdr{}

@@ -7,13 +7,13 @@ We start with a pilot experiment in which we investigate each algorithm's perfor
     $\Thompson > \DynamicEpsGreedy > \DynamicGreedy$
 for a sufficiently long time horizon. For each algorithm and each MAB instance, we compute the mean reputation score at each round, averaged over all \MRVs. We plot the \emph{mean reputation trajectory}: how this score evolves over time. \asedit{We also plot the trajectory for instantaneous rewards (\emph{not} averaged over the previous time-periods), which provides a better view into algorithm's performance at a given time.}%
 \footnote{For ``instantaneous reward" at a given time $t$, we report the average (over all \MRVs) of the mean rewards at this time, instead of the average of the \emph{realized} rewards, so as to decrease the noise.}
-Figure \ref{prelim_means} shows these trajectories for the Needle-in-Haystack instance; for other MAB instances the plots are similar. 
+Figure \ref{prelim_means} shows these trajectories for the Needle-in-Haystack instance; for other MAB instances the plots are similar.
 
 We summarize this finding as follows:
 
 \begin{finding}
 \textit{The mean reputation trajectories \asedit{and the instantaneous reward trajectories} are arranged as predicted by prior work:
-    $\Thompson > \DynamicEpsGreedy > \DynamicGreedy$ for a sufficiently long time horizon.}
+    $\Thompson > \DynamicEpsGreedy > \DynamicGreedy$ for a sufficiently long time horizon $T$.}
 \end{finding}
 
 
