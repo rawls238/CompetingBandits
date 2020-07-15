@@ -118,15 +118,15 @@ We start with a simple \emph{Explore-First} algorithm:
 \begin{lemma}
 Consider an algorithm which initially explores each action $m$ times (where $m$ is a parameter), chooses an action  with the highest observed average reward, and uses it for the remaining steps. In the initial exploration phase, actions are randomly permuted. 
 \begin{itemize}
-\item[(a)] This algorithm is monotone, for every \MRV.
-\ascomment{Steven: right?}
+\item[(a)] This algorithm is monotone.
+\ascomment{Steven: for every \MRV or only in expectation?}
 
 \item[(b)] Fix $\delta>0$ and 
     $m = T^{2/3}\log(|A|/\delta)$.
 Then, with probability $1-\delta$, it holds that  
     $\IReg(t)=\tildeO\rbr{T^{-1/3}}$
 for each step $n> m\,|A|$.
-\ascomment{Steven: can you derive a statement on regret, too?}
+\ascomment{Steven: can you derive $O(T^{2/3})$ regret, too?}
 \end{itemize}
 \end{lemma}
 
@@ -158,8 +158,8 @@ The algorithm is defined as follows. The time is partition in to phases $i = 1,2
 \begin{lemma}
 Posit $K=2$ arms and Bernoulli rewards. 
 \begin{itemize}
-\item[(a)] Algorithm \PhasedExplorExploit is monotone, for every \MRV.
-    \ascomment{Steven: right?}
+\item[(a)] Algorithm \PhasedExplorExploit is monotone.
+\ascomment{Steven: for every \MRV or only in expectation?}
 
 \item[(b)] For phase durations $m_i =\sqrt{i}$, it has 
     $\IReg(n)=O(n^{-1/3}+e^{-O(\Delta^2 n^{2/3})}))$,
