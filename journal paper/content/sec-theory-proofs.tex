@@ -52,7 +52,7 @@ By assumption \eqref{eq:assn-distinct}, it follows that
 
 Since the two algorithms deviate at step $n_0$, there is a set $S\subset \support(H)$ of step-$n_0$ histories such that $\Pr[S]>0$ and any history $h\in S$ satisfies
     $\Pr[a_{2,n_0}\neq a_{1,n_0} \mid H=h]>0$.
-Combining this with \eqref{eq:lm:DG-rew-2}, 
+Combining this with \eqref{eq:lm:DG-rew-2},
 \begin{align}\label{eq:lm:DG-rew-3}
  \PMR(a_{1,n_0} \mid H = h) > \E\left[ \mu_{a_{2,n_0}}\mid H=h \right]
  \quad\text{for each history $h\in S$}.
@@ -98,7 +98,7 @@ Proof of Theorem~\ref{thm:HardMax-biased}}
 The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
 
 Recall that $i_t$ is the principal chosen in a given global round $t$.
-Because of the biased tie-breaking, 
+Because of the biased tie-breaking,
 \begin{align}\label{eq:thm:HardMax-biased-PMRtoPr}
 \text{if $\PMR_1(t)\geq \PMR_2(t)$ then $\Pr[i_t=1]>\tfrac12$.}
 \end{align}
@@ -185,7 +185,7 @@ The above inequalities follow, resp., from algorithms' monotonicity and \eqref{e
   $\rew_1(\cdot)$ and $\rewgr(\cdot)$ are non-decreasing: the former
   because \alg[1] is monotone and the latter because the ``greedy
   choice'' is only improved with an increasing set of
-  observations. \ascomment{insert a pointer} 
+  observations, see Lemma~\ref{lm:MII}. 
 Using \eqref{eq:BIR-modification}, we conclude that
 the greedy modification \alg[2] is monotone.
 
@@ -255,11 +255,11 @@ Fix any $t \geq T_1 + T_2$.
 Since each agent chooses \alg[1] with probability at least
 $1/2 - \beta_1$, by Chernoff Bounds (Theorem~\ref{thm:chernoff}) we
 have with probability at least $1 - q_2(t)$ that the number of agents
-that choose \alg[1] is at least 
-    $\beta_0(\nicefrac{1}{2} - \beta_1)t/5$, 
+that choose \alg[1] is at least
+    $\beta_0(\nicefrac{1}{2} - \beta_1)t/5$,
 where %the function
 $$
-q_2(x) = \exp\rbr{ -\nicefrac{1}{3}\; 
+q_2(x) = \exp\rbr{ -\nicefrac{1}{3}\;
     (\nicefrac{1}{2} - \beta_1)(1 - \beta_0/5)^2x} .
 $$
 Note that the number of agents received by \alg[2] is at most
@@ -282,9 +282,9 @@ least $1 - q_2(t)$ for any $t \geq T_1 + T_2$.
 % % \]
 Note that the weak BIR-dominance condition
 in~\eqref{eq:SoftMax-better} implies that for any $t\geq T_1 + T_2$
-with probability at least $1 - q_2(t)$, we have 
+with probability at least $1 - q_2(t)$, we have
 $ \BIR_1(n_1(t)) < (1- \alpha_0)\,\BIR_2(n_2(t))$.
-  
+
 It follows that for any $t\geq T_1 + T_2$,
 \begin{align*}
   \PMR_1(t) - \PMR_2(t) &= \Ex{m_1\sim \posteriorN{1}{t},\;m_2\sim \posteriorN{2}{t}}{\BIR_2(m_2+ 1) - \BIR_1(m_1+1)} \\
@@ -296,7 +296,7 @@ $q_2(t) \leq \alpha_0\BIR_2(t)/4$, and is implied by the condition
 in~\eqref{eq:SoftMax-assn-strong} as long as $T_2$ is sufficiently
 large. Hence, by the definition of our \SoftMaxRandom response
 function and assumption in~\eqref{eq:SoftMax-smooth}, we have
-$  \Pr[i_t = 1] \geq \nicefrac{1}{2} + 
+$  \Pr[i_t = 1] \geq \nicefrac{1}{2} +
     \nicefrac{1}{4}\; c_0\,\alpha_0\,\BIR_2(t)$.
 %\end{proof}
 
