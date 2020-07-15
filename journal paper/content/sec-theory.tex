@@ -60,7 +60,7 @@ Assume \HardMax response function with fair tie-breaking. Assume that \alg[1] is
 \end{theorem}
 
 \begin{corollary}\label{cor:DG-dominance}
-The competition game has a unique Nash equilibirium: both principals choose \DynGreedy. \asedit{This holds even if the principals can only choose from restricted strategy sets which include \DynGreedy.}
+The competition game has a unique Nash equilibrium: both principals choose \DynGreedy. \asedit{This holds even if the principals can only choose from restricted strategy sets which include \DynGreedy.}
 \end{corollary}
 
 The proof of Theorem~\ref{thm:DG-dominance} relies on two key lemmas: that deviating from \DynGreedy implies a strictly smaller Bayesian-expected reward, and that \HardMax implies a ``sudden-death" property: if one agent chooses principal $1$ with certainty, then so do all subsequent agents. We re-use both lemmas in later results, so we state them in sufficient generality. In particular, Lemma~\ref{lm:DG-rew} works for any response function because it only considers the performance of each algorithm without competition.
