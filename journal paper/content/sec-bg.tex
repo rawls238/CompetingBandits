@@ -65,7 +65,7 @@ for all $t$ and some $\gamma>0$,
 over all problem instances, then $\gamma\geq \nicefrac{1}{3}$. This is by \eqref{eq:bg-BReg} and the fact that $\BReg(T)\geq \Omega(T^{2/3})$ in the worst case. (The latter follows from the `frequentist" lower bound in \citet{MechMAB-ec09}.)
 
 \item Adaptive-exploration algorithms \emph{can} have an even better regret rate: $\BIR(t) = \tildeO\rbr{ t^{-1/2} } $, \eg this holds for Successive Elimination \citep{EvenDar-icml06}. Any optimal MAB algorithm such as Thompson Sampling and UCB1 enjoys this regret rate ``on average", because it satisfies 
-        $\BReg(T)\leq \tildeO(sqrt{T})$.
+        $\BReg(T)\leq \tildeO(\sqrt{T})$.
     Put differently, if such algorithm satisfies 
         $\BIR(t) = \tildeO\rbr{t^{-\gamma}}$
     for all $t$ and some $\gamma>0$, then $\gamma \leq \nicefrac{1}{2}$.
