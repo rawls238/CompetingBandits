@@ -12,7 +12,7 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 
 \usepackage{subfiles}
 \usepackage{libertine}
-\usepackage[toc,page]{appendix}
+\usepackage[title,titletoc]{appendix}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
@@ -268,6 +268,12 @@ Our findings are closely related to the ``competition vs. innovation" relationsh
 \end{small}
 
 \clearpage
+
+
+\renewcommand{\appendixname}{Appendix}
+\renewcommand{\appendixtocname}{List of appendices}
+
+
 \begin{appendices}
 
 %In the appendix, we provide background on multi-armed bandits as well as several discussions and proofs omitted from the main text. Furthermore, we provide plots and tables for our experiments, which were omitted from the main text. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
