@@ -1,4 +1,4 @@
-We provide two examples when Assumption~\eqref{eq:assn-distinct} holds almost surely under a small random perturbation of the prior. We focus on problem instances with Bernoulli rewards, and assume that the prior $\priorMu$ is independent across arms.
+We provide two examples when Assumption~\eqref{eq:assn-distinct} holds almost surely under a small random perturbation of the prior. We posit Bernoulli rewards, and assume that the prior $\priorMu$ is independent across arms.
 
 % and has a finite support.%
 %\footnote{The assumption of 0-1 rewards is for clarity. Our results hold under a more general assumption that for each arm $a$, rewards can only take finitely many values, and each of these values is possible (with positive probability) for every possible value of the mean reward $\mu_a$.}
@@ -9,7 +9,7 @@ We provide two examples when Assumption~\eqref{eq:assn-distinct} holds almost su
 Therefore, perturbing the
     parameters $\alpha_a$ and $\beta_a$ independently with any
     continuous noise will induce a prior with property
-    \eqref{eq:assn-distinct} with probability 1.  
+    \eqref{eq:assn-distinct} with probability 1.
 
 \xhdr{A prior with a finite support.} Consider the probability vector in the prior for arm $a$:
 \[ \vec{p}_a = \left(\; \Pr[\mu_a=\nu]:\; \nu\in \support(\mu_a)\; \right).\]
@@ -32,11 +32,13 @@ Consider an instance of MAB with 0-1 rewards. Assume that the prior $\priorMu$ i
 As a generic example of a noise distribution which satisfies
   Property \eqref{eq:app:perturb:noise-prop}, consider the uniform
   distribution $\mN$ over the bounded convex set
-  \[ Q = \left\{q \in \R^{d_a} \mid q \cdot \vec{1} = 0 \mbox{ and }
-      \|q\|_2 \leq \eps\right\}, \] where $\vec{1}$ denotes the all-1
+  $ Q = \left\{q \in \R^{d_a} \mid q \cdot \vec{1} = 0 \mbox{ and }
+      \|q\|_2 \leq \eps\right\}, $
+  where $\vec{1}$ denotes the all-1
   vector. If $x = a \vec{1}$ for some non-zero value of $a$, then
   \eqref{eq:app:perturb:noise-prop} holds because
-  $$x \cdot (p+q) = x \cdot p = a\neq 0.$$ Otherwise, denote
+  $x \cdot (p+q) = x \cdot p = a\neq 0.$
+Otherwise, denote
   $p=\vec{p}_a$ and observe that $x\cdot({p}+ {q}) = 0$ only if
   $x \cdot q = c \triangleq x \cdot (-p)$. Since $x\neq \vec{1}$, the
   intersection $Q\cap\{ x\cdot q = c \}$ either is empty or has
@@ -45,7 +47,7 @@ As a generic example of a noise distribution which satisfies
 \end{remark}
 
 
-To prove Theorem~\ref{thm:perturb}, it suffices to focus on two arms, and perturb one of them. Since realized rewards have finite support, there are only finitely many possible histories. Therefore, it suffices to focus on a fixed history $h$.
+To prove Theorem~\ref{thm:perturb}, it suffices to focus on two arms, and perturb one. Since realized rewards have finite support, there are only finitely many possible histories. So, it suffices to focus on a fixed history $h$.
 
 \begin{lemma}\label{lm:perturb}
 Consider an instance of MAB with 0-1 rewards. Assume that the prior $\priorMu$ is independent across arms, and that $\support(\mu_1)$ is finite and does not include $0$ or $1$. Fix history $h$. Suppose random perturbation~\eqref{eq:app:perturb:noise} is applied to arm $1$, with noise distribution $\mN_1$ that satisfies \eqref{eq:app:perturb:noise-prop}. Then
