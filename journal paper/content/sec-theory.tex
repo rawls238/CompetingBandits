@@ -511,7 +511,7 @@ $U_i := \sum_{t=1}^T\; \indicator{i_t=i}\cdot U_i(r_r)$.
 %\end{align}
 
 \xhdr{Time-discounted utility.}
-Corollary~\ref{cor:DG-dominance} holds under a more general model which allows time-discounting: namely, the utility of each principal $i$ in each global round $t$ is $U_{i,t}(r_t)$ if this principal is chosen, and $0$ otherwise, where $U_{i,t}(\cdot)$ is an arbitrary non-decreasing function with $U_{i,t}(0)>0$.
+Theorem~\ref{thm:DG-dominance} and Corollary~\ref{cor:DG-dominance} holds under a more general model which allows time-discounting: namely, the utility of each principal $i$ in each global round $t$ is $U_{i,t}(r_t)$ if this principal is chosen, and $0$ otherwise, where $U_{i,t}(\cdot)$ is an arbitrary non-decreasing function with $U_{i,t}(0)>0$.
 
 \xhdr{Arbitrary reward distributions.}
 While Section~\ref{sec:model} posits Bernoulli rewards, we allow arbitrary reward distributions. Formally, for each arm $a\in A$ there is a parametric family $\psi_a(\cdot)$ of reward distributions, parameterized by the mean reward. Whenever arm $a$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards, denoted $\prior$.
@@ -535,7 +535,7 @@ such that
 %The proof of this extension is very similar and is omitted.
 
 \noindent Weak BIR-dominance can be redefined similarly.
-Theorem~\ref{thm:random-clean} and Theorem~\ref{thm:SoftMax-weak} extend to these generalized versions; the easy modifications are omitted.
+Theorem~\ref{thm:random-clean} and~\ref{thm:SoftMax-weak} easily extend to these versions.
 
 
 
