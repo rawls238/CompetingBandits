@@ -67,7 +67,7 @@ Let us use induction on round $t\geq t_0$, with the base case $t=t_0$. Let $\mN=
     = \Ex{n\sim \mN}{\rew_1(n+1+t-t_0)}
     \geq \Ex{n\sim \mN}{\rew_1(n+1)}
     =\PMR_1(t_0) > \PMR_2(t_0)= \PMR_2(t), \]
-where the first inequality holds because \alg[1] is monotone, and the second one is the base case.
+where the first inequality holds because \alg[1] is \bmonotone, and the second one is the base case.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:DG-dominance}]
@@ -87,7 +87,7 @@ Therefore:
     \nonumber \\
   &= \Ex{n\sim \mN}{\rew_2(n + 1)} = \PMR_2(n_0) \label{eq:pf:thm:DG-dominance}
 \end{align}
-So, agent $n_0$ chooses principal $1$. By Lemma~\ref{lm:DG-sudden} {(noting that \DynGreedy is monotone)}, all subsequent agents choose principal $1$, too.
+So, agent $n_0$ chooses principal $1$. By Lemma~\ref{lm:DG-sudden} {(noting that \DynGreedy is \bmonotone)}, all subsequent agents choose principal $1$, too.
 \end{proof}
 
 %%%%%%%%%%%%
@@ -183,11 +183,11 @@ The above inequalities follow, resp., from algorithms' monotonicity and \eqref{e
   Let $\rewgr(n)$ denote the Bayesian-expected reward of the ``greedy
   choice'' after after $n-1$ steps of \alg[1]. Note that
   $\rew_1(\cdot)$ and $\rewgr(\cdot)$ are non-decreasing: the former
-  because \alg[1] is monotone and the latter because the ``greedy
+  because \alg[1] is \bmonotone and the latter because the ``greedy
   choice'' is only improved with an increasing set of
-  observations, see Lemma~\ref{lm:MII}. 
+  observations, see Lemma~\ref{lm:MII}.
 Using \eqref{eq:BIR-modification}, we conclude that
-the greedy modification \alg[2] is monotone.
+the greedy modification \alg[2] is \bmonotone.
 
   By definition of the ``greedy choice,'' $\rew_1(n)\leq \rewgr(n)$
   for all steps $n$. Moreover, by Lemma~\ref{lm:DG-rew},
@@ -208,7 +208,7 @@ The induction step is proved as follows. The induction hypothesis for global rou
     \label{eq:pf:thm:random-greedy-2} \\
   &= \PMR_2(t). \nonumber
 \end{align}
-Here inequality \eqref{eq:pf:thm:random-greedy-1} holds because $\rew_1(\cdot)$ is monotone and $\mM_{2,t}$ stochastically dominates $\posteriorN{1}{t}$, and inequality \eqref{eq:pf:thm:random-greedy-2} holds because $\rew_1(n_0)<\rew_2(n_0)$ and $\mM_{2,t}(n_0)>0$.%
+Here inequality \eqref{eq:pf:thm:random-greedy-1} holds because $\rew_1(\cdot)$ is \bmonotone and $\mM_{2,t}$ stochastically dominates $\posteriorN{1}{t}$, and inequality \eqref{eq:pf:thm:random-greedy-2} holds because $\rew_1(n_0)<\rew_2(n_0)$ and $\mM_{2,t}(n_0)>0$.%
 \footnote{If $\rew_1(\cdot)$ is strictly increasing, then inequality \eqref{eq:pf:thm:random-greedy-1} is strict, too; this is because $\mM_{2,t}(t-1)>\posteriorN{1}{t}(t-1)$.  }
 %\end{proof}
 
