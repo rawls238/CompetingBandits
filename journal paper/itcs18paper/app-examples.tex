@@ -19,7 +19,7 @@
 
 \ascomment{TODO: insert an intro para.}
 
-Throughout this section, we consider a standard MAB setting. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$. 
+Throughout this section, we consider a standard MAB setting. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$.
 
 Throughout, we let
     $\rew(t) = \mu_{a_t}$
@@ -27,25 +27,29 @@ denote the instantaneous mean reward of the algorithm.
 
 Instantaneous regret is denoted
     $\IReg(t) := \max_{a\in A} \mu_a - \mu_{a_t}$,
-so that 
+so that
     $\BIR(t) = \E[\IReg(t)]$.
 
-\subsection{Monotonicity-in-information for the greedy step}
-\label{sec:MAB-greedy}
+\subsection{Monotone algorithms}
+\label{app:MAB-mono}
+
+
+%This subsection argues that ``monotonicity" is a mild assumption in our context. To this end, we present versions of some standard MAB algorithms that are monotone and satisfy ``standard" regret bounds.
+
 
 \ascomment{TODO: insert an intro sentence, cite the ec15 paper.}
 
 \ascomment{Steven: NB: we need monotonicity-in-info to argue about "a little greedy goes a long way".}
- 
-The $n$-step history is the random sequence 
+
+The $n$-step history is the random sequence
     $H_n = \rbr{ (a_t,r_t):\, t\in[n]}$.
-Realizations of $H_n$ are called \emph{realized histories}. 
-Let $\mH_n$ be the set of all possible values of $H_n$. 
+Realizations of $H_n$ are called \emph{realized histories}.
+Let $\mH_n$ be the set of all possible values of $H_n$.
 
 The \emph{Bayesian-greedy step} given an $n$-step history $h\in \mH_n$ is defined as
 \[ \DG(h) := \argmax_{a\in A} \E\sbr{ \mu_a\mid H_n = h },
 \quad\text{ties broken uniformly}.\]
- 
+
 \begin{lemma}\label{lm:MII}
 Let $h,h'$ be two realized histories such that $h$ is a prefix of $h'$. Then
 \[ \E\sbr{ \mu_{\DG(h)} } \leq \E\sbr{ \mu_{\DG(h')} }. \]
@@ -94,11 +98,9 @@ probability we select a better action then the realization of $a_n$.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Monotone MAB algorithms}
-\label{app:MAB-monotone}
+%\subsection{Monotone MAB algorithms}
+%\label{app:MAB-monotone}
 
-\ascomment{Steven: NB: this is the point of this subsection...}
-This subsection argues that ``monotonicity" is a mild assumption in our context. To this end, we present versions of some standard MAB algorithms that are monotone and satisfy ``standard" regret bounds.
 
 
 \subsubsection{Monotone, exploration-separating MAB algorithms}
@@ -113,17 +115,17 @@ We provide two exploration-separating algorithms that are monotone and achieve $
 
 \ascomment{Steven: can't we prove that Epsilon-Greedy is monotone, too?}
 
-We start with a simple \emph{Explore-First} algorithm: 
+We start with a simple \emph{Explore-First} algorithm:
 
 \begin{lemma}
-Consider an algorithm which initially explores each action $m$ times (where $m$ is a parameter), chooses an action  with the highest observed average reward, and uses it for the remaining steps. In the initial exploration phase, actions are randomly permuted. 
+Consider an algorithm which initially explores each action $m$ times (where $m$ is a parameter), chooses an action  with the highest observed average reward, and uses it for the remaining steps. In the initial exploration phase, actions are randomly permuted.
 \begin{itemize}
 \item[(a)] This algorithm is monotone.
 \ascomment{Steven: for every \MRV or only in expectation?}
 
-\item[(b)] Fix $\delta>0$ and 
+\item[(b)] Fix $\delta>0$ and
     $m = T^{2/3}\log(|A|/\delta)$.
-Then, with probability $1-\delta$, it holds that  
+Then, with probability $1-\delta$, it holds that
     $\IReg(t)=\tildeO\rbr{T^{-1/3}}$
 for each step $n> m\,|A|$.
 \ascomment{Steven: can you derive $O(T^{2/3})$ regret, too?}
@@ -156,12 +158,12 @@ We consider a slightly more advanced version, called \PhasedExplorExploit, which
 The algorithm is defined as follows. The time is partition in to phases $i = 1,2, \ldots $ of $m_i\geq K$ rounds each, where $m_i$ is chosen in advance and increase with $i$. In each phase $i$, $K$ rounds are chosen at random for exploration, and are assigned randomly to one arm each. The remaining rounds are for exploitation. \ascomment{Steven: exploit how? Bayesian or frequentist? Do we use the data from the same phase?}
 
 \begin{lemma}
-Posit $K=2$ arms and Bernoulli rewards. 
+Posit $K=2$ arms and Bernoulli rewards.
 \begin{itemize}
 \item[(a)] Algorithm \PhasedExplorExploit is monotone.
 \ascomment{Steven: for every \MRV or only in expectation?}
 
-\item[(b)] For phase durations $m_i =\sqrt{i}$, it has 
+\item[(b)] For phase durations $m_i =\sqrt{i}$, it has
     $\IReg(n)=O(n^{-1/3}+e^{-O(\Delta^2 n^{2/3})}))$,
 where $\Delta = |\mu_1-\mu_2|$.
 \ascomment{Steven: can you derive $O(T^{2/3})$ regret, too?}
@@ -169,8 +171,8 @@ where $\Delta = |\mu_1-\mu_2|$.
 \end{lemma}
 
 \begin{proof}
-We first show that it is monotone. Recall that $\mu_1>\mu_2$. 
-\ascomment{Steven: we only have it for prior means, \ie 
+We first show that it is monotone. Recall that $\mu_1>\mu_2$.
+\ascomment{Steven: we only have it for prior means, \ie
 $\E[\mu_1]>\E[\mu_2]$}
 
 Let
@@ -286,7 +288,7 @@ $\BIR(n)=O(n^{-O(\Delta^{-2})})$.
 \subsubsection{Monotone, adaptive-exploration MAB algorithms}
 \label{app:MAB-monotone-smart}
 
-We provide a simple modification of Successive Elimination algorithm from \citep{EvenDar-icml06} that is monotone and (still) enjoys the same bounds on regret and BIR. 
+We provide a simple modification of Successive Elimination algorithm from \citep{EvenDar-icml06} that is monotone and (still) enjoys the same bounds on regret and BIR.
 %MAB algorithm \SuccesiveElimination holds a set of action
 %$A_s\subset A$ which are called {\em surviving actions} and for
 %agent $t$ selects a random action from $A_s$. Let $n_{i,t}$ be the
@@ -389,7 +391,7 @@ We provide a simple modification of Successive Elimination algorithm from \citep
 
 
 
-The algorithm, called \SuccesiveEliminationReset, proceeds in phases. In each phase $j$, the algorithm is given a set of ``surviving" arms $A_j\subseteq A$, with $A_1=A$. The phase lasts $|A_j|$ rounds, randomly permuted across the arms in $A_j$ (so that each arm in $A_j$ is chosen exactly once). 
+The algorithm, called \SuccesiveEliminationReset, proceeds in phases. In each phase $j$, the algorithm is given a set of ``surviving" arms $A_j\subseteq A$, with $A_1=A$. The phase lasts $|A_j|$ rounds, randomly permuted across the arms in $A_j$ (so that each arm in $A_j$ is chosen exactly once).
 
 \ascomment{Stopped here.}
 
