@@ -10,26 +10,26 @@ Our results have two economic interpretations. \gaedit{The first is that they} c
 
 With this paper as a common departure point, there are several exciting directions to explore:
 
-\begin{itemize} 
+\begin{itemize}
 
-\item \emph{Prices.} 
+\item \emph{Prices.}
 When the firms can set prices, they may be able to compensate early users for exploration, and potentially prevent the ``death spiral" effects. Whereas our paper zeroes in on competition between free, ad-supported platforms that primarily compete on quality.
 
-\item \emph{Horizontal differentiation.} 
+\item \emph{Horizontal differentiation.}
 Horizontally differentiated user preferences may help explain how competition may encourage specialization, \ie how the firms may \emph{learn to specialize} under competition.
 
 
 \item \emph{Continuous learning.}
 While we focus on learning from scratch in a mainly stationary world, another well-motivated regime is continuous learning, when exploration counteracts change
 \citep{DynamicMAB-colt08}.
-The economic story would be about competition between relatively mature firms. 
+The economic story would be about competition between relatively mature firms.
 
 \item \emph{Real-life data.}
-Numerical experiments based on real-life datasets would arguably be more realistic. Bandit algorithms would probably need to incorporate \emph{contexts} (auxiliary signals available before each round), as the real-life bandit problems tend to be contextual.
+Numerical experiments based on real-life datasets would arguably be more realistic. \asedit{To deal with real-life datasets, bandit algorithms would probably need to accommodate change over time and} \emph{contexts} (auxiliary signals available before each round).
 
 \end{itemize}
 
-\noindent One difficulty with the last two directions is that the bandit ``side" of the model becomes considerably more complicated, both in terms of the rewards and in terms of the algorithms. Indeed, there are many reasonable ways to model a changing world (resp., contexts), and several  substantially different algorithmic approaches to deal with that. Even within the same approach, the distinctions between better and worse algorithms are not as clear, and the intuitions are not as well-established. 
+\noindent One difficulty with the last two directions is that the bandit ``side" of the model becomes considerably more complicated, both in terms of the rewards and in terms of the algorithms. Indeed, there are many reasonable ways to model a changing world (resp., dependence on  contexts), and several  substantially different algorithmic approaches to deal \asedit{these models. Consequently, the distinctions between better and worse algorithms are not as clear and well-established.}
 
 
 \end{document}
