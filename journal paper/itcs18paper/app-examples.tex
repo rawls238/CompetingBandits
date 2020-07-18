@@ -72,25 +72,22 @@ Bayesian-monotonicity follows directly. The ``strictly increases" statement hold
 \DynamicEpsGreedy is \bmonotone whenever probabilities $\eps_t$ are non-increasing.
 \end{corollary}
 
-\xhdr{Monotonicity and \BIR of \Thompson.} 
+\xhdr{Monotonicity and \BIR of \Thompson.}
 Monotonicity follows from \citet{Selke-BE-2020}; the \BIR result is an immediate corollary given that
     $\BReg(t) \leq \tilde{O}(\sqrt{t})$
 for all steps $t$ \citep{Russo-MathOR-14}. Neither result has appeared in print, to the best of our knowledge.
 
 \begin{theorem}[\citet{Selke-BE-2020}]\label{thm:TS-mono}
-\Thompson is \bmonotone.
+\asedit{Assume the prior is independent across arms.} Then \Thompson is \bmonotone. Consequently, it satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
 \end{theorem}
 
-\begin{corollary}
-\Thompson satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
-\end{corollary}
 
 The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, \Thompson samples arm $a_t$ as follows:
 \begin{align}\label{eq:TS-defn}
     \Pr[a_t=a] := {\Pr}^t[a^*=a]
     \quad\text{for each arm $a$}.
 \end{align}
-    
+
 
 \begin{proof}[Proof of Theorem~\ref{thm:TS-mono}]
 The two observations from \citet{Selke-BE-2020}  are as follows: for each arm $a$,
@@ -98,18 +95,18 @@ The two observations from \citet{Selke-BE-2020}  are as follows: for each arm $a
 \item[(i)]
 $\E\sbr{ \mu_a \mid a_t = a} \;\Pr[a_t=a] = \E\sbr{H_{t,a}}$,
 where
-    $H_{t,a} := \E^t[\mu_a]\; \Pr^t[a_t = a]$. 
-    
+    $H_{t,a} := \E^t[\mu_a]\; \Pr^t[a_t = a]$.
+
 \item[(ii)]
-The process $(H_{t,a}:\;t\in\N)$ 
+The process $(H_{t,a}:\;t\in\N)$
 is a submartingale.
 \end{OneLiners}
 
 We use these observations as follows:
 \begin{align*}
 \E[\rew(t)]
-    &= \sum_{\text{arms $a$}} 
-        \E\sbr{ \mu_a \mid a_t = a} \;\Pr[a_t=a] 
+    &= \sum_{\text{arms $a$}}
+        \E\sbr{ \mu_a \mid a_t = a} \;\Pr[a_t=a]
     =\sum_{\text{arms $a$}}  \E\sbr{ H_{t,a} }
     \qquad\EqComment{by (i)}\\
 \E[\rew(t+1)]
@@ -118,4 +115,4 @@ We use these observations as follows:
     =\E[\rew(t)]
     \qquad\EqComment{by (ii)} \qedhere
 \end{align*}
-\end{proof}
+\end{proof} 
