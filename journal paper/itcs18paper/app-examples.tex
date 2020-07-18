@@ -18,7 +18,7 @@
 %\regretWC(n)    &:=  \sup_{\text{mean reward vectors $\mu$}} \; \BIR(n\mid \mu).
 %\end{align}
 
-This appendix provides some auxiliary results on \bmonotonicity of some standard algorithms: \DynGreedy, \DynamicEpsGreedy and Thompson Sampling. The former is needed in Section~\ref{sec:theory}, the last two merely add motivation for our theoretical story. The result on Thompson Sampling also implies that $\BIR(t)\leq \tildeO(t^{-1/2})$. Recall that an algorithm is called \bmonotone if its Bayesian-expected reward is non-decreasing in time.
+This appendix provides some auxiliary results on \bmonotonicity of some standard algorithms: \DynGreedy, \DynamicEpsGreedy and \Thompson. The former is needed in Section~\ref{sec:theory}, the last two merely add motivation for our theoretical story. The result on\Thompson also implies that $\BIR(t)\leq \tildeO(t^{-1/2})$. Recall that an algorithm is called \bmonotone if its Bayesian-expected reward is non-decreasing in time.
 
 Throughout, we consider a standard MAB setting. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$.
 
@@ -72,20 +72,20 @@ Bayesian-monotonicity follows directly. The ``strictly increases" statement hold
 \DynamicEpsGreedy is \bmonotone whenever probabilities $\eps_t$ are non-increasing.
 \end{corollary}
 
-\xhdr{Monotonicity and \BIR of Thompson Sampling.} 
+\xhdr{Monotonicity and \BIR of \Thompson.} 
 Monotonicity follows from \citet{Selke-BE-2020}; the \BIR result is an immediate corollary given that
     $\BReg(t) \leq \tilde{O}(\sqrt{t})$
 for all steps $t$ \citep{Russo-MathOR-14}. Neither result has appeared in print, to the best of our knowledge.
 
 \begin{theorem}[\citet{Selke-BE-2020}]\label{thm:TS-mono}
-Thompson Sampling is \bmonotone.
+\Thompson is \bmonotone.
 \end{theorem}
 
 \begin{corollary}
-Thompson Sampling satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
+\Thompson satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
 \end{corollary}
 
-The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, Thompson Sampling samples arm $a_t$ as follows:
+The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, \Thompson samples arm $a_t$ as follows:
 \begin{align}\label{eq:TS-defn}
     \Pr[a_t=a] := {\Pr}^t[a^*=a]
     \quad\text{for each arm $a$}.

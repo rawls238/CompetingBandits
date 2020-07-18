@@ -4,7 +4,7 @@ We focus on the three classes of MAB algorithms listed in Section~\ref{sec:intro
 We use standard conventions: $O(f(t))$ and $\Omega(f(t))$ means at most (resp., at least) $f(n)$, up to constant factors, starting from large enough $t$. Likewise, $\tildeO(f(t))$ notation suppresses the $\polylog(t)$ factors.
 
 \xhdr{Fundamentals.}
-We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. Algorithm's goal is to maximize the total reward.
+We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. The algorithm's goal is to maximize the total reward.
 
 A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm. In a formula, regret is
     $T\cdot \max_{\text{arms $a$}}\mu_a
