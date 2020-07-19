@@ -1,10 +1,12 @@
-We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to researchers who are not experts on MAB. 
-We focus on the three classes of MAB algorithms listed in Section~\ref{sec:intro-model}: adaptive-exploration algorithms, exploration-separating algorithms, and greedy algorithms. We list the precise upper and lower bounds on the regret rates only to illustrate how the three algorithm classes are separated from one another; the exact results are not essential for the paper. 
+We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to researchers who are not experts on MAB.
+We focus on the three classes of MAB algorithms listed in Section~\ref{sec:intro-model}: adaptive-exploration algorithms, exploration-separating algorithms, and greedy algorithms. We list the precise upper and lower bounds on the regret rates only to illustrate how the three algorithm classes are separated from one another; the exact results are not essential for the paper.
 
 We use standard conventions: $O(f(t))$ and $\Omega(f(t))$ means at most (resp., at least) $f(n)$, up to constant factors, starting from large enough $t$. Likewise, $\tildeO(f(t))$ notation suppresses the $\polylog(t)$ factors.
 
 \xhdr{Fundamentals.}
-We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution. The algorithm's goal is to maximize the total reward.
+We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution.%
+\footnote{\asedit{All ``negative" results (\ie lower bounds on regret) assume reward distributions with constant variance.}}
+The algorithm's goal is to maximize the total reward.
 
 A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm. In a formula, regret is
     $T\cdot \max_{\text{arms $a$}}\mu_a
@@ -17,10 +19,10 @@ The three classes of algorithms perform very differently in terms of regret: ada
     $\tildeO(\sqrt{KT})$
 for all problem instances, and simultaneously a vastly improved regret rate of
     $O(\tfrac{K}{\Delta}\log T)$
-for all problem instances with $\text{gap}\geq \Delta$, without knowing the $\Delta$ in advance
+for all problem instances with $\text{gap}\geq \Delta$ (``easy" instances), without knowing the $\Delta$ in advance
 \citep{Lai-Robbins-85,bandits-ucb1,bandits-exp3}.%
-\footnote{The \emph{gap} is the difference in mean reward between the best arm and the second-best arm. It is a standard notion of difficulty for MAB instances: instances with large gap are deemed  ``easy".}
-Exploration-separating algorithms can only achieve regret $\tildeO(T^{2/3})$ across all problem instances. They can achieve the ``gap-dependent" regret rate stated above, but \emph{only} if they know the $\Delta$ in advance, and at the cost of a terrible regret $\Omega(\Delta T)$ for some other problem instances \citep{MechMAB-ec09}. Finally, the greedy algorithm is terrible on a wide variety of problem instances, in the sense that with constant probability it fails to try the best arm even once, and therefore suffers regret $\Omega(T)$
+\footnote{The \emph{gap} is the difference in mean reward between the best arm and the second-best arm.}
+Exploration-separating algorithms can only achieve regret $\tildeO(T^{2/3})$ across all problem instances. They can achieve the ``gap-dependent" regret rate stated above, but \emph{only} if they know the $\Delta$ in advance, and with terrible regret $\Omega(\Delta T)$ for some other problem instances \citep{MechMAB-ec09}. Finally, the greedy algorithm is terrible on a wide variety of problem instances, in the sense that with constant probability it fails to try the best arm even once, and therefore suffers regret $\Omega(T)$
 \citep[see Chapter 11.2 in][]{slivkins-MABbook}.
 
 
@@ -31,7 +33,7 @@ UCB1 \citep{bandits-ucb1},
 and Successive Elimination \citep{EvenDar-icml06}. There is a substantial amount of follow-up work on refining these regret rates, but it is not as relevant to this paper.
 
 Exploration-separating algorithms completely separate exploration and exploitation. Ahead of time, each round is either selected for exploration, in which case  the distribution over arms does not depend on the observed data, or it is assigned to exploitation, in which case the data from this round is discarded. The simplest approach, called \emph{Explore-First}, explores uniformly for a predetermined number of rounds, then chooses one arm for ``exploitation" and uses it from then on. A more refined approach, called \emph{Epsilon-Greedy}, explores uniformly in each round with a predetermined probability, and ``exploits" with the remaining probability. Both algorithms, and the associated $\tildeO(T^{2/3})$ regret bounds, have been ``folklore knowledge" for decades. The general definition of ``exploration-separating algorithms" and the associated lower bounds trace back to \citet{MechMAB-ec09}.%
-\footnote{\citet{MechMAB-ec09} considers a closely related, but technically different setting, which can be easily ``translated" into ours (either as a corollary or as another application of the same proof technique). Detailing this is beyond the scope of this appendix.}
+\footnote{\citet{MechMAB-ec09} consider a closely related, but technically different setting, which can be easily ``translated" into ours (either as a corollary or as another application of the same proof technique). Detailing this is beyond the scope of this appendix.}
 
 % add: this is all more general
 
@@ -40,8 +42,10 @@ Switching from ``greedy" to ``exploration-separating" to ``adaptive-exploration"
 
 The lower bounds mentioned above are fairly typical, in the sense that they hold for a wide variety of problem instances, even though they are usually (and most cleanly) presented as worst-case. The $\Omega(\sqrt{T})$ lower bound from \citet{bandits-exp3} can be extended to hold for most problem instances, in the following sense: for each instance $\mI$ there exists a ``decoy instance" $\mI'$ such that any algorithm incurs regret $\Omega(\sqrt{T})$ on at least one of them. The ``gap-dependent" lower bound of
  $\Omega(\tfrac{K}{\Delta}\log T)$
-in fact holds for all problem instances and all algorithms that are not \emph{terrible} on the large-gap instances \citep{Lai-Robbins-85}. The $\Omega(T^{2/3})$ lower bound for exploration-separating algorithms in fact applies to all problem instances, as long as the algorithm achieves $\tildeO(T^{2/3})$ regret rate in the worst case \citep{MechMAB-ec09}. 
+in fact holds for all problem instances and all algorithms that are not \emph{terrible} on the large-gap instances \citep{Lai-Robbins-85}. The $\Omega(T^{2/3})$ lower bound for exploration-separating algorithms in fact applies to all problem instances, as long as the algorithm achieves $\tildeO(T^{2/3})$ regret rate in the worst case \citep{MechMAB-ec09}.
 Moreover, there is a tradeoff between the worst-case upper bound on the regret rate and a lower bound that applies for all problem instances \citep[Theorem 4.3 in][using the same proof technique]{MechMAB-ec09}.
+
+\asedit{Some MAB algorithms are Bayesian, \eg Thompson Sampling,  in the sense that they input a prior on mean rewards, and attain strong Bayesian guarantees (in expectation over the prior) when the prior is correct. Such algorithms can also be initialized with some simple `fake' priors; in fact, Thompson Sampling satisfies the optimal regret bounds listed above.}
 
 The intuition on (the separation between) the three algorithm classes applies more generally, far beyond the basic MAB model discussed above. In particular, all algorithms that we explicitly mentioned are in fact general algorithmic techniques that are known to extend to a variety of more general MAB scenarios, typically with a similarly stark separation in regret bounds.
 
@@ -52,7 +56,7 @@ The greedy algorithm can perform well \emph{sometimes} in a more general model o
 \xhdr{Instantaneous regret.}
 Cumulative performance measures such as regret are not quite appropriate for our setting, as we need to characterize interactions in particular rounds. Instead, our theoretical results focus on \emph{Bayesian instantaneous regret} (\BIR), as defined in Section~\ref{sec:theory-prelims}. Recall that we posit a Bayesian prior on the \MRVs. In the notation of this appendix, the \BIR is simply:
 \begin{align*}%\label{eq:bg-BIR-defn}
-\BIR(t) := \E_{\text{prior}}\sbr{ \max_{a\in A} \mu_a - r_t}.
+\BIR(t) := \E_{\text{prior}}\sbr{ \max_{\text{arms $a$}} \mu_a - r_t}.
 \end{align*}
 \noindent Note that Bayesian regret (\ie regret in expectation over the prior) is precisely
 \begin{align}\label{eq:bg-BReg}
@@ -63,7 +67,7 @@ Cumulative performance measures such as regret are not quite appropriate for our
 We are primarily interested in how fast \BIR decreases with $t$, treating $K$ as a constant.
 
 
-The three classes of algorithms are well-separated in terms of \BIR, much like they are in terms of regret. 
+The three classes of algorithms are well-separated in terms of \BIR, much like they are in terms of regret.
 %(The precise regret rates are listed below only to illustrate this point.)
 \begin{itemize}
 \item \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $t$). The reason and the proof are exactly the same as for regret.
@@ -73,22 +77,22 @@ The three classes of algorithms are well-separated in terms of \BIR, much like t
 for all priors, \eg by using Epsilon-Greedy algorithm with exploration probability $\eps_t = t^{-1/3}$ in each round $t$.
 In the typical scenario when
  $\BReg(t)\geq \Omega(t^{2/3})$,
-the \BIR rate of $t^{-1/3}$  cannot be improved, in the following sense:
+the \BIR rate of $t^{-1/3}$  cannot be improved by \eqref{eq:bg-BReg}, in the following sense:
 if
     $\BIR(t) = \tildeO\rbr{t^{-\gamma}}$
-for all $t$, then $\gamma\geq \nicefrac{1}{3}$. 
+for all $t$, then $\gamma\geq \nicefrac{1}{3}$.
 
-\item Adaptive-exploration algorithms \emph{can} have an even better regret rate: $\BIR(t) = \tildeO\rbr{ t^{-1/2} } $. This holds for Successive Elimination \citep{EvenDar-icml06} and for Thompson Sampling (see Appendix~\ref{app:examples}).% 
+\item Adaptive-exploration algorithms \emph{can} have an even better regret rate: $\BIR(t) = \tildeO\rbr{ t^{-1/2} } $. This holds for Successive Elimination \citep{EvenDar-icml06} and for Thompson Sampling (see Appendix~\ref{app:examples}).%
     \footnote{However, such result is not known for UCB1 algorithm, to the best of our knowledge.}
-    Any optimal MAB algorithm enjoys this regret rate ``on average" by \eqref{eq:bg-BReg}, since 
+    Any optimal MAB algorithm enjoys this regret rate ``on average" by \eqref{eq:bg-BReg}, since
         $\BReg(T)\leq \tildeO(\sqrt{T})$.
     In particular, if such algorithm satisfies
         $\BIR(t) = \tildeO\rbr{t^{-\gamma}}$
-    for all $t$, then $\gamma \leq \nicefrac{1}{2}$. 
-    
+    for all $t$, then $\gamma \leq \nicefrac{1}{2}$.
+
 \end{itemize}
 
-This theoretical intuition is supported by our numerical simulations: see 
+\noindent This theoretical intuition is supported by our numerical simulations: see
 Figure~\ref{relative_rep_plots} and Appendix~\ref{app:isol}.
 
 
