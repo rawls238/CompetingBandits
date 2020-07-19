@@ -18,7 +18,7 @@
 %\regretWC(n)    &:=  \sup_{\text{mean reward vectors $\mu$}} \; \BIR(n\mid \mu).
 %\end{align}
 
-This appendix provides some auxiliary results on \bmonotonicity of some standard algorithms: \DynGreedy, \DynamicEpsGreedy and \Thompson. The former is needed in Section~\ref{sec:theory}, the last two merely add motivation for our theoretical story. The result on\Thompson also implies that $\BIR(t)\leq \tildeO(t^{-1/2})$. Recall that an algorithm is called \bmonotone if its Bayesian-expected reward is non-decreasing in time.
+This appendix provides some auxiliary results on \bmonotonicity of some standard algorithms: \DynGreedy, \DynamicEpsGreedy and \Thompson. The former is needed in Section~\ref{sec:theory}, the last two merely add motivation for our theoretical story. The result on \Thompson also implies that $\BIR(t)\leq \tildeO(t^{-1/2})$. Recall that an algorithm is called \bmonotone if its Bayesian-expected reward is non-decreasing in time.
 
 We consider Bayesian MAB with Bernoulli rewards. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in\{0,1\}$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$. \asedit{The mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$.}
 We let
