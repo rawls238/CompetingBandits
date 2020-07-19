@@ -75,7 +75,7 @@ Bayesian-monotonicity follows directly. The ``strictly increases" statement hold
 Monotonicity follows from \citet{Selke-BE-2020}; the \BIR result is an immediate corollary given that
     $\BReg(t) \leq \tilde{O}(\sqrt{t})$
 for all steps $t$ \citep{Russo-MathOR-14}. Neither result has appeared in print, to the best of our knowledge.
-\swcomment{did we define \Thompson somewhere?}
+
 \begin{theorem}[\citet{Selke-BE-2020}]\label{thm:TS-mono}
 \asedit{Assume the prior $\priorMu$ is independent across arms.} Then \Thompson is \bmonotone. Consequently, it satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
 \end{theorem}
@@ -86,7 +86,7 @@ The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we p
     \Pr[a_t=a] := {\Pr}^t[a^*=a]
     \quad\text{for each arm $a$}.
 \end{align}
-
+\swcomment{do we want to say $\Pr$ is over sampling first from prior and then generate history?}
 
 \begin{proof}[Proof of Theorem~\ref{thm:TS-mono}]
 The two observations from \citet{Selke-BE-2020}  are as follows: for each arm $a$,
@@ -115,3 +115,8 @@ We use these observations as follows:
     \qquad\EqComment{by (ii)} \qedhere
 \end{align*}
 \end{proof} 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../journal_main"
+%%% End:
