@@ -81,12 +81,7 @@ for all steps $t$ \citep{Russo-MathOR-14}. Neither result has appeared in print,
 \end{theorem}
 
 
-The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, \Thompson samples arm $a_t$ as follows:
-\begin{align}\label{eq:TS-defn}
-    \Pr[a_t=a] := {\Pr}^t[a^*=a]
-    \quad\text{for each arm $a$}.
-\end{align}
-\swcomment{do we want to say $\Pr$ is over sampling first from prior and then generate history?}
+The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, \Thompson samples arm $a_t$ from the posterior distribution \asedit{$p_t(a) = {\Pr}^t[a^*=a]$.}
 
 \begin{proof}[Proof of Theorem~\ref{thm:TS-mono}]
 The two observations from \citet{Selke-BE-2020}  are as follows: for each arm $a$,
@@ -114,7 +109,7 @@ We use these observations as follows:
     =\E[\rew(t)]
     \qquad\EqComment{by (ii)} \qedhere
 \end{align*}
-\end{proof} 
+\end{proof}
 
 %%% Local Variables:
 %%% mode: latex
