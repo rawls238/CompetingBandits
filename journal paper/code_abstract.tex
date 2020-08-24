@@ -210,7 +210,7 @@ To answer these questions, we study complex interactions between platforms' lear
 %\subsection{Our model}
 %\label{sec:intro-model}
 
-\subsection*{Our model: competing bandits}
+\subsection*{Our Model: competing bandits}
 \label{sec:intro-model}
 
 %We investigate these questions with
@@ -226,33 +226,16 @@ To answer these questions, we study complex interactions between platforms' lear
 %, but may have access to each platforms' reputation score (more on this in    Section~\ref{sec:intro-discussion}).
 \end{itemize}
 
-\noindent We investigate several model variants within this framework, where we vary agents' decision rule and/or give a first-mover advantage to one of the principals. In all variants, agents have little or no information about other agents' choices and rewards.
+\noindent We investigate several model variants within this framework, where we vary agents' decision rule and/or give a first-mover advantage to one of the principals.
 
 %We consider two model variants, which determine agents' decision rule and their information sets. In \emTheoryModel, there is a common Bayesian prior on the reward distributions. Agents do not receive any other information and choose between the principals using their knowledge of $t$ and the principals' algorithms. In \emExptsModel, agents have access to a reputation score for each principal, which is a sliding window average of the rewards experienced by previous agents that have visited this principal. The former variant used for the theoretical results, the latter for simulations.
 
-\xhdr{Technology: multi-armed bandit algorithms.}
-To flesh out \eqref{eq:main-Q}, let us elaborate what we mean by `better' bandit algorithms. In general, comparisons between bandit algorithms are rather subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others.
-
-We distinguish three classes of bandit algorithms, based on
-the prevalent intuition in the area. The distinction concerns the way in which they resolve the fundamental tradeoff between  exploration and \emph{exploitation} (making optimal myopic decisions using the available data). Going from more primitive to more sophisticated, these three classes are as follows:
-
-\begin{itemize}
-\item \emph{Greedy algorithms} that strive to maximize the reward for the next round given the available information. Thus, they always ``exploit" and never explicitly ``explore".
-
-
-\item \emph{Exploration-separating algorithms}
- that separate exploration and exploitation: essentially, each round is dedicated to one and completely ignores the other.
-
-\item \emph{Adaptive-exploration} algorithms that combine exploration and exploitation, and gradually sway the exploration choices towards more promising alternatives.
-\end{itemize}
-
-In isolation, \ie in the absence of competition, these classes are fairly well-understood. Greedy algorithms are terrible for a wide variety of problem instances, precisely because they never explore. Exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances. Adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances. Generally,  ``better" algorithms are better in the long run, but could be worse initially.
 
 
 \subsection*{Our Results}
 \label{sec:intro-results}
 
-We offer a mix of theoretical results and numerical simulations. We are mainly interested in qualitative differences between the three classes of algorithms in Section~\ref{sec:intro-model}. For numerical simulations, we pick one representative algorithm from each class. For theoretical results, we allow arbitrary algorithms and focus on asymptotic differences in the algorithms' performance.
+We offer a mix of theoretical results and numerical simulations.
 
 \xhdr{Theoretical results.}
 %We endow agents with Bayesian rationality, a common modeling approach for a theoretical investigation.
@@ -267,7 +250,6 @@ Our results depend crucially on the agents' decision rule.
 
 \item We further relax the decision rule so that the probability of choosing a given principal varies smoothly as a function of the difference between  principals' Bayesian-expected rewards; we call it \SoftMaxRandom. For this model, the ``better algorithm wins" result holds under much weaker assumptions on what constitutes a better algorithm. This is the most technical result of the paper. The competition in this setting is necessarily much more relaxed: typically, both principals attract approximately half of the agents as time goes by (but a better algorithm would attract slightly more).
 \end{itemize}
-
 
 \xhdr{Numerical simulations.}
 We consider a basic frequentist model. We posit that the agents observe signals about the principals' past performance, and base their decisions on these signals alone, without invoking any prior knowledge or beliefs. The performance signals are abstracted and aggregated as a scalar \emph{reputation score} for each principal, modeled as a sliding window average of its rewards. Thus, agents' decision rule depends only on the two reputation scores. We refer to this variant as the \emph{\ExptsModel}.%
@@ -289,6 +271,17 @@ We refine and expand the theoretical results in several ways.
 \item We decompose the first-mover advantage into two distinct effects: free data to learn from (\emph{data advantage}), and a more definite, and possibly better reputation compared to an entrant (\emph{reputation advantage}). We run additional experiments so as to isolate and compare these two effects. We find that either effect alone leads to a significant advantage under competition. The data advantage is larger than reputation advantage when the incumbent commits to a more advanced bandit algorithm. Finally, we find an ``amplification effect" of the data advantage: even a small amount thereof gets amplified under competition, causing a large difference in eventual market shares.
 
 \end{itemize}
+
+\xhdr{Economic interpretation: network effects of data.}
+Our model speaks to policy discussions on regulating data-intensive digital platforms \citep{furman2019unlocking, scott2019committee}, and particularly to the ongoing debate on the role of data in the digital economy. One fundamental question in this debate is whether data can serve a similar role as traditional ``network effects", creating scenarios when only one firm can function in the market \citep{Rysman09, jullien2019economics}.
+%whereby, when these effects are present, in many cases only one firm can function in the market, leading to competition \emph{for} the market being more important than competition \emph{in} the market \citep{Rysman09, jullien2019economics}.
+The death spiral/amplification effects mentioned above have a similar flavor as network effects: a relatively small amount of exploration (resp., data advantage)  gets amplified under competition and causes the firm to be starved of users (resp., take over most of the market).
+%\gaedit{We further find that a small data advantage for one firm gets amplified under competition and leads to that firm taking the entire market, showing that data can provide a similar incumbency advantage as those provided by traditional network effects and can serve as a barrier to entry in online markets.}
+A distinctive feature of our approach is that we explicitly model the learning problem of the firms and consider them deploying algorithms for solving this problem.  Thus, we do not explicitly model the network effects, but they arise endogenously from our setup.
+
+Our results highlight that understanding the performance of learning algorithms in isolation does not necessarily translate to understanding their impact in competition, precisely due to the fact that competition leads to the endogenous generation of data observed by the firms. Approaches such as \citet{lambrecht2015can, bajari2018impact, varian2018artificial} argue that the diminishing returns to scale and scope of data in isolation mitigate such data feedback loops,
+%as non-existent
+but ignore the differences induced by learning in isolation versus under competition. Furthermore, explicitly incorporating the interaction between learning technology and data creation allows us to speak on how data advantages are characterized and amplified not only by data quantity, but also the increased data quality gathered by better learning algorithms.
 
 
 
