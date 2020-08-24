@@ -11,7 +11,7 @@ Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and
 
 \newcommand{\est}{\mathtt{EST}}
 
-\xhdr{Agents' response.} Each agent $t$ forms a reward estimate $\est_i(t)\in [0,1]$ for each principal $i$, and chooses the principal based on these reward estimates. Specifically, principal $1$ is chosen with probability
+\xhdr{Agents' response.} Each agent $t$ forms a reward estimate $\est_i(t)\in [0,1]$ for each principal $i$, and chooses the principal based on these reward estimates.gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}} Specifically, principal $1$ is chosen with probability
 \begin{align}\label{eq:model-f}
 p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
 \end{align}
@@ -64,7 +64,7 @@ We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefr
 We consider two model variants, Bayesian and frequentist. The main difference between the two concerns the agents' reward estimates $\est_i(t)$.
 
 \begin{itemize}
-\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Agents know the principals' algorithms. Their reward estimates are defined as posterior mean rewards:
+\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Agents know the principals' algorithms.\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}} Their reward estimates are defined as posterior mean rewards:
         $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i }$
     for each agent $t$ and principal $i$.
 
