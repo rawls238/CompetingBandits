@@ -1,13 +1,10 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
 
 \usepackage{color,
 setspace,sectsty,comment,footmisc,caption,
 pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 }
-
-\usepackage{fullpage}
-%\usepackage{geometry}
-%\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
 
 
 \usepackage{subfiles}
@@ -151,7 +148,7 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 
 %\begin{titlepage}
 
-\title{Competing Bandits:\\
+\title{\vspace{-12mm}Competing Bandits:\\
 The Perils of Exploration under Competition%
 \thanks{This is a merged and final version of two conference papers,
 \citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19},
@@ -161,28 +158,29 @@ with a unified and streamlined presentation and expanded background materials. A
 \author{Guy Aridor%
 \footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu}
 \and
-%\rule{0.2in}{0pt}
+\rule{0.2in}{0pt}
 Yishay Mansour%
 \footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com}
 \and
-%\rule{0.2in}{0pt}
+\rule{0.2in}{0pt}
 Aleksandrs Slivkins%
 \footnote{Microsoft Research New York City. Email: slivkins@microsoft.com}
 \and
-%\rule{0.2in}{0pt}
+\rule{0.2in}{0pt}
 Zhiwei Steven Wu%
 \footnote{Carnegie-Mellon University, Pittsburgh, PA.
 Email: zstevenwu@cmu.edu.\newline
 Research done when Z.S. Wu was an intern and a postdoc at Microsoft Research NYC.}
 }
-\date{August 2020}
+\date{First version: August 2020\\ This version: September 2020}
+
 \maketitle
+
+\vspace{-5mm}
 \begin{abstract}
-Most online platforms strive to learn from interactions with consumers, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for consumers. Here consumers play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
+Most online platforms strive to learn from interactions with users, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We initiate a study of the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for users. Here users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
 
-We consider a stylized duopoly model in which two firms face the same multi-armed bandit instance. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance only if it is chosen. We study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for consumers. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low consumer welfare. However, we find that weakening competition by providing firms with some ``free" consumers incentivizes better exploration strategies and increases consumer welfare.  We investigate two channels for weakening the competition: relaxing the rationality of consumers and giving one firm a first-mover advantage. We provide a mix of theoretical results and numerical simulations.
-
-Our findings are closely related to the ``competition vs. innovation" relationship, a well-studied theme in economics. They also elucidate the first-mover advantage in the digital economy by exploring the role that data can play as a barrier to entry in online markets.
+We consider a stylized duopoly model in which two firms face the same multi-armed bandit instance. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance only if it is chosen. Through a mix of theoretical results and numerical simulations, we study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for users. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low welfare. However, weakening competition by providing firms with some ``free" users incentivizes better exploration strategies and increases welfare.  We investigate two channels for weakening the competition: relaxing the rationality of users and giving one firm a first-mover advantage. Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
 
 
 \vspace{0.2in}
