@@ -107,23 +107,24 @@ Our results depend crucially on the agents' decision rule:
 
 All results extend to a much more general version of the multi-armed bandit problem in which the principal may observe additional feedback before and/or after each decision, as long as the feedback distribution does not change over time. In most results, principal's utility may depend on both the market share and agents' rewards.
 
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-      \draw[->] (-.5,0) -- (3,0) node[right] {Competitiveness};
-      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
-      \draw[scale=0.6,domain=0.5:4.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - (\x - 2.5)^2});
-      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
- \end{tikzpicture}
-
-\caption{Inverted-U relationship between competitiveness and algorithms.}
-\label{fig:inverted-U}
-\end{center}
-\end{figure}
+%\begin{figure}
+%\begin{center}
+%\begin{tikzpicture}
+%      \draw[->] (-.5,0) -- (3,0) node[right] {Competitiveness};
+%      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
+%      \draw[scale=0.6,domain=0.5:4.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - (\x - 2.5)^2});
+%      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
+% \end{tikzpicture}
+%
+%\caption{Inverted-U relationship between competitiveness and algorithms.}
+%\label{fig:inverted-U}
+%\end{center}
+%\end{figure}
 
 
 \xhdr{Economic interpretation: the inverted-U relationship.}
-Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the inverted-U relationship between competition and innovation, as in Figure~\ref{fig:inverted-U}.%
+Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the inverted-U relationship between competition and innovation.%
+%, as in Figure~\ref{fig:inverted-U}.
 \footnote{Here, ``innovation" refers to adoption of a better technology at a substantial R\&D expense to a given firm. It is not salient whether similar ideas and/or technologies already exist elsewhere. Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms themselves are well-known in the research literature \citep[\eg see][]{DS-arxiv}.}
 This is a well-established concept in the economics literature, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better \citep[\eg][]{aghion2005competition,Vives-08}.
 
@@ -151,7 +152,7 @@ We refine and expand the theoretical results in several ways.
 
 %\footnote{\asedit{We consider the ``permanent monopoly" scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}}
 
-\textbf{(iii)} We investigate the algorithms' performance ``in isolation", \ie without competition. We suggest a new performance measure to explain why the greedy algorithm is sometimes not the best strategy under high levels of competition.\footnote{Note the discrepancy with our theoretical results on \HardMax: there, the greedy algorithm is always the best strategy, mainly because it is aware of the Bayesian prior (whereas in the simulations the prior is not available).}
+\textbf{(iii)} We investigate the algorithms' performance ``in isolation", \ie without competition. We suggest a new performance measure to explain why the greedy algorithm is sometimes not the best strategy under high levels of competition.\footnote{In our theoretical results on \HardMax, the greedy algorithm is always the best strategy, mainly because it is aware of the Bayesian prior (whereas in the simulations  the prior is not available).}
      We find that mean reputation -- arguably, the most natural performance measure ``in isolation" -- is sometimes \emph{not} a good predictor for the outcomes under competition.
 
 \textbf{(iv)} We decompose the first-mover advantage into two distinct effects: free data to learn from (\emph{data advantage}), and a more definite, and possibly better reputation compared to an entrant (\emph{reputation advantage}). We run additional experiments so as to isolate and compare these two effects. We find that either effect alone leads to a significant advantage under competition. The data advantage is larger than reputation advantage when the incumbent commits to a more advanced bandit algorithm. Finally, we find an ``amplification effect" of the data advantage: even a small amount thereof gets amplified under competition, causing a large difference in eventual market shares.
