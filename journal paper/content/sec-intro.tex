@@ -38,7 +38,7 @@ This translates into a number of more concrete questions. While it is commonly a
 \asedit{
 \xhdr{Our model: competition game.} We consider a stylized duopoly model in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). Principals compete on quality rather than on prices. Agents arrive sequentially, and choose among the two principals according to some decision rule. The chosen principal chooses an action (\eg a list of web search results to show to the user), the user experiences this action, and reports a reward. Each principal only observes its own users. Principals commit to their strategies simultaneously and in advance, with objective to maximize the market share. We investigate several model variants within this framework, where we vary agents' decision rule and/or give a first-mover advantage to one of the principals. In all variants, agents have little or no information about other agents' choices and rewards.
 
-Each principal faces a basic and well-studied version of the multi-armed bandit problem, where each reward is drawn independently from a fixed, action-specific distribution. Each principal's strategy is a bandit algorithm; as such, it adjusts itself to the observed rewards, but not to the competition. This modeling choice reflects the reality of industrial applications, which build on a huge body of knowledge in machine learning. Responding to the competition is another layer of complexity which has not been previously studied in this context, let alone made practical. We draw on the machine learning literature to compare bandit algorithms to one another in the absence of competition, so that we can talk about \emph{better} bandit algorithms in a principled way.%
+Each principal faces a basic and well-studied version of the multi-armed bandit problem, where each reward is drawn independently from a fixed, action-specific distribution. Each principal's strategy is a bandit algorithm; as such, it can dynamically adjust itself to the observed rewards, but not to the competition. This modeling choice reflects the reality of industrial applications, which build on a huge body of knowledge in machine learning. Responding to the competition is another layer of complexity which has not been previously studied in this context, let alone made practical. We draw on the machine learning literature to compare bandit algorithms to one another in the absence of competition, so that we can talk about \emph{better} bandit algorithms in a principled way.%
 \footnote{Comparisons between bandit algorithms are somewhat subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others. Generally,  ``better" algorithms are better in the long run, but could be worse initially. More on this in Preliminaries.} One baseline is algorithms that do not explicitly explore (\emph{greedy algorithms}); in the absence of competition, they are known to be terrible for a wide variety of problem instances.}
 
 
@@ -94,14 +94,17 @@ While we build on a vast and active research area, we present sufficient backgro
 
 \xhdr{Theoretical results.}
 %We endow agents with Bayesian rationality, a common modeling approach for a theoretical investigation.
-We consider a basic Bayesian model. We posit that agents have a common Bayesian prior on reward distributions, and know the principals' algorithms. For simplicity, agents do not receive any information about the previous agents' choices and rewards. Each agent knows the round (s)he arrives in, computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose. We refer to this variant as the \emph{\TheoryModel}. We focus on qualitative, asymptotic differences in the algorithms' performance.
+We consider a basic Bayesian model. We posit that agents have a common Bayesian prior on reward distributions, and know the principals' algorithms. For simplicity, agents do not receive any information about the previous agents' choices and rewards. Each agent knows the round (s)he arrives in, computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose. We refer to this variant as the \emph{\TheoryModel}. 
 
+We focus on qualitative, asymptotic differences in the algorithms' performance.
 Our results depend crucially on the agents' decision rule:
 %\begin{itemize}
 
-\textbf{(i)} The most obvious decision rule maximizes the Bayesian-expected reward; we refer to it as \HardMax. We find that \HardMax is not conducive to adopting better algorithms: each principal's dominant strategy is to choose the greedy algorithm. Further, we show that \HardMax is very sensitive to tie-breaking: if the tie-breaking is probabilistically biased in favor of one principal, then this principal has a simple ``winning strategy" no matter what the other principal does.
+\textbf{(i)} The most obvious decision rule maximizes the Bayesian-expected reward; we refer to it as \HardMax. We find that \HardMax is not conducive to adopting better algorithms: each principal's dominant strategy is to choose the greedy algorithm. Further, 
+%\HardMax is very sensitive to tie-breaking:
+if the tie-breaking is probabilistically biased in favor of one principal, then this principal has a simple ``winning strategy" no matter what the other principal does.
 
-\textbf{(ii)} We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random. We call this model \HardMaxRandom. We find that better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase. However, there is a substantial caveat: one can defeat any algorithm by interleaving it with the greedy algorithm. This has two undesirable corollaries: a better algorithm may sometimes lose in competition, and a pure Nash equilibrium typically does not exist.
+\textbf{(ii)} We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random. We call this model \HardMaxRandom. Then better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase. However, there is a substantial caveat: one can defeat any algorithm by interleaving it with the greedy algorithm. This has two undesirable corollaries: a better algorithm may sometimes lose in competition, and a pure Nash equilibrium typically does not exist.
 
 \textbf{(iii)} We further relax the decision rule so that the probability of choosing a given principal varies smoothly as a function of the difference between  principals' Bayesian-expected rewards; we call it \SoftMaxRandom. For this model, the ``better algorithm wins" result holds under much weaker assumptions on what constitutes a better algorithm. This is the most technical result of the paper. The competition in this setting is necessarily much more relaxed: typically, both principals attract approximately half of the agents as time goes by (but a better algorithm would attract slightly more).
 %\end{itemize}
@@ -123,7 +126,7 @@ All results extend to a much more general version of the multi-armed bandit prob
 %\end{figure}
 
 
-\xhdr{Economic interpretation: the inverted-U relationship.}
+\xhdr{Interpretation: the inverted-U relationship.}
 Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the inverted-U relationship between competition and innovation.%
 %, as in Figure~\ref{fig:inverted-U}.
 \footnote{Here, ``innovation" refers to adoption of a better technology at a substantial R\&D expense to a given firm. It is not salient whether similar ideas and/or technologies already exist elsewhere. Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms themselves are well-known in the research literature \citep[\eg see][]{DS-arxiv}.}
@@ -150,7 +153,7 @@ We find that the greedy algorithm often wins under the \HardMax decision rule, w
 
 %\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}}
 
-\textbf{(ii)} We investigate the first-mover advantage as a different channel to vary the intensity of competition: from the first-mover to simultaneous arrival to late-arriver. (We focus on the \HardMax decision rule.) We find that the first-mover is incentivized to choose a more advanced exploration algorithm, whereas the late-arriver is often incentivized to choose the ``greedy algorithm" (more so than under simultaneous arrival). Consumer welfare is higher under early/late arrival than under simultaneous entry. We frame these results in terms of an inverted-U relationship.
+\textbf{(ii)} Focusing on \HardMax, we investigate the first-mover advantage as a different channel to vary the intensity of competition: from the first-mover to simultaneous arrival to late-arriver. We find that the first-mover is incentivized to choose a more advanced exploration algorithm, whereas the late-arriver is often incentivized to choose the ``greedy algorithm" (more so than under simultaneous arrival). Consumer welfare is higher under early/late arrival than under simultaneous entry. We frame these results in terms of an inverted-U relationship.
 
 
 %\footnote{\asedit{We consider the ``permanent monopoly" scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}}
@@ -162,7 +165,7 @@ We find that the greedy algorithm often wins under the \HardMax decision rule, w
 
 %\end{itemize}
 
-\xhdr{Economic interpretation: network effects of data.}
+\xhdr{Interpretation: network effects of data.}
 Our model speaks to policy discussions on regulating data-intensive digital platforms \citep{furman2019unlocking, scott2019committee}, and particularly to the ongoing debate on the role of data in the digital economy. One fundamental question in this debate is whether data can serve a similar role as traditional ``network effects", creating scenarios when only one firm can function in the market \citep{Rysman09, jullien2019economics}.
 %whereby, when these effects are present, in many cases only one firm can function in the market, leading to competition \emph{for} the market being more important than competition \emph{in} the market \citep{Rysman09, jullien2019economics}.
 The death spiral/amplification effects mentioned above have a similar flavor as network effects: a relatively small amount of exploration (resp., data advantage)  gets amplified under competition and causes the firm to be starved of users (resp., take over most of the market).
