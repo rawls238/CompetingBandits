@@ -1,13 +1,13 @@
 
-Let us define the basic model; our theoretical results admit some extensions, detailed in Section~\ref{sec:theory-extensions}.
+Let us define the basic model (some extensions are detailed in Section~\ref{sec:theory-extensions}).
 
 \xhdr{Principals and agents.} There are two principals and $T$ agents,
 denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds).%
-\footnote{Throughout, we use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
+\footnote{We use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
  The agent experiences this action, receives a reward $r_t\in \{ 0,1\}$, and reports it back to the principal. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are fixed over time, and initially not known to anybody. Each principal is completely unaware of the rounds when the other principal is chosen.
 
-Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and uses this algorithm throughout. The algorithm follows the protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, it proceeds in time-steps:%
-\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs an action from $A$, and inputs a reward for this action. \alg[i] is called only in global rounds when principal $i$ is chosen.
+Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and uses it throughout. The algorithm follows the protocol of \emph{multi-armed bandits} (\emph{MAB}). Namely, it proceeds in time-steps:%
+\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs an arm from $A$, and inputs a reward for this action. \alg[i] is called only in global rounds when principal $i$ is chosen.
 
 \newcommand{\est}{\mathtt{EST}}
 
@@ -15,9 +15,9 @@ Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and
 \begin{align}\label{eq:model-f}
 p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
 \end{align}
-where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents and known to everyone.
+where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents and known to everyone. We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. 
 
-We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. We consider three specific models (see \reffig{fig:response-functions}):
+We consider three specific models (see \reffig{fig:response-functions}):
 
 \begin{figure}[t]
 \begin{center}
@@ -53,7 +53,7 @@ We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefr
     $\respF$ equals $\eps_0$ on the interval $[-1,0)$ and $1-\eps_0$ on the interval $(0,1]$, for some constant $\eps_0\in (0,\tfrac12)$. In words, each agent is a \HardMax agent with probability $1-2\eps_0$, and makes a random choice otherwise.
 
 
-\item \SoftMaxRandom: $\respF(\cdot)$ is bounded away from $0$ and $1$, and ``smooth" around $0$ (see Section~\ref{sec:theory-SoftMax}).
+\item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$ and is ``smooth" around $0$ (see Section~\ref{sec:theory-SoftMax}).
 \end{itemize}
 % \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
 
@@ -86,7 +86,7 @@ Our models are stylized in several important  respects. Firms compete only on th
 We consider two extremes: a simple Bayesian model with full Bayesian rationality and no performance signals, and a simple frequentist model with reputation scores and no prior knowledge or beliefs. For the theoretical results, the ``no-performance-signals" assumption makes agents' behavior independent of a particular realization of the prior. Therefore, we summarize each learning algorithm via its Bayesian-expected rewards, not worrying about its detailed performance on particular realizations of the prior.  Such summarization is essential for formulating lucid and general analytic results, let alone proving them. It is unclear how to incorporate performance signals in a theoretically tractable model. For the numerical results, the \ExptsModel accounts for competition in a more direct way \gaedit{by positing a more realistic model of consumer behavior that does not require them to have direct information on the algorithms deployed or the bandit problem faced by the firm. It further allows us to separate reputation vs. data advantage and makes our model amenable to numerical simulations.} Indeed, simulating the intricate interplay of learning dynamics and Bayesian priors appears computationally intractable.
 
 \asedit{Principals' utilities (and, accordingly, bandit rewards) are not discounted with time.%
-\footnote{However, our main theoretical result on the greedy algorithm extends to time-discounted rewards, see Section~\ref{sec:theory-extensions}.}
+\footnote{However, our main theoretical result on the greedy algorithm extends to time-discounted rewards.}
  While much of the early work focuses on  time-discounted bandits \citep{Gittins-book11}, non-discounted  formulations are prevalent in the bandits literature over the past two decades \citep{slivkins-MABbook,LS19bandit-book}, and better correspond to practical deployments \citep[\eg][]{DS-arxiv}. Moreover, the distinctions between better and worse bandit algorithms are not as well-understood under time-discounting.}
 
 \gaedit{Finally, the assumption that firms commit to the algorithms at the start of the game deserves further justification. We impose this commitment assumption since it is more realistic than considering dynamic strategies and algorithms are, by definition, a commitment to a set of rules. In many contexts where such exploration algorithms are typically deployed, consumers arrive at such a rapid volume that it it is infeasible to consider a firm dynamically adapting its algorithm to each consumer that arrives. Indeed, \cite{DS-arxiv} points out how difficult it is to deploy standard exploration algorithms in practice and such dynamic strategies are substantially more difficult to deploy in practice. While it is possible to consider share-adaptive algorithms that would still keep the commitment assumption but allow for indirect dynamic responses to market conditions, such algorithms do not exist currently in the literature but are a good avenue for future work.}

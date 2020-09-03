@@ -8,22 +8,22 @@ In this section, we present our theoretical results for the \TheoryModel. While 
     \[ \PMR_i(t):=  \E\sbr{ r_t\mid i_t = i }
         = \E\sbr{ \rew_i(n_i(t)+1) }. \]
 
-\xhdr{Assumptions.} We make two mild assumptions on the prior. First, each arm $a$ can be the best:
+\xhdr{Assumptions.} We make two mild assumptions on the prior. First, each arm $a$ can be best:
 \begin{align}\label{eq:assn-prob}
 \forall a\in A:\;\;\;
-\Pr_{\mu\sim \priorMu}\sbr{\mu_a  > \mu_{a'}
-\;\forall a'\in A}
+\Pr\sbr{\mu_a  > \mu_{a'}
+\quad \forall a'\in A}
 > 0.
 \end{align}
 
-\noindent Second, actions' posterior mean rewards are pairwise distinct given any feasible history $h$:%
+\noindent Second, posterior mean rewards are pairwise distinct given any feasible history $h$:%
 \footnote{The \emph{history} of an MAB algorithm at a given step
   comprises the chosen actions and the observed rewards in all
   previous steps. The history is \emph{feasible} if for each arm-reward pair $(a,r)$ in the history, $r$ is in the support of the reward distribution for $a$.}
 \begin{align}\label{eq:assn-distinct}
     \E[\mu_a \mid h] \neq \E[\mu_{a'}\mid h] \quad \forall a,a'\in A.
 \end{align}
-In particular, \emph{prior} mean rewards of actions are pairwise distinct:
+In particular, \emph{prior} mean rewards are pairwise distinct:
 $\E[\mu_a] \neq \E[\mu_a']$ for any $a,a'\in A$.
 
 In Appendix~\ref{app:perturb}, we provide two examples for which property \eqref{eq:assn-distinct} is `generic', in the sense that it can be enforced almost surely by a small random perturbation of the prior. The two examples concern, resp., Beta priors and priors with a finite support, and focus on priors $\priorMu$ that are independent across arms.
@@ -36,9 +36,9 @@ We characterize the inherent quality of an MAB algorithm in terms of its \emph{B
 \begin{align}\label{eq:theory-BIR-defn}
 \BIR_i(n) := \E\sbr{ \max_{a\in A} \mu_a - \rew_i(n)}.
 \end{align}
-We are primarily interested in how fast \BIR decreases with $n$. (We treat the number of arms as a constant.) Intuitively, (much) better MAB algorithms tend to have a (much) smaller BIR, see Appendix~\ref{app:bg} for background.
+We are primarily interested in how fast \BIR decreases with $n$. (We treat the number of arms as a constant.) Intuitively, (much) better MAB algorithms tend to have a (much) smaller BIR, see Appendix~\ref{app:bg} for background. 
 
-An algorithm is called \emph{\bmonotone} if it can only get better over time: $\rew_i(\cdot)$ is non-decreasing (and therefore $\BIR(\cdot)$ is non-decreasing). We argue this is a mild assumption, see
+An algorithm is called \emph{\bmonotone} if it can only get better over time: $\rew_i(\cdot)$ is non-decreasing, and therefore $\BIR(\cdot)$ is non-decreasing. This is a mild assumption, see
 Appendix~\ref{app:examples}.
 
 %Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
@@ -129,7 +129,7 @@ To state this result, we need to express a property that \alg[1] eventually catc
 (\forall \eps>0)\qquad
 \frac{\BIR_1(\eps n)}{\BIR_2(n)} \to 0.
 \end{align}
-In fact, a weaker version of \eqref{eq:random-better-clean} suffices:
+In fact, a weaker version suffices:
 denoting $\eps_0 = \respF(-1)$, for some constant $n_0$ we have
 \begin{align}\label{eq:random-better-weaker}
 (\forall n\geq n_0) \qquad
@@ -137,9 +137,10 @@ denoting $\eps_0 = \respF(-1)$, for some constant $n_0$ we have
 \end{align}
 If this holds, we say that \alg[1] \emph{BIR-dominates} \alg[2] starting from (local) step $n_0$.
 
-We also need a mild technical assumption that $\BIR_2(\cdot)$ is not extremely small: for some constant $m_0$,
+We also need a mild technical assumption that $\BIR_2(\cdot)$ is not extremely small: 
+%for some constant $m_0$,
 \begin{align}\label{eq:random-assn}
- (\forall n\geq m_0) \qquad
+ (\exists m_0\;\forall n\geq m_0) \qquad
   \BIR_2(n) > 4\,e^{-\eps_0\ n/12}.
 \end{align}
 
@@ -191,9 +192,9 @@ for the first $n_0-1$ steps;
 %The modified algorithm is called \emph{greedy deviation}, with probability parameter $p$.
 %Parameter $p>0$ is the same for all steps.
 
-\noindent Note that the modified algorithm is another pure strategy in the competition game between the two principals, not a mixed strategy that randomizes between \alg and the greedy algorithm.
+\noindent Note that the modified algorithm is another pure strategy in the competition game between the two principals, not a mixed strategy that randomizes between \alg and the greedy algorithm. 
 
-We find that the greedy modification prevails in competition if the mixing parameter is small enough.
+We find that the greedy modification prevails in competition if $p$ is small enough.
 
 \begin{theorem}\label{thm:random-greedy}
 Consider a symmetric \HardMaxRandom response function $\respF$ with baseline probability $\eps_0 = \respF(-1)$. Suppose \alg[1] is \bmonotone, and deviates from \DynGreedy starting from some step $n_0$. Let \alg[2] be the greedy modification of \alg[1] with mixing parameter $p>0$ such that
@@ -404,7 +405,7 @@ As in the previous subsection, we can state a game-theoretic corollary for the \
 
 \begin{corollary}\label{cor:SoftMax-strong}
 Assume \SoftMaxRandom response function. Consider the \FiniteGame in which all feasible algorithms satisfy $\BReg(n)\to \infty$.%
-\footnote{$\BReg(n)\to \infty$ is a mild non-degeneracy condition, see Appendix~\ref{app:bg} for background.} 
+\footnote{$\BReg(n)\to \infty$ is a mild non-degeneracy condition, see Appendix~\ref{app:bg} for background.}
 Suppose a feasible algorithm \alg BIR-dominates all others. Then, for any sufficiently large time horizon $T$, there is a unique Nash equilibrium: both principals choose \alg.
 \end{corollary}
 
