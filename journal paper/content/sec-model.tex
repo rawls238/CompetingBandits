@@ -1,6 +1,3 @@
-
-Let us define the basic model (some extensions are detailed in Section~\ref{sec:theory-extensions}).
-
 \xhdr{Principals and agents.} There are two principals and $T$ agents,
 denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds).%
 \footnote{We use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
@@ -11,13 +8,13 @@ Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and
 
 \newcommand{\est}{\mathtt{EST}}
 
-\xhdr{Agents' response.} Each agent $t$ forms a reward estimate $\est_i(t)\in [0,1]$ for each principal $i$, and chooses the principal based on these reward estimates.gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}} Specifically, principal $1$ is chosen with probability
+%\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}}
+
+\xhdr{Agents' response.} Each agent $t$ forms reward estimates $\est_i(t)\in [0,1]$ for each principal $i$, and uses them to choose the principal. Specifically, principal $1$ is chosen with probability
 \begin{align}\label{eq:model-f}
 p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
 \end{align}
-where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents and known to everyone. We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. 
-
-We consider three specific models (see \reffig{fig:response-functions}):
+where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents. We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. We consider three variants for $\respF$ (see \reffig{fig:response-functions}):
 
 \begin{figure}[t]
 \begin{center}
@@ -39,7 +36,7 @@ We consider three specific models (see \reffig{fig:response-functions}):
      \node[below ] at (-1, 0) {\footnotesize $-1$};
   \end{tikzpicture}
 \end{center}
-\caption{The three models for $\respF$: \HardMax is thick blue, \HardMaxRandom is slim red, and \SoftMaxRandom is the dashed curve.}
+\caption{The three models for $\respF$: \HardMax is thick blue, \HardMaxRandom is red, and \SoftMaxRandom is dashed.}
 \label{fig:response-functions}
 \end{figure}
 
@@ -64,29 +61,47 @@ We consider three specific models (see \reffig{fig:response-functions}):
 We consider two model variants, Bayesian and frequentist. The main difference between the two concerns the agents' reward estimates $\est_i(t)$.
 
 \begin{itemize}
-\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Agents know the principals' algorithms.\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}} Their reward estimates are defined as posterior mean rewards:
-        $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i }$
-    for each agent $t$ and principal $i$.
+\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. 
+    Agents' reward estimates are defined as posterior mean rewards:
+        $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i}$
+    for each agent $t$ and principal $i$.%
+\footnote{\asedit{Formally, agents do the Bayesian update knowing $t$, the principals' algorithms, the prior $\priorMu$, and $\respF$.}}
 
-\item In the \emph{\ExptsModel}, agents' reward estimate for a given principal is the average reward of the last $M$ agents that chose this principal (interpreted as a \emph{reputation score}). To make the reputation score meaningful initially, each principal enjoys a ``warm start": additional $T_0$ agents arrive before the game starts, and interact with the principal as described above.
+%Agents know the principals' algorithms.\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}}
+
+\item In the \emph{\ExptsModel}, agents' reward estimate for a given principal is the average reward of the last $M$ agents that chose this principal, interpreted as a \emph{reputation score}. To make it meaningful initially, each principal enjoys a ``warm start": additional $T_0$ agents arrive before the game starts, and interact with the principal as described above.
 
 \end{itemize}
 
 \xhdr{Competition game.}
 Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. Thus, choosing a pure strategy in this game corresponds to choosing an MAB algorithm. Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral, in the sense that they optimize their expected utility.
 
+\xhdr{Extensions.} \asedit{The \TheoryModel admits several extensions, detailed in Section~\ref{sec:theory-extensions}. First, all/most results extend to arbitrary reward distributions, allow reward-dependent utility, and carry over to a more general version of multi-armed bandits. Second, tather than knowing the actual tuple$(\alg[1],\alg[2],\priorMu,\respF)$, agents could have respective common beliefs $(\alg[1]',\alg[2]',\priorMu',\respF')$ than need not be correct; then, all results carry over with respect to these beliefs. Third, all results carry over \asmargincomment{check}  if each agent $t$ has a prior on her arrival time $t$, rather than know it exactly. Fourth, we can handle a limited amount of non-stationarity in $\respF$. \asmargincomment{check} Finally, the main result on \HardMax extends to time-discounted utilities.
+}
 
 \subsection{Discussion}
 \label{sec:discussion}
 
-\ascomment{copied from the intro, to be expanded}
+\asedit{Reflecting reality, we posit that principals' exploration strategies are ``non-strategic" in nature. Even though the principals play a multi-step game, they do not react to each other's moves or to the agents' strategic choices. This is how industry approaches exploration algorithms, and for several good reasons. "Non-strategic" exploration is well-studied in machine learning, and yet it remains a very complex subject in research (as evidenced, \eg by the huge amount of activity therein). Even the seemingly simple algorithms are not straightforward to deploy in practice, and require a substantial investment in infrastructure \cite[\eg see the discussions in][]{DS-arxiv}. Responding to the competition represents another layer of complexity which has not been previously studied in this context, to the best of our knowledge, let alone made even remotely practical. Besides, the competitor's exploration strategy is typically not public, and understanding its exploration behavior via observations appears challenging even as a  research problem.}%
+\footnote{\asedit{Principals could potentially react to the market share or (the difference in) reputation scores. However, baking these signals into one's exploration strategy runs the risk of over-interpreting our competition model, as they may change for exogenous reasons. Alternatively, one could use such signals, as well as the intuitions coming from this paper, to guide the platform's decisions regarding exploration.}}
 
-Our models are stylized in several important  respects. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Agents are myopic: they do not worry about how their actions impact their future utility.\footnote{In particular, agents do not attempt to learn over time, to second-guess or game future agents, or to manipulate the principals' learning algorithms. This is arguably typical in practice, in part because one agent's influence tends to be relatively small.}  Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores", and further simplified to average performance over a time window. On the machine learning side, our setup is geared to distinguish between ``simple" vs. ``better" vs. ``smart" bandit algorithms; we are not interested in state-of-art algorithms for very realistic bandit settings.
 
-We consider two extremes: a simple Bayesian model with full Bayesian rationality and no performance signals, and a simple frequentist model with reputation scores and no prior knowledge or beliefs. For the theoretical results, the ``no-performance-signals" assumption makes agents' behavior independent of a particular realization of the prior. Therefore, we summarize each learning algorithm via its Bayesian-expected rewards, not worrying about its detailed performance on particular realizations of the prior.  Such summarization is essential for formulating lucid and general analytic results, let alone proving them. It is unclear how to incorporate performance signals in a theoretically tractable model. For the numerical results, the \ExptsModel accounts for competition in a more direct way \gaedit{by positing a more realistic model of consumer behavior that does not require them to have direct information on the algorithms deployed or the bandit problem faced by the firm. It further allows us to separate reputation vs. data advantage and makes our model amenable to numerical simulations.} Indeed, simulating the intricate interplay of learning dynamics and Bayesian priors appears computationally intractable.
+%\gaedit{Finally, the assumption that firms commit to the algorithms at the start of the game deserves further justification. We impose this commitment assumption since it is more realistic than considering dynamic strategies and algorithms are, by definition, a commitment to a set of rules. In many contexts where such exploration algorithms are typically deployed, consumers arrive at such a rapid volume that it it is infeasible to consider a firm dynamically adapting its algorithm to each consumer that arrives. Indeed, \cite{DS-arxiv} points out how difficult it is to deploy standard exploration algorithms in practice and such dynamic strategies are substantially more difficult to deploy in practice. While it is possible to consider share-adaptive algorithms that would still keep the commitment assumption but allow for indirect dynamic responses to market conditions, such algorithms do not exist currently in the literature but are a good avenue for future work.}
 
-\asedit{Principals' utilities (and, accordingly, bandit rewards) are not discounted with time.%
+
+
+Our models are stylized in several important  respects. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Agents are myopic: they do not worry about how their actions impact their future utility.\footnote{So, agents do not attempt to learn over time, second-guess or game future agents, or manipulate the principals' learning algorithms. This is arguably typical in practice, in part because one agent's influence tends to be small.}  Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores", and further simplified to average performance over a time window. 
+
+We consider two extremes: a simple Bayesian model with full Bayesian rationality and no performance signals, and a simple frequentist model with reputation scores and no prior knowledge or beliefs. For the theoretical results, the ``no-performance-signals" assumption makes agents' behavior independent of a particular realization of the prior. Therefore, we summarize each learning algorithm via its Bayesian-expected rewards, not worrying about its detailed performance on particular realizations of the prior.  Such summarization is essential for formulating lucid and general analytic results, let alone proving them. It is unclear how to incorporate performance signals in a theoretically tractable model. For the numerical results, the \ExptsModel accounts for competition in a more direct way,
+% \gaedit{by positing a more realistic model of consumer behavior that does not
+not requiring users to have direct information on the algorithms deployed or the bandit problem faced by the firms. It further allows us to separate reputation vs. data advantage and makes our model amenable to numerical simulations. 
+%(Whereas simulating the intricate interplay of learning dynamics and Bayesian priors appears computationally intractable, see Footnote~\ref{fn:Tsquared}.)
+
+
+\asedit{On the machine learning side, our model captures big, qualitative differences between bandit algorithms, building on the well-established intuition in the literature. Comparisons between bandit algorithms are generally somewhat subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others. In particular, ``better" algorithms are better in the long run, but could be worse initially. We focus on a standard model of stochastic bandits. In Appendix~\ref{app:bg}, we present sufficient background on this model, accessible to non-specialists. However, we are less interested in state-of-art algorithms for realistic applications.}
+
+
+\asedit{Principals' utilities are not discounted with time.%
 \footnote{However, our main theoretical result on the greedy algorithm extends to time-discounted rewards.}
- While much of the early work focuses on  time-discounted bandits \citep{Gittins-book11}, non-discounted  formulations are prevalent in the bandits literature over the past two decades \citep{slivkins-MABbook,LS19bandit-book}, and better correspond to practical deployments \citep[\eg][]{DS-arxiv}. Moreover, the distinctions between better and worse bandit algorithms are not as well-understood under time-discounting.}
+ While much of the early work on bandits focuses on  time-discounted rewards \citep{Gittins-book11}, non-discounted  formulations are prevalent in the bandits literature over the past two decades \citep{slivkins-MABbook,LS19bandit-book}, and better correspond to practical deployments \citep[\eg][]{DS-arxiv}. The distinctions between better and worse bandit algorithms are not as well-understood under time-discounting.}
 
-\gaedit{Finally, the assumption that firms commit to the algorithms at the start of the game deserves further justification. We impose this commitment assumption since it is more realistic than considering dynamic strategies and algorithms are, by definition, a commitment to a set of rules. In many contexts where such exploration algorithms are typically deployed, consumers arrive at such a rapid volume that it it is infeasible to consider a firm dynamically adapting its algorithm to each consumer that arrives. Indeed, \cite{DS-arxiv} points out how difficult it is to deploy standard exploration algorithms in practice and such dynamic strategies are substantially more difficult to deploy in practice. While it is possible to consider share-adaptive algorithms that would still keep the commitment assumption but allow for indirect dynamic responses to market conditions, such algorithms do not exist currently in the literature but are a good avenue for future work.}
