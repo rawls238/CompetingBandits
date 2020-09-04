@@ -1,43 +1,55 @@
-\xhdr{Bandits and exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades \asedit{by researchers from computer science, operations research, statistics and economics. The literature on MAB is extremely vast and multi-threaded. The most relevant thread studies a basic model of MAB with IID rewards and no auxiliary structure, see Appendix~\ref{app:bg}. The basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.} This literature is covered in many books and surveys. Particularly, see
-\citet{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} for background on regret-minimizing formulations, \citet{Gittins-book11} for Bayesian and Markovian formulations, and \citet{CesaBL-book,slivkins-MABbook} for connections to economics and game theory. A discussion of industrial applications of MAB can be found in \citep{DS-arxiv}.
 
-The three-way tradeoff between exploration, exploitation and incentives has been studied in several settings other than ours:
+\xhdr{Exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades by researchers from computer science, operations research, statistics and economics, generating a vast and multi-threaded literature.  The most relevant thread concerns MAB with stochastic rewards and no auxiliary structure, which is the problem faced by each principal in our model; see Appendix~\ref{app:bg} for self-contained background. The basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals. This literature is covered in several dedicated monographs,
+\citep{Gittins-book11,Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.%
+\footnote{\citet{Gittins-book11} covers Markovian formulations, the other three are concerned with regret-minimization.}
+Various connections to economics and game theory are detailed in 
+books \citep{CesaBL-book,slivkins-MABbook} and surveys \citep{Bergemann-survey06,Horner-survey16}. A discussion of industrial applications can be found in \citep{DS-arxiv}.
+
+The three-way tradeoff between exploration, exploitation and incentives has been studied in several settings very different from ours:
 incentivizing exploration in a recommendation system
     \citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
 dynamic auctions
-    \cite[\eg][]{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
+    \citep[\eg][]{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
 pay-per-click ad auctions with unknown click probabilities
-    \cite[\eg][]{MechMAB-ec09,DevanurK09,Transform-ec10-jacm},
+    \citep[\eg][]{MechMAB-ec09,DevanurK09,Transform-ec10-jacm},
 coordinating search and matching by self-interested agents
     \citep{Bobby-Glen-ec16},
-as well as human computation
-    \cite[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
-\citet{Bolton-econometrica99,Keller-econometrica05,Johari-ec12} studied models with self-interested agents jointly performing exploration, with no principal to coordinate them. \gaedit{\cite{keller2003price} studied a model where firms compete via prices where there is a similar exploration vs. competition tension. Besides the difference in competition for quality vs. prices, a crucial difference between our setting and theirs is that in their setting exploration decisions of firms have no bearing on future choices made by consumers.}
+human computation
+    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13},
+and social learning 
+    \citep[\eg][]{Bolton-econometrica99,Keller-econometrica05,Johari-ec12}. 
+A literature review of this work can be found in 
+\citep[Ch. 11.6]{slivkins-MABbook}.
+
+\asedit{\citet{keller2003price} studied the interplay of exploration and competition \emph{on prices}. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a given principal if and only if he chooses this principal -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices (which are directly controlled by the principals), rather than the quality of the chosen actions (which is not known a priori). Their focus on learning the decision rule, whereas ours is on learning quality. Third, they consider strategies that respond to competition and analyze Markov Perfect Equilibria, whereas we focus on adoption of better bandit algorithms.}
 
 There is a superficial similarity --- in name only --- between this paper and the line of work on ``dueling bandits"
     \citep[\eg][]{Yue-dueling12,Yue-dueling-icml09}.
 The latter is not about competing bandit algorithms, but rather about scenarios where in each round two arms are chosen to be presented to a user, and the algorithm only observes which arm has ``won the duel".
 
-Our setting is closely related to the ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11}, which studies competition between two principals, each running an algorithm for the same problem. However, \citet{DuelingAlgs-stoc11} consider algorithms for offline / full input scenarios, \asedit{and posit binary (win/lose) payoffs for the principals. Similarly, \citet{ben2017best, ben2019regression} study competition between offline learning algorithms. Whereas we focus on bandit algorithms and competition for users.}
+\xhdr{Competition.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{aghion2005competition,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
 
-\xhdr{Other related work in economics.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{aghion2005competition,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
+The literature on learning-by-doing vs. competition \citep[\eg][]{fudenberg1983learning, dasgupta1988learning, cabral1994learning} studies firms that learn while competing against each other, so that a firm attracting more consumers reduces its per-unit production costs. However, our model focuses on firms learning product quality (as opposed to reducing production costs) and the impact that this learning has on attracting consumers.
 
-\gaedit{There is a literature that studies the interaction between learning-by-doing and competition \citep{fudenberg1983learning, dasgupta1988learning, cabral1994learning}. In these models, firms learn while competing against each other where a firm attracting more consumers reduces its per-unit production costs. However, our model focuses on firms learning product quality (as opposed to reducing production costs) and the impact that this learning has on attracting consumers.}
-
-A line of work on \emph{platform competition}, starting with \cite{Rysman09}, concerns competition between firms (\emph{platforms}) that improve as they attract more users (\emph{network effect}); see \citet{Weyl-White-14} for a recent survey. This literature is not concerned with \innovation, and typically models network effects exogenously, whereas in our model network effects are endogenous: they are created by MAB algorithms, an essential part of the model.
-\gaedit{A nascent literature studies whether and when network effects manifest themselves in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typically models learning as a reduced-form function of past consumer history and focus on the role of prices.}
+A line of work on \emph{platform competition} (starting with \cite{Rysman09}, see \citet{Weyl-White-14} for a survey) concerns competition between firms that improve as they attract more users. This literature is not concerned with \innovation, and typically models network effects exogenously, whereas they are endogenous in our model.
+%: they are created by MAB algorithms, an essential part of the model.
+A nascent literature studies 
+%whether and when network effects manifest themselves 
+\asedit{network effects}
+in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typically models learning as a reduced-form function of past consumer history and focuses on the role of prices.
 %as opposed to the reputational consequences of learning.
 
-\cite{schmalensee1982product, bagwell1990informational} investigate how buyer uncertainty about product quality can serve as a barrier to entry for late arrivers. We observe a similar effect when we investigate the role that reputation can serve as a barrier to entry. However, in our model this effect is further strengthened by the fact that the firms have to learn while competing adding that the incumbent may not only have a reputational advantage, but additionally has a further advantage due to the data it acquires in the incumbency period. Thus, our model also highlights the role that data can serve as a barrier to entry in online markets which has similarly been noted in \cite{de2020data}. \gaedit{For an extensive overview of the other channels through which first-mover advantages can lead to a competitive advantage, see \cite{kerin1992first}.}
-
-
-Relaxed versions of rationality similar to ours are found in several notable lines of work. For example, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. The \SoftMaxRandom model is closely related to the literature on \emph{product differentiation}, starting from \cite{Hotelling-29}, see \cite{Perloff-Salop-85} for a notable later paper. There is a large literature on non-existence of equilibria due to small deviations   (which is related to the corresponding result for \HardMaxRandom), starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets. Notable recent papers \citep{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom.
+\cite{schmalensee1982product, bagwell1990informational} investigate how buyer uncertainty about product quality can serve as a barrier to entry for late arrivers. We observe a similar effect when we investigate the role that reputation can serve as a barrier to entry. \asmargincomment{I can't parse this sentence, could you pls simplify?}
+However, in our model this effect is further strengthened by the fact that the firms have to learn while competing adding that the incumbent may not only have a reputational advantage, but additionally has a further advantage due to the data it acquires in the incumbency period. Thus, our model also highlights the role that data can serve as a barrier to entry in online markets which has similarly been noted in \cite{de2020data}. For an extensive overview of the other channels through which first-mover advantages can lead to a competitive advantage, see \cite{kerin1992first}.
 
 We use first-mover advantage and relaxed versions of rationality to model varying competition, instead of classic ``market competitiveness" measures such as the Lerner Index or the Herfindahl-Hirschman Index
-\citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous.
+\citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous. 
 
-% moved this thought to the intro.
-\OMIT{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
+The ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11} studies competition between two principals, each running an algorithm for the same problem. However, they consider algorithms for offline / full input scenarios, and posit binary (win/lose) payoffs for the principals. Similarly, \citet{ben2017best, ben2019regression} study competition between offline learning algorithms. Whereas we focus on bandit algorithms and competition for users.
+
+\xhdr{Relaxed rationality.}
+Relaxed versions of rationality similar to ours are found in several notable lines of work. For example, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. The \SoftMaxRandom model is closely related to the literature on \emph{product differentiation}, starting from \cite{Hotelling-29}, see \cite{Perloff-Salop-85} for a notable later paper. There is a large literature on non-existence of equilibria due to small deviations   (which is related to the corresponding result for \HardMaxRandom), starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets. Notable recent papers \citep{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom.
+\asedit{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 
 
 %%% Local Variables:
