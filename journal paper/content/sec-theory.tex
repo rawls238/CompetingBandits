@@ -1,5 +1,5 @@
 
-In this section, we present our theoretical results for the \TheoryModel. While we provide intuition and (some) proof sketches, the detailed proofs are deferred to Appendix~\ref{sec:theory-proofs}.
+In this section, we present our theoretical results for the \TheoryModel. While we provide intuition and proof sketches, the detailed proofs are deferred to Appendix~\ref{sec:theory-proofs}.
 
 \subsection{Preliminaries}
 \label{sec:theory-prelims}
@@ -36,7 +36,7 @@ We characterize the inherent quality of an MAB algorithm in terms of its \emph{B
 \begin{align}\label{eq:theory-BIR-defn}
 \BIR_i(n) := \E\sbr{ \max_{a\in A} \mu_a - \rew_i(n)}.
 \end{align}
-We are primarily interested in how fast \BIR decreases with $n$. (We treat the number of arms as a constant.) Intuitively, (much) better MAB algorithms tend to have a (much) smaller BIR, see Appendix~\ref{app:bg} for background. 
+We are primarily interested in how fast \BIR decreases with $n$. (We treat the number of arms as a constant.) Intuitively, (much) better MAB algorithms tend to have a (much) smaller BIR, see Appendix~\ref{app:bg} for background.
 
 An algorithm is called \emph{\bmonotone} if it can only get better over time: $\rew_i(\cdot)$ is non-decreasing, and therefore $\BIR(\cdot)$ is non-decreasing. This is a mild assumption, see
 Appendix~\ref{app:examples}.
@@ -114,10 +114,10 @@ The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not re
 \subsection{Relaxed rationality: \HardMaxRandom}
 \label{sec:theory-HMR}
 
-Consider the \HardMaxRandom response model, where each principal is chosen with some positive baseline probability. Informally, we find that:
-\begin{align}\label{eq:theory-HMR-informal}
-\text{A much better algorithm wins big.}
-\end{align}
+Consider the \HardMaxRandom response model, where each principal is chosen with some positive baseline probability. Informally, we find that 
+%\begin{align}\label{eq:theory-HMR-informal}
+\emph{a much better algorithm wins big}.
+%\end{align}
 In more detail, a principal with asymptotically better \BIR wins by a large margin: after a ``learning phase" of constant duration, all agents choose this principal with maximal possible probability $\respF(1)$. For example, a principal with $\BIR(n)\leq \tilde{O}(n^{-1/2})$ prevails over a principal with $\BIR(n)\geq \Omega(n^{-1/3})$.
 
 %However, this positive result comes with a significant caveat detailed in Section~\ref{sec:random-greedy}.
@@ -137,7 +137,7 @@ denoting $\eps_0 = \respF(-1)$, for some constant $n_0$ we have
 \end{align}
 If this holds, we say that \alg[1] \emph{BIR-dominates} \alg[2] starting from (local) step $n_0$.
 
-We also need a mild technical assumption that $\BIR_2(\cdot)$ is not extremely small: 
+We also need a mild technical assumption that $\BIR_2(\cdot)$ is not extremely small:
 %for some constant $m_0$,
 \begin{align}\label{eq:random-assn}
  (\exists m_0\;\forall n\geq m_0) \qquad
@@ -158,15 +158,15 @@ Assume \HardMaxRandom response function. Suppose algorithms \alg[1], \alg[2] are
 
 \ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
 
-\asedit{We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better algorithm prevails in equilibrium. Indeed, this holds if the principals can only choose from a finite set of MAB algorithms.}
+We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better algorithm prevails in equilibrium. Indeed, this holds if the principals can only choose from a finite set of MAB algorithms.
 
 \begin{definition}\label{def:restricted-competition}
-A \emph{\FiniteGame} is a version of the competition game between the two principals in which they can only choose from a finite set of MAB algorithms, which are called \emph{feasible}. All feasible algorithms are assumed to be
+A \emph{\FiniteGame} is the competition game between the two principals in which they can only choose from a finite set of MAB algorithms (called \emph{feasible}). All feasible algorithms are assumed to be
 \bmonotone and $T$-oblivious, and to satisfy \eqref{eq:random-assn}.
 \end{definition}
 
 \begin{corollary}\label{cor:random}
-Assume \HardMaxRandom response function. Consider the \FiniteGame with a feasible algorithm \alg which BIR-dominates all other feasible algorithms. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium: both principals choose \alg.
+Assume \HardMaxRandom response function. Consider the \FiniteGame with a feasible algorithm \alg which BIR-dominates all other feasible algorithms. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium, in which both principals choose algorithm \alg.
 \end{corollary}
 
 
@@ -174,25 +174,29 @@ Assume \HardMaxRandom response function. Consider the \FiniteGame with a feasibl
 %\label{sec:random-greedy}
 
 \xhdr{Counterpoint: A little greedy goes a long way.}
-Given any \bmonotone MAB algorithm \alg other than \DynGreedy, we design a modified algorithm which ``mixes in" some greedy choices (and consequently learns at a slower rate), yet prevails over \alg in the competition game. Thus, we have a counterpoint to \eqref{eq:theory-HMR-informal}: even under \HardMaxRandom, a better algorithm may lose in competition. The corresponding counterpoint to Corollary~\ref{cor:random} states that non-greedy algorithms are \emph{not} chosen in equilibrium.
+Given any \bmonotone MAB algorithm \alg other than \DynGreedy, we design a modified algorithm which ``mixes in" some greedy choices (and consequently learns at a slower rate), yet prevails over \alg in the competition game. Thus, we have a counterpoint to ``much better algorithms win": even under \HardMaxRandom, a better algorithm may lose in competition. The corresponding counterpoint to Corollary~\ref{cor:random} states that non-greedy algorithms are \emph{not} chosen in equilibrium.
 
-The modified algorithm, called the \emph{greedy modification} of \alg  with \emph{mixing parameter} $p\in (0,1)$, is defined as follows. Suppose \alg deviates from \DynGreedy starting from some (local) step $n_0$. Then
-\begin{enumerate}
-\item The modified algorithm coincides with \DynGreedy
-for the first $n_0-1$ steps;
-\item In each step $n\geq n_0$, \alg is invoked with probability
+The modified algorithm, called the \emph{greedy modification} of \alg  with \emph{mixing parameter} $p\in (0,1)$, is defined as follows. Suppose \alg deviates from \DynGreedy starting from some (local) step $n_0$. 
+%\begin{enumerate}
+%\item 
+The modified algorithm coincides with \DynGreedy
+for the first $n_0-1$ steps.
+%\item 
+In each step $n\geq n_0$, \alg is invoked with probability
   $1-p$, and with the remaining probability $p$ does the ``greedy
   choice": chooses an action with the largest posterior mean reward
   given the current information collected by \alg.
+%\item 
+The data from the ``greedy choice" steps are not recorded.%
+\footnote{In other words: the algorithm proceeds as if the ``greedy choice" steps have never happened.  While it is usually more efficient to consider all available data, this modification simplifies analysis.}
 
-\item The modified algorithm does not record the ``greedy choice" steps in its data set.%
-    \footnote{In other words: in the subsequent rounds, as far as the modified algorithm is concerned, the ``greedy choice" steps have never happened. While it is usually more efficient to consider all available data, this simplification enables a cleaner comparison between the two algorithms. Also, it makes for  a cleaner setup: otherwise, just to make the modified algorithm well-defined, we'd need to assume that \alg[1] is a mapping from step-$n$ histories to actions, for each step $n$. This is usually OK -- most bandit algorithms have this shape anyway -- but it prohibits \alg[1] to correlate its internal randomness across steps.}
+%    \footnote{In other words: in the subsequent rounds, as far as the modified algorithm is concerned, the ``greedy choice" steps have never happened. While it is usually more efficient to consider all available data, this simplification enables a cleaner comparison between the two algorithms. Also, it makes for  a cleaner setup: otherwise, just to make the modified algorithm well-defined, we'd need to assume that \alg[1] is a mapping from step-$n$ histories to actions, for each step $n$. This is usually OK -- most bandit algorithms have this shape anyway -- but it prohibits \alg[1] to correlate its internal randomness across steps.}
 
-\end{enumerate}
+%\end{enumerate}
 %The modified algorithm is called \emph{greedy deviation}, with probability parameter $p$.
 %Parameter $p>0$ is the same for all steps.
 
-\noindent Note that the modified algorithm is another pure strategy in the competition game between the two principals, not a mixed strategy that randomizes between \alg and the greedy algorithm. 
+Note that the modified algorithm is another pure strategy in the competition game between the two principals, not a mixed strategy that randomizes between \alg and the greedy algorithm.
 
 We find that the greedy modification prevails in competition if $p$ is small enough.
 
@@ -201,8 +205,6 @@ Consider a symmetric \HardMaxRandom response function $\respF$ with baseline pro
     $(1-\eps_0)(1-p)>\eps_0$.
 Then each agent $t\geq n_0$ chooses principal $2$ with probability $1-\eps_0$ (which is the largest possible).
 \end{theorem}
-
-\ascomment{This whole blurb before the corollary is new.}
 
 Let us analyze the \BIR of the greedy modification (we will use it for what follows). Use \alg[1] and \alg[2] as in the theorem. For each $n\in\N$, let $M_n$ be the number of times \alg[1] is invoked in the first $n$ steps of \alg[2]. Let \alggr be a hypothetical algorithm which at each step $n$ outputs the ``Bayesian-greedy choice" based on the data collected by \alg[1] in the first $n-1$ steps. Let $\BIRgr(n)$ be the \BIR of this algorithm. Let
     $\mathtt{reg}_2(n) = n\cdot \max_a \mu_a - \rew_2(n)$
@@ -233,7 +235,7 @@ Thus, the greedy modification is beneficial in competition \emph{and} keeps us i
 
 \begin{corollary}\label{cor:random-greedy}
 Posit a symmetric \HardMaxRandom response function. Suppose both principals can only choose from \bmonotone MAB algorithms. Then for any time horizon $T$, the only possible \emph{pure} Nash equilibrium is one where both principals choose \DynGreedy. Moreover, no pure Nash equilibrium exists when some algorithm BIR-dominates \DynGreedy and $T$ is sufficiently large.
-\asedit{These conclusions hold even if each principal's strategy set is a subset of \bmonotone MAB algorithms that is closed under the greedy modification.}%
+These conclusions hold even if each principal's strategy set is a subset of \bmonotone MAB algorithms that is closed under the greedy modification.%
 \footnote{That is, the strategy set of each principal consists of some (but not necessarily all) \bmonotone MAB algorithms, and contains the greedy modification for each algorithms in this set and each mixing parameter $p$.}
 \end{corollary}
 
