@@ -24,6 +24,7 @@ instead they are dispersed throughout the game.}
 \footnotesize
 \begin{table*}[t]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Heavy-Tail (\HMR with $\eps=.1$)}
@@ -64,8 +65,8 @@ $T = 2000$
   \\
    \hline
 \end{tabular}
-\normalsize
-\caption{\HardMax (\HM) and \HardMaxRandom (\HMR) choice models on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+\end{adjustbox}
+\caption{\footnotesize \HardMax (\HM) and \HardMaxRandom (\HMR) choice models on the Heavy-Tail MAB instance. Each cell describes the market shares in a game between two algorithms, call them Alg1 vs. Alg2, at a particular value of $t$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
 %For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
 Line 2 specifies the variance of the market shares across the simulations. The results reported here are with $T_0 = 20$.}
 \label{tab:non_greedy_table}
@@ -76,6 +77,7 @@ Line 2 specifies the variance of the market shares across the simulations. The r
 \footnotesize
 \begin{table*}[t]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Uniform (\HMR  with $\eps=.1$)}
@@ -116,7 +118,8 @@ $T = 2000$
   \\
    \hline
 \end{tabular}
-\caption{\HardMaxRandom (\HMR) choice model for Uniform and Needle-In-Haystack MAB instances.}
+\end{adjustbox}
+\caption{\footnotesize \HardMaxRandom (\HMR) choice model for Uniform and Needle-In-Haystack MAB instances.}
 %Same semantics as in Table \ref{tab:non_greedy_table}.
 \label{tab:additional_results}
 \end{table*}
