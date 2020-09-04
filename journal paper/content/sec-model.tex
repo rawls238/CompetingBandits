@@ -76,7 +76,9 @@ We consider two model variants, Bayesian and frequentist. The main difference be
 \xhdr{Competition game.}
 Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. Thus, choosing a pure strategy in this game corresponds to choosing an MAB algorithm. Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral, in the sense that they optimize their expected utility.
 
-\xhdr{Extensions.} \asedit{The \TheoryModel admits several extensions, detailed in Section~\ref{sec:theory-extensions}. First, all/most results extend to arbitrary reward distributions, allow reward-dependent utility, and carry over to a more general version of multi-armed bandits. Second, agents could have beliefs on $(\alg[1],\alg[2],\priorMu,\respF)$ that need not be correct; then, all results carry over with respect to these beliefs. Third, all results carry over \asmargincomment{check}  if each agent $t$ has a prior on her arrival time $t$, rather than know it exactly. Fourth, we can handle a limited amount of non-stationarity in $\respF$. \asmargincomment{check} Finally, the main result on \HardMax extends to time-discounted utilities.
+\xhdr{Extensions.} \asedit{The \TheoryModel admits several extensions, detailed in Section~\ref{sec:theory-extensions}. First, all/most results extend to arbitrary reward distributions, allow reward-dependent utility, and carry over to a more general version of multi-armed bandits. Second, agents could have beliefs on $(\alg[1],\alg[2],\priorMu,\respF)$ that need not be correct; then, all results carry over with respect to these beliefs. 
+%Third, all results carry over \asmargincomment{check}  if each agent $t$ has a prior on her arrival time $t$, rather than know it exactly.
+Third, we can handle a limited amount of non-stationarity in $\respF$. \asmargincomment{check} Finally, the main result on \HardMax extends to time-discounted utilities.
 }
 
 \subsection{Discussion}
@@ -100,8 +102,5 @@ not requiring users to have direct information on the algorithms deployed or the
 
 \asedit{On the machine learning side, our model captures big, qualitative differences between bandit algorithms, building on the well-established intuition in the literature. Comparisons between bandit algorithms are generally somewhat subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others. In particular, ``better" algorithms are better in the long run, but could be worse initially. We focus on a standard model of stochastic bandits. In Appendix~\ref{app:bg}, we present sufficient background on this model, accessible to non-specialists. However, we are less interested in state-of-art algorithms for realistic applications.}
 
-
-\asedit{Principals' utilities are not discounted with time.%
-\footnote{However, our main theoretical result on the greedy algorithm extends to time-discounted rewards.}
- While much of the early work on bandits focuses on  time-discounted rewards \citep{Gittins-book11}, non-discounted  formulations are prevalent in the bandits literature over the past two decades \citep{slivkins-MABbook,LS19bandit-book}, and better correspond to practical deployments \citep[\eg][]{DS-arxiv}. The distinctions between better and worse bandit algorithms are not as well-understood under time-discounting.}
+\asedit{Bandit rewards are not discounted with time, reflecting the fact that non-discounted, regret-minimizing formulations has been prevalent in the bandits literature over the past two decades \citep{slivkins-MABbook,LS19bandit-book}, and better correspond to practical deployments \citep[\eg][]{DS-arxiv}. Also, the distinctions between better and worse bandit algorithms are not as well-understood under time-discounting.}
 
