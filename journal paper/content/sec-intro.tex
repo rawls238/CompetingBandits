@@ -143,14 +143,18 @@ in which the principal may observe additional feedback before and/or after each 
 
 
 \xhdr{Interpretation: the inverted-U relationship.}
-Our findings can be framed in terms of the inverted-U relationship between competition and innovation. This is a well-established concept, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better \citep[\eg][]{aghion2005competition,Vives-08}. We interpret innovation as the adoption of better algorithms,%
+Our findings can be framed in terms of the inverted-U relationship between competition and innovation. This is a well-established concept, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. %\citep[\eg][]{aghion2005competition,Vives-08}. 
+We interpret innovation as the adoption of better algorithms,%
 \footnote{Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms are well-known and/or similar technologies already exist elsewhere  \citep[\eg see][]{DS-arxiv}.}
 %, even if the algorithms themselves are well-known in the research literature
 and control the severity of the competition by varying the agents' decision rule from \HardMax (cut-throat competition) to \HardMaxRandom to \SoftMaxRandom and all the way to the uniform selection.%
-\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
-We also find another, technically different, inverted-U relationship which zeroes in on the \HardMaxRandom model.
+%\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
+We also find another, technically different inverted-U relationship which zeroes in on the \HardMaxRandom model.
 %We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.
-While the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs, in our work the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
+\asedit{The barriers for innovation arise entirely from the reputational consequences of exploration in competition, whereas the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs.}
+
+
+%While the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs, in our work the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
 
 
 %Our decision rules differ in terms of rationality: from fully rational decisions with \HardMax to relaxed rationality with \HardMaxRandom to an even more relaxed rationality with \SoftMaxRandom. The same distinctions also control the severity of competition between the principals: from cut-throat competition with \HardMax to a more relaxed competition with \HardMaxRandom, to an even more relaxed competition with \SoftMaxRandom. Indeed, with \HardMax you lose all customers as soon as you fall behind in performance, with \HardMaxRandom you get some small market share no matter what, and with \SoftMaxRandom you are further guaranteed a market share close to $\tfrac12$ as long as your performance is not much worse than the competition. The uniform choice among principals corresponds to no rationality and no competition. While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.
