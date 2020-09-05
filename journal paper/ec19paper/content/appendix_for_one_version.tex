@@ -12,7 +12,7 @@
 We present the full plots for Section \ref{sec:isolation}: mean reputation trajectories and instantaneous reward trajectories for all three MAB instances.  For ``instantaneous reward" at a given time $t$, we report the average (over all \MRVs) of the mean rewards at this time, instead of the average of the \emph{realized} rewards, so as to decrease the noise. In all plots, the shaded area represents 95\% confidence interval.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.35]{ec19paper/figures/ht_mean}
 \includegraphics[scale=0.35]{ec19paper/figures/mean_inst_reward_ht}
@@ -20,7 +20,7 @@ We present the full plots for Section \ref{sec:isolation}: mean reputation traje
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.35]{ec19paper/figures/nih_mean}
 \includegraphics[scale=0.35]{ec19paper/figures/mean_inst_reward_nih}
@@ -28,7 +28,7 @@ We present the full plots for Section \ref{sec:isolation}: mean reputation traje
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.35]{ec19paper/figures/uniform_mean}
 \includegraphics[scale=0.35]{ec19paper/figures/mean_inst_reward_uniform}
@@ -48,6 +48,7 @@ Each experiment is presented as a table with the same semantics as in the main t
 \
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{$X = 50$}
@@ -81,13 +82,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.36} $\pm$0.03}
     & \makecell{\textbf{0.3} $\pm$0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Heavy-Tail MAB Instance}
 \end{table}
 
 
-\scalebox{1.0}{\parbox{\linewidth}{%
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{$X = 300$}
@@ -121,13 +123,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.32} $\pm$0.03}
     & \makecell{\textbf{0.3} $\pm$0.02}\\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Heavy-Tail MAB Instance}
 \end{table}
-}}
 
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{$X = 50$}
@@ -161,12 +164,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.23} $\pm$0.02}
     & \makecell{\textbf{0.33} $\pm$0.03} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Needle In Haystack MAB Instance}
 \end{table}
 
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{$X = 300$}
@@ -200,11 +205,13 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.18} $\pm$0.02}
     & \makecell{\textbf{0.31} $\pm$0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Needle In Haystack MAB Instance}
 \end{table}
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{$X = 50$}
@@ -238,12 +245,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.24} $\pm$0.02}
     & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Uniform MAB Instance}
 \end{table}
 
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{$X = 300$}
@@ -277,6 +286,7 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.22} $\pm$0.02}
     & \makecell{\textbf{0.29} $\pm$0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Uniform MAB Instance}
 \end{table}
 
@@ -291,6 +301,7 @@ Each experiment is presented as a table with the same semantics as in the main t
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Data Advantage}
@@ -324,12 +335,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{ 0.4 } $\pm$ 0.03 }
     & \makecell{\textbf{ 0.33 } $\pm$ 0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Heavy Tail MAB Instance, $X = 200$}
 \end{table}
 
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Data Advantage}
@@ -363,11 +376,13 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.39} $\pm$0.03}
     & \makecell{\textbf{0.34} $\pm$0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Heavy Tail MAB Instance, $X = 500$}
 \end{table}
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Data Advantage}
@@ -401,12 +416,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{ 0.3 } $\pm$ 0.02}
     & \makecell{\textbf{ 0.36 } $\pm$ 0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Needle-in-Haystack MAB Instance, $X=200$}
 \end{table}
 
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Data Advantage}
@@ -440,12 +457,14 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.27} $\pm$0.02}
     & \makecell{\textbf{0.35} $\pm$0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Needle-in-Haystack MAB Instance, $X=500$}
 \end{table}
 
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Data Advantage}
@@ -479,11 +498,13 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{ 0.29 } $\pm$ 0.02}
     & \makecell{\textbf{ 0.3 } $\pm$ 0.02} \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Uniform MAB Instance, $X = 200$}
 \end{table}
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Data Advantage}
@@ -517,6 +538,7 @@ Each experiment is presented as a table with the same semantics as in the main t
     & \makecell{\textbf{0.27} $\pm$0.02}
     & \makecell{\textbf{0.3} $\pm$0.02}  \\\hline
 \end{tabular}
+\end{adjustbox}
 \caption{Uniform MAB Instance, $X = 500$}
 \end{table}
 
