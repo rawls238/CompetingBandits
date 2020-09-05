@@ -50,8 +50,10 @@ Following a standard game-theoretic terminology, algorithm Alg1 \emph{(weakly) d
 \footnote{Each such experiment is run many times to reduce variance.}
 Accordingly, we have a three-dimensional space of atomic experiments one needs to run and interpret: \{pairs of algorithms\} x \{competition models\} x \{bandit instances\}, and we are looking for findings that are consistent across this entire space. It is essential to keep each of the three dimensions small yet representative. In particular, we need to capture a huge variety of bandit instances with only a few representative examples. Further, one needs succinct and informative summarization of results within one atomic experiment and across multiple experiments (\eg see Table~\ref{sim_table}).}
 
+\gadelete{
 \xhdr{Running time.}
 The simulations are computationally intensive. An experiment on a particular MAB instance comprised multiple runs of the competition game: $N$ mean reward vectors times $9$ pairs of algorithms times three values for the warm start. We used a parallel implementation over a cluster of 12 2.2 GHz CPU cores, with 8 GB RAM per core. Each experiment took about $10$ hours.
+}
 
 
 \end{document}
