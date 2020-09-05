@@ -1,11 +1,22 @@
-We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to researchers who are not experts on MAB.
-We focus on the three classes of MAB algorithms listed in Section~\ref{expts-prelims}: adaptive-exploration algorithms, exploration-separating algorithms, and greedy algorithms. We list the precise upper and lower bounds on the regret rates only to illustrate how the three algorithm classes are separated from one another; the exact results are not essential for the paper.
+We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to researchers who are not experts on MAB. We focus on three algorithm classes, as in Section~\ref{sec:sim}:
 
-We use standard conventions: $O(f(t))$ and $\Omega(f(t))$ means at most (resp., at least) $f(n)$, up to constant factors, starting from large enough $t$. Likewise, $\tildeO(f(t))$ notation suppresses the $\polylog(t)$ factors.
+\begin{itemize}
+\item \emph{Greedy algorithms} that strive to maximize the reward for the next round given the available information. Thus, they always ``exploit" and never explicitly ``explore".
+    \asmargincomment{copied the list from the intro.}
+
+\item \emph{Exploration-separating algorithms}
+ that separate exploration and exploitation: essentially, each round is dedicated to one and completely ignores the other.
+
+\item \emph{Adaptive-exploration} algorithms that combine exploration and exploitation, and gradually sway the exploration choices towards more promising alternatives.
+\end{itemize}
+
+We list the precise upper and lower bounds on the regret rates only to illustrate how the three algorithm classes are separated from one another; the exact results are not essential for the paper. We use standard conventions: $O(f(t))$ and $\Omega(f(t))$ means at most (resp., at least) $f(n)$, up to constant factors, starting from large enough $t$. Likewise, $\tildeO(f(t))$ notation suppresses the $\polylog(t)$ factors.
+
+
 
 \xhdr{Fundamentals.}
 We are concerned with the following problem. There are $T$ rounds and $K$ \emph{arms} to choose from. In each round $t\in [T]$, the algorithm chooses an arm and receives a reward $r_t\in[0,1]$ for this arm, drawn from a fixed but unknown distribution.%
-\footnote{\asedit{All ``negative" results (\ie lower bounds on regret) assume reward distributions with constant variance.}}
+\footnote{All ``negative" results (\ie lower bounds on regret) assume reward distributions with constant variance.}
 The algorithm's goal is to maximize the total reward.
 
 A standard performance measure is \emph{regret}, defined as the difference in the total expected reward between the algorithm and the best arm. In a formula, regret is
@@ -45,7 +56,7 @@ The lower bounds mentioned above are fairly typical, in the sense that they hold
 in fact holds for all problem instances and all algorithms that are not \emph{terrible} on the large-gap instances \citep{Lai-Robbins-85}. The $\Omega(T^{2/3})$ lower bound for exploration-separating algorithms in fact applies to all problem instances, as long as the algorithm achieves $\tildeO(T^{2/3})$ regret rate in the worst case \citep{MechMAB-ec09}.
 Moreover, there is a tradeoff between the worst-case upper bound on the regret rate and a lower bound that applies for all problem instances \citep[Theorem 4.3 in][using the same proof technique]{MechMAB-ec09}.
 
-\asedit{Some MAB algorithms are Bayesian, \eg Thompson Sampling,  in the sense that they input a prior on mean rewards, and attain strong Bayesian guarantees (in expectation over the prior) when the prior is correct. Such algorithms can also be initialized with some simple `fake' priors; in fact, Thompson Sampling satisfies the optimal regret bounds listed above.}
+Some MAB algorithms are Bayesian, \eg Thompson Sampling,  in the sense that they input a prior on mean rewards, and attain strong Bayesian guarantees (in expectation over the prior) when the prior is correct. Such algorithms can also be initialized with some simple `fake' priors; in fact, Thompson Sampling satisfies the optimal regret bounds listed above.
 
 The intuition on (the separation between) the three algorithm classes applies more generally, far beyond the basic MAB model discussed above. In particular, all algorithms that we explicitly mentioned are in fact general algorithmic techniques that are known to extend to a variety of more general MAB scenarios, typically with a similarly stark separation in regret bounds.
 
@@ -67,7 +78,7 @@ Cumulative performance measures such as regret are not quite appropriate for our
 We are primarily interested in how fast \BIR decreases with $t$, treating $K$ as a constant.
 
 
-The three classes of algorithms are well-separated in terms of \BIR, much like they are in terms of regret.
+The three classes are well-separated in terms of \BIR, much like they are in terms of regret.
 %(The precise regret rates are listed below only to illustrate this point.)
 \begin{itemize}
 \item \DynGreedy has at least a constant \BIR for many reasonable priors (where the constant can depend on $K$ and the prior, but not on $t$). The reason and the proof are exactly the same as for regret.
@@ -88,7 +99,7 @@ for all $t$, then $\gamma\geq \nicefrac{1}{3}$.
         $\BReg(T)\leq \tildeO(\sqrt{T})$.
     In particular, if such algorithm satisfies
         $\BIR(t) = \tildeO\rbr{t^{-\gamma}}$
-    for all $t$, then $\gamma \leq \nicefrac{1}{2}$.
+    for all rounds $t$ and some constant $\gamma$, then $\gamma \leq \nicefrac{1}{2}$.
 
 \end{itemize}
 
