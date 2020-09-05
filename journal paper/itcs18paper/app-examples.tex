@@ -20,7 +20,7 @@
 
 This appendix provides some auxiliary results on \bmonotonicity of some standard algorithms: \DynGreedy, \DynamicEpsGreedy and \Thompson. The former is needed in Section~\ref{sec:theory}, the last two merely add motivation for our theoretical story. The result on \Thompson also implies that $\BIR(t)\leq \tildeO(t^{-1/2})$. Recall that an algorithm is called \bmonotone if its Bayesian-expected reward is non-decreasing in time.
 
-We consider Bayesian MAB with Bernoulli rewards. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in\{0,1\}$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$. \asedit{The mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$.}
+We consider Bayesian MAB with Bernoulli rewards. There are $T$ rounds and $K$ arms. In each round $t\in [T]$, the algorithm chooses an arm $a_t\in A$ and receives a reward $r_t\in\{0,1\}$ for this arm, drawn from a fixed but unknown distribution. The set of all arms is $A$; mean reward of arm $a$ is denoted $\mu_a$. The mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$.
 We let
     $\rew(t) = \mu_{a_t}$
 denote the instantaneous mean reward of the algorithm.
@@ -77,11 +77,11 @@ Monotonicity follows from \citet{Selke-BE-2020}; the \BIR result is an immediate
 for all steps $t$ \citep{Russo-MathOR-14}. Neither result has appeared in print, to the best of our knowledge.
 
 \begin{theorem}[\citet{Selke-BE-2020}]\label{thm:TS-mono}
-\asedit{Assume the prior $\priorMu$ is independent across arms.} Then \Thompson is \bmonotone. Consequently, it satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
+Assume the prior $\priorMu$ is independent across arms. Then \Thompson is \bmonotone. Consequently, it satisfies $\BIR(t)\leq \tildeO(t^{-1/2})$.
 \end{theorem}
 
 
-The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, \Thompson samples arm $a_t$ from the posterior distribution \asedit{$p_t(a) = {\Pr}^t[a^*=a]$.}
+The theorem follows easily from two observations in  \citet{Selke-BE-2020}, we provide the proof for completeness. First, let us state the algorithm. Let $\Pr^t$ and $\E^t$ denote, resp., Bayesian posterior probability and expectation conditional on the history observed at time $t$. Let $a^*$ be the best arm: $a^*\in \argmax_a \mu_a$. In each round $t$, \Thompson samples arm $a_t$ from the posterior distribution $p_t(a) = {\Pr}^t[a^*=a]$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:TS-mono}]
 The two observations from \citet{Selke-BE-2020}  are as follows: for each arm $a$,
