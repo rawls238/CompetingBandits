@@ -1,7 +1,8 @@
-\xhdr{Exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades by researchers from computer science, operations research, statistics and economics, generating a vast and multi-threaded literature.  The most relevant thread concerns the basic model of regret-minimizating bandits with stochastic rewards and no auxiliary structure (which is the problem faced by each principal in our model), see Appendix~\ref{app:bg} for background. This basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.\footnote{There is a superficial similarity --- in name only --- between this paper and the line of work on ``dueling bandits" \citep[\eg][]{Yue-dueling12,Yue-dueling-icml09}.
-The latter is not about competing bandit algorithms, but rather about scenarios where in each round two arms are chosen to be presented to a user, and the algorithm only observes which arm has ``won the duel".} 
-Dedicated monographs \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} cover the work on regret-minimizing formulations (which mainly comes from computer science), and the classic book 
-\citep{Gittins-book11} focuses on the Markovian formulations (which predate regret-minimization and were mainly studied in operations research and statistics). 
+\xhdr{Exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades by researchers from computer science, operations research, statistics and economics, generating a vast and multi-threaded literature.  The most relevant thread concerns the basic model of regret-minimizating bandits with stochastic rewards and no auxiliary structure (which is the problem faced by each principal in our model), see Appendix~\ref{app:bg} for background. This basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.%
+\footnote{There is a superficial similarity, in name only, between this paper and the work on ``dueling bandits" (starting from \citet{Yue-dueling12,Yue-dueling-icml09}).
+In the latter, an algorithm chooses two arms in each round, and the algorithm only observes which arm has ``won the duel".}
+Dedicated monographs \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} cover the work on regret-minimizing formulations (which mainly comes from computer science), and the classic book
+\citep{Gittins-book11} focuses on the Markovian formulations (which predate regret-minimization and were mainly studied in operations research and statistics).
 Various connections to economics and game theory are detailed in
 books \citep{CesaBL-book,slivkins-MABbook} and surveys \citep{Bergemann-survey06,Horner-survey16}. Industrial applications are discussed in \citep{DS-arxiv}.
 
@@ -15,18 +16,40 @@ pay-per-click ad auctions with unknown click probabilities
 coordinating search and matching by self-interested agents
     \citep{Bobby-Glen-ec16},
 and human computation
-    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}. 
+    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
 A literature review of this work can be found in
 \citep[Ch. 11.6]{slivkins-MABbook}.
 
 \xhdr{Exploration and competition.}
-\ascomment{TODO: revise/expand this xhdr.}
+\asmargincomment{This whole xhdr is new.}
+\citet{bergemann1997market,bergemann2000experimentation,keller2003price} studied the interplay of exploration and competition for users when the competing firms experiment with \emph{prices}, rather than design alternatives. All three papers consider strategies that respond to competition, and analyze Markov Perfect Equilibria (MPE), whereas we focus on the adoption of better bandit algorithms. We discuss them in more detail below.
 
-\citet{keller2003price} studied the interplay of exploration and competition \emph{on prices}. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a given principal if and only if he chooses this principal -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices (which are directly controlled by the principals), rather than the quality of the chosen actions (which is not known a priori). Their focus is on learning the decision rule, whereas ours is on learning product quality. Third, they consider strategies that respond to competition and analyze Markov Perfect Equilibria (MPE), whereas we focus on the adoption of better bandit algorithms. \gaedit{\citet{bergemann1997market,bergemann2000experimentation} studied a model where there is an incumbent with known product quality and an entrant with unknown, but exogenously determined, quality. Similar to \citet{keller2003price}, the firms compete on prices and they characterize the MPE of dynamic competition between the two firms. In their model, consumer purchases of the entrant's product result in an informational externality that allows both the firms and consumers to gather information on the entrant's product quality. However, we focus on a model where firms' product quality is endogenous and the focus of exploration in a context where the price mechanism is absent.}
+In \citet{keller2003price}, the competition is entirely on prices, rather than product quality. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a firm if and only if he chooses this firm -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices, rather than the quality of the chosen alternatives; the former is directly controlled by the firms, whereas the latter is not known a priori. Third, the goal of exploration is to learn the agents' decision rule.
 
-\ascomment{to elaborate}
- social learning
-    \citep[\eg][]{Bolton-econometrica99,Keller-econometrica05,Johari-ec12}.
+The earlier work by \citet{bergemann1997market,bergemann2000experimentation} studies competition on both prices and quality, and allows for the data externality mentioned above. Specifically, the ``entrant" firm offers a new product of unknown quality, which is ``explored" if and only if the entrant attracts customers. However, because the entrant can only control the prices but not the product itself, the nature of exploration is fundamentally different. First, the goal of exploration is to reveal information about a fixed product. Second, the entrant can only affect the \emph{quantity} of the said information, but not \emph{which} information is being revealed. Third, revealing \emph{more} information is not necessarily better for the entrant (if the product's quality is actually low). Fourth, the social planner's exploration problem is very different from the firms'.%
+\footnote{The planner faces a two-armed bandit problem, rather than a pricing problem. This is because the planner can directly choose a firm for each agent (by choosing a very low price for this firm, and a very high price for the other firm, because payments cancel out in social welfare).}
+Consequently, when one compares competition to the planner, one can compare the outcomes but not the algorithms.
+
+
+
+%In \citet{keller2003price}, the competition is entirely on prices, rather than product quality. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a given principal if and only if he chooses this principal -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices (which are directly controlled by the principals), rather than the quality of the chosen actions (which is not known a priori). Their focus is on learning the decision rule, whereas ours is on learning product quality. Third, they consider strategies that respond to competition and analyze Markov Perfect Equilibria (MPE), whereas we focus on the adoption of better bandit algorithms.
+
+%\gaedit{\citet{bergemann1997market,bergemann2000experimentation} studied a model where there is an incumbent with known product quality and an entrant with unknown, but exogenously determined, quality. Similar to \citet{keller2003price}, the firms compete on prices and they characterize the MPE of dynamic competition between the two firms. In their model, consumer purchases of the entrant's product result in an informational externality that allows both the firms and consumers to gather information on the entrant's product quality. However, we focus on a model where firms' product quality is endogenous and the focus of exploration in a context where the price mechanism is absent.}
+
+\cite{Ufuk-jeea15} study exploration in a ``research competition". Two firms race towards a big discovery such as a new drug. Each firm solves a bandit problem with two arms, corresponding to safe and risky lines of research. The two algorithms do not interact, directly or indirectly, until one firm makes the discovery and wins the game. In comparison, we study a ``product competition" in which the two firms interact continuously (via the customers' choices), accrue rewards incrementally, and compete for individual customers.
+
+In the line of work on \emph{strategic experimentation} (starting from \citet{Bolton-econometrica99,Keller-econometrica05}, see \citet{Horner-survey16} for a survey), agents explore and learn over time in a shared environment. Thus, we have exploration algorithms which interact with each other strategically, \eg each agent would prefer to free-ride on the exploration done by others. However, the agents do not compete with each other in any meaningful sense.
+
+A long line of work from electrical engineering and computer science, starting from
+\citet{MultiPlayerMAB-Poor08,MultiPlayerMAB-Liu10,MultiPlayerMAB-Anima11}, targets an application to \emph{cognitive radios}, where multiple radios transmit simultaneously in a shared medium and compete for bandwidth. Each radio chooses channels over time using a multi-armed bandit algorithm. This work studies a repeated game between bandit algorithms, and focuses on designing algorithms which work well in this game, under various assumptions on communication, synchronization and collisions. 
+
+
+
+
+%and continuing to, \eg \citet{MultiPlayerMAB-Mannor14,MultiPlayerMAB-Shamir-icml16,MultiPlayerMAB-Perchet-18,MultiPlayerMAB-Sellke-19}.
+
+
+
 
 
 \xhdr{Competition.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{aghion2005competition,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
