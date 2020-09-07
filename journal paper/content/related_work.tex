@@ -1,12 +1,11 @@
-
-\xhdr{Exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades by researchers from computer science, operations research, statistics and economics, generating a vast and multi-threaded literature.  The most relevant thread concerns MAB with stochastic rewards and no auxiliary structure, which is the problem faced by each principal in our model (see Appendix~\ref{app:bg}). The basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.\footnote{There is a superficial similarity --- in name only --- between this paper and the line of work on ``dueling bandits" \citep[\eg][]{Yue-dueling12,Yue-dueling-icml09}.
-The latter is not about competing bandit algorithms, but rather about scenarios where in each round two arms are chosen to be presented to a user, and the algorithm only observes which arm has ``won the duel".} This literature is covered in dedicated monographs,
-\citep{Gittins-book11,Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.%
-\footnote{\citet{Gittins-book11} covers Markovian formulations, the other three are concerned with regret-minimization.}
-Various connections to economics and game theory are detailed in 
+\xhdr{Exploration.} Multi-armed bandits (\emph{MAB}) is an elegant and tractable abstraction for tradeoff between \emph{exploration} and \emph{exploitation}: essentially, between acquisition and usage of information. MAB problems have been studied for many decades by researchers from computer science, operations research, statistics and economics, generating a vast and multi-threaded literature.  The most relevant thread concerns the basic model of regret-minimizating bandits with stochastic rewards and no auxiliary structure (which is the problem faced by each principal in our model), see Appendix~\ref{app:bg} for background. This basic model has been extended in many different directions, with a considerable amount of work on each: \eg payoffs with a specific structure (\eg combinatorial, linear, convex or Lipschitz), payoff distributions that change over time, and auxiliary payoff-relevant signals.\footnote{There is a superficial similarity --- in name only --- between this paper and the line of work on ``dueling bandits" \citep[\eg][]{Yue-dueling12,Yue-dueling-icml09}.
+The latter is not about competing bandit algorithms, but rather about scenarios where in each round two arms are chosen to be presented to a user, and the algorithm only observes which arm has ``won the duel".} 
+Dedicated monographs \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} cover the work on regret-minimizing formulations (which mainly comes from computer science), and the classic book 
+\citep{Gittins-book11} focuses on the Markovian formulations (which predate regret-minimization and were mainly studied in operations research and statistics). 
+Various connections to economics and game theory are detailed in
 books \citep{CesaBL-book,slivkins-MABbook} and surveys \citep{Bergemann-survey06,Horner-survey16}. Industrial applications are discussed in \citep{DS-arxiv}.
 
-The three-way tradeoff between exploration, exploitation and incentives has been studied in several settings very different from ours:
+The three-way tradeoff between exploration, exploitation and incentives has been studied in mechanism design, in several scenarios very different from ours:
 incentivizing exploration in a recommendation system
     \citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
 dynamic auctions
@@ -15,14 +14,20 @@ pay-per-click ad auctions with unknown click probabilities
     \citep[\eg][]{MechMAB-ec09,DevanurK09,Transform-ec10-jacm},
 coordinating search and matching by self-interested agents
     \citep{Bobby-Glen-ec16},
-human computation
-    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13},
-and social learning 
-    \citep[\eg][]{Bolton-econometrica99,Keller-econometrica05,Johari-ec12}. 
-A literature review of this work can be found in 
+and human computation
+    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}. 
+A literature review of this work can be found in
 \citep[Ch. 11.6]{slivkins-MABbook}.
 
+\xhdr{Exploration and competition.}
+\ascomment{TODO: revise/expand this xhdr.}
+
 \citet{keller2003price} studied the interplay of exploration and competition \emph{on prices}. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a given principal if and only if he chooses this principal -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices (which are directly controlled by the principals), rather than the quality of the chosen actions (which is not known a priori). Their focus is on learning the decision rule, whereas ours is on learning product quality. Third, they consider strategies that respond to competition and analyze Markov Perfect Equilibria (MPE), whereas we focus on the adoption of better bandit algorithms. \gaedit{\citet{bergemann1997market,bergemann2000experimentation} studied a model where there is an incumbent with known product quality and an entrant with unknown, but exogenously determined, quality. Similar to \citet{keller2003price}, the firms compete on prices and they characterize the MPE of dynamic competition between the two firms. In their model, consumer purchases of the entrant's product result in an informational externality that allows both the firms and consumers to gather information on the entrant's product quality. However, we focus on a model where firms' product quality is endogenous and the focus of exploration in a context where the price mechanism is absent.}
+
+\ascomment{to elaborate}
+ social learning
+    \citep[\eg][]{Bolton-econometrica99,Keller-econometrica05,Johari-ec12}.
+
 
 \xhdr{Competition.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{aghion2005competition,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
 
@@ -30,8 +35,8 @@ The literature on learning-by-doing vs. competition \citep[\eg][]{fudenberg1983l
 
 A line of work on \emph{platform competition} (starting with \cite{Rysman09}, see \citet{Weyl-White-14} for a survey) concerns competition between firms that improve as they attract more users. This literature is not concerned with \innovation, and typically models network effects exogenously, whereas they are endogenous in our model.
 %: they are created by MAB algorithms, an essential part of the model.
-A nascent literature studies 
-%whether and when network effects manifest themselves 
+A nascent literature studies
+%whether and when network effects manifest themselves
 network effects
 in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typically models learning as a reduced-form function of past consumer history and focuses on the role of prices.
 %as opposed to the reputational consequences of learning.
@@ -39,7 +44,7 @@ in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typica
 \cite{schmalensee1982product, bagwell1990informational} investigate how buyer uncertainty about product quality can serve as a barrier to entry for late arrivers. We observe a similar effect when we investigate the role that reputation can serve as a barrier to entry. In our model the first-mover advantage further provides the incumbent with a ``head start" on data collection relative to the late arrivers. Thus, our model also highlights the role that data can serve as a barrier to entry in online markets which has similarly been noted in \cite{de2020data}. For an extensive overview of the other channels through which first-mover advantages can lead to a competitive advantage, see \cite{kerin1992first}.
 
 We use first-mover advantage and relaxed versions of rationality to model varying competition, instead of classic ``market competitiveness" measures such as the Lerner Index or the Herfindahl-Hirschman Index
-\citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous. 
+\citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous.
 
 The ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11} studies competition between two principals, each running an algorithm for the same problem. However, they consider algorithms for offline / full input scenarios, and posit binary (win/lose) payoffs for the principals. Similarly, \citet{ben2017best, ben2019regression} study competition between offline learning algorithms. Whereas we focus on bandit algorithms and competition for users.
 
