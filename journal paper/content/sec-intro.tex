@@ -1,6 +1,6 @@
 
-Learning from interactions with users is ubiquitous in modern customer-facing platforms, from product recommendations to web search to content selection to fine-tuning user interfaces. Many platforms purposefully implement \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a standard and well-studied framework for exploration and making decisions under uncertainty. \asedit{This trend has been stimulated by two factors: almost-zero cost of deploying iterations of a product (provided an initial infrastructure investment), and the fact that many online platforms primarily compete on product quality, rather than price.
-(\eg because they are supported by ads or cheap subscriptions).}
+Learning from interactions with users is ubiquitous in modern customer-facing platforms, from product recommendations to web search to content selection to fine-tuning user interfaces. Many platforms purposefully implement \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a standard and well-studied framework for exploration and making decisions under uncertainty. This trend has been stimulated by two factors: almost-zero cost of deploying iterations of a product (provided an initial infrastructure investment), and the fact that many online platforms primarily compete on product quality, rather than price.
+(\eg because they are supported by ads or cheap subscriptions).
 %\citep{Gittins-book11,Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
 
 %~\cite{KohaviAB-2015,KohaviLSH09}
@@ -153,7 +153,7 @@ and control the severity of the competition by varying the agents' decision rule
 %\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 We also find another, technically different inverted-U relationship which zeroes in on the \HardMaxRandom model.
 %We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.
-\asedit{The barriers for innovation arise entirely from the reputational consequences of exploration in competition, whereas the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs.}
+The barriers for innovation arise entirely from the reputational consequences of exploration in competition, whereas the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs.
 
 
 %While the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs, in our work the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
@@ -201,7 +201,7 @@ Our results highlight that understanding the performance of learning algorithms 
 but ignore the differences induced by learning in isolation versus under competition. Furthermore, explicitly modeling the interaction between learning technology and data creation allows us to speak on how data advantages are characterized and amplified by the increased \emph{quality} of data gathered by better learning algorithms, not just the quantity thereof.
 
 \xhdr{Significance.}
-Our results have a dual purpose: shed light on real-world implications of some typical scenarios, and investigate the space of models for describing the real world. As an example for the latter: while the \HardMax model with simultaneous entry is arguably the most natural model to study \emph{a priori}, our results elucidate the need for more refined models with ``free exploration" (\eg via random agents or early entry). \asedit{On a technical level, we connect a literature on regret-minimizing bandits in computer science and that on competition in economics.}
+Our results have a dual purpose: shed light on real-world implications of some typical scenarios, and investigate the space of models for describing the real world. As an example for the latter: while the \HardMax model with simultaneous entry is arguably the most natural model to study \emph{a priori}, our results elucidate the need for more refined models with ``free exploration" (\eg via random agents or early entry). On a technical level, we connect a literature on regret-minimizing bandits in computer science and that on competition in economics.
 
 Our theory takes a basic Bayesian approach, a standard perspective in economic theory, and discovers several strong asymptotic results. Much of the difficulty, both conceptual and technical, is in setting up the model and the theorems. Apart from zeroing in on the \TheoryModel, it was crucial to interpret the results and intuitions from the literature on multi-armed bandits so as to formulate meaningful and productive assumptions on bandit algorithms and Bayesian priors.
 
