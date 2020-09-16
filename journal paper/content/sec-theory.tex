@@ -60,7 +60,7 @@ Assume \HardMax response function with fair tie-breaking. Assume that \alg[1] is
 \end{theorem}
 
 \begin{corollary}\label{cor:DG-dominance}
-The competition game has a unique Nash equilibrium: both principals choose \DynGreedy. \asedit{This holds even if the principals can only choose from restricted strategy sets which include \DynGreedy.}
+The competition game has a unique Nash equilibrium: both principals choose \DynGreedy. This holds even if the principals can only choose from restricted strategy sets which include \DynGreedy.
 \end{corollary}
 
 The proof of Theorem~\ref{thm:DG-dominance} relies on two key lemmas: that deviating from \DynGreedy implies a strictly smaller Bayesian-expected reward, and that \HardMax implies a ``sudden-death" property: if one agent chooses principal $1$ with certainty, then so do all subsequent agents. We re-use both lemmas in later results, so we state them in sufficient generality. In particular, Lemma~\ref{lm:DG-rew} works for any response function because it only considers the performance of each algorithm without competition.
@@ -107,14 +107,14 @@ Assume \HardMax response function with $\respF(0)>\tfrac12$ (\ie tie-breaking is
 
 The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
 
-\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
+%\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
 
 
 %%%%%%%%%%
 \subsection{Relaxed rationality: \HardMaxRandom}
 \label{sec:theory-HMR}
 
-Consider the \HardMaxRandom response model, where each principal is chosen with some positive baseline probability. Informally, we find that 
+Consider the \HardMaxRandom response model, where each principal is chosen with some positive baseline probability. Informally, we find that
 %\begin{align}\label{eq:theory-HMR-informal}
 \emph{a much better algorithm wins big}.
 %\end{align}
@@ -156,7 +156,7 @@ Assume \HardMaxRandom response function. Suppose algorithms \alg[1], \alg[2] are
 %Let \alg be a \bmonotone MAB algorithm and $\mA$ be a finite set of \bmonotone MAB algorithms such that each algorithm in $\mA$ satisfies \eqref{eq:random-assn} and is ``dominated" by \alg in the sense of \eqref{eq:random-better-messy}.
 %Assume principals can only choose algorithms from $\mA\cup \{\alg\}$.
 
-\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
+%\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
 
 We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better algorithm prevails in equilibrium. Indeed, this holds if the principals can only choose from a finite set of MAB algorithms.
 
@@ -176,17 +176,17 @@ Assume \HardMaxRandom response function. Consider the \FiniteGame with a feasibl
 \xhdr{Counterpoint: A little greedy goes a long way.}
 Given any \bmonotone MAB algorithm \alg other than \DynGreedy, we design a modified algorithm which ``mixes in" some greedy choices (and consequently learns at a slower rate), yet prevails over \alg in the competition game. Thus, we have a counterpoint to ``much better algorithms win": even under \HardMaxRandom, a better algorithm may lose in competition. The corresponding counterpoint to Corollary~\ref{cor:random} states that non-greedy algorithms are \emph{not} chosen in equilibrium.
 
-The modified algorithm, called the \emph{greedy modification} of \alg  with \emph{mixing parameter} $p\in (0,1)$, is defined as follows. Suppose \alg deviates from \DynGreedy starting from some (local) step $n_0$. 
+The modified algorithm, called the \emph{greedy modification} of \alg  with \emph{mixing parameter} $p\in (0,1)$, is defined as follows. Suppose \alg deviates from \DynGreedy starting from some (local) step $n_0$.
 %\begin{enumerate}
-%\item 
+%\item
 The modified algorithm coincides with \DynGreedy
 for the first $n_0-1$ steps.
-%\item 
+%\item
 In each step $n\geq n_0$, \alg is invoked with probability
   $1-p$, and with the remaining probability $p$ does the ``greedy
   choice": chooses an action with the largest posterior mean reward
   given the current information collected by \alg.
-%\item 
+%\item
 The data from the ``greedy choice" steps are not recorded.%
 \footnote{In other words: the algorithm proceeds as if the ``greedy choice" steps have never happened.  While it is usually more efficient to consider all available data, this modification simplifies analysis.}
 
@@ -521,7 +521,7 @@ Bernoulli rewards can be extended to arbitrary reward distributions. For each ar
 
 \xhdr{Beliefs.} Rather than knowing the principals' algorithms $(\alg[1],\alg[2])$, the Bayesian prior $\priorMu$, and the response function $\respF$, agents could have beliefs on these objects that need not be correct. If agents have common ``point beliefs", respectively, algorithms $(\alg[1]',\alg[2]')$ prior $\priorMu'$ and response function $\respF'$,  then all our results carry over with respect to these beliefs.
 
-\xhdr{Limited non-stationarity in $\respF$.} 
+\xhdr{Limited non-stationarity in $\respF$.}
 Different agents can have different response functions, in the following sense. For \HardMaxRandom, our results carry over if each agent $t$ has a \HardMaxRandom response function $\respF$ with parameter $\eps_t\geq \eps_0$. For \SoftMaxRandom, different agents can have different response functions that satisfy Definition~\ref{def:SoftMax} (with the same parameters).
 
 \xhdr{MAB extensions.} Our results carry over, with little or no modification of the proofs, to much more general versions of MAB, as long as it satisfies the i.i.d. property. In each round, an algorithm can see a \emph{context} before choosing an action (as in \emph{contextual bandits}) and/or additional feedback other than the reward after the reward is chosen (as in, \eg \emph{semi-bandits}), as long as the contexts are drawn from a fixed distribution, and the (reward, feedback) pair is drawn from a fixed distribution that depends only on the context and the chosen action. The Bayesian prior $\prior$ needs to be a more complicated object, to make sure that \PMR and \BIR are well-defined. Mean rewards may also have a known structure, such as Lipschitzness, convexity, or linearity; such structure can be incorporated via $\prior$. All these extensions have been studied extensively in the literature on MAB, and account for a substantial segment thereof. Background can be found in any of the recent books on MAB \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
