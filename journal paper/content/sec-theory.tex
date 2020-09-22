@@ -44,10 +44,14 @@ Appendix~\ref{app:examples}.
 %Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
 
 
-\subsection{Full rationality: \HardMax}
+\subsection{\HardMax response function}
 \label{sec:theory-HM}
 
-We posit fully rational agents, in the sense that their response function is \HardMax. We show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates, in the sense defined below.
+%We posit fully rational agents, in the sense that their response function is \HardMax. 
+
+We consider agents with \HardMax response function, and show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates. 
+
+To make this formal, let's define what it means for MAB algorithms to deviate.
 
 \begin{definition}
 Two MAB algorithms \emph{deviate} at (local) step $n$ if there is a set $H$ of histories over the previous local steps such that both algorithms lead to $H$ with positive probability, and choose different distributions over arms given any history $h\in H$. The two algorithms deviate \emph{starting from} step $n_0$ if $n=n_0$ is the smallest step when they deviate.
@@ -114,10 +118,11 @@ The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not re
 
 
 %%%%%%%%%%
-\subsection{Relaxed rationality: \HardMaxRandom}
+\subsection{\HardMax with random agents}
 \label{sec:theory-HMR}
 
-Consider the \HardMaxRandom response model, where each principal is chosen with some positive baseline probability. Informally, we find that
+Consider the \HardMaxRandom response model, \ie \HardMax mixed with ``random agents".
+Informally, we find that
 %\begin{align}\label{eq:theory-HMR-informal}
 \emph{a much better algorithm wins big}.
 %\end{align}
@@ -127,7 +132,7 @@ In more detail, a principal with asymptotically better \BIR wins by a large marg
 
 %We formulate and prove a cleaner version of the result, followed by a more general formulation developed in a subsequent Remark~\ref{rem:random-messy}.
 
-To state this result, we need to express a property that \alg[1] eventually catches up and surpasses \alg[2], even if initially it receives only a fraction of traffic. We assume that both algorithms run indefinitely and do not depend on the time horizon $T$; call such algorithms \emph{$T$-oblivious}. In particular, their \BIR does not depend on the time horizon $T$ of the game.  Then this property can be formalized as:
+To state this result, we need to express a property that \alg[1] eventually catches up and surpasses \alg[2], even if initially it receives only a fraction of traffic. We assume that both algorithms run indefinitely and do not depend on the time horizon $T$; call such algorithms \emph{$T$-oblivious}. In particular, their \BIR does not depend on the time horizon $T$ of the game.  Then this property can be formalized as follows:
 \begin{align}\label{eq:random-better-clean}
 (\forall \eps>0)\qquad
 \frac{\BIR_1(\eps n)}{\BIR_2(n)} \to 0.
@@ -437,21 +442,23 @@ Suppose some feasible algorithm \alg weakly-BIR-dominates all others. Then, for 
 \subsection{Economic implications}
 \label{sec:theory-welfare}
 
-{We frame our contributions in terms of the relationship between \competitiveness and \rationality on one side, and adoption of better algorithms on the other. Recall that both \competitiveness (of the game between the two principals) and \rationality (of the agents) are controlled by the response function $\respF$.}
+We frame our contributions in terms of the relationship between \competitiveness \asedit{(as expressed by the ``hardness" of the agents' response function $\respF$)},
+ %and \rationality on one side, 
+ and adoption of better algorithms. 
+\asdelete{Recall that both \competitiveness (of the game between the two principals) and \rationality (of the agents) are controlled by the response function $\respF$.}
 
 \OMIT{ %%%%%%
 We frame our contributions in terms of the relationship between \competition and \innovation, \ie between the extent to which the game between the two principals is competitive, and the degree of innovation --- adoption of better that these models incentivize. \Competition is controlled via the response function $\respF$, and \innovation refers to the quality of the technology (MAB algorithms) adopted by the principals. The \competition vs. \innovation relationship is well-studied in the economics literature, and is commonly known to often follow an inverted-U shape, as in \reffig{fig:inverted-U} (see Section~\ref{sec:related-work} for citations). \Competition in our models is closely correlated with \rationality: the extent to which agents make rational decisions, and indeed \rationality is what $\respF$ controls directly.
 } %%%%%%%%
 
 \xhdr{Main story.}
-Our main story concerns the \FiniteGame between the two principals where one allowed algorithm \alg is ``better" than the others. {We track whether and when \alg is chosen in an equilibrium.} We vary \competitiveness/\rationality by changing the response function from \HardMax (full rationality, very competitive environment) to \HardMaxRandom to  \SoftMaxRandom (less rationality and competition). Our conclusions are as follows:
+Our main story concerns the \FiniteGame between the two principals where one allowed algorithm \alg is ``better" than the others. {We track whether and when \alg is chosen in an equilibrium.} We vary \competitiveness by changing the response function from \HardMax (very competitive environment) to \HardMaxRandom to  \SoftMaxRandom (less competition). Our conclusions are as follows:
 \begin{OneLiners}
 \item Under \HardMax, no innovation: \DynGreedy is chosen over \alg.
 \item Under \HardMaxRandom, some innovation:  \alg is chosen as long as it BIR-dominates.
 \item Under \SoftMaxRandom, more innovation: \alg is chosen as long as it weakly-BIR-dominates.%
-\footnote{This is a weaker condition, the better algorithm is chosen in a broader range of scenarios.}
 \end{OneLiners}
-These conclusions follow, respectively, from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax-strong}. Further, {we consider the uniform choice between the principals. It corresponds to the least amount of rationality and competition, and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
+These conclusions follow from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax-strong}, respectively. Recall that weak-BIR-dominance is a weaker condition, so that a better algorithm is chosen in a broader range of scenarios. Further, {we consider the uniform choice between the principals, which corresponds to the least amount of competition and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
 \footnote{On the other hand, if principals' utility is aligned with agents' welfare, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a very generic and well-known effect regarding economies of scale.}
 Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 
@@ -460,12 +467,12 @@ Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 \begin{center}
 \begin{tikzpicture}[scale=1]
       \draw[->] (-.5,0) -- (9.5,0) node[above]
-        {\qquad\qquad Competitiveness/Rationality};
+        {\qquad\qquad Competitiveness};
       \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithm in equilibrium};
       \draw[scale=0.8,domain=0.5:9.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{3.5 - 0.15*(\x - 5)^2});
      \node[below] at (1, 0) {\footnotesize \Uniform};
      \node[below] at (3.9, 0) {\footnotesize \SoftMaxRandom};
-     \node[below] at (6, 0) {\footnotesize \HardMaxRandom};
+     \node[below] at (6, -.5) {\footnotesize \HardMaxRandom};
      \node[below] at (8, 0) {\footnotesize \HardMax};
       % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
  \end{tikzpicture}
@@ -476,20 +483,22 @@ Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 \end{figure}
 
 \xhdr{Secondary story.}
-Let us zoom in on the symmetric  \HardMaxRandom model. {Competitiveness and rationality within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which goes smoothly between the two extremes of \HardMax ($\eps_0=0$) and the uniform choice ($\eps_0=\tfrac12$). Smaller $\eps_0$ corresponds to increased rationality and increased competitiveness.} For clarity, we assume that principal's utility is the number of agents.
+Let us zoom in on the symmetric  \HardMaxRandom model. Competitiveness within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which goes smoothly between the two extremes of \HardMax ($\eps_0=0$, tough competition) and the uniform choice ($\eps_0=\tfrac12$, no competition). For clarity, we assume that principal's utility is the number of agents.
 
-We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. {We are interested in the marginal utility of this switch. Then:}
+\newcommand{\deltaU}{\Delta U}
+
+We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. We are interested in the marginal utility $\deltaU$ of this switch. Then:
 
 \begin{OneLiners}
-\item $\eps_0 = 0$ (\HardMax):~~~~ the marginal utility can be negative if \alg is \DynGreedy.
+\item if $\eps_0 = 0$ then $\deltaU$ can be negative if \alg is \DynGreedy.
 
-\item $\eps_0$ near $0$:~~~~ only a small marginal utility can be guaranteed, as it may take a long time for $\alg'$ to ``catch up" with \alg, and hence less time to reap the benefits.
+\item if $\eps_0$ is near $0$ then only a small $\deltaU$ can be guaranteed, as it may take a long time for $\alg'$ to ``catch up" with \alg, and hence less time to reap the benefits.
 
-\item ``medium-range" $\eps_0$:~~~~ large marginal utility, as $\alg'$ learns fast and gets most agents.
+\item if $\eps_0$ is medium-range, then $\deltaU$ is large, as $\alg'$ learns fast and gets most agents.
 
-\item $\eps_0$ near $\tfrac12$:~~~~ small marginal utility, as principal 1 gets most agents for free no matter what.
+\item if $\eps_0$ is near $\tfrac12$, then $\deltaU$ is small, as principal 1 gets most agents for free no matter what.
 \end{OneLiners}
-The familiar inverted-U shape is depicted in Figure~\ref{fig:inverted-U3}.
+These findings can also be organized as an inverted-U relationship, see Figure~\ref{fig:inverted-U3}.
 
 \begin{figure}[t]
 \begin{center}

@@ -107,7 +107,7 @@ While we build on a vast and active research area, we present sufficient backgro
 %We endow agents with Bayesian rationality, a common modeling approach for a theoretical investigation.
 We consider a basic Bayesian model (called the \emph{\TheoryModel}), where agents have a common Bayesian prior on reward distributions, know the principals' algorithms, but do not receive any information about the previous agents' \asedit{choices or rewards}. Each agent computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose.
 %We focus on qualitative, asymptotic differences in the algorithms' performance.
-Our results depend crucially on the agents' decision rule:
+Our results depend crucially on agents' decision rule:
 %\begin{itemize}
 
 \textbf{(i)} The most obvious decision rule maximizes the Bayesian-expected reward; we refer to it as \HardMax. We find that it is not conducive to adopting better algorithms: each principal's dominant strategy is to choose the greedy algorithm. Further,
@@ -117,11 +117,14 @@ if the tie-breaking is probabilistically biased in favor of one principal, then 
 
 \textbf{(ii)} We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random. We call this model \HardMaxRandom. Then better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase. There is a caveat, however: any algorithm can be defeated by interleaving it with the greedy algorithm. This has two undesirable consequences: a better algorithm may sometimes lose in competition, and a pure Nash equilibrium typically does not exist.
 
-\textbf{(iii)} We further relax the decision rule so that the selection probabilities vary smoothly in terms of principal's Bayesian-expected rewards;
+\textbf{(iii)} We further soften the decision rule so that the selection probabilities vary smoothly in terms of principal's Bayesian-expected rewards;
 %as a function of the difference between  principals' Bayesian-expected rewards;
-we call it \SoftMaxRandom. For this model, better algorithm prevails under much weaker assumptions.
+we call it \SoftMaxRandom.%
+\footnote{\asedit{In particular, one can obtain a \SoftMaxRandom decision rule using a mixture of more ``basic" agent types that follow \HardMax unless the principal's Bayesian-expected rewards are too close to each other.}}
+ Then a better algorithm prevails under much weaker assumptions.
 % on what constitutes a better algorithm.
-(This is the most technical result of the paper.) The competition is more relaxed: the better algorithm receives only a small advantage in the long run.
+This is the most technical result of the paper.
+\asdelete{The competition is more relaxed: the better algorithm receives only a small advantage in the long run.}
 
 
 %both principals attract approximately half of the agents as time goes by, but a better algorithm attracts slightly more.
@@ -153,7 +156,7 @@ Our findings can be framed in terms of the inverted-U relationship between compe
 We interpret innovation as the adoption of better algorithms,%
 \footnote{Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms are well-known and/or similar technologies already exist elsewhere  \citep[\eg see][]{DS-arxiv}.}
 %, even if the algorithms themselves are well-known in the research literature
-and control the severity of the competition by varying the agents' decision rule from \HardMax (cut-throat competition) to \HardMaxRandom to \SoftMaxRandom and all the way to the uniform selection.%
+and control the severity of the competition by varying the agents' decision rule from \HardMax (cut-throat competition) to \HardMaxRandom to \SoftMaxRandom and all the way to the uniform selection. 
 %\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 We also find another, technically different inverted-U relationship which zeroes in on the \HardMaxRandom model.
 %We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.

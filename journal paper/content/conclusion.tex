@@ -3,7 +3,7 @@
 
 \section{Conclusions}\label{sec:conclusion}
 
-We study the tension between exploration and competition. We consider a stylized duopoly model in which two firms face an identical multi-armed bandit problem and compete for a stream of users. A firm makes progress on its learning problem if and only if it attracts users. We investigate two variants: an analytical variant where users do not observe any performance signals and choose between firms according to their Bayesian-expected rewards, and numerical simulations where a reputation score is observed for each firm, based on the average reward of its recent users.  In both variants, firms are incentivized to adopt a ``greedy algorithm" which does no purposeful exploration and leads to welfare losses for users. We then consider two relaxations of competition: we relax users' rationality and give one of the firms a first-mover advantage. Both relaxations induce firms to adopt ``better" bandit algorithms, which benefits user welfare.
+We study the tension between exploration and competition. We consider a stylized duopoly model in which two firms face an identical multi-armed bandit problem and compete for a stream of users. A firm makes progress on its learning problem if and only if it attracts users. We investigate two variants: an analytical variant where users do not observe any performance signals and choose between firms according to their Bayesian-expected rewards, and numerical simulations where a reputation score is observed for each firm, based on the average reward of its recent users.  In both variants, firms are incentivized to adopt a ``greedy algorithm" which does no purposeful exploration and leads to welfare losses for users. We then consider two relaxations of competition: we soften users' decision rule and give one of the firms a first-mover advantage. Both relaxations induce firms to adopt ``better" bandit algorithms, which benefits user welfare.
 
 
 Our results have two economic interpretations. The first is that they can be framed in terms of the classic inverted-U relationship between innovation and competition, where \innovation refers to the adoption of better bandit algorithms. Unlike other models in the literature, what prevents innovation is not its direct costs, but the short-term reputation consequences of exploration. The second interpretation concerns the role of data in the digital economy. We find that even a small initial disparity in data or reputation gets amplified under competition to a very substantial difference in the eventual market share. Thus, we endogenously obtain ``network effects" without explicitly baking them into the model, and elucidate the role of data as a barrier to entry.
@@ -15,21 +15,20 @@ With this paper as a departure point, there are several exciting directions to e
 \item \emph{Prices.}
 When the firms can set prices, they may be able to compensate early users for exploration, and potentially prevent the ``death spiral" effects. Whereas our paper zeroes in on competition between free, ad-supported platforms that primarily compete on quality.
 
-\item 
+\item
 \emph{Horizontally differentiated} user preferences may help explain how competition may encourage specialization, \ie how the firms may \emph{learn to specialize} under competition.
 
 
 \item \emph{Continuous learning.}
-While we focus on a stationary world, another well-motivated regime is continuous learning, when exploration counteracts change
-\citep{DynamicMAB-colt08}.
-The economic story would be about competition between relatively mature firms.
+While we focus on a stationary world, another well-motivated regime is continuous learning, when exploration continuously counteracts change. The economic story would be about competition between relatively mature firms.%
+\footnote{One difficulty is that the ``bandit model" becomes considerably more complicated: there are many reasonable ways to deal with a continuously changing world, starting from \citet{DynamicMAB-colt08}, and the distinctions between better and worse algorithms are not as clear and well-established.}
 
-\item \emph{Real-life data.}
-Numerical experiments based on real-life datasets would arguably be more realistic. To deal with real-life datasets, bandit algorithms would probably need to accommodate change over time and \emph{contexts} (auxiliary signals available before each round).
+%\item \emph{Real-life data.}
+%Numerical experiments based on real-life datasets would arguably be more realistic. To deal with real-life datasets, bandit algorithms would probably need to accommodate change over time and \emph{contexts} (auxiliary signals available before each round).
 
 \end{itemize}
 
-\noindent One difficulty with the last two directions is that the bandit ``side" of the model becomes considerably more complicated, both in terms of the rewards and in terms of the algorithms. Indeed, there are many reasonable ways to model a changing world (resp., dependence on  contexts), and several substantially different algorithmic approaches to deal with these models. Consequently, the distinctions between better and worse algorithms are not as clear and well-established.
+%\noindent One difficulty with the last two directions is that the bandit ``side" of the model becomes considerably more complicated, both in terms of the rewards and in terms of the algorithms. Indeed, there are many reasonable ways to model a changing world (resp., dependence on  contexts), and several substantially different algorithmic approaches to deal with these models. Consequently, the distinctions between better and worse algorithms are not as clear and well-established.
 
 
 \end{document}

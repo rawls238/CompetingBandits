@@ -14,7 +14,7 @@ Each principal $i$ commits to a learning algorithm \alg[i] before round $1$, and
 \begin{align}\label{eq:model-f}
 p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
 \end{align}
-where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents. We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. We consider three variants for $\respF$ (see \reffig{fig:response-functions}):
+where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all agents. We assume that $\respF$ is monotonically non-decreasing, is larger than $\nicefrac12$ on the interval $(0,1]$, and smaller than $\nicefrac12$ on the interval $[-1,0)$. We consider three variants for $\respF$, depicted in  \reffig{fig:response-functions}:
 
 \begin{figure}[t]
 \begin{center}
@@ -50,10 +50,13 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
     $\respF$ equals $\eps_0$ on the interval $[-1,0)$ and $1-\eps_0$ on the interval $(0,1]$, for some constant $\eps_0\in (0,\tfrac12)$. In words, each agent is a \HardMax agent with probability $1-2\eps_0$, and makes a random choice otherwise.
 
 
-\item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$ and is ``smooth" around $0$ (see Section~\ref{sec:theory-SoftMax}).
+\item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition).
 \end{itemize}
-% \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
 
+\asedit{\HardMaxRandom and \SoftMaxRandom can be realized as mixtures over more ``basic" agent types. Indeed,
+\HardMaxRandom is a mixture of \HardMax and ``random" agents (which choose a principal uniformly at random). One can obtain a \SoftMaxRandom response function using agent types that choose a principal with a largest $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.}
+
+% \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
 
 %We say that $\respF$ is \emph{symmetric} if $\respF(-x)+\respF(x)=1$ for any $x\in [0,1]$. This implies \emph{fair tie-breaking}: $\respF(0)=\tfrac12$.
 
@@ -61,8 +64,7 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 We consider two model variants, Bayesian and frequentist. The main difference between the two concerns the agents' reward estimates $\est_i(t)$.
 
 \begin{itemize}
-\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$.
-    Agents' reward estimates are defined as posterior mean rewards:
+\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. \asedit{Each agent knows its global round $t$, but not the performance signals such as the current market shares.} Agents' reward estimates are defined as posterior mean rewards:
         $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i}$
     for each agent $t$ and principal $i$.%
 \footnote{Formally, agents do the Bayesian update knowing $t$, the principals' algorithms, the prior $\priorMu$, and $\respF$.}
