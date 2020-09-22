@@ -29,7 +29,7 @@ $\E[\mu_a] \neq \E[\mu_a']$ for any $a,a'\in A$.
 In Appendix~\ref{app:perturb}, we provide two examples for which property \eqref{eq:assn-distinct} is `generic', in the sense that it can be enforced almost surely by a small random perturbation of the prior. The two examples concern, resp., Beta priors and priors with a finite support, and focus on priors $\priorMu$ that are independent across arms.
 
 \xhdr{MAB algorithms.}
-We consider two (Bayesian) greedy algorithms. The first one, called  \DynGreedy, chooses an arm $a$ with the largest posterior mean reward $\E[\mu_a \mid \cdot ]$ given all information currently available to the algorithm. The second algorithm, called \StaticGreedy, chooses an arm $a$ with the largest prior mean reward $\E[\mu_a]$, and uses this arm in all rounds. In both algorithms, ties are broken arbitrarily.
+We consider two (Bayesian) greedy algorithms. The first one, called  \DynGreedy, chooses an arm $a$ with the largest posterior mean reward $\E[\mu_a \mid \cdot ]$ given all information currently available to the algorithm. The second algorithm, called \StaticGreedy, chooses an arm $a$ with the largest prior mean reward $\E[\mu_a]$, and uses this arm in all rounds. \asdelete{In both algorithms, ties are broken arbitrarily.}
 
 
 We characterize the inherent quality of an MAB algorithm in terms of its \emph{Bayesian Instantaneous Regret} (henceforth, \BIR), a standard notion from machine learning:
@@ -56,7 +56,7 @@ Two MAB algorithms \emph{deviate} at (local) step $n$ if there is a set $H$ of h
 \end{definition}
 
 \begin{theorem}\label{thm:DG-dominance}
-Assume \HardMax response function with fair tie-breaking. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
+Assume \HardMax response function with fair tie-breaking: \asedit{$\respF(0)=\nicefrac{1}{2}$}. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
 \end{theorem}
 
 \begin{corollary}\label{cor:DG-dominance}
@@ -76,13 +76,13 @@ Consider \HardMax response function with $\respF(0)\geq\tfrac12$.
 Suppose \alg[1] is \bmonotone, and $\PMR_1(t_0)>\PMR_2(t_0)$ for some global round $t_0$. Then $\PMR_1(t)>\PMR_2(t)$ for all subsequent rounds $t$.
 \end{lemma}
 
-The remainder of the proof of Theorem~\ref{thm:DG-dominance} uses the conclusion of one lemma to derive the precondition for another, \ie goes from $\rew_1(n_0)>\rew_2(n_0)$ to $\PMR_1(n_0)>\PMR_2(n_0)$. The subtlety one needs to deal with is that the principal's ``local" round corresponding to a given ``global" round is a random quantity due to the random tie-breaking.
+The remainder of the proof of Theorem~\ref{thm:DG-dominance} uses the conclusion of Lemma~\ref{lm:DG-rew} to derive the precondition for Lemma~\ref{lm:DG-sudden}, \ie goes from $\rew_1(n_0)>\rew_2(n_0)$ to $\PMR_1(n_0)>\PMR_2(n_0)$. The subtlety one needs to deal with is that the principal's ``local" round corresponding to a given ``global" round is a random quantity due to the random tie-breaking.
 
 %\subsection{\HardMax with biased tie-breaking}
 %\label{sec:HardMax-biased}
 
 \xhdr{Biased tie-breaking.}
-The \HardMax model is very sensitive to the tie-breaking rule. For starters, if ties are  broken deterministically in favor of principal $1$, then principal 1 can get all agents no matter what the other principal does, simply by using \StaticGreedy.
+The \HardMax model is very sensitive to tie-breaking \asedit{between the principals}. For starters, if ties are  broken deterministically in favor of principal $1$, then principal 1 can get all agents no matter what the other principal does, simply by using \StaticGreedy.
 
 \begin{theorem}\label{thm:HardMax-hardTies}
 Assume \HardMax response function with $\respF(0)=1$ (ties are always broken in favor of principal $1$). If \alg[1] is \StaticGreedy, then all agents choose principal $1$.
@@ -189,14 +189,16 @@ In each step $n\geq n_0$, \alg is invoked with probability
 %\item
 The data from the ``greedy choice" steps are not recorded.%
 \footnote{In other words: the algorithm proceeds as if the ``greedy choice" steps have never happened.  While it is usually more efficient to consider all available data, this modification simplifies analysis.}
+This completes the specification of the modified algorithm; note that it is not merely
+%another pure strategy in the competition game between the two principals, not 
+a mixed strategy that randomizes between \alg and the greedy algorithm.
+
 
 %    \footnote{In other words: in the subsequent rounds, as far as the modified algorithm is concerned, the ``greedy choice" steps have never happened. While it is usually more efficient to consider all available data, this simplification enables a cleaner comparison between the two algorithms. Also, it makes for  a cleaner setup: otherwise, just to make the modified algorithm well-defined, we'd need to assume that \alg[1] is a mapping from step-$n$ histories to actions, for each step $n$. This is usually OK -- most bandit algorithms have this shape anyway -- but it prohibits \alg[1] to correlate its internal randomness across steps.}
 
 %\end{enumerate}
 %The modified algorithm is called \emph{greedy deviation}, with probability parameter $p$.
 %Parameter $p>0$ is the same for all steps.
-
-Note that the modified algorithm is another pure strategy in the competition game between the two principals, not a mixed strategy that randomizes between \alg and the greedy algorithm.
 
 We find that the greedy modification prevails in competition if $p$ is small enough.
 
@@ -320,14 +322,14 @@ Assume \SoftMaxRandom response function.  Suppose algorithms \alg[1], \alg[2] sa
 \end{align}
 \end{theorem}
 
-\begin{proof}[Proof Sketch]
-We follow the steps in the proof of Theorem~\ref{thm:random-clean} to derive \begin{align*}
+%\begin{proof}[Proof Sketch]
+To prove this theorem, we follow the steps in the proof of Theorem~\ref{thm:random-clean} to derive \begin{align*}
 \PMR_1(t) - \PMR_2(t)
     &\geq \BIR_2(t)/2 -q,
     \quad \text{where $q = \exp(-\eps_0 t/12)$.}
 \end{align*}
 This is at least $\BIR_2(t)/4$ by \eqref{eq:random-assn}. Then \eqref{eq:thm:SoftMax-weak} follows by the smoothness condition \eqref{eq:SoftMax-smooth}.
-\end{proof}
+%\end{proof}
 
 \OMIT {%%%%%%%%
 We recover a version of Corollary~\ref{cor:random}, if each principal's utility is the number of users (rather than the more general model in \eqref{eq:general-utility}).
