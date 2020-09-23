@@ -7,11 +7,13 @@ Learning from interactions with users is ubiquitous in modern customer-facing pl
 
 In this paper, we study the interplay between \exploration and \competition.%
 \footnote{\asedit{\Ie we add \competition to the standard exploration-exploitation tradeoff studied in multi-armed bandits.}}
-Platforms that engage in exploration typically need to compete against one another; most importantly, they compete for users. This creates a tension:
+Platforms that engage in exploration typically need to compete against one another. \asedit{Most importantly, platforms compete for users, who benefit them in two ways:
+generate revenue and provide data for learning.} This creates a tension:
 %between \exploration and \competition.
-while exploration may be essential for improving the service tomorrow, it may degrade quality and make users leave \emph{today}, in which case there will be less users to learn from. This may create a ``data feedback loop" when the platform's performance further degrades relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may cause a ``death spiral" effect when the vast majority of customers eventually switch to competitors. Users therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing systems.
+while exploration may be essential for improving the service tomorrow, it may degrade quality \emph{today}, in which case some of the users can leave and there will be less users to learn from. This may create a ``data feedback loop" when the platform's performance further degrades relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may cause a ``death spiral" effect when the vast majority of customers eventually switch to competitors.
+\asdelete{Users therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing systems.}
 
-The main high-level question is:
+The main high-level question we ask is:
 %that we focus on in this paper is:
 %\begin{align}\label{eq:main-Q}
 \textbf{How does competition incentivize the adoption of better exploration algorithms?}
