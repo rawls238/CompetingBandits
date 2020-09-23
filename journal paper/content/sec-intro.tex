@@ -40,7 +40,13 @@ We offer a mix of theoretical results and numerical simulations, in which we stu
 
 %We investigate these questions with
 \xhdr{Our model: competition game.} We consider a stylized duopoly model in which two firms (\emph{principals}) compete for users (\emph{agents}). Principals compete on quality rather than on prices, and engage in exploration in order to learn which actions lead to high quality products. A new agent arrives and chooses a principal according to some decision rule. The principal selects an action (\eg a list of web search results), the user experiences it and reports a reward. Each principal only observes its own users. Principals commit to their strategies in advance, with the objective to maximize the market share. We investigate several model variants, %within this framework,
-where we vary agents' decision rule or allow a first-mover advantage. %to one of the principals.
+where we vary agents' decision rule or allow a first-mover advantage.%
+\footnote{\asedit{In particular, we use different model variants (resp., Bayesian and frequentist) for theory and for simulations so as to ensure tractability. Our main findings are similar for both.}}
+
+
+%\asedit{For tractability, our theoretical results and our numerical simulations adopt closely related but technically different model variants (respectively, Bayesian and frequentist), with similar findings.}
+
+%to one of the principals.
 %In all variants, agents have little or no information about other agents' choices and rewards.
 
 Each principal faces a basic and well-studied version of the multi-armed bandit problem, where each reward is drawn independently from a fixed, action-specific distribution. Each principal's strategy is a bandit algorithm; as such, it can dynamically adjust itself to the observed rewards, but not to the competition. This modeling choice reflects the reality of industrial applications, which build on a huge body of knowledge in machine learning; more on this in Section~\ref{sec:discussion}.
@@ -160,7 +166,9 @@ and control the severity of the competition by varying the agents' decision rule
 %\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 We also find another, technically different inverted-U relationship which zeroes in on the \HardMaxRandom model.
 %We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.
-The barriers for innovation arise entirely from the reputational consequences of exploration in competition, whereas the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs.
+The barriers for innovation arise entirely from the reputational consequences of exploration in competition, \asedit{without invoking monetary costs and benefits. Whereas the inverted-U relationships in prior work are due to the monetary aspects: how much can a firm invest into  R\&D and how much can it profit from the innovation.}
+
+%the tradeoff between the benefits of the technology and its R\&D costs.
 
 
 %While the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs, in our work the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
