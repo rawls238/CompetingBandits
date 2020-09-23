@@ -12,7 +12,7 @@ In this section, we present our theoretical results for the \TheoryModel. While 
 \begin{align}\label{eq:assn-prob}
 \forall a\in A:\;\;\;
 \Pr\sbr{\mu_a  > \mu_{a'}
-\quad \forall a'\in A}
+\quad \forall a'\in A\setminus \{a\}}
 > 0.
 \end{align}
 
@@ -38,7 +38,7 @@ We characterize the inherent quality of an MAB algorithm in terms of its \emph{B
 \end{align}
 We are primarily interested in how fast \BIR decreases with $n$. (We treat the number of arms as a constant.) Intuitively, (much) better MAB algorithms tend to have a (much) smaller BIR, see Appendix~\ref{app:bg} for background.
 
-An algorithm is called \emph{\bmonotone} if it can only get better over time: $\rew_i(\cdot)$ is non-decreasing, and therefore $\BIR(\cdot)$ is non-decreasing. This is a mild assumption, see
+An algorithm is called \emph{\bmonotone} if it can only get better over time, in the Bayesian sense: namely, if $\E[\rew_i(\cdot)]$ is non-decreasing, and therefore $\BIR(\cdot)$ is non-decreasing. This is a mild assumption, see
 Appendix~\ref{app:examples}.
 
 %Let $\BIR_i(n) = \BIR(n)$ for the algorithm of principal $i$.
