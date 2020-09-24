@@ -8,7 +8,8 @@ books \citep{CesaBL-book,slivkins-MABbook} and surveys \citep{Bergemann-survey06
 
 The three-way tradeoff between exploration, exploitation and incentives has been studied in mechanism design, in several scenarios very different from ours:
 incentivizing exploration in a recommendation system
-    \citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
+(starting from \citet{Kremer-JPE14}, see \citet[Ch. 11.6]{slivkins-MABbook} for a literature review),
+    %\citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
 dynamic auctions
     \citep[\eg][]{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
 pay-per-click ad auctions with unknown click probabilities
@@ -17,8 +18,8 @@ coordinating search and matching by self-interested agents
     \citep{Bobby-Glen-ec16},
 and human computation
     \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
-A literature review of this work can be found in
-\citep[Ch. 11.6]{slivkins-MABbook}.
+%A literature review of this work can be found in
+%\citep[Ch. 11.6]{slivkins-MABbook}.
 
 \xhdr{Exploration and competition.}
 \citet{bergemann1997market,bergemann2000experimentation,keller2003price} studied the interplay of exploration and competition for users when the competing firms experiment with \emph{prices}, rather than design alternatives. All three papers consider strategies that respond to competition, and analyze Markov Perfect Equilibria (MPE), whereas we focus on the adoption of better bandit algorithms. We discuss them in more detail below.
@@ -67,7 +68,7 @@ in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typica
 
 %We use first-mover advantage and \asedit{agents' decision rule}
 %relaxed versions of rationality
-%to model varying competition, instead of 
+%to model varying competition, instead of
 
 \asedit{Classic ``market competitiveness" measures,such as the Lerner Index or the Herfindahl-Hirschman Index
 \citep{tirole1988theory} are not applicable to our setting, as they rely on ex-post observable market attributes such as prices or market shares (which are, resp., absent and endogenous for us).}
@@ -77,11 +78,11 @@ in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typica
 
 \asedit{\xhdr{Choice models.}
 Stochastic choice models similar to ours have been widely used throughout economics. First, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. They play a similar role in our model, side-stepping the dominance of the greedy algorithm.
-%as we move from \HardMax to \HardMaxRandom.  
-Second, there a large literature on non-existence of equilibria due to small deviations, starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets.\footnote{\cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom in this context.} 
+%as we move from \HardMax to \HardMaxRandom.
+Second, there a large literature on non-existence of equilibria due to small deviations, starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets.\footnote{\cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom in this context.}
 This is superficially similar to how small deviations towards the greedy algorithm rule out equilibria under \HardMaxRandom.
-%Second, the stochastic choice rules we consider have been widely utilized across economics. For instance, 
-Third, \SoftMaxRandom subsumes the logit choice rule, a standard behavioral model with strong empirical and microeconomic foundations 
+%Second, the stochastic choice rules we consider have been widely utilized across economics. For instance,
+Third, \SoftMaxRandom subsumes the logit choice rule, a standard behavioral model with strong empirical and microeconomic foundations
 \citep[\eg][]{mosteller1951experimental, luce1959choice, mcfadden1974measurement, matvejka2015rational}.
 Fourth, choice models similar to \SoftMaxRandom are used to explain  horizontal product differentiation \citep[\eg][]{Hotelling-29, Perloff-Salop-85}.}
 %\asdelete{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
