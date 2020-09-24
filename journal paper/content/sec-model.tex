@@ -2,9 +2,9 @@
 denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds).%
 \footnote{We use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
 The agent experiences this action and receives a reward $r_t\in \{ 0,1\}$ \asedit{for this action, which is then observed by the principal}. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are fixed over time, and initially not known to anybody. The principals are completely unaware of the rounds when the opponent is chosen.
- 
+
 \asedit{Thus, each principal follows the protocol of \emph{multi-armed bandits} (\emph{MAB}): in each round when it is chosen, it chooses an arm from $A$ and observes a reward for this action (and nothing else).}
- 
+
 Each principal $i$ commits to an MAB algorithm \alg[i] before round $1$, and uses it throughout. The algorithm proceeds in time-steps:%
 \footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs an arm from $A$, and inputs a reward for this action. The algorothm is called only in global rounds when principal $i$ is chosen.
 
@@ -55,8 +55,7 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 \item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition).
 \end{itemize}
 
-\asedit{\HardMaxRandom and \SoftMaxRandom can be realized as mixtures over more ``basic" agent types. Indeed,
-\HardMaxRandom is a mixture of \HardMax and ``random" agents (which choose a principal uniformly at random). One can obtain a \SoftMaxRandom response function using agent types that choose a principal with a largest $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.}
+\asedit{\HardMaxRandom and \SoftMaxRandom can be seen as agent types that, resp., give some chance to the other principal and avoid sharp transitions in their probabilistic response. Alternatively, they can be realized as mixtures over more ``basic" agent types. Indeed, \HardMaxRandom is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.}
 
 % \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
 
@@ -100,7 +99,7 @@ Reflecting reality, we posit that \asedit{the exploration strategies available t
 
 
 
-Our models are stylized in several important  respects. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Agents are myopic: they do not worry about how their actions impact their future utility.\footnote{So, agents do not attempt to learn over time, second-guess or game future agents, or manipulate the principals' learning algorithms. This is arguably typical in practice, in part because one agent's influence tends to be small.}  Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores" reflecting the current reputation, and further simplified to average performance over a sliding time window. 
+Our models are stylized in several important  respects. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Agents are myopic: they do not worry about how their actions impact their future utility.\footnote{So, agents do not attempt to learn over time, second-guess or game future agents, or manipulate the principals' learning algorithms. This is arguably typical in practice, in part because one agent's influence tends to be small.}  Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores" reflecting the current reputation, and further simplified to average performance over a sliding time window.
 
 We consider two extremes: a simple Bayesian model with full Bayesian rationality and no performance signals, and a simple frequentist model with reputation scores and no prior knowledge or beliefs. For the theoretical results, the ``no-performance-signals" assumption makes agents' behavior independent of a particular realization of the prior. Therefore, we summarize each learning algorithm via its Bayesian-expected rewards, not worrying about its detailed performance on particular realizations of the prior.  Such summarization is essential for formulating lucid and general analytic results, let alone proving them. It is unclear how to incorporate performance signals in a theoretically tractable model. For the numerical results, the \ExptsModel accounts for competition in a more direct way,
 % \gaedit{by positing a more realistic model of consumer behavior that does not
