@@ -31,7 +31,7 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
 \begin{tabular}{|c|c|c|c||c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Heavy-Tail}
-  & \multicolumn{3}{c|}{Needle-in-Haystack} 
+  & \multicolumn{3}{c|}{Needle-in-Haystack}
   & \multicolumn{3}{c|}{Uniform}\\
   \hline
   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500
@@ -45,26 +45,26 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
   %%
   & \textbf{0.68} $\pm$0.03
   & \textbf{0.62} $\pm$0.03
-  & \textbf{0.65} $\pm$0.03 
+  & \textbf{0.65} $\pm$0.03
   %%
-  & \makecell{\textbf{0.44} $\pm$0.03} 
- & \makecell{\textbf{0.52} $\pm$0.02} 
+  & \makecell{\textbf{0.44} $\pm$0.03}
+ & \makecell{\textbf{0.52} $\pm$0.02}
  & \makecell{\textbf{0.58} $\pm$0.02} \\
 \hline
-  $\TS$ vs $\DEG$  
+  $\TS$ vs $\DEG$
   & \textbf{0.3} $\pm$0.03
-  & \textbf{0.89} $\pm$0.01 
+  & \textbf{0.89} $\pm$0.01
   & \textbf{0.9} $\pm$0.01
   %%
   & \textbf{0.6} $\pm$0.03
   & \textbf{0.52} $\pm$0.03
-  & \textbf{0.55} $\pm$0.02 
+  & \textbf{0.55} $\pm$0.02
   %%
- & \makecell{\textbf{0.41} $\pm$0.03} 
- & \makecell{\textbf{0.47} $\pm$0.02} 
+ & \makecell{\textbf{0.41} $\pm$0.03}
+ & \makecell{\textbf{0.47} $\pm$0.02}
  & \makecell{\textbf{0.55} $\pm$0.02} \\ \hline
   $\DG$ vs $\DEG$
-  & \textbf{0.63} $\pm$0.03 
+  & \textbf{0.63} $\pm$0.03
   & \textbf{0.6} $\pm$0.02
   & \textbf{0.56} $\pm$0.03
   %%
@@ -72,8 +72,8 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
   & \textbf{0.41} $\pm$0.03
   & \textbf{0.39} $\pm$0.02
   %%
-   & \makecell{\textbf{0.5} $\pm$0.03} 
- & \makecell{\textbf{0.46} $\pm$0.02} 
+   & \makecell{\textbf{0.5} $\pm$0.03}
+ & \makecell{\textbf{0.46} $\pm$0.02}
  & \makecell{\textbf{0.45} $\pm$0.02} \\ \hline
 \end{tabular}
 \end{adjustbox}
@@ -230,16 +230,25 @@ the greedy algorithm, because it is easier to deploy in practice. Implicitly, us
 
 Our intuition for why incumbency creates more incentives for exploration is as follows. During the period in which the incumbent is the only firm in the market, reputation consequences of exploration vanish. Instead, the firm wants to improve its performance as much as possible by the time competition starts. Essentially, the firm only faces a classical explore-exploit trade-off, and is incentivized to choose algorithms that are best at optimizing this trade-off.
 
+\xhdr{Death spiral effect.}
+Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the simultaneous entry scenario, we specify the \Eeog values in Table~\ref{fig:eog}. We find that the \Eeog values are indeed small:
+
+\begin{finding}
+\textit{
+Under simultaneous entry, \Eeog values tend to be much smaller than the time horizon $T$.
+}
+\end{finding}
+
+We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
 
-
-\begin{table*}[t]
+\begin{table*}[h]
 \centering
 \begin{adjustbox}{width=\textwidth,center}
 \begin{tabular}{|c|c|c|c||c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Heavy-Tail}
-  & \multicolumn{3}{c|}{Needle-in-Haystack} 
+  & \multicolumn{3}{c|}{Needle-in-Haystack}
   & \multicolumn{3}{c|}{Uniform}\\
   \hline
   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500
@@ -251,18 +260,18 @@ Our intuition for why incumbency creates more incentives for exploration is as f
   %%
  & 180 (30)  & 380 (0)  & 550 (6.5)
   %%
-  &  260 (0)  
-  &  780 (676.5)  
+  &  260 (0)
+  &  780 (676.5)
   &  880 (897.5) \\
 \hline
-  $\TS$ vs $\DEG$  
+  $\TS$ vs $\DEG$
  & 37 (0)  & 430 (0)  & 540 (105)
   %%
  & 150 (10)  & 460 (25)  & 780 (705)
   %%
  & 230 (0)  & 830 (772)  & 980 (1038) \\ \hline
   $\DG$ vs $\DEG$
- & 340 (110)  & 640 (393)  & 670 (425) 
+ & 340 (110)  & 640 (393)  & 670 (425)
   %%
   & 410 (8.5)  & 760 (666)  & 740 (646)
   %%
@@ -270,21 +279,10 @@ Our intuition for why incumbency creates more incentives for exploration is as f
 \end{tabular}
 \end{adjustbox}
 \caption{\footnotesize {\bf Simultaneous Entry, \Eeog}. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Each cell specifies the ``effective end of game" (\Eeog): the average and the median (in brackets).
-%For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. 
+%For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
 The time horizon is $T=2000$.}
 \label{fig:eog}
 \end{table*}
-
-\xhdr{Death spiral effect.}
-Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the simultaneous entry scenario, we specify the \Eeog values in Table~\ref{fig:eog} (the second line of each cell). We find that the \Eeog values are indeed small:
-
-\begin{finding}
-\textit{
-Under simultaneous entry, \Eeog values tend to be much smaller than the time horizon $T$.
-}
-\end{finding}
-
-We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
 
 
 \xhdr{Welfare implications.}
@@ -293,21 +291,20 @@ We study the effects of competition on consumer welfare: the total reward collec
 \[ \textstyle T\, \max_a \mu(a) - \sum_{t\in [T]} \mu(a_t), \]
 where $a_t$ is the arm chosen by agent $t$. This is a standard performance measure in the literature on multi-armed bandits. Note that smaller regret means higher welfare.
 
+We assume that both firms play their respective equilibrium strategies.
+% for the corresponding competition level.
+As discussed previously, it is
+\DynamicGreedy in the monopoly scenario, and
+\DynamicGreedy for both firms in simultaneous entry scenario (Finding \ref{find:duopoly}).
+For the first-mover scenario, it is \Thompson for the incumbent (Finding \ref{find:temp-monopoly}) and \DynamicGreedy for the entrant (Finding \ref{find:temp-monopoly-entrant}).
 
-\begin{figure}
+\begin{figure}[bth]
 \centering
 \includegraphics[scale=0.35]{ec19paper/figures/unif_eq_welfare}
 \includegraphics[scale=0.35]{ec19paper/figures/ht_eq_welfare}
 \caption{\footnotesize Smoothed welfare plots resulting from equilibrium strategies in the different market structures. Note that welfare at $t = 0$ incorporates the regret incurred during the incumbent and warm start periods. The Thompson Sampling trajectory displays the regret incurred by running Thompson Sampling in isolation on the given instances.}
 \label{eq_regret}
 \end{figure}
-
-We assume that both firms play their respective equilibrium strategies for the corresponding competition level. As discussed previously, these are:
-\begin{OneLiners}
-\item \DynamicGreedy in the monopoly,
-\item \DynamicGreedy for both firms in simultaneous entry (Finding \ref{find:duopoly}),
-\item \Thompson for the incumbent (Finding \ref{find:temp-monopoly}) and \DynamicGreedy for the entrant in first-mover (Finding \ref{find:temp-monopoly-entrant}).
-\end{OneLiners}
 
 Figure \ref{eq_regret} displays the market regret (averaged
   over multiple runs) under different levels of competition.
