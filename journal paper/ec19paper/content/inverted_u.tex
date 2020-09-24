@@ -7,51 +7,105 @@
 \begin{table*}[t]
 \centering
 \begin{adjustbox}{width=\textwidth,center}
-\begin{tabular}{|c|c|c|c||c|c|c|}
+\begin{tabular}{|c|c|c|c||c|c|c||c|c|c|}
   \hline
   & \multicolumn{3}{c||}{Heavy-Tail}
-  & \multicolumn{3}{c|}{Needle-in-Haystack}\\
+  & \multicolumn{3}{c|}{Needle-in-Haystack} 
+  & \multicolumn{3}{c|}{Uniform}\\
   \hline
   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500
+   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500
   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
   \hline
 \TS vs \DG
-  & \makecell{\textbf{0.29} $\pm$0.03\\ \Eeog 55 (0)}
-  & \makecell{\textbf{0.72} $\pm$0.02\\ \Eeog 570 (0)}
-  & \makecell{\textbf{0.76} $\pm$0.02\\ \Eeog 620 (99)}
+  & \textbf{0.31} $\pm$0.03
+  & \textbf{0.72} $\pm$0.02
+  & \textbf{0.75} $\pm$0.02
   %%
-  & \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 200 (27)}
-  & \makecell{\textbf{0.6} $\pm$0.03\\ \Eeog 370 (0)}
-  & \makecell{\textbf{0.64} $\pm$0.03\\ \Eeog 580 (122)}
-  \\
-\hline
-  $\TS$ vs $\DEG$
-  & \makecell{\textbf{0.3} $\pm$0.03\\ \Eeog 37 (0)}
-  & \makecell{\textbf{0.88} $\pm$0.01\\ \Eeog 480 (0)}
-  & \makecell{\textbf{0.9} $\pm$0.01\\ \Eeog 570 (114)}
+  & \textbf{0.68} $\pm$0.03
+  & \textbf{0.62} $\pm$0.03
+  & \textbf{0.65} $\pm$0.03 
   %%
-  & \makecell{\textbf{0.57} $\pm$0.03\\ \Eeog 150 (14)}
-  & \makecell{\textbf{0.52} $\pm$0.03\\ \Eeog 460 (79)}
-  & \makecell{\textbf{0.56} $\pm$0.02\\ \Eeog 740 (628)}
-  \\
+  & \makecell{\textbf{0.44} $\pm$0.03} 
+ & \makecell{\textbf{0.52} $\pm$0.02} 
+ & \makecell{\textbf{0.58} $\pm$0.02} \\
 \hline
+  $\TS$ vs $\DEG$  
+  & \textbf{0.3} $\pm$0.03
+  & \textbf{0.89} $\pm$0.01 
+  & \textbf{0.9} $\pm$0.01
+  %%
+  & \textbf{0.6} $\pm$0.03
+  & \textbf{0.52} $\pm$0.03
+  & \textbf{0.55} $\pm$0.02 
+  %%
+ & \makecell{\textbf{0.41} $\pm$0.03} 
+ & \makecell{\textbf{0.47} $\pm$0.02} 
+ & \makecell{\textbf{0.55} $\pm$0.02} \\ \hline
   $\DG$ vs $\DEG$
-  & \makecell{\textbf{0.62} $\pm$0.03\\ \Eeog 410 (7)}
-  & \makecell{\textbf{0.6} $\pm$0.02\\ \Eeog 790 (762)}
-  & \makecell{\textbf{0.57} $\pm$0.03\\ \Eeog 730 (608)}
+  & \textbf{0.63} $\pm$0.03 
+  & \textbf{0.6} $\pm$0.02
+  & \textbf{0.56} $\pm$0.03
   %%
-  & \makecell{\textbf{0.46} $\pm$0.03\\ \Eeog 340 (129)}
-  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 650 (408)}
-  & \makecell{\textbf{0.42} $\pm$0.02\\ \Eeog 690 (467)}
-  \\
-   \hline
+  & \textbf{0.42} $\pm$0.03
+  & \textbf{0.41} $\pm$0.03
+  & \textbf{0.39} $\pm$0.02
+  %%
+   & \makecell{\textbf{0.5} $\pm$0.03} 
+ & \makecell{\textbf{0.46} $\pm$0.02} 
+ & \makecell{\textbf{0.45} $\pm$0.02} \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{\footnotesize {\bf Simultaneous Entry}, for Heavy-Tail and Needle-in-Haystack instances. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Line 1 in the cell is the market share of Alg 1: the average (in bold) and the 95\% confidence band.
+\caption{\footnotesize {\bf Simultaneous Entry, Market Share}. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Each cell contains the market share of Alg 1: the average (in bold) and the 95\% confidence band.
 %For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG.
-Line 2 specifies the ``effective end of game" (\Eeog): the average and the median (in brackets). The time horizon is $T=2000$.}
-\label{sim_table}
+ The time horizon is $T=2000$.}
+\label{fig:market_share}
 \end{table*}
+
+
+
+\begin{table*}[t]
+\centering
+\begin{adjustbox}{width=\textwidth,center}
+\begin{tabular}{|c|c|c|c||c|c|c||c|c|c|}
+  \hline
+  & \multicolumn{3}{c||}{Heavy-Tail}
+  & \multicolumn{3}{c|}{Needle-in-Haystack} 
+  & \multicolumn{3}{c|}{Uniform}\\
+  \hline
+  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500
+   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500
+  & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\
+  \hline
+\TS vs \DG
+  & 68 (0)  & 560 (8.5)  & 610 (86.5)
+  %%
+ & 180 (30)  & 380 (0)  & 550 (6.5)
+  %%
+  &  260 (0)  
+  &  780 (676.5)  
+  &  880 (897.5) \\
+\hline
+  $\TS$ vs $\DEG$  
+ & 37 (0)  & 430 (0)  & 540 (105)
+  %%
+ & 150 (10)  & 460 (25)  & 780 (705)
+  %%
+ & 230 (0)  & 830 (772)  & 980 (1038) \\ \hline
+  $\DG$ vs $\DEG$
+ & 340 (110)  & 640 (393)  & 670 (425) 
+  %%
+  & 410 (8.5)  & 760 (666)  & 740 (646)
+  %%
+  & 530 (101)  & 990 (1058)  & 1000 (1059) \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{\footnotesize {\bf Simultaneous Entry, \Eeog}. Each cell describes a game between two algorithms, call them Alg1 vs. Alg2, for a particular value of the warm start $T_0$. Each cell specifies the ``effective end of game" (\Eeog): the average and the median (in brackets).
+%For example, the cell in the top left indicates that TS gets on average 64\% of the market when played against DG. 
+The time horizon is $T=2000$.}
+\label{fig:eog}
+\end{table*}
+
 \normalsize
 Our main experiments are with the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from  monopoly to ``incumbent" to simultaneous entry duopoly to ``late entrant", we find a stylized inverted-U relationship \asedit{as in Section~\ref{sec:theory-welfare}}. More formally, we look for equilibria in the duopoly game, where each firm's choices are limited to \DynamicGreedy, \DynamicEpsGreedy and \Thompson. We do this for each ``intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. For cleaner results, we break ties towards less advanced algorithms (as they tend to have lower adoption costs, see \cite{DS-arxiv}). \DynamicGreedy is trivially the dominant strategy under monopoly.
 
@@ -90,32 +144,7 @@ The basic scenario is when both firms are competing from round $1$. A crucial di
 %market for the entire period, the firm can take the entire market
 %regardless of what algorithm it deploys. \swedit{Since we assume that exploration algorithms ($\DEG$ and $\TS$) would incur deployment cost and firms break indifferences towards easier to deploy algorithms}, the firm would choose to deploy $\DG$.
 
-We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for Heavy-Tail and Needle-in-Haystack instances in Table~\ref{sim_table}  (see the first line in each cell), for a range of values of the warm start $T_0$. Table~\ref{tab:duopoly_unif} reports similarly on the Uniform instance. We find that $\DG$ is a weakly dominant strategy for the Heavy-Tail and Uniform instances, as long as $T_0$ is sufficiently small. However, \Thompson is a weakly dominant strategy for the Needle-in-Haystack instance. We find that for a sufficiently small $T_0$, \DynamicGreedy yields more than half the market against \Thompson,  but achieves similar market share vs. \DynamicGreedy and \DynamicEpsGreedy. By our tie-breaking rule, (\DynamicGreedy,\DynamicGreedy) is the only pure-strategy equilibrium.
-
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|}
- % \hline
- % & \multicolumn{3}{c|}{Uniform} \\
-\hline
-   & $T_0$ = 20 & $T_0$ = 250 & $T_0$ = 500 \\ \hline
-\TS vs \DG
-  & \makecell{\textbf{0.46} $\pm$0.03}
-    & \makecell{\textbf{0.52} $\pm$0.02}
-    & \makecell{\textbf{0.6} $\pm$0.02} \\ \hline
-\TS vs \DEG
-    & \makecell{\textbf{0.41} $\pm$0.03}
-    & \makecell{\textbf{0.51} $\pm$0.02}
-    & \makecell{\textbf{0.55} $\pm$0.02} \\ \hline
-\DG vs \DEG
-    & \makecell{\textbf{0.51} $\pm$0.03}
-    & \makecell{\textbf{0.48} $\pm$0.02}
-    & \makecell{\textbf{0.45} $\pm$0.02} \\\hline
-\end{tabular}
-\caption{\footnotesize {\bf Simultaneous entry}, for the Uniform MAB instance. Semantics are the same as in Table \ref{sim_table}.}
-\label{tab:duopoly_unif}
-\end{table}
+We investigate the firms' market shares when they choose different algorithms (otherwise, by symmetry both firms get half of the agents). We report the market shares for \gaedit{each instance in} Table~\ref{fig:market_share}. We find that $\DG$ is a weakly dominant strategy for the Heavy-Tail and Uniform instances, as long as $T_0$ is sufficiently small. However, \Thompson is a weakly dominant strategy for the Needle-in-Haystack instance. We find that for a sufficiently small $T_0$, \DynamicGreedy yields more than half the market against \Thompson,  but achieves similar market share vs. \DynamicGreedy and \DynamicEpsGreedy. By our tie-breaking rule, (\DynamicGreedy,\DynamicGreedy) is the only pure-strategy equilibrium.
 
 
 \OMIT{This establishes our claim that $\DG$ is the incentivized algorithm.\footnote{We defer the table for uniform instances to the appendix. Summarizing the results, we see that, for low warm start, \DG yields more than half the market against \TS but is indifferent between \DG and \DEG. Since we break indifference towards easier to deploy algorithms, we also find that \DG is the incentivized algorithm in equilibrium}}
@@ -247,7 +276,7 @@ the greedy algorithm, because it is easier to deploy in practice. Implicitly, us
 Our intuition for why incumbency creates more incentives for exploration is as follows. During the period in which the incumbent is the only firm in the market, reputation consequences of exploration vanish. Instead, the firm wants to improve its performance as much as possible by the time competition starts. Essentially, the firm only faces a classical explore-exploit trade-off, and is incentivized to choose algorithms that are best at optimizing this trade-off.
 
 \xhdr{Death spiral effect.}
-Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the simultaneous entry scenario, we specify the \Eeog values in Table~\ref{sim_table} (the second line of each cell). We find that the \Eeog values are indeed small:
+Further, we investigate the ``death spiral" effect mentioned in the Introduction. Restated in terms of our model, the effect is that one firm attracts new customers at a lower rate than the other, and falls behind in terms of performance because the other firm has more customers to learn from, and this gets worse over time until (almost) all new customers go to the other firm. With this intuition in mind, we define  \textit{effective end of game} (\Eeog) for a particular \MRV and realization table, as the last round $t$ such that the agents at this and previous round choose different firms. Indeed, the game, effectively, ends after this round. We interpret low \Eeog as a strong evidence of the ``death spiral" effect. Focusing on the simultaneous entry scenario, we specify the \Eeog values in Table~\ref{fig:eog} (the second line of each cell). We find that the \Eeog values are indeed small:
 
 \begin{finding}
 \textit{
