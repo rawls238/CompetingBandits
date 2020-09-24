@@ -42,7 +42,10 @@ More specifically, the realization table is a 0-1 matrix $W$ with $K$ columns wh
 For the reputation scores, we fix the sliding window size $M = 100$. We found that lower values induced too much random noise in the results, and increasing $M$ further did not make a qualitative difference. Unless otherwise noted, we used $T = 2000$.
 
 \xhdr{Terminology.}
-Following a standard game-theoretic terminology, algorithm Alg1 \emph{(weakly) dominates} algorithm Alg2 for a given firm if Alg1 provides a larger (or equal) market share than Alg2 at the end of the game. An algorithm is a (weakly) dominant strategy for the firm if it (weakly) dominates all other algorithms. This is for a particular MAB instance and a particular selection of the game parameters.
+A particular instance of the competition game is specified by the MAB instance and the game parameters, as described above. Recall that firms are interested in maximizing their expected market share at the end of the game.
+%Following a standard game-theoretic terminology, 
+Thus, for a given instance of the game and a given firm, algorithm Alg1 \emph{(weakly) dominates} algorithm Alg2 if Alg1 provides a larger (or equal) expected final market share than Alg2, no matter that the opponent does. An algorithm is a (weakly) dominant strategy for the firm if it (weakly) dominates the other two algorithms.
+%This is for a particular MAB instance and a particular selection of the game parameters.
 
 \OMIT{Even with a stylized model, numerical investigation is quite challenging. An ``atomic experiment" is a competition game between a given pair of bandit algorithms, in a given competition model, on a given instance of a multi-armed bandit problem.%
 \footnote{Each such experiment is run many times to reduce variance.}
