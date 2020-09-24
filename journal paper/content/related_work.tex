@@ -25,7 +25,7 @@ A literature review of this work can be found in
 
 In \citet{keller2003price}, the competition is entirely on prices, rather than product quality. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a firm if and only if he chooses this firm -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices, rather than the quality of the chosen alternatives; the former is directly controlled by the firms, whereas the latter is not known a priori. Third, the goal of exploration is to learn the agents' decision rule.
 
-The earlier work by \citet{bergemann1997market,bergemann2000experimentation} studies competition on both prices and quality, and allows for the data externality mentioned above. Specifically, the ``entrant" firm offers a new product of unknown, exogenously determined, quality, which is ``explored" if and only if the entrant attracts customers. However, because the entrant can only control the prices but not the product itself, the nature of exploration is fundamentally different. First, the goal of exploration is to reveal information about a fixed product. Second, the entrant can only affect the \emph{quantity} of the said information, but not \emph{which} information is being revealed. Third, revealing more information is not necessarily better for the entrant (if the product's quality is actually low). Fourth, the social planner's exploration problem is very different from the firms', so that when one compares competition to the planner, one can only compare outcomes, but not the algorithms.\footnote{The planner faces a two-armed bandit problem, rather than a pricing problem, because the planner can directly choose a firm for each agent.}
+The earlier work by \citet{bergemann1997market,bergemann2000experimentation} studies competition on both prices and quality, and allows for the data externality mentioned above. Specifically, the ``entrant" firm offers a new product of unknown, exogenously determined, quality, which is ``explored" if and only if the entrant attracts customers. However, because the entrant can only control the prices but not the product itself, the nature of exploration is fundamentally different. First, the goal of exploration is to reveal information about a fixed product. Second, the entrant can only affect the \emph{quantity} of the said information, but not \emph{which} information is being revealed. Third, revealing more information is not necessarily better for the entrant (if the product's quality is actually low). Fourth, the social planner's exploration problem is very different from the firms', so that when one compares competition to the planner, one can only compare outcomes, but not the algorithms.\footnote{The planner faces a two-armed bandit problem, because the planner can directly choose a firm for each agent.}
 % firm, because payments cancel out in social welfare).}
 
 
@@ -65,16 +65,27 @@ in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typica
 
 %\cite{schmalensee1982product, bagwell1990informational} investigate how buyer uncertainty about product quality can serve as a barrier to entry for late arrivers. We observe a similar effect when we investigate the role that reputation can serve as a barrier to entry. In our model the first-mover advantage further provides the incumbent with a ``head start" on data collection relative to the late arrivers. Thus, our model also highlights the role that data can serve as a barrier to entry in online markets which has similarly been noted in \cite{de2020data}. For an extensive overview of the other channels through which first-mover advantages can lead to a competitive advantage, see \cite{kerin1992first}.
 
-We use first-mover advantage and \asedit{agents' decision rule} 
-%relaxed versions of rationality 
-to model varying competition, instead of classic ``market competitiveness" measures such as the Lerner Index or the Herfindahl-Hirschman Index
-\citep{tirole1988theory}. The latter measures rely on ex-post observable attributes of a market such as prices or market shares. Neither is applicable to our setting, since there are no prices, and market shares are endogenous.
+%We use first-mover advantage and \asedit{agents' decision rule}
+%relaxed versions of rationality
+%to model varying competition, instead of 
+
+\asedit{Classic ``market competitiveness" measures,such as the Lerner Index or the Herfindahl-Hirschman Index
+\citep{tirole1988theory} are not applicable to our setting, as they rely on ex-post observable market attributes such as prices or market shares (which are, resp., absent and endogenous for us).}
+
+%Neither is applicable to our setting (since there are no prices, and market shares are endogenous).
 
 
-\asedit{\xhdr{Choice models.}}
-\gaedit{Relaxed choice models similar to ours are found in several notable lines of work. First, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics, and play a similar role in our model as we move from \HardMax to \HardMaxRandom.  Furthermore, a large literature on non-existence of equilibria due to small deviations (starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets) is related to the corresponding non-existence result for \HardMaxRandom. Second, the stochastic choice rules we consider have been widely utilized across economics. For instance, \SoftMaxRandom includes the standard logit choice rule, which has been widely used throughout economics with strong micro-foundations \citep{luce1959choice, mcfadden1974measurement, matvejka2015rational}, as a special case. The functional form for the \SoftMaxRandom model is similar to that in standard horizontal production differentiation models (e.g. \cite{Hotelling-29, Perloff-Salop-85}). \cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom.}
-\asdelete{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
- 
+\asedit{\xhdr{Choice models.}
+Stochastic choice models similar to ours have been widely used throughout economics. First, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. They play a similar role in our model, side-stepping the dominance of the greedy algorithm.
+%as we move from \HardMax to \HardMaxRandom.  
+Second, there a large literature on non-existence of equilibria due to small deviations, starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets.\footnote{\cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom in this context.} 
+This is superficially similar to how small deviations towards the greedy algorithm rule out equilibria under \HardMaxRandom.
+%Second, the stochastic choice rules we consider have been widely utilized across economics. For instance, 
+Third, \SoftMaxRandom subsumes the logit choice rule, a standard behavioral model with strong empirical and microeconomic foundations 
+\citep[\eg][]{luce1959choice, mcfadden1974measurement, matvejka2015rational}.
+Fourth, choice models similar to \SoftMaxRandom are used to explain  horizontal product differentiation \citep[\eg][]{Hotelling-29, Perloff-Salop-85}.}
+%\asdelete{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
+
 
 %%% Local Variables:
 %%% TeX-master: "main.tex"
