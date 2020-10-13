@@ -154,7 +154,7 @@ pdflscape,subcaption,array,hyperref,adjustbox,threeparttable
 \title{Competing Bandits:\\
 The Perils of Exploration under Competition%
 \thanks{This is an extended abstract of \citet{CompetingBandits-merged}, which in turn subsumes conference papers
-\citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19}.}}
+\citet{CompetingBandits-itcs18} and \citet{CompetingBandits-ec19}. Full version available at: \scriptsize \url{https://arxiv.org/abs/2007.10144}.}}
 % \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
 
 \author{Guy Aridor%
@@ -174,27 +174,36 @@ Zhiwei Steven Wu%
 Email: zstevenwu@cmu.edu.
 Partially done as an intern and a postdoc at MSR-NYC.
 }}
-\date{August 2020}
+\date{October  2020}
 \maketitle
 
-Learning from interactions with users is ubiquitous in modern customer-facing platforms, from product recommendations to web search to content selection to fine-tuning user interfaces. Many platforms purposefully implement \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information.
-Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a standard and well-studied framework for exploration and making decisions under uncertainty
-\citep{Gittins-book11,Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
+
+Learning from interactions with users is ubiquitous in modern customer-facing platforms, from product recommendations to web search to content selection to fine-tuning user interfaces. Many platforms purposefully implement \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. Online platforms routinely deploy A/B tests, and are increasingly adopting  more sophisticated exploration methodologies based on \emph{multi-armed bandits}, a standard and well-studied framework for exploration and making decisions under uncertainty. This trend has been stimulated by two factors: almost-zero cost of deploying iterations of a product (provided an initial infrastructure investment), and the fact that many online platforms primarily compete on product quality, rather than price.
+(\eg because they are supported by ads or cheap subscriptions).
+%\citep{Gittins-book11,Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
 
 %~\cite{KohaviAB-2015,KohaviLSH09}
 
-In this paper, we initiate a study of the interplay between \exploration and \competition. Platforms that engage in exploration typically need to compete against one another; most importantly, they compete for users. This creates a tension:
+In this paper, we study the interplay between \exploration and \competition.%
+\footnote{\asedit{\Ie we add \competition to the standard exploration-exploitation tradeoff studied in multi-armed bandits.}}
+Platforms that engage in exploration typically need to compete against one another. \asedit{Most importantly, platforms compete for users, who benefit them in two ways:
+generate revenue and provide data for learning.} This creates a tension:
 %between \exploration and \competition.
-while exploration may be essential for improving the service tomorrow, it may degrade quality and make users leave \emph{today}, in which case there will be less users to learn from. This may further degrade the platform's performance relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may create a ``death spiral" effect when the vast majority of customers eventually switch to competitors. Users therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing systems.
+while exploration may be essential for improving the service tomorrow, it may degrade quality \emph{today}, in which case some of the users can leave and there will be less users to learn from. This may create a ``data feedback loop" when the platform's performance further degrades relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may cause a ``death spiral" effect when the vast majority of customers eventually switch to competitors.
+\asdelete{Users therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing systems.}
 
-The main high-level question is:
+The main high-level question we ask is:
+%that we focus on in this paper is:
 %\begin{align}\label{eq:main-Q}
 \textbf{How does competition incentivize the adoption of better exploration algorithms?}
 %\end{align}
-This translates into a number of more concrete questions. While it is commonly assumed that better technology always helps, is this so under competition? Does increased competition lead to higher consumer welfare? How significant are ``data feedback loops" --- when more data leads to more users, which leads to even more data, etc. --- and how they relate to the anti-trust considerations?
+This translates into a number of more concrete questions. While it is commonly assumed that better technology always helps, is this so under competition? Does increased competition lead to higher consumer welfare? How significant are the data feedback loops
+%--- when more data leads to more users, which leads to even more data, etc. ---
+and how they relate to the anti-trust considerations?
 %Finding formalizations that admit meaningful answers is a major part of the overall challenge.
-To answer these questions, we study complex interactions between platforms' learning dynamics and users' self-interested behavior. The choice of a particular technology (exploration algorithm) is no longer an abstract, static choice with a predetermined outcome for the platform. Instead, we model the algorithms explicitly, and investigate how they play out in competition over an extended period of time.
-We offer a mix of theoretical results and numerical simulations, in a range of models.
+We offer a mix of theoretical results and numerical simulations, in which we study complex interactions between platforms' learning dynamics and users' self-interested behavior.
+
+%The choice of a particular technology (exploration algorithm) not an abstract, static choice with a predetermined outcome for the platform. Instead, we model the algorithms explicitly, and investigate how they play out in competition over an extended period of time.
 
 
 %\footnote{This is a fundamental question which is part of a larger policy discussion around whether data can serve as an indirect network effect and lead to similar ``market tipping" results as is standard in the literature on competition in markets with network effects (see \cite{jullien2019economics} for a policy oriented discussion of this).}
@@ -207,118 +216,224 @@ We offer a mix of theoretical results and numerical simulations, in a range of m
 %\subsection{Our model}
 %\label{sec:intro-model}
 
-%\subsection*{Our Model: competing bandits}
+%\subsection{Our model: competing bandits}
 %\label{sec:intro-model}
 
 %We investigate these questions with
-\xhdr{Model: competition game.} We consider a stylized duopoly model where two firms commit to exploration strategies and compete for a stream of consumers. We define a game in which two firms (\emph{principals}) simultaneously engage in exploration and compete for users (\emph{agents}). These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity.
-%Thus, the key features of our model are as follows.
+\xhdr{Our model: competition game.} We consider a stylized duopoly model in which two firms (\emph{principals}) compete for users (\emph{agents}). Principals compete on quality rather than on prices, and engage in exploration in order to learn which actions lead to high quality products. A new agent arrives and chooses a principal according to some decision rule. The principal selects an action (\eg a list of web search results), the user experiences it and reports a reward. Each principal only observes its own users. Principals commit to their strategies in advance, with the objective to maximize the market share. We investigate several model variants, %within this framework,
+where we vary agents' decision rule or allow a first-mover advantage.%
+\footnote{\asedit{In particular, we use different model variants (resp., Bayesian and frequentist) for theory and for simulations so as to ensure tractability. Our main findings are similar for both.}}
+
+
+%\asedit{For tractability, our theoretical results and our numerical simulations adopt closely related but technically different model variants (respectively, Bayesian and frequentist), with similar findings.}
+
+%to one of the principals.
+%In all variants, agents have little or no information about other agents' choices and rewards.
+
+Each principal faces a basic and well-studied version of the multi-armed bandit problem, where each reward is drawn independently from a fixed, action-specific distribution. Each principal's strategy is a multi-armed bandit algorithm; as such, it can dynamically adjust itself to the observed rewards, but not to the competition. This modeling choice reflects the reality of industrial applications, which build on a huge body of knowledge in machine learning.
+%Responding to the competition is another layer of complexity which has not been previously studied in this context, let alone made practical.
+We draw on the machine learning literature to compare bandit algorithms to one another \asedit{in isolation},%
+\footnote{\asedit{As opposed to ``in competition": as solutions to a stand-alone exploration problem which aims to maximize the total consumer welfare over time.}}
+ so that we can talk about \emph{better} bandit algorithms in a principled way.
+%\footnote{Such comparisons are somewhat subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others. More on this in Appendix~\ref{app:bg}. Generally,  ``better" algorithms are better in the long run, but could be worse initially. }
+One baseline is algorithms that do not explicitly explore (\emph{greedy algorithms}); \asedit{in isolation}, they are known to be terrible for a wide variety of problem instances.
+
+%\newpage
+
+%These two processes are interlinked, as exploration decisions are experienced by users and informed by their feedback. We need to specify several conceptual pieces: how the principals and agents interact, what is the machine learning problem faced by each principal, and what is the information structure. Each piece can get rather complicated in isolation, let alone jointly, so we strive for simplicity. Thus, the key features of our model are as follows:
+
 %\begin{itemize}
+%\textbf{(i)} A new agent arrives in each round $t=1,2, \ldots$, and chooses among the two principals. The principal chooses an action (\eg a list of web search results to show to the agent), the user experiences this action, and reports a reward. All agents have the same ``decision rule" for choosing among the principals given the available information.
 
-\textbf{(i)}
-A new agent arrives in each round $t=1,2, \ldots$, and chooses among the two principals. The principal chooses an action (\eg a list of web search results to show to the agent), the user experiences this action, and reports a reward. All agents have the same ``decision rule" for choosing among the principals given the available information.
-
-\textbf{(ii)}
-Each principal faces a basic and well-studied version of the multi-armed bandit problem: for each arriving agent, it chooses from a fixed set of actions  (a.k.a. \emph{arms}) and receives a reward drawn independently from a fixed distribution specific to this action. The reward distributions are initially unknown.
+%\textbf{(ii)} Each principal faces a basic and well-studied version of the multi-armed bandit problem: for each arriving agent, it chooses from a fixed set of actions  (a.k.a. \emph{arms}) and receives a reward drawn independently from a fixed distribution specific to this action. The reward distributions are initially unknown.
 % (but can be estimated over time from the data).
 
-\textbf{(iii)}
-Principals simultaneously announce their bandit algorithms before round $1$, and cannot change them afterwards.  Each principal's objective is to maximize its market share (the fraction of users choosing this principal). Each principal only observes agents that chose this principal.
+%\textbf{(iii)} Principals simultaneously announce their bandit algorithms before round $1$, and cannot change them afterwards.  Each principal's objective is to maximize its market share (the fraction of users choosing this principal). Each principal only observes agents that chose this principal.
 %, but may have access to each platforms' reputation score (more on this in    Section~\ref{sec:intro-discussion}).
 %\end{itemize}
 
-We investigate several model variants, as we vary agents' decision rule and/or posit a first-mover advantage.
 
 %We consider two model variants, which determine agents' decision rule and their information sets. In \emTheoryModel, there is a common Bayesian prior on the reward distributions. Agents do not receive any other information and choose between the principals using their knowledge of $t$ and the principals' algorithms. In \emExptsModel, agents have access to a reputation score for each principal, which is a sliding window average of the rewards experienced by previous agents that have visited this principal. The former variant used for the theoretical results, the latter for simulations.
 
 
+
+%\ascomment{revising ...}
+
+\OMIT{ %%%%%%%%%% MIT CODE abstract:
 \xhdr{Technology: multi-armed bandit algorithms.}
-To compare between bandit algorithms, we build on prevalent intuition in the literature. We focus on standard notions of regret, and distinguish between three classes of bandit algorithms: ones that never explicitly explore (\emph{greedy algorithms}), ones that explore without looking at the data (\emph{exploration-separating algorithms}), and ones where exploration gradually zooms in on the best arm (\emph{adaptive-exploration algorithms}). In isolation, \ie in the absence of competition, these classes are fairly well-understood. Greedy algorithms are terrible for a wide variety of problem instances, precisely because they never explore. Exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances. Adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances. Generally,  ``better" algorithms are better in the long run, but could be worse initially.
+To compare between bandit algorithms, we build on prevalent intuition in the literature. We focus on standard notions of regret, and distinguish between three classes of bandit algorithms: ones that never explicitly explore (\emph{greedy algorithms}), ones that explore without looking at the data (\emph{exploration-separating algorithms}), and ones where exploration gradually zooms in on the best arm (\emph{adaptive-exploration algorithms}). In the absence of competition, these classes are fairly well-understood: greedy algorithms are terrible for a wide variety of problem instances, exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances, and adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances. Generally,  ``better" algorithms are better in the long run, but could be worse initially.
+} %%%%%%%%%%%
 
 
+\OMIT{ %%%%%%%%%% PREVIOUS VERSION
+\xhdr{Technology: multi-armed bandit algorithms.}
+To flesh out \eqref{eq:main-Q}, let us elaborate what we mean by `better' bandit algorithms. In general, comparisons between bandit algorithms are rather subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others.
 
-%\subsection*{Our Results}
+\gaedit{While our model allows for the firms to pick from an arbitrary set of algorithms}, we distinguish between three classes of bandit algorithms, based on the prevalent intuition in the area. The distinction concerns the way in which they resolve the fundamental tradeoff between  exploration and \emph{exploitation} (making optimal myopic decisions using the available data). \gaedit{This classification is important for interpreting the equilibrium algorithm choice of the firms as it allows for a ``low" to ``medium" to ``high" technology interpretation. We further use the classification to pick a representative algorithm from each class for our numerical experiments. Going from low to medium to high technology, these three classes are as follows:} \gadelete{Going from more primitive to more sophisticated, these three classes are as follows:}
+
+\begin{itemize}
+\item \emph{Greedy algorithms} that strive to maximize the reward for the next round given the available information. Thus, they always ``exploit" and never explicitly ``explore".
+
+\item \emph{Exploration-separating algorithms}
+ that separate exploration and exploitation: essentially, each round is dedicated to one and completely ignores the other.
+
+\item \emph{Adaptive-exploration} algorithms that combine exploration and exploitation, and gradually sway the exploration choices towards more promising alternatives.
+\end{itemize}
+
+In isolation, \ie in the absence of competition, these classes are fairly well-understood. Greedy algorithms are terrible for a wide variety of problem instances, precisely because they never explore. Exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances. Adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances. Generally,  ``better" algorithms are better in the long run, but could be worse initially.
+
+While we build on a vast and active research area, we present sufficient background in Appendix~\ref{app:bg} so as to keep this paper accessible to non-specialists.
+} %%%%%%%%%
+
+%\subsection{Our results}
 %\label{sec:intro-results}
 
+%We offer a mix of theoretical results and numerical simulations. We are mainly interested in qualitative differences between the three classes of algorithms in Section~\ref{sec:intro-model}. For numerical simulations, we pick one representative algorithm from each class. For theoretical results, we allow arbitrary algorithms and focus on asymptotic differences in the algorithms' performance.
 
 \xhdr{Theoretical results.}
 %We endow agents with Bayesian rationality, a common modeling approach for a theoretical investigation.
-We consider a basic Bayesian model, where agents have a common Bayesian prior on reward distributions, and know the principals' algorithms. For tractability, we posit that agents do not receive any information about the previous agents' choices and rewards. Each agent knows the round (s)he arrives in, computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose.
-%We refer to this variant as the \emph{\TheoryModel}.
-
-Our results depend crucially on the agents' decision rule:
+We consider a basic Bayesian model (called the \emph{\TheoryModel}), where agents have a common Bayesian prior on reward distributions, know the principals' algorithms, but do not receive any information about the previous agents' \asedit{choices or rewards}. Each agent computes the Bayesian-expected reward for each principal, and use these two numbers to decide which principal to choose.
+%We focus on qualitative, asymptotic differences in the algorithms' performance.
+Our results depend crucially on agents' decision rule:
 %\begin{itemize}
 
-\textbf{(i)}
-The most obvious decision rule (\HardMax) maximizes the current agent's Bayesian-expected reward. We find that \HardMax is not conducive to adopting better algorithms: each principal's dominant strategy is to choose the greedy algorithm. Further, we show that \HardMax is sensitive to tie-breaking: if the tie-breaking is probabilistically biased in favor of one principal, then this principal has a simple ``winning strategy" no matter what.
+\textbf{(i)} The most obvious decision rule maximizes the Bayesian-expected reward; we refer to it as \HardMax. We find that it is not conducive to adopting better algorithms: each principal's dominant strategy is to choose the greedy algorithm. Further,
+%\HardMax is very sensitive to tie-breaking:
+if the tie-breaking is probabilistically biased in favor of one principal, then this principal can always prevail in competition.
+% has a simple ``winning strategy" no matter what the other principal does.
 
-\textbf{(ii)}
-We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random. We call this model \HardMaxRandom. We find that better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase. However, there is a substantial caveat: one can defeat any algorithm by interleaving it with the greedy algorithm. This has two undesirable corollaries: a better algorithm may sometimes lose in competition, and a pure Nash equilibrium typically does not exist.
+\textbf{(ii)} We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random. We call this model \HardMaxRandom. Then better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase. There is a caveat, however: any algorithm can be defeated by interleaving it with the greedy algorithm. This has two undesirable consequences: a better algorithm may sometimes lose in competition, and a Nash equilibrium typically does not exist.
 
-\textbf{(iii)}
-We further relax the decision rule so that the probability of choosing a given principal varies smoothly as a function of the difference between  principals' Bayesian-expected rewards; we call it \SoftMaxRandom. Then, the ``better algorithm wins" result holds under much weaker assumptions on what constitutes a better algorithm. This is the most technical result of the paper. The competition in this setting is necessarily much more relaxed: typically, both principals attract approximately half of the agents as time goes by (but a better algorithm would attract slightly more).
-
-\xhdr{Economic interpretation: the inverted-U relationship.}
-Interpreting the adoption of better algorithms as ``innovation", our findings can be framed in terms of the \emph{inverted-U relationship} between competition and innovation.%
-%\footnote{Here, ``innovation" refers to adoption of a better technology at a substantial R\&D expense to a given firm. It is not salient whether similar ideas and/or technologies already exist elsewhere. Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms themselves are well-known in the research literature \citep[\eg see][]{DS-arxiv}.}
-\footnote{This is a well-established concept in the economics literature, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better \citep[\eg][]{aghion2005competition,Vives-08}.}
-
-Our decision rules differ in terms of rationality: from fully rational decisions with \HardMax to relaxed rationality with \HardMaxRandom to an even more relaxed rationality with \SoftMaxRandom. The same distinctions also control the severity of competition between the principals: from cut-throat competition with \HardMax to a more relaxed competition with \HardMaxRandom, to an even more relaxed competition with \SoftMaxRandom. Indeed, with \HardMax you lose all customers as soon as you fall behind in performance, with \HardMaxRandom you get some small market share no matter what, and with \SoftMaxRandom you are further guaranteed a market share close to $\tfrac12$ as long as your performance is not much worse than the competition. The uniform choice among principals corresponds to no rationality and no competition. While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.
-
-
-We identify the inverted-U relationship driven by the rationality/competitiveness distinctions outlined above: from \HardMax to \HardMaxRandom to \SoftMaxRandom to \Uniform. We also find another, technically different, inverted-U relationship which zeroes in on the \HardMaxRandom model. We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.
-
-These inverted-U relationships are driven by different aspects in our model than the ones in the existing literature in economics. The latter focuses on the tradeoff between the R\&D costs and the benefits that the improved technology provides in the competition. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
+\textbf{(iii)} We further soften the decision rule so that the selection probabilities vary smoothly in terms of principal's Bayesian-expected rewards;
+%as a function of the difference between  principals' Bayesian-expected rewards;
+we call it \SoftMaxRandom.%
+\footnote{\asedit{In particular, one can obtain a \SoftMaxRandom decision rule using a mixture of more ``basic" agent types that follow \HardMax unless the principal's Bayesian-expected rewards are too close to each other.}}
+ Then a better algorithm prevails under much weaker assumptions.
+% on what constitutes a better algorithm.
+This is the most technical result of the paper.
+\asdelete{The competition is more relaxed: the better algorithm receives only a small advantage in the long run.}
 
 
+%both principals attract approximately half of the agents as time goes by, but a better algorithm attracts slightly more.
+%\end{itemize}
+
+%Most results admit generalizations
+%extend to a much more general version of the multi-armed bandit problem
+%in which the principal may observe additional feedback before and/or after each decision,
+%as long as the feedback distribution does not change over time. In most results,
+% and principal's utility may include agents' rewards.
+
+%\begin{figure}
+%\begin{center}
+%\begin{tikzpicture}
+%      \draw[->] (-.5,0) -- (3,0) node[right] {Competitiveness};
+%      \draw[->] (0,-.5) -- (0,3) node[above] {Better algorithms};
+%      \draw[scale=0.6,domain=0.5:4.5,smooth,variable=\x,blue, line width=0.3mm] plot ({\x},{4.5 - (\x - 2.5)^2});
+%      % \draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
+% \end{tikzpicture}
+%
+%\caption{Inverted-U relationship between competitiveness and algorithms.}
+%\label{fig:inverted-U}
+%\end{center}
+%\end{figure}
+
+
+\xhdr{Interpretation: the inverted-U relationship.}
+Our findings can be framed in terms of the inverted-U relationship between competition and innovation. This is a well-established concept, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. %\citep[\eg][]{aghion2005competition,Vives-08}.
+We interpret innovation as the adoption of better algorithms,%
+\footnote{Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms are well-known and/or similar technologies already exist elsewhere  \citep[\eg see][]{DS-arxiv}.}
+%, even if the algorithms themselves are well-known in the research literature
+and control the severity of the competition by varying the agents' decision rule from \HardMax (cut-throat competition) to \HardMaxRandom to \SoftMaxRandom and all the way to the uniform selection.
+%\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
+We also find another, technically different inverted-U relationship which zeroes in on the \HardMaxRandom model.
+%We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.
+The barriers for innovation arise entirely from the reputational consequences of exploration in competition, \asedit{without invoking monetary costs and benefits. Whereas the inverted-U relationships in prior work are due to the monetary aspects: how much can a firm invest into  R\&D and how much can it profit from the innovation.}
+
+%the tradeoff between the benefits of the technology and its R\&D costs.
+
+
+%While the inverted-U relationships in prior work focus on the tradeoff between the benefits of the technology and its R\&D costs, in our work the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
+
+
+%Our decision rules differ in terms of rationality: from fully rational decisions with \HardMax to relaxed rationality with \HardMaxRandom to an even more relaxed rationality with \SoftMaxRandom. The same distinctions also control the severity of competition between the principals: from cut-throat competition with \HardMax to a more relaxed competition with \HardMaxRandom, to an even more relaxed competition with \SoftMaxRandom. Indeed, with \HardMax you lose all customers as soon as you fall behind in performance, with \HardMaxRandom you get some small market share no matter what, and with \SoftMaxRandom you are further guaranteed a market share close to $\tfrac12$ as long as your performance is not much worse than the competition. The uniform choice among principals corresponds to no rationality and no competition. While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.
+
+% These inverted-U relationships are driven by different aspects in our model than the ones in prior work. The latter focus on the tradeoff between the R\&D costs and the benefits that the improved technology provides in the competition. In our case, the barriers for innovations arise entirely from the reputational consequences of exploration in competition, even in the absence of R\&D costs.
 
 \xhdr{Numerical simulations.}
-We consider a basic frequentist model. We posit that the agents observe signals about the principals' past performance, and base their decisions on these signals alone, without invoking any prior knowledge or beliefs. The performance signals are abstracted and aggregated as a scalar \emph{reputation score} for each principal, modeled as a sliding window average of its rewards. Thus, agents' decision rule depends only on the two reputation scores.
-%We refer to this variant as the \emph{\ExptsModel}.%
+We consider a basic frequentist model (called the \emph{\ExptsModel}), where the agents observe signals about the principals' past performance, and base their decisions on these signals alone, without invoking any prior knowledge or beliefs. The performance signals are abstracted and aggregated as a scalar \emph{reputation score} for each principal, modeled as a sliding window average of its rewards. Thus, agents' decision rule depends only on the two reputation scores.
+% We refer to this variant as the \emph{\ExptsModel}.%
 %\footnote{In comparison, the theoretical results focus on another extreme, with Bayesian rationality and no performance signals.}
-We refine and expand the theoretical results in several ways.
+We refine and expand the theoretical results in several ways:
 
 %\begin{itemize}
 \textbf{(i)}
-We compare \HardMax and \HardMaxRandom decision rules. We find that the greedy algorithm often wins under \HardMax, with a strong evidence of the ``death spiral" effect mentioned earlier.
- As predicted by the theory, better algorithms prevail if the expected number of ``random" users is sufficiently large. However, this effect is negligible for smaller parameter values.
+%We compare \HardMax and \HardMaxRandom decision rules.
+We find that the greedy algorithm often wins under the \HardMax decision rule, with a strong evidence of the ``death spiral" effect mentioned earlier.
+ As predicted by the theory, better algorithms prevail under \HardMaxRandom if the expected number of ``random" users is sufficiently large. \asdelete{However, this effect is negligible for smaller parameter values.}
 
 %\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}}
 
-\textbf{(ii)}
- We investigate the first-mover advantage as a different channel to vary the intensity of competition: from the first-mover to simultaneous arrival to late-arriver. (We focus on the \HardMax decision rule.) We find that the first-mover is incentivized to choose a more advanced exploration algorithm, whereas the late-arriver is often incentivized to choose the ``greedy algorithm" (more so than under simultaneous arrival). Consumer welfare is higher under early/late arrival than under simultaneous entry. We frame these results in terms of an inverted-U relationship.
+\textbf{(ii)} Focusing on \HardMax, we investigate the first-mover advantage as a different channel to vary the intensity of competition: from the first-mover to simultaneous arrival to late-arriver. We find that the first-mover is incentivized to choose a more advanced exploration algorithm, whereas the late-arriver is often incentivized to choose the ``greedy algorithm" (more so than under simultaneous arrival). Consumer welfare is higher under early/late arrival than under simultaneous entry. We frame these results in terms of an inverted-U relationship.
 
 
 %\footnote{\asedit{We consider the ``permanent monopoly" scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}}
 
-\textbf{(iii)}
-We decompose the first-mover advantage into two distinct effects: free data to learn from (\emph{data advantage}), and a more definite, and possibly better reputation compared to an entrant (\emph{reputation advantage}). We run additional experiments so as to isolate and compare these two effects. We find that either effect alone leads to a significant advantage under competition. The data advantage is larger than reputation advantage when the incumbent commits to a more advanced bandit algorithm. Finally, we find an ``amplification effect" of the data advantage: even a small amount thereof gets amplified under competition, causing a large difference in eventual market shares.
+\textbf{(iii)} We investigate the algorithms' performance without competition. We suggest a new performance measure to explain why the greedy algorithm is sometimes not the best strategy under high levels of competition.\footnote{In our theoretical results on \HardMax, the greedy algorithm is always the best strategy, mainly because it is aware of the Bayesian prior (whereas in the simulations  the prior is not available).}
+     We find that mean reputation -- arguably, the most natural performance measure -- is sometimes \emph{not} a good predictor for the outcomes under competition.
+
+\textbf{(iv)} We decompose the first-mover advantage into two distinct effects: free data to learn from (\emph{data advantage}), and a more definite, and possibly better reputation compared to an entrant (\emph{reputation advantage}), and run additional experiments to separate and compare them. We find that either effect alone leads to a significant advantage under competition. The data advantage is larger than reputation advantage when the incumbent commits to a more advanced bandit algorithm. Finally, we find an ``amplification effect" of the data advantage: even a small amount thereof gets amplified under competition, causing a large difference in eventual market shares.
 
 %\end{itemize}
 
-\xhdr{Economic interpretation: network effects of data.}
+\xhdr{Interpretation: network effects of data.}
 Our model speaks to policy discussions on regulating data-intensive digital platforms \citep{furman2019unlocking, scott2019committee}, and particularly to the ongoing debate on the role of data in the digital economy. One fundamental question in this debate is whether data can serve a similar role as traditional ``network effects", creating scenarios when only one firm can function in the market \citep{Rysman09, jullien2019economics}.
 %whereby, when these effects are present, in many cases only one firm can function in the market, leading to competition \emph{for} the market being more important than competition \emph{in} the market \citep{Rysman09, jullien2019economics}.
-The death spiral/amplification effects mentioned above have a similar flavor as network effects: a relatively small amount of exploration (resp., data advantage)  gets amplified under competition and causes the firm to be starved of users (resp., take over most of the market).
+The death spiral/amplification effects mentioned above have a similar flavor: a relatively small amount of exploration (resp., data advantage)  gets amplified under competition and causes the firm to be starved of users (resp., take over most of the market).
 %\gaedit{We further find that a small data advantage for one firm gets amplified under competition and leads to that firm taking the entire market, showing that data can provide a similar incumbency advantage as those provided by traditional network effects and can serve as a barrier to entry in online markets.}
-A distinctive feature of our approach is that we explicitly model the learning problem of the firms and consider them deploying algorithms for solving this problem.  Thus, we do not explicitly model the network effects, but they arise endogenously from our setup.
+However, a distinctive feature of our approach is that we explicitly model the learning problem of the firms and consider them deploying algorithms for solving this problem.  Thus, we do not explicitly model the network effects, but they arise endogenously from our setup.
 
-Our results highlight that understanding the performance of learning algorithms in isolation does not necessarily translate to understanding their impact in competition, precisely because competition leads to the endogenous generation of data observed by the firms. Approaches such as \citet{lambrecht2015can, bajari2018impact, varian2018artificial} argue that the diminishing returns to scale and scope of data in isolation mitigate such data feedback loops,
+Our results highlight that understanding the performance of learning algorithms in isolation does not necessarily translate to understanding their impact in competition, precisely due to the fact that competition leads to the endogenous generation of observable data. Approaches such as \citet{lambrecht2015can, bajari2018impact, varian2018artificial} argue that the diminishing returns to scale and scope of data in isolation mitigate such data feedback loops,
 %as non-existent
-but ignore the differences induced by learning in isolation versus under competition. Furthermore, explicitly incorporating the interaction between learning technology and data creation allows us to speak on how data advantages are characterized and amplified not only by data quantity, but also the increased data quality gathered by better learning algorithms.
+but ignore the differences induced by learning in isolation versus under competition. Furthermore, explicitly modeling the interaction between learning technology and data creation allows us to speak on how data advantages are characterized and amplified by the increased \emph{quality} of data gathered by better learning algorithms, not just the quantity thereof.
 
 \xhdr{Significance.}
-Our theory takes a Bayesian approach and discovers several strong asymptotic results. The numerical simulations provide a more nuanced and ``non-asymptotic" perspective. In essence, we look for substantial effects within relevant time scales. In fact, we start our investigation by determining what time scales are relevant in the context of our model. Our study has a dual purpose: (i) shed light on real-world implications of some typical scenarios, and (ii) investigate the space of models for describing the real world. As an example to clarify the latter point, consider the \HardMax model with simultaneous entry. It is is not necessarily the most realistic model. However, our results elucidate the need for more refined models that allow for ``free exploration" (\eg via random agents or early entry).
+Our results have a dual purpose: shed light on real-world implications of some typical scenarios, and investigate the space of models for describing the real world. As an example for the latter: while the \HardMax model with simultaneous entry is arguably the most natural model to study \emph{a priori}, our results elucidate the need for more refined models with ``free exploration" (\eg via random agents or early entry). On a technical level, we connect a literature on regret-minimizing bandits in computer science and that on competition in economics.
+
+Our theory takes a basic Bayesian approach, a standard perspective in economic theory, and discovers several strong asymptotic results. Much of the difficulty, both conceptual and technical, is in setting up the model and the theorems. Apart from zeroing in on the \TheoryModel, it was crucial to interpret the results and intuitions from the literature on multi-armed bandits so as to formulate meaningful and productive assumptions on bandit algorithms and Bayesian priors.
+
+The numerical simulations provide a more nuanced and ``non-asymptotic" perspective. In essence, we look for substantial effects within relevant time scales. (In fact, we start our investigation by determining what time scales are relevant in the context of our model.) The central challenge is to capture a huge variety of bandit algorithms and bandit problem instances with only a few representative examples, and arrive at findings that are consistent across the entire space.
+
+One model we study is suitable for analysis and another for simulations, but not vice versa. A natural implementation of the \TheoryModel requires running time quadratic in the number of rounds,%
+\footnote{\label{fn:Tsquared}\Eg this is because at each round $t$, one needs to recompute, and integrate over, a discrete distribution with $t$ possible values, namely the number of agents that have chosen principal $1$ so far.}
+which precludes experiments at a sufficient scale. The \ExptsModel features an intricate feedback loop between algorithms' performance, their reputations and agents' choices, which simplifies the simulations but does not appear analytically tractable.
+
+\xhdr{Discussion}: Reflecting reality, we posit that \asedit{the exploration strategies available to the principals} are ``non-strategic" in nature. Even though the principals play a multi-step game, they do not react to each other's moves or to the agents' strategic choices. This is how industry approaches exploration algorithms, and for several good reasons. "Non-strategic" exploration is well-studied in machine learning, and yet it remains a very complex subject in research (as evidenced, \eg by the huge amount of activity therein). Even the seemingly simple algorithms are not straightforward to deploy in practice, and require a substantial investment in infrastructure \cite[\eg see the discussions in][]{DS-arxiv}. Responding to the competition represents another layer of complexity which has not been previously studied in this context, to the best of our knowledge, let alone made even remotely practical. Besides, the competitor's exploration strategy is typically not public, and understanding its exploration behavior via observations appears challenging even as a  research problem.%
+\footnote{Principals could potentially react to the market share or (the difference in) reputation scores. However, baking these signals into one's exploration strategy runs the risk of over-interpreting our competition model, as they may change for exogenous reasons. Alternatively, one could use such signals, as well as the intuitions coming from this paper, to guide the platform's decisions regarding exploration.}
+
+
+%\gaedit{Finally, the assumption that firms commit to the algorithms at the start of the game deserves further justification. We impose this commitment assumption since it is more realistic than considering dynamic strategies and algorithms are, by definition, a commitment to a set of rules. In many contexts where such exploration algorithms are typically deployed, consumers arrive at such a rapid volume that it it is infeasible to consider a firm dynamically adapting its algorithm to each consumer that arrives. Indeed, \cite{DS-arxiv} points out how difficult it is to deploy standard exploration algorithms in practice and such dynamic strategies are substantially more difficult to deploy in practice. While it is possible to consider share-adaptive algorithms that would still keep the commitment assumption but allow for indirect dynamic responses to market conditions, such algorithms do not exist currently in the literature but are a good avenue for future work.}
 
 
 
-\newpage
+Our models are stylized in several important  respects. Firms compete only on the quality of service, rather than, say, pricing or the range of products. Agents are myopic: they do not worry about how their actions impact their future utility.\footnote{So, agents do not attempt to learn over time, second-guess or game future agents, or manipulate the principals' learning algorithms. This is arguably typical in practice, in part because one agent's influence tends to be small.}  Various performance signals available to the users, from personal experience to word-of-mouth to consumer reports, are abstracted as persistent ``reputation scores" reflecting the current reputation, and further simplified to average performance over a sliding time window.
+
+We consider two extremes: a simple Bayesian model with full Bayesian rationality and no performance signals, and a simple frequentist model with reputation scores and no prior knowledge or beliefs. For the theoretical results, the ``no-performance-signals" assumption makes agents' behavior independent of a particular realization of the prior. Therefore, we summarize each learning algorithm via its Bayesian-expected rewards, not worrying about its detailed performance on particular realizations of the prior.  Such summarization is essential for formulating lucid and general analytic results, let alone proving them. It is unclear how to incorporate performance signals in a theoretically tractable model. For the numerical results, the \ExptsModel accounts for competition in a more direct way,
+% \gaedit{by positing a more realistic model of consumer behavior that does not
+not requiring users to have direct information on the algorithms deployed or the bandit problem faced by the firms. It further allows us to separate reputation vs. data advantage and makes our model amenable to numerical simulations.
+%(Whereas simulating the intricate interplay of learning dynamics and Bayesian priors appears computationally intractable, see Footnote~\ref{fn:Tsquared}.)
+
+
+On the machine learning side, our model captures big, qualitative differences between bandit algorithms, building on the well-established intuition in the literature. Comparisons between bandit algorithms are generally somewhat subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others. In particular, ``better" algorithms are better in the long run, but could be worse initially. We focus on a standard model of stochastic bandits. However, we are less interested in state-of-art algorithms for realistic applications.
+
+Bandit rewards are not discounted with time, reflecting the fact that non-discounted, regret-minimizing formulations has been prevalent in the bandits literature over the past two decades \citep{slivkins-MABbook,LS19bandit-book}, and better correspond to practical deployments \citep[\eg][]{DS-arxiv}. Also, the distinctions between better and worse bandit algorithms are not as well-understood under time-discounting.
 
 %
 % The code below should be generated by the tool at
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below.
 %
+
+\newpage
 
 \addcontentsline{toc}{section}{References}
 
