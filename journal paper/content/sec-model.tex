@@ -1,9 +1,9 @@
 \xhdr{Principals and agents.} There are two principals and $T$ agents,
 denoted, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$. The game proceeds in (global) rounds. In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions (same for both principals and all rounds).%
 \footnote{We use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
-The agent experiences this action and receives a reward $r_t\in \{ 0,1\}$ \asedit{for this action, which is then observed by the principal}. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are fixed over time, and initially not known to anybody. The principals are completely unaware of the rounds when the opponent is chosen.
+The agent experiences this action and receives a reward $r_t\in \{ 0,1\}$ for this action, which is then observed by the principal. We posit \emph{stochastic rewards}: whenever a given action $a\in A$ is chosen, the reward is an independent draw from Bernoulli distribution with mean $\mu_a$. The mean rewards $\mu_a$ are fixed over time, and initially not known to anybody. The principals are completely unaware of the rounds when the opponent is chosen.
 
-\asedit{Thus, each principal follows the protocol of \emph{multi-armed bandits} (\emph{MAB}): in each round when it is chosen, it chooses an arm from $A$ and observes a reward for this action (and nothing else).}
+Thus, each principal follows the protocol of \emph{multi-armed bandits} (\emph{MAB}): in each round when it is chosen, it chooses an arm from $A$ and observes a reward for this action (and nothing else).
 
 Each principal $i$ commits to an MAB algorithm \alg[i] before round $1$, and uses it throughout. The algorithm proceeds in time-steps:%
 \footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.} each time it is called, it outputs an arm from $A$, and inputs a reward for this action. The algorothm is called only in global rounds when principal $i$ is chosen.
@@ -55,7 +55,7 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 \item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition).
 \end{itemize}
 
-\asedit{\HardMaxRandom and \SoftMaxRandom can be seen as agent types that, resp., give some chance to the other principal and avoid sharp transitions in their probabilistic response. Alternatively, they can be realized as mixtures over more ``basic" agent types. Indeed, \HardMaxRandom is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.} \gaedit{We provide an interpretation of the ``random agents" as reputation-agnostic consumers that are not aware of or do not seek out the reputation signals available to them in the respective choice model variants.}
+\HardMaxRandom and \SoftMaxRandom can be seen as agent types that, resp., give some chance to the other principal and avoid sharp transitions in their probabilistic response. Alternatively, they can be realized as mixtures over more ``basic" agent types. Indeed, \HardMaxRandom is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$. \gaedit{We provide an interpretation of the ``random agents" as reputation-agnostic consumers that are not aware of or do not seek out the reputation signals available to them in the respective choice model variants.}
 
 % \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
 
@@ -65,21 +65,21 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 We consider two model variants, Bayesian and frequentist. The main difference between the two concerns the agents' reward estimates $\est_i(t)$.
 
 \begin{itemize}
-\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. \asedit{Each agent knows its global round $t$, but not the performance signals such as the current market shares.} Agents' reward estimates are defined as posterior mean rewards:
+\item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Each agent knows its global round $t$, but not the performance signals such as the current market shares. Agents' reward estimates are defined as posterior mean rewards:
         $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i}$
     for each agent $t$ and principal $i$.%
 \footnote{Formally, agents do the Bayesian update knowing $t$, the principals' algorithms, the prior $\priorMu$, and $\respF$.}
 
 %Agents know the principals' algorithms.\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}}
 
-\item In the \emph{\ExptsModel}, agents' reward estimate for a given principal is the average reward of the last $M$ agents that chose this principal, interpreted as a \asedit{current} \emph{reputation score}. To make it meaningful initially, each principal enjoys a ``warm start": additional $T_0$ agents arrive before the game starts, and interact with the principal as described above.
+\item In the \emph{\ExptsModel}, agents' reward estimate for a given principal is the average reward of the last $M$ agents that chose this principal, interpreted as a current \emph{reputation score}. To make it meaningful initially, each principal enjoys a ``warm start": additional $T_0$ agents arrive before the game starts, and interact with the principal as described above.
 
 \end{itemize}
 
 \xhdr{Competition game.}
 Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm.
-\asedit{Pure strategies in this game correspond to MAB algorithms.}%
-\footnote{\asedit{Note that a mixed strategy is also a (randomized) MAB algorithm, \ie also a pure strategy.}}
+Pure strategies in this game correspond to MAB algorithms.%
+\footnote{Note that a mixed strategy is also a (randomized) MAB algorithm, \ie also a pure strategy.}
  Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral \gaedit{and aim to maximize their expected utility.}\gadelete{ : they optimize their expected utility.}
 
 
@@ -91,7 +91,7 @@ Third, we can handle a limited amount of non-stationarity in $\respF$ for the \H
 \subsection{Discussion}
 \label{sec:discussion}
 
-Reflecting reality, we posit that \asedit{the exploration strategies available to the principals} are ``non-strategic" in nature. Even though the principals play a multi-step game, they do not react to each other's moves or to the agents' strategic choices. This is how industry approaches exploration algorithms, and for several good reasons. "Non-strategic" exploration is well-studied in machine learning, and yet it remains a very complex subject in research (as evidenced, \eg by the huge amount of activity therein). Even the seemingly simple algorithms are not straightforward to deploy in practice, and require a substantial investment in infrastructure \cite[\eg see the discussions in][]{DS-arxiv}. Responding to the competition represents another layer of complexity which has not been previously studied in this context, to the best of our knowledge, let alone made even remotely practical. Besides, the competitor's exploration strategy is typically not public, and understanding its exploration behavior via observations appears challenging even as a  research problem.%
+Reflecting reality, we posit that the exploration strategies available to the principals are ``non-strategic" in nature. Even though the principals play a multi-step game, they do not react to each other's moves or to the agents' strategic choices. This is how industry approaches exploration algorithms, and for several good reasons. "Non-strategic" exploration is well-studied in machine learning, and yet it remains a very complex subject in research (as evidenced, \eg by the huge amount of activity therein). Even the seemingly simple algorithms are not straightforward to deploy in practice, and require a substantial investment in infrastructure \cite[\eg see the discussions in][]{DS-arxiv}. Responding to the competition represents another layer of complexity which has not been previously studied in this context, to the best of our knowledge, let alone made even remotely practical. Besides, the competitor's exploration strategy is typically not public, and understanding its exploration behavior via observations appears challenging even as a  research problem.%
 \footnote{Principals could potentially react to the market share or (the difference in) reputation scores. However, baking these signals into one's exploration strategy runs the risk of over-interpreting our competition model, as they may change for exogenous reasons. Alternatively, one could use such signals, as well as the intuitions coming from this paper, to guide the platform's decisions regarding exploration.}
 
 
