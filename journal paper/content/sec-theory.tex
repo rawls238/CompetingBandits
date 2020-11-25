@@ -58,14 +58,14 @@ Two MAB algorithms \emph{deviate} at (local) step $n$ if there is a set $H$ of h
 \end{definition}
 
 \begin{theorem}\label{thm:DG-dominance}
-Assume \HardMax response function with fair tie-breaking: \asedit{$\respF(0)=\nicefrac{1}{2}$}. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
+Assume \HardMax response function with fair tie-breaking: $\respF(0)=\nicefrac{1}{2}$. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
 \end{theorem}
 
-\asedit{\DynGreedy is a weakly dominant strategy in the competition game, and a unique Nash equilibrium.  This is because \DynGreedy receives, in expectation, at least half of the agents before global round $n_0$, and all agents after that; both are the best possible against \alg[2]. Moreover, \DynGreedy guarantees at least $T/2$ agents in expectation, and any other strategy can receive strictly less than that (\eg if the opponent chooses \DynGreedy).}
+\DynGreedy is a weakly dominant strategy in the competition game, and a unique Nash equilibrium.  This is because \DynGreedy receives, in expectation, at least half of the agents before global round $n_0$, and all agents after that; both are the best possible against \alg[2]. Moreover, \DynGreedy guarantees at least $T/2$ agents in expectation, and any other strategy can receive strictly less than that (\eg if the opponent chooses \DynGreedy).
 
 
 \begin{corollary}\label{cor:DG-dominance}
-\asedit{\DynGreedy is a weakly dominant strategy in the competition game.} The game has a unique Nash equilibrium: both principals choose \DynGreedy.
+\DynGreedy is a weakly dominant strategy in the competition game. The game has a unique Nash equilibrium: both principals choose \DynGreedy.
 \end{corollary}
 
 The proof of Theorem~\ref{thm:DG-dominance} relies on two key lemmas: that deviating from \DynGreedy implies a strictly smaller Bayesian-expected reward, and that \HardMax implies a ``sudden-death" property: if one agent chooses principal $1$ with certainty, so do all subsequent agents. We re-use both lemmas in later results, so we state them in sufficient generality. 
@@ -89,7 +89,7 @@ The remainder of the proof of Theorem~\ref{thm:DG-dominance} uses the conclusion
 %\label{sec:HardMax-biased}
 
 \xhdr{Biased tie-breaking.}
-The \HardMax model is very sensitive to tie-breaking \asedit{between the principals}. For starters, if ties are  broken deterministically in favor of principal $1$, then principal 1 can get all agents no matter what the other principal does, simply by using \StaticGreedy.
+The \HardMax model is very sensitive to tie-breaking between the principals. For starters, if ties are  broken deterministically in favor of principal $1$, then principal 1 can get all agents no matter what the other principal does, simply by using \StaticGreedy.
 
 \begin{theorem}\label{thm:HardMax-hardTies}
 Assume \HardMax response function with $\respF(0)=1$ (ties are always broken in favor of principal $1$). If \alg[1] is \StaticGreedy, then all agents choose principal $1$.
@@ -166,7 +166,7 @@ Fix a \HardMaxRandom response function $\respF$. Suppose algorithms \alg[1], \al
 
 %\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
 
-We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better algorithm prevails in equilibrium. \asedit{We consider a version of the competition game in which the principals are restricted to choosing from a given set of MAB algorithms; the algorithms in this set are called \emph{feasible}.}
+We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better algorithm prevails in equilibrium. We consider a version of the competition game in which the principals are restricted to choosing from a given set of MAB algorithms; the algorithms in this set are called \emph{feasible}.
 
 %Indeed, this holds if the principals can only choose from a finite set of MAB algorithms.
 %\begin{definition}\label{def:restricted-competition}
@@ -174,7 +174,7 @@ We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better
 %\end{definition}
 
 \begin{corollary}\label{cor:random}
-Fix a \HardMaxRandom response function $\respF$. \asedit{Consider the competition game in which all feasible MAB algorithms are $T$-oblivious, \bmonotone, and satisfy \eqref{eq:random-assn} for some fixed $m_0$. Suppose some feasible algorithm \alg  BIR-dominates all other feasible algorithms, starting from some local step $n_0$.} Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium, in which both principals choose algorithm \alg.
+Fix a \HardMaxRandom response function $\respF$. Consider the competition game in which all feasible MAB algorithms are $T$-oblivious, \bmonotone, and satisfy \eqref{eq:random-assn} for some fixed $m_0$. Suppose some feasible algorithm \alg  BIR-dominates all other feasible algorithms, starting from some local step $n_0$. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium, in which both principals choose algorithm \alg.
 \end{corollary}
 
 
@@ -245,13 +245,13 @@ Second, let us argue that \alg[2] is \bmonotone. This follows from \eqref{eq:BIR
 Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of \bmonotone MAB algorithms. Consequently, if the principals are restricted to choosing \bmonotone MAB algorithms, then non-greedy algorithms cannot be chosen in equilibrium.
 
 \begin{corollary}\label{cor:random-greedy}
-Fix a symmetric \HardMaxRandom response function $\respF$. \asedit{Consider the competition game in which algorithms are feasible if and only if they are \bmonotone.}%
-\footnote{\asedit{More generally, this corollary holds if feasible algorithms are \bmonotone and closed under the greedy modification (\ie the greedy modification of any feasible algorithm is also feasible, for any mixing parameter $p$).}}
-\asedit{Then there are no Nash equilibria other than (\DynGreedy,\,\DynGreedy).}
+Fix a symmetric \HardMaxRandom response function $\respF$. Consider the competition game in which algorithms are feasible if and only if they are \bmonotone.%
+\footnote{More generally, this corollary holds if feasible algorithms are \bmonotone and closed under the greedy modification (\ie the greedy modification of any feasible algorithm is also feasible, for any mixing parameter $p$).}
+Then there are no Nash equilibria other than (\DynGreedy,\,\DynGreedy).
 %The latter is not a Nash equilibrium when some algorithm BIR-dominates \DynGreedy and time horizon $T$ is sufficiently large.
 \end{corollary}
 
-\asedit{Recall that by Theorem~\ref{thm:random-clean} \DynGreedy cannot be played in equilibrium when it is BIR-dominated by some feasible, $T$-oblivious algorithm and the time horizon $T$ is large enough.}
+Recall that by Theorem~\ref{thm:random-clean} \DynGreedy cannot be played in equilibrium when it is BIR-dominated by some feasible, $T$-oblivious algorithm and the time horizon $T$ is large enough.
 
 %These conclusions hold even if each principal's strategy set is a subset of \bmonotone MAB algorithms that is closed under the greedy modification.%
 %\footnote{That is, the strategy set of each principal consists of some (but not necessarily all) \bmonotone MAB algorithms, and contains the greedy modification for each algorithms in this set and each mixing parameter $p$.}
@@ -414,7 +414,7 @@ that the ``bump'' over $\tfrac12$ is at least on the order of
 $\BIR_2(t)$.
 \end{proof}
 
-\asedit{It follows that a weakly-BIR-dominating algorithm prevails in equilibrium.} We need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
+It follows that a weakly-BIR-dominating algorithm prevails in equilibrium. We need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
 \begin{align}\label{eq:SoftMax-BReg}
 \BReg(n) := n\cdot \E_{\mu\sim\priorMu}
     \left[ \max_{a\in A} \mu_a\right] -
@@ -442,7 +442,7 @@ Suppose some feasible algorithm \alg weakly-BIR-dominates all others. Then, for 
 \subsection{Economic implications}
 \label{sec:theory-welfare}
 
-We frame our contributions in terms of the relationship between \competitiveness \asedit{(as expressed by the ``hardness" of the agents' response function $\respF$)},
+We frame our contributions in terms of the relationship between \competitiveness (as expressed by the ``hardness" of the agents' response function $\respF$),
  %and \rationality on one side, 
  and adoption of better algorithms. 
 \asdelete{Recall that both \competitiveness (of the game between the two principals) and \rationality (of the agents) are controlled by the response function $\respF$.}
