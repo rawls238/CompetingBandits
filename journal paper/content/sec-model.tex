@@ -55,7 +55,9 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 \item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition).
 \end{itemize}
 
-\HardMaxRandom and \SoftMaxRandom can be seen as agent types that, resp., give some chance to the other principal and avoid sharp transitions in their probabilistic response. Alternatively, they can be realized as mixtures over more ``basic" agent types. Indeed, \HardMaxRandom is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$. \gaedit{We provide an interpretation of the ``random agents" as reputation-agnostic consumers that are not aware of or do not seek out the reputation signals available to them in the respective choice model variants.}
+
+\HardMaxRandom and \SoftMaxRandom can be seen as agent types that, resp., give some chance to the other principal and avoid sharp transitions in their probabilistic response. Alternatively, they can be realized as mixtures over more ``basic" agent types. Indeed, \HardMaxRandom is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). \asedit{The latter can be interpreted as consumers oblivious to principals' reputation, due to the lack of awareness or interest.} One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.
+
 
 % \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
 
@@ -80,7 +82,7 @@ We consider two model variants, Bayesian and frequentist. The main difference be
 Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm.
 Pure strategies in this game correspond to MAB algorithms.%
 \footnote{Note that a mixed strategy is also a (randomized) MAB algorithm, \ie also a pure strategy.}
- Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral \gaedit{and aim to maximize their expected utility.}\gadelete{ : they optimize their expected utility.}
+ Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral and aim to maximize their expected utility.
 
 
 \xhdr{Extensions.} The \TheoryModel admits several extensions, detailed in Section~\ref{sec:theory-extensions}. First, all/most results extend to arbitrary reward distributions, allow reward-dependent utility, and carry over to a more general version of multi-armed bandits. Second, agents could have beliefs on $(\alg[1],\alg[2],\priorMu,\respF)$ that need not be correct; then, all results carry over with respect to these beliefs.
