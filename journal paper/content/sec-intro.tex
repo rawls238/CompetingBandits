@@ -8,16 +8,16 @@ Learning from interactions with users is ubiquitous in modern customer-facing pl
 In this paper, we study the interplay between \exploration and \competition.%
 \footnote{\Ie we add \competition to the standard exploration-exploitation tradeoff studied in multi-armed bandits.}
 Platforms that engage in exploration typically need to compete against one another. Most importantly, platforms compete for users, who benefit them in two ways:
-generate revenue and provide data for learning. This creates a tension:
+generating revenue and providing data for learning. This creates a tension:
 %between \exploration and \competition.
-while exploration may be essential for improving the service tomorrow, it may degrade quality \emph{today}, in which case some of the users can leave and there will be less users to learn from. This may create a ``data feedback loop" when the platform's performance further degrades relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may cause a ``death spiral" effect when the vast majority of customers eventually switch to competitors.
+while exploration may be essential for improving the service tomorrow, it may degrade quality \emph{today}, in which case some of the users can leave and there will be fewer users to learn from. This may create a ``data feedback loop" when the platform's performance further degrades relative to competitors who keep learning and improving from \emph{their} users, and so forth. Taken to the extreme, such dynamics may cause a ``death spiral" effect when the vast majority of customers eventually switch to competitors.
 
 %\asdelete{Users therefore serve three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents who choose among the competing systems.}
 
 The main high-level question we ask is:
 %that we focus on in this paper is:
 %\begin{align}\label{eq:main-Q}
-\textbf{How does competition incentivize the adoption of better exploration algorithms?}
+\textbf{Whether and how does competition incentivize the adoption of better exploration algorithms?}
 %\end{align}
 This translates into a number of more concrete questions. While it is commonly assumed that better technology always helps, is this so under competition? Does increased competition lead to higher consumer welfare? How significant are the data feedback loops
 %--- when more data leads to more users, which leads to even more data, etc. ---
@@ -52,10 +52,14 @@ where we vary agents' decision rule or allow a first-mover advantage.%
 %to one of the principals.
 %In all variants, agents have little or no information about other agents' choices and rewards.
 
-Each principal faces a basic and well-studied version of the multi-armed bandit problem, where each reward is drawn independently from a fixed, action-specific distribution. Each principal's strategy is a multi-armed bandit algorithm; as such, it can dynamically adjust itself to the observed rewards, but not to the competition.\footnote{\gaedit{In particular, the algorithm does not respond to neither the competitors' rewards (which it does not observe) nor its current market share.}} This modeling choice reflects the reality of industrial applications, which build on a huge body of knowledge in machine learning; more on this in Section~\ref{sec:discussion}.
+Each principal faces a basic and well-studied version of the multi-armed bandit problem, where each reward is drawn independently from a fixed, action-specific distribution. Each principal's strategy is a multi-armed bandit algorithm; as such, it can dynamically adjust itself to the observed rewards, but not to the \asedit{competitor's choices, rewards, or market share}.
+%\footnote{\gaedit{In particular, the algorithm does not respond to neither the competitors' rewards (which it does not observe) nor its current market share.}} 
+This modeling choice reflects the reality of industrial applications, which build on a huge body of knowledge in machine learning; more on this in Section~\ref{sec:discussion}.
 %Responding to the competition is another layer of complexity which has not been previously studied in this context, let alone made practical.
-We draw on the machine learning literature to compare bandit algorithms to one another in isolation,
- so that we can talk about \emph{better} bandit algorithms in a principled way.\footnote{\gaedit{This literature typically compares the performance of different algorithms in a stand-alone exploration problem according to their asymptotic regret, which can be interpreted as maximizing consumer welfare in our context (see Appendix~\ref{app:bg} for self-contained background). Thus, we can utilize this comparison measure to assess the quality of the algorithms adopted under competition.}}
+
+
+\asedit{We draw on the machine learning literature to tell us how to compare bandit algorithms to one another, so that we can talk about \emph{better} bandit algorithms in a principled way. In particular, one considers algorithm's performance \emph{in isolation}: in a standalone exploration problem without competition. We focus on big, qualitative differences in algorithms' performance, see Appendix~\ref{app:bg} for background.}
+%We draw on the machine learning literature to compare bandit algorithms to one another in isolation, so that we can talk about \emph{better} bandit algorithms in a principled way.\footnote{\gaedit{This literature typically compares the performance of different algorithms in a stand-alone exploration problem according to their asymptotic regret, which can be interpreted as maximizing consumer welfare in our context (see Appendix~\ref{app:bg} for self-contained background). Thus, we can utilize this comparison measure to assess the quality of the algorithms adopted under competition.}}
 %\footnote{Such comparisons are somewhat subtle, as some algorithms may be better for some problem instances and/or time intervals, and worse for some others. More on this in Appendix~\ref{app:bg}. Generally,  ``better" algorithms are better in the long run, but could be worse initially. }
 One baseline is algorithms that do not explicitly explore (\emph{greedy algorithms}); in isolation, they are known to perform poorly for a wide variety of problem instances.
 
@@ -123,14 +127,14 @@ Our results depend crucially on agents' decision rule:
 if the tie-breaking is probabilistically biased in favor of one principal, then this principal can always prevail in competition.
 % has a simple ``winning strategy" no matter what the other principal does.
 
-\textbf{(ii)} We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random. 
+\textbf{(ii)} We dilute the \HardMax agents with a small fraction of ``random agents" who choose a principal uniformly at random.
 (They can be interpreted as consumers that are oblivious to the principals' reputation.) We call this model \HardMaxRandom. Then better algorithms help in a big way: a sufficiently better algorithm is guaranteed to win all non-random agents after an initial learning phase. There is a caveat, however: any algorithm can be defeated by interleaving it with the greedy algorithm. This has two undesirable consequences: a better algorithm may sometimes lose in competition, and a Nash equilibrium typically does not exist.
 
 \textbf{(iii)} We further soften the decision rule so that the selection probabilities vary smoothly in terms of principals' Bayesian-expected rewards;
 %as a function of the difference between  principals' Bayesian-expected rewards;
 We call it \SoftMaxRandom, a more realistic middle ground between \HardMax agents and random agents.%
 \footnote{Alternatively, one can obtain a \SoftMaxRandom decision rule using a mixture of more ``basic" agent types that follow \HardMax unless the principal's Bayesian-expected rewards are too close to each other.}
-In the most technical result of the paper, we find that a better algorithm prevails under much weaker assumptions.
+In the most technical result of the paper, we find that a \asedit{sufficiently} better algorithm prevails under much weaker assumptions.
 % on what constitutes a better algorithm.
 %This is the most technical result of the paper.
 
@@ -165,12 +169,12 @@ In the most technical result of the paper, we find that a better algorithm preva
 Our findings can be framed in terms of the inverted-U relationship between competition and innovation. This is a well-established concept, dating back to \cite{Schumpeter-42}, whereby too little or too much competition is bad for innovation, but intermediate levels of competition tend to be better. %\citep[\eg][]{aghion2005competition,Vives-08}.
 We interpret innovation as the adoption of better exploration algorithms,%
 \footnote{Adoption of exploration algorithms tends to require substantial R\&D effort in practice, even if the algorithms are well-known and/or similar technologies already exist elsewhere \citep[\eg see][]{DS-arxiv}.}
-and control the severity of the competition by varying the agents' decision rule from \HardMax (cut-throat competition) to \HardMaxRandom to \SoftMaxRandom and all the way to the uniform selection. 
+and control the severity of the competition by varying the agents' decision rule from \HardMax (cut-throat competition) to \HardMaxRandom to \SoftMaxRandom and all the way to the uniform selection.
 %\footnote{Agents' decision rule also controls the agents' rationality. While agents' rationality and severity of competition are often modeled separately, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 We also find another, technically different inverted-U relationship which zeroes in on the \HardMaxRandom model.
 %We vary rationality/competitiveness inside this model, and track the marginal utility of switching to a better algorithm.
 
-While traditional models of innovation study lab-based R\&D, we consider data-driven innovation: one that crucially depends on data generated by the firm's customers. 
+While traditional models of innovation study lab-based R\&D, we consider data-driven innovation: one that crucially depends on data generated by the firm's customers.
 \asmargincomment{important sentence!}
 We focus on innovation in \emph{exploration technology} which systematically improves the firm's products, whereas prior work would define innovation as improvement in the products themselves. We recover the traditional inverted-U relationship purely through the reputational consequences of exploration, rather than monetary costs/benefits thereof. This is in contrast to the inverted-U relationships established in prior work, which rely on the monetary aspects: how much can a firm invest into  R\&D and how much can it profit from the innovation.
 
@@ -198,7 +202,7 @@ We refine and expand the theoretical results in several ways:
 \textbf{(i)}
 %We compare \HardMax and \HardMaxRandom decision rules.
 We find that the greedy algorithm often wins under the \HardMax decision rule, with a strong evidence of the ``death spiral" effect mentioned earlier.
- As predicted by the theory, better algorithms prevail under \HardMaxRandom if the expected number of ``random" users is sufficiently large. 
+ As predicted by the theory, better algorithms prevail under \HardMaxRandom if the expected number of ``random" users is sufficiently large.
  %\asdelete{However, this effect is negligible for smaller parameter values.}
 
 %\footnote{\asedit{Reputation scores already introduce some noise into users' choices. However, the amount of noise due to this channel is typically small, both in our simulations and in practice, because reputation signals average over many datapoints.}}

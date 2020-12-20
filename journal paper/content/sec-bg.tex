@@ -13,6 +13,8 @@ We focus on three algorithm classes, as in Section~\ref{sec:sim}:
 \item \emph{Adaptive-exploration} algorithms that combine exploration and exploitation, and gradually sway the exploration choices towards more promising alternatives.
 \end{itemize}
 
+\asedit{Below we discuss which algorithms are better than others, and what does it \emph{mean} for one bandit algorithm to be better than another. This is a rather subtle issue, because some algorithms may be better for some problem instances and/or time intervals, and worse for some others. In particular, ``better" algorithms are better in the long run, but could be worse initially.}
+
 While we list precise upper and lower bounds on the regret rates, the main goal is to illustrate how the three algorithm classes are separated from one another; the exact results are not essential for this paper. For ease of presentation, we use standard asymptotic notation from computer science: $O(f(t))$ and $\Omega(f(t))$ means at most (resp., at least) $f(n)$, up to constant factors, starting from large enough $t$. Likewise, $\tildeO(f(t))$ notation suppresses the $\polylog(t)$ factors.
 
 
