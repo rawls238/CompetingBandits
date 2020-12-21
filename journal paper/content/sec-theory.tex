@@ -4,7 +4,7 @@ In this section, we present our theoretical results for the \TheoryModel. While 
 \subsection{Preliminaries}
 \label{sec:theory-prelims}
 
-\xhdr{Notation.} Let $\rew_i(n)$ denote the \asedit{agent's realized reward observed by} principal $i$ at local step $n$. \asedit{Put differently, it is the reward collected by algorithm $\alg[i]$ in this local step.} For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
+\xhdr{Notation.} Let $\rew_i(n)$ denote the agent's realized reward observed by principal $i$ at local step $n$. Put differently, it is the reward collected by algorithm $\alg[i]$ in this local step. For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
     \[ \PMR_i(t):=  \E\sbr{ r_t\mid i_t = i }
         = \E\sbr{ \rew_i(n_i(t)+1) }. \]
 
@@ -29,7 +29,7 @@ $\E[\mu_a] \neq \E[\mu_a']$ for any $a,a'\in A$.
 In Appendix~\ref{app:perturb}, we provide two examples for which property \eqref{eq:assn-distinct} is `generic', in the sense that it can be enforced almost surely by a small random perturbation of the prior. The two examples concern, resp., Beta priors and priors with a finite support, and focus on priors $\priorMu$ that are independent across arms.
 
 \xhdr{MAB algorithms.}
-\asedit{We consider two baseline algorithms. The main one,} called  \DynGreedy, chooses an arm $a$ with the largest posterior mean reward $\E[\mu_a \mid \cdot ]$ given all information currently available to the algorithm. \asedit{A more primitive baseline,} called \StaticGreedy, chooses an arm $a$ with the largest prior mean reward $\E[\mu_a]$, and uses this arm in all rounds.
+We consider two baseline algorithms. The main one, called  \DynGreedy, chooses an arm $a$ with the largest posterior mean reward $\E[\mu_a \mid \cdot ]$ given all information currently available to the algorithm. A more primitive baseline, called \StaticGreedy, chooses an arm $a$ with the largest prior mean reward $\E[\mu_a]$, and uses this arm in all rounds.
 
 %We consider two (Bayesian) greedy algorithms. The first one, called  \DynGreedy, chooses an arm $a$ with the largest posterior mean reward $\E[\mu_a \mid \cdot ]$ given all information currently available to the algorithm. The second algorithm, called \StaticGreedy, chooses an arm $a$ with the largest prior mean reward $\E[\mu_a]$, and uses this arm in all rounds. \asdelete{In both algorithms, ties are broken arbitrarily.}
 
@@ -56,7 +56,7 @@ We consider agents with \HardMax response function, and show that principals are
 To make this formal, let's define what it means for MAB algorithms to deviate.
 
 \begin{definition}
-\asedit{One MAB algorithm \emph{deviates} from another} at (local) step $n$ if there is a set $H$ of histories over the previous local steps such that both algorithms lead to $H$ with positive probability, and choose different distributions over arms given any history $h\in H$. \asedit{We say $\alg$ deviates from $\alg'$} \emph{starting from} step $n_0$ if $n=n_0$ is the smallest step \asedit{when this happens.}
+One MAB algorithm \emph{deviates} from another at (local) step $n$ if there is a set $H$ of histories over the previous local steps such that both algorithms lead to $H$ with positive probability, and choose different distributions over arms given any history $h\in H$. We say $\alg$ deviates from $\alg'$ \emph{starting from} step $n_0$ if $n=n_0$ is the smallest step when this happens.
 \end{definition}
 
 \begin{theorem}\label{thm:DG-dominance}
@@ -83,7 +83,7 @@ Consider \HardMax response function with $\respF(0)\geq\tfrac12$.
 Suppose \alg[1] is \bmonotone, and $\PMR_1(t_0)>\PMR_2(t_0)$ for some global round $t_0$. Then $\PMR_1(t)>\PMR_2(t)$ for all subsequent rounds $t$.
 \end{lemma}
 
-\asedit{The sudden-death property in Lemma~\ref{lm:DG-sudden} holds because principal $1$ appears at least as good or better to the next agent (by the Bayesian-monotonicity property), whereas principal $2$ appears the same as before. Principal $2$ needs new data in order to improve, and it does not receive new data unless the response function is randomized.}
+The sudden-death property in Lemma~\ref{lm:DG-sudden} holds because principal $1$ appears at least as good or better to the next agent (by the Bayesian-monotonicity property), whereas principal $2$ appears the same as before. Principal $2$ needs new data in order to improve, and it does not receive new data unless the response function is randomized.
 
 The remainder of the proof of Theorem~\ref{thm:DG-dominance} uses the conclusion of Lemma~\ref{lm:DG-rew} to derive the precondition for Lemma~\ref{lm:DG-sudden}, \ie goes from $\rew_1(n_0)>\rew_2(n_0)$ to $\PMR_1(n_0)>\PMR_2(n_0)$. The subtlety one needs to deal with is that the principal's ``local" round corresponding to a given ``global" round is a random quantity due to the random tie-breaking.
 
@@ -179,7 +179,7 @@ We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better
 Fix a \HardMaxRandom response function $\respF$. Consider the competition game in which all feasible MAB algorithms are $T$-oblivious, \bmonotone, and satisfy \eqref{eq:random-assn} for some fixed $m_0$. Suppose some feasible algorithm \alg  BIR-dominates all other feasible algorithms, starting from some local step $n_0$. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium, in which both principals choose algorithm \alg.
 \end{corollary}
 
-\asedit{Note that we make no positive prediction if one MAB algorithm is only slightly better than the other. Next we show that such predictions are essentially impossible.}
+Note that we make no positive prediction if one MAB algorithm is only slightly better than the other. Next we show that such predictions are essentially impossible.
 
 %\subsection{A little greedy goes a long way}
 %\label{sec:random-greedy}
@@ -220,7 +220,7 @@ Consider a symmetric \HardMaxRandom response function $\respF$ with baseline pro
 Then each agent $t\geq n_0$ chooses principal $2$ with probability $1-\eps_0$ (which is the largest possible).
 \end{theorem}
 
-\asedit{We argue below that \alg[1] can be a better algorithm than \alg[2]. This is consistent with Theorem~\ref{thm:random-clean}, since the BIR-dominance condition does not hold.}
+We argue below that \alg[1] can be a better algorithm than \alg[2]. This is consistent with Theorem~\ref{thm:random-clean}, since the BIR-dominance condition does not hold.
 
 Let us analyze the \BIR of the greedy modification (we will use it twice afterwards). Use \alg[1] and \alg[2] as in the theorem. For each $n\in\N$, let $M_n$ be the number of times \alg[1] is invoked in the first $n$ steps of \alg[2]. Let \alggr be a hypothetical algorithm which at each step $n$ outputs the ``Bayesian-greedy choice" based on the data collected by \alg[1] in the first $n-1$ steps. Let $\BIRgr(n)$ be the \BIR of this algorithm. Let
     $\mathtt{reg}_2(n) = n\cdot \max_a \mu_a - \rew_2(n)$
@@ -244,7 +244,7 @@ Then by \eqref{eq:BIR-modification} and Jensen's inequality, for each step $n\ge
     \geq f\rbr{ \E[M_n] }
     \geq 2\,\BIR_1(n). \]
 
-\asedit{We also use \refeq{eq:BIR-modification} to argue that} \alg[2] is \bmonotone. This follows from \eqref{eq:BIR-modification} since both \alg[1] and \alggr are \bmonotone. The latter follows from a ``monotonicity-in-information" property of the ``greedy step": it can only get better with more information, see Lemma~\ref{lm:MII}.
+We also use \refeq{eq:BIR-modification} to argue that \alg[2] is \bmonotone. This follows from \eqref{eq:BIR-modification} since both \alg[1] and \alggr are \bmonotone. The latter follows from a ``monotonicity-in-information" property of the ``greedy step": it can only get better with more information, see Lemma~\ref{lm:MII}.
 
 Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of \bmonotone MAB algorithms. Consequently, if the principals are restricted to choosing \bmonotone MAB algorithms, then non-greedy algorithms cannot be chosen in equilibrium.
 
@@ -254,9 +254,9 @@ Then there are no Nash equilibria other than (\DynGreedy,\,\DynGreedy).
 %The latter is not a Nash equilibrium when some algorithm BIR-dominates \DynGreedy and time horizon $T$ is sufficiently large.
 \end{corollary}
 
-Recall that by Theorem~\ref{thm:random-clean} \DynGreedy cannot be played in equilibrium when it is BIR-dominated by some feasible, $T$-oblivious algorithm and the time horizon $T$ is large enough. \asedit{Also recall that pure and mixed Nash equilibria are the same in our model.}
+Recall that by Theorem~\ref{thm:random-clean} \DynGreedy cannot be played in equilibrium when it is BIR-dominated by some feasible, $T$-oblivious algorithm and the time horizon $T$ is large enough. Also recall that pure and mixed Nash equilibria are the same in our model.
 
-\asedit{Corollary~\ref{cor:random-greedy} holds more generally: it suffices to assume that feasible algorithms are \bmonotone and closed under the greedy modification. The latter means that the greedy modification of any feasible algorithm is also feasible, for any mixing parameter $p$.}
+Corollary~\ref{cor:random-greedy} holds more generally: it suffices to assume that feasible algorithms are \bmonotone and closed under the greedy modification. The latter means that the greedy modification of any feasible algorithm is also feasible, for any mixing parameter $p$.
 
 
 
@@ -452,7 +452,6 @@ Suppose some feasible algorithm \alg weakly-BIR-dominates all others. Then, for 
 We frame our contributions in terms of the relationship between \competitiveness (as expressed by the ``hardness" of the agents' response function $\respF$),
  %and \rationality on one side,
  and adoption of better algorithms.
-\asdelete{Recall that both \competitiveness (of the game between the two principals) and \rationality (of the agents) are controlled by the response function $\respF$.}
 
 \OMIT{ %%%%%%
 We frame our contributions in terms of the relationship between \competition and \innovation, \ie between the extent to which the game between the two principals is competitive, and the degree of innovation --- adoption of better that these models incentivize. \Competition is controlled via the response function $\respF$, and \innovation refers to the quality of the technology (MAB algorithms) adopted by the principals. The \competition vs. \innovation relationship is well-studied in the economics literature, and is commonly known to often follow an inverted-U shape, as in \reffig{fig:inverted-U} (see Section~\ref{sec:related-work} for citations). \Competition in our models is closely correlated with \rationality: the extent to which agents make rational decisions, and indeed \rationality is what $\respF$ controls directly.
@@ -491,7 +490,7 @@ Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 
 \xhdr{Secondary story.}
 Let us zoom in on the symmetric  \HardMaxRandom model. Competitiveness within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which goes smoothly between the two extremes of \HardMax ($\eps_0=0$, tough competition) and the uniform choice ($\eps_0=\tfrac12$, no competition). 
-\asedit{Recall} % For clarity, we assume 
+Recall % For clarity, we assume 
 that principal's utility is the number of agents.
 
 \newcommand{\deltaU}{\Delta U}
