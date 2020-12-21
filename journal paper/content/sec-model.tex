@@ -64,7 +64,7 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 \item \SoftMaxRandom: $\respF$  lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition). \asedit{Intuitively, $\respF$ is a smoothed version of \HardMaxRandom, without a sharp threshold therein.}
 \end{itemize}
 
-\asedit{\HardMaxRandom and \SoftMaxRandom agents can be interpreted in several ways. First, they make mistakes, due to lack of awareness or interest. Second, they give some chance to the non-preferred principal, due to irrational effects or curiosity.}
+\asedit{\HardMaxRandom and \SoftMaxRandom agents can be interpreted in several ways. First, they make mistakes, due to lack of awareness or interest. Second, they give some chance to the non-preferred principal, due to curiosity or a behavioral effect like probability matching.}
 %\gaedit{make mistakes due to being oblivious to the principals' reputation, due to lack of awareness or interest. \HardMaxRandom models users as either being aware of the reputation or not, whereas \SoftMaxRandom models user mistakes as following a smooth density.}
 Third, they can be realized as a distribution over more ``basic" agent types. Indeed, the \HardMaxRandom distribution is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). \asedit{The latter can be interpreted as consumers that are completely oblivious to principals' reputation.}
 %, due to the lack of awareness or interest.} 
