@@ -1,6 +1,6 @@
 \xhdr{Principals and agents.} There are two principals and $T$ agents. We denote them, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$,
 where $[T] := \{1,2\LDOTS T\}$.
-The game proceeds in $T$ rounds. 
+The game proceeds in $T$ rounds.
 
 In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions.%
 \footnote{We use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
@@ -61,12 +61,14 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
     % $\respF$ equals $\eps$ on the interval $[-1,0)$ and $1-\eps'$ on the interval $(0,1]$, where $\eps,\eps'\in (0,\tfrac12)$ are some positive constants. In words, each agent is a \HardMax agent with probability $1-\eps-\eps'$, and with the remaining probability she makes a random choice.
     $\respF$ equals $\eps_0$ on the interval $[-1,0)$ and $1-\eps_0$ on the interval $(0,1]$, for some constant $\eps_0\in (0,\tfrac12)$. In words, each agent is a \HardMax agent with probability $1-2\eps_0$, and makes a random choice otherwise.
 
-\item \SoftMaxRandom: $\respF$ lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition).
+\item \SoftMaxRandom: $\respF$  lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition). \asedit{Intuitively, $\respF$ is a smoothed version of \HardMaxRandom, without a sharp threshold therein.}
 \end{itemize}
 
-\HardMaxRandom and \SoftMaxRandom can be seen as agent types that\gadelete{, resp., give some chance to the other principal and avoid sharp transitions in their probabilistic response.} \gaedit{make mistakes due to being oblivious to the principals' reputation, due to lack of awareness or interest. \HardMaxRandom models users as either being aware of the reputation or not, whereas \SoftMaxRandom models user mistakes as following a smooth density.}
-\asmargincomment{I don't get YK's beef with this.}
-Alternatively, they can be realized as a distribution over more ``basic" agent types. Indeed, \gaedit{the} \HardMaxRandom distribution is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). \gadelete{The latter can be interpreted as consumers oblivious to principals' reputation, due to the lack of awareness or interest.} One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.
+\asedit{\HardMaxRandom and \SoftMaxRandom agents can be interpreted in several ways. First, they make mistakes, due to lack of awareness or interest. Second, they give some chance to the non-preferred principal, due to irrational effects or curiosity.}
+%\gaedit{make mistakes due to being oblivious to the principals' reputation, due to lack of awareness or interest. \HardMaxRandom models users as either being aware of the reputation or not, whereas \SoftMaxRandom models user mistakes as following a smooth density.}
+Third, they can be realized as a distribution over more ``basic" agent types. Indeed, the \HardMaxRandom distribution is a mixture of \HardMax and ``random agents" (which choose a principal uniformly at random). \asedit{The latter can be interpreted as consumers that are completely oblivious to principals' reputation.}
+%, due to the lack of awareness or interest.} 
+One can obtain a \SoftMaxRandom response function using agent types that choose a principal $i$ with a largest reward estimate $\est_i$, unless $|\est_1-\est_2|$ is upper-bounded by some parameter $\theta$, in which case they choose uniformly. Then, we obtain \SoftMaxRandom as a mixture of random agents and these ``$\theta$-\HardMax'' agents, for a suitable distribution over $\theta$.
 
 
 % \asedit{(We assume $\respF(-1)+\respF(1)=1$ in \HardMaxRandom and \SoftMaxRandom only to simplify notation.)}
@@ -89,8 +91,9 @@ We consider two model variants, Bayesian and frequentist (which we use, resp., f
 \end{itemize}
 
 \xhdr{Competition game.}
-Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. \gaedit{Principals are risk-neutral and their utility is defined as their market share, \ie the number of agents that chose this principal, and thus they aim to select the algorithm that maximizes their expected utility. (Since MAB algorithms can be randomized, we make no distinction between pure and mixed strategies.)}
-\gadelete{Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral and aim to maximize their expected utility.}
+Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. \asedit{(Since MAB algorithms can be randomized, we make no distinction between pure and mixed strategies.) Principals are risk-neutral and their utility is defined as their market share, \ie the number of agents that chose this principal. Thus they aim to select the algorithm that maximizes their expected market share.}
+
+%Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral and aim to maximize their expected utility.
 
 
 \xhdr{Extensions.} The \TheoryModel admits several extensions, detailed in Section~\ref{sec:theory-extensions}. First, all/most results extend to arbitrary reward distributions, allow reward-dependent utility, and carry over to a more general version of multi-armed bandits. Second, agents could have beliefs on $(\alg[1],\alg[2],\priorMu,\respF)$ that need not be correct; then, all results carry over with respect to these beliefs.
