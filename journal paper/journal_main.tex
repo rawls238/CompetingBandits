@@ -185,7 +185,7 @@ Research done when Z.S. Wu was an intern and a postdoc at Microsoft Research NYC
 \begin{abstract}
 Most online platforms strive to learn from interactions with users, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We \asedit{study} the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for users. Here users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
 
-We consider a stylized duopoly model in which two firms face \asedit{the same multi-armed bandit problem}. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit instance only if it is chosen. Through a mix of theoretical results and numerical simulations, we study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for users. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low welfare. However, weakening competition by providing firms with some ``free" users incentivizes better exploration strategies and increases welfare.  We investigate two channels for weakening the competition: relaxing the rationality of users and giving one firm a first-mover advantage. Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
+We consider a stylized duopoly model in which two firms face \asedit{the same multi-armed bandit problem}. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit \asedit{problem} only if it is chosen. Through a mix of theoretical results and numerical simulations, we study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for users. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low welfare. However, weakening competition by providing firms with some ``free" users incentivizes better exploration strategies and increases welfare.  We investigate two channels for weakening the competition: relaxing the rationality of users and giving one firm a first-mover advantage. Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
 
 
 \vspace{0.2in}
@@ -214,6 +214,7 @@ We consider a stylized duopoly model in which two firms face \asedit{the same mu
 
 \subfile{content/sec-intro}
 
+\newpage
 \section{Related work}
 \label{sec:related-work}
 \subfile{content/related_work}
@@ -222,7 +223,6 @@ We consider a stylized duopoly model in which two firms face \asedit{the same mu
 \label{sec:model}
 \subfile{content/sec-model}
 
-%\newpage
 \section{Theoretical results: the \TheoryModel}
 \label{sec:theory}
 \subfile{content/sec-theory}
@@ -243,7 +243,6 @@ We consider a stylized duopoly model in which two firms face \asedit{the same mu
 %\label{sec:welfare}
 %\subfile{itcs18paper/sec-welfare}
 
-\newpage
 \section{Numerical simulations: the \ExptsModel}
 \label{sec:sim}
 %\label{sec:sim_details}
