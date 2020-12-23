@@ -1,0 +1,324 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{color,
+setspace,sectsty,comment,footmisc,caption,
+pdflscape,subcaption,array,hyperref,adjustbox
+}
+
+
+\usepackage{subfiles}
+\usepackage{libertine}
+\usepackage[title,titletoc]{appendix}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[round]{natbib} % cannot use with AAAI! A.S.
+
+\usepackage{float}
+\usepackage{sgame, tikz} % Game theory packages
+\usepackage{algorithm,algpseudocode}
+\usepackage{makecell}
+ \usepackage{multirow}
+ \usepackage{graphicx}
+
+\usepackage{booktabs} % For formal tables
+
+
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}
+\newtheorem{finding}{Finding}
+%\newtheorem{conjecture}{Conjecture}
+\newtheorem{puzzle}{Puzzle}
+\captionsetup{font=footnotesize}
+
+
+\usepackage{slivkins-setup,slivkins-theorems}
+\renewcommand{\xhdr}[1]{\vspace{1mm} \noindent{\bf #1}}
+
+% model variants
+\newcommand{\TheoryModel}{Bayesian-choice model\xspace}
+\newcommand{\ExptsModel}{reputation-choice model\xspace}
+
+% Commands from EC 19 paper
+\newcommand{\term}[1]{\ensuremath{\mathtt{#1}}\xspace}
+
+% shorthand for algorithms
+\newcommand{\TS}{\term{TS}}    % Thompson Sampling
+\newcommand{\DEG}{\term{BEG}}  % "Dynamic eps-greedy"
+\newcommand{\DG}{\term{BG}}    % "Dynamic Greedy"
+
+% shorthand for models
+\newcommand{\HMR}{\term{HMR}} % HardMaxRandom
+\newcommand{\HM}{\term{HM}}    % HardMax
+
+
+
+\newcommand{\Beta}{\term{Beta}} % for Beta distribution
+\newcommand{\Eeog}{\term{EoG}} % shorthand for "effective end of game"
+
+\newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
+\newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
+
+
+% commands from "theory"
+
+% in connection with "a little greedy goes a long way"
+%     stuff for the "greedy modification".
+\newcommand{\gr}{\texttt{gr}}
+\newcommand{\BIRgr}{\BIR^{\gr}}
+\newcommand{\alggr}{\alg[\gr]}
+\newcommand{\rewgr}{\rew_{\gr}}
+
+
+\DeclareMathOperator*{\Expectation}{\mathbb{E}}
+\newcommand{\Ex}[2]{\Expectation_{#1}\left[#2\right]}
+\newcommand{\FiniteGame}{finite competition game\xspace}
+
+% notation
+%%% advanced notation
+\newcommand{\OPT}{\term{OPT}}
+\newcommand{\rew}{\term{rew}}  % Bayesian-expected reward after n local rounds
+\newcommand{\PMR}{\term{PMR}} % posterior mean reward
+\newcommand{\support}{\term{support}}
+
+\newcommand{\BIR}{\term{BIR}} % Bayesian Instantaneous Regret
+
+% response function
+\newcommand{\respF}{f_{\term{resp}}}
+\newcommand{\respEps}{\eps_\term{resp}}
+
+\newcommand{\BReg}{\term{BReg}}
+\newcommand{\HardMax}{\term{HardMax}}
+\newcommand{\HardMaxRandom}{\term{HardMax\&Random}}
+\newcommand{\SoftMaxRandom}{\term{SoftMax}}
+\newcommand{\Uniform}{\term{Uniform}}
+\newcommand{\Random}{\term{Random}}
+
+% algorithms
+\newcommand{\StaticGreedy}{\term{StaticGreedy}}
+\newcommand{\DynGreedy}{\term{BayesianGreedy}}
+\newcommand{\DynamicGreedy}{\DynGreedy}
+\newcommand{\DynamicEpsGreedy}{\term{BayesianEpsilonGreedy}}
+\newcommand{\Thompson}{\term{ThompsonSampling}}
+
+% "monotone algorithms"
+\newcommand{\bmonotone}{Bayesian-monotone\xspace}
+\newcommand{\bmonotonicity}{Bayesian-monotonicity\xspace}
+
+\newcommand{\termSub}[2]{\ensuremath{\mathtt{#1}_{#2}}\xspace}
+\newcommand{\alg}[1][]{\termSub{alg}{#1}}
+%\newcommand{\prin}[1][]{\termSub{prin}{#1}}  % principal
+\newcommand{\agent}[1][]{\termSub{agent}{#1}}
+
+% priors and posteriors
+\newcommand{\prior}{\ensuremath{\mP}\xspace}
+\newcommand{\priorMu}{\ensuremath{\prior_\mathtt{mean}}\xspace}
+\newcommand{\posteriorN}[2]{\mN_{#1,#2}}  % \posteriorN{principal}{round}
+
+% rationality / innovation / competition
+\newcommand{\termTXT}[1]{{\em {#1}}\xspace}
+
+\newcommand{\rationality}{\termTXT{rationality}}
+\newcommand{\Rationality}{\termTXT{Rationality}}
+\newcommand{\innovation}{\termTXT{innovation}}
+\newcommand{\Innovation}{\termTXT{Innovation}}
+\newcommand{\competition}{\termTXT{competition}}
+\newcommand{\Competition}{\termTXT{Competition}}
+\newcommand{\competitiveness}{\termTXT{competitiveness}}
+\newcommand{\exploration}{\termTXT{exploration}}
+\newcommand{\Exploration}{\termTXT{Exploration}}
+
+% a very useful package for edits and comments, from David Kempe (USC)
+\usepackage{color-edits}
+%\usepackage[suppress]{color-edits}  % use this to suppress the package
+\addauthor{as}{red}    % as for Alex
+\addauthor{ga}{blue}  % ga for Guy
+\addauthor{sw}{orange} % sw for Steven
+\addauthor{ym}{madenta} % sw for Steven
+% e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
+
+\setlength{\tabcolsep}{8pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+
+
+
+\begin{document}
+
+%\begin{titlepage}
+
+\title{\vspace{-12mm}Competing Bandits:\\
+The Perils of Exploration under Competition%
+\thanks{This is a merged and final version of two conference publications,
+\citet*{CompetingBandits-itcs18} and \citet*{CompetingBandits-ec19},
+with a unified and streamlined presentation and expanded related work and background materials. All theoretical results are from \citet{CompetingBandits-itcs18}, and all numerical simulations are from \citet{CompetingBandits-ec19}. Appendices~\ref{app:bg},\ref{app:examples} are completely new compared to the conference versions.\newline \indent
+We would like to thank Ian Ball, Yeon-Koo Che, Sara Shahanaghi, Glen Weyl and Sven Rady for helpful comments and conversations. Likewise, we thank the audience of the conference and seminar talks on this work.
+%seminar participants at Columbia and conference participants at Innovations in Theoretical Computer Science 2018, ACM Economics and Computation 2019 and the MIT Conference on Digital Experimentation 2020, for helpful comments and conversations.
+All errors are our own.}}
+% \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
+
+
+\author{Guy Aridor
+\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu}
+\and \hspace{-0.75cm}
+\rule{0.0in}{0pt}
+Yishay Mansour 
+\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com}
+\and \hspace{-0.75cm}
+\rule{0.0in}{0pt}
+Aleksandrs Slivkins%
+\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com}
+\and \hspace{-0.75cm}
+\rule{0.0in}{0pt}
+Zhiwei Steven Wu%
+\footnote{Carnegie Mellon University, Pittsburgh, PA
+Email: zstevenwu@cmu.edu\newline
+Research done when Z.S. Wu was an intern and a postdoc at Microsoft Research NYC.}
+}
+\date{First version: July 2020\\ This version: December 2020}
+
+\maketitle
+
+\vspace{-5mm}
+\begin{abstract}
+\gadelete{
+Most online platforms strive to learn from interactions with users, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We study the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for users. Here users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
+
+We consider a stylized duopoly model in which two firms face the same multi-armed bandit problem. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit problem only if it is chosen. Through a mix of theoretical results and numerical simulations, we study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for users. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low welfare. However, weakening competition by providing firms with some ``free" users incentivizes better exploration strategies and increases welfare.  We investigate two channels for weakening the competition: relaxing the rationality of users and giving one firm a first-mover advantage. Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
+}
+
+\gaedit{
+Most online platforms strive to learn from interactions with users, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We study the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for users.
+
+We consider a stylized duopoly model in which two firms face the same multi-armed bandit problem. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit problem only if it is chosen. We study whether competition incentivizes the adoption of better bandit algorithms. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low welfare. However, weakening competition by providing firms with some ``free" users incentivizes better exploration strategies and increases welfare.  We investigate two channels for weakening the competition: stochastic choice models for the users and giving one firm a first-mover advantage.
+} \\
+
+\vspace{0.1in}
+\noindent\textbf{Keywords:}  Multi-armed bandits, Competition vs. Innovation
+
+\bigskip
+\end{abstract}
+\setcounter{page}{0}
+\thispagestyle{empty}
+%\end{titlepage}
+
+\newpage
+%\begin{small}
+%\setcounter{tocdepth}{2}
+%\tableofcontents
+%\end{small}
+\setcounter{page}{0}
+%\thispagestyle{empty}
+%\newpage
+
+\onehalfspacing
+%
+% The code below should be generated by the tool at
+% http://dl.acm.org/ccs.cfm
+% Please copy and paste the code instead of the example below.
+%
+\section{Introduction}
+\label{sec:intro}
+
+\subfile{content/sec-intro}
+
+\newpage
+\section{Related work}
+\label{sec:related-work}
+\subfile{content/related_work}
+
+\section{Our model in detail}
+\label{sec:model}
+\subfile{content/sec-model}
+
+\section{Theoretical results: the \TheoryModel}
+\label{sec:theory}
+\subfile{content/sec-theory}
+
+%\section{Full rationality (HardMax)}
+%\label{sec:rational}
+%\subfile{itcs18paper/sec-rational}
+
+%\section{Relaxed rationality: HardMax \& Random}
+%\label{sec:random}
+%\subfile{itcs18paper/sec-random}
+
+%\section{SoftMax response function}
+%\label{sec:soft}
+%\subfile{itcs18paper/sec-soft}
+
+%\section{Economic implications}
+%\label{sec:welfare}
+%\subfile{itcs18paper/sec-welfare}
+
+\section{Numerical simulations: the \ExptsModel}
+\label{sec:sim}
+%\label{sec:sim_details}
+
+\subfile{content/sim_details}
+
+\subfile{ec19paper/content/perf_in_iso}
+
+\subfile{ec19paper/content/inverted_u}
+
+\subfile{ec19paper/content/barriers}
+
+\subfile{ec19paper/content/non_greedy_choice}
+
+\subfile{ec19paper/content/revisited}
+
+\subfile{content/conclusion}
+
+\newpage
+\addcontentsline{toc}{section}{References}
+
+\bibliographystyle{ecta.bst}
+\begin{small}
+\bibliography{bib-abbrv,bib-ML,refs,bib-bandits,bib-AGT,bib-slivkins, bib-random}
+\end{small}
+
+\clearpage
+
+
+\renewcommand{\appendixname}{Appendix}
+\renewcommand{\appendixtocname}{List of appendices}
+
+
+\begin{appendices}
+
+%In the appendix, we provide background on multi-armed bandits as well as several discussions and proofs omitted from the main text. Furthermore, we provide plots and tables for our experiments, which were omitted from the main text. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
+
+\section[Background for non-specialists: multi-armed bandits]{Background for non-specialists: \\multi-armed bandits}
+\label{app:bg}
+%\label{sec:related-classes}
+\subfile{content/sec-bg}
+
+\newpage
+
+\section{Monotone MAB algorithms}
+\label{app:examples}
+\subfile{itcs18paper/app-examples}
+
+\section{Non-degeneracy via a random perturbation}
+\label{app:perturb}
+\subfile{itcs18paper/app-perturb}
+
+\section{Full proofs for Section~\ref{sec:theory}}
+\label{sec:theory-proofs}
+\subfile{content/sec-theory-proofs}
+
+\section{Full experimental results}
+\label{app:expts}
+
+\subfile{ec19paper/content/appendix_for_one_version}
+
+%\subfile{content/old-intro}
+
+\end{appendices}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
