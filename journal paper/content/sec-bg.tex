@@ -1,4 +1,4 @@
-We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to researchers who are not experts on MAB. More details can be found in any of the monographs
+We present self-contained background on multi-armed bandits (MAB), to make the paper accessible to researchers who are not experts on MAB. More details can be found in books 
 \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
 
 We focus on three algorithm classes, as in Section~\ref{sec:sim}:
@@ -63,7 +63,7 @@ The lower bounds mentioned above are fairly typical: while they are usually (and
 in fact holds for all problem instances and all algorithms that are not \emph{terrible} on the large-gap instances \citep{Lai-Robbins-85}. The $\Omega(T^{2/3})$ lower bound for exploration-separating algorithms in fact applies to all problem instances, as long as the algorithm achieves $\tildeO(T^{2/3})$ regret rate in the worst case \citep{MechMAB-ec09}.%
 \footnote{Moreover, there is a tradeoff between the worst-case upper bound on the regret rate and a lower bound that applies for all problem instances \citep[Theorem 4.3 in][]{MechMAB-ec09}.}
 
-Some MAB algorithms, \eg Thompson Sampling, are Bayesian: they input a prior on mean rewards, and attain strong Bayesian guarantees (in expectation over the prior) when the prior is correct. Such algorithms can also be initialized with some simple `fake' priors; in fact, this is how Thompson Sampling can be made to satisfy the optimal regret bounds listed above.
+Some MAB algorithms, \eg Thompson Sampling, are Bayesian: they input a prior on mean rewards, and attain strong Bayesian guarantees (in expectation over the prior) when the prior is correct. Such algorithms can also be initialized with some simple `fake' priors; in fact, this is how Thompson Sampling can be made to satisfy the optimal regret bounds.
 
 The intuition on (the separation between) the three algorithm classes applies more generally, far beyond the basic MAB model discussed above. In particular, all algorithms that we explicitly mentioned are in fact general algorithmic techniques that are known to extend to a variety of more general MAB scenarios, typically with a similarly stark separation in regret bounds.
 
