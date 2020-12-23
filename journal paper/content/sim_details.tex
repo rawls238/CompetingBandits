@@ -19,13 +19,13 @@ multi-armed bandit problem (and each such experiment is run many times to reduce
 
 \xhdr{MAB algorithms.} In abstract terms, we posit three types of technology, from ``low" to ``medium" to ``high". Concretely, we consider three essential classes of bandit algorithms: ones that never explicitly explore (\emph{greedy algorithms}), ones that explore without looking at the data (\emph{exploration-separating algorithms}), and ones where exploration gradually zooms in on the best arm (\emph{adaptive-exploration algorithms}). In the absence of competition, these classes are fairly well-understood: greedy algorithms are terrible for a wide variety of problem instances, exploration-separated algorithms learn at a reasonable but mediocre rate across all problem instances, and adaptive-exploration algorithms are optimal in the worst case, and exponentially improve for ``easy" problem instances (see Appendix~\ref{app:bg} for more details).
 
-We look for qualitative differences between these three classes under competition. We take a representative algorithm from each class. Our pilot experiments indicate that our findings do not change substantially if other representative algorithms are chosen. We use 
+We look for qualitative differences between these three classes under competition. We take a representative algorithm from each class. Our pilot experiments indicate that our findings do not change substantially if other representative algorithms are chosen. We use
 \DynGreedy (\DG) algorithm  as in Section~\ref{sec:theory-prelims},
 \DynamicEpsGreedy (\DEG) from the ``exploration-separating" algorithms,
 and \Thompson (\TS) from the ``adaptive-exploration" algorithms.%
-\footnote{\asedit{In each round $t$, \Thompson computes a Bayesian posterior on $\mu_a$ for each arm $a$ and draws an independent sample $\tilde{\mu}_{a,t}$ from this posterior; it chooses an arm which maximizes $\tilde{\mu}_{a,t}$.
-    \newline\indent 
-\DynamicEpsGreedy proceeds as follows. In each round, with probability $\eps$ it explores by choosing an arm from the full set of arms uniformly at random. With the remaining probability,} it ``exploits" by choosing an arm with maximal posterior mean reward given the current data. We use $\eps=5\%$ throughout. Our pilot experiments show that choosing a different $\eps$ does not qualitatively change the results.}
+\footnote{In each round $t$, \Thompson computes a Bayesian posterior on $\mu_a$ for each arm $a$ and draws an independent sample $\tilde{\mu}_{a,t}$ from this posterior; it chooses an arm which maximizes $\tilde{\mu}_{a,t}$.
+    \newline\indent
+\DynamicEpsGreedy proceeds as follows. In each round, with probability $\eps$ it explores by choosing an arm from the full set of arms uniformly at random. With the remaining probability, it ``exploits" by choosing an arm with maximal posterior mean reward given the current data. We use $\eps=5\%$ throughout. Our pilot experiments show that choosing a different $\eps$ does not qualitatively change the results.}
 For ease of comparison, all three algorithms are parameterized with the same ``fake" Bayesian prior: namely, the mean reward of each arm is drawn independently from a $\Beta(1,1)$ distribution. Recall that Beta priors with 0-1 rewards form a conjugate family, which allows for simple posterior updates.
 
 %Self-contained background can be found in Appendix~\ref{sec:related-classes}.

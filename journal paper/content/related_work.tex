@@ -55,7 +55,6 @@ A long line of work from electrical engineering and computer science, starting f
 \xhdr{Competition.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{aghion2005competition,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
 
 The literature on learning-by-doing vs. competition \citep[\eg][]{gilbert1982preemptive, fudenberg1983learning, dasgupta1988learning, cabral1994learning}
-\asmargincomment{Guy: pls cite Gilbert-Newberry, as per YK.}
 studies firms that learn while competing against each other, so that a firm attracting more consumers reduces its production costs. Our model differs in several important respects. First, firms learn to improve product quality rather than to reduce production costs. Second, the firms' current actions have consequences (via reputation and/or data collected by the algorithm) that directly impact consumer choices in the future. Third, we endogenize the technology behind learning-by-doing by explicitly considering bandit algorithms.
 
 %\gaedit{However, our model differs from these models in two important respects. The first is that in our model firms focus on learning product quality (as opposed to reducing production costs) and the second is that firms' current period actions have reputational consequences that directly impact consumer choices in future periods. These features are absent from traditional learning-by-doing models, but important components of a model that tries to capture data-based innovation.}
@@ -86,10 +85,7 @@ Classic ``market competitiveness" measures,such as the Lerner Index or the Herfi
 \xhdr{Choice models.}
 Stochastic choice models similar to ours have been widely used throughout economics. First, ``random agents" (a.k.a. noise traders) can side-step the ``no-trade theorem'' \citep{Milgrom-Stokey-82}, a famous impossibility result in financial economics. They play a similar role in our model, side-stepping the dominance of the greedy algorithm.
 %as we move from \HardMax to \HardMaxRandom.
-\gadelete{Second, there a large literature on non-existence of equilibria due to small deviations, starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets.
-\asdelete{\footnote{\cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom in this context.}}
-This is superficially similar to how small deviations towards the greedy algorithm rule out equilibria under \HardMaxRandom.}
-%Second, the stochastic choice rules we consider have been widely utilized across economics. For instance,
+%\gadelete{Second, there a large literature on non-existence of equilibria due to small deviations, starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets. \footnote{\cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom in this context.} This is superficially similar to how small deviations towards the greedy algorithm rule out equilibria under \HardMaxRandom.}
 Second, \SoftMaxRandom subsumes the logit choice rule, a standard behavioral model with strong empirical and microeconomic foundations
 \citep[\eg][]{mosteller1951experimental, luce1959choice, mcfadden1974measurement, matvejka2015rational}.
 Third, choice models similar to \SoftMaxRandom are used to explain  horizontal product differentiation \citep[\eg][]{Hotelling-29, Perloff-Salop-85}.
