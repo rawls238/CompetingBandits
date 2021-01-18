@@ -249,7 +249,12 @@ creates a barrier to entry,
 all % precisely
 due to data feedback loops.
 
-Interestingly, we find that data feedback loops can be bad for innovation (as in ``death spiral"), or good for innovation (as in ``amplification effect"), depending on the level of competition.
+Interestingly, 
+\asdelete{we find that}
+data feedback loops can be bad for innovation (as in ``death spiral"), or good for innovation (as in ``amplification effect"), depending on the level of competition.
+
+
+%Interestingly, we find that data feedback loops can be bad for innovation (as in ``death spiral"), or good for innovation (as in ``amplification effect"), depending on the level of competition.
 
 \xhdr{Significance.}
 Our results have a dual purpose: shed light on real-world implications of some typical scenarios, and investigate the space of models for describing the real world. As an example for the latter: while the \HardMax model with simultaneous entry is arguably the most natural model to study \emph{a priori}, our results elucidate the need for more refined models with ``free exploration" (\eg via random agents or early entry). On a technical level, we connect a literature on regret-minimizing bandits in computer science and that on competition in economics.
@@ -260,7 +265,7 @@ The numerical simulations provide a more nuanced and ``non-asymptotic" perspecti
 
 One model we study is suitable for analysis and another for simulations, but not vice versa. A natural implementation of the \TheoryModel requires running time quadratic in the number of rounds,%
 \footnote{\label{fn:Tsquared}\Eg this is because at each round $t$, one needs to recompute, and integrate over, a discrete distribution with $t$ possible values, namely the number of agents that have chosen principal $1$ so far.}
-which precludes \gaedit{numerical simulations} at a sufficient scale. The \ExptsModel features an intricate feedback loop between algorithms' performance, their reputations and agents' choices, which simplifies the simulations but does not appear analytically tractable.
+which precludes numerical simulations at a sufficient scale. The \ExptsModel features an intricate feedback loop between algorithms' performance, their reputations and agents' choices, which simplifies the simulations but does not appear analytically tractable.
 
 %The numerical investigation is quite challenging even with a stylized model such as ours. An ``atomic experiment" is a competition game between a given pair of bandit algorithms, in a given competition model, on a given instance of a multi-armed bandit problem (and each such experiment is run many times to reduce variance). Accordingly, we have a three-dimensional space of atomic experiments one needs to run and interpret: \{pairs of algorithms\} x \{competition models\} x \{bandit instances\}, and we are looking for findings that are consistent across this entire space. It is essential to keep each of the three dimensions small yet representative. In particular, we need to capture a huge variety of bandit algorithms and bandit instances with only a few representative examples. Further, we need a succinct and informative summarization of results within one atomic experiment and across multiple experiments (\eg see Table~\ref{sim_table}).
 
