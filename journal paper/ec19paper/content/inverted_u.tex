@@ -2,7 +2,9 @@
 \begin{document}
 \subsection{Competition vs. Better Algorithms}\label{sec:competition}
 
-Our main experiments are with the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from  monopoly to ``incumbent" to simultaneous entry duopoly to ``late entrant", we find a stylized inverted-U relationship as in Section~\ref{sec:theory-welfare}. More formally, we look for equilibria in the duopoly game, where each firm's choices are limited to \DynamicGreedy, \DynamicEpsGreedy and \Thompson. We do this for each ``intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. For cleaner results, we break ties towards less advanced algorithms (as they tend to have lower adoption costs, see \cite{DS-arxiv}). \DynamicGreedy is trivially the dominant strategy under monopoly.
+Our main experiments concern the duopoly game defined in Section~\ref{sec:model}. As the ``intensity of competition" varies from  monopoly to ``incumbent" to ``simultaneous entry" to ``late entrant", we find a stylized inverted-U relationship as in Section~\ref{sec:theory-welfare}. We look for equilibria in the duopoly game, where each firm's choices are limited to \DynamicGreedy, \DynamicEpsGreedy and \Thompson. We do this for each ``intensity level" and each MAB instance, and look for findings that are consistent across MAB instances. 
+%For cleaner results, 
+We break ties towards less advanced algorithms, as they tend to have lower adoption costs \citep{DS-arxiv}. \DynamicGreedy is then the dominant strategy under monopoly.
 
 %(1) Permanent monopoly - indifferent between all algorithms but break indifference towards DG cause of deployment costs
 %(2) Temporary monopoly - TS is the dominant strategy for the incumbent
@@ -218,7 +220,7 @@ $\DG$
 
 \xhdr{Inverted-U relationship.}
 We interpret our findings through the lens of the inverted-U relationship between the ``intensity of competition" and the ``quality of technology". The lowest level of competition is monopoly, when \DynamicGreedy wins out for the trivial reason of tie-breaking. The highest levels are simultaneous entry and ``late entrant". We see that \DynamicGreedy is incentivized for exploration-disadvantaged MAB instances. In fact, incentives for \DynamicGreedy get stronger when the model transitions from simultaneous entry to ``late entrant".%
-\footnote{For the Heavy-Tail instance, \DynamicGreedy goes from a weakly dominant strategy to a strictly dominant one. For the Uniform instance, \DynamicGreedy goes from a Nash equilibrium strategy to a weakly dominant one.}
+\footnote{For the Heavy-Tail instance, \DynamicGreedy goes from a weakly dominant strategy to a strictly dominant. For the Uniform instance, \DynamicGreedy goes from a Nash equilibrium strategy to a weakly dominant.}
 Finally, the middle level of competition, ``incumbent" in the first-mover regime creates strong incentives for \Thompson. In stylized form, this relationship is captured in Figure~\ref{fig:inverted-U-expts}.%
 \footnote{We consider the monopoly scenario for comparison only, without presenting any findings. We just assume that a monopolist chooses
 the greedy algorithm, because it is easier to deploy in practice. Implicitly, users have no ``outside option": the service provided is an improvement over not having it (and therefore the monopolist is not incentivized to deploy better learning algorithms). This is plausible with free ad-supported platforms such as Yelp or Google.}
@@ -235,11 +237,11 @@ Further, we investigate the ``death spiral" effect mentioned in the Introduction
 
 \begin{finding}
 \textit{
-Under simultaneous entry, \Eeog values tend to be much smaller than the time horizon $T$.
+Under simultaneous entry, \Eeog values tend to be much smaller than $T$.
 }
 \end{finding}
 
-We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the ``effective end of game" in this scenario typically occurs when a better algorithm loses, and helping it delays the loss.
+We also see that the \Eeog values tend to increase as the warm start $T_0$ increases. We conjecture this is because larger $T_0$ tends to be more beneficial for a better algorithm (as it tends to follow a better learning curve). Indeed, we know that the \Eeog in this scenario typically occurs when a better algorithm loses, and helping it merely delays the loss.
 
 
 \begin{table*}[h]
@@ -288,14 +290,14 @@ The time horizon is $T=2000$.}
 \xhdr{Welfare implications.}
 We study the effects of competition on consumer welfare: the total reward collected by the users over time. Rather than welfare directly, we find it more lucid to consider
 \emph{market regret}:
-\[ \textstyle T\, \max_a \mu(a) - \sum_{t\in [T]} \mu(a_t), \]
+$ \textstyle T\, \max_a \mu(a) - \sum_{t\in [T]} \mu(a_t), $
 where $a_t$ is the arm chosen by agent $t$. This is a standard performance measure in the literature on multi-armed bandits. Note that smaller regret means higher welfare.
 
 We assume that both firms play their respective equilibrium strategies.
 % for the corresponding competition level.
 As discussed previously, it is
 \DynamicGreedy in the monopoly scenario, and
-\DynamicGreedy for both firms in simultaneous entry scenario (Finding \ref{find:duopoly}).
+\DynamicGreedy for both firms for simultaneous entry (Finding \ref{find:duopoly}).
 For the first-mover scenario, it is \Thompson for the incumbent (Finding \ref{find:temp-monopoly}) and \DynamicGreedy for the entrant (Finding \ref{find:temp-monopoly-entrant}).
 
 \begin{figure}[bth]

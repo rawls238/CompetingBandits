@@ -8,7 +8,6 @@ We start with a pilot experiment in which we investigate each algorithm's perfor
 for a sufficiently long time horizon. For each algorithm and each MAB instance, we compute the mean reputation score at each round, averaged over all \MRVs. We plot the \emph{mean reputation trajectory}: how this score evolves over time. We also plot the trajectory for instantaneous rewards (\emph{not} averaged over the previous time-periods), which provides a better view into algorithm's performance at a given time.%
 \footnote{For ``instantaneous reward" at a given time $t$, we report the average (over all \MRVs) of the mean rewards at this time, instead of the average of the \emph{realized} rewards, so as to decrease the noise.}
 Figure \ref{prelim_means} shows these trajectories for the Needle-in-Haystack instance; for other MAB instances the plots are similar.
-
 We summarize this finding as follows:
 
 \begin{finding}
@@ -39,8 +38,8 @@ The mean reputation trajectory is probably the most natural way to represent an 
 \label{relative_rep_plots}
 \end{figure}
 
-This angle allows a more nuanced analysis of reputation costs vs. benefits under competition. Figure \ref{relative_rep_plots} (left) shows the relative reputation trajectory for $\Thompson$ vs $\DynamicGreedy$ for the Uniform instance. The relative reputation is less than $\tfrac12$ in the early rounds, meaning that $\DynamicGreedy$ has a higher reputation score in a majority of the simulations, and more than $\tfrac12$ later on. The reason is the exploration in \Thompson leads to worse decisions initially, but allows for better decisions later. The time period when relative reputation vs. \DynamicGreedy dips below $\tfrac12$ can be seen as an explanation for the competitive disadvantage of exploration. Such period also exists for the Heavy-Tail MAB instance. However, it does not exist for the Needle-in-Haystack instance, see Figure \ref{relative_rep_plots}.%
-\footnote{We see two explanations for this: $\Thompson$ identifies the best arm faster for the Needle-in-Haystack instance, and there are no ``very bad" arms which make exploration very expensive in the short term.}
+This angle allows a more nuanced analysis of reputation costs vs. benefits under competition. Figure \ref{relative_rep_plots} (left) shows the relative reputation trajectory for $\Thompson$ vs $\DynamicGreedy$ for the Uniform instance. The relative reputation is less than $\tfrac12$ in the early rounds, meaning that $\DynamicGreedy$ has a higher reputation score in a majority of the simulations, and more than $\tfrac12$ later on. The reason is the exploration in \Thompson leads to worse decisions initially, but allows for better decisions later. The time period when relative reputation vs. \DynamicGreedy dips below $\tfrac12$ can be seen as an explanation for the competitive disadvantage of exploration. Such period also exists for the Heavy-Tail instance. However, it does not exist for the Needle-in-Haystack instance, see Figure \ref{relative_rep_plots}.%
+\footnote{We see two explanations for this: $\Thompson$ identifies the best arm faster for the Needle-in-Haystack instance, and there are no ``very bad" arms to make exploration expensive in the near term.}
 
 
 \begin{finding}\label{find:period}
@@ -51,6 +50,6 @@ This angle allows a more nuanced analysis of reputation costs vs. benefits under
 For a particular MAB algorithm, a time period when relative reputation vs. \DynamicGreedy goes below $\tfrac12$ is called {\em exploration disadvantage period}. An MAB instance is called \emph{exploration-disadvantaged} if such period exists.
 \end{definition}
 
-\noindent Uniform and Heavy-tail instance are exploration-disadvantaged, but Needle-in-Haystack is not.
+\noindent Note that Uniform and Heavy-tail instances are exploration-disadvantaged, but Needle-in-Haystack instance is not.
 
 \end{document} 
