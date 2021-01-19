@@ -162,7 +162,7 @@ We also need a mild technical assumption that $\BIR_2(\cdot)$ is not extremely s
 %Thus, the main result is stated as follows:
 
 \begin{theorem}\label{thm:random-clean}
-Fix a \HardMaxRandom response function $\respF$. Suppose algorithms \alg[1], \alg[2] are \bmonotone and $T$-oblivious, and \eqref{eq:random-assn} holds. If \alg[1] \emph{BIR-dominates} \alg[2] starting from step $n_0$, then each agent $t\geq \max(n_0,m_0)$ chooses principal $1$ with probability $\respF(1) = 1- \eps_0$ (which is the largest possible selection probability for this response function).
+Fix a \HardMaxRandom response function $\respF$. Suppose algorithms \alg[1], \alg[2] are \bmonotone and $T$-oblivious, and \eqref{eq:random-assn} holds. If \alg[1] \emph{BIR-dominates} \alg[2] starting from step $n_0$, then each agent $t\geq \max(n_0,m_0)$ chooses principal $1$ with probability $\respF(1) = 1- \eps_0$ (which is the largest possible probability for this response function).
 \end{theorem}
 
 
@@ -182,7 +182,7 @@ To conclude that a (much) better algorithm prevails in equilibrium, we consider 
 %\end{definition}
 
 \begin{corollary}\label{cor:random}
-Fix a \HardMaxRandom response function $\respF$. Consider the competition game in which all feasible MAB algorithms are $T$-oblivious, \bmonotone, and satisfy \eqref{eq:random-assn} for some fixed $m_0$. Suppose some feasible algorithm \alg  BIR-dominates all other feasible algorithms, starting from some local step $n_0$. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium, in which both principals choose algorithm \alg.
+Fix a \HardMaxRandom response function $\respF$. Consider the competition game in which all feasible MAB algorithms are $T$-oblivious, \bmonotone, and satisfy \eqref{eq:random-assn} for some fixed $m_0$. Suppose some feasible algorithm \alg  BIR-dominates all other feasible algorithms, starting from some local step $n_0$. Then, for any sufficiently large time horizon $T$, this game has a unique Nash equilibrium: both principals choose algorithm \alg.
 \end{corollary}
 
 Note that we make no positive prediction if one MAB algorithm is only slightly better than the other. Next we show that such predictions are essentially impossible.
