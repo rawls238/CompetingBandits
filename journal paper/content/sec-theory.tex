@@ -4,11 +4,12 @@ In this section, we present our theoretical results for the \TheoryModel. While 
 \subsection{Preliminaries}
 \label{sec:theory-prelims}
 
-\xhdr{Notation.} Let $\rew_i(n)$ denote the agent's realized reward observed by principal $i$ at local step $n$. Put differently, it is the reward collected by algorithm $\alg[i]$ in this local step. For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
+%\xhdr{Notation.} 
+Let $\rew_i(n)$ denote the agent's realized reward observed by principal $i$ at local step $n$, \ie the reward collected by algorithm $\alg[i]$ in this local step. For a global round $t$, let $n_i(t)$ denote the number of global rounds before $t$ in which principal $i$ is chosen. Note that
     \[ \PMR_i(t):=  \E\sbr{ r_t\mid i_t = i }
         = \E\sbr{ \rew_i(n_i(t)+1) }. \]
 
-\xhdr{Assumptions.} We make two mild assumptions on the prior. First, each arm $a$ can be best:
+\noindent\textbf{Assumptions.} We make two mild assumptions on the prior. First, each arm $a$ can be best:
 \begin{align}\label{eq:assn-prob}
 \forall a\in A:\;\;\;
 \Pr\sbr{\mu_a  > \mu_{a'}
@@ -17,9 +18,9 @@ In this section, we present our theoretical results for the \TheoryModel. While 
 \end{align}
 
 \noindent Second, posterior mean rewards are pairwise distinct given any feasible history $h$:%
-\footnote{The \emph{history} of an MAB algorithm at a given step
-  comprises the chosen actions and the observed rewards in all
-  previous steps. The history is \emph{feasible} if for each arm-reward pair $(a,r)$ in the history, $r$ is in the support of the reward distribution for $a$.}
+\footnote{The \emph{history} of an MAB algorithm at a given step $t$
+  comprises actions $a_s$ and rewards $r_s$ in all
+  previous steps $s<t$. The history is \emph{feasible} if for each $s$, reward $r_s$ is in the support of the reward distribution for $a_s$.}
 \begin{align}\label{eq:assn-distinct}
     \E[\mu_a \mid h] \neq \E[\mu_{a'}\mid h] \quad \forall a,a'\in A.
 \end{align}
@@ -36,7 +37,7 @@ We consider two baseline algorithms. The main one, called  \DynGreedy, chooses a
 
 We characterize the inherent quality of an MAB algorithm in terms of its \emph{Bayesian Instantaneous Regret} (henceforth, \BIR), a standard notion from machine learning:
 \begin{align}\label{eq:theory-BIR-defn}
-\BIR_i(n) := \E\sbr{ \max_{a\in A} \mu_a - \rew_i(n)}.
+\BIR_i(n) := \textstyle \E[\; \max_{a\in A} \mu_a - \rew_i(n) \;].
 \end{align}
 We are primarily interested in how fast \BIR decreases with $n$. (We treat the number of arms as a constant.) Intuitively, (much) better MAB algorithms tend to have a (much) smaller BIR, see Appendix~\ref{app:bg} for background.
 
@@ -51,19 +52,19 @@ Appendix~\ref{app:examples}.
 
 %We posit fully rational agents, in the sense that their response function is \HardMax.
 
-We consider agents with \HardMax response function, and show that principals are not incentivized to \emph{explore}--- \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates.
+We consider agents with \HardMax response function, and show that principals are not incentivized to \emph{explore}, \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates therefrom. \asedit{We make this formal below.}
 
-To make this formal, let's define what it means for MAB algorithms to deviate.
+%To make this formal, let's define what it means for MAB algorithms to deviate.
 
 \begin{definition}
-One MAB algorithm \emph{deviates} from another at (local) step $n$ if there is a set $H$ of histories over the previous local steps such that both algorithms lead to $H$ with positive probability, and choose different distributions over arms given any history $h\in H$. We say $\alg$ deviates from $\alg'$ \emph{starting from} step $n_0$ if $n=n_0$ is the smallest step when this happens.
+One MAB algorithm \emph{deviates} from another at (local) step $n$ if there is a set $H$ of histories over the previous local steps such that both algorithms lead to $H$ with positive probability, and choose different distributions over arms given any history $h\in H$. If $n=n_0$ is the smallest such step, we say $\alg$ deviates from $\alg'$ \emph{starting from} step $n_0$.
 \end{definition}
 
 \begin{theorem}\label{thm:DG-dominance}
 Assume \HardMax response function with fair tie-breaking: $\respF(0)=\nicefrac{1}{2}$. Assume that \alg[1] is \DynGreedy, and \alg[2] deviates from \DynGreedy starting from some (local) step $n_0<T$. Then all agents in global rounds $t\geq n_0$ select principal $1$.
 \end{theorem}
 
-\DynGreedy is a weakly dominant strategy in the competition game, and a unique Nash equilibrium.  This is because \DynGreedy receives, in expectation, at least half of the agents before global round $n_0$, and all agents after that; both are the best possible against \alg[2]. Moreover, \DynGreedy guarantees at least $T/2$ agents in expectation, and any other strategy can receive strictly less than that (\eg if the opponent chooses \DynGreedy).
+\DynGreedy is a weakly dominant strategy in the competition game, and a unique Nash equilibrium.  This is because \DynGreedy receives, in expectation, at least half of the agents before global round $n_0$, and all agents after that; both are the best possible against \alg[2]. Moreover, \DynGreedy guarantees at least $T/2$ agents in expectation, and any other strategy can receive strictly less (\eg if the opponent chooses \DynGreedy).
 
 
 \begin{corollary}\label{cor:DG-dominance}
@@ -91,7 +92,9 @@ The remainder of the proof of Theorem~\ref{thm:DG-dominance} uses the conclusion
 %\label{sec:HardMax-biased}
 
 \xhdr{Biased tie-breaking.}
-The \HardMax model is very sensitive to tie-breaking between the principals. For starters, if ties are  broken deterministically in favor of principal $1$, then principal 1 can get all agents no matter what the other principal does, simply by using \StaticGreedy.
+The \HardMax model is very sensitive to tie-breaking between the principals. 
+%For starters, 
+If ties are  broken deterministically in favor of principal $1$, this principal can get all agents no matter what the other principal does, simply by using \StaticGreedy.
 
 \begin{theorem}\label{thm:HardMax-hardTies}
 Assume \HardMax response function with $\respF(0)=1$ (ties are always broken in favor of principal $1$). If \alg[1] is \StaticGreedy, then all agents choose principal $1$.
@@ -103,7 +106,7 @@ Agent $1$ chooses principal $1$ because of the tie-breaking rule. Since \StaticG
 
 
 
-A more challenging scenario is when the tie-breaking is biased in favor of principal 1, but not deterministically so: $\respF(0)>\tfrac12$. Then this principal also has a ``winning strategy" no matter what the other principal does. Specifically, principal 1 can get all but the first few agents, under a mild technical assumption that \DynGreedy deviates from \StaticGreedy. Principal 1 can use \DynGreedy, or any other \bmonotone MAB algorithm that coincides with \DynGreedy in the first few steps.
+A more challenging scenario is when the tie-breaking is biased in favor of principal 1, but not deterministically so: $\respF(0)>\tfrac12$. Then this principal also has a ``winning strategy" no matter what the other principal does. Specifically, principal 1 can get all but the first few agents, under a mild assumption that \DynGreedy deviates from \StaticGreedy.
 
 %We can generalize the theorem top the case of $q >1/2$ if the
 %principal $p_1$ can guarantee better than the a priori best action to
@@ -114,6 +117,7 @@ A more challenging scenario is when the tie-breaking is biased in favor of princ
 Assume \HardMax response function with $\respF(0)>\tfrac12$ (\ie tie-breaking is biased in favor of principal $1$). Assume the prior $\mP$ is such that \DynGreedy deviates from \StaticGreedy starting from some step $n_0$. Suppose that principal $1$ runs a \bmonotone MAB algorithm that coincides with \DynGreedy in the first $n_0$ steps. Then all agents $t\geq n_0$ choose principal $1$.
 \end{theorem}
 
+Thus, Principal 1 can use \DynGreedy, or any other \bmonotone MAB algorithm that coincides with \DynGreedy in the first few steps.
 The proof re-uses Lemmas~\ref{lm:DG-rew} and~\ref{lm:DG-sudden}, which do not rely on fair tie-breaking.
 
 %\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
@@ -128,7 +132,7 @@ Informally, we find that
 %\begin{align}\label{eq:theory-HMR-informal}
 \emph{a much better algorithm wins big}.
 %\end{align}
-In more detail, a principal with asymptotically better \BIR wins by a large margin: after a ``learning phase" of constant duration, all agents choose this principal with maximal possible probability $\respF(1)$. For example, a principal with $\BIR(n)\leq \tilde{O}(n^{-1/2})$ prevails over a principal with $\BIR(n)\geq \Omega(n^{-1/3})$.
+In more detail, a principal with asymptotically better \BIR wins by a large margin: after a ``learning phase" of constant duration, all agents choose this principal with maximal possible probability $\respF(1)$. For example, a principal with $\BIR(n)\leq \tilde{O}(n^{-1/2})$ prevails over one with $\BIR(n)\geq \Omega(n^{-1/3})$.
 
 %However, this positive result comes with a significant caveat detailed in Section~\ref{sec:random-greedy}.
 
@@ -137,13 +141,15 @@ In more detail, a principal with asymptotically better \BIR wins by a large marg
 To state this result, we need to express a property that \alg[1] eventually catches up and surpasses \alg[2], even if initially it receives only a fraction of traffic. We assume that both algorithms run indefinitely and do not depend on the time horizon $T$; call such algorithms \emph{$T$-oblivious}. In particular, their \BIR does not depend on the time horizon $T$ of the game.  Then this property can be formalized as follows:
 \begin{align}\label{eq:random-better-clean}
 (\forall \eps>0)\qquad
-\frac{\BIR_1(\eps n)}{\BIR_2(n)} \to 0.
+%\frac{\BIR_1(\eps n)}{\BIR_2(n)} \to 0.
+\BIR_1(\eps n)\,/\,\BIR_2(n) \to 0.
 \end{align}
 In fact, a weaker version suffices:
 denoting $\eps_0 = \respF(-1)$, for some constant $n_0$ we have
 \begin{align}\label{eq:random-better-weaker}
 (\forall n\geq n_0) \qquad
-\frac{\BIR_1(\eps_0\, n/2)}{\BIR_2(n)} <\nicefrac12.
+%\frac{\BIR_1(\eps_0\, n/2)}{\BIR_2(n)} <\nicefrac12.
+\BIR_1\rbr{\nicefrac{1}{2}\;\eps_0\, n}\,/\, \BIR_2(n)<\nicefrac12.
 \end{align}
 If this holds, we say that \alg[1] \emph{BIR-dominates} \alg[2] starting from (local) step $n_0$.
 
@@ -154,7 +160,7 @@ We also need a mild technical assumption that $\BIR_2(\cdot)$ is not extremely s
   \BIR_2(n) > 4\,e^{-\eps_0\ n/12}.
 \end{align}
 
-Thus, the main result is stated as follows:
+%Thus, the main result is stated as follows:
 
 \begin{theorem}\label{thm:random-clean}
 Fix a \HardMaxRandom response function $\respF$. Suppose algorithms \alg[1], \alg[2] are \bmonotone and $T$-oblivious, and \eqref{eq:random-assn} holds. If \alg[1] \emph{BIR-dominates} \alg[2] starting from step $n_0$, then each agent $t\geq \max(n_0,m_0)$ chooses principal $1$ with probability $\respF(1) = 1- \eps_0$ (which is the largest possible selection probability for this response function).
@@ -168,7 +174,8 @@ Fix a \HardMaxRandom response function $\respF$. Suppose algorithms \alg[1], \al
 
 %\ascomment{Steven: can you come up with a short proof sketch / intuition why this thm works?}
 
-We'd like to use Theorem~\ref{thm:random-clean} to conclude that a (much) better algorithm prevails in equilibrium. We consider a version of the competition game in which the principals are restricted to choosing from a given set of MAB algorithms; the algorithms in this set are called \emph{feasible}.
+%We'd like to use Theorem~\ref{thm:random-clean} 
+To conclude that a (much) better algorithm prevails in equilibrium, we consider a version of the competition game in which the principals are restricted to choosing from a given set of MAB algorithms; the algorithms in this set are called \emph{feasible}.
 
 %Indeed, this holds if the principals can only choose from a finite set of MAB algorithms.
 %\begin{definition}\label{def:restricted-competition}
@@ -185,7 +192,7 @@ Note that we make no positive prediction if one MAB algorithm is only slightly b
 %\label{sec:random-greedy}
 
 \xhdr{Counterpoint: A little greedy goes a long way.}
-Given any \bmonotone MAB algorithm \alg other than \DynGreedy, we design a modified algorithm which ``mixes in" some greedy choices (and consequently learns at a slower rate), yet prevails over \alg in the competition game. Thus, we have a counterpoint to ``much better algorithms win": even under \HardMaxRandom, a better algorithm may lose in competition. The corresponding counterpoint to Corollary~\ref{cor:random} states that non-greedy algorithms are \emph{not} chosen in equilibrium.
+Given any \bmonotone MAB algorithm \alg other than \DynGreedy, we design a modified algorithm which ``mixes in" some greedy choices (and consequently learns at a slower rate), yet prevails over \alg in the competition game. Thus, we have a counterpoint to ``much better algorithms win": even under \HardMaxRandom, a better algorithm may lose in competition. A similar counterpoint to Corollary~\ref{cor:random} states that non-greedy algorithms are \emph{not} chosen in equilibrium.
 
 The modified algorithm, called the \emph{greedy modification} of \alg  with \emph{mixing parameter} $p\in (0,1)$, is defined as follows. Suppose \alg deviates from \DynGreedy starting from some (local) step $n_0$.
 %\begin{enumerate}
@@ -200,7 +207,7 @@ In each step $n\geq n_0$, \alg is invoked with probability
 %\item
 The data from the ``greedy choice" steps are not recorded.%
 \footnote{In other words: the algorithm proceeds as if the ``greedy choice" steps have never happened.  While it is usually more efficient to consider all available data, this modification simplifies analysis.}
-This completes the specification of the modified algorithm; note that it is not merely
+This completes the specification; note that it is not merely
 %another pure strategy in the competition game between the two principals, not
 a mixed strategy that randomizes between \alg and the greedy algorithm.
 
@@ -211,8 +218,8 @@ a mixed strategy that randomizes between \alg and the greedy algorithm.
 %The modified algorithm is called \emph{greedy deviation}, with probability parameter $p$.
 %Parameter $p>0$ is the same for all steps.
 
-We find that the greedy modification prevails in competition if $p$ is small enough. We focus on \emph{symmetric} response functions: ones that satisfy
-$\respF(x)+\respF(-x)=1$ for any $x\in[0,1]$.
+We find that the greedy modification prevails in competition if $p$ is small enough. We focus on \emph{symmetric} response functions: ones with 
+$f(x)+f(-x)=1$ for any $x\in[0,1]$.
 
 \begin{theorem}\label{thm:random-greedy}
 Consider a symmetric \HardMaxRandom response function $\respF$ with baseline probability $\eps_0 = \respF(-1)$. Suppose \alg[1] is \bmonotone, and deviates from \DynGreedy starting from some step $n_0$. Let \alg[2] be the greedy modification of \alg[1] with mixing parameter $p>0$ such that
@@ -233,7 +240,7 @@ be the (frequentist) instantaneous regret of \alg[2]. Then
     \label{eq:BIR-modification}
 \end{align}
 
-Now, let us show how \alg[1] can be a better algorithm than its greedy modification \alg[2]. We need to assume that \alg[1] is (much) better than the greedy step \alggr if the latter is computed on a fraction of the data. Formally, we posit a convex function $f(\cdot)$ and $m_0>0$ such that
+Now, let us show how \alg[1] can be a better algorithm than its greedy modification \alg[2]. We assume that \alg[1] is (much) better than the greedy step \alggr if the latter is computed on a fraction of the data. Formally, we posit a convex function $f(\cdot)$ and $m_0>0$ such that
 \[ \BIRgr(n) \geq f(n)
     \quad\text{and}\quad
     f\rbr{\E[M_n]} \geq 2\, \BIR_1(n) \quad \forall n\geq m_0 .  \]
@@ -244,9 +251,11 @@ Then by \eqref{eq:BIR-modification} and Jensen's inequality, for each step $n\ge
     \geq f\rbr{ \E[M_n] }
     \geq 2\,\BIR_1(n). \]
 
-We also use \refeq{eq:BIR-modification} to argue that \alg[2] is \bmonotone. This follows from \eqref{eq:BIR-modification} since both \alg[1] and \alggr are \bmonotone. The latter follows from a ``monotonicity-in-information" property of the ``greedy step": it can only get better with more information, see Lemma~\ref{lm:MII}.
+We also use \refeq{eq:BIR-modification} to argue that \alg[2] is \bmonotone. This follows from \eqref{eq:BIR-modification} since both \alg[1] and \alggr are \bmonotone. The latter follows from the monotonicity of the ``greedy step": it can only get better with more information, see Lemma~\ref{lm:MII}.
 
-Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of \bmonotone MAB algorithms. Consequently, if the principals are restricted to choosing \bmonotone MAB algorithms, then non-greedy algorithms cannot be chosen in equilibrium.
+Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of \bmonotone MAB algorithms. Consequently, if the principals are restricted \asedit{to the latter set,}
+%to choosing \bmonotone MAB algorithms, 
+then non-greedy algorithms cannot be chosen in equilibrium.
 
 \begin{corollary}\label{cor:random-greedy}
 Fix a symmetric \HardMaxRandom response function $\respF$. Consider the competition game in which algorithms are feasible if and only if they are \bmonotone.
@@ -256,7 +265,7 @@ Then there are no Nash equilibria other than (\DynGreedy,\,\DynGreedy).
 
 Recall that by Theorem~\ref{thm:random-clean} \DynGreedy cannot be played in equilibrium when it is BIR-dominated by some feasible, $T$-oblivious algorithm and the time horizon $T$ is large enough. Also recall that pure and mixed Nash equilibria are the same in our model.
 
-Corollary~\ref{cor:random-greedy} holds more generally: it suffices to assume that feasible algorithms are \bmonotone and closed under the greedy modification. The latter means that the greedy modification of any feasible algorithm is also feasible, for any mixing parameter $p$.
+%Corollary~\ref{cor:random-greedy} holds more generally: it suffices to assume that feasible algorithms are \bmonotone and closed under the greedy modification. The latter means that the greedy modification of any feasible algorithm is also feasible, for any mixing parameter $p$.
 
 
 
@@ -320,6 +329,7 @@ A response function $\respF$ is \SoftMaxRandom if the following conditions hold:
 \begin{OneLiners}
 \item  $\respF(\cdot)$ is bounded away from $0$ and $1$:
     $\respF(\cdot)\in [\eps,1-\eps]$ for some $\eps\in (0,\tfrac12)$,
+\item fair tie-breaking: $\respF(0)=\tfrac12$.
 \item  the response function
  $\respF(\cdot)$ is ``smooth" around $0$:
  \begin{align}\label{eq:SoftMax-smooth}
@@ -327,15 +337,15 @@ A response function $\respF$ is \SoftMaxRandom if the following conditions hold:
     \qquad \forall x\in [-\delta_0,\delta_0] \qquad
     c_0 \leq \respF'(x) \leq c'_0.
  \end{align}
-\item fair tie-breaking: $\respF(0)=\tfrac12$.
 \end{OneLiners}
 \end{definition}
 
 \begin{remark}
-This definition is fruitful when parameters $c_0$ and $c_0'$ are close to $\tfrac12$. Throughout, we assume that \alg[1] is better than \alg[2], and obtain results parameterized by $c_0$. By symmetry, one could assume that \alg[2] is better than \alg[1], and obtain similar results parameterized by $c_0'$.
+This definition is fruitful when $c_0$ and $c_0'$ are close to $\tfrac12$. Throughout, we assume that \alg[1] is better than \alg[2], and obtain results parameterized by $c_0$. By symmetry, one could assume that \alg[2] is better than \alg[1], and obtain similar results in terms of $c_0'$.
 \end{remark}
 
-For the sake of intuition, let us derive a version of Theorem~\ref{thm:random-clean}, with the same assumptions about the algorithms and essentially the same proof. The conclusion is much weaker, though: we can only guarantee that each agent $t\geq n_0$ chooses principal 1 with probability slightly larger than $\tfrac12$. This is essentially unavoidable in a typical case when both algorithms satisfy $\BIR(n)\to 0$, by Definition~\ref{def:SoftMax}.
+For the sake of intuition, let us derive a version of Theorem~\ref{thm:random-clean}, with the same assumptions and a similar proof. The conclusion is much weaker, though: we can only guarantee that each agent $t\geq n_0$ chooses principal 1 with probability slightly larger than $\tfrac12$. This is essentially unavoidable in a typical case when both algorithms satisfy $\BIR(n)\to 0$. 
+%by Definition~\ref{def:SoftMax}.
 
 \begin{theorem}\label{thm:SoftMax-weak}
 Assume \SoftMaxRandom response function.  Suppose algorithms \alg[1], \alg[2] satisfy the assumptions in Theorem~\ref{thm:random-clean}. Then each agent
@@ -346,12 +356,12 @@ Assume \SoftMaxRandom response function.  Suppose algorithms \alg[1], \alg[2] sa
 \end{theorem}
 
 %\begin{proof}[Proof Sketch]
-To prove this theorem, we follow the steps in the proof of Theorem~\ref{thm:random-clean} to derive \begin{align*}
-\PMR_1(t) - \PMR_2(t)
-    &\geq \BIR_2(t)/2 -q,
-    \quad \text{where $q = \exp(-\eps_0 t/12)$.}
-\end{align*}
-This is at least $\BIR_2(t)/4$ by \eqref{eq:random-assn}. Then \eqref{eq:thm:SoftMax-weak} follows by the smoothness condition \eqref{eq:SoftMax-smooth}.
+To prove this theorem, we follow the steps in the proof of Theorem~\ref{thm:random-clean} to derive 
+%\begin{align*}
+$\PMR_1(t) - \PMR_2(t)
+    \geq \BIR_2(t)/2 -\exp(-\eps_0\, t/12)$.
+%\end{align*}
+This is at least $\BIR_2(t)/4$ by \eqref{eq:random-assn}. Then \refeq{eq:thm:SoftMax-weak} follows by the smoothness condition \eqref{eq:SoftMax-smooth}.
 %\end{proof}
 
 \OMIT {%%%%%%%%
@@ -370,8 +380,8 @@ Let us relax the notion of BIR-dominance so that the constant multiplicative fac
  $\eps_0/2$ and $\tfrac12$, are replaced by constants that can be arbitrarily close to $1$.
 
 \begin{definition}
-Suppose MAB algorithms \alg[1],  \alg[2] are $T$-oblivious. Say that
-\alg[1] \emph{weakly BIR-dominates} \alg[2] if there exist absolute  constants $\beta_0, \alpha_0\in (0, 1/2)$ and $n_0\in\N$ such that
+Let \alg[1],  \alg[2] be $T$-oblivious MAB algorithms. Say that
+\alg[1] \emph{weakly BIR-dominates} \alg[2] if there are absolute  constants $\beta_0, \alpha_0\in (0, 1/2)$ and $n_0\in\N$ such that
  \begin{align}\label{eq:SoftMax-better}
    (\forall n\geq n_0) \quad
    \frac{\BIR_1((1-\beta_0)\, n)}{\BIR_2(n)} <1-\alpha_0.
@@ -388,8 +398,8 @@ Assume the \SoftMaxRandom response function. Suppose algorithms \alg[1], \alg[2]
  % (\forall n\geq n(\eps)) \qquad
  %  \BIR_2(n) > e^{-\eps n}. %used to be 4exp( -\eps n/6)
 (\exists m_0\; \forall n\geq m_0) \qquad
-\BIR_2(n) \geq \frac{4}{\alpha_0}
-\exp \left( \frac{-n\,\min\{\eps_0, \nicefrac{1}{8}\}}{12}\right).
+\BIR_2(n) \geq \tfrac{4}{\alpha_0}\;
+\exp \rbr{ - \tfrac{1}{12}\, n\,\min\{\eps_0, \nicefrac{1}{8}\} } .
 \end{align}
 Then there
   exists some $t_0$ such that each agent $t\geq t_0$ chooses principal
@@ -421,18 +431,22 @@ that the ``bump'' over $\tfrac12$ is at least on the order of
 $\BIR_2(t)$.
 \end{proof}
 
-It follows that a weakly-BIR-dominating algorithm prevails in equilibrium. We need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
-\begin{align}\label{eq:SoftMax-BReg}
-\BReg(n) := n\cdot \E_{\mu\sim\priorMu}
-    \left[ \max_{a\in A} \mu_a\right] -
-    \E\sbr{ \sum_{m=1}^n \rew(m)}
-    = \sum_{m=1}^n \BIR(m).
-\end{align}
+It follows that a weakly-BIR-dominating algorithm prevails in equilibrium.
+
+%It follows that a weakly-BIR-dominating algorithm prevails in equilibrium. We need a mild technical assumption that cumulative Bayesian regret (\BReg) tends to infinity. \BReg is a standard notion from the literature (along with \BIR):
+%\begin{align}\label{eq:SoftMax-BReg}
+%\BReg(n) := \textstyle n\cdot \E_{\mu\sim\priorMu}
+%    \left[ \max_{a\in A} \mu_a\right] -
+%    \E\sbr{ \sum_{m=1}^n \rew(m)}
+%    = \sum_{m=1}^n \BIR(m).
+%\end{align}
 
 
 \begin{corollary}\label{cor:SoftMax-strong}
-Assume \SoftMaxRandom response function. Consider the competition game in which all feasible algorithms are \bmonotone, $T$-oblivious, and satisfy $\BReg(n)\to \infty$.%
-\footnote{$\BReg(n)\to \infty$ is a mild non-degeneracy condition, see Appendix~\ref{app:bg} for background.}
+%Assume \SoftMaxRandom response function. 
+Consider the competition game in which all feasible algorithms are \bmonotone, $T$-oblivious, and satisfy 
+    $\sum_{m=1}^n \BIR(m)\to_n \infty$.%
+\footnote{This is a very mild non-degeneracy condition, see Appendix~\ref{app:bg} for background.}
 Suppose some feasible algorithm \alg weakly-BIR-dominates all others. Then, for any sufficiently large time horizon $T$, there is a unique Nash equilibrium: both principals choose \alg.
 \end{corollary}
 
@@ -449,7 +463,7 @@ Suppose some feasible algorithm \alg weakly-BIR-dominates all others. Then, for 
 \subsection{Economic implications}
 \label{sec:theory-welfare}
 
-We frame our contributions in terms of the relationship between \competitiveness (as expressed by the ``hardness" of the agents' response function $\respF$),
+We frame our contributions in terms of the relationship between \competitiveness (as expressed by the ``hardness" of the response function $\respF$),
  %and \rationality on one side,
  and adoption of better algorithms.
 
@@ -464,8 +478,8 @@ Our main story concerns the \FiniteGame between the two principals where one all
 \item Under \HardMaxRandom, some innovation:  \alg is chosen as long as it BIR-dominates.
 \item Under \SoftMaxRandom, more innovation: \alg is chosen as long as it weakly-BIR-dominates.%
 \end{OneLiners}
-These conclusions follow from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax-strong}, respectively. Recall that weak-BIR-dominance is a weaker condition, so that a better algorithm is chosen in a broader range of scenarios. Further, {we consider the uniform choice between the principals, which corresponds to the least amount of competition and (when principals' utility is the number of agents) uniform choice provides no incentives to innovate.}%
-\footnote{On the other hand, if principals' utility is aligned with agents' welfare, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a very generic and well-known effect regarding economies of scale.}
+These conclusions follow from Corollaries~\ref{cor:DG-dominance}, \ref{cor:random} and \ref{cor:SoftMax-strong}, respectively. Recall that weak-BIR-dominance is a weaker condition, so that a better algorithm is chosen in a broader range of scenarios. We also consider the uniform choice between the principals, which entails the least amount of competition and (when principals optimize market share) provides no incentives to innovate.%
+\footnote{However, if principals' utility is aligned with agents' welfare, then a monopolist principal is incentivized to choose the best possible MAB algorithm (namely, to minimize cumulative Bayesian regret $\BReg(T)$). Accordingly, monopoly would result in better social welfare than competition, as the latter is likely to split the market and cause each principal to learn more slowly. This is a well-known effect of economies of scale.}
 Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 
 
@@ -488,14 +502,14 @@ Thus, we have an inverted-U relationship, see \reffig{fig:inverted-U2}.
 \end{center}
 \end{figure}
 
+
 \xhdr{Secondary story.}
-Let us zoom in on the symmetric  \HardMaxRandom model. Competitiveness within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which goes smoothly between the two extremes of \HardMax ($\eps_0=0$, tough competition) and the uniform choice ($\eps_0=\tfrac12$, no competition). 
-Recall % For clarity, we assume 
-that principal's utility is the number of agents.
+Let us zoom in on the symmetric  \HardMaxRandom model. Competitiveness within this model are controlled by the baseline probability $\eps_0 = \respF(- 1)$, which varies  smoothly between the two extremes: \HardMax ($\eps_0=0$, tough competition) and the uniform choice ($\eps_0=\tfrac12$, no competition).
+Principals' utility is the number of agents.
 
 \newcommand{\deltaU}{\Delta U}
 
-We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. We are interested in the marginal utility $\deltaU$ of this switch. Then:
+We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. \asedit{What is the marginal utility $\deltaU$ of this switch?}
 
 \begin{OneLiners}
 \item if $\eps_0 = 0$ then $\deltaU$ can be negative if \alg is \DynGreedy.
@@ -504,7 +518,8 @@ We consider the marginal utility of switching to a better algorithm. Suppose ini
 
 \item if $\eps_0$ is medium-range, then $\deltaU$ is large, as $\alg'$ learns fast and gets most agents.
 
-\item if $\eps_0$ is near $\tfrac12$, then $\deltaU$ is small, as principal 1 gets most agents for free no matter what.
+\item if $\eps_0$ is near $\tfrac12$, the algorithm matters less, so $\deltaU$ is small.
+%as principal 1 gets most agents for free no matter what.
 \end{OneLiners}
 These findings can also be organized as an inverted-U relationship, see Figure~\ref{fig:inverted-U3}.
 
@@ -549,31 +564,33 @@ Theorem~\ref{thm:DG-dominance} and Corollary~\ref{cor:DG-dominance} holds under 
 \xhdr{Arbitrary reward distributions.}
 Bernoulli rewards can be extended to arbitrary reward distributions. For each arm $a\in A$ there is a parametric family $\psi_a(\cdot)$ of reward distributions, parameterized by the mean reward. Whenever arm $a$ is chosen, the reward is drawn independently from distribution $\psi_a(\mu_a)$. The prior $\priorMu$ and the distributions $(\psi_a(\cdot)\colon a\in A)$ constitute the (full) Bayesian prior on rewards.% denoted $\prior$.
 
-\xhdr{Beliefs.} Rather than knowing the principals' algorithms $(\alg[1],\alg[2])$, the Bayesian prior $\priorMu$, and the response function $\respF$, agents could have beliefs on these objects that need not be correct. If agents have common ``point beliefs", respectively, algorithms $(\alg[1]',\alg[2]')$ prior $\priorMu'$ and response function $\respF'$,  then all our results carry over with respect to these beliefs.
+\xhdr{Beliefs.} 
+Instead of knowing the principals' algorithms $(\alg[1],\alg[2])$, the Bayesian prior $\priorMu$, and the response function $\respF$, agents could have beliefs on these objects that need not be correct. If agents have common ``point beliefs" %respectively, algorithms $(\alg[1]',\alg[2]')$ prior $\priorMu'$ and response function $\respF'$, 
+\asedit{on these objects}, then all our results carry over with respect to these beliefs.
 
 \xhdr{Limited non-stationarity in $\respF$.}
-Different agents can have different response functions, in the following sense. For \HardMaxRandom, our results carry over if each agent $t$ has a \HardMaxRandom response function $\respF$ with parameter $\eps_t\geq \eps_0$. For \SoftMaxRandom, different agents can have different response functions that satisfy Definition~\ref{def:SoftMax} (with the same parameters).
+Different agents can have different response functions. For \HardMaxRandom, our results carry over if each agent $t$ has a \HardMaxRandom response function $\respF$ with parameter $\eps_t\geq \eps_0$. For \SoftMaxRandom, different agents can have different response functions that satisfy Definition~\ref{def:SoftMax} with the same parameters.
 
 \xhdr{MAB extensions.} Our results carry over, with little or no modification of the proofs, to much more general versions of MAB, as long as it satisfies the i.i.d. property. In each round, an algorithm can see a \emph{context} before choosing an action (as in \emph{contextual bandits}) and/or additional feedback other than the reward after the reward is chosen (as in, \eg \emph{semi-bandits}), as long as the contexts are drawn from a fixed distribution, and the (reward, feedback) pair is drawn from a fixed distribution that depends only on the context and the chosen action. The Bayesian prior $\prior$ needs to be a more complicated object, to make sure that \PMR and \BIR are well-defined. Mean rewards may also have a known structure, such as Lipschitzness, convexity, or linearity; such structure can be incorporated via $\prior$. All these extensions have been studied extensively in the literature on MAB, and account for a substantial segment thereof. Background can be found in any of the recent books on MAB \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book}.
 
 
 \xhdr{\BIR can depend on $T$.}
-Many MAB algorithms are parameterized by the time horizon $T$, and their regret bounds usually include $\polylog(T)$. In particular,  a typical regret bound for \BIR is
+Many MAB algorithms are parameterized by the time horizon $T$, and their regret bounds include $\polylog(T)$. In particular,  a typical regret bound for \BIR is
 \begin{align}
     \BIR(n\mid T)\leq \polylog(T)\cdot n^{-\gamma}
     \quad \text{for some $\gamma\in(0,\tfrac12]$}.
 \end{align}
-Here we write $\BIR(n\mid T)$ to emphasize the dependence on $T$. Accordingly, BIR-dominance can be redefined as follows: there exists a number $T_0$ and a function $n_0(T)\in \polylog(T)$
+We write $\BIR(n\mid T)$ to emphasize the dependence on $T$. Accordingly, BIR-dominance can be redefined: there exists a number $T_0$ and a function $n_0(T)\in \polylog(T)$
 such that
 \begin{align}\label{eq:random-better-messy}
 (\forall T\geq T_0,\; n\geq n_0(T)) \quad
-\frac{\BIR_1(\eps_0 n /2\mid T)}{\BIR_2(n\mid T)} <\frac12.
+\BIR_1(\eps_0 n /2\mid T)\,/\, \BIR_2(n\mid T) <\nicefrac12.
 \end{align}
 %If this holds, we say that \alg[1] \emph{BIR-dominates} \alg[2].
 %The proof of this extension is very similar and is omitted.
 
-\noindent Weak BIR-dominance can be redefined similarly.
-Theorem~\ref{thm:random-clean} and~\ref{thm:SoftMax-weak} easily extend to these versions.
+\noindent Weak BIR-dominance extends similarly.
+Theorem~\ref{thm:random-clean} and~\ref{thm:SoftMax-weak} easily carry over.
 
 
 
