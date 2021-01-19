@@ -5,12 +5,11 @@
 setspace,sectsty,comment,footmisc,caption,
 pdflscape,subcaption,array,hyperref,adjustbox
 }
+\usepackage{minitoc}
 
 \usepackage{times}
-
+\usepackage[toc,page,header]{appendix}
 \usepackage{subfiles}
-\usepackage{libertine}
-\usepackage[title,titletoc]{appendix}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
@@ -133,8 +132,8 @@ pdflscape,subcaption,array,hyperref,adjustbox
 \newcommand{\Exploration}{\termTXT{Exploration}}
 
 % a very useful package for edits and comments, from David Kempe (USC)
-\usepackage{color-edits}
-%\usepackage[suppress]{color-edits}  % use this to suppress the package
+%\usepackage{color-edits}
+\usepackage[suppress]{color-edits}  % use this to suppress the package
 \addauthor{as}{red}    % as for Alex
 \addauthor{ga}{blue}  % ga for Guy
 \addauthor{sw}{orange} % sw for Steven
@@ -202,6 +201,8 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 %\end{titlepage}
 
 \newpage
+\doparttoc % Tell to minitoc to generate a toc for the parts
+\faketableofcontents
 %\begin{small}
 %\setcounter{tocdepth}{2}
 %\tableofcontents
@@ -281,8 +282,14 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 \renewcommand{\appendixname}{Appendix}
 \renewcommand{\appendixtocname}{List of appendices}
 
+\appendix
+\begin{small}
+\setcounter{tocdepth}{2}
+\part{Appendix, For Online Publication} % Start the appendix part
+\parttoc
+\end{small}
 
-\begin{appendices}
+\newpage
 
 %In the appendix, we provide background on multi-armed bandits as well as several discussions and proofs omitted from the main text. Furthermore, we provide plots and tables for our experiments, which were omitted from the main text. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
 
@@ -311,7 +318,6 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 
 %\subfile{content/old-intro}
 
-\end{appendices}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
