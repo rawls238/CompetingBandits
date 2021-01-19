@@ -6,7 +6,6 @@ setspace,sectsty,comment,footmisc,caption,
 pdflscape,subcaption,array,hyperref,adjustbox
 }
 \usepackage{minitoc}
-
 \usepackage{times}
 \usepackage[toc,page,header]{appendix}
 \usepackage{subfiles}
@@ -61,7 +60,6 @@ pdflscape,subcaption,array,hyperref,adjustbox
 
 \newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
 \newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
-
 
 % commands from "theory"
 
@@ -137,7 +135,7 @@ pdflscape,subcaption,array,hyperref,adjustbox
 \addauthor{as}{red}    % as for Alex
 \addauthor{ga}{blue}  % ga for Guy
 \addauthor{sw}{orange} % sw for Steven
-\addauthor{ym}{madenta} % sw for Steven
+\addauthor{ym}{magenta} % ym for Yishay
 % e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
 
 \setlength{\tabcolsep}{8pt} % Default value: 6pt
@@ -162,15 +160,15 @@ All errors are our own.}}
 
 \author{Guy Aridor
 \footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu.}
-\and \hspace{-0.75cm}
+\and \hspace{-0.5cm}
 \rule{0.0in}{0pt}
 Yishay Mansour
 \footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com.}
-\and \hspace{-0.75cm}
+\and \hspace{-0.5cm}
 \rule{0.0in}{0pt}
-Aleksandrs Slivkins%
+Aleksandrs Slivkins
 \footnote{Microsoft Research New York City. Email: slivkins@microsoft.com.}
-\and \hspace{-0.75cm}
+\and \hspace{-0.5cm}
 \rule{0.0in}{0pt}
 Zhiwei Steven Wu%
 \footnote{Carnegie Mellon University, Pittsburgh, PA
@@ -201,8 +199,7 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 %\end{titlepage}
 
 \newpage
-\doparttoc % Tell to minitoc to generate a toc for the parts
-\faketableofcontents
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 %\begin{small}
 %\setcounter{tocdepth}{2}
 %\tableofcontents
@@ -282,12 +279,13 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 \renewcommand{\appendixname}{Appendix}
 \renewcommand{\appendixtocname}{List of appendices}
 
+      % body goes here
 \appendix
-\begin{small}
-\setcounter{tocdepth}{2}
-\part{Appendix, For Online Publication} % Start the appendix part
-\parttoc
-\end{small}
+\renewcommand{\contentsname}{Appendix, For Online Publication Only}
+
+\tableofcontents
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+      % appendices go here
 
 \newpage
 
