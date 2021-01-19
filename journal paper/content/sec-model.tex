@@ -1,6 +1,6 @@
 \xhdr{Principals and agents.} There are two principals and $T$ agents. We denote them, resp., principal $i\in \{1,2\}$ and agent $t\in [T]$,
 where $[T] := \{1,2\LDOTS T\}$.
-The game proceeds in $T$ rounds.
+%The game proceeds in $T$ rounds.
 
 In each round $t\in [T]$, the following  interaction takes place. Agent $t$ arrives and chooses a principal $i_t\in \{1,2\}$. The principal chooses action $a_t\in A$, where $A$ is a fixed set of actions.%
 \footnote{We use `action' and `arm' interchangeably, as common in the literature on multi-armed bandits.}
@@ -10,7 +10,7 @@ The agent experiences this action and receives an associated reward $r_t\in \{ 0
 
 % (which is the same for both principals and all rounds)
 
-Thus, each principal follows the protocol of \emph{multi-armed bandits} (henceforth, \emph{MAB}). Specifically, in each round when it is chosen, it chooses an arm from $A$ and observes a reward for this action. It does not observe anything else, particularly rewards for other actions.
+Thus, each principal follows the protocol of \emph{multi-armed bandits} (henceforth, \emph{MAB}). In each round when it is chosen, it chooses an arm from $A$ and observes a reward for this action. It does not observe anything else, particularly rewards for other actions.
 
 Each principal $i$ commits to an MAB algorithm \alg[i] before round $1$, and uses this algorithm throughout the game. The algorithm proceeds in time-steps:
 %\footnote{These time-steps will sometimes be referred to as \emph{local steps/rounds}, so as to distinguish them from ``global rounds" defined before. We will omit the global vs. local distinction when clear from the context.}
@@ -21,7 +21,7 @@ When the distinction between algorithm's time-steps and game rounds is unclear f
 
 %\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}}
 
-\xhdr{Agents' response.} Each agent $t$ forms reward estimates $\est_i(t)\in [0,1]$ for each principal $i$. (What these estimates are, and how much the agents know in order to form them, depends on the Bayesian vs. frequentist model variant.)
+\xhdr{Agent response.} Each agent $t$ forms a reward estimate $\est_i(t)\in [0,1]$ for each principal $i$. (What these estimates are, and how much the agents know in order to form them, depends on the Bayesian vs. frequentist model variant.)
 The reward estimates determine the choice of the principal. Specifically, agent $t$ chooses principal $1$ with probability
 \begin{align}\label{eq:model-f}
 p_t = \respF\rbr{ \est_1(t) - \est_2(t) },
@@ -52,7 +52,7 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
 \label{fig:response-functions}
 \end{figure}
 
-\begin{itemize}
+\begin{OneLiners}
 \item \HardMax: $\respF$ equals $0$ on the interval $[-1,0)$ and $1$
   on the interval $(0,1]$. In words, a \HardMax agent
   deterministically chooses a principal with a higher reward estimate.
@@ -62,7 +62,7 @@ where $\respF:[-1,1]\to [0,1]$ is the \emph{response function}, same for all age
     $\respF$ equals $\eps_0$ on the interval $[-1,0)$ and $1-\eps_0$ on the interval $(0,1]$, for some constant $\eps_0\in (0,\tfrac12)$. In words, each agent is a \HardMax agent with probability $1-2\eps_0$, and makes a random choice otherwise.
 
 \item \SoftMaxRandom: $\respF$  lies in $[\eps_0,1-\eps_0]$, breaks ties fairly, and has a bounded derivative around $0$ (see Definition~\ref{def:SoftMax} for a formal definition). Intuitively, $\respF$ is a smoothed version of \HardMaxRandom, without a sharp threshold therein.
-\end{itemize}
+\end{OneLiners}
 
 \HardMaxRandom and \SoftMaxRandom agents can be interpreted in several ways. First, they make mistakes, due to lack of awareness or interest. Second, they give some chance to the non-preferred principal, due to curiosity or a behavioral effect like probability matching.
 %\gaedit{make mistakes due to being oblivious to the principals' reputation, due to lack of awareness or interest. \HardMaxRandom models users as either being aware of the reputation or not, whereas \SoftMaxRandom models user mistakes as following a smooth density.}
@@ -78,17 +78,17 @@ One can obtain a \SoftMaxRandom response function using agent types that choose 
 \xhdr{Bayesian vs. frequentist.}
 We consider two model variants, Bayesian and frequentist (which we use, resp., for theoretical results and numerical simulations). The main difference between the two concerns the agents' reward estimates $\est_i(t)$.
 
-\begin{itemize}
+\begin{OneLiners}
 \item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Each agent knows its global round $t$, but not the performance signals such as the current market shares. Agents' reward estimates are defined as posterior mean rewards:
         $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i}$
     for each agent $t$ and principal $i$.%
-\footnote{Formally, agents do the Bayesian update knowing $t$, the principals' algorithms, the prior $\priorMu$, and $\respF$.}
+\footnote{Agents do the Bayesian update knowing $t$, the principals' algorithms, the prior $\priorMu$, and $\respF$.}
 
 %Agents know the principals' algorithms.\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}}
 
 \item In the \emph{\ExptsModel}, agents' reward estimate for a given principal is the average reward of the last $M$ agents that chose this principal. We call it \emph{reputation score}, and interpret it as the current reputation. To make it meaningful initially, each principal enjoys a ``warm start": additional $T_0$ agents arrive before the game starts, and interact with the principal as described above.
 
-\end{itemize}
+\end{OneLiners}
 
 \xhdr{Competition game.}
 Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. (Since MAB algorithms can be randomized, we make no distinction between pure and mixed strategies.) Principals are risk-neutral and their utility is defined as their market share, \ie the number of agents that chose this principal. Thus they aim to select the algorithm that maximizes their expected market share.
