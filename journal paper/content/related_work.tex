@@ -12,11 +12,11 @@ dynamic auctions
     (\eg see \citet{DynAuctions-survey10} for a survey),
     %\citep[\eg][]{AtheySegal-econometrica13,DynPivot-econometrica10,Kakade-pivot-or13},
 pay-per-click ad auctions
-    \citep[\eg][]{MechMAB-ec09,DevanurK09,Transform-ec10-jacm},
+    \citep[\eg][]{MechMAB-ec09,DevanurK09},
 coordinating search and matching
     \citep{Bobby-Glen-ec16},
 and human computation
-    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13,Krause-www13}.
+    \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13}.
 %A literature review of this work can be found in
 %\citep[Ch. 11.6]{slivkins-MABbook}.
 
@@ -38,11 +38,11 @@ The earlier work by \citet{bergemann1997market,bergemann2000experimentation} stu
 In the line of work on \emph{strategic experimentation} (starting from \citet{Bolton-econometrica99,Keller-econometrica05}, see \citet{Horner-survey16} for a survey), agents explore and learn over time in a shared environment. Thus, we have exploration algorithms which interact with each other strategically, \eg each agent prefers to free-ride on someone else's exploration. However, the agents do not compete with each other in any meaningful sense.
 
 Several papers study competition between two principals who run algorithms but do not interact, directly or indirectly, until the very end of the game. \cite{Ufuk-jeea15} consider a ``research competition" between two firms racing towards a big discovery.
-Each firm deploys a bandit algorithm with two arms, corresponding to safe and risky lines of research. The firms do not interact until one of them makes the discovery and wins the game. In the ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11}, each principals runs an algorithm for the same problem. All inputs are observable at once, and principals' payoffs are binary (win/lose). \citet{ben2017best, ben2019regression} study competition between ``offline" machine learning algorithms. In comparison, we study a ``product competition" in which the two firms interact continuously (via the customers' choices), accrue rewards incrementally, and compete for individual customers.
+Each firm deploys a bandit algorithm with two arms, corresponding to safe and risky lines of research. The firms do not interact until one of them makes the discovery and wins the game. In the ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11}, each principals runs an algorithm for the same problem. All inputs are observable at once, and principals' payoffs are binary (win/lose). \citet{ben2019regression} study competition between ``offline" machine learning algorithms. In comparison, we study a ``product competition" in which the two firms interact continuously (via the customers' choices), accrue rewards incrementally, and compete for individual customers.
 
 
-A long line of work from electrical engineering and computer science, starting from
-\citet{MultiPlayerMAB-Poor08,MultiPlayerMAB-Liu10,MultiPlayerMAB-Anima11}, focuses on competition for resources, not competition for consumers. Specifically, this literature targets an application to \emph{cognitive radios}, where multiple radios transmit simultaneously in a shared medium and compete for bandwidth. Each radio chooses channels over time using a multi-armed bandit algorithm. This work studies a repeated game between bandit algorithms, and focuses on designing algorithms which work well in this game, under various assumptions on communication, synchronization and collisions.
+%A long line of work from electrical engineering and computer science, starting from
+%\citet{MultiPlayerMAB-Poor08,MultiPlayerMAB-Liu10,MultiPlayerMAB-Anima11}, focuses on competition for resources, not competition for consumers. Specifically, this literature targets an application to \emph{cognitive radios}, where multiple radios transmit simultaneously in a shared medium and compete for bandwidth. Each radio chooses channels over time using a multi-armed bandit algorithm. This work studies a repeated game between bandit algorithms, and focuses on designing algorithms which work well in this game, under various assumptions on communication, synchronization and collisions.
 
 
 
@@ -52,7 +52,7 @@ A long line of work from electrical engineering and computer science, starting f
 
 \xhdr{Competition.} The competition vs. innovation relationship and the inverted-U shape thereof have been introduced in a classic book \citep{Schumpeter-42}, and remained an important theme in the literature ever since \cite[\eg][]{aghion2005competition,Vives-08}. Production costs aside, this literature treats innovation as a priori beneficial for the firm. Our setting is very different, as innovation in exploration algorithms may potentially hurt the firm.
 
-The literature on learning-by-doing vs. competition \citep[\eg][]{gilbert1982preemptive, fudenberg1983learning, dasgupta1988learning, cabral1994learning}
+The literature on learning-by-doing vs. competition \citep[\eg][]{fudenberg1983learning, dasgupta1988learning, cabral1994learning}
 studies firms that learn while competing against each other, so that a firm attracting more consumers reduces its production costs. Our model differs in several important respects. First, firms learn to improve product quality rather than to reduce production costs. Second, the firms' current actions have consequences (via reputation and/or data collected by the algorithm) that directly impact consumer choices in the future. Third, we endogenize the technology behind learning-by-doing by explicitly considering bandit algorithms.
 
 %\gaedit{However, our model differs from these models in two important respects. The first is that in our model firms focus on learning product quality (as opposed to reducing production costs) and the second is that firms' current period actions have reputational consequences that directly impact consumer choices in future periods. These features are absent from traditional learning-by-doing models, but important components of a model that tries to capture data-based innovation.}
@@ -74,8 +74,8 @@ in data-intensive markets \citep{prufer2017competing, hagiu2020data}, but typica
 %relaxed versions of rationality
 %to model varying competition, instead of
 
-\asedit{While we use first-mover advantage and agents' decision rule,} classic ``market competitiveness" measures, such as the Lerner Index or the Herfindahl-Hirschman Index
-\citep{tirole1988theory}, are not applicable to our setting, as they rely on ex-post observable market attributes such as prices or market shares (which are, resp., absent and endogenous for us).
+%\asedit{While we use first-mover advantage and agents' decision rule,} classic ``market competitiveness" measures, such as the Lerner Index or the Herfindahl-Hirschman Index
+%\citep{tirole1988theory}, are not applicable to our setting, as they rely on ex-post observable market attributes such as prices or market shares (which are, resp., absent and endogenous for us).
 
 %Neither is applicable to our setting (since there are no prices, and market shares are endogenous).
 
@@ -85,7 +85,7 @@ Stochastic choice models similar to ours have been widely used throughout econom
 %as we move from \HardMax to \HardMaxRandom.
 %\gadelete{Second, there a large literature on non-existence of equilibria due to small deviations, starting with \cite{Rothschild-Stiglitz-76} in the context of health insurance markets. \footnote{\cite{Veiga-Weyl-16,Azevedo-Gottlieb-17} emphasize the distinction between \HardMax and versions of \SoftMaxRandom in this context.} This is superficially similar to how small deviations towards the greedy algorithm rule out equilibria under \HardMaxRandom.}
 Second, \SoftMaxRandom subsumes the logit choice rule, a standard behavioral model with strong empirical and microeconomic foundations
-\citep[\eg][]{mosteller1951experimental, luce1959choice, mcfadden1974measurement, matvejka2015rational}.
+\citep[\eg][]{mosteller1951experimental, luce1959choice, matvejka2015rational}.
 Choice models similar to \SoftMaxRandom are used to explain  horizontal product differentiation \citep[\eg][]{Hotelling-29, Perloff-Salop-85}.
 %\asdelete{While agents' rationality and severity of competition are often modeled separately in the literature, it is not unusual to have them modeled with the same ``knob" \cite[\eg][]{Gabaix-16}.}
 

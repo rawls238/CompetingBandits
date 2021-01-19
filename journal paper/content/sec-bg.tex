@@ -44,7 +44,7 @@ Exploration-separating algorithms can only achieve regret $\tildeO(T^{2/3})$ acr
 
 The optimal regret rates are achieved by several adaptive-exploration  algorithms, of which the most known are
 Thompson Sampling \citep{Thompson-1933,TS-survey-FTML18},%
-\footnote{While Thompson Sampling dates back to 1933 and is probably the best-known bandit algorithm, its regret has not been understood until recently \citep{Shipra-colt12,Kaufmann-alt12,Shipra-aistats13}.}
+\footnote{While Thompson Sampling dates back to 1933 and is probably the best-known bandit algorithm, its regret has not been understood until recently \citep{Shipra-colt12}.}
 UCB1 \citep{bandits-ucb1},
 and Successive Elimination \citep{EvenDar-icml06}.%
 \footnote{A substantial follow-up work on more ``refined" regret rates is not as relevant to this paper.}
@@ -69,7 +69,7 @@ The intuition on (the separation between) the three algorithm classes applies mo
 
 
 The greedy algorithm can perform well \emph{sometimes} in a more general model of \emph{contextual bandits}, where auxiliary payoff-relevant signals, a.k.a. contexts, are observed before each round. This phenomenon has been observed in practice
-\citep{practicalCB-arxiv18}, and in theory \citep{kannan2018smoothed,bastani2017exploiting,externalities-colt18} under (very) substantial assumptions. The prevalent intuition is that the diversity of contexts can --- under some conditions and to a limited extent --- substitute for explicit exploration.
+\citep{practicalCB-arxiv18}, and in theory \citep{kannan2018smoothed,externalities-colt18} under (very) substantial assumptions. The prevalent intuition is that the diversity of contexts can --- under some conditions and to a limited extent --- substitute for explicit exploration.
 
 \xhdr{Instantaneous regret.}
 Cumulative performance measures such as regret are not quite appropriate for our setting, as we need to characterize interactions in particular rounds. Instead, our theoretical results focus on \emph{Bayesian instantaneous regret} (\BIR), as defined in Section~\ref{sec:theory-prelims}. Recall that we posit a Bayesian prior on the \MRVs. In the notation of this appendix, the \BIR is simply:
