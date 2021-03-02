@@ -151,8 +151,9 @@ pdflscape,subcaption,array,hyperref,adjustbox
 The Perils of Exploration under Competition%
 \thanks{Preliminary abstracts have appeared as
 \citet*{CompetingBandits-itcs18} and \citet*{CompetingBandits-ec19}.
-This is a merged version, with a unified and streamlined presentation and expanded related work and background materials.  \newline \indent %All theoretical results are from \citet{CompetingBandits-itcs18}, and all numerical simulations are from \citet{CompetingBandits-ec19}. Appendices~\ref{app:bg},\ref{app:examples} are new.
-We would like to thank Ian Ball, Yeon-Koo Che, Sven Rady, Sara Shahanaghi and Glen Weyl for helpful comments and conversations. Likewise, we thank the audience of the conference and seminar talks on this work.
+This version features a unified and streamlined presentation and expanded related work and background materials. All theoretical results are from \citet{CompetingBandits-itcs18}, and all numerical simulations are from \citet{CompetingBandits-ec19}. Appendices~\ref{app:bg},\ref{app:examples} are new.
+\newline \indent 
+We thank Ian Ball, Yeon-Koo Che, Sven Rady, Sara Shahanaghi and Glen Weyl for helpful comments and conversations. We also thank the audience of the conference and seminar talks on this work.
 %seminar participants at Columbia and conference participants at Innovations in Theoretical Computer Science 2018, ACM Economics and Computation 2019 and the MIT Conference on Digital Experimentation 2020, for helpful comments and conversations.
 All errors are our own.}}
 % \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
@@ -175,32 +176,20 @@ Zhiwei Steven Wu%
 Email: zstevenwu@cmu.edu.\newline
 Research done when Z.S. Wu was an intern and a postdoc at Microsoft Research NYC.}
 }
-\date{}
-%\date{First version: July 2020\\ This version: December 2020}
+
+\date{First version: July 2020\\ This version: March 2021}
 
 \maketitle
 
 \vspace{-5mm}
 \begin{abstract}
-Most online platforms learn from interactions with users, and engage in \emph{exploration}: making potentially suboptimal choices in order to acquire new information. We study the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and competition for users.
-%Here users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
+\input{abstract-long}
+\end{abstract}
 
-We consider a stylized duopoly in which two firms face the same multi-armed bandit problem. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit problem only if it is chosen. We study whether competition incentivizes the adoption of better algorithms. We find that stark competition disincentivizes exploration, leading to low welfare.
-%induces firms to commit to a ``greedy" algorithm that leads to low welfare.
-However, weaker competition
-%by providing firms with some ``free" users
-incentivizes better exploration algorithms and increases welfare.  We investigate two channels for weakening the competition: stochastic user choice models and a first-mover advantage.
-Our findings speak to the competition-innovation relationship and the first-mover advantage in the digital economy.
-%Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
-\\
-
-\vspace{0.1in}
-\noindent\textbf{Keywords:}  Competition vs. innovation, exploration-exploitation tradeoff, multi-armed bandits, regret. \\
+\noindent\textbf{Keywords:}  Competition vs. innovation, exploration vs. exploitation, multi-armed bandits, regret. \\
 \noindent\textbf{JEL Codes}: D83, L15, O31
 
-\bigskip
-\end{abstract}
-\setcounter{page}{0}
+%\setcounter{page}{0}
 \thispagestyle{empty}
 %\end{titlepage}
 
@@ -210,7 +199,7 @@ Our findings speak to the competition-innovation relationship and the first-move
 %\setcounter{tocdepth}{2}
 %\tableofcontents
 %\end{small}
-\setcounter{page}{1}
+%\setcounter{page}{1}
 %\thispagestyle{empty}
 %\newpage
 %
