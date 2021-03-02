@@ -51,7 +51,7 @@ Appendix~\ref{app:examples}.
 
 %We posit fully rational agents, in the sense that their response function is \HardMax.
 
-We consider agents with \HardMax response function, and show that principals are not incentivized to \emph{explore}, \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates therefrom. \asedit{We make this formal below.}
+We consider agents with \HardMax response function, and show that principals are not incentivized to \emph{explore}, \ie to deviate from \DynGreedy. The core technical result is that if one principal adopts \DynGreedy, then the other principal loses all agents as soon as he deviates therefrom. We make this formal below.
 
 %To make this formal, let's define what it means for MAB algorithms to deviate.
 
@@ -252,7 +252,7 @@ Then by \eqref{eq:BIR-modification} and Jensen's inequality, for each step $n\ge
 
 We also use \refeq{eq:BIR-modification} to argue that \alg[2] is \bmonotone. This follows from \eqref{eq:BIR-modification} since both \alg[1] and \alggr are \bmonotone. The latter follows from the monotonicity of the ``greedy step": it can only get better with more information, see Lemma~\ref{lm:MII}.
 
-Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of \bmonotone MAB algorithms. Consequently, if the principals are restricted \asedit{to the latter set,}
+Thus, the greedy modification is beneficial in competition \emph{and} keeps us inside the set of \bmonotone MAB algorithms. Consequently, if the principals are restricted to the latter set,
 %to choosing \bmonotone MAB algorithms,
 then non-greedy algorithms cannot be chosen in equilibrium.
 
@@ -508,7 +508,7 @@ Principals' utility is the number of agents.
 
 \newcommand{\deltaU}{\Delta U}
 
-We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. \asedit{What is the marginal utility $\deltaU$ of this switch?}
+We consider the marginal utility of switching to a better algorithm. Suppose initially both principals use some algorithm \alg, and principal 1 ponders switching to another algorithm \alg' which BIR-dominates \alg. What is the marginal utility $\deltaU$ of this switch?
 
 \begin{OneLiners}
 \item if $\eps_0 = 0$ then $\deltaU$ can be negative if \alg is \DynGreedy.
@@ -565,7 +565,7 @@ Bernoulli rewards can be extended to arbitrary reward distributions. For each ar
 
 \xhdr{Beliefs.}
 Instead of knowing the principals' algorithms $(\alg[1],\alg[2])$, the Bayesian prior $\priorMu$, and the response function $\respF$, agents could have beliefs on these objects that need not be correct. If agents have common ``point beliefs" %respectively, algorithms $(\alg[1]',\alg[2]')$ prior $\priorMu'$ and response function $\respF'$,
-\asedit{on these objects}, then all our results carry over with respect to these beliefs.
+on these objects, then all our results carry over with respect to these beliefs.
 
 \xhdr{Limited non-stationarity in $\respF$.}
 Different agents can have different response functions. For \HardMaxRandom, our results carry over if each agent $t$ has a \HardMaxRandom response function $\respF$ with parameter $\eps_t\geq \eps_0$. For \SoftMaxRandom, different agents can have different response functions that satisfy Definition~\ref{def:SoftMax} with the same parameters.

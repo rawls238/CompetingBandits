@@ -81,7 +81,7 @@ We consider two model variants, Bayesian and frequentist (which we use, resp., f
 \begin{OneLiners}
 \item In the \emph{\TheoryModel}, the mean reward vector $\mu = (\mu_a:\; a\in A)$ is drawn from a common Bayesian prior $\priorMu$. Each agent knows its global round $t$, but not the performance signals such as the current market shares. Her reward estimates are defined as posterior mean rewards:
         $\est_i(t) = \PMR_i(t) := \E\sbr{ r_t\mid i_t = i}$
-    for each principal $i$, \asedit{where the agent knows $t$, the principals' algorithms, $\priorMu$, and $\respF$.}
+    for each principal $i$, where the agent knows $t$, the principals' algorithms, $\priorMu$, and $\respF$.
 %\footnote{Agents do the Bayesian update knowing $t$, the principals' algorithms, the prior $\priorMu$, and $\respF$.}
 
 %Agents know the principals' algorithms.\gaedit{\footnote{While our model assumes that agents have correct beliefs about the performance of the algorithms, only the beliefs themselves matter and so our results hold as long as all agents have the same initial beliefs, even if they are not aligned with the true prior.}}
@@ -91,7 +91,7 @@ We consider two model variants, Bayesian and frequentist (which we use, resp., f
 \end{OneLiners}
 
 \xhdr{Competition game.}
-Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. (Since MAB algorithms can be randomized, we make no distinction between pure and mixed strategies.) Principals are risk-neutral; their utility is defined as their market share, \ie the number of agents \asedit{they attract}. Thus, they aim to select the algorithm that maximizes their expected market share.
+Some of our results explicitly study the game between the two principals, termed the \emph{competition game}. We model it as a simultaneous-move game: before the first agent arrives, each principal commits to an MAB algorithm. (Since MAB algorithms can be randomized, we make no distinction between pure and mixed strategies.) Principals are risk-neutral; their utility is defined as their market share, \ie the number of agents they attract. Thus, they aim to select the algorithm that maximizes their expected market share.
 
 %Principal's utility is defined as the market share, \ie the number of agents that chose this principal. Principals are risk-neutral and aim to maximize their expected utility.
 
