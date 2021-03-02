@@ -4,9 +4,10 @@ Dedicated monographs \citep{Bubeck-survey12,slivkins-MABbook,LS19bandit-book} co
 \citep{Gittins-book11} focuses on the Markovian formulations, which predate regret-minimization. Connections to economics are detailed in
 books \citep{CesaBL-book,slivkins-MABbook} and surveys \citep{Bergemann-survey06,Horner-survey16}. Industrial applications are discussed in \citep{DS-arxiv}.
 
-\asedit{The tension between exploration and incentives}
-%The three-way tradeoff between exploration, exploitation and incentives 
-has been studied in several scenarios very different from ours:
+\asedit{A monopolistic bandit algorithm may interact with self-interested parties, leading to a tension between exploration and incentives. This tension has been studied in several scenarios:}
+%\asedit{The tension between exploration and incentives}
+%The three-way tradeoff between exploration, exploitation and incentives
+%has been studied in several scenarios very different from ours:
 incentivized exploration in recommendation systems
 (starting from \citet{Kremer-JPE14,Che-13}, see \citet[Ch. 11]{slivkins-MABbook}),
     %\citep[\eg][]{Che-13,Frazier-ec14,Kremer-JPE14,ICexploration-ec15,Bimpikis-exploration-ms17,Bahar-ec16,Jieming-unbiased18},
@@ -19,12 +20,14 @@ coordinating search and matching
     \citep{Bobby-Glen-ec16},
 and human computation
     \citep[\eg][]{RepeatedPA-ec14,Ghosh-itcs13}.
+\asedit{Unlike this work, we focus on incentives created in a competition.}
 %A literature review of this work can be found in
 %\citep[Ch. 11.6]{slivkins-MABbook}.
 
 \xhdr{Exploration and competition.}
-\citet{bergemann1997market,bergemann2000experimentation,keller2003price} study the interplay of exploration and competition for users when the competing firms experiment with \emph{prices}
-(whereas in our model they experiment with design alternatives).
+\asedit{Several papers consider exploration algorithms in scenarios when the explorer is not a monopolist. The technical models are very different, and not amenable to the high-level question articulated in the Introduction.}
+
+Most relevant are \citet{bergemann1997market,bergemann2000experimentation,keller2003price}. They study the interplay of exploration and competition for users when the competing firms experiment with \emph{prices} (whereas in our model the firms experiment with design alternatives).
 All three papers consider strategies that respond to competition and analyze Markov-perfect equilibria (whereas we focus on the adoption of better bandit algorithms). We discuss them in more detail below.
 
 In \citet{keller2003price}, the competition is entirely on prices, rather than product quality. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a firm if and only if he chooses this firm -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices, rather than the quality of the chosen alternatives; the former is directly controlled by the firms, whereas the latter is not known a priori. Third, the goal of exploration is to learn the agents' decision rule, not the best product alternative.
@@ -37,7 +40,8 @@ The earlier work by \citet{bergemann1997market,bergemann2000experimentation} stu
 %In \citet{keller2003price}, the competition is entirely on prices, rather than product quality. This distinction leads to several important differences. First, the data externality -- that each customer brings a new data point to a given principal if and only if he chooses this principal -- is absolutely crucial to our setting, and absent in theirs. Second, the inputs to agents' decision rule are prices (which are directly controlled by the principals), rather than the quality of the chosen actions (which is not known a priori). Their focus is on learning the decision rule, whereas ours is on learning product quality. Third, they consider strategies that respond to competition and analyze Markov Perfect Equilibria (MPE), whereas we focus on the adoption of better bandit algorithms.
 
 %\gaedit{\citet{bergemann1997market,bergemann2000experimentation} studied a model where there is an incumbent with known product quality and an entrant with unknown, but exogenously determined, quality. Similar to \citet{keller2003price}, the firms compete on prices and they characterize the MPE of dynamic competition between the two firms. In their model, consumer purchases of the entrant's product result in an informational externality that allows both the firms and consumers to gather information on the entrant's product quality. However, we focus on a model where firms' product quality is endogenous and the focus of exploration in a context where the price mechanism is absent.}
-In the line of work on \emph{strategic experimentation} (starting from \citet{Bolton-econometrica99,Keller-econometrica05}, see \citet{Horner-survey16} for a survey), agents explore and learn over time in a shared environment. Thus, we have exploration algorithms which interact with each other strategically, \eg each agent prefers to free-ride on someone else's exploration. However, the agents do not compete with each other in any meaningful sense.
+In the line of work on \emph{strategic experimentation} (starting from \citet{Bolton-econometrica99,Keller-econometrica05}, see \citet{Horner-survey16} for a survey), agents explore and learn over time in a shared environment. Thus, we have exploration algorithms which interact with each other strategically, \eg each agent prefers to free-ride on someone else's exploration. \asedit{However, this work is all about cooperation (or lack thereof), rather than competition.}
+%the agents do not compete with each other in any meaningful sense.
 
 Several papers study competition between two principals who run algorithms but do not interact, directly or indirectly, until the very end of the game. \cite{Ufuk-jeea15} consider a ``research competition" between two firms racing towards a big discovery.
 Each firm deploys a bandit algorithm with two arms, corresponding to safe and risky lines of research. The firms do not interact until one of them makes the discovery and wins the game. In the ``dueling algorithms" framework of \citet{DuelingAlgs-stoc11}, each principals runs an algorithm for the same problem. All inputs are observable at once, and principals' payoffs are binary (win/lose). \citet{ben2019regression} study competition between ``offline" machine learning algorithms. In comparison, we study a ``product competition" in which the two firms interact continuously (via the customers' choices), accrue rewards incrementally, and compete for individual customers.
