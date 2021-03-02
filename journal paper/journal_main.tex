@@ -5,11 +5,10 @@
 setspace,sectsty,comment,footmisc,caption,
 pdflscape,subcaption,array,hyperref,adjustbox
 }
-
-
+\usepackage{minitoc}
+\usepackage{times}
+\usepackage[toc,page,header]{appendix}
 \usepackage{subfiles}
-\usepackage{libertine}
-\usepackage[title,titletoc]{appendix}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
@@ -62,7 +61,6 @@ pdflscape,subcaption,array,hyperref,adjustbox
 \newcommand{\MRV}{mean reward vector\xspace} % mean reward vector
 \newcommand{\MRVs}{mean reward vectors\xspace} % mean reward vector
 
-
 % commands from "theory"
 
 % in connection with "a little greedy goes a long way"
@@ -99,9 +97,9 @@ pdflscape,subcaption,array,hyperref,adjustbox
 
 % algorithms
 \newcommand{\StaticGreedy}{\term{StaticGreedy}}
-\newcommand{\DynGreedy}{\term{BayesianGreedy}}
+\newcommand{\DynGreedy}{\term{BayesGreedy}}
 \newcommand{\DynamicGreedy}{\DynGreedy}
-\newcommand{\DynamicEpsGreedy}{\term{BayesianEpsilonGreedy}}
+\newcommand{\DynamicEpsGreedy}{\term{BayesEpsilonGreedy}}
 \newcommand{\Thompson}{\term{ThompsonSampling}}
 
 % "monotone algorithms"
@@ -132,12 +130,12 @@ pdflscape,subcaption,array,hyperref,adjustbox
 \newcommand{\Exploration}{\termTXT{Exploration}}
 
 % a very useful package for edits and comments, from David Kempe (USC)
-\usepackage{color-edits}
-%\usepackage[suppress]{color-edits}  % use this to suppress the package
+%\usepackage{color-edits}
+\usepackage[suppress]{color-edits}  % use this to suppress the package
 \addauthor{as}{red}    % as for Alex
 \addauthor{ga}{blue}  % ga for Guy
 \addauthor{sw}{orange} % sw for Steven
-\addauthor{ym}{madenta} % sw for Steven
+\addauthor{ym}{magenta} % ym for Yishay
 % e.g. for Alex, provides \asedit{}, \ascomment{} and \asdelete{}.
 
 \setlength{\tabcolsep}{8pt} % Default value: 6pt
@@ -151,44 +149,54 @@ pdflscape,subcaption,array,hyperref,adjustbox
 
 \title{\vspace{-12mm}Competing Bandits:\\
 The Perils of Exploration under Competition%
-\thanks{This is a merged and final version of two conference publications,
-\citet*{CompetingBandits-itcs18} and \citet*{CompetingBandits-ec19},
-with a unified and streamlined presentation and expanded related work and background materials. All theoretical results are from \citet{CompetingBandits-itcs18}, and all numerical simulations are from \citet{CompetingBandits-ec19}. Appendices~\ref{app:bg},\ref{app:examples} are completely new compared to the conference versions.\newline \indent
-We would like to thank Ian Ball, Yeon-Koo Che, Sara Shahanaghi, Glen Weyl and Sven Rady for helpful comments and conversations. Likewise, we thank the audience of the conference and seminar talks on this work.
+\thanks{Preliminary abstracts have appeared as
+\citet*{CompetingBandits-itcs18} and \citet*{CompetingBandits-ec19}.
+This is a merged version, with a unified and streamlined presentation and expanded related work and background materials.  \newline \indent %All theoretical results are from \citet{CompetingBandits-itcs18}, and all numerical simulations are from \citet{CompetingBandits-ec19}. Appendices~\ref{app:bg},\ref{app:examples} are new.
+We would like to thank Ian Ball, Yeon-Koo Che, Sven Rady, Sara Shahanaghi and Glen Weyl for helpful comments and conversations. Likewise, we thank the audience of the conference and seminar talks on this work.
 %seminar participants at Columbia and conference participants at Innovations in Theoretical Computer Science 2018, ACM Economics and Computation 2019 and the MIT Conference on Digital Experimentation 2020, for helpful comments and conversations.
 All errors are our own.}}
 % \textit{Competing Bandits: Learning under Competition}, at Innovations in Theoretical Computer Science 2018, and \textit{The Perils of Exploration under Competition: A Computational Modeling Approach}, at ACM Economics and Computation 2019.}}
 
-
 \author{Guy Aridor
-\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu}
+\footnote{Columbia University, Department of Economics. Email: g.aridor@columbia.edu.}
 \and \hspace{-0.75cm}
 \rule{0.0in}{0pt}
 Yishay Mansour
-\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com}
+\footnote{Google and Tel Aviv University, Department of Computer Science. Email: mansour.yishay@gmail.com.\newline
+Supported in part by Israel Science Foundation grant number 993/17.}
 \and \hspace{-0.75cm}
 \rule{0.0in}{0pt}
-Aleksandrs Slivkins%
-\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com}
+Aleksandrs Slivkins
+\footnote{Microsoft Research New York City. Email: slivkins@microsoft.com.}
 \and \hspace{-0.75cm}
 \rule{0.0in}{0pt}
 Zhiwei Steven Wu%
-\footnote{Carnegie Mellon University, Pittsburgh, PA.
+\footnote{Carnegie Mellon University, Pittsburgh, PA
 Email: zstevenwu@cmu.edu.\newline
 Research done when Z.S. Wu was an intern and a postdoc at Microsoft Research NYC.}
 }
-\date{First version: July 2020\\ This version: December 2020}
+\date{}
+%\date{First version: July 2020\\ This version: December 2020}
 
 \maketitle
 
 \vspace{-5mm}
 \begin{abstract}
-Most online platforms strive to learn from interactions with users, and many engage in \emph{exploration}: making potentially suboptimal choices for the sake of acquiring new information. We study the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and the competition for users. Here users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
+Most online platforms learn from interactions with users, and engage in \emph{exploration}: making potentially suboptimal choices in order to acquire new information. We study the interplay between \emph{exploration} and \emph{competition}: how such platforms balance the exploration for learning and competition for users.
+%Here users play three distinct roles: they are customers that generate revenue, they are sources of data for learning, and they are self-interested agents which choose among the competing platforms.
 
-We consider a stylized duopoly model in which two firms face the same multi-armed bandit problem. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit problem only if it is chosen. Through a mix of theoretical results and numerical simulations, we study whether and to what extent competition incentivizes the adoption of better bandit algorithms, and whether it leads to welfare increases for users. We find that stark competition induces firms to commit to a ``greedy" bandit algorithm that leads to low welfare. However, weakening competition by providing firms with some ``free" users incentivizes better exploration strategies and increases welfare.  We investigate two channels for weakening the competition: relaxing the rationality of users and giving one firm a first-mover advantage. Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
+We consider a stylized duopoly in which two firms face the same multi-armed bandit problem. Users arrive one by one and choose between the two firms, so that each firm makes progress on its bandit problem only if it is chosen. We study whether competition incentivizes the adoption of better algorithms. We find that stark competition disincentivizes exploration, leading to low welfare.
+%induces firms to commit to a ``greedy" algorithm that leads to low welfare.
+However, weaker competition
+%by providing firms with some ``free" users
+incentivizes better exploration algorithms and increases welfare.  We investigate two channels for weakening the competition: stochastic user choice models and a first-mover advantage.
+Our findings speak to the competition-innovation relationship and the first-mover advantage in the digital economy.
+%Our findings are closely related to the ``competition vs. innovation" relationship, and elucidate the first-mover advantage in the digital economy.
+\\
 
-
-\vspace{0.2in}
+\vspace{0.1in}
+\noindent\textbf{Keywords:}  Competition vs. innovation, exploration-exploitation tradeoff, multi-armed bandits, regret. \\
+\noindent\textbf{JEL Codes}: D83, L15, O31
 
 \bigskip
 \end{abstract}
@@ -197,13 +205,14 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 %\end{titlepage}
 
 \newpage
-\begin{small}
-\setcounter{tocdepth}{2}
-\tableofcontents
-\end{small}
-\setcounter{page}{0}
-\thispagestyle{empty}
-\newpage
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+%\begin{small}
+%\setcounter{tocdepth}{2}
+%\tableofcontents
+%\end{small}
+\setcounter{page}{1}
+%\thispagestyle{empty}
+%\newpage
 %
 % The code below should be generated by the tool at
 % http://dl.acm.org/ccs.cfm
@@ -214,7 +223,6 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 
 \subfile{content/sec-intro}
 
-\newpage
 \section{Related work}
 \label{sec:related-work}
 \subfile{content/related_work}
@@ -261,7 +269,7 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 
 \subfile{content/conclusion}
 
-\newpage
+%\newpage
 \addcontentsline{toc}{section}{References}
 
 \bibliographystyle{ecta.bst}
@@ -275,8 +283,15 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 \renewcommand{\appendixname}{Appendix}
 \renewcommand{\appendixtocname}{List of appendices}
 
+      % body goes here
+\appendix
+\renewcommand{\contentsname}{Appendix}
 
-\begin{appendices}
+\tableofcontents
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+      % appendices go here
+
+\newpage
 
 %In the appendix, we provide background on multi-armed bandits as well as several discussions and proofs omitted from the main text. Furthermore, we provide plots and tables for our experiments, which were omitted from the main text. In all cases, the plots and tables here are in line with those in the main text, and lead to similar qualitative conclusions.
 
@@ -285,7 +300,6 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 %\label{sec:related-classes}
 \subfile{content/sec-bg}
 
-\newpage
 
 \section{Monotone MAB algorithms}
 \label{app:examples}
@@ -306,7 +320,6 @@ We consider a stylized duopoly model in which two firms face the same multi-arme
 
 %\subfile{content/old-intro}
 
-\end{appendices}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
